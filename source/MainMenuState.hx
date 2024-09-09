@@ -1256,30 +1256,32 @@ class MainMenuState extends MusicBeatState
 				}
 			}
 			#if desktop
-			//remember to change to this before you release the mod
-			/*else if (FlxG.keys.anyJustPressed(debugKeys) && !initializedVideo)
-			{
-				selectedSomethin = true;
-				if (FlxG.sound.music != null)
-					FlxG.sound.music.stop();
+				#if DEBUG_ALLOWED
+					if (FlxG.keys.anyJustPressed(debugKeys))
+						MusicBeatState.switchState(new MasterEditorMenu());
+				#else
+					if (FlxG.keys.anyJustPressed(debugKeys) && !initializedVideo)
+					{
+						selectedSomethin = true;
+						if (FlxG.sound.music != null)
+							FlxG.sound.music.stop();
 
-				var achieveFlashBangID:Int = Achievements.getAchievementIndex('flashbang');
-					if(!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveFlashBangID][2])) {
-					Achievements.achievementsMap.set(Achievements.achievementsStuff[achieveFlashBangID][2], true);
-					giveFlashbangAchievement();
-					ClientPrefs.saveSettings();
-				}
-	
-				var video:MP4Handler = new MP4Handler();
-				video.playVideo(Paths.video('thinkFastChucklenuts'));
-				initializedVideo = true;
-				video.finishCallback = function()
-				{
-					System.exit(0);
-				};
-			}*/
-			if (FlxG.keys.anyJustPressed(debugKeys))
-				MusicBeatState.switchState(new MasterEditorMenu());
+						var achieveFlashBangID:Int = Achievements.getAchievementIndex('flashbang');
+							if(!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveFlashBangID][2])) {
+							Achievements.achievementsMap.set(Achievements.achievementsStuff[achieveFlashBangID][2], true);
+							giveFlashbangAchievement();
+							ClientPrefs.saveSettings();
+						}
+			
+						var video:MP4Handler = new MP4Handler();
+						video.playVideo(Paths.video('thinkFastChucklenuts'));
+						initializedVideo = true;
+						video.finishCallback = function()
+						{
+							System.exit(0);
+						};
+					}
+				#end
 			#end
 		}
 		else

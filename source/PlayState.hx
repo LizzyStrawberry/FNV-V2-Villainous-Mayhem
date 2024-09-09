@@ -3575,35 +3575,12 @@ class PlayState extends MusicBeatState
 				}
 		}
 
-		//remember to change to this before you release the mod
-		/*if (FlxG.keys.anyJustPressed(debugKeysChart) && !endingSong && !inCutscene && PlayState.storyDifficulty == 3)
-		{
-			//if (ClientPrefs.debugFound == false && ClientPrefs.debugPlayed == false)
-			//{
-				trace('I got Marauder loaded lol');
-
-				PlayState.SONG = Song.loadFromJson('marauder-villainous', 'marauder');
-				LoadingState.loadAndSwitchState(new PlayState());
-	
-				FlxG.sound.music.pause();
-				FlxG.sound.music.volume = 0;
-				if(PlayState.instance.vocals != null)
-				{
-					PlayState.instance.vocals.pause();
-					PlayState.instance.vocals.volume = 0;
-				}
-				ClientPrefs.debugFound = true;
-				ClientPrefs.saveSettings();
-			//}
-			//else
-			//{
-				//do nothing never again
-			//}
-		}*/
-		if (FlxG.keys.anyJustPressed(debugKeysChart) && !endingSong && !inCutscene)
-		{
-			openChartEditor();
-		}
+		#if DEBUG_ALLOWED
+			if (FlxG.keys.anyJustPressed(debugKeysChart) && !endingSong && !inCutscene)
+			{
+				openChartEditor();
+			}
+		#end
 
 		// FlxG.watch.addQuick('VOL', vocals.amplitudeLeft);
 		// FlxG.watch.addQuick('VOLRight', vocals.amplitudeRight);
