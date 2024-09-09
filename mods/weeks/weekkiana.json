@@ -1,0 +1,50 @@
+{
+	"storyName": "Kiana Week",
+	"difficulties": "",
+	"hideFreeplay": true,
+	"weekBackground": "stage",
+	"weekBefore": "tutorial",
+	"freeplayColor": [
+		146,
+		113,
+		253
+	],
+	"startUnlocked": true,
+	"hideStoryMode": false,
+	"songs": [
+		[
+			"Forsaken",
+			"DV",
+			[
+				146,
+				0,
+				133
+			]
+		],
+		[
+			"Toybox",
+			"narrin",
+			[
+				213,
+				84,
+				192
+			]
+		],
+		[
+			"Lustality Remix",
+			"kiana",
+			[
+				195,
+				0,
+				153
+			]
+		]
+	],
+	"weekCharacters": [
+		"dad",
+		"bf",
+		"gf"
+	],
+	"hiddenUntilUnlocked": false,
+	"weekName": "Week 3"
+}

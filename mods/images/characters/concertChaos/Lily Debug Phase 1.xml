@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="Lily Debug Phase 1.png">
+	<!-- Created with Adobe Animate version 21.0.5.40714 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="lily down0000" x="4" y="4" width="399" height="493"/>
+	<SubTexture name="lily down0001" x="403" y="4" width="398" height="470" frameX="-1" frameY="-22" frameWidth="399" frameHeight="493"/>
+	<SubTexture name="lily down0002" x="801" y="4" width="398" height="462" frameX="-1" frameY="-30" frameWidth="399" frameHeight="493"/>
+	<SubTexture name="lily down0003" x="1199" y="4" width="398" height="466" frameX="-1" frameY="-26" frameWidth="399" frameHeight="493"/>
+	<SubTexture name="lily down0004" x="1597" y="4" width="398" height="474" frameX="-1" frameY="-19" frameWidth="399" frameHeight="493"/>
+	<SubTexture name="lily down0005" x="1995" y="4" width="398" height="478" frameX="-1" frameY="-15" frameWidth="399" frameHeight="493"/>
+	<SubTexture name="lily down0006" x="1995" y="4" width="398" height="478" frameX="-1" frameY="-15" frameWidth="399" frameHeight="493"/>
+	<SubTexture name="lily down0007" x="1995" y="4" width="398" height="478" frameX="-1" frameY="-15" frameWidth="399" frameHeight="493"/>
+	<SubTexture name="lily down0008" x="1995" y="4" width="398" height="478" frameX="-1" frameY="-15" frameWidth="399" frameHeight="493"/>
+	<SubTexture name="lily down0009" x="1995" y="4" width="398" height="478" frameX="-1" frameY="-15" frameWidth="399" frameHeight="493"/>
+	<SubTexture name="lily down miss0000" x="2393" y="4" width="413" height="519" frameX="0" frameY="-1" frameWidth="413" frameHeight="520"/>
+	<SubTexture name="lily down miss0001" x="2806" y="4" width="413" height="473" frameX="0" frameY="-46" frameWidth="413" frameHeight="520"/>
+	<SubTexture name="lily down miss0002" x="3219" y="4" width="413" height="520"/>
+	<SubTexture name="lily down miss0003" x="3219" y="4" width="413" height="520"/>
+	<SubTexture name="lily down miss0004" x="3219" y="4" width="413" height="520"/>
+	<SubTexture name="lily down miss0005" x="3219" y="4" width="413" height="520"/>
+	<SubTexture name="lily down miss0006" x="3219" y="4" width="413" height="520"/>
+	<SubTexture name="lily down miss0007" x="3219" y="4" width="413" height="520"/>
+	<SubTexture name="lily down miss0008" x="3219" y="4" width="413" height="520"/>
+	<SubTexture name="lily down miss0009" x="3219" y="4" width="413" height="520"/>
+	<SubTexture name="lily idle0000" x="3632" y="4" width="445" height="512" frameX="-1" frameY="-3" frameWidth="461" frameHeight="515"/>
+	<SubTexture name="lily idle0001" x="4" y="524" width="445" height="507" frameX="-1" frameY="-8" frameWidth="461" frameHeight="515"/>
+	<SubTexture name="lily idle0002" x="449" y="524" width="448" height="494" frameX="0" frameY="-20" frameWidth="461" frameHeight="515"/>
+	<SubTexture name="lily idle0003" x="897" y="524" width="457" height="483" frameX="-1" frameY="-31" frameWidth="461" frameHeight="515"/>
+	<SubTexture name="lily idle0004" x="1354" y="524" width="459" height="482" frameX="-1" frameY="-32" frameWidth="461" frameHeight="515"/>
+	<SubTexture name="lily idle0005" x="1813" y="524" width="460" height="482" frameX="-1" frameY="-32" frameWidth="461" frameHeight="515"/>
+	<SubTexture name="lily idle0006" x="2273" y="524" width="460" height="487" frameX="-1" frameY="-28" frameWidth="461" frameHeight="515"/>
+	<SubTexture name="lily idle0007" x="2733" y="524" width="455" height="494" frameX="-1" frameY="-21" frameWidth="461" frameHeight="515"/>
+	<SubTexture name="lily idle0008" x="3632" y="4" width="445" height="512" frameX="-1" frameY="-3" frameWidth="461" frameHeight="515"/>
+	<SubTexture name="lily idle0009" x="3188" y="524" width="442" height="514" frameX="-1" frameY="-1" frameWidth="461" frameHeight="515"/>
+	<SubTexture name="lily idle0010" x="3630" y="524" width="440" height="515" frameX="-1" frameY="0" frameWidth="461" frameHeight="515"/>
+	<SubTexture name="lily idle0011" x="3630" y="524" width="440" height="515" frameX="-1" frameY="0" frameWidth="461" frameHeight="515"/>
+	<SubTexture name="lily idle0012" x="3630" y="524" width="440" height="515" frameX="-1" frameY="0" frameWidth="461" frameHeight="515"/>
+	<SubTexture name="lily idle0013" x="3630" y="524" width="440" height="515" frameX="-1" frameY="0" frameWidth="461" frameHeight="515"/>
+	<SubTexture name="lily idle0014" x="4" y="1039" width="441" height="514" frameX="-1" frameY="-1" frameWidth="461" frameHeight="515"/>
+	<SubTexture name="lily left0000" x="445" y="1039" width="308" height="486" frameX="-11" frameY="-4" frameWidth="319" frameHeight="490"/>
+	<SubTexture name="lily left0001" x="753" y="1039" width="306" height="490" frameX="-2" frameY="0" frameWidth="319" frameHeight="490"/>
+	<SubTexture name="lily left0002" x="1059" y="1039" width="306" height="478" frameX="0" frameY="-12" frameWidth="319" frameHeight="490"/>
+	<SubTexture name="lily left0003" x="1365" y="1039" width="306" height="472" frameX="-2" frameY="-18" frameWidth="319" frameHeight="490"/>
+	<SubTexture name="lily left0004" x="1671" y="1039" width="304" height="476" frameX="-4" frameY="-14" frameWidth="319" frameHeight="490"/>
+	<SubTexture name="lily left0005" x="1975" y="1039" width="301" height="477" frameX="-8" frameY="-13" frameWidth="319" frameHeight="490"/>
+	<SubTexture name="lily left0006" x="2276" y="1039" width="301" height="477" frameX="-8" frameY="-13" frameWidth="319" frameHeight="490"/>
+	<SubTexture name="lily left0007" x="2276" y="1039" width="301" height="477" frameX="-8" frameY="-13" frameWidth="319" frameHeight="490"/>
+	<SubTexture name="lily left0008" x="2276" y="1039" width="301" height="477" frameX="-8" frameY="-13" frameWidth="319" frameHeight="490"/>
+	<SubTexture name="lily left0009" x="2276" y="1039" width="301" height="477" frameX="-8" frameY="-13" frameWidth="319" frameHeight="490"/>
+	<SubTexture name="lily left miss0000" x="2577" y="1039" width="364" height="479" frameX="-6" frameY="0" frameWidth="370" frameHeight="479"/>
+	<SubTexture name="lily left miss0001" x="2941" y="1039" width="356" height="479" frameX="0" frameY="0" frameWidth="370" frameHeight="479"/>
+	<SubTexture name="lily left miss0002" x="3297" y="1039" width="359" height="479" frameX="-4" frameY="0" frameWidth="370" frameHeight="479"/>
+	<SubTexture name="lily left miss0003" x="3297" y="1039" width="359" height="479" frameX="-4" frameY="0" frameWidth="370" frameHeight="479"/>
+	<SubTexture name="lily left miss0004" x="3297" y="1039" width="359" height="479" frameX="-4" frameY="0" frameWidth="370" frameHeight="479"/>
+	<SubTexture name="lily left miss0005" x="3297" y="1039" width="359" height="479" frameX="-4" frameY="0" frameWidth="370" frameHeight="479"/>
+	<SubTexture name="lily left miss0006" x="3297" y="1039" width="359" height="479" frameX="-4" frameY="0" frameWidth="370" frameHeight="479"/>
+	<SubTexture name="lily left miss0007" x="3297" y="1039" width="359" height="479" frameX="-4" frameY="0" frameWidth="370" frameHeight="479"/>
+	<SubTexture name="lily left miss0008" x="3297" y="1039" width="359" height="479" frameX="-4" frameY="0" frameWidth="370" frameHeight="479"/>
+	<SubTexture name="lily left miss0009" x="3297" y="1039" width="359" height="479" frameX="-4" frameY="0" frameWidth="370" frameHeight="479"/>
+	<SubTexture name="lily right0000" x="3656" y="1039" width="324" height="509" frameX="0" frameY="-7" frameWidth="356" frameHeight="516"/>
+	<SubTexture name="lily right0001" x="4" y="1553" width="319" height="516" frameX="-25" frameY="0" frameWidth="356" frameHeight="516"/>
+	<SubTexture name="lily right0002" x="323" y="1553" width="323" height="505" frameX="-33" frameY="-11" frameWidth="356" frameHeight="516"/>
+	<SubTexture name="lily right0003" x="646" y="1553" width="314" height="495" frameX="-27" frameY="-21" frameWidth="356" frameHeight="516"/>
+	<SubTexture name="lily right0004" x="960" y="1553" width="313" height="499" frameX="-22" frameY="-17" frameWidth="356" frameHeight="516"/>
+	<SubTexture name="lily right0005" x="1273" y="1553" width="311" height="501" frameX="-22" frameY="-15" frameWidth="356" frameHeight="516"/>
+	<SubTexture name="lily right0006" x="1584" y="1553" width="311" height="501" frameX="-22" frameY="-15" frameWidth="356" frameHeight="516"/>
+	<SubTexture name="lily right0007" x="1584" y="1553" width="311" height="501" frameX="-22" frameY="-15" frameWidth="356" frameHeight="516"/>
+	<SubTexture name="lily right0008" x="1584" y="1553" width="311" height="501" frameX="-22" frameY="-15" frameWidth="356" frameHeight="516"/>
+	<SubTexture name="lily right0009" x="1584" y="1553" width="311" height="501" frameX="-22" frameY="-15" frameWidth="356" frameHeight="516"/>
+	<SubTexture name="lily right miss0000" x="1895" y="1553" width="370" height="532" frameX="0" frameY="0" frameWidth="396" frameHeight="532"/>
+	<SubTexture name="lily right miss0001" x="2265" y="1553" width="390" height="532" frameX="-6" frameY="0" frameWidth="396" frameHeight="532"/>
+	<SubTexture name="lily right miss0002" x="2655" y="1553" width="375" height="532" frameX="-1" frameY="0" frameWidth="396" frameHeight="532"/>
+	<SubTexture name="lily right miss0003" x="2655" y="1553" width="375" height="532" frameX="-1" frameY="0" frameWidth="396" frameHeight="532"/>
+	<SubTexture name="lily right miss0004" x="2655" y="1553" width="375" height="532" frameX="-1" frameY="0" frameWidth="396" frameHeight="532"/>
+	<SubTexture name="lily right miss0005" x="2655" y="1553" width="375" height="532" frameX="-1" frameY="0" frameWidth="396" frameHeight="532"/>
+	<SubTexture name="lily right miss0006" x="2655" y="1553" width="375" height="532" frameX="-1" frameY="0" frameWidth="396" frameHeight="532"/>
+	<SubTexture name="lily right miss0007" x="2655" y="1553" width="375" height="532" frameX="-1" frameY="0" frameWidth="396" frameHeight="532"/>
+	<SubTexture name="lily right miss0008" x="2655" y="1553" width="375" height="532" frameX="-1" frameY="0" frameWidth="396" frameHeight="532"/>
+	<SubTexture name="lily right miss0009" x="2655" y="1553" width="375" height="532" frameX="-1" frameY="0" frameWidth="396" frameHeight="532"/>
+	<SubTexture name="lily up0000" x="3030" y="1553" width="329" height="576" frameX="-4" frameY="-15" frameWidth="333" frameHeight="592"/>
+	<SubTexture name="lily up0001" x="3359" y="1553" width="333" height="590" frameX="0" frameY="-1" frameWidth="333" frameHeight="592"/>
+	<SubTexture name="lily up0002" x="3692" y="1553" width="333" height="592"/>
+	<SubTexture name="lily up0003" x="4" y="2145" width="333" height="586" frameX="0" frameY="-5" frameWidth="333" frameHeight="592"/>
+	<SubTexture name="lily up0004" x="337" y="2145" width="330" height="579" frameX="-3" frameY="-12" frameWidth="333" frameHeight="592"/>
+	<SubTexture name="lily up0005" x="667" y="2145" width="330" height="577" frameX="-3" frameY="-14" frameWidth="333" frameHeight="592"/>
+	<SubTexture name="lily up0006" x="997" y="2145" width="330" height="577" frameX="-3" frameY="-14" frameWidth="333" frameHeight="592"/>
+	<SubTexture name="lily up0007" x="997" y="2145" width="330" height="577" frameX="-3" frameY="-14" frameWidth="333" frameHeight="592"/>
+	<SubTexture name="lily up0008" x="997" y="2145" width="330" height="577" frameX="-3" frameY="-14" frameWidth="333" frameHeight="592"/>
+	<SubTexture name="lily up0009" x="997" y="2145" width="330" height="577" frameX="-3" frameY="-14" frameWidth="333" frameHeight="592"/>
+	<SubTexture name="lily up miss0000" x="1327" y="2145" width="337" height="558" frameX="0" frameY="-31" frameWidth="337" frameHeight="590"/>
+	<SubTexture name="lily up miss0001" x="1664" y="2145" width="337" height="590"/>
+	<SubTexture name="lily up miss0002" x="2001" y="2145" width="337" height="559" frameX="0" frameY="-30" frameWidth="337" frameHeight="590"/>
+	<SubTexture name="lily up miss0003" x="2001" y="2145" width="337" height="559" frameX="0" frameY="-30" frameWidth="337" frameHeight="590"/>
+	<SubTexture name="lily up miss0004" x="2001" y="2145" width="337" height="559" frameX="0" frameY="-30" frameWidth="337" frameHeight="590"/>
+	<SubTexture name="lily up miss0005" x="2001" y="2145" width="337" height="559" frameX="0" frameY="-30" frameWidth="337" frameHeight="590"/>
+	<SubTexture name="lily up miss0006" x="2001" y="2145" width="337" height="559" frameX="0" frameY="-30" frameWidth="337" frameHeight="590"/>
+	<SubTexture name="lily up miss0007" x="2001" y="2145" width="337" height="559" frameX="0" frameY="-30" frameWidth="337" frameHeight="590"/>
+	<SubTexture name="lily up miss0008" x="2001" y="2145" width="337" height="559" frameX="0" frameY="-30" frameWidth="337" frameHeight="590"/>
+	<SubTexture name="lily up miss0009" x="2001" y="2145" width="337" height="559" frameX="0" frameY="-30" frameWidth="337" frameHeight="590"/>
+</TextureAtlas>

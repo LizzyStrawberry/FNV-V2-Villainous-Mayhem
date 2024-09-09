@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="Kiana.png">
+	<!-- Created with Adobe Animate version 21.0.5.40714 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="kiana dodge0000" x="8" y="8" width="965" height="924"/>
+	<SubTexture name="kiana dodge0001" x="973" y="8" width="965" height="924"/>
+	<SubTexture name="kiana dodge0002" x="1938" y="8" width="965" height="924"/>
+	<SubTexture name="kiana dodge0003" x="2903" y="8" width="965" height="924"/>
+	<SubTexture name="kiana dodge0004" x="3868" y="8" width="965" height="924"/>
+	<SubTexture name="kiana dodge0005" x="4833" y="8" width="965" height="924"/>
+	<SubTexture name="kiana dodge0006" x="5798" y="8" width="965" height="924"/>
+	<SubTexture name="kiana dodge0007" x="6763" y="8" width="965" height="924"/>
+	<SubTexture name="kiana dodge0008" x="8" y="932" width="965" height="924"/>
+	<SubTexture name="kiana dodge0009" x="973" y="932" width="965" height="924"/>
+	<SubTexture name="kiana dodge0010" x="1938" y="932" width="965" height="924"/>
+	<SubTexture name="kiana dodge0011" x="2903" y="932" width="965" height="924"/>
+	<SubTexture name="kiana dodge0012" x="2903" y="932" width="965" height="924"/>
+	<SubTexture name="kiana dodge0013" x="2903" y="932" width="965" height="924"/>
+	<SubTexture name="kiana dodge0014" x="2903" y="932" width="965" height="924"/>
+	<SubTexture name="kiana down0000" x="3868" y="932" width="555" height="608"/>
+	<SubTexture name="kiana down0001" x="4423" y="932" width="555" height="608"/>
+	<SubTexture name="kiana down0002" x="4978" y="932" width="555" height="608"/>
+	<SubTexture name="kiana down0003" x="5533" y="932" width="555" height="608"/>
+	<SubTexture name="kiana down0004" x="6088" y="932" width="555" height="608"/>
+	<SubTexture name="kiana down0005" x="6088" y="932" width="555" height="608"/>
+	<SubTexture name="kiana down0006" x="6088" y="932" width="555" height="608"/>
+	<SubTexture name="kiana down0007" x="6088" y="932" width="555" height="608"/>
+	<SubTexture name="kiana down0008" x="6088" y="932" width="555" height="608"/>
+	<SubTexture name="kiana down0009" x="6088" y="932" width="555" height="608"/>
+	<SubTexture name="kiana down0010" x="6088" y="932" width="555" height="608"/>
+	<SubTexture name="kiana down0011" x="6088" y="932" width="555" height="608"/>
+	<SubTexture name="kiana down0012" x="6088" y="932" width="555" height="608"/>
+	<SubTexture name="kiana down0013" x="6088" y="932" width="555" height="608"/>
+	<SubTexture name="kiana down0014" x="6088" y="932" width="555" height="608"/>
+	<SubTexture name="kiana idle0000" x="6643" y="932" width="485" height="655"/>
+	<SubTexture name="kiana idle0001" x="7128" y="932" width="485" height="655"/>
+	<SubTexture name="kiana idle0002" x="7613" y="932" width="485" height="655"/>
+	<SubTexture name="kiana idle0003" x="8" y="1856" width="485" height="655"/>
+	<SubTexture name="kiana idle0004" x="8" y="1856" width="485" height="655"/>
+	<SubTexture name="kiana idle0005" x="8" y="1856" width="485" height="655"/>
+	<SubTexture name="kiana idle0006" x="8" y="1856" width="485" height="655"/>
+	<SubTexture name="kiana idle0007" x="493" y="1856" width="485" height="655"/>
+	<SubTexture name="kiana idle0008" x="978" y="1856" width="485" height="655"/>
+	<SubTexture name="kiana idle0009" x="1463" y="1856" width="485" height="655"/>
+	<SubTexture name="kiana idle0010" x="1948" y="1856" width="485" height="655"/>
+	<SubTexture name="kiana idle0011" x="2433" y="1856" width="485" height="655"/>
+	<SubTexture name="kiana idle0012" x="2433" y="1856" width="485" height="655"/>
+	<SubTexture name="kiana idle0013" x="2433" y="1856" width="485" height="655"/>
+	<SubTexture name="kiana idle0014" x="2433" y="1856" width="485" height="655"/>
+	<SubTexture name="kiana left0000" x="2918" y="1856" width="535" height="545"/>
+	<SubTexture name="kiana left0001" x="3453" y="1856" width="535" height="545"/>
+	<SubTexture name="kiana left0002" x="3988" y="1856" width="535" height="545"/>
+	<SubTexture name="kiana left0003" x="4523" y="1856" width="535" height="545"/>
+	<SubTexture name="kiana left0004" x="5058" y="1856" width="535" height="545"/>
+	<SubTexture name="kiana left0005" x="5058" y="1856" width="535" height="545"/>
+	<SubTexture name="kiana left0006" x="5058" y="1856" width="535" height="545"/>
+	<SubTexture name="kiana left0007" x="5058" y="1856" width="535" height="545"/>
+	<SubTexture name="kiana left0008" x="5058" y="1856" width="535" height="545"/>
+	<SubTexture name="kiana left0009" x="5058" y="1856" width="535" height="545"/>
+	<SubTexture name="kiana left0010" x="5058" y="1856" width="535" height="545"/>
+	<SubTexture name="kiana left0011" x="5058" y="1856" width="535" height="545"/>
+	<SubTexture name="kiana left0012" x="5058" y="1856" width="535" height="545"/>
+	<SubTexture name="kiana left0013" x="5058" y="1856" width="535" height="545"/>
+	<SubTexture name="kiana left0014" x="5058" y="1856" width="535" height="545"/>
+	<SubTexture name="kiana right0000" x="5593" y="1856" width="515" height="602"/>
+	<SubTexture name="kiana right0001" x="6108" y="1856" width="515" height="602"/>
+	<SubTexture name="kiana right0002" x="6623" y="1856" width="515" height="602"/>
+	<SubTexture name="kiana right0003" x="7138" y="1856" width="515" height="602"/>
+	<SubTexture name="kiana right0004" x="7653" y="1856" width="515" height="602"/>
+	<SubTexture name="kiana right0005" x="7653" y="1856" width="515" height="602"/>
+	<SubTexture name="kiana right0006" x="7653" y="1856" width="515" height="602"/>
+	<SubTexture name="kiana right0007" x="7653" y="1856" width="515" height="602"/>
+	<SubTexture name="kiana right0008" x="7653" y="1856" width="515" height="602"/>
+	<SubTexture name="kiana right0009" x="7653" y="1856" width="515" height="602"/>
+	<SubTexture name="kiana right0010" x="7653" y="1856" width="515" height="602"/>
+	<SubTexture name="kiana right0011" x="7653" y="1856" width="515" height="602"/>
+	<SubTexture name="kiana right0012" x="7653" y="1856" width="515" height="602"/>
+	<SubTexture name="kiana right0013" x="7653" y="1856" width="515" height="602"/>
+	<SubTexture name="kiana right0014" x="7653" y="1856" width="515" height="602"/>
+	<SubTexture name="kiana tail attack0000" x="8" y="2511" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0001" x="1448" y="2511" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0002" x="2888" y="2511" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0003" x="4328" y="2511" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0004" x="5768" y="2511" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0005" x="8" y="3149" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0006" x="8" y="3149" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0007" x="1448" y="3149" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0008" x="2888" y="3149" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0009" x="4328" y="3149" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0010" x="4328" y="3149" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0011" x="4328" y="3149" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0012" x="4328" y="3149" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0013" x="4328" y="3149" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0014" x="4328" y="3149" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0015" x="4328" y="3149" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0016" x="4328" y="3149" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0017" x="4328" y="3149" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0018" x="4328" y="3149" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0019" x="4328" y="3149" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0020" x="4328" y="3149" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0021" x="4328" y="3149" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0022" x="4328" y="3149" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0023" x="4328" y="3149" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0024" x="4328" y="3149" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0025" x="4328" y="3149" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0026" x="4328" y="3149" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0027" x="4328" y="3149" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0028" x="4328" y="3149" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0029" x="4328" y="3149" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0030" x="4328" y="3149" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0031" x="4328" y="3149" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0032" x="4328" y="3149" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0033" x="4328" y="3149" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0034" x="4328" y="3149" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0035" x="4328" y="3149" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0036" x="4328" y="3149" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0037" x="4328" y="3149" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0038" x="4328" y="3149" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0039" x="4328" y="3149" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0040" x="4328" y="3149" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0041" x="4328" y="3149" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0042" x="4328" y="3149" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0043" x="4328" y="3149" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0044" x="4328" y="3149" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0045" x="5768" y="3149" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0046" x="8" y="3787" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0047" x="1448" y="3787" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0048" x="2888" y="3787" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0049" x="4328" y="3787" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0050" x="5768" y="3787" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0051" x="8" y="4425" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0052" x="1448" y="4425" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0053" x="2888" y="4425" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0054" x="4328" y="4425" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0055" x="4328" y="4425" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0056" x="4328" y="4425" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0057" x="4328" y="4425" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0058" x="4328" y="4425" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0059" x="4328" y="4425" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0060" x="4328" y="4425" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0061" x="4328" y="4425" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0062" x="4328" y="4425" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0063" x="5768" y="4425" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0064" x="8" y="5063" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0065" x="1448" y="5063" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0066" x="2888" y="5063" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0067" x="4328" y="5063" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0068" x="5768" y="5063" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0069" x="8" y="5701" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0070" x="1448" y="5701" width="1440" height="638"/>
+	<SubTexture name="kiana tail attack0071" x="2888" y="5701" width="1440" height="638"/>
+	<SubTexture name="kiana up0000" x="4328" y="5701" width="464" height="666"/>
+	<SubTexture name="kiana up0001" x="4792" y="5701" width="464" height="666"/>
+	<SubTexture name="kiana up0002" x="5256" y="5701" width="464" height="666"/>
+	<SubTexture name="kiana up0003" x="5720" y="5701" width="464" height="666"/>
+	<SubTexture name="kiana up0004" x="6184" y="5701" width="464" height="666"/>
+	<SubTexture name="kiana up0005" x="6648" y="5701" width="464" height="666"/>
+	<SubTexture name="kiana up0006" x="6648" y="5701" width="464" height="666"/>
+	<SubTexture name="kiana up0007" x="6648" y="5701" width="464" height="666"/>
+	<SubTexture name="kiana up0008" x="6648" y="5701" width="464" height="666"/>
+	<SubTexture name="kiana up0009" x="6648" y="5701" width="464" height="666"/>
+	<SubTexture name="kiana up0010" x="6648" y="5701" width="464" height="666"/>
+	<SubTexture name="kiana up0011" x="6648" y="5701" width="464" height="666"/>
+	<SubTexture name="kiana up0012" x="6648" y="5701" width="464" height="666"/>
+	<SubTexture name="kiana up0013" x="6648" y="5701" width="464" height="666"/>
+	<SubTexture name="kiana up0014" x="6648" y="5701" width="464" height="666"/>
+	<SubTexture name="kiana vpose0000" x="7112" y="5701" width="485" height="667"/>
+	<SubTexture name="kiana vpose0001" x="7597" y="5701" width="485" height="667"/>
+	<SubTexture name="kiana vpose0002" x="8" y="6368" width="485" height="667"/>
+	<SubTexture name="kiana vpose0003" x="493" y="6368" width="485" height="667"/>
+	<SubTexture name="kiana vpose0004" x="978" y="6368" width="485" height="667"/>
+	<SubTexture name="kiana vpose0005" x="1463" y="6368" width="485" height="667"/>
+	<SubTexture name="kiana vpose0006" x="1948" y="6368" width="485" height="667"/>
+	<SubTexture name="kiana vpose0007" x="2433" y="6368" width="485" height="667"/>
+	<SubTexture name="kiana vpose0008" x="2918" y="6368" width="485" height="667"/>
+	<SubTexture name="kiana vpose0009" x="3403" y="6368" width="485" height="667"/>
+	<SubTexture name="kiana vpose0010" x="3403" y="6368" width="485" height="667"/>
+	<SubTexture name="kiana vpose0011" x="3403" y="6368" width="485" height="667"/>
+	<SubTexture name="kiana vpose0012" x="3403" y="6368" width="485" height="667"/>
+	<SubTexture name="kiana vpose0013" x="3403" y="6368" width="485" height="667"/>
+	<SubTexture name="kiana vpose0014" x="3403" y="6368" width="485" height="667"/>
+</TextureAtlas>

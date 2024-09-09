@@ -1,0 +1,36 @@
+{
+	"song": {
+		"events": [
+			[
+				14000,
+				[
+					[
+						"Change Scroll Speed",
+						"1.3",
+						"2"
+					]
+				]
+			],
+			[
+				72000,
+				[
+					[
+						"Change Character",
+						"dad",
+						"kianaphase2"
+					]
+				]
+			],
+			[
+				140000,
+				[
+					[
+						"Change Character",
+						"dad",
+						"kianaphase3"
+					]
+				]
+			]
+		]
+	}
+}

@@ -1,0 +1,78 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				0
+			],
+			"anim": "idle",
+			"fps": 24,
+			"name": "fangirl idle",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-57,
+				10
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "fangirl left",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-86,
+				-20
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "fangirl down",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-125,
+				55
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "fangirl up",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-74,
+				17
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "fangirl right",
+			"indices": []
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/fangirl phase 2",
+	"position": [
+		50,
+		0
+	],
+	"healthicon": "fangirlp1",
+	"flip_x": false,
+	"healthbar_colors": [
+		73,
+		160,
+		45
+	],
+	"camera_position": [
+		0,
+		0
+	],
+	"sing_duration": 6.1,
+	"scale": 1
+}

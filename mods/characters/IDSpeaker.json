@@ -1,0 +1,117 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				-36,
+				-136
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "kiana left0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-62,
+				-63
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "kiana down0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-9,
+				-2
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "kiana up0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-53,
+				-70
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "kiana right0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				70,
+				-31
+			],
+			"anim": "tail attack",
+			"fps": 24,
+			"name": "kiana tail attack",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				230,
+				100
+			],
+			"anim": "dodge",
+			"fps": 24,
+			"name": "kiana dodge0",
+			"indices": [
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9,
+				12,
+				13,
+				13,
+				13,
+				13,
+				13,
+				13
+			]
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-1,
+				-10
+			],
+			"anim": "idle",
+			"fps": 24,
+			"name": "Speaker",
+			"indices": []
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/instrumentally deranged",
+	"position": [
+		240,
+		410
+	],
+	"healthicon": "porkchop",
+	"flip_x": false,
+	"healthbar_colors": [
+		255,
+		162,
+		162
+	],
+	"camera_position": [
+		-190,
+		90
+	],
+	"sing_duration": 6.1,
+	"scale": 1
+}

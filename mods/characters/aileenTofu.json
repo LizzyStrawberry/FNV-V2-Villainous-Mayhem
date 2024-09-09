@@ -1,0 +1,155 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				-1,
+				-10
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "idle",
+			"indices": [],
+			"name": "aileen idle"
+		},
+		{
+			"loop": false,
+			"offsets": [
+				22,
+				-26
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "aileen left0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-1,
+				-58
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "aileen down0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-2,
+				-5
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "aileen up0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-64,
+				-37
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "aileen right0",
+			"indices": []
+		},
+		{
+			"offsets": [
+				37,
+				-32
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFTmiss",
+			"indices": [],
+			"name": "aileen left miss"
+		},
+		{
+			"offsets": [
+				-64,
+				-58
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHTmiss",
+			"indices": [],
+			"name": "aileen right miss"
+		},
+		{
+			"offsets": [
+				-21,
+				13
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUPmiss",
+			"indices": [],
+			"name": "aileen up miss"
+		},
+		{
+			"offsets": [
+				94,
+				-57
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "firstDeath",
+			"indices": [],
+			"name": "aileen first death"
+		},
+		{
+			"offsets": [
+				19,
+				-66
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "deathConfirm",
+			"indices": [],
+			"name": "aileen death loop"
+		},
+		{
+			"offsets": [
+				-13,
+				-91
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWNmiss",
+			"indices": [],
+			"name": "aileen down miss"
+		},
+		{
+			"offsets": [
+				19,
+				-67
+			],
+			"loop": true,
+			"fps": 24,
+			"anim": "deathLoop",
+			"indices": [],
+			"name": "aileen death loop"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/aileen tofu",
+	"position": [
+		-60,
+		-70
+	],
+	"healthicon": "aileentofu",
+	"flip_x": true,
+	"healthbar_colors": [
+		163,
+		187,
+		137
+	],
+	"camera_position": [
+		-50,
+		10
+	],
+	"sing_duration": 6.1,
+	"scale": 1.1
+}

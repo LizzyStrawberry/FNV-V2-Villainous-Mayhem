@@ -1,0 +1,133 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				0
+			],
+			"anim": "idle",
+			"fps": 24,
+			"name": "kyu idle0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				3,
+				5
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "kyu left0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-14,
+				-33
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "kyu down0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-15,
+				37
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "kyu up0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-18,
+				-4
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "kyu right0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				0
+			],
+			"anim": "switch",
+			"fps": 24,
+			"name": "kyu idle switch",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				104,
+				-8
+			],
+			"anim": "singLEFTmiss",
+			"fps": 24,
+			"name": "kyu left miss",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				38,
+				-63
+			],
+			"anim": "singDOWNmiss",
+			"fps": 24,
+			"name": "kyu down miss",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				46,
+				60
+			],
+			"anim": "singUPmiss",
+			"fps": 24,
+			"name": "kyu up miss",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				6,
+				-8
+			],
+			"anim": "singRIGHTmiss",
+			"fps": 24,
+			"name": "kyu right miss",
+			"indices": []
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/kyu",
+	"position": [
+		-520,
+		-10
+	],
+	"healthicon": "kyufa",
+	"flip_x": true,
+	"healthbar_colors": [
+		255,
+		239,
+		11
+	],
+	"camera_position": [
+		-260,
+		30
+	],
+	"sing_duration": 6.1,
+	"scale": 1
+}

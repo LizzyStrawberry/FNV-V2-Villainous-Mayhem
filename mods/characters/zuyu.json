@@ -1,0 +1,155 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				-26,
+				-17
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "zuyu down0"
+		},
+		{
+			"offsets": [
+				39,
+				12
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUP",
+			"indices": [],
+			"name": "zuyu up0"
+		},
+		{
+			"offsets": [
+				-55,
+				-4
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWNmiss",
+			"indices": [],
+			"name": "zuyu down miss"
+		},
+		{
+			"offsets": [
+				-77,
+				3
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUPmiss",
+			"indices": [],
+			"name": "zuyu up miss"
+		},
+		{
+			"offsets": [
+				38,
+				57
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "firstDeath",
+			"indices": [],
+			"name": "zuyu ded0"
+		},
+		{
+			"offsets": [
+				-51,
+				0
+			],
+			"loop": true,
+			"fps": 24,
+			"anim": "deathLoop",
+			"indices": [],
+			"name": "zuyu ded loop"
+		},
+		{
+			"offsets": [
+				-51,
+				0
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "deathConfirm",
+			"indices": [],
+			"name": "zuyu ded loop"
+		},
+		{
+			"loop": false,
+			"offsets": [
+				73,
+				-10
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "zuyu left0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-2,
+				-3
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "zuyu right0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-57,
+				-7
+			],
+			"anim": "singLEFTmiss",
+			"fps": 24,
+			"name": "zuyu left miss",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-68,
+				6
+			],
+			"anim": "singRIGHTmiss",
+			"fps": 24,
+			"name": "zuyu right miss",
+			"indices": []
+		},
+		{
+			"offsets": [
+				-1,
+				-10
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "idle",
+			"loop": true,
+			"name": "zuyu idle"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/zuyu",
+	"position": [
+		50,
+		200
+	],
+	"healthicon": "zuyu",
+	"flip_x": true,
+	"healthbar_colors": [
+		65,
+		200,
+		245
+	],
+	"camera_position": [
+		20,
+		120
+	],
+	"sing_duration": 6.1,
+	"scale": 0.8
+}

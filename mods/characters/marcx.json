@@ -1,0 +1,78 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				0,
+				1
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "idle",
+			"loop": false,
+			"name": "marcx idle"
+		},
+		{
+			"offsets": [
+				212,
+				46
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singRIGHT",
+			"loop": false,
+			"name": "marcx left"
+		},
+		{
+			"offsets": [
+				90,
+				-28
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singLEFT",
+			"loop": false,
+			"name": "marcx right"
+		},
+		{
+			"offsets": [
+				115,
+				-166
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singDOWN",
+			"loop": false,
+			"name": "marcx down"
+		},
+		{
+			"offsets": [
+				32,
+				40
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singUP",
+			"loop": false,
+			"name": "marcx up"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/marcx",
+	"position": [
+		50,
+		110
+	],
+	"healthicon": "marcx",
+	"flip_x": false,
+	"healthbar_colors": [
+		34,
+		34,
+		34
+	],
+	"camera_position": [
+		-350,
+		0
+	],
+	"sing_duration": 6.1,
+	"scale": 1.1
+}

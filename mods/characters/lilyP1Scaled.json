@@ -1,0 +1,122 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				0
+			],
+			"anim": "idle",
+			"fps": 24,
+			"name": "lily idle",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				33,
+				0
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "lily left0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-11,
+				-28
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "lily down0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				163,
+				1
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "lily up0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-57,
+				-58
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "lily right0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				83,
+				7
+			],
+			"anim": "singLEFTmiss",
+			"fps": 24,
+			"name": "lily left miss",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-3,
+				-52
+			],
+			"anim": "singDOWNmiss",
+			"fps": 24,
+			"name": "lily down miss",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				119,
+				89
+			],
+			"anim": "singUPmiss",
+			"fps": 24,
+			"name": "lily up miss",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-32,
+				-55
+			],
+			"anim": "singRIGHTmiss",
+			"fps": 24,
+			"name": "lily right miss",
+			"indices": []
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/concertChaos/Lily front",
+	"position": [
+		0,
+		0
+	],
+	"healthicon": "lilycc",
+	"flip_x": true,
+	"healthbar_colors": [
+		253,
+		210,
+		80
+	],
+	"camera_position": [
+		-140,
+		40
+	],
+	"sing_duration": 6.1,
+	"scale": 1.3
+}

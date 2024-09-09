@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="audience.png">
+	<!-- Created with Adobe Animate version 21.0.5.40714 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="hands clap0000" x="4" y="4" width="1289" height="349" frameX="0" frameY="-14" frameWidth="1289" frameHeight="363"/>
+	<SubTexture name="hands clap0001" x="4" y="4" width="1289" height="349" frameX="0" frameY="-14" frameWidth="1289" frameHeight="363"/>
+	<SubTexture name="hands clap0002" x="1293" y="4" width="1288" height="339" frameX="-1" frameY="-24" frameWidth="1289" frameHeight="363"/>
+	<SubTexture name="hands clap0003" x="1293" y="4" width="1288" height="339" frameX="-1" frameY="-24" frameWidth="1289" frameHeight="363"/>
+	<SubTexture name="hands clap0004" x="2581" y="4" width="1289" height="363"/>
+	<SubTexture name="hands clap0005" x="4" y="367" width="1289" height="340" frameX="0" frameY="-23" frameWidth="1289" frameHeight="363"/>
+	<SubTexture name="hands clap0006" x="4" y="367" width="1289" height="340" frameX="0" frameY="-23" frameWidth="1289" frameHeight="363"/>
+	<SubTexture name="hands clap0007" x="4" y="367" width="1289" height="340" frameX="0" frameY="-23" frameWidth="1289" frameHeight="363"/>
+	<SubTexture name="hands clap0008" x="4" y="367" width="1289" height="340" frameX="0" frameY="-23" frameWidth="1289" frameHeight="363"/>
+	<SubTexture name="hands clap0009" x="4" y="367" width="1289" height="340" frameX="0" frameY="-23" frameWidth="1289" frameHeight="363"/>
+	<SubTexture name="hands clap0010" x="4" y="367" width="1289" height="340" frameX="0" frameY="-23" frameWidth="1289" frameHeight="363"/>
+	<SubTexture name="hands clap0011" x="4" y="367" width="1289" height="340" frameX="0" frameY="-23" frameWidth="1289" frameHeight="363"/>
+	<SubTexture name="hands clap0012" x="1293" y="4" width="1288" height="339" frameX="-1" frameY="-24" frameWidth="1289" frameHeight="363"/>
+	<SubTexture name="hands clap0013" x="1293" y="4" width="1288" height="339" frameX="-1" frameY="-24" frameWidth="1289" frameHeight="363"/>
+	<SubTexture name="hands clap0014" x="4" y="4" width="1289" height="349" frameX="0" frameY="-14" frameWidth="1289" frameHeight="363"/>
+</TextureAtlas>

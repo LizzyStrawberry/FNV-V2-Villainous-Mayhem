@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="Manager Chan Phase 1.png">
+	<!-- Created with Adobe Animate version 21.0.5.40714 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="manager chan down0000" x="4" y="4" width="214" height="544" frameX="-13" frameY="-3" frameWidth="227" frameHeight="547"/>
+	<SubTexture name="manager chan down0001" x="218" y="4" width="224" height="546" frameX="-2" frameY="-1" frameWidth="227" frameHeight="547"/>
+	<SubTexture name="manager chan down0002" x="442" y="4" width="225" height="547" frameX="0" frameY="0" frameWidth="227" frameHeight="547"/>
+	<SubTexture name="manager chan down0003" x="442" y="4" width="225" height="547" frameX="0" frameY="0" frameWidth="227" frameHeight="547"/>
+	<SubTexture name="manager chan down0004" x="667" y="4" width="220" height="546" frameX="-5" frameY="-1" frameWidth="227" frameHeight="547"/>
+	<SubTexture name="manager chan down0005" x="887" y="4" width="194" height="543" frameX="-32" frameY="-4" frameWidth="227" frameHeight="547"/>
+	<SubTexture name="manager chan down0006" x="1081" y="4" width="191" height="542" frameX="-35" frameY="-5" frameWidth="227" frameHeight="547"/>
+	<SubTexture name="manager chan down0007" x="1081" y="4" width="191" height="542" frameX="-35" frameY="-5" frameWidth="227" frameHeight="547"/>
+	<SubTexture name="manager chan down0008" x="1081" y="4" width="191" height="542" frameX="-35" frameY="-5" frameWidth="227" frameHeight="547"/>
+	<SubTexture name="manager chan down0009" x="1081" y="4" width="191" height="542" frameX="-35" frameY="-5" frameWidth="227" frameHeight="547"/>
+	<SubTexture name="manager chan down miss0000" x="1272" y="4" width="224" height="524" frameX="0" frameY="-6" frameWidth="224" frameHeight="530"/>
+	<SubTexture name="manager chan down miss0001" x="1496" y="4" width="224" height="490" frameX="0" frameY="-39" frameWidth="224" frameHeight="530"/>
+	<SubTexture name="manager chan down miss0002" x="1720" y="4" width="224" height="530"/>
+	<SubTexture name="manager chan down miss0003" x="1720" y="4" width="224" height="530"/>
+	<SubTexture name="manager chan down miss0004" x="1720" y="4" width="224" height="530"/>
+	<SubTexture name="manager chan down miss0005" x="1720" y="4" width="224" height="530"/>
+	<SubTexture name="manager chan down miss0006" x="1720" y="4" width="224" height="530"/>
+	<SubTexture name="manager chan down miss0007" x="1720" y="4" width="224" height="530"/>
+	<SubTexture name="manager chan down miss0008" x="1720" y="4" width="224" height="530"/>
+	<SubTexture name="manager chan down miss0009" x="1720" y="4" width="224" height="530"/>
+	<SubTexture name="manager chan idle0000" x="1944" y="4" width="195" height="570" frameX="-30" frameY="-10" frameWidth="230" frameHeight="580"/>
+	<SubTexture name="manager chan idle0001" x="2139" y="4" width="198" height="569" frameX="-29" frameY="-11" frameWidth="230" frameHeight="580"/>
+	<SubTexture name="manager chan idle0002" x="2337" y="4" width="221" height="577" frameX="-8" frameY="-3" frameWidth="230" frameHeight="580"/>
+	<SubTexture name="manager chan idle0003" x="2558" y="4" width="230" height="579" frameX="0" frameY="0" frameWidth="230" frameHeight="580"/>
+	<SubTexture name="manager chan idle0004" x="2788" y="4" width="228" height="579" frameX="0" frameY="0" frameWidth="230" frameHeight="580"/>
+	<SubTexture name="manager chan idle0005" x="2788" y="4" width="228" height="579" frameX="0" frameY="0" frameWidth="230" frameHeight="580"/>
+	<SubTexture name="manager chan idle0006" x="3016" y="4" width="220" height="577" frameX="-7" frameY="-2" frameWidth="230" frameHeight="580"/>
+	<SubTexture name="manager chan idle0007" x="3236" y="4" width="201" height="571" frameX="-26" frameY="-8" frameWidth="230" frameHeight="580"/>
+	<SubTexture name="manager chan idle0008" x="1944" y="4" width="195" height="570" frameX="-30" frameY="-10" frameWidth="230" frameHeight="580"/>
+	<SubTexture name="manager chan idle0009" x="3437" y="4" width="193" height="571" frameX="-31" frameY="-9" frameWidth="230" frameHeight="580"/>
+	<SubTexture name="manager chan idle0010" x="3630" y="4" width="193" height="572" frameX="-31" frameY="-8" frameWidth="230" frameHeight="580"/>
+	<SubTexture name="manager chan idle0011" x="3630" y="4" width="193" height="572" frameX="-31" frameY="-8" frameWidth="230" frameHeight="580"/>
+	<SubTexture name="manager chan idle0012" x="3823" y="4" width="193" height="572" frameX="-31" frameY="-8" frameWidth="230" frameHeight="580"/>
+	<SubTexture name="manager chan idle0013" x="4" y="583" width="193" height="572" frameX="-31" frameY="-8" frameWidth="230" frameHeight="580"/>
+	<SubTexture name="manager chan idle0014" x="197" y="583" width="193" height="571" frameX="-31" frameY="-9" frameWidth="230" frameHeight="580"/>
+	<SubTexture name="manager chan left0000" x="390" y="583" width="232" height="570" frameX="-24" frameY="-18" frameWidth="307" frameHeight="589"/>
+	<SubTexture name="manager chan left0001" x="622" y="583" width="271" height="583" frameX="-16" frameY="-6" frameWidth="307" frameHeight="589"/>
+	<SubTexture name="manager chan left0002" x="893" y="583" width="297" height="586" frameX="0" frameY="-2" frameWidth="307" frameHeight="589"/>
+	<SubTexture name="manager chan left0003" x="1190" y="583" width="290" height="588" frameX="-6" frameY="0" frameWidth="307" frameHeight="589"/>
+	<SubTexture name="manager chan left0004" x="1480" y="583" width="238" height="562" frameX="-10" frameY="-26" frameWidth="307" frameHeight="589"/>
+	<SubTexture name="manager chan left0005" x="1718" y="583" width="217" height="552" frameX="-12" frameY="-36" frameWidth="307" frameHeight="589"/>
+	<SubTexture name="manager chan left0006" x="1935" y="583" width="216" height="550" frameX="-13" frameY="-38" frameWidth="307" frameHeight="589"/>
+	<SubTexture name="manager chan left0007" x="2151" y="583" width="216" height="549" frameX="-13" frameY="-39" frameWidth="307" frameHeight="589"/>
+	<SubTexture name="manager chan left0008" x="2151" y="583" width="216" height="549" frameX="-13" frameY="-39" frameWidth="307" frameHeight="589"/>
+	<SubTexture name="manager chan left0009" x="2151" y="583" width="216" height="549" frameX="-13" frameY="-39" frameWidth="307" frameHeight="589"/>
+	<SubTexture name="manager chan left miss0000" x="2367" y="583" width="228" height="611" frameX="-42" frameY="0" frameWidth="270" frameHeight="611"/>
+	<SubTexture name="manager chan left miss0001" x="2595" y="583" width="254" height="611" frameX="0" frameY="0" frameWidth="270" frameHeight="611"/>
+	<SubTexture name="manager chan left miss0002" x="2849" y="583" width="232" height="611" frameX="-31" frameY="0" frameWidth="270" frameHeight="611"/>
+	<SubTexture name="manager chan left miss0003" x="2849" y="583" width="232" height="611" frameX="-31" frameY="0" frameWidth="270" frameHeight="611"/>
+	<SubTexture name="manager chan left miss0004" x="2849" y="583" width="232" height="611" frameX="-31" frameY="0" frameWidth="270" frameHeight="611"/>
+	<SubTexture name="manager chan left miss0005" x="2849" y="583" width="232" height="611" frameX="-31" frameY="0" frameWidth="270" frameHeight="611"/>
+	<SubTexture name="manager chan left miss0006" x="2849" y="583" width="232" height="611" frameX="-31" frameY="0" frameWidth="270" frameHeight="611"/>
+	<SubTexture name="manager chan left miss0007" x="2849" y="583" width="232" height="611" frameX="-31" frameY="0" frameWidth="270" frameHeight="611"/>
+	<SubTexture name="manager chan left miss0008" x="2849" y="583" width="232" height="611" frameX="-31" frameY="0" frameWidth="270" frameHeight="611"/>
+	<SubTexture name="manager chan left miss0009" x="2849" y="583" width="232" height="611" frameX="-31" frameY="0" frameWidth="270" frameHeight="611"/>
+	<SubTexture name="manager chan right0000" x="3081" y="583" width="232" height="565" frameX="-42" frameY="-12" frameWidth="291" frameHeight="577"/>
+	<SubTexture name="manager chan right0001" x="3313" y="583" width="270" height="576" frameX="-21" frameY="-1" frameWidth="291" frameHeight="577"/>
+	<SubTexture name="manager chan right0002" x="3583" y="583" width="278" height="576" frameX="-13" frameY="-1" frameWidth="291" frameHeight="577"/>
+	<SubTexture name="manager chan right0003" x="4" y="1194" width="266" height="575" frameX="-18" frameY="-2" frameWidth="291" frameHeight="577"/>
+	<SubTexture name="manager chan right0004" x="270" y="1194" width="238" height="558" frameX="-41" frameY="-19" frameWidth="291" frameHeight="577"/>
+	<SubTexture name="manager chan right0005" x="508" y="1194" width="197" height="563" frameX="-77" frameY="-14" frameWidth="291" frameHeight="577"/>
+	<SubTexture name="manager chan right0006" x="705" y="1194" width="194" height="564" frameX="-79" frameY="-13" frameWidth="291" frameHeight="577"/>
+	<SubTexture name="manager chan right0007" x="705" y="1194" width="194" height="564" frameX="-79" frameY="-13" frameWidth="291" frameHeight="577"/>
+	<SubTexture name="manager chan right0008" x="705" y="1194" width="194" height="564" frameX="-79" frameY="-13" frameWidth="291" frameHeight="577"/>
+	<SubTexture name="manager chan right0009" x="705" y="1194" width="194" height="564" frameX="-79" frameY="-13" frameWidth="291" frameHeight="577"/>
+	<SubTexture name="manager chan right miss0000" x="899" y="1194" width="223" height="611" frameX="0" frameY="0" frameWidth="245" frameHeight="611"/>
+	<SubTexture name="manager chan right miss0001" x="1122" y="1194" width="224" height="611" frameX="-21" frameY="0" frameWidth="245" frameHeight="611"/>
+	<SubTexture name="manager chan right miss0002" x="1346" y="1194" width="223" height="611" frameX="-9" frameY="0" frameWidth="245" frameHeight="611"/>
+	<SubTexture name="manager chan right miss0003" x="1346" y="1194" width="223" height="611" frameX="-9" frameY="0" frameWidth="245" frameHeight="611"/>
+	<SubTexture name="manager chan right miss0004" x="1346" y="1194" width="223" height="611" frameX="-9" frameY="0" frameWidth="245" frameHeight="611"/>
+	<SubTexture name="manager chan right miss0005" x="1346" y="1194" width="223" height="611" frameX="-9" frameY="0" frameWidth="245" frameHeight="611"/>
+	<SubTexture name="manager chan right miss0006" x="1346" y="1194" width="223" height="611" frameX="-9" frameY="0" frameWidth="245" frameHeight="611"/>
+	<SubTexture name="manager chan right miss0007" x="1346" y="1194" width="223" height="611" frameX="-9" frameY="0" frameWidth="245" frameHeight="611"/>
+	<SubTexture name="manager chan right miss0008" x="1346" y="1194" width="223" height="611" frameX="-9" frameY="0" frameWidth="245" frameHeight="611"/>
+	<SubTexture name="manager chan right miss0009" x="1346" y="1194" width="223" height="611" frameX="-9" frameY="0" frameWidth="245" frameHeight="611"/>
+	<SubTexture name="manager chan up0000" x="1569" y="1194" width="194" height="592" frameX="-25" frameY="-5" frameWidth="219" frameHeight="597"/>
+	<SubTexture name="manager chan up0001" x="1763" y="1194" width="217" height="596" frameX="-2" frameY="-1" frameWidth="219" frameHeight="597"/>
+	<SubTexture name="manager chan up0002" x="1980" y="1194" width="219" height="597"/>
+	<SubTexture name="manager chan up0003" x="1980" y="1194" width="219" height="597"/>
+	<SubTexture name="manager chan up0004" x="2199" y="1194" width="216" height="596" frameX="-3" frameY="-1" frameWidth="219" frameHeight="597"/>
+	<SubTexture name="manager chan up0005" x="2415" y="1194" width="202" height="593" frameX="-17" frameY="-4" frameWidth="219" frameHeight="597"/>
+	<SubTexture name="manager chan up0006" x="2617" y="1194" width="200" height="593" frameX="-19" frameY="-4" frameWidth="219" frameHeight="597"/>
+	<SubTexture name="manager chan up0007" x="2617" y="1194" width="200" height="593" frameX="-19" frameY="-4" frameWidth="219" frameHeight="597"/>
+	<SubTexture name="manager chan up0008" x="2617" y="1194" width="200" height="593" frameX="-19" frameY="-4" frameWidth="219" frameHeight="597"/>
+	<SubTexture name="manager chan up0009" x="2617" y="1194" width="200" height="593" frameX="-19" frameY="-4" frameWidth="219" frameHeight="597"/>
+	<SubTexture name="manager chan up miss0000" x="2817" y="1194" width="224" height="635" frameX="0" frameY="-25" frameWidth="224" frameHeight="661"/>
+	<SubTexture name="manager chan up miss0001" x="3041" y="1194" width="224" height="661"/>
+	<SubTexture name="manager chan up miss0002" x="3265" y="1194" width="224" height="638" frameX="0" frameY="-22" frameWidth="224" frameHeight="661"/>
+	<SubTexture name="manager chan up miss0003" x="3265" y="1194" width="224" height="638" frameX="0" frameY="-22" frameWidth="224" frameHeight="661"/>
+	<SubTexture name="manager chan up miss0004" x="3265" y="1194" width="224" height="638" frameX="0" frameY="-22" frameWidth="224" frameHeight="661"/>
+	<SubTexture name="manager chan up miss0005" x="3265" y="1194" width="224" height="638" frameX="0" frameY="-22" frameWidth="224" frameHeight="661"/>
+	<SubTexture name="manager chan up miss0006" x="3265" y="1194" width="224" height="638" frameX="0" frameY="-22" frameWidth="224" frameHeight="661"/>
+	<SubTexture name="manager chan up miss0007" x="3265" y="1194" width="224" height="638" frameX="0" frameY="-22" frameWidth="224" frameHeight="661"/>
+	<SubTexture name="manager chan up miss0008" x="3265" y="1194" width="224" height="638" frameX="0" frameY="-22" frameWidth="224" frameHeight="661"/>
+	<SubTexture name="manager chan up miss0009" x="3265" y="1194" width="224" height="638" frameX="0" frameY="-22" frameWidth="224" frameHeight="661"/>
+</TextureAtlas>

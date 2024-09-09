@@ -1,0 +1,78 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				0
+			],
+			"anim": "idle",
+			"fps": 24,
+			"name": "DV idle",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				540,
+				268
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "DV left",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				650,
+				300
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "DV down",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				270,
+				645
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "DV up",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-87,
+				229
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "DV right",
+			"indices": []
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/dv phase 2",
+	"position": [
+		120,
+		-30
+	],
+	"healthicon": "dv",
+	"flip_x": false,
+	"healthbar_colors": [
+		29,
+		134,
+		21
+	],
+	"camera_position": [
+		-590,
+		-300
+	],
+	"sing_duration": 6.1,
+	"scale": 1.3
+}

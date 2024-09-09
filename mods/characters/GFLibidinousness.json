@@ -1,0 +1,210 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				0
+			],
+			"anim": "idle",
+			"fps": 24,
+			"name": "gf idle",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				10,
+				19
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "gf up0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-28,
+				5
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "gf right0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				53,
+				-1
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "gf left0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				12,
+				-10
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "gf down0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				128,
+				-71
+			],
+			"anim": "singDOWNmiss",
+			"fps": 24,
+			"name": "gf down miss",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				183,
+				-5
+			],
+			"anim": "singLEFTmiss",
+			"fps": 24,
+			"name": "gf left miss",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				85,
+				-5
+			],
+			"anim": "singRIGHTmiss",
+			"fps": 24,
+			"name": "gf right miss",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				128,
+				58
+			],
+			"anim": "singUPmiss",
+			"fps": 24,
+			"name": "gf up miss",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				84,
+				-1
+			],
+			"anim": "dodge 1 left",
+			"fps": 24,
+			"name": "gf dodge 1 left",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				164,
+				-5
+			],
+			"anim": "dodge 2 left",
+			"fps": 24,
+			"name": "gf dodge 2 left",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				13,
+				-5
+			],
+			"anim": "dodge 2 right",
+			"fps": 24,
+			"name": "gf dodge 2 right",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-4,
+				-4
+			],
+			"anim": "dodge 1 right",
+			"fps": 24,
+			"name": "gf dodge 1 right",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				531,
+				52
+			],
+			"anim": "hit",
+			"fps": 24,
+			"name": "gf hit",
+			"indices": []
+		},
+		{
+			"offsets": [
+				335,
+				1563
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "firstDeath",
+			"indices": [],
+			"name": "gf first death"
+		},
+		{
+			"offsets": [
+				171,
+				-15
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "deathLoop",
+			"indices": [],
+			"name": "gf death loop"
+		},
+		{
+			"offsets": [
+				171,
+				-15
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "deathConfirm",
+			"indices": [],
+			"name": "gf death loop"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/gf libidinousness",
+	"position": [
+		-160,
+		560
+	],
+	"healthicon": "playablegf",
+	"flip_x": true,
+	"healthbar_colors": [
+		165,
+		0,
+		77
+	],
+	"camera_position": [
+		270,
+		-40
+	],
+	"sing_duration": 6.1,
+	"scale": 2
+}

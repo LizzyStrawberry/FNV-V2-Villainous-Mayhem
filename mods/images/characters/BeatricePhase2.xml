@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="BeatricePhase2.png">
+	<!-- Created with Adobe Animate version 21.0.5.40714 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="beatrice down0000" x="3366" y="708" width="456" height="655" frameX="-7" frameY="0" frameWidth="472" frameHeight="656"/>
+	<SubTexture name="beatrice down0001" x="3822" y="708" width="465" height="645" frameX="-7" frameY="-10" frameWidth="472" frameHeight="656"/>
+	<SubTexture name="beatrice down0002" x="4287" y="708" width="471" height="631" frameX="-1" frameY="-24" frameWidth="472" frameHeight="656"/>
+	<SubTexture name="beatrice down0003" x="4758" y="708" width="471" height="630" frameX="0" frameY="-25" frameWidth="472" frameHeight="656"/>
+	<SubTexture name="beatrice down0004" x="4758" y="708" width="471" height="630" frameX="0" frameY="-25" frameWidth="472" frameHeight="656"/>
+	<SubTexture name="beatrice down0005" x="5229" y="708" width="464" height="634" frameX="-4" frameY="-21" frameWidth="472" frameHeight="656"/>
+	<SubTexture name="beatrice down0006" x="5693" y="708" width="457" height="648" frameX="-9" frameY="-8" frameWidth="472" frameHeight="656"/>
+	<SubTexture name="beatrice down0007" x="6150" y="708" width="453" height="654" frameX="-9" frameY="-2" frameWidth="472" frameHeight="656"/>
+	<SubTexture name="beatrice down0008" x="6150" y="708" width="453" height="654" frameX="-9" frameY="-2" frameWidth="472" frameHeight="656"/>
+	<SubTexture name="beatrice down0009" x="6150" y="708" width="453" height="654" frameX="-9" frameY="-2" frameWidth="472" frameHeight="656"/>
+	<SubTexture name="beatrice hehe0000" x="0" y="0" width="375" height="708"/>
+	<SubTexture name="beatrice hehe0001" x="0" y="0" width="375" height="708"/>
+	<SubTexture name="beatrice hehe0002" x="0" y="0" width="375" height="708"/>
+	<SubTexture name="beatrice hehe0003" x="0" y="0" width="375" height="708"/>
+	<SubTexture name="beatrice hehe0004" x="0" y="0" width="375" height="708"/>
+	<SubTexture name="beatrice hehe0005" x="375" y="0" width="375" height="708"/>
+	<SubTexture name="beatrice hehe0006" x="750" y="0" width="375" height="705" frameX="0" frameY="-3" frameWidth="375" frameHeight="708"/>
+	<SubTexture name="beatrice hehe0007" x="1125" y="0" width="375" height="700" frameX="0" frameY="-8" frameWidth="375" frameHeight="708"/>
+	<SubTexture name="beatrice hehe0008" x="1500" y="0" width="375" height="699" frameX="0" frameY="-9" frameWidth="375" frameHeight="708"/>
+	<SubTexture name="beatrice hehe0009" x="1875" y="0" width="375" height="699" frameX="0" frameY="-9" frameWidth="375" frameHeight="708"/>
+	<SubTexture name="beatrice hehe0010" x="2250" y="0" width="375" height="699" frameX="0" frameY="-9" frameWidth="375" frameHeight="708"/>
+	<SubTexture name="beatrice hehe0011" x="2625" y="0" width="375" height="699" frameX="0" frameY="-9" frameWidth="375" frameHeight="708"/>
+	<SubTexture name="beatrice hehe0012" x="3000" y="0" width="375" height="699" frameX="0" frameY="-9" frameWidth="375" frameHeight="708"/>
+	<SubTexture name="beatrice hehe0013" x="3375" y="0" width="375" height="699" frameX="0" frameY="-9" frameWidth="375" frameHeight="708"/>
+	<SubTexture name="beatrice hehe0014" x="3750" y="0" width="375" height="699" frameX="0" frameY="-9" frameWidth="375" frameHeight="708"/>
+	<SubTexture name="beatrice hehe0015" x="3750" y="0" width="375" height="699" frameX="0" frameY="-9" frameWidth="375" frameHeight="708"/>
+	<SubTexture name="beatrice hehe0016" x="3375" y="0" width="375" height="699" frameX="0" frameY="-9" frameWidth="375" frameHeight="708"/>
+	<SubTexture name="beatrice hehe0017" x="3375" y="0" width="375" height="699" frameX="0" frameY="-9" frameWidth="375" frameHeight="708"/>
+	<SubTexture name="beatrice hehe0018" x="4125" y="0" width="375" height="701" frameX="0" frameY="-7" frameWidth="375" frameHeight="708"/>
+	<SubTexture name="beatrice hehe0019" x="4500" y="0" width="375" height="705" frameX="0" frameY="-3" frameWidth="375" frameHeight="708"/>
+	<SubTexture name="beatrice hehe0020" x="4875" y="0" width="375" height="706" frameX="0" frameY="-2" frameWidth="375" frameHeight="708"/>
+	<SubTexture name="beatrice hehe0021" x="5250" y="0" width="375" height="707" frameX="0" frameY="-1" frameWidth="375" frameHeight="708"/>
+	<SubTexture name="beatrice hehe0022" x="5250" y="0" width="375" height="707" frameX="0" frameY="-1" frameWidth="375" frameHeight="708"/>
+	<SubTexture name="beatrice hehe0023" x="5250" y="0" width="375" height="707" frameX="0" frameY="-1" frameWidth="375" frameHeight="708"/>
+	<SubTexture name="beatrice hehe0024" x="5250" y="0" width="375" height="707" frameX="0" frameY="-1" frameWidth="375" frameHeight="708"/>
+	<SubTexture name="beatrice hehe0025" x="5250" y="0" width="375" height="707" frameX="0" frameY="-1" frameWidth="375" frameHeight="708"/>
+	<SubTexture name="beatrice hehe0026" x="5250" y="0" width="375" height="707" frameX="0" frameY="-1" frameWidth="375" frameHeight="708"/>
+	<SubTexture name="beatrice hehe0027" x="5250" y="0" width="375" height="707" frameX="0" frameY="-1" frameWidth="375" frameHeight="708"/>
+	<SubTexture name="beatrice hehe0028" x="5250" y="0" width="375" height="707" frameX="0" frameY="-1" frameWidth="375" frameHeight="708"/>
+	<SubTexture name="beatrice hehe0029" x="5250" y="0" width="375" height="707" frameX="0" frameY="-1" frameWidth="375" frameHeight="708"/>
+	<SubTexture name="beatrice hey0000" x="0" y="0" width="375" height="708"/>
+	<SubTexture name="beatrice hey0001" x="0" y="0" width="375" height="708"/>
+	<SubTexture name="beatrice hey0002" x="0" y="0" width="375" height="708"/>
+	<SubTexture name="beatrice hey0003" x="0" y="0" width="375" height="708"/>
+	<SubTexture name="beatrice hey0004" x="0" y="0" width="375" height="708"/>
+	<SubTexture name="beatrice hey0005" x="5625" y="0" width="375" height="706" frameX="0" frameY="-2" frameWidth="375" frameHeight="709"/>
+	<SubTexture name="beatrice hey0006" x="6000" y="0" width="375" height="700" frameX="0" frameY="-8" frameWidth="375" frameHeight="709"/>
+	<SubTexture name="beatrice hey0007" x="6375" y="0" width="375" height="699" frameX="0" frameY="-10" frameWidth="375" frameHeight="709"/>
+	<SubTexture name="beatrice hey0008" x="6750" y="0" width="374" height="698" frameX="-1" frameY="-11" frameWidth="375" frameHeight="709"/>
+	<SubTexture name="beatrice hey0009" x="7124" y="0" width="374" height="698" frameX="-1" frameY="-11" frameWidth="375" frameHeight="709"/>
+	<SubTexture name="beatrice hey0010" x="7498" y="0" width="374" height="698" frameX="-1" frameY="-11" frameWidth="375" frameHeight="709"/>
+	<SubTexture name="beatrice hey0011" x="0" y="708" width="374" height="698" frameX="-1" frameY="-11" frameWidth="375" frameHeight="709"/>
+	<SubTexture name="beatrice hey0012" x="374" y="708" width="374" height="698" frameX="-1" frameY="-11" frameWidth="375" frameHeight="709"/>
+	<SubTexture name="beatrice hey0013" x="748" y="708" width="374" height="698" frameX="-1" frameY="-11" frameWidth="375" frameHeight="709"/>
+	<SubTexture name="beatrice hey0014" x="1122" y="708" width="374" height="698" frameX="-1" frameY="-11" frameWidth="375" frameHeight="709"/>
+	<SubTexture name="beatrice hey0015" x="1122" y="708" width="374" height="698" frameX="-1" frameY="-11" frameWidth="375" frameHeight="709"/>
+	<SubTexture name="beatrice hey0016" x="1122" y="708" width="374" height="698" frameX="-1" frameY="-11" frameWidth="375" frameHeight="709"/>
+	<SubTexture name="beatrice hey0017" x="1122" y="708" width="374" height="698" frameX="-1" frameY="-11" frameWidth="375" frameHeight="709"/>
+	<SubTexture name="beatrice hey0018" x="1122" y="708" width="374" height="698" frameX="-1" frameY="-11" frameWidth="375" frameHeight="709"/>
+	<SubTexture name="beatrice hey0019" x="1122" y="708" width="374" height="698" frameX="-1" frameY="-11" frameWidth="375" frameHeight="709"/>
+	<SubTexture name="beatrice hey0020" x="1122" y="708" width="374" height="698" frameX="-1" frameY="-11" frameWidth="375" frameHeight="709"/>
+	<SubTexture name="beatrice hey0021" x="1122" y="708" width="374" height="698" frameX="-1" frameY="-11" frameWidth="375" frameHeight="709"/>
+	<SubTexture name="beatrice hey0022" x="1122" y="708" width="374" height="698" frameX="-1" frameY="-11" frameWidth="375" frameHeight="709"/>
+	<SubTexture name="beatrice hey0023" x="1122" y="708" width="374" height="698" frameX="-1" frameY="-11" frameWidth="375" frameHeight="709"/>
+	<SubTexture name="beatrice hey0024" x="1122" y="708" width="374" height="698" frameX="-1" frameY="-11" frameWidth="375" frameHeight="709"/>
+	<SubTexture name="beatrice hey0025" x="1122" y="708" width="374" height="698" frameX="-1" frameY="-11" frameWidth="375" frameHeight="709"/>
+	<SubTexture name="beatrice hey0026" x="1122" y="708" width="374" height="698" frameX="-1" frameY="-11" frameWidth="375" frameHeight="709"/>
+	<SubTexture name="beatrice hey0027" x="1122" y="708" width="374" height="698" frameX="-1" frameY="-11" frameWidth="375" frameHeight="709"/>
+	<SubTexture name="beatrice hey0028" x="1122" y="708" width="374" height="698" frameX="-1" frameY="-11" frameWidth="375" frameHeight="709"/>
+	<SubTexture name="beatrice hey0029" x="1122" y="708" width="374" height="698" frameX="-1" frameY="-11" frameWidth="375" frameHeight="709"/>
+	<SubTexture name="beatrice hey0030" x="1496" y="708" width="374" height="698" frameX="-1" frameY="-11" frameWidth="375" frameHeight="709"/>
+	<SubTexture name="beatrice hey0031" x="1870" y="708" width="374" height="698" frameX="-1" frameY="-11" frameWidth="375" frameHeight="709"/>
+	<SubTexture name="beatrice hey0032" x="2244" y="708" width="374" height="698" frameX="-1" frameY="-11" frameWidth="375" frameHeight="709"/>
+	<SubTexture name="beatrice hey0033" x="2618" y="708" width="374" height="698" frameX="-1" frameY="-11" frameWidth="375" frameHeight="709"/>
+	<SubTexture name="beatrice hey0034" x="2992" y="708" width="374" height="698" frameX="-1" frameY="-11" frameWidth="375" frameHeight="709"/>
+	<SubTexture name="beatrice hey0035" x="2992" y="708" width="374" height="698" frameX="-1" frameY="-11" frameWidth="375" frameHeight="709"/>
+	<SubTexture name="beatrice hey0036" x="2992" y="708" width="374" height="698" frameX="-1" frameY="-11" frameWidth="375" frameHeight="709"/>
+	<SubTexture name="beatrice hey0037" x="2992" y="708" width="374" height="698" frameX="-1" frameY="-11" frameWidth="375" frameHeight="709"/>
+	<SubTexture name="beatrice hey0038" x="2992" y="708" width="374" height="698" frameX="-1" frameY="-11" frameWidth="375" frameHeight="709"/>
+	<SubTexture name="beatrice hey0039" x="2992" y="708" width="374" height="698" frameX="-1" frameY="-11" frameWidth="375" frameHeight="709"/>
+	<SubTexture name="beatrice hey0040" x="2992" y="708" width="374" height="698" frameX="-1" frameY="-11" frameWidth="375" frameHeight="709"/>
+	<SubTexture name="beatrice hey0041" x="2992" y="708" width="374" height="698" frameX="-1" frameY="-11" frameWidth="375" frameHeight="709"/>
+	<SubTexture name="beatrice hey0042" x="2992" y="708" width="374" height="698" frameX="-1" frameY="-11" frameWidth="375" frameHeight="709"/>
+	<SubTexture name="beatrice hey0043" x="2992" y="708" width="374" height="698" frameX="-1" frameY="-11" frameWidth="375" frameHeight="709"/>
+	<SubTexture name="beatrice hey0044" x="2992" y="708" width="374" height="698" frameX="-1" frameY="-11" frameWidth="375" frameHeight="709"/>
+	<SubTexture name="beatrice hey0045" x="2992" y="708" width="374" height="698" frameX="-1" frameY="-11" frameWidth="375" frameHeight="709"/>
+	<SubTexture name="beatrice hey0046" x="2992" y="708" width="374" height="698" frameX="-1" frameY="-11" frameWidth="375" frameHeight="709"/>
+	<SubTexture name="beatrice hey0047" x="2992" y="708" width="374" height="698" frameX="-1" frameY="-11" frameWidth="375" frameHeight="709"/>
+	<SubTexture name="beatrice hey0048" x="2992" y="708" width="374" height="698" frameX="-1" frameY="-11" frameWidth="375" frameHeight="709"/>
+	<SubTexture name="beatrice idle0000" x="6603" y="708" width="375" height="708" frameX="-49" frameY="-2" frameWidth="433" frameHeight="711"/>
+	<SubTexture name="beatrice idle0001" x="6978" y="708" width="375" height="704" frameX="-49" frameY="-6" frameWidth="433" frameHeight="711"/>
+	<SubTexture name="beatrice idle0002" x="7353" y="708" width="388" height="700" frameX="-35" frameY="-11" frameWidth="433" frameHeight="711"/>
+	<SubTexture name="beatrice idle0003" x="7741" y="708" width="420" height="691" frameX="-6" frameY="-19" frameWidth="433" frameHeight="711"/>
+	<SubTexture name="beatrice idle0004" x="0" y="1416" width="424" height="688" frameX="-3" frameY="-22" frameWidth="433" frameHeight="711"/>
+	<SubTexture name="beatrice idle0005" x="424" y="1416" width="428" height="687" frameX="-2" frameY="-23" frameWidth="433" frameHeight="711"/>
+	<SubTexture name="beatrice idle0006" x="852" y="1416" width="430" height="687" frameX="0" frameY="-23" frameWidth="433" frameHeight="711"/>
+	<SubTexture name="beatrice idle0007" x="1282" y="1416" width="430" height="687" frameX="0" frameY="-23" frameWidth="433" frameHeight="711"/>
+	<SubTexture name="beatrice idle0008" x="1712" y="1416" width="425" height="688" frameX="-1" frameY="-22" frameWidth="433" frameHeight="711"/>
+	<SubTexture name="beatrice idle0009" x="2137" y="1416" width="406" height="691" frameX="-21" frameY="-20" frameWidth="433" frameHeight="711"/>
+	<SubTexture name="beatrice idle0010" x="2543" y="1416" width="377" height="696" frameX="-49" frameY="-15" frameWidth="433" frameHeight="711"/>
+	<SubTexture name="beatrice idle0011" x="2920" y="1416" width="375" height="699" frameX="-49" frameY="-11" frameWidth="433" frameHeight="711"/>
+	<SubTexture name="beatrice idle0012" x="3295" y="1416" width="375" height="708" frameX="-49" frameY="-2" frameWidth="433" frameHeight="711"/>
+	<SubTexture name="beatrice idle0013" x="3670" y="1416" width="375" height="711" frameX="-49" frameY="0" frameWidth="433" frameHeight="711"/>
+	<SubTexture name="beatrice idle0014" x="4045" y="1416" width="375" height="711" frameX="-49" frameY="0" frameWidth="433" frameHeight="711"/>
+	<SubTexture name="beatrice idle0015" x="4045" y="1416" width="375" height="711" frameX="-49" frameY="0" frameWidth="433" frameHeight="711"/>
+	<SubTexture name="beatrice idle0016" x="4420" y="1416" width="375" height="711" frameX="-49" frameY="0" frameWidth="433" frameHeight="711"/>
+	<SubTexture name="beatrice idle0017" x="4795" y="1416" width="375" height="711" frameX="-49" frameY="0" frameWidth="433" frameHeight="711"/>
+	<SubTexture name="beatrice idle0018" x="5170" y="1416" width="374" height="708" frameX="-50" frameY="-3" frameWidth="433" frameHeight="711"/>
+	<SubTexture name="beatrice idle0019" x="5544" y="1416" width="374" height="702" frameX="-50" frameY="-9" frameWidth="433" frameHeight="711"/>
+	<SubTexture name="beatrice idle0020" x="5918" y="1416" width="384" height="691" frameX="-45" frameY="-19" frameWidth="433" frameHeight="711"/>
+	<SubTexture name="beatrice idle0021" x="6302" y="1416" width="424" height="684" frameX="-7" frameY="-26" frameWidth="433" frameHeight="711"/>
+	<SubTexture name="beatrice idle0022" x="6726" y="1416" width="431" height="683" frameX="-2" frameY="-27" frameWidth="433" frameHeight="711"/>
+	<SubTexture name="beatrice idle0023" x="7157" y="1416" width="433" height="683" frameX="0" frameY="-27" frameWidth="433" frameHeight="711"/>
+	<SubTexture name="beatrice idle0024" x="7590" y="1416" width="433" height="683" frameX="0" frameY="-27" frameWidth="433" frameHeight="711"/>
+	<SubTexture name="beatrice idle0025" x="0" y="2127" width="431" height="682" frameX="0" frameY="-28" frameWidth="433" frameHeight="711"/>
+	<SubTexture name="beatrice idle0026" x="431" y="2127" width="427" height="686" frameX="-2" frameY="-24" frameWidth="433" frameHeight="711"/>
+	<SubTexture name="beatrice idle0027" x="858" y="2127" width="420" height="693" frameX="-4" frameY="-18" frameWidth="433" frameHeight="711"/>
+	<SubTexture name="beatrice idle0028" x="1278" y="2127" width="394" height="700" frameX="-30" frameY="-11" frameWidth="433" frameHeight="711"/>
+	<SubTexture name="beatrice idle0029" x="1672" y="2127" width="374" height="708" frameX="-50" frameY="-3" frameWidth="433" frameHeight="711"/>
+	<SubTexture name="beatrice idle0030" x="2046" y="2127" width="375" height="708" frameX="-49" frameY="-2" frameWidth="433" frameHeight="711"/>
+	<SubTexture name="beatrice idle0031" x="2421" y="2127" width="375" height="709" frameX="-49" frameY="-1" frameWidth="433" frameHeight="711"/>
+	<SubTexture name="beatrice idle0032" x="2796" y="2127" width="375" height="708" frameX="-49" frameY="-2" frameWidth="433" frameHeight="711"/>
+	<SubTexture name="beatrice idle0033" x="3171" y="2127" width="375" height="708" frameX="-49" frameY="-2" frameWidth="433" frameHeight="711"/>
+	<SubTexture name="beatrice idle0034" x="3171" y="2127" width="375" height="708" frameX="-49" frameY="-2" frameWidth="433" frameHeight="711"/>
+	<SubTexture name="beatrice idle0035" x="3171" y="2127" width="375" height="708" frameX="-49" frameY="-2" frameWidth="433" frameHeight="711"/>
+	<SubTexture name="beatrice left0000" x="3546" y="2127" width="447" height="664" frameX="-5" frameY="0" frameWidth="468" frameHeight="664"/>
+	<SubTexture name="beatrice left0001" x="3993" y="2127" width="466" height="657" frameX="0" frameY="-7" frameWidth="468" frameHeight="664"/>
+	<SubTexture name="beatrice left0002" x="4459" y="2127" width="468" height="651" frameX="0" frameY="-13" frameWidth="468" frameHeight="664"/>
+	<SubTexture name="beatrice left0003" x="4927" y="2127" width="451" height="650" frameX="0" frameY="-14" frameWidth="468" frameHeight="664"/>
+	<SubTexture name="beatrice left0004" x="5378" y="2127" width="451" height="650" frameX="0" frameY="-14" frameWidth="468" frameHeight="664"/>
+	<SubTexture name="beatrice left0005" x="5829" y="2127" width="450" height="654" frameX="-2" frameY="-10" frameWidth="468" frameHeight="664"/>
+	<SubTexture name="beatrice left0006" x="6279" y="2127" width="448" height="659" frameX="-4" frameY="-5" frameWidth="468" frameHeight="664"/>
+	<SubTexture name="beatrice left0007" x="6727" y="2127" width="447" height="661" frameX="-6" frameY="-3" frameWidth="468" frameHeight="664"/>
+	<SubTexture name="beatrice left0008" x="7174" y="2127" width="447" height="661" frameX="-6" frameY="-3" frameWidth="468" frameHeight="664"/>
+	<SubTexture name="beatrice left0009" x="7174" y="2127" width="447" height="661" frameX="-6" frameY="-3" frameWidth="468" frameHeight="664"/>
+	<SubTexture name="beatrice right0000" x="7621" y="2127" width="422" height="688" frameX="0" frameY="0" frameWidth="469" frameHeight="688"/>
+	<SubTexture name="beatrice right0001" x="0" y="2836" width="429" height="679" frameX="-2" frameY="-9" frameWidth="469" frameHeight="688"/>
+	<SubTexture name="beatrice right0002" x="429" y="2836" width="428" height="674" frameX="-3" frameY="-14" frameWidth="469" frameHeight="688"/>
+	<SubTexture name="beatrice right0003" x="857" y="2836" width="431" height="673" frameX="-3" frameY="-15" frameWidth="469" frameHeight="688"/>
+	<SubTexture name="beatrice right0004" x="1288" y="2836" width="445" height="673" frameX="-3" frameY="-15" frameWidth="469" frameHeight="688"/>
+	<SubTexture name="beatrice right0005" x="1733" y="2836" width="467" height="676" frameX="-2" frameY="-12" frameWidth="469" frameHeight="688"/>
+	<SubTexture name="beatrice right0006" x="2200" y="2836" width="468" height="684" frameX="0" frameY="-4" frameWidth="469" frameHeight="688"/>
+	<SubTexture name="beatrice right0007" x="2668" y="2836" width="468" height="686" frameX="0" frameY="-2" frameWidth="469" frameHeight="688"/>
+	<SubTexture name="beatrice right0008" x="3136" y="2836" width="468" height="687" frameX="0" frameY="-1" frameWidth="469" frameHeight="688"/>
+	<SubTexture name="beatrice right0009" x="3136" y="2836" width="468" height="687" frameX="0" frameY="-1" frameWidth="469" frameHeight="688"/>
+	<SubTexture name="beatrice up0000" x="3604" y="2836" width="462" height="720" frameX="0" frameY="-12" frameWidth="462" frameHeight="732"/>
+	<SubTexture name="beatrice up0001" x="4066" y="2836" width="462" height="731" frameX="0" frameY="-1" frameWidth="462" frameHeight="732"/>
+	<SubTexture name="beatrice up0002" x="4528" y="2836" width="462" height="732"/>
+	<SubTexture name="beatrice up0003" x="4990" y="2836" width="462" height="732"/>
+	<SubTexture name="beatrice up0004" x="5452" y="2836" width="462" height="731" frameX="0" frameY="-1" frameWidth="462" frameHeight="732"/>
+	<SubTexture name="beatrice up0005" x="5914" y="2836" width="462" height="727" frameX="0" frameY="-5" frameWidth="462" frameHeight="732"/>
+	<SubTexture name="beatrice up0006" x="6376" y="2836" width="462" height="722" frameX="0" frameY="-10" frameWidth="462" frameHeight="732"/>
+	<SubTexture name="beatrice up0007" x="6838" y="2836" width="462" height="721" frameX="0" frameY="-11" frameWidth="462" frameHeight="732"/>
+	<SubTexture name="beatrice up0008" x="7300" y="2836" width="462" height="721" frameX="0" frameY="-11" frameWidth="462" frameHeight="732"/>
+	<SubTexture name="beatrice up0009" x="7300" y="2836" width="462" height="721" frameX="0" frameY="-11" frameWidth="462" frameHeight="732"/>
+</TextureAtlas>

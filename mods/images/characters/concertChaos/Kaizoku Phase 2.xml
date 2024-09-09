@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="Kaizoku Phase 2.png">
+	<!-- Created with Adobe Animate version 21.0.5.40714 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="kaizoku down0000" x="4" y="4" width="423" height="487" frameX="-15" frameY="-7" frameWidth="440" frameHeight="495"/>
+	<SubTexture name="kaizoku down0001" x="427" y="4" width="436" height="494" frameX="-3" frameY="-1" frameWidth="440" frameHeight="495"/>
+	<SubTexture name="kaizoku down0002" x="863" y="4" width="440" height="495"/>
+	<SubTexture name="kaizoku down0003" x="863" y="4" width="440" height="495"/>
+	<SubTexture name="kaizoku down0004" x="1303" y="4" width="436" height="494" frameX="-3" frameY="-1" frameWidth="440" frameHeight="495"/>
+	<SubTexture name="kaizoku down0005" x="1739" y="4" width="428" height="488" frameX="-10" frameY="-7" frameWidth="440" frameHeight="495"/>
+	<SubTexture name="kaizoku down0006" x="2167" y="4" width="425" height="484" frameX="-13" frameY="-11" frameWidth="440" frameHeight="495"/>
+	<SubTexture name="kaizoku down0007" x="2592" y="4" width="425" height="483" frameX="-13" frameY="-12" frameWidth="440" frameHeight="495"/>
+	<SubTexture name="kaizoku down0008" x="3017" y="4" width="425" height="485" frameX="-13" frameY="-10" frameWidth="440" frameHeight="495"/>
+	<SubTexture name="kaizoku down0009" x="3442" y="4" width="425" height="486" frameX="-13" frameY="-9" frameWidth="440" frameHeight="495"/>
+	<SubTexture name="kaizoku idle0000" x="4" y="499" width="551" height="478" frameX="-5" frameY="-3" frameWidth="614" frameHeight="502"/>
+	<SubTexture name="kaizoku idle0001" x="555" y="499" width="558" height="477" frameX="-5" frameY="-5" frameWidth="614" frameHeight="502"/>
+	<SubTexture name="kaizoku idle0002" x="1113" y="499" width="595" height="478" frameX="-6" frameY="-18" frameWidth="614" frameHeight="502"/>
+	<SubTexture name="kaizoku idle0003" x="1708" y="499" width="608" height="473" frameX="-3" frameY="-28" frameWidth="614" frameHeight="502"/>
+	<SubTexture name="kaizoku idle0004" x="2316" y="499" width="611" height="472" frameX="-3" frameY="-30" frameWidth="614" frameHeight="502"/>
+	<SubTexture name="kaizoku idle0005" x="2316" y="499" width="611" height="472" frameX="-3" frameY="-30" frameWidth="614" frameHeight="502"/>
+	<SubTexture name="kaizoku idle0006" x="2927" y="499" width="606" height="474" frameX="-3" frameY="-26" frameWidth="614" frameHeight="502"/>
+	<SubTexture name="kaizoku idle0007" x="4" y="977" width="581" height="474" frameX="-7" frameY="-17" frameWidth="614" frameHeight="502"/>
+	<SubTexture name="kaizoku idle0008" x="4" y="499" width="551" height="478" frameX="-5" frameY="-3" frameWidth="614" frameHeight="502"/>
+	<SubTexture name="kaizoku idle0009" x="585" y="977" width="550" height="480" frameX="-1" frameY="-1" frameWidth="614" frameHeight="502"/>
+	<SubTexture name="kaizoku idle0010" x="1135" y="977" width="550" height="481" frameX="0" frameY="0" frameWidth="614" frameHeight="502"/>
+	<SubTexture name="kaizoku idle0011" x="1135" y="977" width="550" height="481" frameX="0" frameY="0" frameWidth="614" frameHeight="502"/>
+	<SubTexture name="kaizoku idle0012" x="1135" y="977" width="550" height="481" frameX="0" frameY="0" frameWidth="614" frameHeight="502"/>
+	<SubTexture name="kaizoku idle0013" x="1135" y="977" width="550" height="481" frameX="0" frameY="0" frameWidth="614" frameHeight="502"/>
+	<SubTexture name="kaizoku idle0014" x="1685" y="977" width="548" height="480" frameX="-3" frameY="-1" frameWidth="614" frameHeight="502"/>
+	<SubTexture name="kaizoku left0000" x="2233" y="977" width="427" height="485" frameX="-30" frameY="-12" frameWidth="457" frameHeight="503"/>
+	<SubTexture name="kaizoku left0001" x="2660" y="977" width="444" height="497" frameX="0" frameY="0" frameWidth="457" frameHeight="503"/>
+	<SubTexture name="kaizoku left0002" x="3104" y="977" width="432" height="473" frameX="-3" frameY="-27" frameWidth="457" frameHeight="503"/>
+	<SubTexture name="kaizoku left0003" x="3536" y="977" width="422" height="454" frameX="-23" frameY="-45" frameWidth="457" frameHeight="503"/>
+	<SubTexture name="kaizoku left0004" x="4" y="1474" width="413" height="462" frameX="-31" frameY="-37" frameWidth="457" frameHeight="503"/>
+	<SubTexture name="kaizoku left0005" x="417" y="1474" width="410" height="472" frameX="-32" frameY="-31" frameWidth="457" frameHeight="503"/>
+	<SubTexture name="kaizoku left0006" x="827" y="1474" width="409" height="473" frameX="-33" frameY="-30" frameWidth="457" frameHeight="503"/>
+	<SubTexture name="kaizoku left0007" x="1236" y="1474" width="409" height="473" frameX="-33" frameY="-30" frameWidth="457" frameHeight="503"/>
+	<SubTexture name="kaizoku left0008" x="1236" y="1474" width="409" height="473" frameX="-33" frameY="-30" frameWidth="457" frameHeight="503"/>
+	<SubTexture name="kaizoku left0009" x="1236" y="1474" width="409" height="473" frameX="-33" frameY="-30" frameWidth="457" frameHeight="503"/>
+	<SubTexture name="kaizoku right0000" x="1645" y="1474" width="667" height="498" frameX="0" frameY="-18" frameWidth="667" frameHeight="525"/>
+	<SubTexture name="kaizoku right0001" x="2312" y="1474" width="629" height="516" frameX="0" frameY="0" frameWidth="667" frameHeight="525"/>
+	<SubTexture name="kaizoku right0002" x="2941" y="1474" width="638" height="504" frameX="0" frameY="-21" frameWidth="667" frameHeight="525"/>
+	<SubTexture name="kaizoku right0003" x="4" y="1990" width="640" height="488" frameX="0" frameY="-35" frameWidth="667" frameHeight="525"/>
+	<SubTexture name="kaizoku right0004" x="644" y="1990" width="649" height="485" frameX="0" frameY="-34" frameWidth="667" frameHeight="525"/>
+	<SubTexture name="kaizoku right0005" x="1293" y="1990" width="652" height="496" frameX="0" frameY="-25" frameWidth="667" frameHeight="525"/>
+	<SubTexture name="kaizoku right0006" x="1945" y="1990" width="654" height="499" frameX="0" frameY="-23" frameWidth="667" frameHeight="525"/>
+	<SubTexture name="kaizoku right0007" x="1945" y="1990" width="654" height="499" frameX="0" frameY="-23" frameWidth="667" frameHeight="525"/>
+	<SubTexture name="kaizoku right0008" x="1945" y="1990" width="654" height="499" frameX="0" frameY="-23" frameWidth="667" frameHeight="525"/>
+	<SubTexture name="kaizoku right0009" x="1945" y="1990" width="654" height="499" frameX="0" frameY="-23" frameWidth="667" frameHeight="525"/>
+	<SubTexture name="kaizoku up0000" x="2599" y="1990" width="376" height="539" frameX="0" frameY="-10" frameWidth="376" frameHeight="549"/>
+	<SubTexture name="kaizoku up0001" x="2975" y="1990" width="376" height="548" frameX="0" frameY="-1" frameWidth="376" frameHeight="549"/>
+	<SubTexture name="kaizoku up0002" x="3351" y="1990" width="376" height="549"/>
+	<SubTexture name="kaizoku up0003" x="3351" y="1990" width="376" height="549"/>
+	<SubTexture name="kaizoku up0004" x="4" y="2539" width="376" height="545" frameX="0" frameY="-4" frameWidth="376" frameHeight="549"/>
+	<SubTexture name="kaizoku up0005" x="380" y="2539" width="376" height="538" frameX="0" frameY="-11" frameWidth="376" frameHeight="549"/>
+	<SubTexture name="kaizoku up0006" x="756" y="2539" width="376" height="536" frameX="0" frameY="-13" frameWidth="376" frameHeight="549"/>
+	<SubTexture name="kaizoku up0007" x="756" y="2539" width="376" height="536" frameX="0" frameY="-13" frameWidth="376" frameHeight="549"/>
+	<SubTexture name="kaizoku up0008" x="756" y="2539" width="376" height="536" frameX="0" frameY="-13" frameWidth="376" frameHeight="549"/>
+	<SubTexture name="kaizoku up0009" x="756" y="2539" width="376" height="536" frameX="0" frameY="-13" frameWidth="376" frameHeight="549"/>
+</TextureAtlas>

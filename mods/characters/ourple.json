@@ -1,0 +1,155 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "idle",
+			"indices": [],
+			"name": "ourple idle"
+		},
+		{
+			"offsets": [
+				147,
+				-8
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "ourple left0"
+		},
+		{
+			"offsets": [
+				50,
+				-143
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "ourple down0"
+		},
+		{
+			"offsets": [
+				-13,
+				94
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUP",
+			"indices": [],
+			"name": "ourple up0"
+		},
+		{
+			"offsets": [
+				144,
+				2
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFTmiss",
+			"indices": [],
+			"name": "ourple left miss"
+		},
+		{
+			"offsets": [
+				68,
+				-126
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWNmiss",
+			"indices": [],
+			"name": "ourple down miss"
+		},
+		{
+			"offsets": [
+				-20,
+				110
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUPmiss",
+			"indices": [],
+			"name": "ourple up miss"
+		},
+		{
+			"offsets": [
+				29,
+				38
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHTmiss",
+			"indices": [],
+			"name": "ourple right miss"
+		},
+		{
+			"offsets": [
+				22,
+				3
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "ourple right0"
+		},
+		{
+			"offsets": [
+				112,
+				-2
+			],
+			"loop": false,
+			"fps": 32,
+			"anim": "call",
+			"indices": [],
+			"name": "ourple call"
+		},
+		{
+			"offsets": [
+				431,
+				135
+			],
+			"loop": false,
+			"fps": 16,
+			"anim": "jumpscare",
+			"indices": [],
+			"name": "ourple jumpscare"
+		},
+		{
+			"loop": false,
+			"offsets": [
+				118,
+				146
+			],
+			"anim": "hey",
+			"fps": 24,
+			"name": "ourple vpose",
+			"indices": []
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/ourple",
+	"position": [
+		80,
+		80
+	],
+	"healthicon": "ourple",
+	"flip_x": true,
+	"healthbar_colors": [
+		163,
+		87,
+		171
+	],
+	"camera_position": [
+		80,
+		0
+	],
+	"sing_duration": 6.1,
+	"scale": 1
+}

@@ -1,0 +1,122 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "idle",
+			"indices": [],
+			"name": "manager chan idle"
+		},
+		{
+			"offsets": [
+				2,
+				10
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "manager chan left0"
+		},
+		{
+			"offsets": [
+				38,
+				-83
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "manager chan down0"
+		},
+		{
+			"offsets": [
+				-24,
+				36
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUP",
+			"indices": [],
+			"name": "manager chan up0"
+		},
+		{
+			"offsets": [
+				82,
+				-6
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "manager chan right0"
+		},
+		{
+			"offsets": [
+				-41,
+				-2
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFTmiss",
+			"indices": [],
+			"name": "manager chan left miss"
+		},
+		{
+			"offsets": [
+				-12,
+				-54
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWNmiss",
+			"indices": [],
+			"name": "manager chan down miss"
+		},
+		{
+			"offsets": [
+				-20,
+				106
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUPmiss",
+			"indices": [],
+			"name": "manager chan up miss"
+		},
+		{
+			"offsets": [
+				77,
+				-2
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHTmiss",
+			"indices": [],
+			"name": "manager chan right miss"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/concertChaos/manager chan phase 2",
+	"position": [
+		0,
+		0
+	],
+	"healthicon": "managerchancc",
+	"flip_x": true,
+	"healthbar_colors": [
+		207,
+		206,
+		251
+	],
+	"camera_position": [
+		-270,
+		0
+	],
+	"sing_duration": 6.1,
+	"scale": 1.3
+}

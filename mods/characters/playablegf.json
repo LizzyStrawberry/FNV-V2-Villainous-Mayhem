@@ -1,0 +1,295 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				-5,
+				0
+			],
+			"anim": "idle",
+			"fps": 24,
+			"name": "gf idle",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-4,
+				-132
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "gf down0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-22,
+				5
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "gf up0",
+			"indices": []
+		},
+		{
+			"offsets": [
+				10,
+				-16
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "dodge",
+			"indices": [
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9,
+				7,
+				8,
+				9,
+				7,
+				8,
+				9,
+				7,
+				8,
+				9,
+				7,
+				8,
+				9,
+				7,
+				8,
+				9
+			],
+			"name": "gf dodge"
+		},
+		{
+			"offsets": [
+				106,
+				0
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "firstDeath",
+			"indices": [],
+			"name": "gf first death"
+		},
+		{
+			"offsets": [
+				55,
+				0
+			],
+			"loop": true,
+			"fps": 24,
+			"anim": "deathLoop",
+			"indices": [],
+			"name": "gf death loop"
+		},
+		{
+			"offsets": [
+				55,
+				0
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "deathConfirm",
+			"indices": [],
+			"name": "gf death loop"
+		},
+		{
+			"offsets": [
+				-49,
+				11
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHTmiss",
+			"indices": [],
+			"name": "gf right miss"
+		},
+		{
+			"offsets": [
+				105,
+				-39
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "gf left0"
+		},
+		{
+			"offsets": [
+				-44,
+				-6
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "gf right0"
+		},
+		{
+			"offsets": [
+				105,
+				-47
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFTmiss",
+			"indices": [],
+			"name": "gf left miss"
+		},
+		{
+			"offsets": [
+				-29,
+				11
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUPmiss",
+			"indices": [],
+			"name": "gf up miss"
+		},
+		{
+			"offsets": [
+				1,
+				-142
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWNmiss",
+			"indices": [],
+			"name": "gf down miss"
+		},
+		{
+			"loop": false,
+			"offsets": [
+				15,
+				-23
+			],
+			"anim": "singDOWNass",
+			"fps": 24,
+			"name": "gf ass down",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-18,
+				42
+			],
+			"anim": "singUPass",
+			"fps": 24,
+			"name": "gf ass up",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				42,
+				46
+			],
+			"anim": "singLEFTass",
+			"fps": 24,
+			"name": "gf ass left",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-30,
+				10
+			],
+			"anim": "singRIGHTass",
+			"fps": 24,
+			"name": "gf ass right",
+			"indices": []
+		},
+		{
+			"offsets": [
+				-6,
+				-4
+			],
+			"loop": true,
+			"fps": 24,
+			"anim": "idleass",
+			"indices": [],
+			"name": "gf ass idle"
+		},
+		{
+			"offsets": [
+				1240,
+				12
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "attack",
+			"indices": [],
+			"name": "gf attack"
+		},
+		{
+			"loop": false,
+			"offsets": [
+				1238,
+				13
+			],
+			"anim": "dodgenormal",
+			"fps": 24,
+			"name": "gf attack",
+			"indices": [
+				17,
+				18,
+				19,
+				20,
+				21,
+				22,
+				23,
+				24,
+				25,
+				26,
+				27,
+				28,
+				29,
+				30
+			]
+		},
+		{
+			"offsets": [
+				-11,
+				21
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "hey",
+			"loop": false,
+			"name": "gf vpose"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/playablegf",
+	"position": [
+		50,
+		130
+	],
+	"healthicon": "playablegf",
+	"flip_x": true,
+	"healthbar_colors": [
+		165,
+		0,
+		77
+	],
+	"camera_position": [
+		-10,
+		0
+	],
+	"sing_duration": 4,
+	"scale": 1.1
+}

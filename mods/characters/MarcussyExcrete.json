@@ -1,0 +1,78 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "idle",
+			"indices": [],
+			"name": "marcussy idle"
+		},
+		{
+			"loop": false,
+			"offsets": [
+				32,
+				281
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "marcussy up",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-234,
+				-167
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "marcussy down",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				50,
+				-49
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "marcussy left",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-171,
+				-13
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "marcussy right",
+			"indices": []
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/marcussy excrete",
+	"position": [
+		-260,
+		-270
+	],
+	"healthicon": "marcussyexcrete",
+	"flip_x": false,
+	"healthbar_colors": [
+		57,
+		57,
+		57
+	],
+	"camera_position": [
+		190,
+		90
+	],
+	"sing_duration": 6.1,
+	"scale": 1.1
+}

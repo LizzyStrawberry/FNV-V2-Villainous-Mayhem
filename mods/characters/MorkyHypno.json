@@ -1,0 +1,78 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "idle",
+			"indices": [],
+			"name": "morky idle"
+		},
+		{
+			"offsets": [
+				-60,
+				-145
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singLEFT",
+			"loop": false,
+			"name": "morky down"
+		},
+		{
+			"offsets": [
+				120,
+				16
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singDOWN",
+			"loop": false,
+			"name": "morky left"
+		},
+		{
+			"offsets": [
+				-310,
+				-63
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singUP",
+			"loop": false,
+			"name": "morky right"
+		},
+		{
+			"offsets": [
+				74,
+				-92
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singRIGHT",
+			"loop": false,
+			"name": "morky up"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/morky hypno",
+	"position": [
+		0,
+		0
+	],
+	"healthicon": "morky",
+	"flip_x": false,
+	"healthbar_colors": [
+		19,
+		255,
+		0
+	],
+	"camera_position": [
+		-130,
+		260
+	],
+	"sing_duration": 6.1,
+	"scale": 1
+}

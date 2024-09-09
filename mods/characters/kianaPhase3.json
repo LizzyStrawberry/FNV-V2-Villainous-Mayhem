@@ -1,0 +1,78 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				-1,
+				-10
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "idle",
+			"indices": [],
+			"name": "kiana idle"
+		},
+		{
+			"offsets": [
+				182,
+				-57
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "kiana left"
+		},
+		{
+			"offsets": [
+				126,
+				-585
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "kiana down"
+		},
+		{
+			"offsets": [
+				24,
+				-12
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUP",
+			"indices": [],
+			"name": "kiana up"
+		},
+		{
+			"offsets": [
+				41,
+				-52
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "kiana right"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/kiana 3rd phase",
+	"position": [
+		570,
+		-20
+	],
+	"healthicon": "kianaphase3",
+	"flip_x": false,
+	"healthbar_colors": [
+		195,
+		102,
+		102
+	],
+	"camera_position": [
+		-660,
+		70
+	],
+	"sing_duration": 6.1,
+	"scale": 2
+}

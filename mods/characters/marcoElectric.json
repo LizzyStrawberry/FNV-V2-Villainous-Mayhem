@@ -1,0 +1,89 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				53,
+				-155
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUP",
+			"indices": [],
+			"name": "marco down"
+		},
+		{
+			"offsets": [
+				190,
+				43
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "marco left"
+		},
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "idle",
+			"loop": false,
+			"name": "marco idle"
+		},
+		{
+			"offsets": [
+				4,
+				47
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singDOWN",
+			"loop": false,
+			"name": "marco up"
+		},
+		{
+			"offsets": [
+				114,
+				35
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singLEFT",
+			"loop": false,
+			"name": "marco right"
+		},
+		{
+			"offsets": [
+				126,
+				-46
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "chuckletits",
+			"loop": false,
+			"name": "marco pop off"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/marco phase guitar",
+	"position": [
+		-10,
+		-50
+	],
+	"healthicon": "marcophase3",
+	"flip_x": false,
+	"healthbar_colors": [
+		34,
+		34,
+		34
+	],
+	"camera_position": [
+		-140,
+		-150
+	],
+	"sing_duration": 6.1,
+	"scale": 1.2
+}

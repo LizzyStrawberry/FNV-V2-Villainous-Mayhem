@@ -1,0 +1,89 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "idle",
+			"indices": [],
+			"name": "marcussy idle"
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-61,
+				61
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "marcussy up",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-86,
+				7
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "marcussy down",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				100,
+				71
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "marcussy left",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-141,
+				-13
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "marcussy right",
+			"indices": []
+		},
+		{
+			"offsets": [
+				204,
+				78
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "hey",
+			"loop": false,
+			"name": "marcussy vpose"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/marcussy",
+	"position": [
+		-360,
+		0
+	],
+	"healthicon": "marcussy",
+	"flip_x": false,
+	"healthbar_colors": [
+		57,
+		57,
+		57
+	],
+	"camera_position": [
+		190,
+		90
+	],
+	"sing_duration": 6.1,
+	"scale": 0.8
+}

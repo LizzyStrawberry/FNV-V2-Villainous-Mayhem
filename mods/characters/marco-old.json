@@ -1,0 +1,78 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				0,
+				1
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "idle",
+			"indices": [],
+			"name": "marco idle"
+		},
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				-1
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "marco left",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-1,
+				-1
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "marco right",
+			"indices": []
+		},
+		{
+			"offsets": [
+				-2,
+				0
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singUP",
+			"loop": false,
+			"name": "marco down"
+		},
+		{
+			"offsets": [
+				4,
+				0
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singDOWN",
+			"loop": false,
+			"name": "marco up"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/marco-old",
+	"position": [
+		-130,
+		-200
+	],
+	"healthicon": "marco-old",
+	"flip_x": false,
+	"healthbar_colors": [
+		34,
+		34,
+		34
+	],
+	"camera_position": [
+		10,
+		-40
+	],
+	"sing_duration": 6.1,
+	"scale": 0.9
+}

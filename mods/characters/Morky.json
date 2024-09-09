@@ -1,0 +1,89 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				0
+			],
+			"anim": "idle",
+			"fps": 24,
+			"name": "morky idle",
+			"indices": []
+		},
+		{
+			"offsets": [
+				27,
+				-200
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "morky down"
+		},
+		{
+			"offsets": [
+				35,
+				-12
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "morky left"
+		},
+		{
+			"offsets": [
+				-28,
+				-11
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUP",
+			"indices": [],
+			"name": "morky right"
+		},
+		{
+			"offsets": [
+				-30,
+				-11
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "morky up"
+		},
+		{
+			"offsets": [
+				159,
+				11
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "hey",
+			"loop": false,
+			"name": "morky vpose"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/morky",
+	"position": [
+		0,
+		0
+	],
+	"healthicon": "morky",
+	"flip_x": false,
+	"healthbar_colors": [
+		19,
+		255,
+		0
+	],
+	"camera_position": [
+		-130,
+		250
+	],
+	"sing_duration": 6.1,
+	"scale": 1
+}

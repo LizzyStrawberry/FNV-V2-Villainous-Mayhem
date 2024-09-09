@@ -1,0 +1,78 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				0
+			],
+			"anim": "idle",
+			"fps": 24,
+			"name": "marco idle",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-16,
+				10
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "marco right",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				91,
+				5
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "marco up",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				50,
+				-79
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "marco down",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				299,
+				-27
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "marco left",
+			"indices": []
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/concertChaos/marco phase 2",
+	"position": [
+		0,
+		0
+	],
+	"healthicon": "marcocc",
+	"flip_x": false,
+	"healthbar_colors": [
+		34,
+		34,
+		34
+	],
+	"camera_position": [
+		-250,
+		0
+	],
+	"sing_duration": 6.1,
+	"scale": 1
+}

@@ -1,0 +1,78 @@
+{
+	"animations": [
+		{
+			"loop": true,
+			"offsets": [
+				0,
+				0
+			],
+			"anim": "idle",
+			"fps": 24,
+			"name": "michael p3 idle",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				59,
+				15
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "michael p3 left",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				1,
+				-1
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "michael p3 down",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				33,
+				34
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "michael p3 up",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-4,
+				18
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "michael p3 right",
+			"indices": []
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/michael",
+	"position": [
+		0,
+		0
+	],
+	"healthicon": "michaelphase1",
+	"flip_x": false,
+	"healthbar_colors": [
+		78,
+		108,
+		65
+	],
+	"camera_position": [
+		-130,
+		120
+	],
+	"sing_duration": 6.1,
+	"scale": 1
+}

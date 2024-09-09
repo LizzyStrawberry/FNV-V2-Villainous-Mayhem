@@ -1,0 +1,78 @@
+{
+	"animations": [
+		{
+			"loop": true,
+			"offsets": [
+				0,
+				0
+			],
+			"anim": "idle",
+			"fps": 6,
+			"name": "michael p5 idle",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				5,
+				0
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "michael p5 left",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				-6
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "michael p5 down",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				13
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "michael p5 up",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-4,
+				1
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "michael p5 right",
+			"indices": []
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/michael",
+	"position": [
+		0,
+		0
+	],
+	"healthicon": "michaelphase5",
+	"flip_x": false,
+	"healthbar_colors": [
+		34,
+		34,
+		34
+	],
+	"camera_position": [
+		-130,
+		120
+	],
+	"sing_duration": 6.1,
+	"scale": 1
+}

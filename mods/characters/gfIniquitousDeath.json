@@ -1,0 +1,56 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "deathConfirm",
+			"indices": [],
+			"name": "gf retry"
+		},
+		{
+			"loop": true,
+			"offsets": [
+				0,
+				0
+			],
+			"anim": "deathLoop",
+			"fps": 6,
+			"name": "gf death loop",
+			"indices": []
+		},
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "firstDeath",
+			"loop": false,
+			"name": "gf first death"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/gf iniquitous death",
+	"position": [
+		60,
+		130
+	],
+	"healthicon": "gfiniquitousp1",
+	"flip_x": true,
+	"healthbar_colors": [
+		165,
+		0,
+		77
+	],
+	"camera_position": [
+		430,
+		-250
+	],
+	"sing_duration": 4,
+	"scale": 1.6
+}

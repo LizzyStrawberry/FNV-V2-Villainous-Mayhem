@@ -1,0 +1,41 @@
+{
+	"storyName": "Sus Week",
+	"difficulties": "",
+	"hideFreeplay": true,
+	"weekBackground": "stage",
+	"freeplayColor": [
+		146,
+		113,
+		253
+	],
+	"weekBefore": "tutorial",
+	"startUnlocked": true,
+	"weekCharacters": [
+		"dad",
+		"bf",
+		"gf"
+	],
+	"songs": [
+		[
+			"Sussus Marcus",
+			"dad",
+			[
+				146,
+				113,
+				253
+			]
+		],
+		[
+			"Villain In Board",
+			"dad",
+			[
+				146,
+				113,
+				253
+			]
+		]
+	],
+	"hideStoryMode": false,
+	"weekName": "Sus Week",
+	"hiddenUntilUnlocked": false
+}

@@ -1,0 +1,78 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				1
+			],
+			"anim": "idle",
+			"fps": 24,
+			"name": "marco idle",
+			"indices": []
+		},
+		{
+			"offsets": [
+				-61,
+				19
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "marco right"
+		},
+		{
+			"loop": false,
+			"offsets": [
+				731,
+				-116
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "marco down",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				224,
+				94
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "marco up",
+			"indices": []
+		},
+		{
+			"offsets": [
+				150,
+				2
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "marco left"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/marco tofu",
+	"position": [
+		-240,
+		-200
+	],
+	"healthicon": "marcotofu",
+	"flip_x": false,
+	"healthbar_colors": [
+		34,
+		34,
+		34
+	],
+	"camera_position": [
+		-750,
+		240
+	],
+	"sing_duration": 6.1,
+	"scale": 0.9
+}

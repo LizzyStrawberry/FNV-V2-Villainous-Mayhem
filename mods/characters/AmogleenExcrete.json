@@ -1,0 +1,78 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				-1,
+				-10
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "idle",
+			"indices": [],
+			"name": "amogleen idle"
+		},
+		{
+			"offsets": [
+				-5,
+				-39
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "amogleen left"
+		},
+		{
+			"offsets": [
+				-33,
+				-82
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "amogleen down"
+		},
+		{
+			"offsets": [
+				-50,
+				171
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUP",
+			"indices": [],
+			"name": "amogleen up"
+		},
+		{
+			"offsets": [
+				-44,
+				-30
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "amogleen right"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/amogleen excrete",
+	"position": [
+		-420,
+		290
+	],
+	"healthicon": "amogleenexcrete",
+	"flip_x": false,
+	"healthbar_colors": [
+		163,
+		187,
+		137
+	],
+	"camera_position": [
+		0,
+		70
+	],
+	"sing_duration": 6.1,
+	"scale": 1.1
+}

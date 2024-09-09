@@ -1,0 +1,89 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "idle",
+			"indices": [],
+			"name": "aizeen idle"
+		},
+		{
+			"offsets": [
+				-21,
+				15
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "aizeen left"
+		},
+		{
+			"offsets": [
+				-63,
+				-61
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "aizeen down"
+		},
+		{
+			"offsets": [
+				16,
+				27
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUP",
+			"indices": [],
+			"name": "aizeen up"
+		},
+		{
+			"offsets": [
+				-35,
+				-18
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "aizeen right"
+		},
+		{
+			"offsets": [
+				22,
+				8
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "hey",
+			"indices": [],
+			"name": "aizeen vpose"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/aizeen phase 1",
+	"position": [
+		0,
+		-50
+	],
+	"healthicon": "aizeenphase1",
+	"flip_x": false,
+	"healthbar_colors": [
+		34,
+		34,
+		34
+	],
+	"camera_position": [
+		-10,
+		-130
+	],
+	"sing_duration": 6.1,
+	"scale": 1.3
+}
