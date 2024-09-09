@@ -3,7 +3,7 @@ A completely original FNF Mod built on top of [FNF: Psych Engine Version 0.6.3](
 
 **** !!IMPORTANT! : This specific engine version has been completely modified, adding in new features and enhancements!! ****
 
-![](art/promoArtwork.png)
+![](art/PromoArtwork.png)
 
 _____________________________________
 ### Documenation
