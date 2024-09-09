@@ -50,10 +50,6 @@ Once you have the libraries installed and the files ready, there's a few more th
 - Compile the game. Once it's ready, immediately close the game as you don't have everything ready yet.
 - Copy and paste the "Mods" folder in your exported game.
 - Enjoy!
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 _____________________________________
 ## New Content
 
