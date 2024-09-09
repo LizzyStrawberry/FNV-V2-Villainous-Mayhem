@@ -44,6 +44,13 @@ Now as regards the libraries you need to use to be able to compile the mod prope
 - thx.semver: [0.2.2]
 - utest: [1.13.2]
 
+Once you have the libraries installed and the files ready, there's a few more things you should do. [ONLY FOR THE FIRST TIME YOU EVER COMPILE THE MOD]:
+- Download [Finale_Intro.mp4](https://drive.google.com/file/d/12ZAM_q8kHkL2tgiyjqrJmk6AXHECX8Lw/view?usp=sharing).
+- Add it inside the mods folder that's in the source code.
+- Compile the game. Once it's ready, immediately close the game as you don't have everything ready yet.
+- Copy and paste the "Mods" folder in your exported game.
+- Enjoy!
+
 _____________________________________
 ## New Content
 
