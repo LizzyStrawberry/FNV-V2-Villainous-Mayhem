@@ -14,7 +14,6 @@ Psych Engine insists (rightfully) that you must have [the most up-to-date versio
 For this mod specifically, it was made using [Haxe 4.2.5](https://haxe.org/download/version/4.2.5/), so it is mostly recommended you use that. Newer versions will probably work, not too sure though, I'm not going into this much detail whatsoever.
 
 Now as regards the libraries you need to use to be able to compile the mod properly, these are the ones the mod uses:
-'''
 - actuate: [1.9.0]
 - box2d: [1.2.3]
 - discord_rpc: [git]
@@ -44,7 +43,6 @@ Now as regards the libraries you need to use to be able to compile the mod prope
 - thx.core: [0.44.0]
 - thx.semver: [0.2.2]
 - utest: [1.13.2]
-'''
 
 Once you have the libraries installed and the files ready, there's a few more things you should do. [ONLY FOR THE FIRST TIME YOU EVER COMPILE THE MOD]:
 - Download [Finale_Intro.mp4](https://drive.google.com/file/d/12ZAM_q8kHkL2tgiyjqrJmk6AXHECX8Lw/view?usp=sharing).
