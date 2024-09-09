@@ -124,6 +124,15 @@ class Achievements {
 		FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
 	}
 
+	public static function debugUnlock() {
+		for (i in 0...45)
+		{
+			var name:String = achievementsStuff[i][2];
+			FlxG.log.add('Completed achievement "' + name +'"');
+			achievementsMap.set(name, true);
+		}
+	}
+
 	public static function isAchievementUnlocked(name:String) {
 		if(achievementsMap.exists(name) && achievementsMap.get(name)) {
 			return true;

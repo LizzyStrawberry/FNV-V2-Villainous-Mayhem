@@ -1479,8 +1479,12 @@ class PlayState extends MusicBeatState
 		precacheList.set('alphabet', 'image');
 	
 		#if desktop
-		// Updating Discord Rich Presence.
-		DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter());
+			// Updating Discord Rich Presence.
+			#if PRIVATE_BUILD
+			DiscordClient.changePresence(detailsText, "DEVELOPER MODE ACTIVE", 'face'); // make sure to remove for public build
+			#else
+			DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter());
+			#end
 		#end
 
 		if(!ClientPrefs.controllerMode)

@@ -39,6 +39,8 @@ import flixel.util.FlxTimer;
 import lime.app.Application;
 import openfl.Assets;
 
+import flash.system.System;
+
 import vlc.MP4Handler;
 
 using StringTools;
@@ -265,6 +267,7 @@ class TitleState extends MusicBeatState
 			trace('Low Quality is disabled.');
 			ClientPrefs.lowQuality = false;
 		}
+
 	}
 
 	var logoBl:FlxSprite;
@@ -657,6 +660,22 @@ class TitleState extends MusicBeatState
 			#end
 		}
 
+		#if DEBUG_ALLOWED
+			if (FlxG.keys.justPressed.V)
+			{
+				ClientPrefs.debugComplete();
+				ClientPrefs.saveSettings();
+				FlxG.sound.play(Paths.sound('confirmMenu'));
+				transitioning = true;
+				FlxG.sound.music.fadeOut(1.8);
+
+				new FlxTimer().start(2, function(tmr:FlxTimer)
+				{
+					System.exit(0);
+				});
+			}
+		#end
+
 		if(videoDone)
 		{
 			if (initialized && pressedEnter && !skippedIntro)
@@ -684,7 +703,6 @@ class TitleState extends MusicBeatState
 				if(controls.UI_LEFT) swagShader.hue -= elapsed * 0.1;
 				if(controls.UI_RIGHT) swagShader.hue += elapsed * 0.1;
 			}
-
 			super.update(elapsed);
 		}
 	}

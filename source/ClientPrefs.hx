@@ -976,6 +976,131 @@ class ClientPrefs {
 		trace("Settings Resetted!");
 	}
 
+	public static function debugComplete() {
+		tokens = 999;
+
+		mainWeekBeaten = true;
+		gotWinMessage = true;
+
+		coreMechTutUnlocked = true;
+		shopTutUnlocked = true;
+
+		oldLoadScreensUnlocked = true;
+		adMechanicScreensUnlocked = true;
+		fanartScreensUnlocked = true;
+		randomArtScreensUnlocked = true;
+
+		galleryUnlocked = true;
+		iniquitousUnlocked = true;
+		firstTime = true;
+
+		shopUnlocked = true;
+		secretShopShowcased = true;
+		shopShowcased = true;
+		talkedToZeel = true;
+		talkedToHermit = true;
+		eggs = 999;
+
+		bonusUnlocked = true;
+		xtraUnlocked = true;
+		crossoverUnlocked = true;
+		xtraBonusUnlocked = true;
+
+		resistanceCharm = 2;
+		autoCharm = 2;
+		healingCharm = 2;
+
+		resCharmCollected = true;
+		autoCharmCollected = true;
+		healCharmCollected = true;
+		charmsCollected = 3;
+
+		weeksUnlocked = 99;
+
+		mainWeekFound = true;
+		mainWeekPlayed = true;
+		villainyBeaten = true;
+		pointBlankBeaten = true;
+		libidinousnessBeaten = true;
+		excreteBeaten = true;
+		nunWeekFound = true;
+		nunWeekPlayed = true;
+		dsideWeekFound = true;
+		dsideWeekPlayed = true;
+		susWeekFound = true;
+		susWeekPlayed = true;
+		kianaWeekFound = true;
+		kianaWeekPlayed = true;
+		legacyWeekFound = true;
+		legacyWeekPlayed = true;
+		morkyWeekPlayed = true;
+		morkyWeekFound = true;
+		iniquitousWeekUnlocked = true;
+		iniquitousWeekBeaten = true;
+
+		tofuFound = true;
+		tofuPlayed = true;
+		lustalityPlayed = true;
+		lustalityFound = true;
+		marcochromePlayed = true;
+		marcochromeFound = true;
+		nunsationalPlayed = true;
+		nunsationalFound = true;
+		tacticalMishapFound = true;
+		tacticalMishapPlayed = true;
+		nicFound = true;
+		nicPlayed = true;
+		debugFound = true;
+		debugPlayed = true;
+		fnvFound = true;
+		fnvPlayed = true;
+		ourpleFound = true;
+		ourplePlayed = true;
+		shortFound = true;
+		shortPlayed = true;
+		infatuationFound = true;
+		infatuationPlayed = true;
+		rainyDazeFound = true;
+		rainyDazePlayed = true;
+		kyuFound = true;
+		kyuPlayed = true;
+		breacherFound = true;
+		breacherPlayed = true;
+		ccFound = true;
+		ccPlayed = true;
+
+		codeRegistered = '';
+
+		zeelNakedPics = true;
+		trampolineUnlocked = true;
+
+		songsUnlocked = 99;
+
+		crossSongsAllowed = 5;
+		onCrossSection = false;
+		roadMapUnlocked = false;
+		itsameDsidesUnlocked = true;
+
+		buff1Unlocked = true;
+		buff2Unlocked = true;
+		buff3Unlocked = true;
+
+		numberOfScrolls = 10;
+		marcoScroll = true;
+		aileenScroll = true;
+		beatriceScroll = true;
+		evelynScroll = true;
+		yakuScroll = true;
+		dvScroll = true;
+		kianaScroll = true;
+		narrinScroll = true;
+		morkyScroll = true;
+		kaizokuScroll = true;
+
+		Achievements.debugUnlock();
+		trace("Settings Saved!");
+	}
+
 	public static function loadPrefs() {
 		if(FlxG.save.data.downScroll != null) {
 			downScroll = FlxG.save.data.downScroll;

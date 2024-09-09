@@ -1,7 +1,7 @@
 # Friday Night Villainy V2 - A Villainous Mayhem
 A completely original FNF Mod built on top of [FNF: Psych Engine Version 0.6.3]([https://github.com/ShadowMario/FNF-PsychEngine/releases/tag/0.6.3](https://github.com/ShadowMario/FNF-PsychEngine/tree/0.6.3)).
 
-!!IMPORTANT! : This specific engine version has been completely modified, adding in new features and enhancements!!
+**** !!IMPORTANT! : This specific engine version has been completely modified, adding in new features and enhancements!! ****
 
 _____________________________________
 ### Documenation
@@ -59,4 +59,10 @@ To be added.
 _____________________________________
 ## Debug Features
 
-To be added.
+To enable debugging features of the mod add this line of code inside [Project.xml]: `<define name="DEBUG_ALLOWED"/> `
+
+With it, you get:
+- Access to the Master Editor Menu (Including ALL editors)
+- Access to Chart Editor in PlayState
+- Ability to 100% completing the game (Press V in Title Screen)
+- Ability to hide ingame Discord Status
