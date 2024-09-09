@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="menu_gallery.png">
+	<!-- Created with Adobe Animate version 21.0.5.40714 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="gallery basic0000" x="0" y="0" width="518" height="154"/>
+	<SubTexture name="gallery basic0001" x="0" y="0" width="518" height="154"/>
+	<SubTexture name="gallery basic0002" x="0" y="0" width="518" height="154"/>
+	<SubTexture name="gallery white0000" x="522" y="0" width="537" height="154" frameX="-12" frameY="-2" frameWidth="561" frameHeight="159"/>
+	<SubTexture name="gallery white0001" x="1063" y="0" width="538" height="155" frameX="-12" frameY="-2" frameWidth="561" frameHeight="159"/>
+	<SubTexture name="gallery white0002" x="1605" y="0" width="539" height="155" frameX="-11" frameY="-2" frameWidth="561" frameHeight="159"/>
+	<SubTexture name="gallery white0003" x="2148" y="0" width="541" height="155" frameX="-10" frameY="-2" frameWidth="561" frameHeight="159"/>
+	<SubTexture name="gallery white0004" x="2693" y="0" width="543" height="155" frameX="-9" frameY="-2" frameWidth="561" frameHeight="159"/>
+	<SubTexture name="gallery white0005" x="3240" y="0" width="546" height="155" frameX="-8" frameY="-2" frameWidth="561" frameHeight="159"/>
+	<SubTexture name="gallery white0006" x="0" y="159" width="549" height="157" frameX="-6" frameY="-1" frameWidth="561" frameHeight="159"/>
+	<SubTexture name="gallery white0007" x="553" y="159" width="553" height="157" frameX="-4" frameY="-1" frameWidth="561" frameHeight="159"/>
+	<SubTexture name="gallery white0008" x="1110" y="159" width="557" height="157" frameX="-2" frameY="-1" frameWidth="561" frameHeight="159"/>
+	<SubTexture name="gallery white0009" x="1671" y="159" width="559" height="157" frameX="-1" frameY="-1" frameWidth="561" frameHeight="159"/>
+	<SubTexture name="gallery white0010" x="2234" y="159" width="561" height="157" frameX="0" frameY="-1" frameWidth="561" frameHeight="159"/>
+	<SubTexture name="gallery white0011" x="2799" y="159" width="561" height="157" frameX="0" frameY="-1" frameWidth="561" frameHeight="159"/>
+	<SubTexture name="gallery white0012" x="3364" y="159" width="561" height="159"/>
+	<SubTexture name="gallery white0013" x="2799" y="159" width="561" height="157" frameX="0" frameY="-1" frameWidth="561" frameHeight="159"/>
+	<SubTexture name="gallery white0014" x="0" y="322" width="561" height="157" frameX="0" frameY="-1" frameWidth="561" frameHeight="159"/>
+	<SubTexture name="gallery white0015" x="565" y="322" width="559" height="157" frameX="-1" frameY="-1" frameWidth="561" frameHeight="159"/>
+	<SubTexture name="gallery white0016" x="1128" y="322" width="556" height="157" frameX="-3" frameY="-1" frameWidth="561" frameHeight="159"/>
+	<SubTexture name="gallery white0017" x="553" y="159" width="553" height="157" frameX="-4" frameY="-1" frameWidth="561" frameHeight="159"/>
+	<SubTexture name="gallery white0018" x="1688" y="322" width="549" height="156" frameX="-6" frameY="-2" frameWidth="561" frameHeight="159"/>
+	<SubTexture name="gallery white0019" x="2241" y="322" width="546" height="155" frameX="-8" frameY="-2" frameWidth="561" frameHeight="159"/>
+	<SubTexture name="gallery white0020" x="2791" y="322" width="543" height="155" frameX="-9" frameY="-2" frameWidth="561" frameHeight="159"/>
+	<SubTexture name="gallery white0021" x="2148" y="0" width="541" height="155" frameX="-10" frameY="-2" frameWidth="561" frameHeight="159"/>
+	<SubTexture name="gallery white0022" x="3338" y="322" width="539" height="155" frameX="-11" frameY="-2" frameWidth="561" frameHeight="159"/>
+	<SubTexture name="gallery white0023" x="0" y="483" width="537" height="155" frameX="-12" frameY="-2" frameWidth="561" frameHeight="159"/>
+	<SubTexture name="gallery white0024" x="522" y="0" width="537" height="154" frameX="-12" frameY="-2" frameWidth="561" frameHeight="159"/>
+	<SubTexture name="gallery white locked0000" x="541" y="483" width="535" height="142" frameX="-7" frameY="-4" frameWidth="550" frameHeight="152"/>
+	<SubTexture name="gallery white locked0001" x="1080" y="483" width="536" height="143" frameX="-6" frameY="-4" frameWidth="550" frameHeight="152"/>
+	<SubTexture name="gallery white locked0002" x="1620" y="483" width="536" height="143" frameX="-6" frameY="-4" frameWidth="550" frameHeight="152"/>
+	<SubTexture name="gallery white locked0003" x="2160" y="483" width="537" height="143" frameX="-6" frameY="-4" frameWidth="550" frameHeight="152"/>
+	<SubTexture name="gallery white locked0004" x="2701" y="483" width="539" height="145" frameX="-5" frameY="-3" frameWidth="550" frameHeight="152"/>
+	<SubTexture name="gallery white locked0005" x="3244" y="483" width="540" height="145" frameX="-5" frameY="-3" frameWidth="550" frameHeight="152"/>
+	<SubTexture name="gallery white locked0006" x="0" y="642" width="542" height="147" frameX="-4" frameY="-2" frameWidth="550" frameHeight="152"/>
+	<SubTexture name="gallery white locked0007" x="546" y="642" width="545" height="149" frameX="-2" frameY="-1" frameWidth="550" frameHeight="152"/>
+	<SubTexture name="gallery white locked0008" x="1095" y="642" width="547" height="149" frameX="-1" frameY="-1" frameWidth="550" frameHeight="152"/>
+	<SubTexture name="gallery white locked0009" x="1646" y="642" width="548" height="151" frameX="-1" frameY="0" frameWidth="550" frameHeight="152"/>
+	<SubTexture name="gallery white locked0010" x="2198" y="642" width="549" height="151" frameX="0" frameY="0" frameWidth="550" frameHeight="152"/>
+	<SubTexture name="gallery white locked0011" x="2751" y="642" width="550" height="151" frameX="0" frameY="0" frameWidth="550" frameHeight="152"/>
+	<SubTexture name="gallery white locked0012" x="3305" y="642" width="550" height="152"/>
+	<SubTexture name="gallery white locked0013" x="0" y="798" width="550" height="152"/>
+	<SubTexture name="gallery white locked0014" x="2198" y="642" width="549" height="151" frameX="0" frameY="0" frameWidth="550" frameHeight="152"/>
+	<SubTexture name="gallery white locked0015" x="1646" y="642" width="548" height="151" frameX="-1" frameY="0" frameWidth="550" frameHeight="152"/>
+	<SubTexture name="gallery white locked0016" x="1095" y="642" width="547" height="149" frameX="-1" frameY="-1" frameWidth="550" frameHeight="152"/>
+	<SubTexture name="gallery white locked0017" x="554" y="798" width="545" height="149" frameX="-2" frameY="-1" frameWidth="550" frameHeight="152"/>
+	<SubTexture name="gallery white locked0018" x="0" y="642" width="542" height="147" frameX="-4" frameY="-2" frameWidth="550" frameHeight="152"/>
+	<SubTexture name="gallery white locked0019" x="3244" y="483" width="540" height="145" frameX="-5" frameY="-3" frameWidth="550" frameHeight="152"/>
+	<SubTexture name="gallery white locked0020" x="1103" y="798" width="539" height="144" frameX="-5" frameY="-4" frameWidth="550" frameHeight="152"/>
+	<SubTexture name="gallery white locked0021" x="2160" y="483" width="537" height="143" frameX="-6" frameY="-4" frameWidth="550" frameHeight="152"/>
+	<SubTexture name="gallery white locked0022" x="1646" y="798" width="536" height="143" frameX="-6" frameY="-4" frameWidth="550" frameHeight="152"/>
+	<SubTexture name="gallery white locked0023" x="2186" y="798" width="535" height="142" frameX="-7" frameY="-5" frameWidth="550" frameHeight="152"/>
+	<SubTexture name="gallery white locked0024" x="541" y="483" width="535" height="142" frameX="-7" frameY="-4" frameWidth="550" frameHeight="152"/>
+</TextureAtlas>

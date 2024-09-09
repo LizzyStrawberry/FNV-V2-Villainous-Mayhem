@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="newDialogueBubbles.png">
+	<!-- Created with Adobe Animate version 21.0.5.40714 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="dialogueAngry0000" x="4" y="4" width="875" height="508" frameX="0" frameY="-18" frameWidth="884" frameHeight="526"/>
+	<SubTexture name="dialogueAngry0001" x="879" y="4" width="875" height="508" frameX="0" frameY="-10" frameWidth="884" frameHeight="526"/>
+	<SubTexture name="dialogueAngry0002" x="4" y="512" width="875" height="526" frameX="-9" frameY="0" frameWidth="884" frameHeight="526"/>
+	<SubTexture name="dialogueNormal0000" x="879" y="512" width="873" height="508"/>
+</TextureAtlas>

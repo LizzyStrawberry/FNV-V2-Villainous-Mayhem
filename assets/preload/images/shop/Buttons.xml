@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="Buttons.png">
+	<!-- Created with Adobe Animate version 21.0.5.40714 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="locked slot 20000" x="4" y="4" width="429" height="193"/>
+	<SubTexture name="locked slot 20001" x="4" y="4" width="429" height="193"/>
+	<SubTexture name="locked slot 30000" x="433" y="4" width="443" height="188"/>
+	<SubTexture name="locked slot 30001" x="433" y="4" width="443" height="188"/>
+	<SubTexture name="slot 10000" x="4" y="197" width="468" height="198"/>
+	<SubTexture name="slot 10001" x="4" y="197" width="468" height="198"/>
+	<SubTexture name="slot 10002" x="4" y="197" width="468" height="198"/>
+	<SubTexture name="slot 10003" x="4" y="197" width="468" height="198"/>
+	<SubTexture name="slot 10004" x="4" y="197" width="468" height="198"/>
+	<SubTexture name="slot 10005" x="4" y="197" width="468" height="198"/>
+	<SubTexture name="slot 10006" x="4" y="197" width="468" height="198"/>
+	<SubTexture name="slot 10007" x="4" y="197" width="468" height="198"/>
+	<SubTexture name="slot 10008" x="4" y="197" width="468" height="198"/>
+	<SubTexture name="slot 10009" x="4" y="197" width="468" height="198"/>
+	<SubTexture name="slot 10010" x="4" y="197" width="468" height="198"/>
+	<SubTexture name="slot 10011" x="4" y="197" width="468" height="198"/>
+	<SubTexture name="slot 10012" x="472" y="197" width="468" height="198"/>
+	<SubTexture name="slot 10013" x="472" y="197" width="468" height="198"/>
+	<SubTexture name="slot 10014" x="472" y="197" width="468" height="198"/>
+	<SubTexture name="slot 10015" x="472" y="197" width="468" height="198"/>
+	<SubTexture name="slot 10016" x="472" y="197" width="468" height="198"/>
+	<SubTexture name="slot 10017" x="472" y="197" width="468" height="198"/>
+	<SubTexture name="slot 10018" x="472" y="197" width="468" height="198"/>
+	<SubTexture name="slot 10019" x="472" y="197" width="468" height="198"/>
+	<SubTexture name="slot 10020" x="472" y="197" width="468" height="198"/>
+	<SubTexture name="slot 10021" x="472" y="197" width="468" height="198"/>
+	<SubTexture name="slot 10022" x="472" y="197" width="468" height="198"/>
+	<SubTexture name="slot 10023" x="472" y="197" width="468" height="198"/>
+	<SubTexture name="slot 20000" x="4" y="395" width="445" height="194"/>
+	<SubTexture name="slot 20001" x="4" y="395" width="445" height="194"/>
+	<SubTexture name="slot 20002" x="4" y="395" width="445" height="194"/>
+	<SubTexture name="slot 20003" x="4" y="395" width="445" height="194"/>
+	<SubTexture name="slot 20004" x="4" y="395" width="445" height="194"/>
+	<SubTexture name="slot 20005" x="4" y="395" width="445" height="194"/>
+	<SubTexture name="slot 20006" x="4" y="395" width="445" height="194"/>
+	<SubTexture name="slot 20007" x="4" y="395" width="445" height="194"/>
+	<SubTexture name="slot 20008" x="4" y="395" width="445" height="194"/>
+	<SubTexture name="slot 20009" x="4" y="395" width="445" height="194"/>
+	<SubTexture name="slot 20010" x="4" y="395" width="445" height="194"/>
+	<SubTexture name="slot 20011" x="4" y="395" width="445" height="194"/>
+	<SubTexture name="slot 20012" x="449" y="395" width="445" height="194"/>
+	<SubTexture name="slot 20013" x="449" y="395" width="445" height="194"/>
+	<SubTexture name="slot 20014" x="449" y="395" width="445" height="194"/>
+	<SubTexture name="slot 20015" x="449" y="395" width="445" height="194"/>
+	<SubTexture name="slot 20016" x="449" y="395" width="445" height="194"/>
+	<SubTexture name="slot 20017" x="449" y="395" width="445" height="194"/>
+	<SubTexture name="slot 20018" x="449" y="395" width="445" height="194"/>
+	<SubTexture name="slot 20019" x="449" y="395" width="445" height="194"/>
+	<SubTexture name="slot 20020" x="449" y="395" width="445" height="194"/>
+	<SubTexture name="slot 20021" x="449" y="395" width="445" height="194"/>
+	<SubTexture name="slot 20022" x="449" y="395" width="445" height="194"/>
+	<SubTexture name="slot 20023" x="449" y="395" width="445" height="194"/>
+	<SubTexture name="slot 30000" x="4" y="589" width="441" height="195"/>
+	<SubTexture name="slot 30001" x="4" y="589" width="441" height="195"/>
+	<SubTexture name="slot 30002" x="4" y="589" width="441" height="195"/>
+	<SubTexture name="slot 30003" x="4" y="589" width="441" height="195"/>
+	<SubTexture name="slot 30004" x="4" y="589" width="441" height="195"/>
+	<SubTexture name="slot 30005" x="4" y="589" width="441" height="195"/>
+	<SubTexture name="slot 30006" x="4" y="589" width="441" height="195"/>
+	<SubTexture name="slot 30007" x="4" y="589" width="441" height="195"/>
+	<SubTexture name="slot 30008" x="4" y="589" width="441" height="195"/>
+	<SubTexture name="slot 30009" x="4" y="589" width="441" height="195"/>
+	<SubTexture name="slot 30010" x="4" y="589" width="441" height="195"/>
+	<SubTexture name="slot 30011" x="4" y="589" width="441" height="195"/>
+	<SubTexture name="slot 30012" x="445" y="589" width="441" height="195"/>
+	<SubTexture name="slot 30013" x="445" y="589" width="441" height="195"/>
+	<SubTexture name="slot 30014" x="445" y="589" width="441" height="195"/>
+	<SubTexture name="slot 30015" x="445" y="589" width="441" height="195"/>
+	<SubTexture name="slot 30016" x="445" y="589" width="441" height="195"/>
+	<SubTexture name="slot 30017" x="445" y="589" width="441" height="195"/>
+	<SubTexture name="slot 30018" x="445" y="589" width="441" height="195"/>
+	<SubTexture name="slot 30019" x="445" y="589" width="441" height="195"/>
+	<SubTexture name="slot 30020" x="445" y="589" width="441" height="195"/>
+	<SubTexture name="slot 30021" x="445" y="589" width="441" height="195"/>
+	<SubTexture name="slot 30022" x="445" y="589" width="441" height="195"/>
+	<SubTexture name="slot 30023" x="445" y="589" width="441" height="195"/>
+</TextureAtlas>

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="bulb.png">
+	<!-- Created with Adobe Animate version 21.0.5.40714 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="swing0000" x="4" y="4" width="1294" height="719" frameX="-113" frameY="-5" frameWidth="1500" frameHeight="828"/>
+	<SubTexture name="swing0001" x="1298" y="4" width="1295" height="744" frameX="-139" frameY="-4" frameWidth="1500" frameHeight="828"/>
+	<SubTexture name="swing0002" x="2593" y="4" width="1292" height="792" frameX="-196" frameY="-2" frameWidth="1500" frameHeight="828"/>
+	<SubTexture name="swing0003" x="4" y="796" width="1291" height="797" frameX="-202" frameY="-2" frameWidth="1500" frameHeight="828"/>
+	<SubTexture name="swing0004" x="1295" y="796" width="1290" height="799" frameX="-206" frameY="-2" frameWidth="1500" frameHeight="828"/>
+	<SubTexture name="swing0005" x="2585" y="796" width="1290" height="803" frameX="-210" frameY="-1" frameWidth="1500" frameHeight="828"/>
+	<SubTexture name="swing0006" x="2585" y="796" width="1290" height="803" frameX="-210" frameY="-1" frameWidth="1500" frameHeight="828"/>
+	<SubTexture name="swing0007" x="2585" y="796" width="1290" height="803" frameX="-210" frameY="-1" frameWidth="1500" frameHeight="828"/>
+	<SubTexture name="swing0008" x="2585" y="796" width="1290" height="803" frameX="-210" frameY="-1" frameWidth="1500" frameHeight="828"/>
+	<SubTexture name="swing0009" x="2585" y="796" width="1290" height="803" frameX="-210" frameY="-1" frameWidth="1500" frameHeight="828"/>
+	<SubTexture name="swing0010" x="1295" y="796" width="1290" height="799" frameX="-206" frameY="-2" frameWidth="1500" frameHeight="828"/>
+	<SubTexture name="swing0011" x="4" y="796" width="1291" height="797" frameX="-202" frameY="-2" frameWidth="1500" frameHeight="828"/>
+	<SubTexture name="swing0012" x="2593" y="4" width="1292" height="792" frameX="-196" frameY="-2" frameWidth="1500" frameHeight="828"/>
+	<SubTexture name="swing0013" x="1298" y="4" width="1295" height="744" frameX="-139" frameY="-4" frameWidth="1500" frameHeight="828"/>
+	<SubTexture name="swing0014" x="4" y="4" width="1294" height="719" frameX="-113" frameY="-5" frameWidth="1500" frameHeight="828"/>
+	<SubTexture name="swing0015" x="4" y="1599" width="1294" height="765" frameX="-66" frameY="-3" frameWidth="1500" frameHeight="828"/>
+	<SubTexture name="swing0016" x="1298" y="1599" width="1288" height="817" frameX="-10" frameY="-1" frameWidth="1500" frameHeight="828"/>
+	<SubTexture name="swing0017" x="2586" y="1599" width="1285" height="824" frameX="-3" frameY="0" frameWidth="1500" frameHeight="828"/>
+	<SubTexture name="swing0018" x="4" y="2423" width="1284" height="827" frameX="0" frameY="0" frameWidth="1500" frameHeight="828"/>
+	<SubTexture name="swing0019" x="4" y="2423" width="1284" height="827" frameX="0" frameY="0" frameWidth="1500" frameHeight="828"/>
+	<SubTexture name="swing0020" x="4" y="2423" width="1284" height="827" frameX="0" frameY="0" frameWidth="1500" frameHeight="828"/>
+	<SubTexture name="swing0021" x="4" y="2423" width="1284" height="827" frameX="0" frameY="0" frameWidth="1500" frameHeight="828"/>
+	<SubTexture name="swing0022" x="4" y="2423" width="1284" height="827" frameX="0" frameY="0" frameWidth="1500" frameHeight="828"/>
+	<SubTexture name="swing0023" x="4" y="2423" width="1284" height="827" frameX="0" frameY="0" frameWidth="1500" frameHeight="828"/>
+	<SubTexture name="swing0024" x="4" y="2423" width="1284" height="827" frameX="0" frameY="0" frameWidth="1500" frameHeight="828"/>
+	<SubTexture name="swing0025" x="4" y="2423" width="1284" height="827" frameX="0" frameY="0" frameWidth="1500" frameHeight="828"/>
+	<SubTexture name="swing0026" x="4" y="2423" width="1284" height="827" frameX="0" frameY="0" frameWidth="1500" frameHeight="828"/>
+	<SubTexture name="swing0027" x="2586" y="1599" width="1285" height="824" frameX="-3" frameY="0" frameWidth="1500" frameHeight="828"/>
+	<SubTexture name="swing0028" x="1298" y="1599" width="1288" height="817" frameX="-10" frameY="-1" frameWidth="1500" frameHeight="828"/>
+	<SubTexture name="swing0029" x="4" y="1599" width="1294" height="765" frameX="-66" frameY="-3" frameWidth="1500" frameHeight="828"/>
+</TextureAtlas>

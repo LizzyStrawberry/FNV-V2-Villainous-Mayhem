@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="notifButton.png">
+	<!-- Created with Adobe Animate version 21.0.5.40714 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="notification0000" x="4" y="4" width="50" height="50" frameX="-8" frameY="-8" frameWidth="67" frameHeight="67"/>
+	<SubTexture name="notification0001" x="54" y="4" width="53" height="53" frameX="-7" frameY="-7" frameWidth="67" frameHeight="67"/>
+	<SubTexture name="notification0002" x="107" y="4" width="55" height="55" frameX="-6" frameY="-6" frameWidth="67" frameHeight="67"/>
+	<SubTexture name="notification0003" x="162" y="4" width="57" height="57" frameX="-5" frameY="-5" frameWidth="67" frameHeight="67"/>
+	<SubTexture name="notification0004" x="219" y="4" width="59" height="59" frameX="-4" frameY="-4" frameWidth="67" frameHeight="67"/>
+	<SubTexture name="notification0005" x="278" y="4" width="61" height="61" frameX="-3" frameY="-3" frameWidth="67" frameHeight="67"/>
+	<SubTexture name="notification0006" x="339" y="4" width="61" height="61" frameX="-3" frameY="-3" frameWidth="67" frameHeight="67"/>
+	<SubTexture name="notification0007" x="400" y="4" width="63" height="63" frameX="-2" frameY="-2" frameWidth="67" frameHeight="67"/>
+	<SubTexture name="notification0008" x="4" y="67" width="64" height="64" frameX="-1" frameY="-1" frameWidth="67" frameHeight="67"/>
+	<SubTexture name="notification0009" x="68" y="67" width="65" height="65" frameX="-1" frameY="-1" frameWidth="67" frameHeight="67"/>
+	<SubTexture name="notification0010" x="133" y="67" width="65" height="65" frameX="-1" frameY="-1" frameWidth="67" frameHeight="67"/>
+	<SubTexture name="notification0011" x="198" y="67" width="66" height="66" frameX="0" frameY="0" frameWidth="67" frameHeight="67"/>
+	<SubTexture name="notification0012" x="264" y="67" width="66" height="66" frameX="0" frameY="0" frameWidth="67" frameHeight="67"/>
+	<SubTexture name="notification0013" x="330" y="67" width="67" height="67"/>
+	<SubTexture name="notification0014" x="397" y="67" width="67" height="67"/>
+	<SubTexture name="notification0015" x="4" y="134" width="67" height="67"/>
+	<SubTexture name="notification0016" x="71" y="134" width="67" height="67"/>
+	<SubTexture name="notification0017" x="138" y="134" width="67" height="67"/>
+	<SubTexture name="notification0018" x="205" y="134" width="67" height="67"/>
+	<SubTexture name="notification0019" x="205" y="134" width="67" height="67"/>
+	<SubTexture name="notification0020" x="205" y="134" width="67" height="67"/>
+	<SubTexture name="notification0021" x="205" y="134" width="67" height="67"/>
+	<SubTexture name="notification0022" x="205" y="134" width="67" height="67"/>
+	<SubTexture name="notification0023" x="205" y="134" width="67" height="67"/>
+	<SubTexture name="notification0024" x="205" y="134" width="67" height="67"/>
+</TextureAtlas>
