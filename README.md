@@ -49,7 +49,7 @@ Now as regards the libraries you need to use to be able to compile the mod prope
 
 Once you have the libraries installed and the files ready, there's a few more things you should do. [ONLY FOR THE FIRST TIME YOU EVER COMPILE THE MOD]:
 - Download [Finale_Intro.mp4](https://drive.google.com/file/d/12ZAM_q8kHkL2tgiyjqrJmk6AXHECX8Lw/view?usp=sharing). (File size limitation on github is 100 mbs per file sadly :/ )
-- Add it inside the mods folder of your exported game.
+- Add it inside the `mods/videos` folder of your exported game.
 - Compile the game. Once it's ready, Enjoy!
 _____________________________________
 # New Content
