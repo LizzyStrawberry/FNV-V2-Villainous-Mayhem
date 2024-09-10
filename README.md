@@ -72,7 +72,7 @@ Mimiko's shop offers 3 prize machines, each one containing a different set of va
 
 ### Zeel's Shop
 ![](assets/preload/images/tutorials/shops/shops-5.png)
-To your left from Mimiko's shop, Zeel wanders around with her illegal shop! She doesn't like gambling all that much, so she prefers to sell whatever Mimiko gives out at their normal prizes instead! Each shelf contains every item from each prize machine Mimiko has, so feel free to buy them instead using your tokens!
+To your left from Mimiko's shop, Zeel wanders around with her illegal shop! She doesn't like gambling all that much, so she prefers to sell whatever Mimiko gives out at their normal prizes instead! Each shelf contains every item from each prize machine Mimiko has, so feel free to buy them instead using your tokens! Please don't be a pervert to her though.
 
 ### The Cellar Shop
 ![](assets/preload/images/tutorials/shops/shops-8.png)
