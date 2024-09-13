@@ -175,7 +175,7 @@ class TitleState extends MusicBeatState
 		// IGNORE THIS!!!
 		titleJSON = Json.parse(Paths.getTextFromFile('images/gfDanceTitle.json'));
 
-		#if TITLE_SCREEN_EASTER_EGG
+		/*#if TITLE_SCREEN_EASTER_EGG
 		if (FlxG.save.data.psychDevsEasterEgg == null) FlxG.save.data.psychDevsEasterEgg = ''; //Crash prevention
 		switch(FlxG.save.data.psychDevsEasterEgg.toUpperCase())
 		{
@@ -192,7 +192,7 @@ class TitleState extends MusicBeatState
 				titleJSON.gfx += 45;
 				titleJSON.gfy += 100;
 		}
-		#end
+		#end*/
 
 		if(!initialized)
 		{
@@ -385,7 +385,7 @@ class TitleState extends MusicBeatState
 
 		switch(easterEgg.toUpperCase())
 		{
-			#if TITLE_SCREEN_EASTER_EGG
+			/*#if TITLE_SCREEN_EASTER_EGG
 			case 'SHADOW':
 				gfDance.frames = Paths.getSparrowAtlas('ShadowBump');
 				gfDance.animation.addByPrefix('danceLeft', 'Shadow Title Bump', 24);
@@ -402,11 +402,9 @@ class TitleState extends MusicBeatState
 				gfDance.frames = Paths.getSparrowAtlas('BBBump');
 				gfDance.animation.addByIndices('danceLeft', 'BB Title Bump', [14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27], "", 24, false);
 				gfDance.animation.addByIndices('danceRight', 'BB Title Bump', [27, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], "", 24, false);
-			#end
+			#end*/
 
 			default:
-			//EDIT THIS ONE IF YOU'RE MAKING A SOURCE CODE MOD!!!!
-			//EDIT THIS ONE IF YOU'RE MAKING A SOURCE CODE MOD!!!!
 			//EDIT THIS ONE IF YOU'RE MAKING A SOURCE CODE MOD!!!!
 				gfDance.frames = Paths.getSparrowAtlas('gfDanceTitle');
 				gfDance.animation.addByIndices('danceLeft', 'gfDance', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
@@ -952,7 +950,7 @@ class TitleState extends MusicBeatState
 				var easteregg:String = FlxG.save.data.psychDevsEasterEgg;
 				if (easteregg == null) easteregg = '';
 				easteregg = easteregg.toUpperCase();
-				#if TITLE_SCREEN_EASTER_EGG
+				/*#if TITLE_SCREEN_EASTER_EGG
 				if(easteregg == 'SHADOW')
 				{
 					FlxG.sound.music.fadeOut();
@@ -961,7 +959,7 @@ class TitleState extends MusicBeatState
 						FreeplayState.vocals.fadeOut();
 					}
 				}
-				#end
+				#end*/
 			}
 			skippedIntro = true;
 		}

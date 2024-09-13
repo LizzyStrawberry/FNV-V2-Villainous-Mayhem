@@ -48,8 +48,10 @@ class FlashingState extends MusicBeatState
 			32);
 		warnText.setFormat("VCR OSD Mono", 32, FlxColor.WHITE, CENTER);
 		warnText.screenCenter(Y);
+		warnText.y -= 10;
 		warnText.alpha = 0;
 		warnTween = FlxTween.tween(warnText, { alpha: 1 }, 3);
+		FlxTween.tween(warnText, { y: warnText.y + 25 }, 3, {ease: FlxEase.cubeInOut, type: PINGPONG});
 		add(warnText);
 
 		settingsText = new FlxText(0, 0, FlxG.width,
@@ -257,47 +259,52 @@ class FlashingState extends MusicBeatState
 
 			if (curOption == 0)
 				if (ClientPrefs.shaders == true)
-					optionText1.text = "Shaders: >True<";
+					optionText1.text = "Shaders: <GR>>True<<GR>";
 				else
-					optionText1.text = "Shaders: >False<";
+					optionText1.text = "Shaders: <R>>False<<R>";
 			else
 				if (ClientPrefs.shaders == true)
-					optionText1.text = "Shaders: True";
+					optionText1.text = "Shaders: <GR>True<GR>";
 				else
-					optionText1.text = "Shaders: False";
+					optionText1.text = "Shaders: <R>False<R>";
 
 			if (curOption == 1)
 				if (ClientPrefs.cinematicBars == true)
-					optionText2.text = "Cinematic Bars: >True<";
+					optionText2.text = "Cinematic Bars: <GR>>True<<GR>";
 				else
-					optionText2.text = "Cinematic Bars: >False<";
+					optionText2.text = "Cinematic Bars: <R>>False<<R>";
 			else
 				if (ClientPrefs.cinematicBars == true)
-					optionText2.text = "Cinematic Bars: True";
+					optionText2.text = "Cinematic Bars: <GR>True<GR>";
 				else
-					optionText2.text = "Cinematic Bars: False";
+					optionText2.text = "Cinematic Bars: <R>False<R>";
 
 			if (curOption == 2)
 				if (ClientPrefs.customRating == "FNV")
-					optionText3.text = "Rating Sprites Style: >FNV<";
+					optionText3.text = "Rating Sprites Style: <DGR>>FNV<<DGR>";
 				else
-					optionText3.text = "Rating Sprites Style: >FNF<";
+					optionText3.text = "Rating Sprites Style: <G>>FNF<<G>";
 			else
 				if (ClientPrefs.customRating == "FNV")
-					optionText3.text = "Rating Sprites Style: FNV";
+					optionText3.text = "Rating Sprites Style: <DGR>FNV<DGR>";
 				else
-					optionText3.text = "Rating Sprites Style: FNF";
+					optionText3.text = "Rating Sprites Style: <G>FNF<G>";
 			
 			if (curOption == 3)
 				if (ClientPrefs.missRelatedCombos == true)
-					optionText4.text = "Miss Related Combos: >True<";
+					optionText4.text = "Miss Related Combos: <GR>>True<<GR>";
 				else
-					optionText4.text = "Miss Related Combos: >False<";
+					optionText4.text = "Miss Related Combos: <R>>False<<R>";
 			else
 				if (ClientPrefs.missRelatedCombos == true)
-					optionText4.text = "Miss Related Combos: True";
+					optionText4.text = "Miss Related Combos: <GR>True<GR>";
 				else
-					optionText4.text = "Miss Related Combos: False";
+					optionText4.text = "Miss Related Combos: <R>False<R>";
+
+			CustomFontFormats.addMarkers(optionText1);
+			CustomFontFormats.addMarkers(optionText2);
+			CustomFontFormats.addMarkers(optionText3);
+			CustomFontFormats.addMarkers(optionText4);
 
 			if (curOption == 4)
 				{

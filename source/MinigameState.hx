@@ -807,7 +807,6 @@ class MinigameState extends MusicBeatState
 
 	private function getImageKey(sprite:FlxSprite):String {
 		// Retrieve the image key for the sprite
-		// Replace this with your actual logic to get the image key
 		return sprite.graphic.assetsKey;
 	}
 

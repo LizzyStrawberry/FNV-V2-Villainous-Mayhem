@@ -1371,17 +1371,7 @@ class MainMenuState extends MusicBeatState
 
 				if (((controls.ACCEPT && !warning) || (FlxG.mouse.overlaps(storySelection) && FlxG.mouse.justPressed && !warning)) && ((storyShit[curStorySelected] == 'injection' && curDifficulty == 1) || storyShit[curStorySelected] == 'mayhem'))
 				{
-					if (ClientPrefs.optimizationMode == true && storyShit[curStorySelected] == 'injection')
-					{
-						FlxG.camera.shake(0.02, 0.5, null, false, FlxAxes.XY);
-						FlxG.sound.play(Paths.sound('accessDenied'));
-					}
-					else if (warnMayhem != '' && storyShit[curStorySelected] == 'mayhem')
-					{
-						FlxG.camera.shake(0.02, 0.5, null, false, FlxAxes.XY);
-						FlxG.sound.play(Paths.sound('accessDenied'));
-					}
-					else if (libidiPerformWarn == true)
+					if (libidiPerformWarn == true)
 					{
 						warning = true;
 						FlxG.sound.play(Paths.sound('scrollMenu'));
@@ -1406,12 +1396,12 @@ class MainMenuState extends MusicBeatState
 						FlxG.camera.shake(0.02, 0.5, null, false, FlxAxes.XY);
 						FlxG.sound.play(Paths.sound('accessDenied'));
 					}
-					else if (storyShit[curStorySelected] == 'injection' && (ClientPrefs.weeksUnlocked < 7 || ClientPrefs.optimizationMode == true))
+					else if (storyShit[curStorySelected] == 'injection' && (ClientPrefs.weeksUnlocked < 7 || warnMayhem != ''))
 					{
 						FlxG.camera.shake(0.02, 0.5, null, false, FlxAxes.XY);
 						FlxG.sound.play(Paths.sound('accessDenied'));
 					}
-					else if (storyShit[curStorySelected] == 'mayhem' && (allowMayhemGameMode == false || warnMayhem == ''))
+					else if (storyShit[curStorySelected] == 'mayhem' && (allowMayhemGameMode == false || warnMayhem != ''))
 					{
 						FlxG.camera.shake(0.02, 0.5, null, false, FlxAxes.XY);
 						FlxG.sound.play(Paths.sound('accessDenied'));
@@ -1660,35 +1650,35 @@ class MainMenuState extends MusicBeatState
 
 	function loadExtraMode()
 	{
-		if (storyShit[curStorySelected] == 'injection' && ClientPrefs.weeksUnlocked < 7)
+		if (storyShit[curStorySelected] == 'injection' && (ClientPrefs.weeksUnlocked < 7 || warnMayhem != ''))
+		{
+			FlxG.camera.shake(0.02, 0.5, null, false, FlxAxes.XY);
+			FlxG.sound.play(Paths.sound('accessDenied'));
+		}
+		else if (storyShit[curStorySelected] == 'mayhem' && (allowMayhemGameMode == false || warnMayhem != ''))
+		{
+			FlxG.camera.shake(0.02, 0.5, null, false, FlxAxes.XY);
+			FlxG.sound.play(Paths.sound('accessDenied'));
+		}
+		else
+		{
+			applyStory = true;
+			FlxG.sound.play(Paths.sound('confirmMenu'));
+			if (FlxG.keys.justPressed.Y)
 			{
-				FlxG.camera.shake(0.02, 0.5, null, false, FlxAxes.XY);
-				FlxG.sound.play(Paths.sound('accessDenied'));
+				trace ('Low Quality Off!');
+				ClientPrefs.lowQuality = false;
+			}	
+			else if (FlxG.keys.justPressed.N)
+			{
+				trace ('Low Quality On!');
+				ClientPrefs.lowQuality = true;
 			}
-			else if (storyShit[curStorySelected] == 'mayhem' && allowMayhemGameMode == false)
-			{
-				FlxG.camera.shake(0.02, 0.5, null, false, FlxAxes.XY);
-				FlxG.sound.play(Paths.sound('accessDenied'));
-			}
-			else
-			{
-				applyStory = true;
-				FlxG.sound.play(Paths.sound('confirmMenu'));
-				if (FlxG.keys.justPressed.Y)
-				{
-					trace ('Low Quality Off!');
-					ClientPrefs.lowQuality = false;
-				}	
-				else if (FlxG.keys.justPressed.N)
-				{
-					trace ('Low Quality On!');
-					ClientPrefs.lowQuality = true;
-				}
-				ClientPrefs.saveSettings();
+			ClientPrefs.saveSettings();
 
-				FlxTween.tween(blackOut2, {alpha: 0}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
-				if (libidiPerformWarn == true)
-					FlxTween.tween(libidiWarning, {alpha: 0}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
+			FlxTween.tween(blackOut2, {alpha: 0}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
+			if (libidiPerformWarn == true)
+				FlxTween.tween(libidiWarning, {alpha: 0}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
 
 			if (storyShit[curStorySelected] == 'injection')
 			{
@@ -2001,7 +1991,14 @@ class MainMenuState extends MusicBeatState
 				case 'injection':
 					if (ClientPrefs.weeksUnlocked >= 7)
 					{
-						if (ClientPrefs.optimizationMode == false)
+						warnMayhem = ""; //Reset this every time!!! idk use this again to not make 2 variables bru
+						if (ClientPrefs.getGameplaySetting('practice', false) || ClientPrefs.getGameplaySetting('botplay', false))
+							warnMayhem += 'Botplay and/or Practice Mode\n';
+						if (ClientPrefs.mechanics == false)
+							warnMayhem += 'Mechanics\n';
+						if (ClientPrefs.optimizationMode == true)
+							warnMayhem += 'Optimization Mode';
+						if (warnMayhem == '')
 						{
 							storyText.text = "Play through the Main Game\nin <GR>ONE attempt<GR>!!\n<P>Health<P> and <G>Score<G> gets saved\nalong the way!\nTry not to lose,\nor you <R_>lose your progress<R_>!";
 							storyText.y = 265;
@@ -2010,11 +2007,11 @@ class MainMenuState extends MusicBeatState
 						}
 						else
 						{
-							storyText.text = "You can't access this mode.\nPlease disable <R>Optimization Mode<R>.";
+							storyText.text = "You can't access this mode.\nPlease disable the following: <R_>\n" + warnMayhem + "<R_>";
 							storyText.y = 310;
 
 							CustomFontFormats.addMarkers(storyText);
-						}
+						} 
 					}
 					else
 					{

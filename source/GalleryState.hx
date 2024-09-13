@@ -688,11 +688,11 @@ class GalleryState extends MusicBeatState
 
 			if (categorySelected == 6)
 			{
-				if (imageNumber > 35)
+				if (imageNumber > 37)
 					imageNumber = 1;
 				if (imageNumber < 1)
-					imageNumber = 35;
-				numberCounter.text = imageNumber + "/35";
+					imageNumber = 37;
+				numberCounter.text = imageNumber + "/37";
 				currentImage.loadGraphic(Paths.image('Gallery/fanarts/image_' + imageNumber));
 
 				messageShown = false;
@@ -837,6 +837,14 @@ class GalleryState extends MusicBeatState
 					case 35:
 					{
 						imageText.text = "Finale Fanart\nFanart by Lizzy Strawberry";
+					}
+					case 36:
+					{
+						imageText.text = "DV Fanart\nFanart by Akira";
+					}
+					case 37:
+					{
+						imageText.text = "DV Fanart\nFanart by Akira";
 					}
 				}
 			}

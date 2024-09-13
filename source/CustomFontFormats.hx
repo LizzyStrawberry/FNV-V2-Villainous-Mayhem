@@ -26,6 +26,10 @@ class CustomFontFormats {
     public static var greenBoldUnderline = new FlxTextFormat(0x00ff15, true, false, null, true);
     public static var greenSimple = new FlxTextFormat(0x00ff15, false, false, null, false);
 
+    public static var darkGreenBold = new FlxTextFormat(0x027d02, true, false, null, false);
+    public static var darkGreenBoldUnderline = new FlxTextFormat(0x027d02, true, false, null, true);
+    public static var darkGreenSimple = new FlxTextFormat(0x027d02, false, false, null, false);
+
     public static var blueBold = new FlxTextFormat(0x0000ff, true, false, null, false);
     public static var blueBoldUnderline = new FlxTextFormat(0x0000ff, true, false, null, true);
     public static var blueSimple = new FlxTextFormat(0x0000ff, false, false, null, false);
@@ -60,6 +64,10 @@ class CustomFontFormats {
     public static var greenFormatBold = new FlxTextFormatMarkerPair(greenBold, "<GR>");
     public static var greenFormatBoldUnderline = new FlxTextFormatMarkerPair(greenBoldUnderline, "<GR_>");
     public static var greenFormatSimple = new FlxTextFormatMarkerPair(greenSimple, "<gr>");
+
+    public static var darkGreenFormatBold = new FlxTextFormatMarkerPair(darkGreenBold, "<DGR>");
+    public static var darkGreenFormatBoldUnderline = new FlxTextFormatMarkerPair(darkGreenBoldUnderline, "<DGR_>");
+    public static var darkGreenFormatSimple = new FlxTextFormatMarkerPair(darkGreenSimple, "<dgr>");
 
     public static var blueFormatBold = new FlxTextFormatMarkerPair(blueBold, "<B>");
     public static var blueFormatBoldUnderline = new FlxTextFormatMarkerPair(blueBoldUnderline, "<B_>");
@@ -97,6 +105,10 @@ class CustomFontFormats {
             greenFormatBold,
             greenFormatBoldUnderline,
             greenFormatSimple,
+
+            darkGreenFormatBold,
+            darkGreenFormatBoldUnderline,
+            darkGreenFormatSimple,
 
             blueFormatBold,
             blueFormatBoldUnderline,
