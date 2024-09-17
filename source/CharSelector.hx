@@ -29,6 +29,8 @@ import StringTools;
 import FreeplayState;
 
 class CharSelector extends MusicBeatState{
+    // For Memory Usage (Check Freeplay States)
+    public static var isSelectinChar:Bool = false;
     // Selectable Character Variables
     var selectableCharacters:Array<String> = ['playablegf', 'playablegf-old']; // Currently Selectable characters
     var selectableCharactersNames:Array<String> = ['Trespasser GF', 'Old Intruder GF']; // Characters names
@@ -74,6 +76,7 @@ class CharSelector extends MusicBeatState{
 
     override function create()
     {
+        isSelectinChar = true;
         curNum = 0;
         curColor = colors[curNum];
         previousColor = curColor;
@@ -280,7 +283,7 @@ class CharSelector extends MusicBeatState{
             }
             if (accepted || (FlxG.mouse.overlaps(icon) && (!FlxG.mouse.overlaps(arrowSelectorRight)) && FlxG.mouse.justPressed))
             {
-                FlxG.mouse.visible = false;
+                isSelectinChar = false;
                 alreadySelected = true;
                 var daSelected:String = unlockedCharacters[curSelected];
                 if (unlockedCharacters[curSelected] != PlayState.SONG.player1)
@@ -311,6 +314,7 @@ class CharSelector extends MusicBeatState{
 
                 new FlxTimer().start(1.4, function(tmr:FlxTimer)
                 {
+                    FlxG.mouse.visible = false;
                     LoadingState.loadAndSwitchState(new PlayState()); // Gonna try this for Psych
                 });
             }

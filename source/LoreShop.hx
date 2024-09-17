@@ -517,6 +517,14 @@ class LoreShop extends MusicBeatState
 
             if (!inChestRoom && !transitioning)
             {
+                if(FlxG.mouse.overlaps(cellarOption) && !selectinItem)
+                {
+                    cellarOption.alpha = 1;
+                }
+                else
+                {
+                    cellarOption.alpha = 0.6;
+                }
                 //Dialogue
                 if((!FlxG.mouse.overlaps(cellarOption)) && ClientPrefs.itemInfo == false && FlxG.mouse.overlaps(hermit) && FlxG.mouse.justPressed && !selectinItem)
                 {

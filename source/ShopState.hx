@@ -1092,9 +1092,35 @@ class ShopState extends MusicBeatState
 				{
 					FlxG.sound.music.fadeOut(0.4);
 					FlxG.sound.play(Paths.sound('cancelMenu'));
-					MusicBeatState.switchState(new MainMenuState());
+					MusicBeatState.switchState(new MainMenuState(), 'stickers');
 				}
 			}
+			
+			//button thingies lmao
+			if(FlxG.mouse.overlaps(luckOptionSlot1) && (ClientPrefs.sellSelected == false && ClientPrefs.luckSelected == false && ClientPrefs.choiceSelected == false && ClientPrefs.itemInfo == false))
+            {
+                luckOptionSlot1.alpha = 1;
+            }
+            else
+            {
+                luckOptionSlot1.alpha = 0.6;
+            }
+			if(FlxG.mouse.overlaps(luckOptionSlot2) && (ClientPrefs.sellSelected == false && ClientPrefs.luckSelected == false && ClientPrefs.choiceSelected == false && ClientPrefs.itemInfo == false))
+			{
+				luckOptionSlot2.alpha = 1;
+			}
+			else
+			{
+				luckOptionSlot2.alpha = 0.6;
+			}
+			if(FlxG.mouse.overlaps(luckOptionSlot3) && (ClientPrefs.sellSelected == false && ClientPrefs.luckSelected == false && ClientPrefs.choiceSelected == false && ClientPrefs.itemInfo == false))
+            {
+                luckOptionSlot3.alpha = 1;
+            }
+            else
+            {
+                luckOptionSlot3.alpha = 0.6;
+            }
 			//Dialogue
 		if(FlxG.mouse.overlaps(assistant) && FlxG.mouse.justPressed && ClientPrefs.luckSelected == false && changedShop == false
 			&& cellarShopActive == false
@@ -2610,7 +2636,7 @@ class ShopState extends MusicBeatState
 		}
 		else
 		{
-		if(FlxG.mouse.overlaps(assistantSecret) && FlxG.mouse.justPressed && ClientPrefs.sellSelected == false)
+			if(FlxG.mouse.overlaps(assistantSecret) && FlxG.mouse.justPressed && ClientPrefs.sellSelected == false)
 			{
 				if (FlxG.mouse.overlaps(booba))
 				{
@@ -2730,6 +2756,20 @@ class ShopState extends MusicBeatState
 					assistantSecret.offset.set(110, 36);
 				}
 			}
+			//button shit
+			if(FlxG.mouse.overlaps(sellOption1) && (ClientPrefs.sellSelected == false && ClientPrefs.luckSelected == false && ClientPrefs.choiceSelected == false && ClientPrefs.itemInfo == false))
+				sellOption1.alpha = 1;
+			else
+				sellOption1.alpha = 0.6;
+			if(FlxG.mouse.overlaps(sellOption2) && (ClientPrefs.sellSelected == false && ClientPrefs.luckSelected == false && ClientPrefs.choiceSelected == false && ClientPrefs.itemInfo == false))
+				sellOption2.alpha = 1;
+			else
+				sellOption2.alpha = 0.6;
+			if(FlxG.mouse.overlaps(sellOption3) && (ClientPrefs.sellSelected == false && ClientPrefs.luckSelected == false && ClientPrefs.choiceSelected == false && ClientPrefs.itemInfo == false))
+				sellOption3.alpha = 1;
+			else
+				sellOption3.alpha = 0.6;
+
 			if(FlxG.mouse.overlaps(sellOption1) && FlxG.mouse.justPressed && ClientPrefs.sellSelected == false && gtfo == false)
 				{
 					secretMerchantDialogue.skip();
@@ -2755,7 +2795,7 @@ class ShopState extends MusicBeatState
 					FlxG.sound.play(Paths.sound('shop/mouseClick'));
 				}
 
-			if(FlxG.mouse.overlaps(sellOption2) && FlxG.mouse.justPressed && ClientPrefs.sellSelected == false && gtfo == false)
+				if(FlxG.mouse.overlaps(sellOption2) && FlxG.mouse.justPressed && ClientPrefs.sellSelected == false && gtfo == false && ClientPrefs.nunWeekPlayed == true)
 				{
 					secretMerchantDialogue.skip();
 
@@ -2778,28 +2818,39 @@ class ShopState extends MusicBeatState
 					FlxG.sound.play(Paths.sound('shop/shopOpenShelf'));
 					FlxG.sound.play(Paths.sound('shop/mouseClick'));
 				}
+				else if (FlxG.mouse.overlaps(sellOption2) && FlxG.mouse.justPressed && ClientPrefs.sellSelected == false && gtfo == false && ClientPrefs.nunWeekPlayed == false)
+				{
+					FlxG.sound.play(Paths.sound('accessDenied'));
+					FlxG.camera.shake(0.02, 0.2, null, true, FlxAxes.XY);
+				}
 
-				if(FlxG.mouse.overlaps(sellOption3) && FlxG.mouse.justPressed && ClientPrefs.sellSelected == false && gtfo == false)
-					{
-						secretMerchantDialogue.skip();
+				if(FlxG.mouse.overlaps(sellOption3) && FlxG.mouse.justPressed && ClientPrefs.sellSelected == false && gtfo == false && ClientPrefs.kianaWeekPlayed == true)
+				{
+					secretMerchantDialogue.skip();
 
-						ClientPrefs.sellSelected = true;
-						shelfThreeON = true;
-						FlxTween.tween(buyItemsBG, {y: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						FlxTween.tween(prize12, {y: 160}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						FlxTween.tween(prize13, {y: 160}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						FlxTween.tween(prize14, {y: 160}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						FlxTween.tween(charmPrize3, {y: 160}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+					ClientPrefs.sellSelected = true;
+					shelfThreeON = true;
+					FlxTween.tween(buyItemsBG, {y: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+					FlxTween.tween(prize12, {y: 160}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+					FlxTween.tween(prize13, {y: 160}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+					FlxTween.tween(prize14, {y: 160}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+					FlxTween.tween(charmPrize3, {y: 160}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 						
-						prizeZeel.x = 650;
-						prizeTrampoline.x = 850;
-						prizeEgg.x = 50;
-						FlxTween.tween(prizeZeel, {y: 160}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						FlxTween.tween(prizeTrampoline, {y: 160}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						FlxTween.tween(prizeEgg, {y: 315}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						FlxG.sound.play(Paths.sound('shop/shopOpenShelf'));
-						FlxG.sound.play(Paths.sound('shop/mouseClick'));
-					}
+					prizeZeel.x = 650;
+					prizeTrampoline.x = 850;
+					prizeEgg.x = 50;
+					FlxTween.tween(prizeZeel, {y: 160}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+					FlxTween.tween(prizeTrampoline, {y: 160}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+					FlxTween.tween(prizeEgg, {y: 315}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+					FlxG.sound.play(Paths.sound('shop/shopOpenShelf'));
+					FlxG.sound.play(Paths.sound('shop/mouseClick'));
+				}
+				else if (FlxG.mouse.overlaps(sellOption3) && FlxG.mouse.justPressed && ClientPrefs.sellSelected == false && gtfo == false && ClientPrefs.kianaWeekPlayed == false)
+				{
+					FlxG.sound.play(Paths.sound('accessDenied'));
+					FlxG.camera.shake(0.02, 0.2, null, true, FlxAxes.XY);
+				}
+
 		
 		//Selling Section Bundled with Buying Process
 		if (FlxG.mouse.overlaps(prize1) && FlxG.mouse.justPressed && ClientPrefs.sellSelected == true && ClientPrefs.itemInfo == false)
