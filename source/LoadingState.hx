@@ -52,13 +52,13 @@ class LoadingState extends MusicBeatState
 		'TIP:\nAlmost close to losing? Use the Second Chance Buff as soon as you are about to die to gain your life back one more time!',
 		'TIP:\nIn need of regeneration? The Health Regeneration Buff can get your health back up!',
 		'TIP:\nPress I on the Main Menu (or the inventory icon on the right down corner) to open your inventory!',
-		'TIP:\nYou can always play the songs without mechanics to progress too! ..Just not in Iniquitous mode.',
+		'TIP:\nYou can always play the songs without mechanics to progress too! ..Just not in Iniquitous mode...or Mayhem Mode.',
 		'TIP:\nMimiko LOVES tokens!',
 		'TIP:\nAmong us.',
 		'TIP:\nPlay on 60 - 120 FPS for the best experience!',
 		'TIP:\nRemember to set up your keybinds in the Options menu!',
 		'TIP:\nCharms consume 1 token each time you use one, so make sure you have tokens before using one!',
-		'TIP:\nThe Auto Dodge Charm helps in all songs that require some sort of dodging / spamming SPACE / avoiding etc etc!',
+		'TIP:\nThe Auto Dodge Charm helps in all songs that require some sort of dodging / avoiding etc etc!',
 		'FUN FACT:\nMarco loves Manager-Chan from Lily in Engrave.',
 		'TIP:\nThe Healing Charm grants you 25% of your HP back, but beware, it only has 10 uses each time you activate it!',
 		'TIP:\nThe Resistance Charm can resist up to 50% of health drain!',
@@ -66,8 +66,8 @@ class LoadingState extends MusicBeatState
 		'FUN FACT:\nZeel really does sound like a backwards name, huh?',
 		'TIP:\nIf you want to have some more challenge in your playthrough, try out Mayhem Mode, Injection Mode, or enable Trampoline Mode! (..if you purchased it.)',
 		'FUN FACT:\nLustality used to be the hardest song we ever published in FNV!',
-		'FUN FACT:\nVersion 1.0 for this mod was done in just a month, and Version 1.5 only took 2 months!',
-		'FUN FACT:\n All the assets for this mod were done by JUST 1 person, JustOnlyKinn!'
+		'FUN FACT:\nVersion 1.0 of FNV was done in just a month, and Version 1.5 only took 2 months!',
+		'FUN FACT:\n All the assets for this mod were drawn by JUST 1 person, Jokinn!'
 	];
 
 	function new(target:FlxState, stopMusic:Bool, directory:String)

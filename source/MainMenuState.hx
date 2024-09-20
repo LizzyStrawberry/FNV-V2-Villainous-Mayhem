@@ -1103,15 +1103,16 @@ class MainMenuState extends MusicBeatState
 		else
 			FlxTween.tween(rightArrow, {x: getRightArrowX}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
 
-		if (((controls.UI_RIGHT && askedForInfo == false) || (FlxG.mouse.overlaps(rightArrow) && FlxG.mouse.pressed) && askedForInfo == false) && selectedSomethin == false)
+		if ((controls.UI_RIGHT || (FlxG.mouse.overlaps(rightArrow) && FlxG.mouse.justPressed)) && askedForInfo == false && storySelected == false)
 			rightArrow.animation.play('press')
 		else
 			rightArrow.animation.play('idle');
 	
-		if (((controls.UI_LEFT && askedForInfo == false) || (FlxG.mouse.overlaps(leftArrow) && FlxG.mouse.pressed) && askedForInfo == false) && selectedSomethin == false)
+		if ((controls.UI_LEFT || (FlxG.mouse.overlaps(leftArrow) && FlxG.mouse.justPressed)) && askedForInfo == false && storySelected == false)
 			leftArrow.animation.play('press');
 		else
 			leftArrow.animation.play('idle');
+		
 		if (FlxG.sound.music.volume < 0.8)
 		{
 			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
@@ -1122,41 +1123,41 @@ class MainMenuState extends MusicBeatState
 		camFollowPos.setPosition(FlxMath.lerp(camFollowPos.x, camFollow.x, lerpVal), FlxMath.lerp(camFollowPos.y, camFollow.y, lerpVal));
 
 		if (!selectedSomethin)
+		{
+			if ((controls.UI_LEFT_P || (FlxG.mouse.overlaps(leftArrow) && FlxG.mouse.justPressed)) && askedForInfo == false)
 			{
-				if ((controls.UI_LEFT_P && askedForInfo == false) || (FlxG.mouse.overlaps(leftArrow) && FlxG.mouse.justPressed) && askedForInfo == false && selectedSomethin == false)
-				{
-					FlxG.sound.play(Paths.sound('scrollMenu'));
-					changeItem(-1);
+				FlxG.sound.play(Paths.sound('scrollMenu'));
+				changeItem(-1);
 					
-					menuItems.forEach(function(spr:FlxSprite)
-						{
-						if (curSelected != spr.ID)
-							{
-								spr.alpha = 0;
-							} 
-						else
-							{
-								spr.alpha = 1;
-							}
-						});
-				}
-	
-				if ((controls.UI_RIGHT_P && askedForInfo == false) || (FlxG.mouse.overlaps(rightArrow) && FlxG.mouse.justPressed) && askedForInfo == false && selectedSomethin == false)
+				menuItems.forEach(function(spr:FlxSprite)
 				{
-					FlxG.sound.play(Paths.sound('scrollMenu'));
-					changeItem(1);
-					menuItems.forEach(function(spr:FlxSprite)
-						{
-						if (curSelected != spr.ID)
-							{
-								spr.alpha = 0;
-							} 
-						else
-							{
-								spr.alpha = 1;
-							}
-						});
-				}
+					if (curSelected != spr.ID)
+					{
+						spr.alpha = 0;
+					} 
+					else
+					{
+						spr.alpha = 1;
+					}
+				});
+			}
+	
+			if ((controls.UI_RIGHT_P || (FlxG.mouse.overlaps(rightArrow) && FlxG.mouse.justPressed)) && askedForInfo == false)
+			{
+				FlxG.sound.play(Paths.sound('scrollMenu'));
+				changeItem(1);
+				menuItems.forEach(function(spr:FlxSprite)
+				{
+					if (curSelected != spr.ID)
+					{
+						spr.alpha = 0;
+					} 
+					else
+					{
+						spr.alpha = 1;
+					}
+					});
+			}
 
 			if (controls.BACK || FlxG.mouse.justPressedRight)
 			{
@@ -1165,7 +1166,7 @@ class MainMenuState extends MusicBeatState
 					MusicBeatState.switchState(new TitleState());
 			}
 
-			if ((controls.ACCEPT && askedForInfo == false && allowInteraction == true) || (FlxG.mouse.overlaps(transparentButton) && FlxG.mouse.justPressed && askedForInfo == false && allowInteraction == true))
+			if ((controls.ACCEPT || (FlxG.mouse.overlaps(transparentButton) && FlxG.mouse.justPressed)) && askedForInfo == false && allowInteraction == true)
 			{
 				if (optionShit[curSelected] == 'story_mode')
 				{
@@ -1209,6 +1210,7 @@ class MainMenuState extends MusicBeatState
 				else
 				{
 					selectedSomethin = true;
+					askedForInfo = true;
 					FlxG.sound.play(Paths.sound('confirmMenu'));
 
 					menuItems.forEach(function(spr:FlxSprite)
@@ -1241,8 +1243,6 @@ class MainMenuState extends MusicBeatState
 										MusicBeatState.switchState(new InfoState(), 'stickers');
 									case 'promotion':
 										MusicBeatState.switchState(new PromotionState(), 'stickers');
-									case 'awards':
-										MusicBeatState.switchState(new AchievementsMenuState());
 									case 'gallery':
 										ClientPrefs.inMenu = false;
 										MusicBeatState.switchState(new GalleryState(), 'stickers');
@@ -1320,7 +1320,7 @@ class MainMenuState extends MusicBeatState
 					}
 				}
 		
-				if (!warning)
+				if (!warning && askedForInfo == false)
 				{
 					if (controls.UI_LEFT_P)
 					{
@@ -1369,7 +1369,7 @@ class MainMenuState extends MusicBeatState
 				else
 					FlxTween.tween(storySelection, {alpha: 0.6}, 0.5, {ease: FlxEase.circOut, type: PERSIST});
 
-				if (((controls.ACCEPT && !warning) || (FlxG.mouse.overlaps(storySelection) && FlxG.mouse.justPressed && !warning)) && ((storyShit[curStorySelected] == 'injection' && curDifficulty == 1) || storyShit[curStorySelected] == 'mayhem'))
+				if ((controls.ACCEPT || (FlxG.mouse.overlaps(storySelection) && FlxG.mouse.justPressed)) && !warning && ((storyShit[curStorySelected] == 'injection' && curDifficulty == 1) || storyShit[curStorySelected] == 'mayhem'))
 				{
 					if (libidiPerformWarn == true)
 					{
@@ -1385,11 +1385,12 @@ class MainMenuState extends MusicBeatState
 						loadExtraMode();
 					}
 				}
-				else if (warning && ((storyShit[curStorySelected] == 'injection' && curDifficulty == 1) || storyShit[curStorySelected] == 'mayhem')&& (FlxG.keys.justPressed.Y || FlxG.keys.justPressed.N))
+				else if (warning && ((storyShit[curStorySelected] == 'injection' && curDifficulty == 1) || storyShit[curStorySelected] == 'mayhem') && (FlxG.keys.justPressed.Y || FlxG.keys.justPressed.N))
 				{
 					loadExtraMode();
 				}
-				else if ((controls.ACCEPT && askedForInfo == false) || (FlxG.mouse.overlaps(storySelection) && FlxG.mouse.justPressed && askedForInfo == false) && (storyShit[curStorySelected] == 'classic' || storyShit[curStorySelected] == 'iniquitous' || (storyShit[curStorySelected] == 'injection' && curDifficulty == 0)))
+				else if ((controls.ACCEPT || (FlxG.mouse.overlaps(storySelection) && FlxG.mouse.justPressed)) && askedForInfo == false 
+					&& (storyShit[curStorySelected] == 'classic' || storyShit[curStorySelected] == 'iniquitous' || (storyShit[curStorySelected] == 'injection' && curDifficulty == 0)))
 				{
 					if (storyShit[curStorySelected] == 'iniquitous' && (!Achievements.isAchievementUnlocked('weekIniquitous_Beaten')))
 					{
