@@ -226,8 +226,8 @@ class PauseSubState extends MusicBeatSubstate
 				bgGradient.color = 0xFF930097;
 				pauseCard.loadGraphic(Paths.image('pauseMenu/pause_FNV'));
 			case 'Fanfuck Forever':
-				bgGradient.color = 0xFFe600ff;
-				pauseCard.color = 0xFFe600ff;
+				bgGradient.color = 0xFF6d0618;
+				pauseCard.color = 0xFF6d0618;
 			case "0.0015":
 				bgGradient.color = 0xFFffffff;
 				pauseCard.color = 0xFFffffff;

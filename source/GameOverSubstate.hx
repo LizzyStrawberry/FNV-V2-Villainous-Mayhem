@@ -366,17 +366,26 @@ class GameOverSubstate extends MusicBeatSubstate
 		if (!isEnding)
 		{
 			isEnding = true;
-			boyfriend.playAnim('deathConfirm', true);
+			if (Paths.formatToSongPath(PlayState.SONG.song) == 'shucks-v2') //Avoid playing the deathConfirm Animation
+			{
+				FlxG.sound.music.fadeOut(1.7);
+			}
+			else
+				boyfriend.playAnim('deathConfirm', true);
+
 			if (PlayState.SONG.stage == 'TheFinale')
 			{
 				FlxG.sound.music.fadeOut(1.7);
 			}
 			else
 			{
-				FlxG.sound.music.stop();
-				FlxG.sound.play(Paths.music(endSoundName));
+				if (Paths.formatToSongPath(PlayState.SONG.song) != 'shucks-v2')
+				{
+					FlxG.sound.music.stop();
+					FlxG.sound.play(Paths.music(endSoundName));
+				}
 			}
-			if (PlayState.SONG == Song.loadFromJson('tactical-mishap-villainous', 'tactical-mishap') || PlayState.SONG == Song.loadFromJson('tactical-mishap', 'tactical-mishap'))
+			if (Paths.formatToSongPath(PlayState.SONG.song) == 'tactical-mishap')
 				new FlxTimer().start(1.9, function(tmr:FlxTimer)
 					{
 						FlxG.camera.fade(FlxColor.BLACK, 2, false, function()
