@@ -154,7 +154,7 @@ class ResultsScreenState extends MusicBeatState
             else if ((FlxMath.roundDecimal((PlayState.injectionRating / PlayState.injectionSongsPlayed) * 100, 2) >= 50.00) && (FlxMath.roundDecimal((PlayState.injectionRating / PlayState.injectionSongsPlayed) * 100, 2) <= 59.99))
                 ratingText.text = "Passable..   Passable..   Passable..   Passable..   Passable..   Passable..   Passable..   Passable..";
             else
-                ratingText.text = "Bad..   Bad..   Bad..   Bad..   Bad..   Bad..   Bad..   Bad..";
+                ratingText.text = "Fail..   Fail..   Fail..   Fail..   Fail..   Fail..   Fail..   Fail..";
         }
         else if (PlayState.isMayhemMode)
         {
@@ -173,7 +173,7 @@ class ResultsScreenState extends MusicBeatState
             else if ((FlxMath.roundDecimal((PlayState.mayhemRating / PlayState.mayhemSongsPlayed) * 100, 2) >= 50.00) && (FlxMath.roundDecimal((PlayState.mayhemRating / PlayState.mayhemSongsPlayed) * 100, 2) <= 59.99))
                 ratingText.text = "Passable..   Passable..   Passable..   Passable..   Passable..   Passable..   Passable..   Passable..";
             else
-                ratingText.text = "Bad..   Bad..   Bad..   Bad..   Bad..   Bad..   Bad..   Bad..";
+                ratingText.text = "Fail..   Fail..   Fail..   Fail..   Fail..   Fail..   Fail..   Fail..";
         }
         else
         {
@@ -192,7 +192,7 @@ class ResultsScreenState extends MusicBeatState
             else if ((FlxMath.roundDecimal((ClientPrefs.campaignRating / ClientPrefs.campaignSongsPlayed) * 100, 2) >= 50.00) && (FlxMath.roundDecimal((ClientPrefs.campaignRating / ClientPrefs.campaignSongsPlayed) * 100, 2) <= 59.99))
                 ratingText.text = "Passable..   Passable..   Passable..   Passable..   Passable..   Passable..   Passable..   Passable..";
             else
-                ratingText.text = "Bad..   Bad..   Bad..   Bad..   Bad..   Bad..   Bad..   Bad..";
+                ratingText.text = "Fail..   Fail..   Fail..   Fail..   Fail..   Fail..   Fail..   Fail..";
         }
 
         if (PlayState.isInjectionMode || PlayState.isStoryMode)
