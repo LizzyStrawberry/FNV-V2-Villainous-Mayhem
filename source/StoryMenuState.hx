@@ -534,6 +534,10 @@ class StoryMenuState extends MusicBeatState
 					changeWeek(-1);
 					changeDifficulty();
 					FlxG.sound.play(Paths.sound('scrollMenu'));
+					stopMoving = true;
+					new FlxTimer().start(0.05, function (tmr:FlxTimer) {
+						stopMoving = false;
+					});
 				}
 
 				if (downP || (FlxG.mouse.overlaps(arrowSelectorRight) && FlxG.mouse.justPressed))
@@ -541,6 +545,10 @@ class StoryMenuState extends MusicBeatState
 					changeWeek(1);
 					changeDifficulty();
 					FlxG.sound.play(Paths.sound('scrollMenu'));
+					stopMoving = true;
+					new FlxTimer().start(0.05, function (tmr:FlxTimer) {
+						stopMoving = false;
+					});
 				}
 
 				//Category Changing
@@ -609,7 +617,7 @@ class StoryMenuState extends MusicBeatState
 				openSubState(new ResetScoreSubState('', curDifficulty, '', curWeek));
 				//FlxG.sound.play(Paths.sound('scrollMenu'));
 			}
-			else if (!loadedWeekInfo && (controls.ACCEPT || (FlxG.mouse.overlaps(sprDifficulty) && FlxG.mouse.justPressed)))
+			else if (!stopMoving && !loadedWeekInfo && (controls.ACCEPT || (FlxG.mouse.overlaps(sprDifficulty) && FlxG.mouse.justPressed)))
 			{
 				if (loadedWeeks[curWeek].storyName == "Kiana Week" && curDifficulty == 1 && ClientPrefs.performanceWarning == true)
 				{
