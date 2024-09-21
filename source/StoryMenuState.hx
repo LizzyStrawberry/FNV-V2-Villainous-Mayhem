@@ -622,6 +622,7 @@ class StoryMenuState extends MusicBeatState
 				if (loadedWeeks[curWeek].storyName == "Kiana Week" && curDifficulty == 1 && ClientPrefs.performanceWarning == true)
 				{
 					loadedWeekInfo = true;
+					stopMoving = true;
 					FlxTween.tween(blackOut, {alpha: 0.7}, 1.2, {ease: FlxEase.circOut, type: PERSIST});
 					if (ClientPrefs.performanceWarning == true)
 						FlxTween.tween(libidiWarning, {alpha: 1}, 1.2, {ease: FlxEase.circOut, type: PERSIST});
