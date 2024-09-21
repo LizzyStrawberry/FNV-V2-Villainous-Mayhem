@@ -484,6 +484,7 @@ class StoryMenuState extends MusicBeatState
 	var loadedWeekInfo:Bool = false;
 	var switchingScreens:Bool = false;
 	var stopMoving:Bool = false;
+	var kianaDelay:Bool = false;
 	override function update(elapsed:Float)
 	{
 		// scoreText.setFormat('VCR OSD Mono', 32);
@@ -619,16 +620,7 @@ class StoryMenuState extends MusicBeatState
 			}
 			else if (!stopMoving && !loadedWeekInfo && (controls.ACCEPT || (FlxG.mouse.overlaps(sprDifficulty) && FlxG.mouse.justPressed)))
 			{
-				if (loadedWeeks[curWeek].storyName == "Kiana Week" && curDifficulty == 1 && ClientPrefs.performanceWarning == true)
-				{
-					loadedWeekInfo = true;
-					stopMoving = true;
-					FlxTween.tween(blackOut, {alpha: 0.7}, 1.2, {ease: FlxEase.circOut, type: PERSIST});
-					if (ClientPrefs.performanceWarning == true)
-						FlxTween.tween(libidiWarning, {alpha: 1}, 1.2, {ease: FlxEase.circOut, type: PERSIST});
-					FlxG.sound.play(Paths.sound('scrollMenu'));
-				}
-				else if (ClientPrefs.mainWeekFound == false && loadedWeeks[curWeek].storyName == "Main Week")
+				if (ClientPrefs.mainWeekFound == false && loadedWeeks[curWeek].storyName == "Main Week")
 				{
 					FlxG.camera.shake(0.01, 0.5, null, false, FlxAxes.XY);
 					FlxG.sound.play(Paths.sound('accessDenied'));
@@ -668,6 +660,19 @@ class StoryMenuState extends MusicBeatState
 					FlxG.camera.shake(0.01, 0.5, null, false, FlxAxes.XY);
 					FlxG.sound.play(Paths.sound('accessDenied'));
 				}
+				else if (loadedWeeks[curWeek].storyName == "Kiana Week" && curDifficulty == 1 && ClientPrefs.performanceWarning == true)
+				{
+					loadedWeekInfo = true;
+					stopMoving = true;
+					kianaDelay = true;
+					FlxTween.tween(blackOut, {alpha: 0.7}, 1.2, {ease: FlxEase.circOut, type: PERSIST});
+					if (ClientPrefs.performanceWarning == true)
+						FlxTween.tween(libidiWarning, {alpha: 1}, 1.2, {ease: FlxEase.circOut, type: PERSIST});
+					new FlxTimer().start(1.2, function (tmr:FlxTimer) {
+						kianaDelay = false;
+					});
+					FlxG.sound.play(Paths.sound('scrollMenu'));
+				}
 				else if (loadedWeeks[curWeek].storyName == "Tutorial Week")
 				{
 					stopMoving = true;
@@ -688,7 +693,7 @@ class StoryMenuState extends MusicBeatState
 		}
 		//loading the weeks properly
 
-		if (ClientPrefs.performanceWarning == true)
+		if (!kianaDelay && ClientPrefs.performanceWarning == true)
 		{
 			if (loadedWeekInfo && loadedWeeks[curWeek].storyName == "Kiana Week" && curDifficulty == 1 && FlxG.keys.justPressed.Y) //You don't have a low-end PC
 			{
@@ -705,7 +710,7 @@ class StoryMenuState extends MusicBeatState
 				loadWeek(false);
 			}
 		}
-		if (loadedWeekInfo && (controls.ACCEPT || (FlxG.mouse.overlaps(play) && FlxG.mouse.justPressed)))
+		if (!kianaDelay && loadedWeekInfo && (controls.ACCEPT || (FlxG.mouse.overlaps(play) && FlxG.mouse.justPressed)))
 		{
 			selectWeek();
 		}
