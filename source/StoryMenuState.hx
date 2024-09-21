@@ -483,6 +483,7 @@ class StoryMenuState extends MusicBeatState
 	var holdTween:Bool = false;
 	var loadedWeekInfo:Bool = false;
 	var switchingScreens:Bool = false;
+	var stopMoving:Bool = false;
 	override function update(elapsed:Float)
 	{
 		// scoreText.setFormat('VCR OSD Mono', 32);
@@ -526,73 +527,76 @@ class StoryMenuState extends MusicBeatState
 			var upP = controls.UI_UP_P;
 			var downP = controls.UI_DOWN_P;
 
-			if (upP || (FlxG.mouse.overlaps(arrowSelectorLeft) && FlxG.mouse.justPressed))
+			if (!stopMoving)
 			{
-				changeWeek(-1);
-				changeDifficulty();
-				FlxG.sound.play(Paths.sound('scrollMenu'));
-			}
+				if (upP || (FlxG.mouse.overlaps(arrowSelectorLeft) && FlxG.mouse.justPressed))
+				{
+					changeWeek(-1);
+					changeDifficulty();
+					FlxG.sound.play(Paths.sound('scrollMenu'));
+				}
 
-			if (downP || (FlxG.mouse.overlaps(arrowSelectorRight) && FlxG.mouse.justPressed))
-			{
-				changeWeek(1);
-				changeDifficulty();
-				FlxG.sound.play(Paths.sound('scrollMenu'));
-			}
+				if (downP || (FlxG.mouse.overlaps(arrowSelectorRight) && FlxG.mouse.justPressed))
+				{
+					changeWeek(1);
+					changeDifficulty();
+					FlxG.sound.play(Paths.sound('scrollMenu'));
+				}
 
-			//Category Changing
-			if (FlxG.keys.justPressed.ONE || (FlxG.mouse.overlaps(categoryNum1) && FlxG.mouse.justPressed))
-			{
-				changeCategory(0);
-				changeWeek(0);
-				changeDifficulty();
-				FlxG.sound.play(Paths.sound('scrollMenu'));
-			}
-			if (FlxG.keys.justPressed.TWO || (FlxG.mouse.overlaps(categoryNum2) && FlxG.mouse.justPressed))
-			{
-				changeCategory(1);
-				changeWeek(0);
-				changeDifficulty();
-				FlxG.sound.play(Paths.sound('scrollMenu'));
-			}
-			if (FlxG.keys.justPressed.THREE || (FlxG.mouse.overlaps(categoryNum3) && FlxG.mouse.justPressed))
-			{
-				changeCategory(2);
-				changeWeek(0);
-				changeDifficulty();
-				FlxG.sound.play(Paths.sound('scrollMenu'));
-			}
-			if (ClientPrefs.crossoverUnlocked == false && (FlxG.keys.justPressed.FOUR || (FlxG.mouse.overlaps(categoryNum4) && FlxG.mouse.justPressed)))
-			{
-				changeCategory(3);
-				changeWeek(0);
-				changeDifficulty();
-				FlxG.sound.play(Paths.sound('scrollMenu'));
-			}
+				//Category Changing
+				if (FlxG.keys.justPressed.ONE || (FlxG.mouse.overlaps(categoryNum1) && FlxG.mouse.justPressed))
+				{
+					changeCategory(0);
+					changeWeek(0);
+					changeDifficulty();
+					FlxG.sound.play(Paths.sound('scrollMenu'));
+				}
+				if (FlxG.keys.justPressed.TWO || (FlxG.mouse.overlaps(categoryNum2) && FlxG.mouse.justPressed))
+				{
+					changeCategory(1);
+					changeWeek(0);
+					changeDifficulty();
+					FlxG.sound.play(Paths.sound('scrollMenu'));
+				}
+				if (FlxG.keys.justPressed.THREE || (FlxG.mouse.overlaps(categoryNum3) && FlxG.mouse.justPressed))
+				{
+					changeCategory(2);
+					changeWeek(0);
+					changeDifficulty();
+					FlxG.sound.play(Paths.sound('scrollMenu'));
+				}
+				if (ClientPrefs.crossoverUnlocked == false && (FlxG.keys.justPressed.FOUR || (FlxG.mouse.overlaps(categoryNum4) && FlxG.mouse.justPressed)))
+				{
+					changeCategory(3);
+					changeWeek(0);
+					changeDifficulty();
+					FlxG.sound.play(Paths.sound('scrollMenu'));
+				}
 
-			if(FlxG.mouse.wheel != 0)
-			{
-				FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
-				changeWeek(-FlxG.mouse.wheel);
-				changeDifficulty();
+				if(FlxG.mouse.wheel != 0)
+				{
+					FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
+					changeWeek(-FlxG.mouse.wheel);
+					changeDifficulty();
+				}
+
+				if (controls.UI_RIGHT || (FlxG.mouse.overlaps(rightArrow) && FlxG.mouse.pressed))
+					rightArrow.animation.play('press')
+				else
+					rightArrow.animation.play('idle');
+
+				if (controls.UI_LEFT || (FlxG.mouse.overlaps(leftArrow) && FlxG.mouse.pressed))
+					leftArrow.animation.play('press');
+				else
+					leftArrow.animation.play('idle');
+
+				if (controls.UI_RIGHT_P || (FlxG.mouse.overlaps(rightArrow) && FlxG.mouse.justPressed))
+					changeDifficulty(1);
+				else if (controls.UI_LEFT_P || (FlxG.mouse.overlaps(leftArrow) && FlxG.mouse.justPressed))
+					changeDifficulty(-1);
+				else if (upP || downP)
+					changeDifficulty();
 			}
-
-			if (controls.UI_RIGHT || (FlxG.mouse.overlaps(rightArrow) && FlxG.mouse.pressed))
-				rightArrow.animation.play('press')
-			else
-				rightArrow.animation.play('idle');
-
-			if (controls.UI_LEFT || (FlxG.mouse.overlaps(leftArrow) && FlxG.mouse.pressed))
-				leftArrow.animation.play('press');
-			else
-				leftArrow.animation.play('idle');
-
-			if (controls.UI_RIGHT_P || (FlxG.mouse.overlaps(rightArrow) && FlxG.mouse.justPressed))
-				changeDifficulty(1);
-			else if (controls.UI_LEFT_P || (FlxG.mouse.overlaps(leftArrow) && FlxG.mouse.justPressed))
-				changeDifficulty(-1);
-			else if (upP || downP)
-				changeDifficulty();
 
 			if(FlxG.keys.justPressed.CONTROL)
 			{
@@ -607,7 +611,15 @@ class StoryMenuState extends MusicBeatState
 			}
 			else if (!loadedWeekInfo && (controls.ACCEPT || (FlxG.mouse.overlaps(sprDifficulty) && FlxG.mouse.justPressed)))
 			{
-				if (ClientPrefs.mainWeekFound == false && loadedWeeks[curWeek].storyName == "Main Week")
+				if (loadedWeeks[curWeek].storyName == "Kiana Week" && curDifficulty == 1 && ClientPrefs.performanceWarning == true)
+				{
+					loadedWeekInfo = true;
+					FlxTween.tween(blackOut, {alpha: 0.7}, 1.2, {ease: FlxEase.circOut, type: PERSIST});
+					if (ClientPrefs.performanceWarning == true)
+						FlxTween.tween(libidiWarning, {alpha: 1}, 1.2, {ease: FlxEase.circOut, type: PERSIST});
+					FlxG.sound.play(Paths.sound('scrollMenu'));
+				}
+				else if (ClientPrefs.mainWeekFound == false && loadedWeeks[curWeek].storyName == "Main Week")
 				{
 					FlxG.camera.shake(0.01, 0.5, null, false, FlxAxes.XY);
 					FlxG.sound.play(Paths.sound('accessDenied'));
@@ -647,23 +659,22 @@ class StoryMenuState extends MusicBeatState
 					FlxG.camera.shake(0.01, 0.5, null, false, FlxAxes.XY);
 					FlxG.sound.play(Paths.sound('accessDenied'));
 				}
-				else if (!loadedWeekInfo && loadedWeeks[curWeek].storyName == "Kiana Week" && curDifficulty == 1 && ClientPrefs.performanceWarning == true)
-				{
-					loadedWeekInfo = true;
-					FlxTween.tween(blackOut, {alpha: 0.7}, 1.2, {ease: FlxEase.circOut, type: PERSIST});
-					if (ClientPrefs.performanceWarning == true)
-						FlxTween.tween(libidiWarning, {alpha: 1}, 1.2, {ease: FlxEase.circOut, type: PERSIST});
-					FlxG.sound.play(Paths.sound('scrollMenu'));
-				}
 				else if (loadedWeeks[curWeek].storyName == "Tutorial Week")
+				{
+					stopMoving = true;
 					selectWeek();
+				}
 				else if (loadedWeeks[curWeek].storyName != 'Crossover Week')
 				{
 					switchingScreens = true;
+					stopMoving = true;
 					loadWeek(false);
 				}
 				else
+				{
+					stopMoving = true;
 					selectWeek();
+				}
 			}
 		}
 		//loading the weeks properly
@@ -803,6 +814,7 @@ class StoryMenuState extends MusicBeatState
 				{
 					loadedWeekInfo = false;
 					switchingScreens = false;
+					stopMoving = false;
 				}
 			});
 		}

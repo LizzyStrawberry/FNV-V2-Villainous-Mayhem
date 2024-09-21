@@ -11,13 +11,14 @@ import flixel.system.FlxSound;
 import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
+import flixel.util.FlxTimer;
 import flixel.util.FlxColor;
 import flixel.FlxCamera;
 import flixel.util.FlxStringUtil;
 
 class PauseSubState extends MusicBeatSubstate
 {
-	var options:Array<String> = ['Mechanics', 'Shaders', 'Cinematic Bars', 'Scroll Type', 'BotPlay']; //Main Options for Story Mode
+	var options:Array<String> = ['Mechanics', 'Shaders', 'Cinematic Bars', 'Scroll Type', 'BotPlay', 'FrameRate']; //Main Options for Story Mode
 	private var grpOpts:FlxTypedGroup<Alphabet>;
 	var curOption:Int = 0;
 	var grpMenuShit:FlxTypedGroup<Alphabet>;
@@ -66,9 +67,9 @@ class PauseSubState extends MusicBeatSubstate
 
 		//Setup Quick Settings for injection mode, mayhem mode
 		if (PlayState.isInjectionMode || PlayState.isMayhemMode)
-			options = ['Shaders', 'Cinematic Bars', 'Scroll Type'];
+			options = ['Shaders', 'Cinematic Bars', 'Scroll Type', 'FrameRate'];
 		if (PlayState.isIniquitousMode)
-			options = ['Shaders', 'Cinematic Bars', 'Scroll Type', 'BotPlay'];
+			options = ['Shaders', 'Cinematic Bars', 'Scroll Type', 'BotPlay', 'FrameRate'];
 		changedSettings = false;
 		playerSelected = PlayState.SONG.player1;
 
@@ -431,10 +432,6 @@ class PauseSubState extends MusicBeatSubstate
 		{
 			menuItemsOG.remove('Quick Settings');
 		}
-		if(levelInfo.text == 'Couple Clash') 
-		{
-			menuItemsOG.remove('Quick Settings');
-		}
 
 		regenMenu();
 		cameras = [FlxG.cameras.list[FlxG.cameras.list.length - 1]];
@@ -462,6 +459,7 @@ class PauseSubState extends MusicBeatSubstate
 
 	var botplayOn:Bool = false;
 	var huh = 0;
+	var delay:Bool = false;
 
 	override function update(elapsed:Float)
 	{
@@ -563,7 +561,7 @@ class PauseSubState extends MusicBeatSubstate
 				changeOption(1);
 			}
 
-			if (huh >= 0 && huh <= 1)
+			if (!delay)
 			{
 				if (controls.UI_LEFT_P)
 				{
@@ -665,9 +663,11 @@ class PauseSubState extends MusicBeatSubstate
 					
 					if(PlayState.isStoryMode) {
 						//Reset the crash detector to 0, since it means you've returned back to the menu
+						PlayState.isStoryMode = false;
 						ClientPrefs.resetStoryModeProgress(true);
 						if (PlayState.isIniquitousMode == true)
 						{
+							PlayState.isIniquitousMode = false;
 							MusicBeatState.switchState(new IniquitousMenuState());
 						}
 						else
@@ -680,9 +680,7 @@ class PauseSubState extends MusicBeatSubstate
 						PlayState.mayhemNRMode = "";
 						MusicBeatState.switchState(new MainMenuState());
 					} else {
-						if (levelInfo.text == 'Couple Clash')
-							MusicBeatState.switchState(new MainMenuState());
-						else if (ClientPrefs.onCrossSection == true)
+						if (ClientPrefs.onCrossSection == true)
 							MusicBeatState.switchState(new CrossoverState()); //go to Crossover State
 						else if (FreeplayCategoryState.freeplayName == 'MAIN') //go to Main Freeplay
 							MusicBeatState.switchState(new FreeplayState());
@@ -759,14 +757,14 @@ class PauseSubState extends MusicBeatSubstate
 				huh = 1;
 			if (huh < 0)
 				huh = 0;
-			FlxG.sound.play(Paths.sound('ConfirmMenu'), 0.4);
+			FlxG.sound.play(Paths.sound('ConfirmMenu'), 0.2);
 
-			if (PlayState.isStoryMode
+			if ((PlayState.isStoryMode && !PlayState.isIniquitousMode)
 				|| (!PlayState.isStoryMode && !PlayState.isIniquitousMode && !PlayState.isInjectionMode && !PlayState.isMayhemMode)) //STORY MODE OR FREEPLAY
 			{
 				for (item in grpOpts.members)
 				{
-					if (huh == 0)
+					if (huh == 0 && !delay)
 					{
 						switch (curOption)
 						{
@@ -787,9 +785,16 @@ class PauseSubState extends MusicBeatSubstate
 								ClientPrefs.gameplaySettings.set('botplay', false);
 								botplayOn = false;
 								trace ("Botplay: False.");
+							case 5:
+								ClientPrefs.framerate -= 1;
+								onChangeFramerate();
 						}
+						delay = true;
+						new FlxTimer().start(0.05, function (tmr:FlxTimer) {
+							delay = false;
+						});
 					}
-					else if (huh == 1)
+					else if (huh == 1 && !delay)
 					{
 						switch (curOption)
 						{
@@ -810,7 +815,14 @@ class PauseSubState extends MusicBeatSubstate
 								ClientPrefs.gameplaySettings.set('botplay', true);
 								botplayOn = true;
 								trace ("Botplay: True.");
+							case 5:
+								ClientPrefs.framerate += 1;
+								onChangeFramerate();
 						}
+						delay = true;
+						new FlxTimer().start(0.05, function (tmr:FlxTimer) {
+							delay = false;
+						});
 					}
 				}
 			}
@@ -819,7 +831,7 @@ class PauseSubState extends MusicBeatSubstate
 			{
 				for (item in grpOpts.members)
 				{
-					if (huh == 0)
+					if (huh == 0 && !delay)
 					{
 						switch (curOption)
 						{
@@ -832,9 +844,16 @@ class PauseSubState extends MusicBeatSubstate
 							case 2:
 								ClientPrefs.downScroll = false;
 								trace ("Downscroll: False");
+							case 3:
+								ClientPrefs.framerate -= 1;
+								onChangeFramerate();
 						}
+						delay = true;
+						new FlxTimer().start(0.05, function (tmr:FlxTimer) {
+							delay = false;
+						});
 					}
-					else if (huh == 1)
+					else if (huh == 1 && !delay)
 					{
 						switch (curOption)
 						{
@@ -847,7 +866,14 @@ class PauseSubState extends MusicBeatSubstate
 							case 2:
 								ClientPrefs.downScroll = true;
 								trace ("Downscroll: True");
+							case 3:
+								ClientPrefs.framerate += 1;
+								onChangeFramerate();
 						}
+						delay = true;
+						new FlxTimer().start(0.05, function (tmr:FlxTimer) {
+							delay = false;
+						});
 					}
 				}
 			}
@@ -856,7 +882,7 @@ class PauseSubState extends MusicBeatSubstate
 			{
 				for (item in grpOpts.members)
 				{
-					if (huh == 0)
+					if (huh == 0 && !delay)
 					{
 						switch (curOption)
 						{
@@ -873,9 +899,16 @@ class PauseSubState extends MusicBeatSubstate
 								ClientPrefs.gameplaySettings.set('botplay', false);
 								botplayOn = false;
 								trace ("Botplay: False.");
+							case 4:
+								ClientPrefs.framerate -= 1;
+								onChangeFramerate();
 						}
+						delay = true;
+						new FlxTimer().start(0.05, function (tmr:FlxTimer) {
+							delay = false;
+						});
 					}
-					else if (huh == 1)
+					else if (huh == 1 && !delay)
 					{
 						switch (curOption)
 						{
@@ -892,7 +925,14 @@ class PauseSubState extends MusicBeatSubstate
 								ClientPrefs.gameplaySettings.set('botplay', true);
 								botplayOn = true;
 								trace ("Botplay: True.");
+							case 4:
+								ClientPrefs.framerate += 1;
+								onChangeFramerate();
 						}
+						delay = true;
+						new FlxTimer().start(0.05, function (tmr:FlxTimer) {
+							delay = false;
+						});
 					}
 				}
 			}
@@ -903,12 +943,12 @@ class PauseSubState extends MusicBeatSubstate
 		{
 			curOption += change;
 
-			if (PlayState.isStoryMode
+			if ((PlayState.isStoryMode && !PlayState.isIniquitousMode)
 				|| (!PlayState.isStoryMode && !PlayState.isIniquitousMode && !PlayState.isInjectionMode && !PlayState.isMayhemMode))
 			{
 				if (curOption < 0)
-					curOption = 4;
-				if (curOption > 4)
+					curOption = 5;
+				if (curOption > 5)
 					curOption = 0;
 	
 				for (item in grpOpts.members)
@@ -921,21 +961,23 @@ class PauseSubState extends MusicBeatSubstate
 					switch (curOption)
 					{
 						case 0:
-							optionInfo.y = 340;
-							optionInfo.text = "Determine whether you want mechanics to be turned on or off.";
+							optionInfo.y = 285;
+							optionInfo.text = "Determine whether you want mechanics to be turned on or off.\n\n(Settings are applied once you restart or move to the next song.)";
 						case 1:
-							optionInfo.y = 340;
-							optionInfo.text = "Determine whether you want shaders to be turned on or off.";
+							optionInfo.y = 285;
+							optionInfo.text = "Determine whether you want shaders to be turned on or off.\n\n(Settings are applied once you restart or move to the next song.)";
 						case 2:
-							optionInfo.y = 340;
-							optionInfo.text = "Determine whether you want cinematic bars to be turned on or off.";
+							optionInfo.y = 285;
+							optionInfo.text = "Determine whether you want cinematic bars to be turned on or off.\n\n(Settings are applied once you restart or move to the next song.)";
 						case 3:
-							optionInfo.y = 340;
-							optionInfo.text = "Determine whether you want your notes to be scrolled upwards or downwards.";
+							optionInfo.y = 285;
+							optionInfo.text = "Determine whether you want your notes to be scrolled upwards or downwards.\n\n(Settings are applied once you restart or move to the next song.)";
 						case 4:
-							optionInfo.y = 240;
-							optionInfo.text = "Determine whether you want to turn botplay on or off.\n
-								    WARNING:\nTurning botplay ON will reset your gameplay, aswell as your progress.";
+							optionInfo.y = 285;
+							optionInfo.text = "Determine whether you want to turn botplay on or off.\n\n<R>WARNING:<R>\nTurning botplay <G>ON<G> will reset your gameplay, aswell as your progress.";
+						case 5:
+							optionInfo.y = 320;
+							optionInfo.text = "Set up how many frames per second you want.\nJust as simple as that.";
 					}
 	
 					
@@ -1009,14 +1051,16 @@ class PauseSubState extends MusicBeatSubstate
 							item.text = "Botplay (Enabled)";
 						}
 					}
+					if (item.ID == 5)
+						item.text = "Frame Rate (" + ClientPrefs.framerate + ")";
 				}
 			}
 			
 			if (PlayState.isInjectionMode || PlayState.isMayhemMode)
 			{
 				if (curOption < 0)
-					curOption = 2;
-				if (curOption > 2)
+					curOption = 3;
+				if (curOption > 3)
 					curOption = 0;
 	
 				for (item in grpOpts.members)
@@ -1029,14 +1073,17 @@ class PauseSubState extends MusicBeatSubstate
 					switch (curOption)
 					{
 						case 0:
-							optionInfo.y = 340;
-							optionInfo.text = "Determine whether you want shaders to be turned on or off.";
+							optionInfo.y = 285;
+							optionInfo.text = "Determine whether you want shaders to be turned on or off.\n\n(Settings are applied once you move to the next song.)";
 						case 1:
-							optionInfo.y = 340;
-							optionInfo.text = "Determine whether you want cinematic bars to be turned on or off.";
+							optionInfo.y = 285;
+							optionInfo.text = "Determine whether you want cinematic bars to be turned on or off.\n\n(Settings are applied once you move to the next song.)";
 						case 2:
-							optionInfo.y = 340;
-							optionInfo.text = "Determine whether you want your notes to be scrolled upwards or downwards.";
+							optionInfo.y = 285;
+							optionInfo.text = "Determine whether you want your notes to be scrolled upwards or downwards.\n\n(Settings are applied once you move to the next song.)";
+						case 3:
+							optionInfo.y = 320;
+							optionInfo.text = "Set up how many frames per second you want.\nJust as simple as that.";
 					}
 	
 					if (ClientPrefs.shaders == true)
@@ -1081,14 +1128,16 @@ class PauseSubState extends MusicBeatSubstate
 							item.text = "Scroll Type (Upwards)";
 						}
 					}
+					if (item.ID == 3)
+						item.text = "Frame Rate (" + ClientPrefs.framerate + ")";
 				}
 			}
 
 			if (PlayState.isIniquitousMode)
 			{
 				if (curOption < 0)
-					curOption = 3;
-				if (curOption > 3)
+					curOption = 4;
+				if (curOption > 4)
 					curOption = 0;
 	
 				for (item in grpOpts.members)
@@ -1101,18 +1150,20 @@ class PauseSubState extends MusicBeatSubstate
 					switch (curOption)
 					{
 						case 0:
-							optionInfo.y = 340;
-							optionInfo.text = "Determine whether you want shaders to be turned on or off.";
+							optionInfo.y = 285;
+							optionInfo.text = "Determine whether you want shaders to be turned on or off.\n\n(Settings are applied once you restart or move to the next song.)";
 						case 1:
-							optionInfo.y = 340;
-							optionInfo.text = "Determine whether you want cinematic bars to be turned on or off.";
+							optionInfo.y = 285;
+							optionInfo.text = "Determine whether you want cinematic bars to be turned on or off.\n\n(Settings are applied once you restart or move to the next song.)";
 						case 2:
-							optionInfo.y = 340;
-							optionInfo.text = "Determine whether you want your notes to be scrolled upwards or downwards.";
+							optionInfo.y = 285;
+							optionInfo.text = "Determine whether you want your notes to be scrolled upwards or downwards.\n\n(Settings are applied once you restart or move to the next song.)";
 						case 3:
-							optionInfo.y = 240;
-							optionInfo.text = "Determine whether you want to turn botplay on or off.\n
-								    WARNING:\nTurning botplay ON will reset your gameplay, aswell as your progress.";
+							optionInfo.y = 285;
+							optionInfo.text = "Determine whether you want to turn botplay on or off.\n\n<R>WARNING:<R>\nTurning botplay <G>ON<G> will reset your gameplay, aswell as your progress.";
+						case 4:
+							optionInfo.y = 320;
+							optionInfo.text = "Set up how many frames per second you want.\nJust as simple as that.";
 					}
 	
 					if (ClientPrefs.shaders == true)
@@ -1171,8 +1222,12 @@ class PauseSubState extends MusicBeatSubstate
 							item.text = "Botplay (Enabled)";
 						}
 					}
+					if (item.ID == 4)
+						item.text = "Frame Rate (" + ClientPrefs.framerate + ")";
 				}
 			}
+
+			CustomFontFormats.addMarkers(optionInfo);
 		}
 
 	function openSkipTimeMenu()
@@ -1376,6 +1431,20 @@ class PauseSubState extends MusicBeatSubstate
 		else
 		{
 			MusicBeatState.resetState();
+		}
+	}
+
+	function onChangeFramerate()
+	{
+		if(ClientPrefs.framerate > FlxG.drawFramerate)
+		{
+			FlxG.updateFramerate = ClientPrefs.framerate;
+			FlxG.drawFramerate = ClientPrefs.framerate;
+		}
+		else
+		{
+			FlxG.drawFramerate = ClientPrefs.framerate;
+			FlxG.updateFramerate = ClientPrefs.framerate;
 		}
 	}
 
