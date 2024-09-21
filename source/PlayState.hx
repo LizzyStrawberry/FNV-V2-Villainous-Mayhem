@@ -3410,15 +3410,6 @@ class PlayState extends MusicBeatState
 			iconP1.swapOldIcon();
 		}*/
 
-		if (Paths.formatToSongPath(SONG.song) ==  'marauder' && ClientPrefs.debugPlayed == false)
-			{
-				trace("Saved Up Marauder!");
-				ClientPrefs.debugFound = true;
-				ClientPrefs.debugPlayed = true;
-				ClientPrefs.songsUnlocked += 1;
-				ClientPrefs.saveSettings();
-			}
-
 		callOnLuas('onUpdate', [elapsed]);
 
 		if (isMayhemMode)

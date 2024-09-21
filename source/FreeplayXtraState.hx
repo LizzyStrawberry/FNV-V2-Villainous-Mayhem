@@ -224,36 +224,36 @@ class FreeplayXtraState extends MusicBeatState
 			// DONT PUT X IN THE FIRST PARAMETER OF new ALPHABET() !!
 			// songText.screenCenter(X);
 
-			if (songText.text == 'Lustality' && ClientPrefs.lustalityPlayed == false)
+			if (songText.text == 'Lustality' && ClientPrefs.lustalityViewed == false)
 				songText.text = '?????????';
-			if (songText.text == 'Lustality V1' && ClientPrefs.lustalityPlayed == false)
+			if (songText.text == 'Lustality V1' && ClientPrefs.lustalityViewed == false)
 				songText.text = '????????? ??';
 
-			if (songText.text == 'Marcochrome' && ClientPrefs.marcochromePlayed == false)
+			if (songText.text == 'Marcochrome' && ClientPrefs.marcochromeViewed == false)
 				songText.text = '???????????';
 
-			if (songText.text == 'Tofu' && ClientPrefs.tofuPlayed == false)
+			if (songText.text == 'Tofu' && ClientPrefs.tofuViewed == false)
 				songText.text = '????';
 			
-			if (songText.text == 'Nunsational' && ClientPrefs.nunsationalFound == false)
+			if (songText.text == 'Nunsational' && ClientPrefs.nunsationalViewed == false)
 				songText.text = '???????????';
 
-			if (songText.text == 'Slow.FLP' && ClientPrefs.nicPlayed == false)
+			if (songText.text == 'Slow.FLP' && ClientPrefs.nicViewed == false)
 				songText.text = '????.???';
 
-			if (songText.text == 'Marauder' && ClientPrefs.debugPlayed == false)
+			if (songText.text == 'Marauder' && ClientPrefs.debugViewed == false)
 				songText.text = '????????';
 
-			if (songText.text == 'FNV' && ClientPrefs.fnvPlayed == false)
+			if (songText.text == 'FNV' && ClientPrefs.fnvViewed == false)
 				songText.text = '???';
 
-			if (songText.text == 'Rainy Daze' && ClientPrefs.rainyDazePlayed == false)
+			if (songText.text == 'Rainy Daze' && ClientPrefs.rainyDazeViewed == false)
 				songText.text = '????? ????';
 
-			if (songText.text == 'Jerry' && ClientPrefs.shortPlayed == false)
+			if (songText.text == 'Jerry' && ClientPrefs.shortViewed == false)
 				songText.text = '?.????';
 
-			if (songText.text == 'Fanfuck Forever' && ClientPrefs.infatuationPlayed == false)
+			if (songText.text == 'Fanfuck Forever' && ClientPrefs.infatuationViewed == false)
 				songText.text = '????????????';
 		}
 		WeekData.setDirectoryFromWeek();
@@ -505,7 +505,7 @@ class FreeplayXtraState extends MusicBeatState
 	
 				selectionText.text = "Nunsational";
 	
-				if (ClientPrefs.nunsationalPlayed == false)
+				if (ClientPrefs.nunsationalViewed == false)
 				{
 					selectionText.text = "???????????";
 					lockedSelection.alpha = 1;
@@ -523,7 +523,7 @@ class FreeplayXtraState extends MusicBeatState
 	
 				selectionText.text = "Marcochrome";
 
-				if (ClientPrefs.marcochromePlayed == false)
+				if (ClientPrefs.marcochromeViewed == false)
 				{
 					selectionText.text = "???????????";
 					lockedSelection.alpha = 1;
@@ -541,7 +541,7 @@ class FreeplayXtraState extends MusicBeatState
 	
 				selectionText.text = "Tofu";
 	
-				if (ClientPrefs.tofuPlayed == false)
+				if (ClientPrefs.tofuViewed == false)
 				{
 					selectionText.text = "????";
 					lockedSelection.alpha = 1;
@@ -559,7 +559,7 @@ class FreeplayXtraState extends MusicBeatState
 	
 				selectionText.text = "Lustality";
 	
-				if (ClientPrefs.lustalityPlayed == false)
+				if (ClientPrefs.lustalityViewed == false)
 				{
 					selectionText.text = "?????????";
 					lockedSelection.alpha = 1;
@@ -577,7 +577,7 @@ class FreeplayXtraState extends MusicBeatState
 	
 				selectionText.text = "Lustality V1";
 	
-				if (ClientPrefs.lustalityPlayed == false)
+				if (ClientPrefs.lustalityViewed == false)
 				{
 					selectionText.text = "????????? ??";
 					lockedSelection.alpha = 1;
@@ -595,7 +595,7 @@ class FreeplayXtraState extends MusicBeatState
 
 				selectionText.text = "Slow.FLP";
 
-				if (ClientPrefs.nicPlayed == false)
+				if (ClientPrefs.nicViewed == false)
 				{
 					selectionText.text = "????.???";
 					lockedSelection.alpha = 1;
@@ -613,7 +613,7 @@ class FreeplayXtraState extends MusicBeatState
 	
 				selectionText.text = "Marauder";
 	
-				if (ClientPrefs.debugPlayed == false)
+				if (ClientPrefs.debugViewed == false)
 				{
 					selectionText.text = "????????";
 					lockedSelection.alpha = 1;
@@ -631,7 +631,7 @@ class FreeplayXtraState extends MusicBeatState
 	
 				selectionText.text = "FNV";
 	
-				if (ClientPrefs.fnvPlayed == false)
+				if (ClientPrefs.fnvViewed == false)
 				{
 					selectionText.text = "???";
 					lockedSelection.alpha = 1;
@@ -649,7 +649,7 @@ class FreeplayXtraState extends MusicBeatState
 	
 				selectionText.text = "Rainy Daze";
 	
-				if (ClientPrefs.rainyDazePlayed == false)
+				if (ClientPrefs.rainyDazeViewed == false)
 				{
 					selectionText.text = "????? ????";
 					lockedSelection.alpha = 1;
@@ -667,7 +667,7 @@ class FreeplayXtraState extends MusicBeatState
 	
 				selectionText.text = "Jerry";
 
-				if (ClientPrefs.shortPlayed == false)
+				if (ClientPrefs.shortViewed == false)
 				{
 					selectionText.text = "?.????";
 					lockedSelection.alpha = 1;
@@ -685,7 +685,7 @@ class FreeplayXtraState extends MusicBeatState
 	
 				selectionText.text = "Fanfuck Forever";
 
-				if (ClientPrefs.infatuationPlayed == false)
+				if (ClientPrefs.infatuationViewed == false)
 				{
 					selectionText.text = "????????????";
 					lockedSelection.alpha = 1;
@@ -935,14 +935,81 @@ class FreeplayXtraState extends MusicBeatState
 				FlxG.sound.music.volume = 0;
 			}	
 
+				//To make songs have their right Icon after they first join it
+				if ((songs[curSelected].songName == 'Nunsational' || songs[curSelected].songName == 'Nunsational Simp') && ClientPrefs.nunsationalViewed == false)
+				{
+					trace('I got loaded lol, Unlocking Nunsational!');
+					ClientPrefs.nunsationalViewed = true;
+					ClientPrefs.saveSettings();
+				}
+				if (songs[curSelected].songName == 'Marcochrome' && ClientPrefs.marcochromeViewed == false)
+				{
+					trace('I got loaded lol, Unlocking Marcochrome!');
+					ClientPrefs.marcochromeViewed = true;
+					ClientPrefs.saveSettings();
+				}
+				if (songs[curSelected].songName == 'Tofu' && ClientPrefs.tofuViewed == false)
+				{
+					trace('I got loaded lol, Unlocking Tofu!');
+					ClientPrefs.tofuViewed = true;
+					ClientPrefs.saveSettings();
+				}
+				if (songs[curSelected].songName == 'Tofu' && ClientPrefs.tofuViewed == false)
+				{
+					trace('I got loaded lol, Unlocking Tofu!');
+					ClientPrefs.tofuViewed = true;
+					ClientPrefs.saveSettings();
+				}
+				if ((songs[curSelected].songName == 'Lustality' || songs[curSelected].songName == 'Lustality V1') && ClientPrefs.lustalityViewed == false)
+				{
+					trace('I got loaded lol, Unlocking Lustality / Lustality V1!');
+					ClientPrefs.lustalityViewed = true;
+					ClientPrefs.saveSettings();
+				}
+				if (songs[curSelected].songName == 'Slow.FLP' && ClientPrefs.nicViewed == false)
+				{
+					trace('I got loaded lol, Unlocking Slow.FLP!');
+					ClientPrefs.nicViewed = true;
+					ClientPrefs.saveSettings();
+				}
+				if (songs[curSelected].songName == 'Marauder' && ClientPrefs.debugViewed == false)
+				{
+					trace('I got loaded lol, Unlocking Marauder!');
+					ClientPrefs.debugViewed = true;
+					ClientPrefs.saveSettings();
+				}
+				if (songs[curSelected].songName == 'FNV' && ClientPrefs.fnvViewed == false)
+				{
+					trace('I got loaded lol, Unlocking FNV!');
+					ClientPrefs.fnvViewed = true;
+					ClientPrefs.saveSettings();
+				}
+				if (songs[curSelected].songName == 'Rainy Daze' && ClientPrefs.rainyDazeViewed == false)
+				{
+					trace('I got loaded lol, Unlocking Rainy Daze!');
+					ClientPrefs.rainyDazeViewed = true;
+					ClientPrefs.saveSettings();
+				}
+				if (songs[curSelected].songName == 'Jerry' && ClientPrefs.shortViewed == false)
+				{
+					trace('I got loaded lol, Unlocking Jerry!');
+					ClientPrefs.shortViewed = true;
+					ClientPrefs.saveSettings();
+				}
+				if (songs[curSelected].songName == 'Fanfuck Forever' && ClientPrefs.infatuationViewed == false)
+				{
+					trace('I got loaded lol, Unlocking Fanfuck Forever!');
+					ClientPrefs.infatuationViewed = true;
+					ClientPrefs.saveSettings();
+				}
 				destroyFreeplayVocals();
 			}
 			else if(controls.RESET)
-				{
-					persistentUpdate = false;
-					openSubState(new ResetScoreSubState(songs[curSelected].songName, curDifficulty, songs[curSelected].songCharacter));
-					FlxG.sound.play(Paths.sound('scrollMenu'));
-				}			
+			{
+				persistentUpdate = false;
+				openSubState(new ResetScoreSubState(songs[curSelected].songName, curDifficulty, songs[curSelected].songCharacter));
+				FlxG.sound.play(Paths.sound('scrollMenu'));
+			}			
 				super.update(elapsed);
 		}
 

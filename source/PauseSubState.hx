@@ -973,8 +973,8 @@ class PauseSubState extends MusicBeatSubstate
 							optionInfo.y = 285;
 							optionInfo.text = "Determine whether you want your notes to be scrolled upwards or downwards.\n\n(Settings are applied once you restart or move to the next song.)";
 						case 4:
-							optionInfo.y = 285;
-							optionInfo.text = "Determine whether you want to turn botplay on or off.\n\n<R>WARNING:<R>\nTurning botplay <G>ON<G> will reset your gameplay, aswell as your progress.";
+							optionInfo.y = 275;
+							optionInfo.text = "Determine whether you want to turn botplay on or off.\n\n<R>WARNING:<R>\nTurning botplay <G>ON<G> will reset your gameplay, aswell as your progress.\nTo disable, press CTRL on the Story Mode / Freeplay Menu.";
 						case 5:
 							optionInfo.y = 320;
 							optionInfo.text = "Set up how many frames per second you want.\nJust as simple as that.";
@@ -1159,8 +1159,8 @@ class PauseSubState extends MusicBeatSubstate
 							optionInfo.y = 285;
 							optionInfo.text = "Determine whether you want your notes to be scrolled upwards or downwards.\n\n(Settings are applied once you restart or move to the next song.)";
 						case 3:
-							optionInfo.y = 285;
-							optionInfo.text = "Determine whether you want to turn botplay on or off.\n\n<R>WARNING:<R>\nTurning botplay <G>ON<G> will reset your gameplay, aswell as your progress.";
+							optionInfo.y = 275;
+							optionInfo.text = "Determine whether you want to turn botplay on or off.\n\n<R>WARNING:<R>\nTurning botplay <G>ON<G> will reset your gameplay, aswell as your progress.\nTo disable, press CTRL on the Story Mode / Freeplay Menu.";
 						case 4:
 							optionInfo.y = 320;
 							optionInfo.text = "Set up how many frames per second you want.\nJust as simple as that.";

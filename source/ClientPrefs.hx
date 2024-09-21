@@ -142,24 +142,34 @@ class ClientPrefs {
 
 	//unlocking songs
 	public static var tofuFound:Bool = false;
+	public static var tofuViewed:Bool = false;
 	public static var tofuPlayed:Bool = false;
 	public static var lustalityFound:Bool = false;
+	public static var lustalityViewed:Bool = false;
 	public static var lustalityPlayed:Bool = false;
 	public static var marcochromePlayed:Bool = false;
+	public static var marcochromeViewed:Bool = false;
 	public static var marcochromeFound:Bool = false;
 	public static var nunsationalPlayed:Bool = false;
+	public static var nunsationalViewed:Bool = false;
 	public static var nunsationalFound:Bool = false;
 	public static var nicFound:Bool = false;
+	public static var nicViewed:Bool = false;
 	public static var nicPlayed:Bool = false;
 	public static var debugFound:Bool = false;
+	public static var debugViewed:Bool = false;
 	public static var debugPlayed:Bool = false;
 	public static var fnvFound:Bool = false;
+	public static var fnvViewed:Bool = false;
 	public static var fnvPlayed:Bool = false;
 	public static var shortFound:Bool = false; //0.0015
+	public static var shortViewed:Bool = false;
 	public static var shortPlayed:Bool = false;
 	public static var infatuationFound:Bool = false;
+	public static var infatuationViewed:Bool = false;
 	public static var infatuationPlayed:Bool = false;
 	public static var rainyDazeFound:Bool = false;
+	public static var rainyDazeViewed:Bool = false;
 	public static var rainyDazePlayed:Bool = false;
 
 	public static var ourpleFound:Bool = true;
@@ -452,29 +462,40 @@ class ClientPrefs {
 		FlxG.save.data.iniquitousWeekBeaten = iniquitousWeekBeaten;
 
 		FlxG.save.data.tofuFound = tofuFound;
+		FlxG.save.data.tofuViewed = tofuViewed;
 		FlxG.save.data.tofuPlayed = tofuPlayed;
 		FlxG.save.data.lustalityPlayed = lustalityPlayed;
+		FlxG.save.data.lustalityViewed = lustalityViewed;
 		FlxG.save.data.lustalityFound = lustalityFound;
 		FlxG.save.data.marcochromePlayed = marcochromePlayed;
+		FlxG.save.data.marcochromeViewed = marcochromeViewed;
 		FlxG.save.data.marcochromeFound = marcochromeFound;
 		FlxG.save.data.nunsationalPlayed = nunsationalPlayed;
+		FlxG.save.data.nunsationalViewed = nunsationalViewed;
 		FlxG.save.data.nunsationalFound = nunsationalFound;
-		FlxG.save.data.tacticalMishapFound = tacticalMishapFound;
-		FlxG.save.data.tacticalMishapPlayed = tacticalMishapPlayed;
 		FlxG.save.data.nicFound = nicFound;
+		FlxG.save.data.nicViewed = nicViewed;
 		FlxG.save.data.nicPlayed = nicPlayed;
 		FlxG.save.data.debugFound = debugFound;
+		FlxG.save.data.debugViewed = debugViewed;
 		FlxG.save.data.debugPlayed = debugPlayed;
 		FlxG.save.data.fnvFound = fnvFound;
+		FlxG.save.data.fnvViewed = fnvViewed;
 		FlxG.save.data.fnvPlayed = fnvPlayed;
-		FlxG.save.data.ourpleFound = ourpleFound;
-		FlxG.save.data.ourplePlayed = ourplePlayed;
 		FlxG.save.data.shortFound = shortFound;
+		FlxG.save.data.shortViewed = shortViewed;
 		FlxG.save.data.shortPlayed = shortPlayed;
 		FlxG.save.data.infatuationFound = infatuationFound;
+		FlxG.save.data.infatuationViewed = infatuationViewed;
 		FlxG.save.data.infatuationPlayed = infatuationPlayed;
 		FlxG.save.data.rainyDazeFound = rainyDazeFound;
+		FlxG.save.data.rainyDazeViewed = rainyDazeViewed;
 		FlxG.save.data.rainyDazePlayed = rainyDazePlayed;
+
+		FlxG.save.data.ourpleFound = ourpleFound;
+		FlxG.save.data.ourplePlayed = ourplePlayed;
+		FlxG.save.data.tacticalMishapFound = tacticalMishapFound;
+		FlxG.save.data.tacticalMishapPlayed = tacticalMishapPlayed;
 		FlxG.save.data.kyuFound = kyuFound;
 		FlxG.save.data.kyuPlayed = kyuPlayed;
 		FlxG.save.data.breacherFound = breacherFound;
@@ -673,29 +694,40 @@ class ClientPrefs {
 		FlxG.save.data.iniquitousWeekBeaten = false;
 
 		FlxG.save.data.tofuFound = false;
+		FlxG.save.data.tofuViewed = false;
 		FlxG.save.data.tofuPlayed = false;
 		FlxG.save.data.lustalityPlayed = false;
+		FlxG.save.data.lustalityViewed = false;
 		FlxG.save.data.lustalityFound = false;
 		FlxG.save.data.marcochromePlayed = false;
+		FlxG.save.data.marcochromeViewed = false;
 		FlxG.save.data.marcochromeFound = false;
 		FlxG.save.data.nunsationalPlayed = false;
+		FlxG.save.data.nunsationalViewed = false;
 		FlxG.save.data.nunsationalFound = false;
-		FlxG.save.data.tacticalMishapFound = true;
-		FlxG.save.data.tacticalMishapPlayed = false;
 		FlxG.save.data.nicFound = false;
+		FlxG.save.data.nicViewed = false;
 		FlxG.save.data.nicPlayed = false;
 		FlxG.save.data.debugFound = false;
+		FlxG.save.data.debugViewed = false;
 		FlxG.save.data.debugPlayed = false;
 		FlxG.save.data.fnvFound = false;
+		FlxG.save.data.fnvViewed = false;
 		FlxG.save.data.fnvPlayed = false;
-		FlxG.save.data.ourpleFound = true;
-		FlxG.save.data.ourplePlayed = false;
 		FlxG.save.data.shortFound = false;
+		FlxG.save.data.shortViewed = false;
 		FlxG.save.data.shortPlayed = false;
 		FlxG.save.data.infatuationFound = false;
+		FlxG.save.data.infatuationViewed = false;
 		FlxG.save.data.infatuationPlayed = false;
 		FlxG.save.data.rainyDazeFound = false;
+		FlxG.save.data.rainyDazeViewed = false;
 		FlxG.save.data.rainyDazePlayed = false;
+
+		FlxG.save.data.ourpleFound = true;
+		FlxG.save.data.ourplePlayed = false;
+		FlxG.save.data.tacticalMishapFound = true;
+		FlxG.save.data.tacticalMishapPlayed = false;
 		FlxG.save.data.kyuFound = true;
 		FlxG.save.data.kyuPlayed = false;
 		FlxG.save.data.breacherFound = true;
@@ -882,29 +914,39 @@ class ClientPrefs {
 		iniquitousWeekBeaten = false;
 
 		tofuFound = false;
+		tofuViewed = false;
 		tofuPlayed = false;
 		lustalityPlayed = false;
+		lustalityViewed = false;
 		lustalityFound = false;
 		marcochromePlayed = false;
+		marcochromeViewed = false;
 		marcochromeFound = false;
 		nunsationalPlayed = false;
+		nunsationalViewed = false;
 		nunsationalFound = false;
-		tacticalMishapFound = true;
-		tacticalMishapPlayed = false;
 		nicFound = false;
+		nicViewed = false;
 		nicPlayed = false;
-		debugFound = false;
-		debugPlayed = false;
+		debugViewed = false;
+		tofuFound = false;
 		fnvFound = false;
+		fnvViewed = false;
 		fnvPlayed = false;
-		ourpleFound = true;
-		ourplePlayed = false;
 		shortFound = false;
+		shortViewed = false;
 		shortPlayed = false;
 		infatuationFound = false;
+		infatuationViewed = false;
 		infatuationPlayed = false;
 		rainyDazeFound = false;
+		rainyDazeViewed = false;
 		rainyDazePlayed = false;
+
+		ourpleFound = true;
+		ourplePlayed = false;
+		tacticalMishapFound = true;
+		tacticalMishapPlayed = false;
 		kyuFound = true;
 		kyuPlayed = false;
 		breacherFound = true;
@@ -1039,29 +1081,39 @@ class ClientPrefs {
 		iniquitousWeekBeaten = true;
 
 		tofuFound = true;
+		tofuViewed = true;
 		tofuPlayed = true;
 		lustalityPlayed = true;
+		lustalityViewed = true;
 		lustalityFound = true;
 		marcochromePlayed = true;
+		marcochromeViewed = true;
 		marcochromeFound = true;
 		nunsationalPlayed = true;
+		nunsationalViewed = true;
 		nunsationalFound = true;
-		tacticalMishapFound = true;
-		tacticalMishapPlayed = true;
 		nicFound = true;
+		nicViewed = true;
 		nicPlayed = true;
-		debugFound = true;
-		debugPlayed = true;
+		debugViewed = true;
+		tofuFound = true;
 		fnvFound = true;
+		fnvViewed = true;
 		fnvPlayed = true;
-		ourpleFound = true;
-		ourplePlayed = true;
 		shortFound = true;
+		shortViewed = true;
 		shortPlayed = true;
 		infatuationFound = true;
+		infatuationViewed = true;
 		infatuationPlayed = true;
 		rainyDazeFound = true;
+		rainyDazeViewed = true;
 		rainyDazePlayed = true;
+
+		ourpleFound = true;
+		ourplePlayed = true;
+		tacticalMishapFound = true;
+		tacticalMishapPlayed = true;
 		kyuFound = true;
 		kyuPlayed = true;
 		breacherFound = true;
@@ -1397,20 +1449,29 @@ class ClientPrefs {
 			iniquitousWeekBeaten = FlxG.save.data.iniquitousWeekBeaten;
 		}
 
-		if(FlxG.save.data.lustalityFound != null) {
-			lustalityFound = FlxG.save.data.lustalityFound;
-		}
-		if(FlxG.save.data.lustalityPlayed != null) {
-			lustalityPlayed = FlxG.save.data.lustalityPlayed;
-		}
 		if(FlxG.save.data.tofuFound != null) {
 			tofuFound = FlxG.save.data.tofuFound;
+		}
+		if(FlxG.save.data.tofuViewed != null) {
+			tofuViewed = FlxG.save.data.tofuViewed;
 		}
 		if(FlxG.save.data.tofuPlayed != null) {
 			tofuPlayed = FlxG.save.data.tofuPlayed;
 		}
+		if(FlxG.save.data.lustalityFound != null) {
+			lustalityFound = FlxG.save.data.lustalityFound;
+		}
+		if(FlxG.save.data.lustalityViewed != null) {
+			lustalityViewed = FlxG.save.data.lustalityViewed;
+		}
+		if(FlxG.save.data.lustalityPlayed != null) {
+			lustalityPlayed = FlxG.save.data.lustalityPlayed;
+		}
 		if(FlxG.save.data.marcochromeFound != null) {
 			marcochromeFound = FlxG.save.data.marcochromeFound;
+		}
+		if(FlxG.save.data.marcochromeViewed != null) {
+			marcochromeViewed = FlxG.save.data.marcochromeViewed;
 		}
 		if(FlxG.save.data.marcochromePlayed != null) {
 			marcochromePlayed = FlxG.save.data.marcochromePlayed;
@@ -1418,17 +1479,17 @@ class ClientPrefs {
 		if(FlxG.save.data.nunsationalFound != null) {
 			nunsationalFound = FlxG.save.data.nunsationalFound;
 		}
+		if(FlxG.save.data.nunsationalViewed != null) {
+			nunsationalViewed = FlxG.save.data.nunsationalViewed;
+		}
 		if(FlxG.save.data.nunsationalPlayed != null) {
 			nunsationalPlayed = FlxG.save.data.nunsationalPlayed;
 		}
-		if(FlxG.save.data.tacticalMishapFound != null) {
-			tacticalMishapFound = FlxG.save.data.tacticalMishapFound;
-		}
-		if(FlxG.save.data.tacticalMishapPlayed != null) {
-			tacticalMishapPlayed = FlxG.save.data.tacticalMishapPlayed;
-		}
 		if(FlxG.save.data.nicFound != null) {
 			nicFound = FlxG.save.data.nicFound;
+		}
+		if(FlxG.save.data.nicViewed != null) {
+			nicViewed = FlxG.save.data.nicViewed;
 		}
 		if(FlxG.save.data.nicPlayed != null) {
 			nicPlayed = FlxG.save.data.nicPlayed;
@@ -1436,23 +1497,26 @@ class ClientPrefs {
 		if(FlxG.save.data.debugFound != null) {
 			debugFound = FlxG.save.data.debugFound;
 		}
+		if(FlxG.save.data.debugViewed != null) {
+			debugViewed = FlxG.save.data.debugViewed;
+		}
 		if(FlxG.save.data.debugPlayed != null) {
 			debugPlayed = FlxG.save.data.debugPlayed;
 		}
 		if(FlxG.save.data.fnvFound != null) {
 			fnvFound = FlxG.save.data.fnvFound;
 		}
+		if(FlxG.save.data.fnvViewed != null) {
+			fnvViewed = FlxG.save.data.fnvViewed;
+		}
 		if(FlxG.save.data.fnvPlayed != null) {
 			fnvPlayed = FlxG.save.data.fnvPlayed;
 		}
-		if(FlxG.save.data.ourpleFound != null) {
-			ourpleFound = FlxG.save.data.ourpleFound;
-		}
-		if(FlxG.save.data.ourplePlayed != null) {
-			ourplePlayed = FlxG.save.data.ourplePlayed;
-		}
 		if(FlxG.save.data.shortFound != null) {
 			shortFound = FlxG.save.data.shortFound;
+		}
+		if(FlxG.save.data.shortViewed != null) {
+			shortViewed = FlxG.save.data.shortViewed;
 		}
 		if(FlxG.save.data.shortPlayed != null) {
 			shortPlayed = FlxG.save.data.shortPlayed;
@@ -1463,11 +1527,30 @@ class ClientPrefs {
 		if(FlxG.save.data.infatuationPlayed != null) {
 			infatuationPlayed = FlxG.save.data.infatuationPlayed;
 		}
+		if(FlxG.save.data.infatuationViewed != null) {
+			infatuationViewed = FlxG.save.data.infatuationViewed;
+		}
 		if(FlxG.save.data.rainyDazeFound != null) {
 			rainyDazeFound = FlxG.save.data.rainyDazeFound;
 		}
+		if(FlxG.save.data.rainyDazeViewed != null) {
+			rainyDazeViewed = FlxG.save.data.rainyDazeViewed;
+		}
 		if(FlxG.save.data.rainyDazePlayed != null) {
 			rainyDazePlayed = FlxG.save.data.rainyDazePlayed;
+		}
+
+		if(FlxG.save.data.ourpleFound != null) {
+			ourpleFound = FlxG.save.data.ourpleFound;
+		}
+		if(FlxG.save.data.ourplePlayed != null) {
+			ourplePlayed = FlxG.save.data.ourplePlayed;
+		}
+		if(FlxG.save.data.tacticalMishapFound != null) {
+			tacticalMishapFound = FlxG.save.data.tacticalMishapFound;
+		}
+		if(FlxG.save.data.tacticalMishapPlayed != null) {
+			tacticalMishapPlayed = FlxG.save.data.tacticalMishapPlayed;
 		}
 		if(FlxG.save.data.kyuFound != null) {
 			kyuFound = FlxG.save.data.kyuFound;
