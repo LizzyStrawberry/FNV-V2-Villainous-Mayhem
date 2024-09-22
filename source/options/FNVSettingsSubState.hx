@@ -153,7 +153,7 @@ class FNVSettingsSubState extends BaseOptionsMenu
 
 		#if !html5 //Apparently other framerates isn't correctly supported on Browser? Probably it has some V-Sync shit enabled by default, idk
 		var option:Option = new Option('Framerate:',
-			"Pretty self explanatory, isn't it?\nMake sure to adjust it to however you prefer it to be.\n It is recommended to be kept at 120 FPS for the best experience, but you're free to change it up just how you want it to be,",
+			"Pretty self explanatory, isn't it?\nMake sure to adjust it to however you prefer it to be.",
 			'framerate',
 			'int',
 			120);
