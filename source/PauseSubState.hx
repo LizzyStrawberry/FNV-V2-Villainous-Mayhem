@@ -795,8 +795,11 @@ class PauseSubState extends MusicBeatSubstate
 								botplayOn = false;
 								trace ("Botplay: False.");
 							case 5:
-								ClientPrefs.framerate -= 1;
-								onChangeFramerate();
+								if (ClientPrefs.framerate > 30)
+								{
+									ClientPrefs.framerate -= 1;
+									onChangeFramerate();
+								}
 						}
 						delay = true;
 						new FlxTimer().start(0.05, function (tmr:FlxTimer) {
@@ -834,8 +837,11 @@ class PauseSubState extends MusicBeatSubstate
 								botplayOn = true;
 								trace ("Botplay: True.");
 							case 5:
-								ClientPrefs.framerate += 1;
-								onChangeFramerate();
+								if (ClientPrefs.framerate < 240)
+								{
+									ClientPrefs.framerate += 1;
+									onChangeFramerate();
+								}
 						}
 						delay = true;
 						new FlxTimer().start(0.05, function (tmr:FlxTimer) {
@@ -869,8 +875,11 @@ class PauseSubState extends MusicBeatSubstate
 								ClientPrefs.downScroll = false;
 								trace ("Downscroll: False");
 							case 3:
-								ClientPrefs.framerate -= 1;
-								onChangeFramerate();
+								if (ClientPrefs.framerate > 30)
+								{
+									ClientPrefs.framerate -= 1;
+									onChangeFramerate();
+								}
 						}
 						delay = true;
 						new FlxTimer().start(0.05, function (tmr:FlxTimer) {
@@ -897,8 +906,11 @@ class PauseSubState extends MusicBeatSubstate
 								ClientPrefs.downScroll = true;
 								trace ("Downscroll: True");
 							case 3:
-								ClientPrefs.framerate += 1;
-								onChangeFramerate();
+								if (ClientPrefs.framerate < 240)
+								{
+									ClientPrefs.framerate += 1;
+									onChangeFramerate();
+								}
 						}
 						delay = true;
 						new FlxTimer().start(0.05, function (tmr:FlxTimer) {
@@ -936,8 +948,11 @@ class PauseSubState extends MusicBeatSubstate
 								botplayOn = false;
 								trace ("Botplay: False.");
 							case 4:
-								ClientPrefs.framerate -= 1;
-								onChangeFramerate();
+								if (ClientPrefs.framerate > 30)
+								{
+									ClientPrefs.framerate -= 1;
+									onChangeFramerate();
+								}
 						}
 						delay = true;
 						new FlxTimer().start(0.05, function (tmr:FlxTimer) {
@@ -968,8 +983,11 @@ class PauseSubState extends MusicBeatSubstate
 								botplayOn = true;
 								trace ("Botplay: True.");
 							case 4:
-								ClientPrefs.framerate += 1;
-								onChangeFramerate();
+								if (ClientPrefs.framerate < 240)
+								{
+									ClientPrefs.framerate += 1;
+									onChangeFramerate();
+								}
 						}
 						delay = true;
 						new FlxTimer().start(0.05, function (tmr:FlxTimer) {
