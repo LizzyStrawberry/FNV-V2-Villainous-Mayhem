@@ -417,10 +417,10 @@ class FreeplayXtraBonusState extends MusicBeatState
 			{
 				unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_Forsaken'));
 				unlockedSelection.alpha = 1;
-				unlockedSelection.scale.set(1.15, 1.15);
+				unlockedSelection.scale.set(1.2, 1.2);
 				unlockedSelection.screenCenter();
-				unlockedSelection.x += 15;
-				unlockedSelection.y -= 65;
+				unlockedSelection.x += 20;
+				unlockedSelection.y -= 60;
 				lockedSelection.alpha = 0;
 
 				placeholderSelection.alpha = 0;
@@ -444,10 +444,10 @@ class FreeplayXtraBonusState extends MusicBeatState
 			{
 				unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_Forsaken'));
 				unlockedSelection.alpha = 1;
-				unlockedSelection.scale.set(1.15, 1.15);
+				unlockedSelection.scale.set(1.2, 1.2);
 				unlockedSelection.screenCenter();
-				unlockedSelection.x += 15;
-				unlockedSelection.y -= 65;
+				unlockedSelection.x += 20;
+				unlockedSelection.y -= 60;
 				lockedSelection.alpha = 0;
 
 				placeholderSelection.alpha = 0;
