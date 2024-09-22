@@ -336,6 +336,7 @@ class InfoState extends MusicBeatState
 					FlxTween.tween(blackOut, {alpha: 0.8}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
 					FlxTween.tween(scrollAsset, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
 					FlxTween.tween(scrollDesc, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
+					scrollDesc.text = "I am Marco's lore, nice to meet you\nlmao";
 				}
 				else
 				{
@@ -348,6 +349,7 @@ class InfoState extends MusicBeatState
 					FlxTween.tween(blackOut, {alpha: 0.8}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
 					FlxTween.tween(scrollAsset, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
 					FlxTween.tween(scrollDesc, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
+					scrollDesc.text = "I am Aileen's lore, nice to meet you\nlmao";
 				}
 				else
 				{
@@ -360,6 +362,7 @@ class InfoState extends MusicBeatState
 					FlxTween.tween(blackOut, {alpha: 0.8}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
 					FlxTween.tween(scrollAsset, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
 					FlxTween.tween(scrollDesc, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
+					scrollDesc.text = "I am Beatrice's lore, nice to meet you\nlmao";
 				}
 				else
 				{
@@ -372,6 +375,7 @@ class InfoState extends MusicBeatState
 					FlxTween.tween(blackOut, {alpha: 0.8}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
 					FlxTween.tween(scrollAsset, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
 					FlxTween.tween(scrollDesc, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
+					scrollDesc.text = "I am Evelyn's lore, nice to meet you\nlmao";
 				}
 				else
 				{
@@ -396,6 +400,7 @@ class InfoState extends MusicBeatState
 					FlxTween.tween(blackOut, {alpha: 0.8}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
 					FlxTween.tween(scrollAsset, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
 					FlxTween.tween(scrollDesc, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
+					scrollDesc.text = "I am the bitch's lore, nice to meet you\nlmao";
 				}
 				else
 				{
@@ -408,6 +413,7 @@ class InfoState extends MusicBeatState
 					FlxTween.tween(blackOut, {alpha: 0.8}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
 					FlxTween.tween(scrollAsset, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
 					FlxTween.tween(scrollDesc, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
+					scrollDesc.text = "I am DV's lore, nice to meet you\nlmao";
 				}
 				else
 				{
@@ -420,6 +426,7 @@ class InfoState extends MusicBeatState
 					FlxTween.tween(blackOut, {alpha: 0.8}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
 					FlxTween.tween(scrollAsset, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
 					FlxTween.tween(scrollDesc, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
+					scrollDesc.text = "I am Narrin's lore, nice to meet you\nlmao";
 				}
 				else
 				{
@@ -432,6 +439,7 @@ class InfoState extends MusicBeatState
 					FlxTween.tween(blackOut, {alpha: 0.8}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
 					FlxTween.tween(scrollAsset, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
 					FlxTween.tween(scrollDesc, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
+					scrollDesc.text = "I am Morky's lore, nice to meet you\nlmao";
 				}
 				else
 				{
@@ -444,6 +452,7 @@ class InfoState extends MusicBeatState
 					FlxTween.tween(blackOut, {alpha: 0.8}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
 					FlxTween.tween(scrollAsset, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
 					FlxTween.tween(scrollDesc, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
+					scrollDesc.text = "I am Kaizoku's lore, nice to meet you\nlmao";
 				}
 				else
 				{
