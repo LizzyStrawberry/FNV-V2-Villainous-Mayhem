@@ -456,8 +456,8 @@ class FreeplayXtraCrossoverState extends MusicBeatState
 			{
 				unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_Breacher'));
 				unlockedSelection.screenCenter();
-				unlockedSelection.y -= 65;
-				unlockedSelection.scale.set(1, 1);
+				unlockedSelection.y -= 60;
+				unlockedSelection.scale.set(1.12, 1.12);
 				lockedSelection.alpha = 0;
 	
 				placeholderSelection.alpha = 0;
