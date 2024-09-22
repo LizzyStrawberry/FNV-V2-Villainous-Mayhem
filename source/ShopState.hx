@@ -2679,7 +2679,7 @@ class ShopState extends MusicBeatState
 						case 17:
 							dialogueTextSecret.text = "That's really disturbing!\nStop this instant!";
 						case 18:
-							dialogueTextSecret.text = "If I were to touch your private parts like this,\nwould you enjoy it?!?!";
+							dialogueTextSecret.text = "If I were to touch your private parts like this, would you enjoy it?!?!";
 					}
 					FlxG.sound.play(Paths.sound('shop/mouseClick'));
 					secretMerchantDialogue.resetText(dialogueTextSecret.text);
