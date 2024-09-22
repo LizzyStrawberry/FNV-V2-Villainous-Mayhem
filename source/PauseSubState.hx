@@ -348,7 +348,7 @@ class PauseSubState extends MusicBeatSubstate
 		}
 		else if (ClientPrefs.healingCharm > 0 && ClientPrefs.healingCharm <= 9)
 		{
-			charmText.text = "Charm: Healing (" + ClientPrefs.healingCharm + ")";
+			charmText.text = "Charm: Healing (" + ClientPrefs.healingCharm + "x)";
 			charmIcon.loadGraphic(Paths.image('inventory/charmN2'));
 			showCharm = true;
 		}
@@ -769,15 +769,24 @@ class PauseSubState extends MusicBeatSubstate
 						switch (curOption)
 						{
 							case 0:
-								ClientPrefs.mechanics = false;
-								changedSettings = true;
-								trace ("Mechanics: False");
+								if (ClientPrefs.optimizationMode == false)
+								{
+									ClientPrefs.mechanics = false;
+									changedSettings = true;
+									trace ("Mechanics: False");
+								}
 							case 1:
-								ClientPrefs.shaders = false;
-								trace ("Shaders: False");
+								if (ClientPrefs.optimizationMode == false)
+								{
+									ClientPrefs.shaders = false;
+									trace ("Shaders: False");
+								}
 							case 2:
-								ClientPrefs.cinematicBars = false;
-								trace ("Cinematic Bars: False");
+								if (ClientPrefs.optimizationMode == false)
+								{
+									ClientPrefs.cinematicBars = false;
+									trace ("Cinematic Bars: False");
+								}
 							case 3:
 								ClientPrefs.downScroll = false;
 								trace ("Downscroll: False");
@@ -799,15 +808,24 @@ class PauseSubState extends MusicBeatSubstate
 						switch (curOption)
 						{
 							case 0:
-								ClientPrefs.mechanics = true;
-								changedSettings = true;
-								trace ("Mechanics: True");
+								if (ClientPrefs.optimizationMode == false)
+								{
+									ClientPrefs.mechanics = true;
+									changedSettings = true;
+									trace ("Mechanics: True");
+								}
 							case 1:
-								ClientPrefs.shaders = true;
-								trace ("Shaders: True");
+								if (ClientPrefs.optimizationMode == false)
+								{
+									ClientPrefs.shaders = true;
+									trace ("Shaders: True");
+								}
 							case 2:
-								ClientPrefs.cinematicBars = true;
-								trace ("Cinematic Bars: True");
+								if (ClientPrefs.optimizationMode == false)
+								{
+									ClientPrefs.cinematicBars = true;
+									trace ("Cinematic Bars: True");
+								}
 							case 3:
 								ClientPrefs.downScroll = true;
 								trace ("Downscroll: True");
@@ -836,11 +854,17 @@ class PauseSubState extends MusicBeatSubstate
 						switch (curOption)
 						{
 							case 0:
-								ClientPrefs.shaders = false;
-								trace ("Shaders: False");
+								if (ClientPrefs.optimizationMode == false)
+								{
+									ClientPrefs.shaders = false;
+									trace ("Shaders: False");
+								}
 							case 1:
-								ClientPrefs.cinematicBars = false;
-								trace ("Cinematic Bars: False");
+								if (ClientPrefs.optimizationMode == false)
+								{
+									ClientPrefs.cinematicBars = false;
+									trace ("Cinematic Bars: False");
+								}
 							case 2:
 								ClientPrefs.downScroll = false;
 								trace ("Downscroll: False");
@@ -858,11 +882,17 @@ class PauseSubState extends MusicBeatSubstate
 						switch (curOption)
 						{
 							case 0:
-								ClientPrefs.shaders = true;
-								trace ("Shaders: True");
+								if (ClientPrefs.optimizationMode == false)
+								{
+									ClientPrefs.shaders = true;
+									trace ("Shaders: True");
+								}
 							case 1:
-								ClientPrefs.cinematicBars = true;
-								trace ("Cinematic Bars: True");
+								if (ClientPrefs.optimizationMode == false)
+								{
+									ClientPrefs.cinematicBars = true;
+									trace ("Cinematic Bars: True");
+								}
 							case 2:
 								ClientPrefs.downScroll = true;
 								trace ("Downscroll: True");
@@ -887,11 +917,17 @@ class PauseSubState extends MusicBeatSubstate
 						switch (curOption)
 						{
 							case 0:
-								ClientPrefs.shaders = false;
-								trace ("Shaders: False");
+								if (ClientPrefs.optimizationMode == false)
+								{
+									ClientPrefs.shaders = false;
+									trace ("Shaders: False");
+								}
 							case 1:
-								ClientPrefs.cinematicBars = false;
-								trace ("Cinematic Bars: False");
+								if (ClientPrefs.optimizationMode == false)
+								{
+									ClientPrefs.cinematicBars = false;
+									trace ("Cinematic Bars: False");
+								}
 							case 2:
 								ClientPrefs.downScroll = false;
 								trace ("Downscroll: False");
@@ -913,11 +949,17 @@ class PauseSubState extends MusicBeatSubstate
 						switch (curOption)
 						{
 							case 0:
-								ClientPrefs.shaders = true;
-								trace ("Shaders: True");
+								if (ClientPrefs.optimizationMode == false)
+								{
+									ClientPrefs.shaders = true;
+									trace ("Shaders: True");
+								}
 							case 1:
-								ClientPrefs.cinematicBars = true;
-								trace ("Cinematic Bars: True");
+								if (ClientPrefs.optimizationMode == false)
+								{
+									ClientPrefs.cinematicBars = true;
+									trace ("Cinematic Bars: True");
+								}
 							case 2:
 								ClientPrefs.downScroll = true;
 								trace ("Downscroll: True");
@@ -962,13 +1004,22 @@ class PauseSubState extends MusicBeatSubstate
 					{
 						case 0:
 							optionInfo.y = 285;
-							optionInfo.text = "Determine whether you want mechanics to be turned on or off.\n\n(Settings are applied once you restart or move to the next song.)";
+							if (ClientPrefs.optimizationMode == false)
+								optionInfo.text = "Determine whether you want mechanics to be turned on or off.\n\n(Settings are applied once you restart or move to the next song.)";
+							else
+								optionInfo.text = "This is disabled by default since optimization mode is\nturned on.";
 						case 1:
 							optionInfo.y = 285;
-							optionInfo.text = "Determine whether you want shaders to be turned on or off.\n\n(Settings are applied once you restart or move to the next song.)";
+							if (ClientPrefs.optimizationMode == false)
+								optionInfo.text = "Determine whether you want shaders to be turned on or off.\n\n(Settings are applied once you restart or move to the next song.)";
+							else
+								optionInfo.text = "This is disabled by default since optimization mode is\nturned on.";
 						case 2:
 							optionInfo.y = 285;
-							optionInfo.text = "Determine whether you want cinematic bars to be turned on or off.\n\n(Settings are applied once you restart or move to the next song.)";
+							if (ClientPrefs.optimizationMode == false)
+								optionInfo.text = "Determine whether you want cinematic bars to be turned on or off.\n\n(Settings are applied once you restart or move to the next song.)";
+							else
+								optionInfo.text = "This is disabled by default since optimization mode is\nturned on.";
 						case 3:
 							optionInfo.y = 285;
 							optionInfo.text = "Determine whether you want your notes to be scrolled upwards or downwards.\n\n(Settings are applied once you restart or move to the next song.)";
@@ -1074,10 +1125,15 @@ class PauseSubState extends MusicBeatSubstate
 					{
 						case 0:
 							optionInfo.y = 285;
-							optionInfo.text = "Determine whether you want shaders to be turned on or off.\n\n(Settings are applied once you move to the next song.)";
-						case 1:
+							if (ClientPrefs.optimizationMode == false)
+								optionInfo.text = "Determine whether you want shaders to be turned on or off.\n\n(Settings are applied once you restart or move to the next song.)";
+							else
+								optionInfo.text = "This is disabled by default since optimization mode is\nturned on.";
 							optionInfo.y = 285;
-							optionInfo.text = "Determine whether you want cinematic bars to be turned on or off.\n\n(Settings are applied once you move to the next song.)";
+							if (ClientPrefs.optimizationMode == false)
+								optionInfo.text = "Determine whether you want cinematic bars to be turned on or off.\n\n(Settings are applied once you restart or move to the next song.)";
+							else
+								optionInfo.text = "This is disabled by default since optimization mode is\nturned on.";
 						case 2:
 							optionInfo.y = 285;
 							optionInfo.text = "Determine whether you want your notes to be scrolled upwards or downwards.\n\n(Settings are applied once you move to the next song.)";
@@ -1151,10 +1207,16 @@ class PauseSubState extends MusicBeatSubstate
 					{
 						case 0:
 							optionInfo.y = 285;
-							optionInfo.text = "Determine whether you want shaders to be turned on or off.\n\n(Settings are applied once you restart or move to the next song.)";
+							if (ClientPrefs.optimizationMode == false)
+								optionInfo.text = "Determine whether you want shaders to be turned on or off.\n\n(Settings are applied once you restart or move to the next song.)";
+							else
+								optionInfo.text = "This is disabled by default since optimization mode is\nturned on.";
 						case 1:
 							optionInfo.y = 285;
-							optionInfo.text = "Determine whether you want cinematic bars to be turned on or off.\n\n(Settings are applied once you restart or move to the next song.)";
+							if (ClientPrefs.optimizationMode == false)
+								optionInfo.text = "Determine whether you want cinematic bars to be turned on or off.\n\n(Settings are applied once you restart or move to the next song.)";
+							else
+								optionInfo.text = "This is disabled by default since optimization mode is\nturned on.";
 						case 2:
 							optionInfo.y = 285;
 							optionInfo.text = "Determine whether you want your notes to be scrolled upwards or downwards.\n\n(Settings are applied once you restart or move to the next song.)";

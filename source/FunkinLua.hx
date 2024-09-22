@@ -950,6 +950,11 @@ class FunkinLua {
 			return true;
 		});
 
+		Lua_helper.add_callback(lua, "clearStoredMemory", function() {
+			Paths.clearUnusedMemory();
+			return true;
+		});
+
 		Lua_helper.add_callback(lua, "saveSettings", function() {
 			ClientPrefs.saveSettings();
 			return true;
