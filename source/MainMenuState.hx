@@ -1103,12 +1103,12 @@ class MainMenuState extends MusicBeatState
 		else
 			FlxTween.tween(rightArrow, {x: getRightArrowX}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
 
-		if ((controls.UI_RIGHT || (FlxG.mouse.overlaps(rightArrow) && FlxG.mouse.justPressed)) && askedForInfo == false && storySelected == false)
+		if ((controls.UI_RIGHT || (FlxG.mouse.overlaps(rightArrow) && FlxG.mouse.pressed)) && askedForInfo == false && storySelected == false)
 			rightArrow.animation.play('press')
 		else
 			rightArrow.animation.play('idle');
 	
-		if ((controls.UI_LEFT || (FlxG.mouse.overlaps(leftArrow) && FlxG.mouse.justPressed)) && askedForInfo == false && storySelected == false)
+		if ((controls.UI_LEFT || (FlxG.mouse.overlaps(leftArrow) && FlxG.mouse.pressed)) && askedForInfo == false && storySelected == false)
 			leftArrow.animation.play('press');
 		else
 			leftArrow.animation.play('idle');
