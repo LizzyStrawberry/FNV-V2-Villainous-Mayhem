@@ -1007,19 +1007,19 @@ class PauseSubState extends MusicBeatSubstate
 							if (ClientPrefs.optimizationMode == false)
 								optionInfo.text = "Determine whether you want mechanics to be turned on or off.\n\n(Settings are applied once you restart or move to the next song.)";
 							else
-								optionInfo.text = "This is disabled by default since optimization mode is\nturned on.";
+								optionInfo.text = "This is disabled by default since optimization mode is turned on.";
 						case 1:
 							optionInfo.y = 285;
 							if (ClientPrefs.optimizationMode == false)
 								optionInfo.text = "Determine whether you want shaders to be turned on or off.\n\n(Settings are applied once you restart or move to the next song.)";
 							else
-								optionInfo.text = "This is disabled by default since optimization mode is\nturned on.";
+								optionInfo.text = "This is disabled by default since optimization mode is turned on.";
 						case 2:
 							optionInfo.y = 285;
 							if (ClientPrefs.optimizationMode == false)
 								optionInfo.text = "Determine whether you want cinematic bars to be turned on or off.\n\n(Settings are applied once you restart or move to the next song.)";
 							else
-								optionInfo.text = "This is disabled by default since optimization mode is\nturned on.";
+								optionInfo.text = "This is disabled by default since optimization mode is turned on.";
 						case 3:
 							optionInfo.y = 285;
 							optionInfo.text = "Determine whether you want your notes to be scrolled upwards or downwards.\n\n(Settings are applied once you restart or move to the next song.)";
@@ -1128,12 +1128,12 @@ class PauseSubState extends MusicBeatSubstate
 							if (ClientPrefs.optimizationMode == false)
 								optionInfo.text = "Determine whether you want shaders to be turned on or off.\n\n(Settings are applied once you restart or move to the next song.)";
 							else
-								optionInfo.text = "This is disabled by default since optimization mode is\nturned on.";
+								optionInfo.text = "This is disabled by default since optimization mode is turned on.";
 							optionInfo.y = 285;
 							if (ClientPrefs.optimizationMode == false)
 								optionInfo.text = "Determine whether you want cinematic bars to be turned on or off.\n\n(Settings are applied once you restart or move to the next song.)";
 							else
-								optionInfo.text = "This is disabled by default since optimization mode is\nturned on.";
+								optionInfo.text = "This is disabled by default since optimization mode is turned on.";
 						case 2:
 							optionInfo.y = 285;
 							optionInfo.text = "Determine whether you want your notes to be scrolled upwards or downwards.\n\n(Settings are applied once you move to the next song.)";
@@ -1210,13 +1210,13 @@ class PauseSubState extends MusicBeatSubstate
 							if (ClientPrefs.optimizationMode == false)
 								optionInfo.text = "Determine whether you want shaders to be turned on or off.\n\n(Settings are applied once you restart or move to the next song.)";
 							else
-								optionInfo.text = "This is disabled by default since optimization mode is\nturned on.";
+								optionInfo.text = "This is disabled by default since optimization mode is turned on.";
 						case 1:
 							optionInfo.y = 285;
 							if (ClientPrefs.optimizationMode == false)
 								optionInfo.text = "Determine whether you want cinematic bars to be turned on or off.\n\n(Settings are applied once you restart or move to the next song.)";
 							else
-								optionInfo.text = "This is disabled by default since optimization mode is\nturned on.";
+								optionInfo.text = "This is disabled by default since optimization mode is turned on.";
 						case 2:
 							optionInfo.y = 285;
 							optionInfo.text = "Determine whether you want your notes to be scrolled upwards or downwards.\n\n(Settings are applied once you restart or move to the next song.)";
