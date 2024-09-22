@@ -2471,7 +2471,7 @@ class ShopState extends MusicBeatState
 				FlxTween.tween(assistant, {x: 2070}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 				FlxTween.tween(merchantDialogue, {x: 2000}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 				FlxTween.tween(lights, {x: 2070}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(transitionOoooOo, {x: 1270}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+				FlxTween.tween(transitionOoooOo, {x: 1370}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 			
 				FlxTween.tween(bulb, {x: 1600}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 			
@@ -2507,7 +2507,7 @@ class ShopState extends MusicBeatState
 				FlxTween.tween(assistant, {x: 2070}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 				FlxTween.tween(merchantDialogue, {x: 2000}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 				FlxTween.tween(lights, {x: 2070}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(transitionOoooOo, {x: 1270}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+				FlxTween.tween(transitionOoooOo, {x: 1370}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 	
 				FlxTween.tween(bulb, {x: 1600}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 	
@@ -2641,7 +2641,7 @@ class ShopState extends MusicBeatState
 				if (FlxG.mouse.overlaps(booba))
 				{
 					touchedBoobies += 1;
-					dialogueNumberSecret = FlxG.random.int(1, 16);
+					dialogueNumberSecret = FlxG.random.int(1, 18);
 					switch (dialogueNumberSecret)
 					{
 						case 1:
@@ -2651,11 +2651,11 @@ class ShopState extends MusicBeatState
 						case 3:
 							dialogueTextSecret.text = "Jesus, are you that desperate to touch these?!";
 						case 4:
-							dialogueTextSecret.text = "Back off! I'm just a shopkeeper!";
+							dialogueTextSecret.text = "Back off!\nI'm just a shopkeeper!";
 						case 5:
 							dialogueTextSecret.text = "What are you, a pervert?!";
 						case 6:
-							dialogueTextSecret.text = "This was not nice of you! You'll make me bump up the prizes!";
+							dialogueTextSecret.text = "This was not nice of you!\nYou'll make me increase the prizes!";
 						case 7:
 							dialogueTextSecret.text = "Go touch grass instead of my boobs!";
 						case 8:
@@ -2669,13 +2669,17 @@ class ShopState extends MusicBeatState
 						case 12:
 							dialogueTextSecret.text = "You're being disgusting!";
 						case 13:
-							dialogueTextSecret.text = "You're going to be cancelled if you keep doing this, you know that?";
+							dialogueTextSecret.text = "This is harrassment, you know that?";
 						case 14:
 							dialogueTextSecret.text = "Such degeneracy!";
 						case 15:
-							dialogueTextSecret.text = "I don't care if my original variant likes this, I do not enjoy this whatsoever!";
+							dialogueTextSecret.text = "I don't care if my original variant is (possibly) fine with this, I do not enjoy this whatsoever!";
 						case 16:
 							dialogueTextSecret.text = "How would you like it if people poked your boobs?!";
+						case 17:
+							dialogueTextSecret.text = "That's really disturbing!\nStop this instant!";
+						case 18:
+							dialogueTextSecret.text = "If I were to touch your private parts like this,\nwould you enjoy it?!?!";
 					}
 					FlxG.sound.play(Paths.sound('shop/mouseClick'));
 					secretMerchantDialogue.resetText(dialogueTextSecret.text);
@@ -2705,23 +2709,23 @@ class ShopState extends MusicBeatState
 						case 1:
 							dialogueTextSecret.text = "I know I'm hot, but you're here to buy stuff, unless you want to try your luck over there.";
 						case 2:
-							dialogueTextSecret.text = "Isn't it weird that there's a random lady selling random stuff in the middle of a complete void? Yea, I find it weird too.";
+							dialogueTextSecret.text = "Isn't it weird that there's a random lady selling random stuff in the middle of a complete void?\nYea, I find it weird too.";
 						case 3:
-							dialogueTextSecret.text = "Hey, what's with that look? Have you never seen any female shopkeeper before?";
+							dialogueTextSecret.text = "Hey, what's with that look?\nHave you never seen any female shopkeeper before?";
 						case 4:
 							dialogueTextSecret.text = "Do I look familiar to you?";
 						case 5:
-							dialogueTextSecret.text = "So how's it going? What's your game's status so far?";
+							dialogueTextSecret.text = "So how's it going?\nWhat's your game's status so far?";
 						case 6:
-							dialogueTextSecret.text = "Use your mouse to navigate through here! It's not that hard to understand.";
+							dialogueTextSecret.text = "Use your mouse to navigate through here!\nIt's not that hard to understand.";
 						case 7:
 							dialogueTextSecret.text = "No, don't even think of fantasizing about me.";
 						case 8:
-							dialogueTextSecret.text = "Nice to meet you player! My name's Zeel~";
+							dialogueTextSecret.text = "Nice to meet you player!\nMy name's Zeel~";
 						case 9:
 							dialogueTextSecret.text = "I may be a variant of Liz, but I'm not like her.";
 						case 10:
-							dialogueTextSecret.text = "No, I'm not behaving suspiciously right now. Keep it together!";
+							dialogueTextSecret.text = "No, I'm not behaving suspiciously right now.\nKeep it together!";
 						case 11:
 							dialogueTextSecret.text = "You know you can press the RIGHT ARROW to go back to Mimiko's shop, right?";
 						case 12:
@@ -2739,11 +2743,11 @@ class ShopState extends MusicBeatState
 						case 18:
 							dialogueTextSecret.text = "Buying is better than gambling, am I right?~";
 						case 19:
-							dialogueTextSecret.text = "What's the matter? I'm open to hearing about you~";
+							dialogueTextSecret.text = "What's the matter?\nI'm open to hearing about you~";
 						case 20:
 							dialogueTextSecret.text = "...Are you here to do window shopping?";
 						case 21:
-							dialogueTextSecret.text = "It's nice to be alone sometimes.. but it's more fun to be with company..";
+							dialogueTextSecret.text = "It's nice to be alone sometimes..\nbut it's more fun to have company..";
 						case 22:
 							dialogueTextSecret.text = "My prices are guaranteed to make you proud of your purchases!";
 						case 23:
@@ -3018,15 +3022,13 @@ class ShopState extends MusicBeatState
 			if (ClientPrefs.lustalityFound == false)
 			{
 				infoTitle.text = "?????????";
-				infoText.text = "Kiana lusts to destroy you!
-				Will you accept her old challenge?\n-----------------------------------------
+				infoText.text = "Kiana lusts to destroy you!\nWill you accept her old challenge?\n-----------------------------------------
 				\nItem Cost: 20 Tokens | Your Tokens: " + ClientPrefs.tokens;
 			}
 			else
 			{
 				infoTitle.text = "Lustality Pass";
-				infoText.text = "Kiana lusts to destroy you!
-				Will you accept her old challenge?\n-----------------------------------------
+				infoText.text = "Kiana lusts to destroy you!\nWill you accept her old challenge?\n-----------------------------------------
 				\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
 			}
 
@@ -3055,8 +3057,7 @@ class ShopState extends MusicBeatState
 			equipped.y = 600;
 	
 			infoTitle.text = "Lustality Pass";
-			infoText.text = "Kiana lusts to destroy you!
-			Will you accept her old challenge?\n-----------------------------------------
+			infoText.text = "Kiana lusts to destroy you!\nWill you accept her old challenge?\n-----------------------------------------
 			\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
 	
 			FlxG.sound.play(Paths.sound('confirmMenu'));
@@ -3095,15 +3096,13 @@ class ShopState extends MusicBeatState
 			if (ClientPrefs.tofuFound == false)
 			{
 				infoTitle.text = "????";
-				infoText.text = "This is the result of TOO MUCH CONFIDENCE
-				in a game of checkers.\n-----------------------------------------
+				infoText.text = "This is the result of TOO MUCH CONFIDENCE\nin a game of checkers.\n-----------------------------------------
 				\nItem Cost: 12 Tokens | Your Tokens: " + ClientPrefs.tokens;
 			}
 			else
 			{
 				infoTitle.text = "Tofu Pass";
-				infoText.text = "This is the result of TOO MUCH CONFIDENCE
-				in a game of checkers.\n-----------------------------------------
+				infoText.text = "This is the result of TOO MUCH CONFIDENCE\nin a game of checkers.\n-----------------------------------------
 				\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
 			}
 
@@ -3132,8 +3131,7 @@ class ShopState extends MusicBeatState
 			equipped.y = 600;
 	
 			infoTitle.text = "Tofu Pass";
-			infoText.text = "This is the result of TOO MUCH CONFIDENCE
-			in a game of checkers.\n-----------------------------------------
+			infoText.text = "This is the result of TOO MUCH CONFIDENCE\nin a game of checkers.\n-----------------------------------------
 			\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
 	
 			FlxG.sound.play(Paths.sound('confirmMenu'));
@@ -3172,15 +3170,13 @@ class ShopState extends MusicBeatState
 			if (ClientPrefs.marcochromeFound == false)
 			{
 				infoTitle.text = "?????-??????";
-				infoText.text = "He seems different from what he used to be...
-				What do you think happened to him?\n-----------------------------------------
+				infoText.text = "He seems different from what he used to be...\nWhat do you think happened to him?\n-----------------------------------------
 				\nItem Cost: 15 Tokens | Your Tokens: " + ClientPrefs.tokens;
 			}
 			else
 			{
 				infoTitle.text = "Marcochrome Pass";
-				infoText.text = "He seems different from what he used to be...
-				What do you think happened to him?\n-----------------------------------------
+				infoText.text = "He seems different from what he used to be...\nWhat do you think happened to him?\n-----------------------------------------
 				\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
 			}
 
@@ -3209,8 +3205,7 @@ class ShopState extends MusicBeatState
 			equipped.y = 600;
 	
 			infoTitle.text = "Marcochrome Pass";
-			infoText.text = "He seems different from what he used to be...
-			What do you think happened to him?\n-----------------------------------------
+			infoText.text = "He seems different from what he used to be...\nWhat do you think happened to him?\n-----------------------------------------
 			\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
 	
 			FlxG.sound.play(Paths.sound('confirmMenu'));
@@ -3608,15 +3603,13 @@ class ShopState extends MusicBeatState
 			if (ClientPrefs.rainyDazeFound == false)
 			{
 				infoTitle.text = "????? ????";
-				infoText.text = "Just waiting for the weather to lay off
-				and stop pouring down..\n-----------------------------------------
+				infoText.text = "Just waiting for the weather to lay off\nand stop pouring down..\n-----------------------------------------
 				\nItem Cost: 15 Tokens | Your Tokens: " + ClientPrefs.tokens;
 			}
 			else
 			{
 				infoTitle.text = "Rainy Daze Pass";
-				infoText.text = "Just waiting for the weather to lay off
-				and stop pouring down..\n-----------------------------------------
+				infoText.text = "Just waiting for the weather to lay off\nand stop pouring down..\n-----------------------------------------
 				\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
 			}
 
@@ -3644,8 +3637,7 @@ class ShopState extends MusicBeatState
 			equipped.y = 600;
 	
 			infoTitle.text = "Rainy Daze Pass";
-			infoText.text = "Just waiting for the weather to lay off
-			and stop pouring down..\n-----------------------------------------
+			infoText.text = "Just waiting for the weather to lay off\nand stop pouring down..\n-----------------------------------------
 			\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
 	
 			FlxG.sound.play(Paths.sound('confirmMenu'));
@@ -3684,15 +3676,13 @@ class ShopState extends MusicBeatState
 			if (ClientPrefs.debugFound == false)
 			{
 				infoTitle.text = "????????";
-				infoText.text = "Finally, he's contained!
-				Last time he got out, the game almost fucking broke.\n-----------------------------------------
+				infoText.text = "Finally, he's contained!\nLast time he got out, the game almost fucking broke.\n-----------------------------------------
 				\nItem Cost: 7 Tokens | Your Tokens: " + ClientPrefs.tokens;
 			}
 			else
 			{
 				infoTitle.text = "Marauder Pass";
-				infoText.text = "Finally, he's contained!
-				Last time he got out, the game almost fucking broke.\n-----------------------------------------
+				infoText.text = "Finally, he's contained!\nLast time he got out, the game almost fucking broke.\n-----------------------------------------
 				\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
 			}
 
@@ -3718,8 +3708,7 @@ class ShopState extends MusicBeatState
 			equipped.y = 600;
 	
 			infoTitle.text = "Marauder Pass";
-			infoText.text = "Finally, he's contained!
-			Last time he got out, the game almost fucking broke.\n-----------------------------------------
+			infoText.text = "Finally, he's contained!\nLast time he got out, the game almost fucking broke.\n-----------------------------------------
 			\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
 	
 			FlxG.sound.play(Paths.sound('confirmMenu'));
@@ -3758,15 +3747,13 @@ class ShopState extends MusicBeatState
 			if (ClientPrefs.susWeekFound == false)
 			{
 				infoTitle.text = "??? ????";
-				infoText.text = "I don't know man, this item seems kind of sus..
-				It looks like another IMPOSTOR is AMONG US-\n-----------------------------------------
+				infoText.text = "I don't know man, this item seems kind of sus..\nIt looks like another IMPOSTOR is AMONG US-\n-----------------------------------------
 				\nItem Cost: 20 Tokens | Your Tokens: " + ClientPrefs.tokens;
 			}
 			else
 			{
 				infoTitle.text = "Sus Week Pass";
-				infoText.text = "I don't know man, this item seems kind of sus..
-				It looks like another IMPOSTOR is AMONG US-\n-----------------------------------------
+				infoText.text = "I don't know man, this item seems kind of sus..\nIt looks like another IMPOSTOR is AMONG US-\n-----------------------------------------
 				\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
 			}
 
@@ -3794,8 +3781,7 @@ class ShopState extends MusicBeatState
 			equipped.y = 600;
 	
 			infoTitle.text = "Sus Week Pass";
-			infoText.text = "I don't know man, this item seems kind of sus..
-			It looks like another IMPOSTOR is AMONG US-\n-----------------------------------------
+			infoText.text = "I don't know man, this item seems kind of sus..\nIt looks like another IMPOSTOR is AMONG US-\n-----------------------------------------
 			\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
 	
 			FlxG.sound.play(Paths.sound('confirmMenu'));
@@ -3834,15 +3820,13 @@ class ShopState extends MusicBeatState
 			if (ClientPrefs.dsideWeekFound == false)
 			{
 				infoTitle.text = "?-????? ????";
-				infoText.text = "Oooo~ This looks like a dope Cassette tape.
-				I wonder what's inside?\n-----------------------------------------
+				infoText.text = "Oooo~ This looks like a dope Cassette tape.\nI wonder what's inside?\n-----------------------------------------
 				\nItem Cost: 25 Tokens | Your Tokens: " + ClientPrefs.tokens;
 			}
 			else
 			{
 				infoTitle.text = "D-sides Week Pass";
-				infoText.text = "Oooo~ This looks like a dope Cassette tape.
-				I wonder what's inside?\n-----------------------------------------
+				infoText.text = "Oooo~ This looks like a dope Cassette tape.\nI wonder what's inside?\n-----------------------------------------
 				\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
 			}
 
@@ -3870,8 +3854,7 @@ class ShopState extends MusicBeatState
 			equipped.y = 600;
 	
 			infoTitle.text = "D-sides Week Pass";
-			infoText.text = "Oooo~ This looks like a dope Cassette tape.
-			I wonder what's inside?\n-----------------------------------------
+			infoText.text = "Oooo~ This looks like a dope Cassette tape.\nI wonder what's inside?\n-----------------------------------------
 			\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
 	
 			FlxG.sound.play(Paths.sound('confirmMenu'));
@@ -3924,17 +3907,13 @@ class ShopState extends MusicBeatState
 			if (ClientPrefs.zeelNakedPics == false)
 			{
 				infoTitle.text = "Zeel's Naked Pics";
-				infoText.text = "Earning this item unlocks Zeel's Naked Pics!
-				Press EQUIPPED to view~\n
-				!!BACK ON IT'S NORMAL PRIZE!!\n-----------------------------------------
+				infoText.text = "Earning this item unlocks Zeel's Naked Pics!\nPress EQUIPPED to view~\n!!BACK ON IT'S NORMAL PRIZE!!\n-----------------------------------------
 				\nItem Cost: 75 Tokens | Your Tokens: " + ClientPrefs.tokens;
 			}
 			else
 			{
 				infoTitle.text = "Zeel's Naked Pics";
-				infoText.text = "Earning this item unlocks Zeel's Naked Pics!
-				\nPress EQUIPPED to view~\n
-				!!BACK ON IT'S NORMAL PRIZE!!\n-----------------------------------------
+				infoText.text = "Earning this item unlocks Zeel's Naked Pics!\nPress EQUIPPED to view~\n!!BACK ON IT'S NORMAL PRIZE!!\n-----------------------------------------
 				\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
 			}
 
@@ -3967,9 +3946,7 @@ class ShopState extends MusicBeatState
 			ClientPrefs.saveSettings();
 						
 			infoTitle.text = "Zeel's Naked Pics";
-			infoText.text = "Earning this item unlocks Zeel's Naked Pics!
-			\nPress EQUIPPED to view~\n
-			!!BACK ON IT'S NORMAL PRIZE!!\n-----------------------------------------
+			infoText.text = "Earning this item unlocks Zeel's Naked Pics!\nPress EQUIPPED to view~\n!!BACK ON IT'S NORMAL PRIZE!!\n-----------------------------------------
 			\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
 		
 			FlxG.sound.play(Paths.sound('confirmMenu'));
@@ -4022,15 +3999,13 @@ class ShopState extends MusicBeatState
 			if (ClientPrefs.trampolineUnlocked == false)
 			{
 				infoTitle.text = "Trampoline Mode";
-				infoText.text = "Earning this item unlocks Trampoline Mode!
-				\nTo use once you buy it, make sure you enable it through options >> FNV Settings!\n-----------------------------------------
+				infoText.text = "Earning this item unlocks Trampoline Mode!\nTo use once you buy it, make sure you enable it through options >> FNV Settings!\n-----------------------------------------
 				\nItem Cost: 15 Tokens | Your Tokens: " + ClientPrefs.tokens;
 			}
 			else
 			{
 				infoTitle.text = "Trampoline Mode";
-				infoText.text = "Earning this item unlocks Trampoline Mode!
-				\nTo use once you buy it, make sure you enable it through options >> FNV Settings!\n-----------------------------------------
+				infoText.text = "Earning this item unlocks Trampoline Mode!\nTo use once you buy it, make sure you enable it through options >> FNV Settings!\n-----------------------------------------
 				\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
 			}
 	
@@ -4068,8 +4043,7 @@ class ShopState extends MusicBeatState
 			ClientPrefs.saveSettings();
 						
 			infoTitle.text = "Trampoline Mode";
-			infoText.text = "Earning this item unlocks Trampoline Mode!
-			\nTo use once you buy it, make sure you enable it through options >> FNV Settings!\n-----------------------------------------
+			infoText.text = "Earning this item unlocks Trampoline Mode!\nTo use once you buy it, make sure you enable it through options >> FNV Settings!\n-----------------------------------------
 			\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
 		
 			FlxG.sound.play(Paths.sound('confirmMenu'));
@@ -4120,8 +4094,7 @@ class ShopState extends MusicBeatState
 				FlxTween.tween(equipped, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 
 				infoTitle.text = "Egg";
-				infoText.text = "It's... an egg.
-				\nMaybe not good for consuming it yourself, but someone else might be able to do so!\n-----------------------------------------
+				infoText.text = "It's... an egg.\nMaybe not good for consuming it yourself, but someone else might be able to do so!\n-----------------------------------------
 				\nItem Cost: 3 | Your Tokens: " + ClientPrefs.tokens + " | Eggs Owned: " + ClientPrefs.eggs;
 		
 				FlxTween.tween(prize1, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
@@ -4153,8 +4126,7 @@ class ShopState extends MusicBeatState
 				ClientPrefs.saveSettings();
 							
 				infoTitle.text = "Egg";
-				infoText.text = "It's... an egg.
-				\nMaybe not good for consuming it yourself, but someone else might be able to.!\n-----------------------------------------
+				infoText.text = "It's... an egg.\nMaybe not good for consuming it yourself, but someone else might be able to.!\n-----------------------------------------
 				\nItem Cost: 3 | Your Tokens: " + ClientPrefs.tokens + " | Eggs Owned: " + ClientPrefs.eggs;
 			
 				FlxG.sound.play(Paths.sound('confirmMenu'));
@@ -4183,15 +4155,11 @@ class ShopState extends MusicBeatState
 		
 				infoTitle.text = "Resistance Charm";
 				if (ClientPrefs.resCharmCollected == false)
-					infoText.text = "Uncomfortable to wear, but it is pretty protectable!
-				This Charm helps you resist health drain by over 50%!
-				nOnce it's activated, you cannot use any other charms until you enter a new song!\n-----------------------------------------
-								\nItem Cost: 20 Tokens | Your Tokens: " + ClientPrefs.tokens;
+					infoText.text = "Uncomfortable to wear, but it is pretty protectable!\nThis Charm helps you resist health drain by over 50%!\nRemember, only 1 charm per song!\n-----------------------------------------
+					\nItem Cost: 20 Tokens | Your Tokens: " + ClientPrefs.tokens;
 				else
-					infoText.text = "Uncomfortable to wear, but it is pretty protectable!
-				This Charm helps you resist health drain by over 50%!
-				Once it's activated, you cannot use any other charms until you enter a new song!\n-----------------------------------------
-								\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
+					infoText.text = "Uncomfortable to wear, but it is pretty protectable!\nThis Charm helps you resist health drain by over 50%!\nRemember, only 1 charm per song!\n-----------------------------------------
+					\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
 		
 				FlxTween.tween(prize1, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 				FlxTween.tween(prize2, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
@@ -4218,10 +4186,8 @@ class ShopState extends MusicBeatState
 					ClientPrefs.saveSettings();
 							
 					infoTitle.text = "Resistance Charm";
-					infoText.text = "Uncomfortable to wear, but it is pretty protectable!
-					This Charm helps you resist health drain by over 50%!
-					Once it's activated, you cannot use any other charms until you enter a new song!\n-----------------------------------------
-									\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
+					infoText.text = infoText.text = "Uncomfortable to wear, but it is pretty protectable!\nThis Charm helps you resist health drain by over 50%!\nRemember, only 1 charm per song!\n-----------------------------------------
+						\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
 			
 					FlxG.sound.play(Paths.sound('confirmMenu'));
 					FlxG.sound.play(Paths.sound('shop/mouseClick'));
@@ -4258,13 +4224,11 @@ class ShopState extends MusicBeatState
 		
 				infoTitle.text = "Auto Dodge Charm";
 				if (ClientPrefs.autoCharmCollected == false)
-				infoText.text = "This Charm makes you agile,
-				meaning you're hard to be hit by enemies!\nOnce it's activated, you cannot use any other charms until you enter a new song!\n-----------------------------------------
-								\nItem Cost: 25 Tokens | Your Tokens: " + ClientPrefs.tokens;
+					infoText.text = "This Charm makes you agile, meaning\nyou're hard to be hit by enemies!\nRemember, only 1 charm per song!\n-----------------------------------------
+					\nItem Cost: 25 Tokens | Your Tokens: " + ClientPrefs.tokens;
 				else
-					infoText.text = "This Charm makes you agile,
-				meaning you're hard to be hit by enemies!\nOnce it's activated, you cannot use any other charms until you enter a new song!\n-----------------------------------------
-								\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
+					infoText.text = "This Charm makes you agile, meaning\nyou're hard to be hit by enemies!\nRemember, only 1 charm per song!\n-----------------------------------------
+					\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
 		
 				FlxTween.tween(prize7, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 				FlxTween.tween(prize8, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
@@ -4293,8 +4257,8 @@ class ShopState extends MusicBeatState
 					ClientPrefs.saveSettings();
 							
 					infoTitle.text = "Auto Dodge Charm";
-					infoText.text = "This Charm makes you agile, meaning you're hard to be hit by enemies!\nOnce it's activated, you cannot use any other charms until you enter a new song!\n-----------------------------------------
-									\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
+					infoText.text = "This Charm makes you agile, meaning\nyou're hard to be hit by enemies!\nRemember, only 1 charm per song!\n-----------------------------------------
+						\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
 			
 					FlxG.sound.play(Paths.sound('confirmMenu'));
 					FlxG.sound.play(Paths.sound('shop/mouseClick'));
@@ -4331,17 +4295,11 @@ class ShopState extends MusicBeatState
 		
 				infoTitle.text = "Healing Charm";
 				if (ClientPrefs.healCharmCollected == false)
-					infoText.text = "Don''t you just hate when you lose health?
-				Don't worry, this Charm gives you the ability to regain health!
-				You have 10 uses per song!
-				Once it's activated, you cannot use any other charms until you enter a new song!\n-----------------------------------------
-								\nItem Cost: 25 Tokens | Your Tokens: " + ClientPrefs.tokens;
+					infoText.text = "Don't you just hate when you lose health?\nDon't worry, this Charm gives you the\nability to regain health!\nYou have 10 uses per song!\nRemember, only 1 charm per song!\n-----------------------------------------
+					\nItem Cost: 25 Tokens | Your Tokens: " + ClientPrefs.tokens;
 				else
-					infoText.text = "Don''t you just hate when you lose health?
-				Don't worry, this Charm gives you the ability to regain health!
-				You have 10 uses per song!
-				Once it's activated, you cannot use any other charms until you enter a new song!\n-----------------------------------------
-								\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
+					infoText.text = "Don't you just hate when you lose health?\nDon't worry, this Charm gives you the\nability to regain health!\nYou have 10 uses per song!\nRemember, only 1 charm per song!\n-----------------------------------------
+					\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
 		
 				FlxTween.tween(prize12, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 				FlxTween.tween(prize13, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
@@ -4368,10 +4326,7 @@ class ShopState extends MusicBeatState
 					ClientPrefs.saveSettings();
 							
 					infoTitle.text = "Healing Charm";
-					infoText.text = "Don''t you just hate when you lose health?
-					Don't worry, this Charm gives you the ability to regain health!
-					You have 10 uses per song!
-					Once it's activated, you cannot use any other charms until you enter a new song!\n-----------------------------------------
+					infoText.text = "Don't you just hate when you lose health?\nDon't worry, this Charm gives you\nthe ability to regain health!\nYou have 10 uses per song!\nRemember, only 1 charm per song!\n-----------------------------------------
 					\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
 			
 					FlxG.sound.play(Paths.sound('confirmMenu'));
