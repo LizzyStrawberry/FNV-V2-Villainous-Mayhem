@@ -810,16 +810,18 @@ class ShopState extends MusicBeatState
 			}
 		}
 
-		if (FlxG.keys.justPressed.EIGHT)
-		{
-			ClientPrefs.tokens += 1;
-			//ClientPrefs.saveSettings();
-		}			
-		if (FlxG.keys.justPressed.SEVEN && ClientPrefs.tokens > 0)
-		{
-			ClientPrefs.tokens -= 1;
-			//ClientPrefs.saveSettings();
-		}
+		#if DEBUG_ALLOWED
+			if (FlxG.keys.justPressed.EIGHT)
+			{
+				ClientPrefs.tokens += 1;
+				//ClientPrefs.saveSettings();
+			}			
+			if (FlxG.keys.justPressed.SEVEN && ClientPrefs.tokens > 0)
+			{
+				ClientPrefs.tokens -= 1;
+				//ClientPrefs.saveSettings();
+			}
+		#end
 		if (controls.BACK || FlxG.mouse.justPressedRight)
 			{
 				//Prize Pool Section
