@@ -423,6 +423,9 @@ class ResultsScreenState extends MusicBeatState
                     info.text = "Total Score: <G>" + PlayState.freeplayScore + "<G>\nTotal Misses: <G>" + PlayState.freeplayMisses + "<G>\nTotal Rating: <G>" + FlxMath.roundDecimal((ClientPrefs.campaignRating / ClientPrefs.campaignSongsPlayed) * 100, 2) + "%<G>\nBest Note Combo: <G>" + ClientPrefs.campaignBestCombo + "<G>";
                 }
                 CustomFontFormats.addMarkers(info);
+
+                info.scale.set(1.075, 1.075);
+                FlxTween.tween(info.scale, {x: 1, y: 1}, 1.5, {ease: FlxEase.circOut, type: PERSIST});
             });
         }
 
