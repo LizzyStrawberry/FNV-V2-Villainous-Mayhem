@@ -36,8 +36,9 @@ class TokenAchievement extends MusicBeatState
 	var tokenIcon:FlxSprite;
 	var tokenSub:Int = 0;
 	var bgGradient:FlxSprite;
-	var trail: FlxTrail;
-	var textTrail: FlxTrail;
+	var trail:FlxTrail;
+	var textTrail:FlxTrail;
+	var bonusTokens:FlxText;
 
 	override function create()
 	{
@@ -59,6 +60,13 @@ class TokenAchievement extends MusicBeatState
 		tokenIcon.updateHitbox();
 		tokenIcon.antialiasing = ClientPrefs.globalAntialiasing;
 
+		if (PlayState.checkForPowerUp == false)
+		{
+			bonusTokens = new FlxText(340, 130, FlxG.width, "No Power Up Bonus! -> +5", 40);
+			bonusTokens.alpha = 0;
+			bonusTokens.color = FlxColor.YELLOW;
+		}
+
 		bgGradient = new FlxSprite(0, 0).loadGraphic(Paths.image('pauseGradient/gradient_Null'));
 		bgGradient.color = 0xFF00a800;
 		bgGradient.x = 100;
@@ -70,6 +78,7 @@ class TokenAchievement extends MusicBeatState
 		add(bgGradient);
 		add(tokenIcon);
 		add(currentTokens);
+		add(bonusTokens);
 
 		trail = new FlxTrail(tokenIcon, null, 2, 3, 0.3, 0.069); //nice
 		add(trail);
@@ -91,6 +100,7 @@ class TokenAchievement extends MusicBeatState
 	}
 
 	var soundPlayed:Bool = false;
+	var bonusSoundPlayed:Bool = false;
 	var tweenPlayed:Bool = false;
 	override function update(elapsed:Float)
 	{
@@ -99,17 +109,46 @@ class TokenAchievement extends MusicBeatState
 			
 			if (soundPlayed == false)
 			{
-			FlxG.sound.play(Paths.sound('tokensAchieved'));
+				FlxG.sound.play(Paths.sound('tokensAchieved'));
 
-			currentTokens.scale.x = 1.075;
-			currentTokens.scale.y = 1.075;
+				currentTokens.scale.x = 1.075;
+				currentTokens.scale.y = 1.075;
 
-			tokenIcon.scale.x = 0.975;
-			tokenIcon.scale.y = 0.975;
+				tokenIcon.scale.x = 0.975;
+				tokenIcon.scale.y = 0.975;
 
-			FlxTween.tween(currentTokens.scale, {x: 1, y: 1}, 0.6, {ease: FlxEase.cubeOut, type: PERSIST});
-			FlxTween.tween(tokenIcon.scale, {x: 0.8, y: 0.8}, 0.6, {ease: FlxEase.cubeOut, type: PERSIST});
-			soundPlayed = true;
+				FlxTween.tween(currentTokens.scale, {x: 1, y: 1}, 0.6, {ease: FlxEase.cubeOut, type: PERSIST});
+				FlxTween.tween(tokenIcon.scale, {x: 0.8, y: 0.8}, 0.6, {ease: FlxEase.cubeOut, type: PERSIST});
+				soundPlayed = true;
+			}
+
+			if (PlayState.checkForPowerUp == false)
+			{
+				new FlxTimer().start(0.6, function (tmr:FlxTimer) {
+					if (bonusSoundPlayed == false)
+					{
+						ClientPrefs.tokens += 5;
+						currentTokens.text = "Current Tokens: " + ClientPrefs.tokens;
+		
+						FlxG.sound.play(Paths.sound('bonusTokens'));
+						bonusTokens.alpha = 1;
+						bonusTokens.scale.x = 1.075;
+						bonusTokens.scale.y = 1.075;
+
+						currentTokens.scale.x = 1.075;
+						currentTokens.scale.y = 1.075;
+		
+						tokenIcon.scale.x = 0.975;
+						tokenIcon.scale.y = 0.975;
+		
+						FlxTween.tween(bonusTokens, {alpha: 0}, 0.6, {ease: FlxEase.cubeOut, type: PERSIST});
+						FlxTween.tween(bonusTokens, {y: bonusTokens.y - 30}, 0.6, {ease: FlxEase.cubeOut, type: PERSIST});
+						FlxTween.tween(bonusTokens.scale, {x: 1, y: 1}, 0.6, {ease: FlxEase.cubeOut, type: PERSIST});
+						FlxTween.tween(currentTokens.scale, {x: 1, y: 1}, 0.6, {ease: FlxEase.cubeOut, type: PERSIST});
+						FlxTween.tween(tokenIcon.scale, {x: 0.8, y: 0.8}, 0.6, {ease: FlxEase.cubeOut, type: PERSIST});
+						bonusSoundPlayed = true;
+					}
+				});
 			}
 
 			new FlxTimer().start(2, function (tmr:FlxTimer) {

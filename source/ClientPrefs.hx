@@ -108,7 +108,7 @@ class ClientPrefs {
 	*/
 	public static var resistanceCharm:Int = 0;
 	public static var autoCharm:Int = 0;
-	public static var healingCharm:Int = 0;
+	public static var healingCharm:Int = -1;
 
 	public static var resCharmCollected:Bool = false;
 	public static var autoCharmCollected:Bool = false;

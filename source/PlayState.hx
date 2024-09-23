@@ -143,6 +143,8 @@ class PlayState extends MusicBeatState
 	public var playbackRate(default, set):Float = 1;
 	public static var playbackRateFreeplay:Bool = false;
 
+	public static var checkForPowerUp:Bool = false;
+	
 	public var boyfriendGroup:FlxSpriteGroup;
 	public var dadGroup:FlxSpriteGroup;
 	public var gfGroup:FlxSpriteGroup;
@@ -4615,7 +4617,10 @@ class PlayState extends MusicBeatState
 				#if !switch
 				var percent:Float = ratingPercent;
 				if(Math.isNaN(percent)) percent = 0;
-				Highscore.saveScore(SONG.song, songScore, storyDifficulty, percent);
+				if (!checkForPowerUp)
+					Highscore.saveScore(SONG.song, (songScore + 15000), storyDifficulty, percent);
+				else
+					Highscore.saveScore(SONG.song, songScore, storyDifficulty, percent);
 				if (Paths.formatToSongPath(SONG.song) == 'nunconventional-simp')
 					Highscore.saveScore('Nunconventional', songScore, storyDifficulty, percent);
 				if (Paths.formatToSongPath(SONG.song) == 'nunsational-simp')
@@ -4665,6 +4670,9 @@ class PlayState extends MusicBeatState
 					if(FlxTransitionableState.skipNextTransIn) {
 						CustomFadeTransition.nextCamera = null;
 					}
+
+					if (!PlayState.checkForPowerUp)
+						PlayState.campaignScore += 75000;
 					
 					if (ClientPrefs.getGameplaySetting('practice', false) || ClientPrefs.getGameplaySetting('botplay', false)) //This means you used either Botplay or Practice mode
 					{
@@ -4898,9 +4906,13 @@ class PlayState extends MusicBeatState
 						if(FlxTransitionableState.skipNextTransIn) {
 							CustomFadeTransition.nextCamera = null;
 						}
+
+						if (!PlayState.checkForPowerUp)
+							PlayState.campaignScore += 50000;
 						
 						if (ClientPrefs.getGameplaySetting('practice', false) || ClientPrefs.getGameplaySetting('botplay', false)) //This means you used either Botplay or Practice mode
 						{
+							checkForPowerUp = false;
 							FlxG.sound.playMusic(Paths.music('freakyMenu'));
 							MusicBeatState.switchState(new MainMenuState());
 							trace('TOKEN NUMBER AS OF RN: ' + ClientPrefs.tokens);					
@@ -5109,6 +5121,8 @@ class PlayState extends MusicBeatState
 			}
 			else
 			{
+				if (!checkForPowerUp)
+					songScore += 15000;
 				freeplayScore += songScore;
 				freeplayMisses += songMisses;
 				ClientPrefs.campaignRating += ratingPercent;
@@ -5190,6 +5204,12 @@ class PlayState extends MusicBeatState
 					ClientPrefs.saveSettings();
 					trace('TOKEN NUMBER AS OF RN: ' + ClientPrefs.tokens);
 					trace('TOKENS ACHIEVED: ' + ClientPrefs.tokensAchieved);
+					if (SONG.validScore)
+					{
+						var percent:Float = ratingPercent;
+						if(Math.isNaN(percent)) percent = 0;
+						Highscore.saveScore(SONG.song, songScore, storyDifficulty, percent);
+					}
 				}
 				if (Paths.formatToSongPath(SONG.song) == 'couple-clash')
 				{

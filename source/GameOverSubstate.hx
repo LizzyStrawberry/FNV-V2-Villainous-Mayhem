@@ -99,6 +99,7 @@ class GameOverSubstate extends MusicBeatSubstate
 
 		if (PlayState.isInjectionMode)
 		{
+			PlayState.checkForPowerUp = true; //Don't give bonus!
 			injected = true;
 			PlayState.deathCounter = 0;
 			PlayState.seenCutscene = false;
@@ -111,6 +112,10 @@ class GameOverSubstate extends MusicBeatSubstate
 
 		if (PlayState.isMayhemMode)
 		{
+			if (PlayState.mayhemSongsPlayed < 1)
+				PlayState.checkForPowerUp = true; //Don't give bonus!
+			if (!PlayState.checkForPowerUp)
+				PlayState.campaignScore += 50000;
 			mayhemed = true;
 			ClientPrefs.ghostTapping = true; //Reset this
 			PlayState.deathCounter = 0;
@@ -252,7 +257,8 @@ class GameOverSubstate extends MusicBeatSubstate
 				PlayState.deathCounter = 0;
 				PlayState.seenCutscene = false;
 				PlayState.chartingMode = false;
-	
+				PlayState.checkForPowerUp = false;
+				
 				WeekData.loadTheFirstEnabledMod();
 
 				ClientPrefs.lowQuality = false;

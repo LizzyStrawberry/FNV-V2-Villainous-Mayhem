@@ -632,6 +632,7 @@ class PauseSubState extends MusicBeatSubstate
 					PlayState.changedDifficulty = true;
 					practiceText.visible = PlayState.instance.practiceMode;
 				case "Restart Song":
+					PlayState.checkForPowerUp = false;
 					restartSong();
 				case "Quick Settings":
 					openQuickSettings();
@@ -654,7 +655,7 @@ class PauseSubState extends MusicBeatSubstate
 				case "Give up":
 					PlayState.deathCounter = 0;
 					PlayState.seenCutscene = false;
-
+					PlayState.checkForPowerUp = false;
 					WeekData.loadTheFirstEnabledMod();
 
 					ClientPrefs.lowQuality = false;

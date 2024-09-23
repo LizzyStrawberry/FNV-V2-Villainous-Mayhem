@@ -99,6 +99,7 @@ class ResultsScreenState extends MusicBeatState
     var curNum:Int;
     var curColor:String;
     var previousColor:String;
+    var powerUpBonus:Int = 0;
 
     override public function create()
     {
@@ -107,6 +108,20 @@ class ResultsScreenState extends MusicBeatState
 		DiscordClient.changePresence("Results!", null);
 		#end
 
+        if (PlayState.checkForPowerUp == false)
+        {
+            if (PlayState.isInjectionMode)
+                powerUpBonus = 50000;
+            else if (PlayState.isMayhemMode)
+                powerUpBonus = 50000;
+            else if (PlayState.isStoryMode)
+                powerUpBonus = 75000;
+            else if (!PlayState.isStoryMode && !PlayState.isIniquitousMode && !PlayState.isInjectionMode && !PlayState.isMayhemMode)
+                powerUpBonus = 15000;
+        }
+        else
+            powerUpBonus = 0;
+        
         curNum = 0;
         curColor = colors[curNum];
         previousColor = curColor;
@@ -343,28 +358,73 @@ class ResultsScreenState extends MusicBeatState
             if (PlayState.isInjectionMode)
             {
                 if (PlayState.injectionSongsPlayed < 1)
-                    info.text = "Total Score: <R>" + PlayState.injectionScore + "<R>\nTotal Misses: <R>0<R>\nAverage Rating: <R>0%<R>\nBest Note Combo: <R>0<R>\nTotal Songs Played: <R>0 / " + PlayState.injectionPlaylistTotal + "<R>";
+                    info.text = "Total Score: <R>" + (PlayState.injectionScore - powerUpBonus) + "<R>\nTotal Misses: <R>0<R>\nAverage Rating: <R>0%<R>\nBest Note Combo: <R>0<R>\nTotal Songs Played: <R>0 / " + PlayState.injectionPlaylistTotal + "<R>";
                 else
-                    info.text = "Total Score: <G>" + PlayState.injectionScore + "<G>\nTotal Misses: <G>" + PlayState.injectionMisses + "<G>\nAverage Rating: <G>" + FlxMath.roundDecimal((PlayState.injectionRating / PlayState.injectionSongsPlayed) * 100, 2) + "%<G>\nBest Note Combo: <G>" + PlayState.injectionBestCombo + "<G>\nTotal Songs Played: <G>" + PlayState.injectionSongsPlayed + " / " + PlayState.injectionPlaylistTotal + "<G>";
+                    info.text = "Total Score: <G>" + (PlayState.injectionScore - powerUpBonus) + "<G>\nTotal Misses: <G>" + PlayState.injectionMisses + "<G>\nAverage Rating: <G>" + FlxMath.roundDecimal((PlayState.injectionRating / PlayState.injectionSongsPlayed) * 100, 2) + "%<G>\nBest Note Combo: <G>" + PlayState.injectionBestCombo + "<G>\nTotal Songs Played: <G>" + PlayState.injectionSongsPlayed + " / " + PlayState.injectionPlaylistTotal + "<G>";
             }
             else if (PlayState.isMayhemMode)
             {
                 if (PlayState.mayhemSongsPlayed < 1)
-                    info.text = "Total Score: <R>" + PlayState.mayhemScore +"<R>\nAverage Rating: <R>0%<R>\nBest Note Combo: <R>0<R>\nTotal Challenges Beaten: <R>0<R>\nTotal Songs Beaten: <R>0<R>";
+                    info.text = "Total Score: <R>" + (PlayState.mayhemScore - powerUpBonus) +"<R>\nAverage Rating: <R>0%<R>\nBest Note Combo: <R>0<R>\nTotal Challenges Beaten: <R>0<R>\nTotal Songs Beaten: <R>0<R>";
                 else
-                    info.text = "Total Score: <G>" + PlayState.mayhemScore +"<G>\nAverage Rating: <G>" + FlxMath.roundDecimal((PlayState.mayhemRating / PlayState.mayhemSongsPlayed) * 100, 2) + "%<G>\nBest Note Combo: <G>" + PlayState.mayhemBestCombo + "<G>\nTotal Challenges Beaten: <G>" + PlayState.mayhemTotalChallenges + "<G>\nTotal Songs Beaten: <G>" + PlayState.mayhemSongsPlayed + "<G>";
+                    info.text = "Total Score: <G>" + (PlayState.mayhemScore - powerUpBonus) +"<G>\nAverage Rating: <G>" + FlxMath.roundDecimal((PlayState.mayhemRating / PlayState.mayhemSongsPlayed) * 100, 2) + "%<G>\nBest Note Combo: <G>" + PlayState.mayhemBestCombo + "<G>\nTotal Challenges Beaten: <G>" + PlayState.mayhemTotalChallenges + "<G>\nTotal Songs Beaten: <G>" + PlayState.mayhemSongsPlayed + "<G>";
             }
             else if (PlayState.isStoryMode)
             {
-                 info.text = "Total Score: <G>" + PlayState.campaignScore + "<G>\nTotal Misses: <G>" + PlayState.campaignMisses + "<G>\nAverage Rating: <G>" + FlxMath.roundDecimal((ClientPrefs.campaignRating / ClientPrefs.campaignSongsPlayed) * 100, 2) + "%<G>\nBest Note Combo: <G>" + ClientPrefs.campaignBestCombo + "<G>";
+                 info.text = "Total Score: <G>" + (PlayState.campaignScore - powerUpBonus) + "<G>\nTotal Misses: <G>" + PlayState.campaignMisses + "<G>\nAverage Rating: <G>" + FlxMath.roundDecimal((ClientPrefs.campaignRating / ClientPrefs.campaignSongsPlayed) * 100, 2) + "%<G>\nBest Note Combo: <G>" + ClientPrefs.campaignBestCombo + "<G>";
             }
             else if (!PlayState.isStoryMode && !PlayState.isIniquitousMode && !PlayState.isInjectionMode && !PlayState.isMayhemMode)
             {
-                 info.text = "Total Score: <G>" + PlayState.freeplayScore + "<G>\nTotal Misses: <G>" + PlayState.freeplayMisses + "<G>\nTotal Rating: <G>" + FlxMath.roundDecimal((ClientPrefs.campaignRating / ClientPrefs.campaignSongsPlayed) * 100, 2) + "%<G>\nBest Note Combo: <G>" + ClientPrefs.campaignBestCombo + "<G>";
+                 info.text = "Total Score: <G>" + (PlayState.freeplayScore - powerUpBonus) + "<G>\nTotal Misses: <G>" + PlayState.freeplayMisses + "<G>\nTotal Rating: <G>" + FlxMath.roundDecimal((ClientPrefs.campaignRating / ClientPrefs.campaignSongsPlayed) * 100, 2) + "%<G>\nBest Note Combo: <G>" + ClientPrefs.campaignBestCombo + "<G>";
             }
             CustomFontFormats.addMarkers(info);
             FlxTween.tween(char, {y: char.y + 10}, 2.2, {ease: FlxEase.cubeInOut, type: PINGPONG});
         });
+
+        if (powerUpBonus != 0) //Power up hasn't been used!
+        {
+            new FlxTimer().start(3.6, function(tmr:FlxTimer)
+            {
+                var bonusText:FlxText = new FlxText(info.x + 50, info.y - 50, FlxG.width,
+                "No Power Up Bonus! -> +" + powerUpBonus,
+                26);
+                bonusText.setFormat("SF Atarian System Bold Italic", 50, FlxColor.YELLOW, LEFT, FlxTextBorderStyle.OUTLINE, 0xFF000000);
+                bonusText.alpha = 1;
+                bonusText.borderSize = 3;
+                add(bonusText);
+                FlxG.sound.play(Paths.sound('bonusPoints'));
+                FlxFlicker.flicker(bonusText, 999, 0.08, false, false);
+
+                FlxTween.tween(bonusText, {y: bonusText.y - 20}, 1.5, {ease: FlxEase.circOut, type: PERSIST});
+                FlxTween.tween(bonusText, {alpha: 0}, 1.5, {ease: FlxEase.circOut, type: PERSIST});
+
+                if (PlayState.isInjectionMode)
+                {
+                    PlayState.injectionScore += powerUpBonus;
+                    if (PlayState.injectionSongsPlayed < 1)
+                        info.text = "Total Score: <R>" + PlayState.injectionScore + "<R>\nTotal Misses: <R>0<R>\nAverage Rating: <R>0%<R>\nBest Note Combo: <R>0<R>\nTotal Songs Played: <R>0 / " + PlayState.injectionPlaylistTotal + "<R>";
+                    else
+                        info.text = "Total Score: <G>" + PlayState.injectionScore + "<G>\nTotal Misses: <G>" + PlayState.injectionMisses + "<G>\nAverage Rating: <G>" + FlxMath.roundDecimal((PlayState.injectionRating / PlayState.injectionSongsPlayed) * 100, 2) + "%<G>\nBest Note Combo: <G>" + PlayState.injectionBestCombo + "<G>\nTotal Songs Played: <G>" + PlayState.injectionSongsPlayed + " / " + PlayState.injectionPlaylistTotal + "<G>";
+                }
+                else if (PlayState.isMayhemMode)
+                {
+                    PlayState.mayhemScore += powerUpBonus;
+                    if (PlayState.mayhemSongsPlayed < 1)
+                        info.text = "Total Score: <R>" + PlayState.mayhemScore +"<R>\nAverage Rating: <R>0%<R>\nBest Note Combo: <R>0<R>\nTotal Challenges Beaten: <R>0<R>\nTotal Songs Beaten: <R>0<R>";
+                    else
+                        info.text = "Total Score: <G>" + PlayState.mayhemScore +"<G>\nAverage Rating: <G>" + FlxMath.roundDecimal((PlayState.mayhemRating / PlayState.mayhemSongsPlayed) * 100, 2) + "%<G>\nBest Note Combo: <G>" + PlayState.mayhemBestCombo + "<G>\nTotal Challenges Beaten: <G>" + PlayState.mayhemTotalChallenges + "<G>\nTotal Songs Beaten: <G>" + PlayState.mayhemSongsPlayed + "<G>";
+                }
+                else if (PlayState.isStoryMode)
+                {
+                    info.text = "Total Score: <G>" + PlayState.campaignScore + "<G>\nTotal Misses: <G>" + PlayState.campaignMisses + "<G>\nAverage Rating: <G>" + FlxMath.roundDecimal((ClientPrefs.campaignRating / ClientPrefs.campaignSongsPlayed) * 100, 2) + "%<G>\nBest Note Combo: <G>" + ClientPrefs.campaignBestCombo + "<G>";
+                }
+                else if (!PlayState.isStoryMode && !PlayState.isIniquitousMode && !PlayState.isInjectionMode && !PlayState.isMayhemMode)
+                {
+                    info.text = "Total Score: <G>" + PlayState.freeplayScore + "<G>\nTotal Misses: <G>" + PlayState.freeplayMisses + "<G>\nTotal Rating: <G>" + FlxMath.roundDecimal((ClientPrefs.campaignRating / ClientPrefs.campaignSongsPlayed) * 100, 2) + "%<G>\nBest Note Combo: <G>" + ClientPrefs.campaignBestCombo + "<G>";
+                }
+                CustomFontFormats.addMarkers(info);
+            });
+        }
 
         new FlxTimer().start(4, function(tmr:FlxTimer)
         {
@@ -372,6 +432,8 @@ class ResultsScreenState extends MusicBeatState
 			FlxG.sound.music.fadeIn(6.0);
 
             FlxTween.tween(enterText, {alpha: 1}, 1.6, {ease: FlxEase.cubeInOut, type: PINGPONG});
+            
+            //New Record!
             if ((PlayState.isStoryMode && (ClientPrefs.campaignHighScore <= PlayState.campaignScore))
                 || ((!PlayState.isStoryMode && !PlayState.isIniquitousMode && !PlayState.isInjectionMode && !PlayState.isMayhemMode) && (ClientPrefs.campaignHighScore <= PlayState.freeplayScore)))
             {
@@ -453,6 +515,8 @@ class ResultsScreenState extends MusicBeatState
                     FlxG.sound.playMusic(Paths.music('freakyMenu'));
                 FlxG.sound.music.fadeIn(2.0);
             });
+
+            PlayState.checkForPowerUp = false;
 
             if (PlayState.isStoryMode)
             {

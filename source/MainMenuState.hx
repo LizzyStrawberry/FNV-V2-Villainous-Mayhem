@@ -546,7 +546,6 @@ class MainMenuState extends MusicBeatState
 			NotificationAlert.saveNotifications();
 		}
 			
-
 		var tokenShow:FlxText = new FlxText(780, 330, FlxG.width,
 			"Tokens: <GR>" + ClientPrefs.tokens + "<GR>",
 			32);
@@ -744,7 +743,7 @@ class MainMenuState extends MusicBeatState
 					if (ClientPrefs.buff2Unlocked == false)
 						buff.loadGraphic(Paths.image('inventory/buffLocked'));
 				case 3:
-					if (ClientPrefs.buff2Unlocked == false)
+					if (ClientPrefs.buff3Unlocked == false)
 						buff.loadGraphic(Paths.image('inventory/buffLocked'));
 			}
 
