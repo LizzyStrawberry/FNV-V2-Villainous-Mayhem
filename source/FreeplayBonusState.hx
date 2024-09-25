@@ -1155,11 +1155,6 @@ class FreeplayBonusState extends MusicBeatState
 		else
 			curDifficulty = 0;
 
-		if(CoolUtil.difficulties.contains(CoolUtil.nunconventionalDifficulty))
-			curDifficulty = Math.round(Math.max(0, CoolUtil.nunconventionalDifficulties.indexOf(CoolUtil.nunconventionalDifficulty)));
-		else
-			curDifficulty = 0;
-
 		if(CoolUtil.difficulties.contains(CoolUtil.tcDifficulty))
 			curDifficulty = Math.round(Math.max(0, CoolUtil.tcDifficulties.indexOf(CoolUtil.tcDifficulty)));
 		else
