@@ -877,16 +877,6 @@ class FreeplayXtraState extends MusicBeatState
 				colorTween.cancel();
 			}
 
-				if (songs[curSelected].songName == 'Nunsational')
-				{
-					if (curDifficulty == 2)
-						{
-							trace('omg Simp mode activated on Nunsational');
-							PlayState.SONG = Song.loadFromJson('nunsational-simp-simp', 'nunsational-simp');
-							LoadingState.loadAndSwitchState(new PlayState());
-						}
-				}
-
 				if (songs[curSelected].songName == 'Lustality')
 				{
 					if (ClientPrefs.mechanics == false && curDifficulty == 0)
@@ -936,7 +926,7 @@ class FreeplayXtraState extends MusicBeatState
 			}	
 
 				//To make songs have their right Icon after they first join it
-				if ((songs[curSelected].songName == 'Nunsational' || songs[curSelected].songName == 'Nunsational Simp') && ClientPrefs.nunsationalViewed == false)
+				if (songs[curSelected].songName == 'Nunsational' && ClientPrefs.nunsationalViewed == false)
 				{
 					trace('I got loaded lol, Unlocking Nunsational!');
 					ClientPrefs.nunsationalViewed = true;
@@ -1141,7 +1131,7 @@ class FreeplayXtraState extends MusicBeatState
 			CoolUtil.difficulties = CoolUtil.defaultDifficulties.copy();
 
 		if (songs[curSelected].songName == 'Nunsational')
-			CoolUtil.difficulties = CoolUtil.nunsationalDifficulties.copy();
+			CoolUtil.difficulties = CoolUtil.defaultDifficulties.copy();
 		if (songs[curSelected].songName == 'FNV')
 			CoolUtil.difficulties = CoolUtil.tcDifficulties.copy();
 		if (songs[curSelected].songName == 'Slow.FLP')
@@ -1154,11 +1144,6 @@ class FreeplayXtraState extends MusicBeatState
 			CoolUtil.difficulties = CoolUtil.defaultDifficulties.copy();
 		if (songs[curSelected].songName == 'Marauder')
 			CoolUtil.difficulties = CoolUtil.tcDifficulties.copy();
-
-		if(CoolUtil.difficulties.contains(CoolUtil.nunsationalDifficulty))
-			curDifficulty = Math.round(Math.max(0, CoolUtil.nunsationalDifficulties.indexOf(CoolUtil.nunsationalDifficulty)));
-		else
-			curDifficulty = 0;
 
 		if(CoolUtil.difficulties.contains(CoolUtil.tcDifficulty))
 			curDifficulty = Math.round(Math.max(0, CoolUtil.tcDifficulties.indexOf(CoolUtil.tcDifficulty)));

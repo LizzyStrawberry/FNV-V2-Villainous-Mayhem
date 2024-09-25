@@ -882,16 +882,6 @@ class FreeplayState extends MusicBeatState
 					colorTween.cancel();
 				}
 
-				if (songs[curSelected].songName == 'Nunconventional')
-				{
-					if (curDifficulty == 3)
-						{
-							trace('omg Simp mode activated on Nunconventional');
-							PlayState.SONG = Song.loadFromJson('nunconventional-simp-simp', 'nunconventional-simp');
-							LoadingState.loadAndSwitchState(new PlayState());
-						}
-				}
-
 				if (songs[curSelected].songName == 'Toxic Mishap')
 				{
 					if (ClientPrefs.mechanics == false && curDifficulty == 1)
@@ -963,7 +953,7 @@ class FreeplayState extends MusicBeatState
 					FlxG.sound.music.volume = 0;
 				}	
 				else if (ClientPrefs.optimizationMode == false && (songs[curSelected].songName == 'Scrouge' || songs[curSelected].songName == 'Toxic Mishap' || songs[curSelected].songName == 'Paycheck' 
-				    || songs[curSelected].songName == 'Nunday Monday' || (songs[curSelected].songName == 'Nunconventional' && curDifficulty != 3) || songs[curSelected].songName == 'Point Blank'
+				    || songs[curSelected].songName == 'Nunday Monday' || songs[curSelected].songName == 'Nunconventional' || songs[curSelected].songName == 'Point Blank'
 					|| songs[curSelected].songName == 'Lustality Remix'))
 				{
 					MusicBeatState.switchState(new CharSelector());
@@ -978,7 +968,7 @@ class FreeplayState extends MusicBeatState
 				}
 
 				//To make songs have their right Icon after the 'mystery' thingy lmaooibwoaivbadv
-				if ((songs[curSelected].songName == 'Nunconventional' || songs[curSelected].songName == 'Nunconventional Simp') && ClientPrefs.nunWeekPlayed == false)
+				if (songs[curSelected].songName == 'Nunconventional' && ClientPrefs.nunWeekPlayed == false)
 					{
 						trace('I got loaded lol, Unlocking Nunconventional!');
 						ClientPrefs.nunWeekPlayed = true;
@@ -1094,13 +1084,6 @@ class FreeplayState extends MusicBeatState
 				if (curDifficulty >= CoolUtil.difficulties.length - 1)
 					curDifficulty = 0;
 			}
-			else if (CoolUtil.difficulties.contains(CoolUtil.nunconventionalDifficulty))
-			{
-				if (curDifficulty < 0)
-					curDifficulty = CoolUtil.difficulties.length-3;
-				if (curDifficulty >= CoolUtil.difficulties.length - 2)
-					curDifficulty = 0;
-			}
 			else
 			{
 				if (curDifficulty < 0)
@@ -1182,7 +1165,7 @@ class FreeplayState extends MusicBeatState
 
 		//This if is used on songs which have the 'Iniquitous' difficulty on
 		if (songs[curSelected].songName == 'Scrouge' || songs[curSelected].songName == 'Toxic Mishap' || songs[curSelected].songName == 'Paycheck' //Week 1
-			|| songs[curSelected].songName == 'Nunday Monday'//Week 2
+			|| songs[curSelected].songName == 'Nunday Monday' || songs[curSelected].songName == 'Nunconventional'//Week 2
 			|| songs[curSelected].songName == 'Forsaken' || songs[curSelected].songName == 'Toybox' || songs[curSelected].songName == 'Lustality Remix' //Week 3
 			)
 		{	
@@ -1229,9 +1212,6 @@ class FreeplayState extends MusicBeatState
 		if (songs[curSelected].songName == 'Couple Clash')
 			CoolUtil.difficulties = CoolUtil.tcDifficulties.copy();
 
-		if (songs[curSelected].songName == 'Nunconventional')
-			CoolUtil.difficulties = CoolUtil.nunconventionalDifficulties.copy();
-
 		if (songs[curSelected].songName == 'Villainy' || songs[curSelected].songName == 'Point Blank' || songs[curSelected].songName == 'Libidinousness')
 			CoolUtil.difficulties = CoolUtil.bossFightDifficulties.copy();
 
@@ -1243,11 +1223,6 @@ class FreeplayState extends MusicBeatState
 
 		if(CoolUtil.difficulties.contains(CoolUtil.tcDifficulty))
 			curDifficulty = Math.round(Math.max(0, CoolUtil.tcDifficulties.indexOf(CoolUtil.tcDifficulty)));
-		else
-			curDifficulty = 0;
-
-		if(CoolUtil.difficulties.contains(CoolUtil.nunconventionalDifficulty))
-			curDifficulty = Math.round(Math.max(0, CoolUtil.nunconventionalDifficulties.indexOf(CoolUtil.nunconventionalDifficulty)));
 		else
 			curDifficulty = 0;
 

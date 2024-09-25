@@ -35,23 +35,6 @@ class CoolUtil
 		'Iniquitous'
 	];
 
-	public static var nunconventionalDifficulties:Array<String> = [ //Exclusively for Nunconventional lmao
-		'Casual',
-		'Villainous',
-		'Iniquitous',
-		'Simp'
-	];
-	public static var nunconventionalDifficulty:String = 'Casual';
-	public static var nunconventionalDiffs:Array<String> = [];
-
-	public static var nunsationalDifficulties:Array<String> = [ //Exclusively for Nunsational lmao
-		'Casual',
-		'Villainous',
-		'Simp'
-	];
-	public static var nunsationalDifficulty:String = 'Casual';
-	public static var nunsationalDiffs:Array<String> = [];
-
 	public static var tcDifficulties:Array<String> = [ //Exclusively for TC lmao
 		'Villainous'
 	];
