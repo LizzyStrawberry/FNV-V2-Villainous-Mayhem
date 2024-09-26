@@ -2367,8 +2367,7 @@ class PlayState extends MusicBeatState
 			}
 
 			if (Paths.formatToSongPath(SONG.song) == 'lustality' || Paths.formatToSongPath(SONG.song) == 'lustality-v1' || Paths.formatToSongPath(SONG.song) == 'lustality-remix'
-				|| Paths.formatToSongPath(SONG.song) == 'nunday-monday' || Paths.formatToSongPath(SONG.song) == 'nunconventional' || Paths.formatToSongPath(SONG.song) == 'nunconventional-simp'
-				|| Paths.formatToSongPath(SONG.song) == 'nunsational' || Paths.formatToSongPath(SONG.song) == 'nunsational-simp')
+				|| Paths.formatToSongPath(SONG.song) == 'nunday-monday' || Paths.formatToSongPath(SONG.song) == 'nunconventional' || Paths.formatToSongPath(SONG.song) == 'nunsational' )
 				startedCountdown = true;
 			else
 				startedCountdown = false;
@@ -2446,8 +2445,7 @@ class PlayState extends MusicBeatState
 									countdownReady.loadGraphic(Paths.image('intros/kiana/two'));
 								}
 							
-							if(Paths.formatToSongPath(SONG.song) == 'nunday-monday' || Paths.formatToSongPath(SONG.song) == 'nunconventional' || Paths.formatToSongPath(SONG.song) == 'nunconventional-simp'
-								|| Paths.formatToSongPath(SONG.song) == 'nunsational' || Paths.formatToSongPath(SONG.song) == 'nunsational-simp')
+							if(Paths.formatToSongPath(SONG.song) == 'nunday-monday' || Paths.formatToSongPath(SONG.song) == 'nunconventional' || Paths.formatToSongPath(SONG.song) == 'nunsational')
 								{
 									countdownReady.loadGraphic(Paths.image('intros/beatrice/two'));
 								}
@@ -2483,8 +2481,7 @@ class PlayState extends MusicBeatState
 								{
 									countdownSet.loadGraphic(Paths.image('intros/kiana/one'));
 								}
-							else if(Paths.formatToSongPath(SONG.song) == 'nunday-monday' || Paths.formatToSongPath(SONG.song) == 'nunconventional' || Paths.formatToSongPath(SONG.song) == 'nunconventional-simp'
-								|| Paths.formatToSongPath(SONG.song) == 'nunsational' || Paths.formatToSongPath(SONG.song) == 'nunsational-simp')
+							else if(Paths.formatToSongPath(SONG.song) == 'nunday-monday' || Paths.formatToSongPath(SONG.song) == 'nunconventional' || Paths.formatToSongPath(SONG.song) == 'nunsational')
 								{
 									countdownSet.loadGraphic(Paths.image('intros/beatrice/one'));
 								}
@@ -2525,8 +2522,7 @@ class PlayState extends MusicBeatState
 									countdownGo.loadGraphic(Paths.image('intros/kiana/go'));
 								}
 					
-							if(Paths.formatToSongPath(SONG.song) == 'nunday-monday' || Paths.formatToSongPath(SONG.song) == 'nunconventional' || Paths.formatToSongPath(SONG.song) == 'nunconventional-simp'
-								|| Paths.formatToSongPath(SONG.song) == 'nunsational' || Paths.formatToSongPath(SONG.song) == 'nunsational-simp')
+							if(Paths.formatToSongPath(SONG.song) == 'nunday-monday' || Paths.formatToSongPath(SONG.song) == 'nunconventional' || Paths.formatToSongPath(SONG.song) == 'nunsational')
 								{
 									countdownGo.loadGraphic(Paths.image('intros/beatrice/go'));
 								}
@@ -4621,10 +4617,6 @@ class PlayState extends MusicBeatState
 					Highscore.saveScore(SONG.song, (songScore + 15000), storyDifficulty, percent);
 				else
 					Highscore.saveScore(SONG.song, songScore, storyDifficulty, percent);
-				if (Paths.formatToSongPath(SONG.song) == 'nunconventional-simp')
-					Highscore.saveScore('Nunconventional', songScore, storyDifficulty, percent);
-				if (Paths.formatToSongPath(SONG.song) == 'nunsational-simp')
-					Highscore.saveScore('Nunsational', songScore, storyDifficulty, percent);
 				#end
 			}
 			playbackRate = 1;
