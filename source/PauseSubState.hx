@@ -194,7 +194,7 @@ class PauseSubState extends MusicBeatSubstate
 			case 'Spendthrift':
 				bgGradient.color = 0xFF00a800;
 				pauseCard.color = 0xFF00a800;
-			case "Get Villain'd":
+			case "Get Villain'd" | "Get Villain'd (Old)":
 				bgGradient.color = 0xFF72cd6e;
 				pauseCard.color = 0xFF72cd6e;
 			
