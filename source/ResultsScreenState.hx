@@ -111,11 +111,11 @@ class ResultsScreenState extends MusicBeatState
         if (PlayState.checkForPowerUp == false)
         {
             if (PlayState.isInjectionMode)
-                powerUpBonus = 50000;
+                powerUpBonus = 25000;
             else if (PlayState.isMayhemMode)
-                powerUpBonus = 50000;
+                powerUpBonus = 25000;
             else if (PlayState.isStoryMode)
-                powerUpBonus = 75000;
+                powerUpBonus = 35000;
             else if (!PlayState.isStoryMode && !PlayState.isIniquitousMode && !PlayState.isInjectionMode && !PlayState.isMayhemMode)
                 powerUpBonus = 15000;
         }

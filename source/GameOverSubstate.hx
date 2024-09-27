@@ -115,7 +115,7 @@ class GameOverSubstate extends MusicBeatSubstate
 			if (PlayState.mayhemSongsPlayed < 1)
 				PlayState.checkForPowerUp = true; //Don't give bonus!
 			if (!PlayState.checkForPowerUp)
-				PlayState.campaignScore += 50000;
+				PlayState.campaignScore += 25000;
 			mayhemed = true;
 			ClientPrefs.ghostTapping = true; //Reset this
 			PlayState.deathCounter = 0;

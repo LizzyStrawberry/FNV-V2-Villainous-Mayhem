@@ -4664,7 +4664,7 @@ class PlayState extends MusicBeatState
 					}
 
 					if (!PlayState.checkForPowerUp)
-						PlayState.campaignScore += 75000;
+						PlayState.campaignScore += 35000;
 					
 					if (ClientPrefs.getGameplaySetting('practice', false) || ClientPrefs.getGameplaySetting('botplay', false)) //This means you used either Botplay or Practice mode
 					{
@@ -4900,7 +4900,7 @@ class PlayState extends MusicBeatState
 						}
 
 						if (!PlayState.checkForPowerUp)
-							PlayState.campaignScore += 50000;
+							PlayState.campaignScore += 25000;
 						
 						if (ClientPrefs.getGameplaySetting('practice', false) || ClientPrefs.getGameplaySetting('botplay', false)) //This means you used either Botplay or Practice mode
 						{

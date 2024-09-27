@@ -62,7 +62,7 @@ class TokenAchievement extends MusicBeatState
 
 		if (PlayState.checkForPowerUp == false)
 		{
-			bonusTokens = new FlxText(340, 130, FlxG.width, "No Power Up Bonus! -> +5", 40);
+			bonusTokens = new FlxText(340, 130, FlxG.width, "No Power Up Bonus! -> +3", 40);
 			bonusTokens.alpha = 0;
 			bonusTokens.color = FlxColor.YELLOW;
 		}
@@ -127,7 +127,7 @@ class TokenAchievement extends MusicBeatState
 				new FlxTimer().start(0.6, function (tmr:FlxTimer) {
 					if (bonusSoundPlayed == false)
 					{
-						ClientPrefs.tokens += 5;
+						ClientPrefs.tokens += 3;
 						currentTokens.text = "Current Tokens: " + ClientPrefs.tokens;
 		
 						FlxG.sound.play(Paths.sound('bonusTokens'));
