@@ -1218,7 +1218,7 @@ class ShopState extends MusicBeatState
 					lights.animation.play('redlightsFlash');
 					testYourLuckBG.loadGraphic(Paths.image('shop/testYourLuckBG1'));
 					FlxTween.tween(testYourLuckBG, {x: -130}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(tokenShow, {x: 800}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+					FlxTween.tween(tokenShow, {x: 780}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 
 					FlxTween.tween(lights, {x: 90}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 					
@@ -1240,7 +1240,7 @@ class ShopState extends MusicBeatState
 					lights.animation.play('bluelightsFlash');
 					testYourLuckBG.loadGraphic(Paths.image('shop/testYourLuckBG2'));
 					FlxTween.tween(testYourLuckBG, {x: -130}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(tokenShow, {x: 800}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+					FlxTween.tween(tokenShow, {x: 780}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 
 					FlxTween.tween(lights, {x: 90}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 					
@@ -1267,7 +1267,7 @@ class ShopState extends MusicBeatState
 					lights.animation.play('greenlightsFlash');
 					testYourLuckBG.loadGraphic(Paths.image('shop/testYourLuckBG3'));
 					FlxTween.tween(testYourLuckBG, {x: -130}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(tokenShow, {x: 800}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+					FlxTween.tween(tokenShow, {x: 780}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 
 					FlxTween.tween(lights, {x: 90}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 					
