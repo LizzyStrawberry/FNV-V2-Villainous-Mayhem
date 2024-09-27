@@ -604,7 +604,7 @@ class FreeplayXtraBonusState extends MusicBeatState
 			ClientPrefs.inMenu = true;
 			LoadingState.loadAndSwitchState(new options.OptionsState());
 		}
-		if ((songs[curSelected].songName == 'FNV' || songs[curSelected].songName == "Get Villaind (Old)") && ClientPrefs.shaders == true)
+		if (songs[curSelected].songName == "Get Villaind (Old)" && ClientPrefs.shaders == true)
 			FlxTween.tween(seizureWarning, {alpha: 1}, 1.2, {ease: FlxEase.circOut, type: PERSIST});
 		else
 			FlxTween.tween(seizureWarning, {alpha: 0}, 1.2, {ease: FlxEase.circOut, type: PERSIST});
