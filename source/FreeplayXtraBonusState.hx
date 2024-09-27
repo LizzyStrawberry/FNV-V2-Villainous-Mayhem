@@ -133,6 +133,8 @@ class FreeplayXtraBonusState extends MusicBeatState
 
 		addSong('Marauder (Old)', 3, 'debugGuy', FlxColor.fromRGB(0 ,0, 0));
 
+		addSong('Get Villaind (Old)', 3, 'morky', FlxColor.fromRGB(66, 255, 153));
+
 		addSong("Get Pico'd", 3, 'aizi', FlxColor.fromRGB(20, 153, 255));
 
 		addSong('Forsaken (Picmixed)', 3, 'dv', FlxColor.fromRGB(39, 0, 87));
@@ -400,6 +402,22 @@ class FreeplayXtraBonusState extends MusicBeatState
 	
 				selectionText.text = "Marauder (Old)";
 			}
+			case 'Get Villaind (Old)':
+			{
+				unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_GetVillaind'));
+				unlockedSelection.frames = Paths.getSparrowAtlas('freeplayStuff/selection_GetVillaind');
+				unlockedSelection.animation.addByPrefix('idle', "mork mork0", 24);
+				unlockedSelection.scale.set(0.68, 0.657);
+				unlockedSelection.x = 115;
+				unlockedSelection.y -= 107;
+				unlockedSelection.animation.play('idle');
+				lockedSelection.alpha = 0;
+				unlockedSelection.alpha = 1;
+	
+				placeholderSelection.alpha = 0;
+	
+				selectionText.text = "Get Villain'd (Old)";
+			}
 			case "Get Pico'd":
 			{
 				unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_GetGooned'));
@@ -586,7 +604,7 @@ class FreeplayXtraBonusState extends MusicBeatState
 			ClientPrefs.inMenu = true;
 			LoadingState.loadAndSwitchState(new options.OptionsState());
 		}
-		if (songs[curSelected].songName == 'FNV' && ClientPrefs.shaders == true)
+		if ((songs[curSelected].songName == 'FNV' || songs[curSelected].songName == "Get Villaind (Old)") && ClientPrefs.shaders == true)
 			FlxTween.tween(seizureWarning, {alpha: 1}, 1.2, {ease: FlxEase.circOut, type: PERSIST});
 		else
 			FlxTween.tween(seizureWarning, {alpha: 0}, 1.2, {ease: FlxEase.circOut, type: PERSIST});
@@ -703,7 +721,7 @@ class FreeplayXtraBonusState extends MusicBeatState
 					LoadingState.loadAndSwitchState(new ChartingState());
 					FlxG.sound.music.volume = 0;
 				}
-				else if (ClientPrefs.optimizationMode == false && songs[curSelected].songName == "It's Kiana")
+				else if (ClientPrefs.optimizationMode == false && (songs[curSelected].songName == "It's Kiana" || songs[curSelected].songName == "Get Villaind (Old)"))
 				{
 					MusicBeatState.switchState(new CharSelector());
 					FlxG.sound.music.volume = 1;
@@ -815,7 +833,7 @@ class FreeplayXtraBonusState extends MusicBeatState
 		Paths.currentModDirectory = songs[curSelected].folder;
 		PlayState.storyWeek = songs[curSelected].week;
 
-		if (songs[curSelected].songName == 'Forsaken (Picmixed)' || songs[curSelected].songName == 'Partner' )
+		if (songs[curSelected].songName == 'Forsaken (Picmixed)' || songs[curSelected].songName == 'Partner')
 		{	
 			CoolUtil.difficulties = CoolUtil.mainWeekDifficulties.copy();
 			/*var diffStr:String = WeekData.getCurrentWeek().difficulties;
@@ -860,6 +878,8 @@ class FreeplayXtraBonusState extends MusicBeatState
 		if (songs[curSelected].songName == 'Slow.FLP (Old)')
 			CoolUtil.difficulties = CoolUtil.defaultDifficulties.copy();
 		if (songs[curSelected].songName == 'Marauder (Old)')
+			CoolUtil.difficulties = CoolUtil.defaultDifficulties.copy();
+		if (songs[curSelected].songName == 'Get Villaind (Old)')
 			CoolUtil.difficulties = CoolUtil.defaultDifficulties.copy();
 		if (songs[curSelected].songName == "Get Pico'd")
 			CoolUtil.difficulties = CoolUtil.defaultDifficulties.copy();

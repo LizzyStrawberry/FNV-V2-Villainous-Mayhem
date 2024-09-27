@@ -154,7 +154,8 @@ class MainMenuState extends MusicBeatState
 		"marauder-(old)",
 		"slowflp-(old)",
 		"partner",
-		"shucks-v2"
+		"shucks-v2",
+		"get-villaind-(old)"
 	];
 
 	var libidiWarning:FlxText;
