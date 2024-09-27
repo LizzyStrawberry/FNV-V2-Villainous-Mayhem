@@ -1080,7 +1080,7 @@ class MainMenuState extends MusicBeatState
 		}
 
 		if (FlxG.mouse.overlaps(discord) && FlxG.mouse.justPressed && askedForInfo == false && (!selectedSomethin && !storySelected && !inventoryOpened))
-			CoolUtil.browserLoad('https://discord.gg/7BvgW8RDuq');
+			//CoolUtil.browserLoad('https://discord.gg/7BvgW8RDuq'); Server doesn't exist at the moment.
 
 		if (FlxG.mouse.overlaps(optionsButton) && FlxG.mouse.justPressed && askedForInfo == false && (!selectedSomethin && !storySelected && !inventoryOpened))
 		{
