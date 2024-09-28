@@ -104,7 +104,7 @@ class CrashAndLoadState extends MusicBeatState
                 songText = new Alphabet(585, 375, "Get Gooned", true);
 
             default: //Testing Value
-                songText = new Alphabet(485, 375, "Test Song Name", true); 
+                songText = new Alphabet(540, 375, "Toxic Mishap", true); 
         }
 		songText.setAlignmentFromString('center');
         songText.scaleX = 0.8;
@@ -137,7 +137,7 @@ class CrashAndLoadState extends MusicBeatState
 		add(no);
 
         FlxTween.tween(text, {y: text.y + 10}, 5.7, {ease: FlxEase.cubeInOut, type: PINGPONG});
-        FlxTween.tween(songText, {y: songText.y + 10}, 5.75, {ease: FlxEase.cubeInOut, type: PINGPONG});
+        //FlxTween.tween(songText, {y: songText.y + 10}, 5.75, {ease: FlxEase.cubeInOut, type: PINGPONG});
         FlxTween.tween(songDifficultyText, {y: songDifficultyText.y + 10}, 5.8, {ease: FlxEase.cubeInOut, type: PINGPONG});
 
         changeSelection();
@@ -150,39 +150,31 @@ class CrashAndLoadState extends MusicBeatState
     override function update(elapsed:Float)
     {
         if ((controls.BACK || FlxG.mouse.justPressedRight) && selectedSomething == false)
-            {
-                MusicBeatState.switchState(new StoryMenuState());
-                FlxG.sound.play(Paths.sound('cancelMenu'));
-            }
+        {
+            MusicBeatState.switchState(new StoryMenuState());
+            FlxG.sound.play(Paths.sound('cancelMenu'));
+        }
         
         if ((FlxG.keys.justPressed.LEFT || FlxG.keys.justPressed.A) && selectedSomething == false)
-            {
-                changeSelection(-1);
-            }
+            changeSelection(-1);
+        if ((FlxG.keys.justPressed.RIGHT || FlxG.keys.justPressed.D) && selectedSomething == false)
+            changeSelection(1);
 
         if (FlxG.mouse.overlaps(yes) && selectedSomething == false && overlapping == false && curSelected != 0)
-            {
-                curSelected = 0;
-                changeSelection();
-                overlapping = true;
-            }
-
+        {
+            curSelected = 0;
+            changeSelection();
+            overlapping = true;
+        }
         if (FlxG.mouse.overlaps(no) && selectedSomething == false && overlapping == false && curSelected != 1)
-            {
-                curSelected = 1;
-                changeSelection();
-                overlapping = true;
-            }
+        {
+            curSelected = 1;
+            changeSelection();
+            overlapping = true;
+        }
         
         if (!(FlxG.mouse.overlaps(no) || FlxG.mouse.overlaps(yes)) && selectedSomething == false && overlapping == true)
-            {
                 overlapping = false;
-            }
-        
-        if ((FlxG.keys.justPressed.RIGHT || FlxG.keys.justPressed.D) && selectedSomething == false)
-            {
-                changeSelection(1);
-            }
 
         if (((curSelected == 0 && controls.ACCEPT) || (FlxG.mouse.overlaps(yes) && FlxG.mouse.justPressed)) && selectedSomething == false)
             {
@@ -329,30 +321,30 @@ class CrashAndLoadState extends MusicBeatState
     }
 
     function changeSelection(huh:Int = 0)
-		{
-			curSelected += huh;
-            FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
+	{
+		curSelected += huh;
+        FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
 
-            if (curSelected > 1)
-				curSelected = 0;
-			if (curSelected < 0)
-				curSelected = 1;
+        if (curSelected > 1)
+			curSelected = 0;
+		if (curSelected < 0)
+			curSelected = 1;
         
-            if (curSelected == 0)
-            {
-                yes.alpha = 1;
-                yes.text = '>yes<';
+        if (curSelected == 0)
+        {
+            yes.alpha = 1;
+            yes.text = '>yes<';
 
-                no.alpha = 0.6;
-                no.text = 'no';
-            }
-            if (curSelected == 1)
-            {
-                no.alpha = 1;
-                no.text = '>no<';
-
-                yes.alpha = 0.6;
-                yes.text = 'yes';
-            }
+            no.alpha = 0.6;
+            no.text = 'no';
         }
+        if (curSelected == 1)
+        {
+            no.alpha = 1;
+            no.text = '>no<';
+
+            yes.alpha = 0.6;
+            yes.text = 'yes';
+        }
+    }
 }
