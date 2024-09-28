@@ -562,7 +562,11 @@ class MinigameState extends MusicBeatState
 						new FlxTimer().start(3, function (tmr:FlxTimer) {
 							FlxG.mouse.visible = false;
 							FlxG.sound.music.fadeOut(1);
-							LoadingState.loadAndSwitchState(new PlayState());
+							#if DEBUG_ALLOWED
+								MusicBeatState.switchState(new MainMenuState());
+							#else
+								LoadingState.loadAndSwitchState(new PlayState());
+							#end
 						});
 					}
 			}
@@ -632,8 +636,8 @@ class MinigameState extends MusicBeatState
 		allowedToPlay = false;
 		FlxG.sound.play(Paths.sound('awh'), 0.5);
 
-		timerTextLeft.text = "Timer: 0";
-		timerTextRight.text = "Timer: 0";
+		timerTextLeft.text = "Time: 0";
+		timerTextRight.text = "Time: 0";
 		timerTextLeft.color = FlxColor.RED;
 		timerTextRight.color = FlxColor.RED;
 
@@ -643,7 +647,11 @@ class MinigameState extends MusicBeatState
 		new FlxTimer().start(3, function (tmr:FlxTimer) {
 			FlxG.mouse.visible = false;
 			FlxG.sound.music.fadeOut(1);
-			LoadingState.loadAndSwitchState(new PlayState());
+			#if DEBUG_ALLOWED
+				MusicBeatState.switchState(new MainMenuState());
+			#else
+				LoadingState.loadAndSwitchState(new PlayState());
+			#end
 		});
 
 		trace("Time's up!");
@@ -709,24 +717,31 @@ class MinigameState extends MusicBeatState
 
 		// Compare the images of the selected cards
 		var areImagesEqual:Bool = false;
+		var numOfCards:Int = 0;
 	
 		if (sprite3 == null) {
 			// Compare two cards
 			trace("Checking 2 cards..");
 			if (sprite1 == sprite2)
-				 areImagesEqual = true;
+			{
+				areImagesEqual = true;
+				numOfCards = 2;
+			}
 		} else {
 			// Compare three cards
 			trace("Checking 3 cards..");
 			if (sprite1 == sprite2 && sprite2 == sprite3)
+			{
 				areImagesEqual = true;
+				numOfCards = 3;
+			}
 		}
 	
 		// Handle the logic based on whether the images match or not
 		if (areImagesEqual) {
 			// Handle successful match
 			trace('Calling Successful Match');
-			handleSuccessfulMatch();
+			handleSuccessfulMatch(numOfCards);
 		} else {
 			// Handle failed match
 			trace('Calling Failed Match');
@@ -760,12 +775,15 @@ class MinigameState extends MusicBeatState
 		});
 	}
 
-	function handleSuccessfulMatch()
+	function handleSuccessfulMatch(numOfCards:Int)
 	{
-		trace('You Matched 3 cards!');
+		if (numOfCards == 2)
+			trace('You Matched 2 cards!');
+		else
+			trace('You Matched 3 cards!');
 	
 		// Reset selected cards
-		if (selectedCards.length == 3)
+		if (selectedCards.length == 3 && numOfCards == 3)
 		{
 			FlxG.sound.play(Paths.sound('confirmMenu'));
 			matchedPairs++;
@@ -798,7 +816,11 @@ class MinigameState extends MusicBeatState
 			new FlxTimer().start(3, function (tmr:FlxTimer) {
 				FlxG.mouse.visible = false;
 				FlxG.sound.music.fadeOut(1);
-				LoadingState.loadAndSwitchState(new PlayState());
+				#if DEBUG_ALLOWED
+					MusicBeatState.switchState(new MainMenuState());
+				#else
+					LoadingState.loadAndSwitchState(new PlayState());
+				#end
 			});
 		}
 		else
@@ -906,7 +928,11 @@ class MinigameState extends MusicBeatState
 		new FlxTimer().start(3, function (tmr:FlxTimer) {
 			FlxG.mouse.visible = false;
 			FlxG.sound.music.fadeOut(1);
-			LoadingState.loadAndSwitchState(new PlayState());
+			#if DEBUG_ALLOWED
+				MusicBeatState.switchState(new MainMenuState());
+			#else
+				LoadingState.loadAndSwitchState(new PlayState());
+			#end
 		});
 	}
 

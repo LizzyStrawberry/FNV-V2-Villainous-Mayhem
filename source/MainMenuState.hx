@@ -1030,6 +1030,7 @@ class MainMenuState extends MusicBeatState
 	var warnMayhem:String = '';
 	override function update(elapsed:Float)
 	{
+		intendedMayhemedScore = ClientPrefs.mayhemEndTotalScore;
 		BGchecker.x += 0.5*(elapsed/(1/120));
         BGchecker.y -= 0.16 / (ClientPrefs.framerate / 60); 
 
@@ -1257,6 +1258,8 @@ class MainMenuState extends MusicBeatState
 			}
 			#if desktop
 				#if DEBUG_ALLOWED
+					if (FlxG.keys.justPressed.TAB)
+						MusicBeatState.switchState(new MinigameState());
 					if (FlxG.keys.anyJustPressed(debugKeys))
 						MusicBeatState.switchState(new MasterEditorMenu());
 				#else
