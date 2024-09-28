@@ -103,6 +103,7 @@ class ResetScoreSubState extends MusicBeatSubstate
 					if (song == 'Mayhem Mode')
 					{
 						ClientPrefs.mayhemEndScore = 0;
+						ClientPrefs.mayhemEndTotalScore = 0;
 						ClientPrefs.saveSettings();
 					}
 					else if (song == 'Injection Mode')

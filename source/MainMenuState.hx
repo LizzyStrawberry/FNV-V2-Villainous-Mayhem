@@ -255,7 +255,7 @@ class MainMenuState extends MusicBeatState
 		persistentUpdate = persistentDraw = true;
 
 		intendedInjectedScore = ClientPrefs.injectionEndScore;
-		intendedMayhemedScore = ClientPrefs.mayhemEndScore;
+		intendedMayhemedScore = ClientPrefs.mayhemEndTotalScore;
 
 		var yScroll:Float = Math.max(0.25 - (0.05 * (optionShit.length - 4)), 0.1);
 		number30 = FlxG.random.int(1, 59);
@@ -1042,7 +1042,7 @@ class MainMenuState extends MusicBeatState
 		if (storyShit[curStorySelected] == 'injection')
 			extraFinalScore.text = "SCORE: " + lerpInjectedScore;
 		else
-			extraFinalScore.text = "RECORD: " + lerpMayhemedScore + " Songs";
+			extraFinalScore.text = "RECORD: " + ClientPrefs.mayhemEndScore + " Songs / Score" + lerpMayhemedScore;
 
 	if (ClientPrefs.firstTime == true)
 	{
@@ -1953,7 +1953,7 @@ class MainMenuState extends MusicBeatState
 			if (storyShit[curStorySelected] == 'injection')
 				changeDifficulty();
 			else
-				intendedMayhemedScore = ClientPrefs.mayhemEndScore;
+				intendedMayhemedScore = ClientPrefs.mayhemEndTotalScore;
 
 			storySelection.text = storyShit[curStorySelected];
 			if (storyShit[curStorySelected] == 'injection' || storyShit[curStorySelected] == 'mayhem')

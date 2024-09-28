@@ -204,6 +204,7 @@ class ClientPrefs {
 	public static var injectionVilEndScore:Int = 0;
 	//Mayhem Mode System
 	public static var mayhemEndScore:Int = 0;
+	public static var mayhemEndTotalScore:Int = 0;
 	
 	public static var mayhemNotif:Bool = false;
 	public static var injectionNotif:Bool = false;
@@ -518,6 +519,7 @@ class ClientPrefs {
 		FlxG.save.data.injectionEndScore = injectionEndScore;
 		FlxG.save.data.injectionVilEndScore = injectionVilEndScore;
 		FlxG.save.data.mayhemEndScore = mayhemEndScore;
+		FlxG.save.data.mayhemEndTotalScore = mayhemEndTotalScore;
 
 		FlxG.save.data.mayhemNotif = mayhemNotif;
 		FlxG.save.data.injectionNotif = injectionNotif;
@@ -750,6 +752,7 @@ class ClientPrefs {
 		FlxG.save.data.injectionEndScore = 0;
 		FlxG.save.data.injectionVilEndScore = 0;
 		FlxG.save.data.mayhemEndScore = 0;
+		FlxG.save.data.mayhemEndTotalScore = 0;
 
 		FlxG.save.data.mayhemNotif = false;
 		FlxG.save.data.injectionNotif = false;
@@ -969,6 +972,7 @@ class ClientPrefs {
 		injectionEndScore = 0;
 		injectionVilEndScore = 0;
 		mayhemEndScore = 0;
+		mayhemEndTotalScore = 0;
 
 		mayhemNotif = false;
 		injectionNotif = false;
@@ -1608,6 +1612,9 @@ class ClientPrefs {
 		}
 		if(FlxG.save.data.mayhemEndScore != null) {
 			mayhemEndScore = FlxG.save.data.mayhemEndScore;
+		}
+		if(FlxG.save.data.mayhemEndTotalScore != null) {
+			mayhemEndTotalScore = FlxG.save.data.mayhemEndTotalScore;
 		}
 
 		if(FlxG.save.data.mayhemNotif != null) {

@@ -556,6 +556,7 @@ class ResultsScreenState extends MusicBeatState
                 GameOverSubstate.mayhemed = false;
                 if (PlayState.mayhemSongsPlayed > ClientPrefs.mayhemEndScore)                
                     ClientPrefs.mayhemEndScore = PlayState.mayhemSongsPlayed;
+                ClientPrefs.mayhemEndTotalScore = PlayState.mayhemScore;
                 PlayState.isMayhemMode = false;
                 PlayState.mayhemNRMode = "";
 			    MusicBeatState.switchState(new MainMenuState(), 'stickers');
