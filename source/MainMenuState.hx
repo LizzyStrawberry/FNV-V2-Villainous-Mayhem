@@ -1042,7 +1042,7 @@ class MainMenuState extends MusicBeatState
 		if (storyShit[curStorySelected] == 'injection')
 			extraFinalScore.text = "SCORE: " + lerpInjectedScore;
 		else
-			extraFinalScore.text = "RECORD: " + ClientPrefs.mayhemEndScore + " Songs / Score" + lerpMayhemedScore;
+			extraFinalScore.text = "RECORD: " + ClientPrefs.mayhemEndScore + " Songs / Score: " + lerpMayhemedScore;
 
 	if (ClientPrefs.firstTime == true)
 	{
