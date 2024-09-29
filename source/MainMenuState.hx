@@ -1258,10 +1258,6 @@ class MainMenuState extends MusicBeatState
 			}
 			#if desktop
 				#if DEBUG_ALLOWED
-					if (FlxG.keys.justPressed.TAB)
-						MusicBeatState.switchState(new MinigameState());
-					if (FlxG.keys.justPressed.SHIFT)
-						MusicBeatState.switchState(new CrashAndLoadState());
 					if (FlxG.keys.anyJustPressed(debugKeys))
 						MusicBeatState.switchState(new MasterEditorMenu());
 				#else

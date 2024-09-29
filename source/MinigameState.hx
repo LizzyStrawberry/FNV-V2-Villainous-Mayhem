@@ -562,11 +562,7 @@ class MinigameState extends MusicBeatState
 						new FlxTimer().start(3, function (tmr:FlxTimer) {
 							FlxG.mouse.visible = false;
 							FlxG.sound.music.fadeOut(1);
-							#if DEBUG_ALLOWED
-								MusicBeatState.switchState(new MainMenuState());
-							#else
-								LoadingState.loadAndSwitchState(new PlayState());
-							#end
+							LoadingState.loadAndSwitchState(new PlayState());
 						});
 					}
 			}
@@ -647,11 +643,7 @@ class MinigameState extends MusicBeatState
 		new FlxTimer().start(3, function (tmr:FlxTimer) {
 			FlxG.mouse.visible = false;
 			FlxG.sound.music.fadeOut(1);
-			#if DEBUG_ALLOWED
-				MusicBeatState.switchState(new MainMenuState());
-			#else
-				LoadingState.loadAndSwitchState(new PlayState());
-			#end
+			LoadingState.loadAndSwitchState(new PlayState());
 		});
 
 		trace("Time's up!");
@@ -816,11 +808,7 @@ class MinigameState extends MusicBeatState
 			new FlxTimer().start(3, function (tmr:FlxTimer) {
 				FlxG.mouse.visible = false;
 				FlxG.sound.music.fadeOut(1);
-				#if DEBUG_ALLOWED
-					MusicBeatState.switchState(new MainMenuState());
-				#else
-					LoadingState.loadAndSwitchState(new PlayState());
-				#end
+				LoadingState.loadAndSwitchState(new PlayState());
 			});
 		}
 		else
@@ -928,11 +916,7 @@ class MinigameState extends MusicBeatState
 		new FlxTimer().start(3, function (tmr:FlxTimer) {
 			FlxG.mouse.visible = false;
 			FlxG.sound.music.fadeOut(1);
-			#if DEBUG_ALLOWED
-				MusicBeatState.switchState(new MainMenuState());
-			#else
-				LoadingState.loadAndSwitchState(new PlayState());
-			#end
+			LoadingState.loadAndSwitchState(new PlayState());
 		});
 	}
 
