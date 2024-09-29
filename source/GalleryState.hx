@@ -214,10 +214,10 @@ class GalleryState extends MusicBeatState
 	{
 		categorySelected += huh;
 
-		if (categorySelected > 6)
+		if (categorySelected > 7)
 			categorySelected = 1;
 		if (categorySelected < 1)
-			categorySelected = 6;
+			categorySelected = 7;
 
 		if (categorySelected == 1)
 		{
@@ -851,11 +851,11 @@ class GalleryState extends MusicBeatState
 
 			if (categorySelected == 7)
 			{
-				if (imageNumber > 29)
+				if (imageNumber > 30)
 					imageNumber = 1;
 				if (imageNumber < 1)
-					imageNumber = 29;
-				numberCounter.text = imageNumber + "/29";
+					imageNumber = 30;
+				numberCounter.text = imageNumber + "/30";
 				currentImage.loadGraphic(Paths.image('Gallery/randomArts/image_' + imageNumber));
 
 				messageShown = false;
@@ -927,7 +927,7 @@ class GalleryState extends MusicBeatState
 					}
 					case 17:
 					{
-						imageText.text = "Beatrice my beloved";
+						imageText.text = "Beatrice my beloved!";
 					}
 					case 18:
 					{
@@ -959,7 +959,7 @@ class GalleryState extends MusicBeatState
 					}
 					case 25:
 					{
-						imageText.text = "Kiana my beloved- ok I should stfu";
+						imageText.text = "Kiana my beloved~";
 					}
 					case 26:
 					{
@@ -967,7 +967,7 @@ class GalleryState extends MusicBeatState
 					}
 					case 27:
 					{
-						imageText.text = "Evelyn my beloved- omfg stop-";
+						imageText.text = "Evelyn my beloved";
 					}
 					case 28:
 					{
@@ -976,6 +976,10 @@ class GalleryState extends MusicBeatState
 					case 29:
 					{
 						imageText.text = "Yea she likes Marco";
+					}
+					case 30:
+					{
+						imageText.text = "Oopsies!";
 					}
 				}
 			}
