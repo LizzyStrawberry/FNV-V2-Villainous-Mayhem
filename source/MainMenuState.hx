@@ -1015,8 +1015,6 @@ class MainMenuState extends MusicBeatState
 	#end
 
 	var selectedSomethin:Bool = false;
-
-	var tutorialNumber:Int = 0;
 	var askedForInfo:Bool = false;
 	var initializedVideo:Bool = false;
 	
@@ -1081,7 +1079,7 @@ class MainMenuState extends MusicBeatState
 		}
 
 		if (FlxG.mouse.overlaps(discord) && FlxG.mouse.justPressed && askedForInfo == false && (!selectedSomethin && !storySelected && !inventoryOpened))
-			//CoolUtil.browserLoad('https://discord.gg/7BvgW8RDuq'); Server doesn't exist at the moment.
+			CoolUtil.browserLoad('https://discord.gg/7BvgW8RDuq');
 
 		if (FlxG.mouse.overlaps(optionsButton) && FlxG.mouse.justPressed && askedForInfo == false && (!selectedSomethin && !storySelected && !inventoryOpened))
 		{

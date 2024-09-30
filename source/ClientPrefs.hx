@@ -70,7 +70,7 @@ class ClientPrefs {
 	//Extra shit that make things work lmao
 	public static var optionsFreeplay:Bool = false;
 	public static var inMenu:Bool = false;
-	public static var firstTime:Bool = false;
+	public static var firstTime:Bool = true;
 
 	//shop checks
 	public static var shopUnlocked:Bool = false;
@@ -643,7 +643,7 @@ class ClientPrefs {
 
 		FlxG.save.data.optionsFreeplay = false;
 		FlxG.save.data.inMenu = false;
-		FlxG.save.data.firstTime = false;
+		FlxG.save.data.firstTime = true;
 
 		FlxG.save.data.shopUnlocked = false;
 		FlxG.save.data.secretShopShowcased = false;
@@ -864,7 +864,7 @@ class ClientPrefs {
 
 		optionsFreeplay = false;
 		inMenu = false;
-		firstTime = false;
+		firstTime = true;
 
 		shopUnlocked = false;
 		secretShopShowcased = false;
