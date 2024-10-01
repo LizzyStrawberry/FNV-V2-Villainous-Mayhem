@@ -67,8 +67,8 @@ class CustomStickerTransition extends MusicBeatSubstate {
             sticker.scale.x = 1.3;
             sticker.scale.y = 1.3;
             sticker.updateHitbox();
-            sticker.scale.x = 0.8;
-            sticker.scale.y = 0.8;
+            sticker.scale.x = 0.6;
+            sticker.scale.y = 0.6;
             this.add(sticker);
             stickers.push(sticker);
 
