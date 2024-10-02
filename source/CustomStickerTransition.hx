@@ -20,6 +20,7 @@ import flixel.FlxCamera;
 class CustomStickerTransition extends MusicBeatSubstate {
     public static var finishCallback:Void->Void;
     private var spawn:Bool;
+    private var stickerTween:FlxTween;
 
     private var stickerCam:FlxCamera;
     public static var stickers:Array<FlxSprite> = [];
@@ -50,7 +51,10 @@ class CustomStickerTransition extends MusicBeatSubstate {
         FlxG.cameras.add(stickerCam);
 
         if (spawn)
+        {
+            resetStickers();
             spawnStickers();
+        }
         else
             readdStickers();
     }
@@ -77,7 +81,7 @@ class CustomStickerTransition extends MusicBeatSubstate {
             stickersBackupVars[i] = [stickerPath, sticker.x, sticker.y, sticker.angle, sticker.scale.x];
 
             FlxTween.tween(sticker.scale, {x: 1.3, y: 1.3}, 0.03, {startDelay: i * 0.02, ease: FlxEase.bounceInOut, type: PERSIST});
-            FlxTween.tween(sticker, {alpha: 1}, 0.03, {startDelay: i * 0.02, onComplete: function(twn:FlxTween) {
+            stickerTween = FlxTween.tween(sticker, {alpha: 1}, 0.03, {startDelay: i * 0.02, onComplete: function(twn:FlxTween) {
                 FlxG.sound.play(Paths.sound('stickerSounds/keyClick' + FlxG.random.int(1, 9)));
                 stickersBackupVars[i][1] = sticker.x;
                 stickersBackupVars[i][2] = sticker.y;
@@ -117,13 +121,14 @@ class CustomStickerTransition extends MusicBeatSubstate {
         });
     }
 
-    public function despawnStickers():Void {
+    public function despawnStickers():Void
+    {
         //trace('removing stickers!!1!');
         for (i in 0...stickersBackup.length) {
             FlxTween.tween(stickersBackup[i].scale, {x: stickersBackupVars[i][4], y: stickersBackupVars[i][4]}, 0.03, {startDelay: i * 0.02, ease: FlxEase.bounceInOut, type: PERSIST});
             FlxTween.tween(stickersBackup[i], {alpha: 0}, 0.03, {startDelay: i * 0.02, onComplete: function(twn:FlxTween) {
                 FlxG.sound.play(Paths.sound('stickerSounds/keyClick' + FlxG.random.int(1, 9)));
-                if (stickers[i] != null)
+                if (stickers[i] != null && stickersBackup[i] != null)
                 {
                     stickers[i].kill();
                     stickersBackup[i].kill();
@@ -133,14 +138,19 @@ class CustomStickerTransition extends MusicBeatSubstate {
                 //trace('removed sticker ' + i);
                 if (i == numStickers - 1) {
                    // trace('removed stickers!!1!');
-                    stickers = [];
-                    stickersBackup = [];
-                    stickersBackupVars = [];
+                    resetStickers();
                     MusicBeatState.transitionType = "fade";
                     close();
                 }
             }});
         }
+    }
+
+    function resetStickers():Void
+    {
+        stickers = [];
+        stickersBackup = [];
+        stickersBackupVars = [];
     }
 
     override function update(elapsed:Float) {
