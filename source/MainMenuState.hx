@@ -252,7 +252,7 @@ class MainMenuState extends MusicBeatState
 		transIn = FlxTransitionableState.defaultTransIn;
 		transOut = FlxTransitionableState.defaultTransOut;
 
-		persistentUpdate = persistentDraw = true;
+		//persistentUpdate = persistentDraw = true;
 
 		intendedInjectedScore = ClientPrefs.injectionEndScore;
 		intendedMayhemedScore = ClientPrefs.mayhemEndTotalScore;
