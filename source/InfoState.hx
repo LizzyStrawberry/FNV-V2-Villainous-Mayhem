@@ -339,7 +339,7 @@ class InfoState extends MusicBeatState
 					switch(optionShit[curCharSelected])
 					{
 						case 'marco':
-							CoolUtil.browserLoad('https://docs.google.com/document/d/1VMh3tncUc5x8l2jWUDagkcAzh0tcA-_C/edit?usp=sharing&ouid=108769625338074704736&rtpof=true&sd=true');
+							CoolUtil.browserLoad('https://docs.google.com/document/d/1C8gNNa3uo0NFByPt96AF2D7HdPNsXng4GcuzuNPnaOA/edit?usp=sharing');
 						case 'aileen':
 
 						case 'beatrice':
