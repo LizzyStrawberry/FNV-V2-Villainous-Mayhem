@@ -239,7 +239,7 @@ class InfoState extends MusicBeatState
 		scrollAsset.alpha = 0;
 		add(scrollAsset);
 
-		scrollDesc = new FlxText(scrollAsset.x - 130, scrollAsset.y + 100, 900,
+		scrollDesc = new FlxText(scrollAsset.x - 130, scrollAsset.y + 80, 900,
 			"This will only appear if i\ndon't have any text\nset for the characters.\nWe'll be checking the amount of space\nI can use to add these descriptions in.\nI should theoretically have enough\nspace to type this much stuff.\n#fortniteforlife lmao",
 			52);
 		scrollDesc.setFormat("SF Atarian System", 38, FlxColor.WHITE, CENTER);
