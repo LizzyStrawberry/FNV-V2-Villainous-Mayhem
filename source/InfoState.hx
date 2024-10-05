@@ -27,6 +27,9 @@ import Alphabet;
 import sys.FileSystem;
 #end
 
+import vlc.MP4Handler;
+import flash.system.System;
+
 class InfoState extends MusicBeatState
 {
 	public static var curCharSelected:Int = 0;
@@ -257,11 +260,18 @@ class InfoState extends MusicBeatState
 	var sidePressed:String = '';
 	var showingLore:Bool = false;
 	var allowLore:Bool = false;
+
+	var fardTimer:FlxTimer;
+	var fardsCounter:Int = 0;
+	var morkyFarded:Bool = false;
+	var showedFard:Bool = false;
 	override function update(elapsed:Float)
 	{
 		BGchecker.x += 0.5*(elapsed/(1/120));
         BGchecker.y += 0.16 / (ClientPrefs.framerate / 60); 
 
+		if (!morkyFarded)
+		{
 			if (controls.BACK || FlxG.mouse.justPressedRight)
 			{
 				if (showingLore)
@@ -322,8 +332,69 @@ class InfoState extends MusicBeatState
 					changeItem(1);
 				}
 			}
+			else
+			{
+				if (controls.ACCEPT || (FlxG.mouse.overlaps(scrollDesc) && FlxG.mouse.justPressed))
+				{
+					switch(optionShit[curCharSelected])
+					{
+						case 'marco':
+							CoolUtil.browserLoad('https://docs.google.com/document/d/1VMh3tncUc5x8l2jWUDagkcAzh0tcA-_C/edit?usp=sharing&ouid=108769625338074704736&rtpof=true&sd=true');
+						case 'aileen':
+
+						case 'beatrice':
+
+						case 'evelyn':
+
+						case 'yaku':
+
+						case 'kiana':
+
+						case 'dv':
+
+						case 'narrin':
+
+						case 'morky':
+							if (fardTimer != null)
+							{
+								if (fardTimer.progress != 1 && fardsCounter == 20)
+									morkyFarded = true;
+								fardTimer.cancel();
+							}
+							if (fardsCounter != 20)
+							{
+								fardsCounter += 1;
+								FlxG.sound.play(Paths.sound('morky'));
+								fardTimer = new FlxTimer().start(2, resetFards);
+							}
+						case 'debugGuy':
+
+					}
+				}
+			}
+		}
+		else if (morkyFarded && !showedFard)
+		{
+			showedFard = true;
+			FlxG.sound.music.stop();
+			FlxG.sound.play(Paths.sound('fart'));
+			var video:MP4Handler = new MP4Handler();
+			video.finishCallback = function()
+			{
+				System.exit(0);				
+			};
+			new FlxTimer().start(1, function (tmr:FlxTimer) {
+				System.exit(0);
+			});
+			video.playVideo(Paths.video('morky farded'));
+		}
 
 		super.update(elapsed);
+	}
+
+	function resetFards(timer:FlxTimer)
+	{
+		fardsCounter = 0;
 	}
 
 	function showLore()
@@ -336,7 +407,8 @@ class InfoState extends MusicBeatState
 					FlxTween.tween(blackOut, {alpha: 0.8}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
 					FlxTween.tween(scrollAsset, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
 					FlxTween.tween(scrollDesc, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
-					scrollDesc.text = "I am Marco's lore, nice to meet you\nlmao";
+					scrollDesc.text = "Before he became the infamous villain, he was\nonce named \"Michael PureHeart\",\na young but brilliant chemist who had the\nexpertise in making body enhancement\nsupplements.\nAt the age of 22, fresh out of his English\nUniversity, Michael receives a letter...
+					\n[Click <G>here<G> to view the full extension]";
 				}
 				else
 				{
@@ -439,7 +511,7 @@ class InfoState extends MusicBeatState
 					FlxTween.tween(blackOut, {alpha: 0.8}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
 					FlxTween.tween(scrollAsset, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
 					FlxTween.tween(scrollDesc, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
-					scrollDesc.text = "I am Morky's lore, nice to meet you\nlmao";
+					scrollDesc.text = "\n\n\nI heyt Wemens";
 				}
 				else
 				{
@@ -460,6 +532,7 @@ class InfoState extends MusicBeatState
 					showingLore = false;
 				}				
 		}
+		CustomFontFormats.addMarkers(scrollDesc);
 		trace('Showing Lore');
 	}
 
