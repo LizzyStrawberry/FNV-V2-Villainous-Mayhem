@@ -16,7 +16,7 @@ import Song.SwagSong;
 import sys.FileSystem;
 import sys.io.File;
 
-import vlc.MP4Handler;
+import hxcodec.VideoHandler;
 import flash.system.System;
 
 class GameOverSubstate extends MusicBeatSubstate
@@ -61,7 +61,7 @@ class GameOverSubstate extends MusicBeatSubstate
 			if (FlxG.sound.music != null)
 			FlxG.sound.music.stop();
 		
-			var video:MP4Handler = new MP4Handler();
+			var video:VideoHandler = new VideoHandler();
 			video.playVideo(Paths.video('thereIsAProblem'));
 			initializedVideo = true;
 			video.finishCallback = function()
@@ -74,7 +74,7 @@ class GameOverSubstate extends MusicBeatSubstate
 			{
 				FlxG.sound.music.stop();
 				lime.app.Application.current.window.title = "run.";
-				var video:MP4Handler = new MP4Handler();
+				var video:VideoHandler = new VideoHandler();
 				video.playVideo(Paths.video('run'));
 				initializedVideo = true;
 				video.finishCallback = function()
@@ -88,7 +88,7 @@ class GameOverSubstate extends MusicBeatSubstate
 			if (FlxG.sound.music != null)
 			FlxG.sound.music.stop();
 			
-			var video:MP4Handler = new MP4Handler();
+			var video:VideoHandler = new VideoHandler();
 			video.playVideo(Paths.video('NicDeathScreen'));
 			initializedVideo = true;
 			video.finishCallback = function()
@@ -217,7 +217,7 @@ class GameOverSubstate extends MusicBeatSubstate
 						if (FlxG.sound.music != null)
 							FlxG.sound.music.stop();
 			
-						var video:MP4Handler = new MP4Handler();
+						var video:VideoHandler = new VideoHandler();
 						video.playVideo(Paths.video('DVCrash'));
 						initializedVideo = true;
 						video.finishCallback = function()
@@ -230,7 +230,7 @@ class GameOverSubstate extends MusicBeatSubstate
 						if (FlxG.sound.music != null)
 							FlxG.sound.music.stop();
 			
-						var video:MP4Handler = new MP4Handler();
+						var video:VideoHandler = new VideoHandler();
 						video.playVideo(Paths.video('DVCrashPico'));
 						initializedVideo = true;
 						video.finishCallback = function()

@@ -41,7 +41,7 @@ import openfl.Assets;
 
 import flash.system.System;
 
-import vlc.MP4Handler;
+import hxcodec.VideoHandler;
 
 using StringTools;
 typedef TitleData =
@@ -286,7 +286,7 @@ class TitleState extends MusicBeatState
 					FlxG.sound.music.stop();
 				
 				videoPlayed = true;
-				var video:MP4Handler = new MP4Handler();
+				var video:VideoHandler = new VideoHandler();
 				video.finishCallback = function()
 				{
 					videoDone = true;

@@ -38,7 +38,6 @@ import WeekData;
 import sys.FileSystem;
 #end
 
-import vlc.MP4Handler;
 import flash.system.System;
 
 using StringTools;
