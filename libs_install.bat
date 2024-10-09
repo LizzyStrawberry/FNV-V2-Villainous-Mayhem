@@ -6,7 +6,7 @@ haxelib --always set flixel-ui 2.4.0
 haxelib --always set hscript 2.4.0
 haxelib --always set lime 7.9.0
 haxelib --always set openfl 9.1.0
-haxelib --always set hxCodec 2.6.1
+haxelib --always set hxCodec 2.5.1
 echo.
 echo Haxe Libraries Setup Completed! You can now compile FNV freely!
 pause

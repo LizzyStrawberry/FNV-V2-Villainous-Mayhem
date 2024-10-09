@@ -27,7 +27,7 @@ import flixel.input.keyboard.FlxKey;
 import flixel.util.FlxAxes;
 import flixel.addons.display.FlxBackdrop;
 
-import hxcodec.VideoHandler;
+import vlc.MP4Handler;
 import flash.system.System;
 
 using StringTools;
@@ -1272,7 +1272,7 @@ class MainMenuState extends MusicBeatState
 							ClientPrefs.saveSettings();
 						}
 			
-						var video:VideoHandler = new VideoHandler();
+						var video:MP4Handler = new MP4Handler();
 						video.playVideo(Paths.video('thinkFastChucklenuts'));
 						initializedVideo = true;
 						video.finishCallback = function()
