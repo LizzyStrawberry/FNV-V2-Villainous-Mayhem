@@ -448,7 +448,7 @@ class GalleryState extends MusicBeatState
 						}
 					case 2:
 						{
-							imageText.text = "Opening Loading Screen N.2 [Drawn by Jokinn]";
+							imageText.text = "Opening Loading Screen N.2 [Drawn by StatureGuy]";
 							
 						}
 					case 3:
@@ -462,7 +462,7 @@ class GalleryState extends MusicBeatState
 						}
 					case 5:
 						{
-							imageText.text = "Opening Loading Screen N.5 [Drawn by Jokinn]";
+							imageText.text = "Opening Loading Screen N.5 [Drawn by StatureGuy]";
 						}
 					case 6:
 						{

@@ -805,7 +805,7 @@ class TitleState extends MusicBeatState
 					if (ClientPrefs.iniquitousWeekUnlocked == true && ClientPrefs.iniquitousWeekBeaten == false)
 						createCoolText(['To finally face me'], 15);
 					else
-						createCoolText(['Jokinn kidnapped way', 'too many people', 'to create this'], -40);
+						createCoolText(['StatureGuy kidnapped way', 'too many people', 'to create this'], -40);
 					#else
 					createCoolText(['In association', 'with'], -40);
 					#end

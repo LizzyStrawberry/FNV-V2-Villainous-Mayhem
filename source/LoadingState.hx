@@ -67,7 +67,7 @@ class LoadingState extends MusicBeatState
 		'TIP:\nIf you want to have some more challenge in your playthrough, try out Mayhem Mode, Injection Mode, or enable Trampoline Mode! (..if you purchased it.)',
 		'FUN FACT:\nLustality used to be the hardest song we ever published in FNV!',
 		'FUN FACT:\nVersion 1.0 of FNV was done in just a month, and Version 1.5 only took 2 months!',
-		'FUN FACT:\n All the assets for this mod were drawn by JUST 1 person, Jokinn!'
+		'FUN FACT:\n All the assets for this mod were drawn by JUST 1 person, StatureGuy!'
 	];
 
 	function new(target:FlxState, stopMusic:Bool, directory:String)

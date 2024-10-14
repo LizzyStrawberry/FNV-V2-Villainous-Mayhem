@@ -118,7 +118,7 @@ class CreditsState extends MusicBeatState
 		FlxTween.tween(tipDown, {x: textBGDown.x - 4000}, 27, {ease: FlxEase.linear, type: LOOPING});
 
 		creditsStuff = [ //Name - Icon name - Description - Quote - Link
-			['Jokinn',	'jokinn', '<G>Roles:<G>\n- Owner of FNV\n- Director\n- Artist (All Assets + Cutscenes)\n- Main Voice Actor', "'I love Aileen'", 'https://www.youtube.com/channel/UCZ6Dkr6tseJJacSSjTd9OgQ', '00FBFF'],
+			['StatureGuy',	'statureguy', '<G>Roles:<G>\n- Owner of FNV\n- Director\n- Artist (All Assets + Cutscenes)\n- Main Voice Actor', "'I love Aileen'", 'https://www.youtube.com/channel/UCZ6Dkr6tseJJacSSjTd9OgQ', '00FBFF'],
 			['Lizzy Strawberry', 'strawberry', '<G>Roles:<G>\n- Main Coder\n- Main Sprite Animator\n- Song Coverer\n- Charter\n- Chromatic Scaler', "'<G>FNV<G> is the best mod ever, I'm not biased I swear,,'", 'https://www.youtube.com/c/LizzyStrawberry', 'f760eb'],
 			['Lillie', 'lillie', '<G>Roles:<G>\n- Additional Coder\n- Sprite Animator\n- Core Musician\n- Chromatic Creator\n- Charter ', "'<P>Oh? Did I<P> <G>Win<G>?'", 'https://www.youtube.com/@lilliancraig4690', 'fe8ca1'],
 			['TheRealOscamon', 'oscamon', '<G>Roles:<G>\n- Core Musician (Bangin fr)\n- Sprite Animator ', "'I am <GR>Oscamon<GR>..\nyes this is my quote'", 'https://www.youtube.com/channel/UC3kTxyzWnFopnfzLjD2jMuA', '18f55b'],
