@@ -9,6 +9,7 @@ haxelib --always set flixel-demos 3.0.0
 haxelib --always set flixel-templates 2.6.6
 haxelib --always set flixel-tools 1.5.1
 haxelib --always set flixel-ui 2.4.0
+haxelib --always set flixel 4.11.0
 haxelib --always set hmm 3.1.0
 haxelib --always set hscript 2.4.0
 haxelib --always set hxcodec 2.5.1
@@ -21,6 +22,7 @@ haxelib --always git linc_luajit https://github.com/nebulazorua/linc_luajit
 haxelib --always set newgrounds 2.0.2
 haxelib --always set openfl-samples 8.7.0
 haxelib --always set openfl 9.1.0
+haxelib --always git polymod https://github.com/larsiusprime/polymod.git
 haxelib --always set seedyrng 1.1.0
 haxelib --always set systools 1.1.0
 haxelib --always set thx.core 0.44.0
