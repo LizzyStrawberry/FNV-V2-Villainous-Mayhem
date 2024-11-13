@@ -1,0 +1,78 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				0
+			],
+			"anim": "idle",
+			"fps": 24,
+			"name": "michael p2 idle",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				8,
+				1
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "michael p2 left",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-17,
+				1
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "michael p2 down",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-18,
+				18
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "michael p2 up",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-12,
+				2
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "michael p2 right",
+			"indices": []
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/michael",
+	"position": [
+		0,
+		20
+	],
+	"healthicon": "michaelphase1",
+	"flip_x": false,
+	"healthbar_colors": [
+		118,
+		148,
+		105
+	],
+	"camera_position": [
+		-130,
+		120
+	],
+	"sing_duration": 6.1,
+	"scale": 1
+}

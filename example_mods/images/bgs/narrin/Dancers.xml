@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="Dancers.png">
+	<!-- Created with Adobe Animate version 21.0.5.40714 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="dolls idle0000" x="4" y="4" width="339" height="528" frameX="-50" frameY="-1" frameWidth="417" frameHeight="565"/>
+	<SubTexture name="dolls idle0001" x="343" y="4" width="338" height="528" frameX="-61" frameY="-1" frameWidth="417" frameHeight="565"/>
+	<SubTexture name="dolls idle0002" x="681" y="4" width="308" height="565" frameX="-69" frameY="0" frameWidth="417" frameHeight="565"/>
+	<SubTexture name="dolls idle0003" x="989" y="4" width="306" height="565" frameX="-62" frameY="0" frameWidth="417" frameHeight="565"/>
+	<SubTexture name="dolls idle0004" x="1295" y="4" width="364" height="528" frameX="-20" frameY="-3" frameWidth="417" frameHeight="565"/>
+	<SubTexture name="dolls idle0005" x="1659" y="4" width="362" height="528" frameX="0" frameY="-3" frameWidth="417" frameHeight="565"/>
+	<SubTexture name="dolls idle0006" x="4" y="569" width="384" height="524" frameX="-26" frameY="-3" frameWidth="417" frameHeight="565"/>
+	<SubTexture name="dolls idle0007" x="388" y="569" width="384" height="524" frameX="-33" frameY="-3" frameWidth="417" frameHeight="565"/>
+</TextureAtlas>

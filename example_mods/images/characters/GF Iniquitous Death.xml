@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="GF Iniquitous Death.png">
+	<!-- Created with Adobe Animate version 21.0.5.40714 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="gf death loop0000" x="4990" y="1352" width="831" height="674"/>
+	<SubTexture name="gf death loop0001" x="4990" y="1352" width="831" height="674"/>
+	<SubTexture name="gf death loop0002" x="4" y="4" width="831" height="674"/>
+	<SubTexture name="gf death loop0003" x="835" y="4" width="831" height="674"/>
+	<SubTexture name="gf death loop0004" x="1666" y="4" width="831" height="674"/>
+	<SubTexture name="gf death loop0005" x="2497" y="4" width="831" height="674"/>
+	<SubTexture name="gf death loop0006" x="3328" y="4" width="831" height="674"/>
+	<SubTexture name="gf death loop0007" x="4159" y="4" width="831" height="669" frameX="0" frameY="-5" frameWidth="831" frameHeight="674"/>
+	<SubTexture name="gf death loop0008" x="4159" y="4" width="831" height="669" frameX="0" frameY="-5" frameWidth="831" frameHeight="674"/>
+	<SubTexture name="gf death loop0009" x="4990" y="4" width="831" height="669" frameX="0" frameY="-5" frameWidth="831" frameHeight="674"/>
+	<SubTexture name="gf death loop0010" x="5821" y="4" width="831" height="669" frameX="0" frameY="-5" frameWidth="831" frameHeight="674"/>
+	<SubTexture name="gf death loop0011" x="6652" y="4" width="831" height="669" frameX="0" frameY="-5" frameWidth="831" frameHeight="674"/>
+	<SubTexture name="gf death loop0012" x="4" y="678" width="831" height="669" frameX="0" frameY="-5" frameWidth="831" frameHeight="674"/>
+	<SubTexture name="gf death loop0013" x="835" y="678" width="831" height="669" frameX="0" frameY="-5" frameWidth="831" frameHeight="674"/>
+	<SubTexture name="gf death loop0014" x="835" y="678" width="831" height="669" frameX="0" frameY="-5" frameWidth="831" frameHeight="674"/>
+	<SubTexture name="gf first death0000" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf first death0001" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf first death0002" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf first death0003" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf first death0004" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf first death0005" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf first death0006" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf first death0007" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf first death0008" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf first death0009" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf first death0010" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf first death0011" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf first death0012" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf first death0013" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf first death0014" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf first death0015" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf first death0016" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf first death0017" x="2497" y="678" width="831" height="674"/>
+	<SubTexture name="gf first death0018" x="3328" y="678" width="831" height="674"/>
+	<SubTexture name="gf first death0019" x="4159" y="678" width="831" height="674"/>
+	<SubTexture name="gf first death0020" x="4990" y="678" width="831" height="674"/>
+	<SubTexture name="gf first death0021" x="5821" y="678" width="831" height="674"/>
+	<SubTexture name="gf first death0022" x="6652" y="678" width="831" height="674"/>
+	<SubTexture name="gf first death0023" x="4" y="1352" width="831" height="674"/>
+	<SubTexture name="gf first death0024" x="835" y="1352" width="831" height="674"/>
+	<SubTexture name="gf first death0025" x="1666" y="1352" width="831" height="674"/>
+	<SubTexture name="gf first death0026" x="2497" y="1352" width="831" height="674"/>
+	<SubTexture name="gf first death0027" x="3328" y="1352" width="831" height="674"/>
+	<SubTexture name="gf first death0028" x="4159" y="1352" width="831" height="674"/>
+	<SubTexture name="gf first death0029" x="4990" y="1352" width="831" height="674"/>
+	<SubTexture name="gf first death0030" x="4990" y="1352" width="831" height="674"/>
+	<SubTexture name="gf first death0031" x="4990" y="1352" width="831" height="674"/>
+	<SubTexture name="gf first death0032" x="4990" y="1352" width="831" height="674"/>
+	<SubTexture name="gf first death0033" x="4990" y="1352" width="831" height="674"/>
+	<SubTexture name="gf first death0034" x="4990" y="1352" width="831" height="674"/>
+	<SubTexture name="gf retry0000" x="3328" y="4" width="831" height="674"/>
+	<SubTexture name="gf retry0001" x="5821" y="1352" width="839" height="680" frameX="0" frameY="0" frameWidth="885" frameHeight="714"/>
+	<SubTexture name="gf retry0002" x="6660" y="1352" width="846" height="686" frameX="0" frameY="0" frameWidth="885" frameHeight="714"/>
+	<SubTexture name="gf retry0003" x="4" y="2038" width="853" height="690" frameX="0" frameY="0" frameWidth="885" frameHeight="714"/>
+	<SubTexture name="gf retry0004" x="857" y="2038" width="858" height="695" frameX="0" frameY="0" frameWidth="885" frameHeight="714"/>
+	<SubTexture name="gf retry0005" x="1715" y="2038" width="863" height="698" frameX="0" frameY="0" frameWidth="885" frameHeight="714"/>
+	<SubTexture name="gf retry0006" x="2578" y="2038" width="868" height="701" frameX="0" frameY="0" frameWidth="885" frameHeight="714"/>
+	<SubTexture name="gf retry0007" x="3446" y="2038" width="871" height="704" frameX="0" frameY="0" frameWidth="885" frameHeight="714"/>
+	<SubTexture name="gf retry0008" x="4317" y="2038" width="874" height="707" frameX="0" frameY="0" frameWidth="885" frameHeight="714"/>
+	<SubTexture name="gf retry0009" x="5191" y="2038" width="877" height="709" frameX="0" frameY="0" frameWidth="885" frameHeight="714"/>
+	<SubTexture name="gf retry0010" x="6068" y="2038" width="879" height="710" frameX="0" frameY="0" frameWidth="885" frameHeight="714"/>
+	<SubTexture name="gf retry0011" x="6947" y="2038" width="881" height="711" frameX="0" frameY="0" frameWidth="885" frameHeight="714"/>
+	<SubTexture name="gf retry0012" x="4" y="2749" width="882" height="712" frameX="0" frameY="0" frameWidth="885" frameHeight="714"/>
+	<SubTexture name="gf retry0013" x="886" y="2749" width="883" height="713" frameX="0" frameY="0" frameWidth="885" frameHeight="714"/>
+	<SubTexture name="gf retry0014" x="1769" y="2749" width="884" height="714" frameX="0" frameY="0" frameWidth="885" frameHeight="714"/>
+	<SubTexture name="gf retry0015" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf retry0016" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf retry0017" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf retry0018" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf retry0019" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf retry0020" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf retry0021" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf retry0022" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf retry0023" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf retry0024" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf retry0025" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf retry0026" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf retry0027" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf retry0028" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf retry0029" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf retry0030" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf retry0031" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf retry0032" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf retry0033" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf retry0034" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf retry0035" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf retry0036" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf retry0037" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf retry0038" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf retry0039" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf retry0040" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf retry0041" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf retry0042" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf retry0043" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf retry0044" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf retry0045" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf retry0046" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf retry0047" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf retry0048" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf retry0049" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf retry0050" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf retry0051" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf retry0052" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf retry0053" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf retry0054" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf retry0055" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf retry0056" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf retry0057" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf retry0058" x="1666" y="678" width="831" height="674"/>
+	<SubTexture name="gf retry0059" x="1666" y="678" width="831" height="674"/>
+</TextureAtlas>

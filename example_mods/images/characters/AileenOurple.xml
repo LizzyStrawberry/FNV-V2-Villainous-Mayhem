@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="AileenOurple.png">
+	<!-- Created with Adobe Animate version 21.0.5.40714 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="aileen idle0000" x="4" y="4" width="354" height="725" frameX="-12" frameY="-8" frameWidth="378" frameHeight="733"/>
+	<SubTexture name="aileen idle0001" x="358" y="4" width="354" height="675" frameX="-12" frameY="-56" frameWidth="378" frameHeight="733"/>
+	<SubTexture name="aileen idle0002" x="712" y="4" width="370" height="643" frameX="-4" frameY="-86" frameWidth="378" frameHeight="733"/>
+	<SubTexture name="aileen idle0003" x="1082" y="4" width="378" height="636" frameX="0" frameY="-93" frameWidth="378" frameHeight="733"/>
+	<SubTexture name="aileen idle0004" x="1082" y="4" width="378" height="636" frameX="0" frameY="-93" frameWidth="378" frameHeight="733"/>
+	<SubTexture name="aileen idle0005" x="1460" y="4" width="378" height="647" frameX="0" frameY="-82" frameWidth="378" frameHeight="733"/>
+	<SubTexture name="aileen idle0006" x="4" y="729" width="362" height="672" frameX="-8" frameY="-59" frameWidth="378" frameHeight="733"/>
+	<SubTexture name="aileen idle0007" x="366" y="729" width="354" height="692" frameX="-12" frameY="-39" frameWidth="378" frameHeight="733"/>
+	<SubTexture name="aileen idle0008" x="4" y="4" width="354" height="725" frameX="-12" frameY="-8" frameWidth="378" frameHeight="733"/>
+	<SubTexture name="aileen idle0009" x="720" y="729" width="354" height="733" frameX="-12" frameY="0" frameWidth="378" frameHeight="733"/>
+	<SubTexture name="aileen idle0010" x="720" y="729" width="354" height="733" frameX="-12" frameY="0" frameWidth="378" frameHeight="733"/>
+	<SubTexture name="aileen idle0011" x="720" y="729" width="354" height="733" frameX="-12" frameY="0" frameWidth="378" frameHeight="733"/>
+	<SubTexture name="aileen idle0012" x="720" y="729" width="354" height="733" frameX="-12" frameY="0" frameWidth="378" frameHeight="733"/>
+	<SubTexture name="aileen idle0013" x="720" y="729" width="354" height="733" frameX="-12" frameY="0" frameWidth="378" frameHeight="733"/>
+	<SubTexture name="aileen idle0014" x="720" y="729" width="354" height="733" frameX="-12" frameY="0" frameWidth="378" frameHeight="733"/>
+</TextureAtlas>

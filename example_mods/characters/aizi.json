@@ -1,0 +1,78 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				211,
+				40
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "aizi left"
+		},
+		{
+			"offsets": [
+				75,
+				-80
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "aizi down"
+		},
+		{
+			"offsets": [
+				61,
+				148
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUP",
+			"indices": [],
+			"name": "aizi up"
+		},
+		{
+			"offsets": [
+				-70,
+				-31
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "aizi right"
+		},
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "idle",
+			"indices": [],
+			"name": "aizi idle"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/aizi",
+	"position": [
+		0,
+		0
+	],
+	"healthicon": "aizi",
+	"flip_x": false,
+	"healthbar_colors": [
+		0,
+		106,
+		222
+	],
+	"camera_position": [
+		0,
+		0
+	],
+	"sing_duration": 6.1,
+	"scale": 0.8
+}

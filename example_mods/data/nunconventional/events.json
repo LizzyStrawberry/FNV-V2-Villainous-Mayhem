@@ -1,0 +1,46 @@
+{
+	"song": {
+		"events": [
+			[
+				4158.41584158416,
+				[
+					[
+						"Change Character",
+						"dad",
+						"beatricephase2"
+					]
+				]
+			],
+			[
+				5198.0198019802,
+				[
+					[
+						"Play Animation",
+						"hey",
+						"dad"
+					]
+				]
+			],
+			[
+				7128.71287128713,
+				[
+					[
+						"Change Character",
+						"dad",
+						"beatricephase1"
+					]
+				]
+			],
+			[
+				123267.326732673,
+				[
+					[
+						"Change Character",
+						"dad",
+						"beatricephase2"
+					]
+				]
+			]
+		]
+	}
+}

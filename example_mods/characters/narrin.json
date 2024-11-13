@@ -1,0 +1,89 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "idle",
+			"indices": [],
+			"name": "narrin idle"
+		},
+		{
+			"offsets": [
+				424,
+				97
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "narrin left"
+		},
+		{
+			"offsets": [
+				-67,
+				101
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "narrin down"
+		},
+		{
+			"offsets": [
+				-55,
+				81
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUP",
+			"indices": [],
+			"name": "narrin up"
+		},
+		{
+			"offsets": [
+				-112,
+				105
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "narrin right"
+		},
+		{
+			"offsets": [
+				-90,
+				-44
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "laugh",
+			"loop": false,
+			"name": "narrin laugh"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/narrin",
+	"position": [
+		0,
+		0
+	],
+	"healthicon": "narrin",
+	"flip_x": false,
+	"healthbar_colors": [
+		213,
+		84,
+		192
+	],
+	"camera_position": [
+		-90,
+		-100
+	],
+	"sing_duration": 6.1,
+	"scale": 1
+}

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="Spike 1.png">
+	<!-- Created with Adobe Animate version 21.0.5.40714 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="Spike 1 appear0000" x="8" y="8" width="318" height="574"/>
+	<SubTexture name="Spike 1 appear0001" x="326" y="8" width="318" height="574"/>
+	<SubTexture name="Spike 1 appear0002" x="644" y="8" width="318" height="574"/>
+	<SubTexture name="Spike 1 appear0003" x="962" y="8" width="318" height="574"/>
+	<SubTexture name="Spike 1 appear0004" x="1280" y="8" width="318" height="574"/>
+	<SubTexture name="Spike 1 appear0005" x="1280" y="8" width="318" height="574"/>
+	<SubTexture name="Spike 1 appear0006" x="1280" y="8" width="318" height="574"/>
+	<SubTexture name="Spike 1 appear0007" x="1280" y="8" width="318" height="574"/>
+	<SubTexture name="Spike 1 appear0008" x="1280" y="8" width="318" height="574"/>
+	<SubTexture name="Spike 1 appear0009" x="1280" y="8" width="318" height="574"/>
+	<SubTexture name="Spike 1 appear0010" x="1280" y="8" width="318" height="574"/>
+	<SubTexture name="Spike 1 appear0011" x="1280" y="8" width="318" height="574"/>
+	<SubTexture name="Spike 1 appear0012" x="1280" y="8" width="318" height="574"/>
+	<SubTexture name="Spike 1 appear0013" x="1280" y="8" width="318" height="574"/>
+	<SubTexture name="Spike 1 appear0014" x="1280" y="8" width="318" height="574"/>
+	<SubTexture name="Spike 1 appear0015" x="1280" y="8" width="318" height="574"/>
+	<SubTexture name="Spike 1 appear0016" x="1280" y="8" width="318" height="574"/>
+	<SubTexture name="Spike 1 appear0017" x="1280" y="8" width="318" height="574"/>
+	<SubTexture name="Spike 1 appear0018" x="1280" y="8" width="318" height="574"/>
+	<SubTexture name="Spike 1 appear0019" x="1280" y="8" width="318" height="574"/>
+	<SubTexture name="Spike 1 appear0020" x="1598" y="8" width="318" height="574"/>
+	<SubTexture name="Spike 1 appear0021" x="8" y="582" width="318" height="574"/>
+	<SubTexture name="Spike 1 appear0022" x="326" y="8" width="318" height="574"/>
+	<SubTexture name="Spike 1 appear0023" x="8" y="8" width="318" height="574"/>
+	<SubTexture name="Spike 1 appear0024" x="326" y="582" width="318" height="574"/>
+	<SubTexture name="Spike 1 appear0025" x="326" y="582" width="318" height="574"/>
+	<SubTexture name="Spike 1 appear0026" x="326" y="582" width="318" height="574"/>
+	<SubTexture name="Spike 1 appear0027" x="326" y="582" width="318" height="574"/>
+	<SubTexture name="Spike 1 appear0028" x="326" y="582" width="318" height="574"/>
+	<SubTexture name="Spike 1 appear0029" x="326" y="582" width="318" height="574"/>
+</TextureAtlas>

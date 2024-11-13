@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="GF Iniquitous P1.png">
+	<!-- Created with Adobe Animate version 21.0.5.40714 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="gf down0000" x="0" y="0" width="491" height="770" frameX="-1" frameY="0" frameWidth="496" frameHeight="770"/>
+	<SubTexture name="gf down0001" x="491" y="0" width="482" height="762" frameX="-1" frameY="-8" frameWidth="496" frameHeight="770"/>
+	<SubTexture name="gf down0002" x="973" y="0" width="476" height="761" frameX="-1" frameY="-9" frameWidth="496" frameHeight="770"/>
+	<SubTexture name="gf down0003" x="973" y="0" width="476" height="761" frameX="-1" frameY="-9" frameWidth="496" frameHeight="770"/>
+	<SubTexture name="gf down0004" x="1449" y="0" width="481" height="766" frameX="-1" frameY="-4" frameWidth="496" frameHeight="770"/>
+	<SubTexture name="gf down0005" x="1930" y="0" width="491" height="766" frameX="-1" frameY="-4" frameWidth="496" frameHeight="770"/>
+	<SubTexture name="gf down0006" x="2421" y="0" width="496" height="769" frameX="0" frameY="-1" frameWidth="496" frameHeight="770"/>
+	<SubTexture name="gf down0007" x="2421" y="0" width="496" height="769" frameX="0" frameY="-1" frameWidth="496" frameHeight="770"/>
+	<SubTexture name="gf down0008" x="2421" y="0" width="496" height="769" frameX="0" frameY="-1" frameWidth="496" frameHeight="770"/>
+	<SubTexture name="gf down0009" x="2421" y="0" width="496" height="769" frameX="0" frameY="-1" frameWidth="496" frameHeight="770"/>
+	<SubTexture name="gf down miss0000" x="2917" y="0" width="534" height="582" frameX="0" frameY="-10" frameWidth="534" frameHeight="594"/>
+	<SubTexture name="gf down miss0001" x="3451" y="0" width="534" height="492" frameX="0" frameY="-102" frameWidth="534" frameHeight="594"/>
+	<SubTexture name="gf down miss0002" x="3985" y="0" width="534" height="592" frameX="0" frameY="0" frameWidth="534" frameHeight="594"/>
+	<SubTexture name="gf down miss0003" x="3985" y="0" width="534" height="592" frameX="0" frameY="0" frameWidth="534" frameHeight="594"/>
+	<SubTexture name="gf down miss0004" x="3985" y="0" width="534" height="592" frameX="0" frameY="0" frameWidth="534" frameHeight="594"/>
+	<SubTexture name="gf down miss0005" x="3985" y="0" width="534" height="592" frameX="0" frameY="0" frameWidth="534" frameHeight="594"/>
+	<SubTexture name="gf down miss0006" x="3985" y="0" width="534" height="592" frameX="0" frameY="0" frameWidth="534" frameHeight="594"/>
+	<SubTexture name="gf down miss0007" x="3985" y="0" width="534" height="592" frameX="0" frameY="0" frameWidth="534" frameHeight="594"/>
+	<SubTexture name="gf down miss0008" x="3985" y="0" width="534" height="592" frameX="0" frameY="0" frameWidth="534" frameHeight="594"/>
+	<SubTexture name="gf down miss0009" x="3985" y="0" width="534" height="592" frameX="0" frameY="0" frameWidth="534" frameHeight="594"/>
+	<SubTexture name="gf idle0000" x="4519" y="0" width="463" height="706" frameX="0" frameY="-2" frameWidth="471" frameHeight="709"/>
+	<SubTexture name="gf idle0001" x="4519" y="0" width="463" height="706" frameX="0" frameY="-2" frameWidth="471" frameHeight="709"/>
+	<SubTexture name="gf idle0002" x="4982" y="0" width="468" height="703" frameX="0" frameY="-5" frameWidth="471" frameHeight="709"/>
+	<SubTexture name="gf idle0003" x="4982" y="0" width="468" height="703" frameX="0" frameY="-5" frameWidth="471" frameHeight="709"/>
+	<SubTexture name="gf idle0004" x="5450" y="0" width="468" height="701" frameX="-2" frameY="-8" frameWidth="471" frameHeight="709"/>
+	<SubTexture name="gf idle0005" x="5450" y="0" width="468" height="701" frameX="-2" frameY="-8" frameWidth="471" frameHeight="709"/>
+	<SubTexture name="gf idle0006" x="5918" y="0" width="468" height="701" frameX="-3" frameY="-8" frameWidth="471" frameHeight="709"/>
+	<SubTexture name="gf idle0007" x="5918" y="0" width="468" height="701" frameX="-3" frameY="-8" frameWidth="471" frameHeight="709"/>
+	<SubTexture name="gf idle0008" x="6386" y="0" width="468" height="701" frameX="-3" frameY="-8" frameWidth="471" frameHeight="709"/>
+	<SubTexture name="gf idle0009" x="6386" y="0" width="468" height="701" frameX="-3" frameY="-8" frameWidth="471" frameHeight="709"/>
+	<SubTexture name="gf idle0010" x="5918" y="0" width="468" height="701" frameX="-3" frameY="-8" frameWidth="471" frameHeight="709"/>
+	<SubTexture name="gf idle0011" x="6854" y="0" width="468" height="701" frameX="-3" frameY="-8" frameWidth="471" frameHeight="709"/>
+	<SubTexture name="gf idle0012" x="7322" y="0" width="468" height="701" frameX="-3" frameY="-8" frameWidth="471" frameHeight="709"/>
+	<SubTexture name="gf idle0013" x="7322" y="0" width="468" height="701" frameX="-3" frameY="-8" frameWidth="471" frameHeight="709"/>
+	<SubTexture name="gf idle0014" x="7322" y="0" width="468" height="701" frameX="-3" frameY="-8" frameWidth="471" frameHeight="709"/>
+	<SubTexture name="gf idle0015" x="0" y="770" width="467" height="703" frameX="-3" frameY="-6" frameWidth="471" frameHeight="709"/>
+	<SubTexture name="gf idle0016" x="0" y="770" width="467" height="703" frameX="-3" frameY="-6" frameWidth="471" frameHeight="709"/>
+	<SubTexture name="gf idle0017" x="467" y="770" width="465" height="708" frameX="-1" frameY="0" frameWidth="471" frameHeight="709"/>
+	<SubTexture name="gf idle0018" x="467" y="770" width="465" height="708" frameX="-1" frameY="0" frameWidth="471" frameHeight="709"/>
+	<SubTexture name="gf idle0019" x="932" y="770" width="462" height="708" frameX="0" frameY="0" frameWidth="471" frameHeight="709"/>
+	<SubTexture name="gf idle0020" x="932" y="770" width="462" height="708" frameX="0" frameY="0" frameWidth="471" frameHeight="709"/>
+	<SubTexture name="gf idle0021" x="1394" y="770" width="461" height="708" frameX="0" frameY="0" frameWidth="471" frameHeight="709"/>
+	<SubTexture name="gf idle0022" x="1855" y="770" width="463" height="706" frameX="0" frameY="-2" frameWidth="471" frameHeight="709"/>
+	<SubTexture name="gf idle0023" x="2318" y="770" width="463" height="706" frameX="0" frameY="-2" frameWidth="471" frameHeight="709"/>
+	<SubTexture name="gf idle0024" x="2318" y="770" width="463" height="706" frameX="0" frameY="-2" frameWidth="471" frameHeight="709"/>
+	<SubTexture name="gf idle0025" x="2318" y="770" width="463" height="706" frameX="0" frameY="-2" frameWidth="471" frameHeight="709"/>
+	<SubTexture name="gf idle0026" x="2318" y="770" width="463" height="706" frameX="0" frameY="-2" frameWidth="471" frameHeight="709"/>
+	<SubTexture name="gf idle0027" x="2318" y="770" width="463" height="706" frameX="0" frameY="-2" frameWidth="471" frameHeight="709"/>
+	<SubTexture name="gf idle0028" x="2318" y="770" width="463" height="706" frameX="0" frameY="-2" frameWidth="471" frameHeight="709"/>
+	<SubTexture name="gf idle0029" x="2318" y="770" width="463" height="706" frameX="0" frameY="-2" frameWidth="471" frameHeight="709"/>
+	<SubTexture name="gf left0000" x="2781" y="770" width="556" height="729" frameX="-45" frameY="-12" frameWidth="634" frameHeight="742"/>
+	<SubTexture name="gf left0001" x="3337" y="770" width="601" height="741" frameX="-19" frameY="-1" frameWidth="634" frameHeight="742"/>
+	<SubTexture name="gf left0002" x="3938" y="770" width="620" height="742" frameX="0" frameY="0" frameWidth="634" frameHeight="742"/>
+	<SubTexture name="gf left0003" x="4558" y="770" width="593" height="738" frameX="-20" frameY="-4" frameWidth="634" frameHeight="742"/>
+	<SubTexture name="gf left0004" x="5151" y="770" width="559" height="725" frameX="-31" frameY="-17" frameWidth="634" frameHeight="742"/>
+	<SubTexture name="gf left0005" x="5710" y="770" width="536" height="719" frameX="-37" frameY="-23" frameWidth="634" frameHeight="742"/>
+	<SubTexture name="gf left0006" x="6246" y="770" width="536" height="719" frameX="-37" frameY="-23" frameWidth="634" frameHeight="742"/>
+	<SubTexture name="gf left0007" x="6782" y="770" width="536" height="719" frameX="-37" frameY="-23" frameWidth="634" frameHeight="742"/>
+	<SubTexture name="gf left0008" x="7318" y="770" width="536" height="719" frameX="-37" frameY="-23" frameWidth="634" frameHeight="742"/>
+	<SubTexture name="gf left0009" x="7318" y="770" width="536" height="719" frameX="-37" frameY="-23" frameWidth="634" frameHeight="742"/>
+	<SubTexture name="gf left miss0000" x="0" y="1512" width="583" height="694" frameX="-54" frameY="0" frameWidth="637" frameHeight="694"/>
+	<SubTexture name="gf left miss0001" x="583" y="1512" width="634" height="694" frameX="0" frameY="0" frameWidth="637" frameHeight="694"/>
+	<SubTexture name="gf left miss0002" x="1217" y="1512" width="579" height="694" frameX="-58" frameY="0" frameWidth="637" frameHeight="694"/>
+	<SubTexture name="gf left miss0003" x="1217" y="1512" width="579" height="694" frameX="-58" frameY="0" frameWidth="637" frameHeight="694"/>
+	<SubTexture name="gf left miss0004" x="1217" y="1512" width="579" height="694" frameX="-58" frameY="0" frameWidth="637" frameHeight="694"/>
+	<SubTexture name="gf left miss0005" x="1217" y="1512" width="579" height="694" frameX="-58" frameY="0" frameWidth="637" frameHeight="694"/>
+	<SubTexture name="gf left miss0006" x="1217" y="1512" width="579" height="694" frameX="-58" frameY="0" frameWidth="637" frameHeight="694"/>
+	<SubTexture name="gf left miss0007" x="1217" y="1512" width="579" height="694" frameX="-58" frameY="0" frameWidth="637" frameHeight="694"/>
+	<SubTexture name="gf left miss0008" x="1217" y="1512" width="579" height="694" frameX="-58" frameY="0" frameWidth="637" frameHeight="694"/>
+	<SubTexture name="gf left miss0009" x="1217" y="1512" width="579" height="694" frameX="-58" frameY="0" frameWidth="637" frameHeight="694"/>
+	<SubTexture name="gf right0000" x="1796" y="1512" width="556" height="756" frameX="-41" frameY="-19" frameWidth="663" frameHeight="794"/>
+	<SubTexture name="gf right0001" x="2352" y="1512" width="564" height="775" frameX="-34" frameY="0" frameWidth="663" frameHeight="794"/>
+	<SubTexture name="gf right0002" x="2916" y="1512" width="586" height="773" frameX="-33" frameY="-2" frameWidth="663" frameHeight="794"/>
+	<SubTexture name="gf right0003" x="3502" y="1512" width="569" height="772" frameX="-35" frameY="-13" frameWidth="663" frameHeight="794"/>
+	<SubTexture name="gf right0004" x="4071" y="1512" width="530" height="769" frameX="-67" frameY="-24" frameWidth="663" frameHeight="794"/>
+	<SubTexture name="gf right0005" x="4601" y="1512" width="457" height="775" frameX="-142" frameY="-19" frameWidth="663" frameHeight="794"/>
+	<SubTexture name="gf right0006" x="5058" y="1512" width="513" height="775" frameX="-142" frameY="-19" frameWidth="663" frameHeight="794"/>
+	<SubTexture name="gf right0007" x="5571" y="1512" width="520" height="775" frameX="-142" frameY="-19" frameWidth="663" frameHeight="794"/>
+	<SubTexture name="gf right0008" x="5571" y="1512" width="520" height="775" frameX="-142" frameY="-19" frameWidth="663" frameHeight="794"/>
+	<SubTexture name="gf right0009" x="5571" y="1512" width="520" height="775" frameX="-142" frameY="-19" frameWidth="663" frameHeight="794"/>
+	<SubTexture name="gf right miss0000" x="6091" y="1512" width="519" height="694" frameX="-3" frameY="0" frameWidth="553" frameHeight="694"/>
+	<SubTexture name="gf right miss0001" x="6610" y="1512" width="537" height="694" frameX="-16" frameY="0" frameWidth="553" frameHeight="694"/>
+	<SubTexture name="gf right miss0002" x="7147" y="1512" width="521" height="694" frameX="0" frameY="0" frameWidth="553" frameHeight="694"/>
+	<SubTexture name="gf right miss0003" x="7147" y="1512" width="521" height="694" frameX="0" frameY="0" frameWidth="553" frameHeight="694"/>
+	<SubTexture name="gf right miss0004" x="7147" y="1512" width="521" height="694" frameX="0" frameY="0" frameWidth="553" frameHeight="694"/>
+	<SubTexture name="gf right miss0005" x="7147" y="1512" width="521" height="694" frameX="0" frameY="0" frameWidth="553" frameHeight="694"/>
+	<SubTexture name="gf right miss0006" x="7147" y="1512" width="521" height="694" frameX="0" frameY="0" frameWidth="553" frameHeight="694"/>
+	<SubTexture name="gf right miss0007" x="7147" y="1512" width="521" height="694" frameX="0" frameY="0" frameWidth="553" frameHeight="694"/>
+	<SubTexture name="gf right miss0008" x="7147" y="1512" width="521" height="694" frameX="0" frameY="0" frameWidth="553" frameHeight="694"/>
+	<SubTexture name="gf right miss0009" x="7147" y="1512" width="521" height="694" frameX="0" frameY="0" frameWidth="553" frameHeight="694"/>
+	<SubTexture name="gf up0000" x="0" y="2287" width="612" height="768" frameX="-8" frameY="-20" frameWidth="640" frameHeight="788"/>
+	<SubTexture name="gf up0001" x="612" y="2287" width="602" height="786" frameX="-26" frameY="-2" frameWidth="640" frameHeight="788"/>
+	<SubTexture name="gf up0002" x="1214" y="2287" width="602" height="788" frameX="-29" frameY="0" frameWidth="640" frameHeight="788"/>
+	<SubTexture name="gf up0003" x="1214" y="2287" width="602" height="788" frameX="-29" frameY="0" frameWidth="640" frameHeight="788"/>
+	<SubTexture name="gf up0004" x="1816" y="2287" width="605" height="785" frameX="-18" frameY="-3" frameWidth="640" frameHeight="788"/>
+	<SubTexture name="gf up0005" x="2421" y="2287" width="634" height="776" frameX="-4" frameY="-12" frameWidth="640" frameHeight="788"/>
+	<SubTexture name="gf up0006" x="3055" y="2287" width="640" height="776" frameX="0" frameY="-12" frameWidth="640" frameHeight="788"/>
+	<SubTexture name="gf up0007" x="3055" y="2287" width="640" height="776" frameX="0" frameY="-12" frameWidth="640" frameHeight="788"/>
+	<SubTexture name="gf up0008" x="3055" y="2287" width="640" height="776" frameX="0" frameY="-12" frameWidth="640" frameHeight="788"/>
+	<SubTexture name="gf up0009" x="3055" y="2287" width="640" height="776" frameX="0" frameY="-12" frameWidth="640" frameHeight="788"/>
+	<SubTexture name="gf up miss0000" x="3695" y="2287" width="536" height="756" frameX="0" frameY="-48" frameWidth="536" frameHeight="804"/>
+	<SubTexture name="gf up miss0001" x="4231" y="2287" width="536" height="803" frameX="0" frameY="0" frameWidth="536" frameHeight="804"/>
+	<SubTexture name="gf up miss0002" x="4767" y="2287" width="535" height="748" frameX="-1" frameY="-56" frameWidth="536" frameHeight="804"/>
+	<SubTexture name="gf up miss0003" x="4767" y="2287" width="535" height="748" frameX="-1" frameY="-56" frameWidth="536" frameHeight="804"/>
+	<SubTexture name="gf up miss0004" x="4767" y="2287" width="535" height="748" frameX="-1" frameY="-56" frameWidth="536" frameHeight="804"/>
+	<SubTexture name="gf up miss0005" x="4767" y="2287" width="535" height="748" frameX="-1" frameY="-56" frameWidth="536" frameHeight="804"/>
+	<SubTexture name="gf up miss0006" x="4767" y="2287" width="535" height="748" frameX="-1" frameY="-56" frameWidth="536" frameHeight="804"/>
+	<SubTexture name="gf up miss0007" x="4767" y="2287" width="535" height="748" frameX="-1" frameY="-56" frameWidth="536" frameHeight="804"/>
+	<SubTexture name="gf up miss0008" x="4767" y="2287" width="535" height="748" frameX="-1" frameY="-56" frameWidth="536" frameHeight="804"/>
+	<SubTexture name="gf up miss0009" x="4767" y="2287" width="535" height="748" frameX="-1" frameY="-56" frameWidth="536" frameHeight="804"/>
+</TextureAtlas>

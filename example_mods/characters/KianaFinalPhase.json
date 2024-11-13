@@ -1,0 +1,78 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				4,
+				2
+			],
+			"anim": "idle",
+			"fps": 16,
+			"name": "Kiana Idle",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-80,
+				1
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "Kiana Left",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-246,
+				1
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "Kiana Down",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-86,
+				173
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "Kiana Up",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-128,
+				1
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "Kiana Right",
+			"indices": []
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/kiana final phase",
+	"position": [
+		-680,
+		-740
+	],
+	"healthicon": "kianafinalphase",
+	"flip_x": false,
+	"healthbar_colors": [
+		172,
+		48,
+		48
+	],
+	"camera_position": [
+		-1630,
+		-610
+	],
+	"sing_duration": 6.1,
+	"scale": 1.5
+}

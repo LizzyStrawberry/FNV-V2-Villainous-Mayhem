@@ -1,0 +1,45 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"indices": [],
+			"fps": 12,
+			"anim": "deathLoop",
+			"loop": true,
+			"name": "gf death0"
+		},
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"indices": [],
+			"fps": 12,
+			"anim": "firstDeath",
+			"loop": false,
+			"name": "gf death0"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/shucks death",
+	"position": [
+		170,
+		220
+	],
+	"healthicon": "playablegf",
+	"flip_x": true,
+	"healthbar_colors": [
+		165,
+		0,
+		77
+	],
+	"camera_position": [
+		-120,
+		80
+	],
+	"sing_duration": 4,
+	"scale": 1.1
+}

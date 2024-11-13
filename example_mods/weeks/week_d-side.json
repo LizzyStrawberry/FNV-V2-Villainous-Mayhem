@@ -1,0 +1,50 @@
+{
+	"storyName": "D-side Week",
+	"difficulties": "",
+	"hideFreeplay": true,
+	"weekBackground": "stage",
+	"freeplayColor": [
+		146,
+		113,
+		253
+	],
+	"weekBefore": "tutorial",
+	"startUnlocked": true,
+	"weekCharacters": [
+		"dad",
+		"bf",
+		"gf"
+	],
+	"songs": [
+		[
+			"Unpaid Catastrophe",
+			"dad",
+			[
+				146,
+				113,
+				253
+			]
+		],
+		[
+			"Cheque",
+			"dad",
+			[
+				146,
+				113,
+				253
+			]
+		],
+		[
+			"Get Gooned",
+			"dad",
+			[
+				146,
+				113,
+				253
+			]
+		]
+	],
+	"hideStoryMode": false,
+	"weekName": "D-side Week",
+	"hiddenUntilUnlocked": false
+}

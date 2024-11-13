@@ -1,0 +1,41 @@
+{
+	"storyName": "Beatrice Week",
+	"difficulties": "",
+	"hideFreeplay": true,
+	"weekBackground": "stage",
+	"freeplayColor": [
+		146,
+		113,
+		253
+	],
+	"weekBefore": "mainweek",
+	"startUnlocked": true,
+	"weekCharacters": [
+		"dad",
+		"bf",
+		"gf"
+	],
+	"songs": [
+		[
+			"Nunday Monday",
+			"beatrice",
+			[
+				255,
+				0,
+				53
+			]
+		],
+		[
+			"Nunconventional",
+			"beatrice",
+			[
+				255,
+				0,
+				53
+			]
+		]
+	],
+	"hideStoryMode": false,
+	"weekName": "Week 2",
+	"hiddenUntilUnlocked": false
+}

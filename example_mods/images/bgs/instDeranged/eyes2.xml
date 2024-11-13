@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="eyes2.png">
+	<!-- Created with Adobe Animate version 21.0.5.40714 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="eyes20000" x="0" y="0" width="951" height="1291" frameX="0" frameY="-16" frameWidth="951" frameHeight="1312"/>
+	<SubTexture name="eyes20001" x="951" y="0" width="951" height="1291" frameX="0" frameY="-16" frameWidth="951" frameHeight="1312"/>
+	<SubTexture name="eyes20002" x="1902" y="0" width="950" height="1291" frameX="0" frameY="-16" frameWidth="951" frameHeight="1312"/>
+	<SubTexture name="eyes20003" x="2852" y="0" width="947" height="1291" frameX="0" frameY="-16" frameWidth="951" frameHeight="1312"/>
+	<SubTexture name="eyes20004" x="3799" y="0" width="941" height="1281" frameX="0" frameY="-26" frameWidth="951" frameHeight="1312"/>
+	<SubTexture name="eyes20005" x="4740" y="0" width="932" height="1228" frameX="0" frameY="-79" frameWidth="951" frameHeight="1312"/>
+	<SubTexture name="eyes20006" x="5672" y="0" width="922" height="1200" frameX="0" frameY="-107" frameWidth="951" frameHeight="1312"/>
+	<SubTexture name="eyes20007" x="6594" y="0" width="917" height="1252" frameX="0" frameY="-55" frameWidth="951" frameHeight="1312"/>
+	<SubTexture name="eyes20008" x="0" y="1291" width="922" height="1295" frameX="0" frameY="-12" frameWidth="951" frameHeight="1312"/>
+	<SubTexture name="eyes20009" x="922" y="1291" width="924" height="1307" frameX="0" frameY="0" frameWidth="951" frameHeight="1312"/>
+	<SubTexture name="eyes20010" x="1846" y="1291" width="944" height="1296" frameX="0" frameY="-11" frameWidth="951" frameHeight="1312"/>
+	<SubTexture name="eyes20011" x="2790" y="1291" width="947" height="1290" frameX="0" frameY="-17" frameWidth="951" frameHeight="1312"/>
+	<SubTexture name="eyes20012" x="3737" y="1291" width="906" height="1289" frameX="0" frameY="-18" frameWidth="951" frameHeight="1312"/>
+	<SubTexture name="eyes20013" x="4643" y="1291" width="950" height="1287" frameX="0" frameY="-18" frameWidth="951" frameHeight="1312"/>
+	<SubTexture name="eyes20014" x="5593" y="1291" width="928" height="1289" frameX="0" frameY="-18" frameWidth="951" frameHeight="1312"/>
+	<SubTexture name="eyes20015" x="6521" y="1291" width="918" height="1289" frameX="0" frameY="-18" frameWidth="951" frameHeight="1312"/>
+	<SubTexture name="eyes20016" x="0" y="2598" width="926" height="1289" frameX="0" frameY="-18" frameWidth="951" frameHeight="1312"/>
+	<SubTexture name="eyes20017" x="926" y="2598" width="925" height="1289" frameX="0" frameY="-18" frameWidth="951" frameHeight="1312"/>
+	<SubTexture name="eyes20018" x="1851" y="2598" width="932" height="1289" frameX="0" frameY="-18" frameWidth="951" frameHeight="1312"/>
+	<SubTexture name="eyes20019" x="2783" y="2598" width="937" height="1288" frameX="0" frameY="-19" frameWidth="951" frameHeight="1312"/>
+	<SubTexture name="eyes20020" x="3720" y="2598" width="942" height="1285" frameX="0" frameY="-22" frameWidth="951" frameHeight="1312"/>
+	<SubTexture name="eyes20021" x="4662" y="2598" width="945" height="1289" frameX="0" frameY="-18" frameWidth="951" frameHeight="1312"/>
+	<SubTexture name="eyes20022" x="5607" y="2598" width="948" height="1289" frameX="0" frameY="-18" frameWidth="951" frameHeight="1312"/>
+	<SubTexture name="eyes20023" x="6555" y="2598" width="949" height="1266" frameX="0" frameY="-18" frameWidth="951" frameHeight="1312"/>
+	<SubTexture name="eyes20024" x="0" y="3887" width="950" height="1294" frameX="0" frameY="-18" frameWidth="951" frameHeight="1312"/>
+	<SubTexture name="eyes20025" x="950" y="3887" width="951" height="1294" frameX="0" frameY="-18" frameWidth="951" frameHeight="1312"/>
+	<SubTexture name="eyes20026" x="1901" y="3887" width="951" height="1294" frameX="0" frameY="-18" frameWidth="951" frameHeight="1312"/>
+	<SubTexture name="eyes20027" x="2852" y="3887" width="951" height="1294" frameX="0" frameY="-18" frameWidth="951" frameHeight="1312"/>
+	<SubTexture name="eyes20028" x="3803" y="3887" width="951" height="1294" frameX="0" frameY="-18" frameWidth="951" frameHeight="1312"/>
+	<SubTexture name="eyes20029" x="4754" y="3887" width="951" height="1294" frameX="0" frameY="-18" frameWidth="951" frameHeight="1312"/>
+</TextureAtlas>

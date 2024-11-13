@@ -1,0 +1,78 @@
+{
+	"animations": [
+		{
+			"loop": true,
+			"offsets": [
+				0,
+				0
+			],
+			"anim": "idle",
+			"fps": 24,
+			"name": "michael p4 idle",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				129,
+				-10
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "michael p4 left",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-9,
+				-41
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "michael p4 down",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				193,
+				-36
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "michael p4 up",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-34,
+				-6
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "michael p4 right",
+			"indices": []
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/michael",
+	"position": [
+		0,
+		0
+	],
+	"healthicon": "michaelphase4",
+	"flip_x": false,
+	"healthbar_colors": [
+		38,
+		68,
+		25
+	],
+	"camera_position": [
+		-130,
+		120
+	],
+	"sing_duration": 6.1,
+	"scale": 1
+}

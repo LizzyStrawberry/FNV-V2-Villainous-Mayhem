@@ -1,0 +1,34 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				1,
+				-10
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "idle",
+			"indices": [],
+			"name": "Speaker"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/speaker",
+	"position": [
+		240,
+		410
+	],
+	"healthicon": "face",
+	"flip_x": false,
+	"healthbar_colors": [
+		161,
+		161,
+		161
+	],
+	"camera_position": [
+		-90,
+		-390
+	],
+	"sing_duration": 6.1,
+	"scale": 0.9
+}

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="AileenNoteSplashesSparkle.png">
+	<!-- Created with Adobe Animate version 21.0.5.40714 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="note splash sparkle blue 10000" x="8" y="8" width="306" height="254"/>
+	<SubTexture name="note splash sparkle blue 10001" x="314" y="8" width="306" height="254"/>
+	<SubTexture name="note splash sparkle blue 10002" x="620" y="8" width="306" height="254"/>
+	<SubTexture name="note splash sparkle blue 10003" x="926" y="8" width="306" height="254"/>
+	<SubTexture name="note splash sparkle green 10000" x="8" y="8" width="306" height="254"/>
+	<SubTexture name="note splash sparkle green 10001" x="314" y="8" width="306" height="254"/>
+	<SubTexture name="note splash sparkle green 10002" x="620" y="8" width="306" height="254"/>
+	<SubTexture name="note splash sparkle green 10003" x="926" y="8" width="306" height="254"/>
+	<SubTexture name="note splash sparkle purple 10000" x="1232" y="8" width="306" height="254"/>
+	<SubTexture name="note splash sparkle purple 10001" x="1538" y="8" width="306" height="254"/>
+	<SubTexture name="note splash sparkle purple 10002" x="8" y="262" width="306" height="254"/>
+	<SubTexture name="note splash sparkle purple 10003" x="314" y="262" width="306" height="254"/>
+	<SubTexture name="note splash sparkle red 10000" x="620" y="262" width="306" height="254"/>
+	<SubTexture name="note splash sparkle red 10001" x="926" y="262" width="306" height="254"/>
+	<SubTexture name="note splash sparkle red 10002" x="1232" y="262" width="306" height="254"/>
+	<SubTexture name="note splash sparkle red 10003" x="1538" y="262" width="306" height="254"/>
+</TextureAtlas>

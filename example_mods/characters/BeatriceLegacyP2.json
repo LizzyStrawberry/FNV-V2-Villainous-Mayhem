@@ -1,0 +1,100 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				-23,
+				-68
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "beatrice left"
+		},
+		{
+			"offsets": [
+				-39,
+				-56
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "beatrice down"
+		},
+		{
+			"offsets": [
+				-77,
+				23
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUP",
+			"indices": [],
+			"name": "beatrice up"
+		},
+		{
+			"offsets": [
+				-72,
+				-18
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "beatrice right"
+		},
+		{
+			"offsets": [
+				-1,
+				-10
+			],
+			"loop": true,
+			"fps": 24,
+			"anim": "idle",
+			"indices": [],
+			"name": "beatrice idle"
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-42,
+				-12
+			],
+			"anim": "hey",
+			"fps": 24,
+			"name": "beatrice hey",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-43,
+				-12
+			],
+			"anim": "hehe",
+			"fps": 24,
+			"name": "beatrice hehe",
+			"indices": []
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/beatrice legacy p2",
+	"position": [
+		50,
+		-70
+	],
+	"healthicon": "beatrice",
+	"flip_x": false,
+	"healthbar_colors": [
+		217,
+		46,
+		46
+	],
+	"camera_position": [
+		-80,
+		10
+	],
+	"sing_duration": 6.1,
+	"scale": 1.1
+}

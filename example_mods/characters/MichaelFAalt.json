@@ -1,0 +1,89 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				1,
+				0
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "switch",
+			"indices": [],
+			"name": "michael idle switch"
+		},
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				0
+			],
+			"anim": "idle",
+			"fps": 24,
+			"name": "michael idle alt",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				18,
+				-4
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "michael left alt",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				10,
+				-11
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "michael down alt",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-29,
+				30
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "michael up alt",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-16,
+				1
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "michael right alt",
+			"indices": []
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/MichaelFA",
+	"position": [
+		1000,
+		-60
+	],
+	"healthicon": "michaelfa",
+	"flip_x": false,
+	"healthbar_colors": [
+		118,
+		148,
+		105
+	],
+	"camera_position": [
+		-260,
+		30
+	],
+	"sing_duration": 6.1,
+	"scale": 1
+}

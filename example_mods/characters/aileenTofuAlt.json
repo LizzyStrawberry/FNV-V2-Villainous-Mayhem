@@ -1,0 +1,122 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				-1,
+				-10
+			],
+			"anim": "idle",
+			"fps": 24,
+			"name": "aileen idle",
+			"indices": []
+		},
+		{
+			"offsets": [
+				78,
+				-23
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "aileen left0"
+		},
+		{
+			"offsets": [
+				10,
+				-60
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "aileen down0"
+		},
+		{
+			"offsets": [
+				-30,
+				15
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUP",
+			"indices": [],
+			"name": "aileen up0"
+		},
+		{
+			"offsets": [
+				-44,
+				-15
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "aileen right0"
+		},
+		{
+			"loop": false,
+			"offsets": [
+				217,
+				-92
+			],
+			"anim": "singLEFTmiss",
+			"fps": 24,
+			"name": "aileen left miss",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				183,
+				-91
+			],
+			"anim": "singRIGHTmiss",
+			"fps": 24,
+			"name": "aileen right miss",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				193,
+				50
+			],
+			"anim": "singUPmiss",
+			"fps": 24,
+			"name": "aileen up miss",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				194,
+				-136
+			],
+			"anim": "singDOWNmiss",
+			"fps": 24,
+			"name": "aileen down miss",
+			"indices": []
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/aileen tofu alt",
+	"position": [
+		60,
+		-170
+	],
+	"healthicon": "aileentofu",
+	"flip_x": true,
+	"healthbar_colors": [
+		163,
+		187,
+		137
+	],
+	"camera_position": [
+		-50,
+		10
+	],
+	"sing_duration": 6.1,
+	"scale": 1.1
+}

@@ -72,6 +72,7 @@ class PromotionState extends MusicBeatState
 	];
 
     var modSelected:Array<String> = [
+        'pop',
         'cross',
         'groovin',
         'secretGarden',
@@ -161,6 +162,8 @@ class PromotionState extends MusicBeatState
 
         switch(modSelected[curModSelected])
             {
+                case 'pop':
+                    titleText.text = "Price of Progress";
                 case 'cross':
                     titleText.text = "Head Honcho Havoc";
                 case 'groovin':
@@ -277,6 +280,8 @@ class PromotionState extends MusicBeatState
         {
             switch(modSelected[curModSelected])
             {
+                case 'pop':
+                    CoolUtil.browserLoad('https://gamebanana.com/mods/479432');
                 case 'cross':
                     CoolUtil.browserLoad('https://gamebanana.com/mods/407057');
                 case 'groovin':
@@ -355,6 +360,8 @@ class PromotionState extends MusicBeatState
 
             switch(modSelected[curModSelected])
             {
+                case 'pop':
+                    titleText.text = "Price of Progress";
                 case 'cross':
                     titleText.text = "Head Honcho Havoc";
                 case 'groovin':

@@ -1,0 +1,89 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				1
+			],
+			"anim": "idle",
+			"fps": 24,
+			"name": "marco idle",
+			"indices": []
+		},
+		{
+			"offsets": [
+				116,
+				-24
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "marco left"
+		},
+		{
+			"offsets": [
+				-110,
+				-98
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "marco right"
+		},
+		{
+			"loop": false,
+			"offsets": [
+				30,
+				49
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "marco up",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				40,
+				-201
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "marco down",
+			"indices": []
+		},
+		{
+			"offsets": [
+				-60,
+				21
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "hey",
+			"loop": false,
+			"name": "marco vpose"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/spendthrift marco",
+	"position": [
+		80,
+		-100
+	],
+	"healthicon": "marco",
+	"flip_x": false,
+	"healthbar_colors": [
+		34,
+		34,
+		34
+	],
+	"camera_position": [
+		-140,
+		-50
+	],
+	"sing_duration": 6.1,
+	"scale": 1.1
+}

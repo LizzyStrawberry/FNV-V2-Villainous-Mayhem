@@ -1,0 +1,133 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				60,
+				-10
+			],
+			"anim": "tail attack",
+			"fps": 24,
+			"name": "kiana tail attack",
+			"indices": []
+		},
+		{
+			"offsets": [
+				126,
+				-26
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "kiana left alt"
+		},
+		{
+			"offsets": [
+				-72,
+				-62
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "kiana down alt"
+		},
+		{
+			"offsets": [
+				-9,
+				48
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUP",
+			"indices": [],
+			"name": "kiana up alt"
+		},
+		{
+			"offsets": [
+				-32,
+				-51
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "kiana right alt"
+		},
+		{
+			"loop": false,
+			"offsets": [
+				243,
+				130
+			],
+			"anim": "dodge",
+			"fps": 24,
+			"name": "kiana dodge alt0",
+			"indices": [
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9,
+				12,
+				13,
+				13,
+				13,
+				13,
+				13,
+				13
+			]
+		},
+		{
+			"offsets": [
+				-1,
+				-10
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "idle",
+			"indices": [
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9,
+				10,
+				11,
+				12,
+				13,
+				14,
+				15
+			],
+			"name": "kiana idle alt"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/kiana 2nd phase",
+	"position": [
+		10,
+		-20
+	],
+	"healthicon": "kiana",
+	"flip_x": false,
+	"healthbar_colors": [
+		255,
+		162,
+		162
+	],
+	"camera_position": [
+		-210,
+		-30
+	],
+	"sing_duration": 6.1,
+	"scale": 1.1
+}

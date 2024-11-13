@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="EvelynPortrait.png">
+	<!-- Created with Adobe Animate version 21.0.5.40714 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="evelyn idle0000" x="4" y="4" width="289" height="520"/>
+	<SubTexture name="evelyn unamused0000" x="293" y="4" width="324" height="515"/>
+</TextureAtlas>

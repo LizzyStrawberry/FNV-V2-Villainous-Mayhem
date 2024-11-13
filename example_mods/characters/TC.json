@@ -1,0 +1,133 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "idle",
+			"indices": [],
+			"name": "TC idle"
+		},
+		{
+			"offsets": [
+				80,
+				-110
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "TC down0"
+		},
+		{
+			"offsets": [
+				-1,
+				7
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUP",
+			"indices": [],
+			"name": "TC up0"
+		},
+		{
+			"offsets": [
+				100,
+				-80
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWNmiss",
+			"indices": [],
+			"name": "TC down miss"
+		},
+		{
+			"offsets": [
+				-6,
+				70
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUPmiss",
+			"indices": [],
+			"name": "TC up miss"
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-41,
+				-8
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "TC left0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				47,
+				-12
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "TC right0",
+			"indices": []
+		},
+		{
+			"offsets": [
+				-8,
+				15
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "hey",
+			"indices": [],
+			"name": "TC victory"
+		},
+		{
+			"loop": false,
+			"offsets": [
+				96,
+				19
+			],
+			"anim": "singLEFTmiss",
+			"fps": 24,
+			"name": "TC right miss",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-10,
+				41
+			],
+			"anim": "singRIGHTmiss",
+			"fps": 24,
+			"name": "TC left miss",
+			"indices": []
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/tc",
+	"position": [
+		0,
+		0
+	],
+	"healthicon": "tc",
+	"flip_x": true,
+	"healthbar_colors": [
+		183,
+		1,
+		103
+	],
+	"camera_position": [
+		0,
+		0
+	],
+	"sing_duration": 6.1,
+	"scale": 1
+}

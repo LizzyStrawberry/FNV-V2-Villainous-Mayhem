@@ -1,0 +1,170 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				70,
+				-10
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "cassette girl left0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-3,
+				-15
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "cassette girl down0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-14,
+				0
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "cassette girl up0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-53,
+				-2
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "cassette girl right0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				680,
+				-270
+			],
+			"anim": "singLEFTmiss",
+			"fps": 24,
+			"name": "cassette girl left miss",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				120,
+				-100
+			],
+			"anim": "singDOWNmiss",
+			"fps": 24,
+			"name": "cassette girl down miss",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				70,
+				180
+			],
+			"anim": "singUPmiss",
+			"fps": 24,
+			"name": "cassette girl up miss",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-90,
+				0
+			],
+			"anim": "singRIGHTmiss",
+			"fps": 24,
+			"name": "cassette girl right miss",
+			"indices": []
+		},
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "idle",
+			"indices": [
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9,
+				10,
+				11,
+				12,
+				13
+			],
+			"name": "cassette girl idle"
+		},
+		{
+			"offsets": [
+				790,
+				230
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "firstDeath",
+			"indices": [],
+			"name": "cassette girl first death"
+		},
+		{
+			"offsets": [
+				790,
+				230
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "deathLoop",
+			"indices": [],
+			"name": "cassette girl first death"
+		},
+		{
+			"offsets": [
+				790,
+				230
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "deathConfirm",
+			"indices": [],
+			"name": "cassette girl death confirm"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/fnv cassette girl",
+	"position": [
+		100,
+		110
+	],
+	"healthicon": "cassettegirl",
+	"flip_x": true,
+	"healthbar_colors": [
+		67,
+		67,
+		175
+	],
+	"camera_position": [
+		50,
+		50
+	],
+	"sing_duration": 6.1,
+	"scale": 1.1
+}

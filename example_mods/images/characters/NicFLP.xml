@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="NicFLP.png">
+	<!-- Created with Adobe Animate version 21.0.5.40714 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="nic down0000" x="8" y="8" width="434" height="329"/>
+	<SubTexture name="nic down0001" x="442" y="8" width="434" height="329"/>
+	<SubTexture name="nic down0002" x="876" y="8" width="434" height="329"/>
+	<SubTexture name="nic down0003" x="1310" y="8" width="434" height="329"/>
+	<SubTexture name="nic down0004" x="1310" y="8" width="434" height="329"/>
+	<SubTexture name="nic down0005" x="1310" y="8" width="434" height="329"/>
+	<SubTexture name="nic down0006" x="1310" y="8" width="434" height="329"/>
+	<SubTexture name="nic idle0000" x="1744" y="8" width="344" height="353"/>
+	<SubTexture name="nic idle0001" x="2088" y="8" width="344" height="353"/>
+	<SubTexture name="nic idle0002" x="2432" y="8" width="344" height="353"/>
+	<SubTexture name="nic idle0003" x="2776" y="8" width="344" height="353"/>
+	<SubTexture name="nic idle0004" x="2776" y="8" width="344" height="353"/>
+	<SubTexture name="nic idle0005" x="2776" y="8" width="344" height="353"/>
+	<SubTexture name="nic idle0006" x="3120" y="8" width="344" height="353"/>
+	<SubTexture name="nic idle0007" x="3464" y="8" width="344" height="353"/>
+	<SubTexture name="nic idle0008" x="8" y="361" width="344" height="353"/>
+	<SubTexture name="nic idle0009" x="352" y="361" width="344" height="353"/>
+	<SubTexture name="nic idle0010" x="352" y="361" width="344" height="353"/>
+	<SubTexture name="nic idle0011" x="352" y="361" width="344" height="353"/>
+	<SubTexture name="nic idle0012" x="352" y="361" width="344" height="353"/>
+	<SubTexture name="nic idle0013" x="352" y="361" width="344" height="353"/>
+	<SubTexture name="nic idle0014" x="696" y="361" width="344" height="353"/>
+	<SubTexture name="nic left0000" x="1040" y="361" width="409" height="379"/>
+	<SubTexture name="nic left0001" x="1449" y="361" width="409" height="379"/>
+	<SubTexture name="nic left0002" x="1858" y="361" width="409" height="379"/>
+	<SubTexture name="nic left0003" x="2267" y="361" width="409" height="379"/>
+	<SubTexture name="nic left0004" x="2267" y="361" width="409" height="379"/>
+	<SubTexture name="nic left0005" x="2267" y="361" width="409" height="379"/>
+	<SubTexture name="nic left0006" x="2267" y="361" width="409" height="379"/>
+	<SubTexture name="nic right0000" x="2676" y="361" width="511" height="358"/>
+	<SubTexture name="nic right0001" x="3187" y="361" width="511" height="358"/>
+	<SubTexture name="nic right0002" x="8" y="740" width="511" height="358"/>
+	<SubTexture name="nic right0003" x="519" y="740" width="511" height="358"/>
+	<SubTexture name="nic right0004" x="519" y="740" width="511" height="358"/>
+	<SubTexture name="nic right0005" x="519" y="740" width="511" height="358"/>
+	<SubTexture name="nic right0006" x="519" y="740" width="511" height="358"/>
+	<SubTexture name="nic up0000" x="1030" y="740" width="348" height="433"/>
+	<SubTexture name="nic up0001" x="1378" y="740" width="348" height="433"/>
+	<SubTexture name="nic up0002" x="1726" y="740" width="348" height="433"/>
+	<SubTexture name="nic up0003" x="1726" y="740" width="348" height="433"/>
+	<SubTexture name="nic up0004" x="2074" y="740" width="348" height="433"/>
+	<SubTexture name="nic up0005" x="2422" y="740" width="348" height="433"/>
+	<SubTexture name="nic up0006" x="2422" y="740" width="348" height="433"/>
+	<SubTexture name="nic vpose0000" x="2770" y="740" width="449" height="299"/>
+	<SubTexture name="nic vpose0001" x="3219" y="740" width="449" height="299"/>
+	<SubTexture name="nic vpose0002" x="8" y="1173" width="449" height="299"/>
+	<SubTexture name="nic vpose0003" x="457" y="1173" width="449" height="299"/>
+	<SubTexture name="nic vpose0004" x="906" y="1173" width="449" height="299"/>
+	<SubTexture name="nic vpose0005" x="1355" y="1173" width="449" height="299"/>
+	<SubTexture name="nic vpose0006" x="457" y="1173" width="449" height="299"/>
+	<SubTexture name="nic vpose0007" x="906" y="1173" width="449" height="299"/>
+	<SubTexture name="nic vpose0008" x="1355" y="1173" width="449" height="299"/>
+	<SubTexture name="nic vpose0009" x="457" y="1173" width="449" height="299"/>
+	<SubTexture name="nic vpose0010" x="906" y="1173" width="449" height="299"/>
+	<SubTexture name="nic vpose0011" x="1355" y="1173" width="449" height="299"/>
+</TextureAtlas>

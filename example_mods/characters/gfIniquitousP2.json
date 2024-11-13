@@ -1,0 +1,122 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				-5,
+				0
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "idle",
+			"indices": [],
+			"name": "gf idle"
+		},
+		{
+			"offsets": [
+				-62,
+				-91
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "gf down0"
+		},
+		{
+			"offsets": [
+				26,
+				80
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUP",
+			"indices": [],
+			"name": "gf up0"
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-26,
+				-21
+			],
+			"anim": "singRIGHTmiss",
+			"fps": 24,
+			"name": "gf right miss",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				63,
+				13
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "gf left0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				17,
+				16
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "gf right0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				28,
+				-21
+			],
+			"anim": "singLEFTmiss",
+			"fps": 24,
+			"name": "gf left miss",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-21,
+				86
+			],
+			"anim": "singUPmiss",
+			"fps": 24,
+			"name": "gf up miss",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-50,
+				-107
+			],
+			"anim": "singDOWNmiss",
+			"fps": 24,
+			"name": "gf down miss",
+			"indices": []
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/gf iniquitous p2",
+	"position": [
+		50,
+		130
+	],
+	"healthicon": "gfiniquitousp1",
+	"flip_x": true,
+	"healthbar_colors": [
+		165,
+		0,
+		77
+	],
+	"camera_position": [
+		-10,
+		0
+	],
+	"sing_duration": 4,
+	"scale": 1.1
+}

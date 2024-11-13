@@ -1,0 +1,78 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				0
+			],
+			"anim": "idle",
+			"fps": 24,
+			"name": "iniquitous idle",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				167,
+				14
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "iniquitous left",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				37,
+				15
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "iniquitous down",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-24,
+				93
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "iniquitous up",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-129,
+				8
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "iniquitous right",
+			"indices": []
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/iniquitous phase 1",
+	"position": [
+		40,
+		110
+	],
+	"healthicon": "iniquitous",
+	"flip_x": false,
+	"healthbar_colors": [
+		41,
+		0,
+		0
+	],
+	"camera_position": [
+		-380,
+		-150
+	],
+	"sing_duration": 6.1,
+	"scale": 2.7
+}

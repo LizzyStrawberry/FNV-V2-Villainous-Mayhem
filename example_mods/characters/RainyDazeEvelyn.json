@@ -1,0 +1,34 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "idle",
+			"indices": [],
+			"name": "evelyn idle"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/rainy daze evelyn",
+	"position": [
+		-30,
+		0
+	],
+	"healthicon": "rainydazeevelyn",
+	"flip_x": false,
+	"healthbar_colors": [
+		70,
+		191,
+		91
+	],
+	"camera_position": [
+		-70,
+		-60
+	],
+	"sing_duration": 4,
+	"scale": 1
+}

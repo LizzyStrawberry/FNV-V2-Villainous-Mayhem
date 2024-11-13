@@ -1,0 +1,133 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				0,
+				1
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "idle",
+			"indices": [],
+			"name": "marco idle"
+		},
+		{
+			"offsets": [
+				63,
+				-10
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "marco left0"
+		},
+		{
+			"offsets": [
+				-23,
+				-8
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "marco right0"
+		},
+		{
+			"offsets": [
+				60,
+				24
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHTmiss",
+			"indices": [],
+			"name": "marco left miss"
+		},
+		{
+			"offsets": [
+				13,
+				25
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFTmiss",
+			"indices": [],
+			"name": "marco right miss"
+		},
+		{
+			"offsets": [
+				17,
+				55
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWNmiss",
+			"indices": [],
+			"name": "marco up miss"
+		},
+		{
+			"offsets": [
+				18,
+				-60
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUPmiss",
+			"indices": [],
+			"name": "marco down miss"
+		},
+		{
+			"offsets": [
+				3,
+				-74
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUP",
+			"indices": [],
+			"name": "marco down0"
+		},
+		{
+			"offsets": [
+				-21,
+				40
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "marco up0"
+		},
+		{
+			"loop": false,
+			"offsets": [
+				8,
+				3
+			],
+			"anim": "turn",
+			"fps": 24,
+			"name": "marco turn",
+			"indices": []
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/marcofffp1",
+	"position": [
+		20,
+		-135
+	],
+	"healthicon": "marcofffp1",
+	"flip_x": true,
+	"healthbar_colors": [
+		34,
+		34,
+		34
+	],
+	"camera_position": [
+		10,
+		-50
+	],
+	"sing_duration": 6.1,
+	"scale": 1.1
+}

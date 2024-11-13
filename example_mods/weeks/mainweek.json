@@ -1,0 +1,50 @@
+{
+	"storyName": "Main Week",
+	"difficulties": "",
+	"hideFreeplay": false,
+	"weekBackground": "stage",
+	"freeplayColor": [
+		146,
+		113,
+		253
+	],
+	"weekBefore": "tutorial",
+	"startUnlocked": true,
+	"weekCharacters": [
+		"dad",
+		"bf",
+		"gf"
+	],
+	"songs": [
+		[
+			"Scrouge",
+			"marco",
+			[
+				66,
+				255,
+				153
+			]
+		],
+		[
+			"Toxic Mishap",
+			"marcophase2",
+			[
+				6,
+				155,
+				13
+			]
+		],
+		[
+			"Paycheck",
+			"aileen",
+			[
+				206,
+				255,
+				253
+			]
+		]
+	],
+	"hideStoryMode": false,
+	"weekName": "Main week",
+	"hiddenUntilUnlocked": false
+}

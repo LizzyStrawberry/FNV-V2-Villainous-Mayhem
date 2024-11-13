@@ -1,0 +1,177 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				-5,
+				0
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "idle",
+			"indices": [],
+			"name": "gf idle"
+		},
+		{
+			"offsets": [
+				130,
+				-33
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "gf down0"
+		},
+		{
+			"offsets": [
+				76,
+				125
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUP",
+			"indices": [],
+			"name": "gf up0"
+		},
+		{
+			"loop": false,
+			"offsets": [
+				206,
+				93
+			],
+			"anim": "firstDeath",
+			"fps": 24,
+			"name": "gf first death",
+			"indices": []
+		},
+		{
+			"loop": true,
+			"offsets": [
+				-4,
+				-288
+			],
+			"anim": "deathLoop",
+			"fps": 24,
+			"name": "gf death loop",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-4,
+				-288
+			],
+			"anim": "deathConfirm",
+			"fps": 24,
+			"name": "gf death loop",
+			"indices": []
+		},
+		{
+			"offsets": [
+				212,
+				-30
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "gf left0"
+		},
+		{
+			"offsets": [
+				127,
+				-76
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFTmiss",
+			"indices": [],
+			"name": "gf left miss"
+		},
+		{
+			"offsets": [
+				-18,
+				-30
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWNmiss",
+			"indices": [],
+			"name": "gf down miss"
+		},
+		{
+			"offsets": [
+				-50,
+				-173
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHTmiss",
+			"indices": [],
+			"name": "gf right miss"
+		},
+		{
+			"offsets": [
+				106,
+				-1
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUPmiss",
+			"indices": [],
+			"name": "gf up miss"
+		},
+		{
+			"offsets": [
+				-44,
+				-27
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "gf right0"
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-12,
+				20
+			],
+			"anim": "hey",
+			"fps": 24,
+			"name": "gf vpose",
+			"indices": []
+		},
+		{
+			"offsets": [
+				187,
+				95
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "dodge",
+			"loop": false,
+			"name": "gf dodge"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/among gf",
+	"position": [
+		40,
+		280
+	],
+	"healthicon": "amonggf",
+	"flip_x": true,
+	"healthbar_colors": [
+		216,
+		50,
+		37
+	],
+	"camera_position": [
+		-120,
+		200
+	],
+	"sing_duration": 4,
+	"scale": 0.7
+}

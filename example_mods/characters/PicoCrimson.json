@@ -1,0 +1,210 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "idle",
+			"indices": [],
+			"name": "pico idle"
+		},
+		{
+			"offsets": [
+				135,
+				-31
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "pico left0"
+		},
+		{
+			"offsets": [
+				60,
+				-117
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "pico down0"
+		},
+		{
+			"offsets": [
+				-17,
+				60
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUP",
+			"indices": [],
+			"name": "pico up0"
+		},
+		{
+			"offsets": [
+				118,
+				6
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFTmiss",
+			"indices": [],
+			"name": "pico left miss"
+		},
+		{
+			"offsets": [
+				45,
+				-58
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWNmiss",
+			"indices": [],
+			"name": "pico down miss"
+		},
+		{
+			"offsets": [
+				-13,
+				125
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUPmiss",
+			"indices": [],
+			"name": "pico up miss"
+		},
+		{
+			"offsets": [
+				31,
+				7
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHTmiss",
+			"indices": [],
+			"name": "pico right miss"
+		},
+		{
+			"offsets": [
+				50,
+				-14
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "pico right0"
+		},
+		{
+			"loop": false,
+			"offsets": [
+				643,
+				232
+			],
+			"anim": "firstDeath",
+			"fps": 24,
+			"name": "pico first death",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				320,
+				-80
+			],
+			"anim": "deathConfirm",
+			"fps": 24,
+			"name": "pico death loop",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				320,
+				-80
+			],
+			"anim": "deathLoop",
+			"fps": 24,
+			"name": "pico death loop",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				118,
+				123
+			],
+			"anim": "shoot",
+			"fps": 24,
+			"name": "pico shoot",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-60,
+				5
+			],
+			"anim": "hit",
+			"fps": 24,
+			"name": "pico hit",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				64,
+				-44
+			],
+			"anim": "dodge",
+			"fps": 24,
+			"name": "pico dodge",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				44,
+				-32
+			],
+			"anim": "jammed",
+			"fps": 24,
+			"name": "pico jam",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				103,
+				-30
+			],
+			"anim": "unjammed",
+			"fps": 24,
+			"name": "pico unjam",
+			"indices": []
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/pico crimson",
+	"position": [
+		70,
+		70
+	],
+	"healthicon": "picofnv",
+	"flip_x": true,
+	"healthbar_colors": [
+		183,
+		216,
+		85
+	],
+	"camera_position": [
+		0,
+		0
+	],
+	"sing_duration": 6.1,
+	"scale": 1
+}

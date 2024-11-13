@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="Speaker.png">
+	<!-- Created with Adobe Animate version 21.0.5.40714 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="Speaker0000" x="4" y="4" width="197" height="225" frameX="-4" frameY="0" frameWidth="206" frameHeight="225"/>
+	<SubTexture name="Speaker0001" x="201" y="4" width="206" height="225"/>
+	<SubTexture name="Speaker0002" x="407" y="4" width="200" height="225" frameX="-3" frameY="0" frameWidth="206" frameHeight="225"/>
+	<SubTexture name="Speaker0003" x="607" y="4" width="195" height="225" frameX="-5" frameY="0" frameWidth="206" frameHeight="225"/>
+	<SubTexture name="Speaker0004" x="607" y="4" width="195" height="225" frameX="-5" frameY="0" frameWidth="206" frameHeight="225"/>
+	<SubTexture name="Speaker0005" x="802" y="4" width="195" height="225" frameX="-5" frameY="0" frameWidth="206" frameHeight="225"/>
+	<SubTexture name="Speaker0006" x="802" y="4" width="195" height="225" frameX="-5" frameY="0" frameWidth="206" frameHeight="225"/>
+	<SubTexture name="Speaker0007" x="802" y="4" width="195" height="225" frameX="-5" frameY="0" frameWidth="206" frameHeight="225"/>
+	<SubTexture name="Speaker0008" x="802" y="4" width="195" height="225" frameX="-5" frameY="0" frameWidth="206" frameHeight="225"/>
+	<SubTexture name="Speaker0009" x="802" y="4" width="195" height="225" frameX="-5" frameY="0" frameWidth="206" frameHeight="225"/>
+	<SubTexture name="Speaker0010" x="802" y="4" width="195" height="225" frameX="-5" frameY="0" frameWidth="206" frameHeight="225"/>
+	<SubTexture name="Speaker0011" x="802" y="4" width="195" height="225" frameX="-5" frameY="0" frameWidth="206" frameHeight="225"/>
+	<SubTexture name="Speaker0012" x="802" y="4" width="195" height="225" frameX="-5" frameY="0" frameWidth="206" frameHeight="225"/>
+	<SubTexture name="Speaker0013" x="802" y="4" width="195" height="225" frameX="-5" frameY="0" frameWidth="206" frameHeight="225"/>
+	<SubTexture name="Speaker0014" x="802" y="4" width="195" height="225" frameX="-5" frameY="0" frameWidth="206" frameHeight="225"/>
+</TextureAtlas>

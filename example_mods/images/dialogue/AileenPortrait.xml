@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="AileenPortrait.png">
+	<!-- Created with Adobe Animate version 21.0.5.40714 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="aileen bruh0000" x="4" y="4" width="292" height="505"/>
+	<SubTexture name="aileen embarrassed0000" x="296" y="4" width="295" height="477" frameX="0" frameY="-11" frameWidth="295" frameHeight="489"/>
+	<SubTexture name="aileen embarrassed0001" x="591" y="4" width="294" height="462" frameX="0" frameY="-24" frameWidth="295" frameHeight="489"/>
+	<SubTexture name="aileen embarrassed0002" x="885" y="4" width="294" height="459" frameX="0" frameY="-27" frameWidth="295" frameHeight="489"/>
+	<SubTexture name="aileen embarrassed0003" x="1179" y="4" width="294" height="475" frameX="0" frameY="-12" frameWidth="295" frameHeight="489"/>
+	<SubTexture name="aileen embarrassed0004" x="1473" y="4" width="295" height="483" frameX="0" frameY="-5" frameWidth="295" frameHeight="489"/>
+	<SubTexture name="aileen embarrassed0005" x="1768" y="4" width="295" height="489"/>
+	<SubTexture name="aileen embarrassed idle0000" x="2063" y="4" width="295" height="477" frameX="0" frameY="0" frameWidth="300" frameHeight="477"/>
+	<SubTexture name="aileen embarrassed idle0001" x="2358" y="4" width="295" height="477" frameX="-5" frameY="0" frameWidth="300" frameHeight="477"/>
+	<SubTexture name="aileen eye roll0000" x="2653" y="4" width="292" height="505" frameX="-8" frameY="0" frameWidth="306" frameHeight="505"/>
+	<SubTexture name="aileen eye roll0001" x="2945" y="4" width="292" height="505" frameX="-4" frameY="0" frameWidth="306" frameHeight="505"/>
+	<SubTexture name="aileen eye roll0002" x="3237" y="4" width="292" height="505" frameX="0" frameY="0" frameWidth="306" frameHeight="505"/>
+	<SubTexture name="aileen eye roll0003" x="3237" y="4" width="292" height="505" frameX="0" frameY="0" frameWidth="306" frameHeight="505"/>
+	<SubTexture name="aileen eye roll0004" x="3529" y="4" width="292" height="505" frameX="-4" frameY="0" frameWidth="306" frameHeight="505"/>
+	<SubTexture name="aileen eye roll0005" x="4" y="509" width="292" height="505" frameX="-10" frameY="0" frameWidth="306" frameHeight="505"/>
+	<SubTexture name="aileen eye roll0006" x="296" y="509" width="294" height="505" frameX="-12" frameY="0" frameWidth="306" frameHeight="505"/>
+	<SubTexture name="aileen eye roll0007" x="296" y="509" width="294" height="505" frameX="-12" frameY="0" frameWidth="306" frameHeight="505"/>
+	<SubTexture name="aileen eye roll0008" x="296" y="509" width="294" height="505" frameX="-12" frameY="0" frameWidth="306" frameHeight="505"/>
+	<SubTexture name="aileen eye roll0009" x="590" y="509" width="292" height="505" frameX="-12" frameY="0" frameWidth="306" frameHeight="505"/>
+	<SubTexture name="aileen eye roll idle0000" x="882" y="509" width="292" height="505"/>
+	<SubTexture name="aileen eye roll idle0001" x="882" y="509" width="292" height="505"/>
+	<SubTexture name="aileen talk0000" x="1174" y="509" width="292" height="505" frameX="-8" frameY="0" frameWidth="306" frameHeight="505"/>
+	<SubTexture name="aileen talk0001" x="1466" y="509" width="292" height="505" frameX="-4" frameY="0" frameWidth="306" frameHeight="505"/>
+	<SubTexture name="aileen talk0002" x="1758" y="509" width="292" height="505" frameX="0" frameY="0" frameWidth="306" frameHeight="505"/>
+	<SubTexture name="aileen talk0003" x="1758" y="509" width="292" height="505" frameX="0" frameY="0" frameWidth="306" frameHeight="505"/>
+	<SubTexture name="aileen talk0004" x="2050" y="509" width="292" height="505" frameX="-4" frameY="0" frameWidth="306" frameHeight="505"/>
+	<SubTexture name="aileen talk0005" x="2342" y="509" width="292" height="505" frameX="-10" frameY="0" frameWidth="306" frameHeight="505"/>
+	<SubTexture name="aileen talk0006" x="2634" y="509" width="294" height="505" frameX="-12" frameY="0" frameWidth="306" frameHeight="505"/>
+	<SubTexture name="aileen talk0007" x="2634" y="509" width="294" height="505" frameX="-12" frameY="0" frameWidth="306" frameHeight="505"/>
+	<SubTexture name="aileen talk0008" x="2634" y="509" width="294" height="505" frameX="-12" frameY="0" frameWidth="306" frameHeight="505"/>
+	<SubTexture name="aileen talk0009" x="2928" y="509" width="292" height="505" frameX="-12" frameY="0" frameWidth="306" frameHeight="505"/>
+	<SubTexture name="aileen talk idle0000" x="3220" y="509" width="292" height="505"/>
+	<SubTexture name="aileen talk idle0001" x="3220" y="509" width="292" height="505"/>
+</TextureAtlas>

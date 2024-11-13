@@ -1,0 +1,144 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				0
+			],
+			"anim": "idle",
+			"fps": 24,
+			"name": "pico idle",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				116,
+				-78
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "pico left0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-92,
+				-55
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "pico down0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				56,
+				69
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "pico up0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				139,
+				-37
+			],
+			"anim": "singLEFTmiss",
+			"fps": 24,
+			"name": "pico left miss",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-90,
+				-43
+			],
+			"anim": "singDOWNmiss",
+			"fps": 24,
+			"name": "pico down miss",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				63,
+				141
+			],
+			"anim": "singUPmiss",
+			"fps": 24,
+			"name": "pico up miss",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-112,
+				-23
+			],
+			"anim": "singRIGHTmiss",
+			"fps": 24,
+			"name": "pico right miss",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-103,
+				-41
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "pico right0",
+			"indices": []
+		},
+		{
+			"offsets": [
+				-4,
+				44
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "turn",
+			"indices": [],
+			"name": "pico turn"
+		},
+		{
+			"offsets": [
+				109,
+				-88
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "shoot",
+			"indices": [],
+			"name": "pico shoot"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/dico",
+	"position": [
+		70,
+		170
+	],
+	"healthicon": "d-sidepico",
+	"flip_x": true,
+	"healthbar_colors": [
+		255,
+		118,
+		193
+	],
+	"camera_position": [
+		0,
+		0
+	],
+	"sing_duration": 6.1,
+	"scale": 1.2
+}

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="monsterMiddleLeft.png">
+	<!-- Created with Adobe Animate version 21.0.5.40714 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="monsterMiddleLeft0000" x="0" y="0" width="206" height="310" frameX="-13" frameY="-12" frameWidth="319" frameHeight="322"/>
+	<SubTexture name="monsterMiddleLeft0001" x="206" y="0" width="207" height="310" frameX="-15" frameY="-12" frameWidth="319" frameHeight="322"/>
+	<SubTexture name="monsterMiddleLeft0002" x="413" y="0" width="207" height="310" frameX="-12" frameY="-12" frameWidth="319" frameHeight="322"/>
+	<SubTexture name="monsterMiddleLeft0003" x="620" y="0" width="207" height="310" frameX="-16" frameY="-12" frameWidth="319" frameHeight="322"/>
+	<SubTexture name="monsterMiddleLeft0004" x="827" y="0" width="208" height="310" frameX="-11" frameY="-12" frameWidth="319" frameHeight="322"/>
+	<SubTexture name="monsterMiddleLeft0005" x="1035" y="0" width="207" height="310" frameX="-15" frameY="-12" frameWidth="319" frameHeight="322"/>
+	<SubTexture name="monsterMiddleLeft0006" x="1242" y="0" width="209" height="322" frameX="-10" frameY="0" frameWidth="319" frameHeight="322"/>
+	<SubTexture name="monsterMiddleLeft0007" x="1451" y="0" width="207" height="308" frameX="-17" frameY="-14" frameWidth="319" frameHeight="322"/>
+	<SubTexture name="monsterMiddleLeft0008" x="1658" y="0" width="206" height="311" frameX="-14" frameY="-11" frameWidth="319" frameHeight="322"/>
+	<SubTexture name="monsterMiddleLeft0009" x="0" y="322" width="280" height="306" frameX="-39" frameY="-11" frameWidth="319" frameHeight="322"/>
+	<SubTexture name="monsterMiddleLeft0010" x="280" y="322" width="208" height="311" frameX="-20" frameY="-11" frameWidth="319" frameHeight="322"/>
+	<SubTexture name="monsterMiddleLeft0011" x="488" y="322" width="207" height="311" frameX="-18" frameY="-11" frameWidth="319" frameHeight="322"/>
+	<SubTexture name="monsterMiddleLeft0012" x="488" y="322" width="207" height="311" frameX="-18" frameY="-11" frameWidth="319" frameHeight="322"/>
+	<SubTexture name="monsterMiddleLeft0013" x="488" y="322" width="207" height="311" frameX="-18" frameY="-11" frameWidth="319" frameHeight="322"/>
+	<SubTexture name="monsterMiddleLeft0014" x="488" y="322" width="207" height="311" frameX="-18" frameY="-11" frameWidth="319" frameHeight="322"/>
+	<SubTexture name="monsterMiddleLeft0015" x="488" y="322" width="207" height="311" frameX="-18" frameY="-11" frameWidth="319" frameHeight="322"/>
+	<SubTexture name="monsterMiddleLeft0016" x="488" y="322" width="207" height="311" frameX="-18" frameY="-11" frameWidth="319" frameHeight="322"/>
+	<SubTexture name="monsterMiddleLeft0017" x="488" y="322" width="207" height="311" frameX="-18" frameY="-11" frameWidth="319" frameHeight="322"/>
+	<SubTexture name="monsterMiddleLeft0018" x="488" y="322" width="207" height="311" frameX="-18" frameY="-11" frameWidth="319" frameHeight="322"/>
+	<SubTexture name="monsterMiddleLeft0019" x="488" y="322" width="207" height="311" frameX="-18" frameY="-11" frameWidth="319" frameHeight="322"/>
+	<SubTexture name="monsterMiddleLeft0020" x="488" y="322" width="207" height="311" frameX="-18" frameY="-11" frameWidth="319" frameHeight="322"/>
+	<SubTexture name="monsterMiddleLeft0021" x="488" y="322" width="207" height="311" frameX="-18" frameY="-11" frameWidth="319" frameHeight="322"/>
+	<SubTexture name="monsterMiddleLeft0022" x="695" y="322" width="209" height="311" frameX="-26" frameY="-11" frameWidth="319" frameHeight="322"/>
+	<SubTexture name="monsterMiddleLeft0023" x="904" y="322" width="243" height="306" frameX="0" frameY="-11" frameWidth="319" frameHeight="322"/>
+	<SubTexture name="monsterMiddleLeft0024" x="1147" y="322" width="232" height="308" frameX="-12" frameY="-11" frameWidth="319" frameHeight="322"/>
+	<SubTexture name="monsterMiddleLeft0025" x="1379" y="322" width="207" height="311" frameX="-16" frameY="-11" frameWidth="319" frameHeight="322"/>
+	<SubTexture name="monsterMiddleLeft0026" x="1586" y="322" width="207" height="311" frameX="-19" frameY="-11" frameWidth="319" frameHeight="322"/>
+	<SubTexture name="monsterMiddleLeft0027" x="1586" y="322" width="207" height="311" frameX="-19" frameY="-11" frameWidth="319" frameHeight="322"/>
+	<SubTexture name="monsterMiddleLeft0028" x="1586" y="322" width="207" height="311" frameX="-19" frameY="-11" frameWidth="319" frameHeight="322"/>
+	<SubTexture name="monsterMiddleLeft0029" x="1793" y="322" width="212" height="238" frameX="-18" frameY="-75" frameWidth="319" frameHeight="322"/>
+</TextureAtlas>

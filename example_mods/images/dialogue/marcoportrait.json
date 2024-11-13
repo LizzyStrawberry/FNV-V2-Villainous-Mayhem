@@ -1,0 +1,24 @@
+{
+	"position": [
+		130,
+		25
+	],
+	"dialogue_pos": "left",
+	"scale": 1.65,
+	"image": "marcoportrait",
+	"animations": [
+		{
+			"idle_offsets": [
+				-5,
+				0
+			],
+			"loop_offsets": [
+				0,
+				0
+			],
+			"anim": "talk",
+			"idle_name": "marco idle0",
+			"loop_name": "marco talk0"
+		}
+	]
+}

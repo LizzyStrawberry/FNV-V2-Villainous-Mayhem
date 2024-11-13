@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="Fangirl Phase 2.png">
+	<!-- Created with Adobe Animate version 21.0.5.40714 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="fangirl down0000" x="4" y="4" width="525" height="538"/>
+	<SubTexture name="fangirl down0001" x="529" y="4" width="525" height="526" frameX="0" frameY="-12" frameWidth="525" frameHeight="538"/>
+	<SubTexture name="fangirl down0002" x="1054" y="4" width="525" height="522" frameX="0" frameY="-16" frameWidth="525" frameHeight="538"/>
+	<SubTexture name="fangirl down0003" x="1054" y="4" width="525" height="522" frameX="0" frameY="-16" frameWidth="525" frameHeight="538"/>
+	<SubTexture name="fangirl down0004" x="1054" y="4" width="525" height="522" frameX="0" frameY="-16" frameWidth="525" frameHeight="538"/>
+	<SubTexture name="fangirl down0005" x="1054" y="4" width="525" height="522" frameX="0" frameY="-16" frameWidth="525" frameHeight="538"/>
+	<SubTexture name="fangirl down0006" x="1054" y="4" width="525" height="522" frameX="0" frameY="-16" frameWidth="525" frameHeight="538"/>
+	<SubTexture name="fangirl down0007" x="1054" y="4" width="525" height="522" frameX="0" frameY="-16" frameWidth="525" frameHeight="538"/>
+	<SubTexture name="fangirl down0008" x="1054" y="4" width="525" height="522" frameX="0" frameY="-16" frameWidth="525" frameHeight="538"/>
+	<SubTexture name="fangirl down0009" x="1054" y="4" width="525" height="522" frameX="0" frameY="-16" frameWidth="525" frameHeight="538"/>
+	<SubTexture name="fangirl idle0000" x="1579" y="4" width="526" height="538"/>
+	<SubTexture name="fangirl idle0001" x="2105" y="4" width="526" height="538"/>
+	<SubTexture name="fangirl left0000" x="2631" y="4" width="525" height="538"/>
+	<SubTexture name="fangirl left0001" x="3156" y="4" width="525" height="538"/>
+	<SubTexture name="fangirl left0002" x="4" y="542" width="525" height="538"/>
+	<SubTexture name="fangirl left0003" x="4" y="542" width="525" height="538"/>
+	<SubTexture name="fangirl left0004" x="4" y="542" width="525" height="538"/>
+	<SubTexture name="fangirl left0005" x="4" y="542" width="525" height="538"/>
+	<SubTexture name="fangirl left0006" x="4" y="542" width="525" height="538"/>
+	<SubTexture name="fangirl left0007" x="4" y="542" width="525" height="538"/>
+	<SubTexture name="fangirl left0008" x="4" y="542" width="525" height="538"/>
+	<SubTexture name="fangirl left0009" x="4" y="542" width="525" height="538"/>
+	<SubTexture name="fangirl right0000" x="529" y="542" width="525" height="538"/>
+	<SubTexture name="fangirl right0001" x="1054" y="542" width="525" height="538"/>
+	<SubTexture name="fangirl right0002" x="1579" y="542" width="525" height="538"/>
+	<SubTexture name="fangirl right0003" x="1579" y="542" width="525" height="538"/>
+	<SubTexture name="fangirl right0004" x="1579" y="542" width="525" height="538"/>
+	<SubTexture name="fangirl right0005" x="1579" y="542" width="525" height="538"/>
+	<SubTexture name="fangirl right0006" x="1579" y="542" width="525" height="538"/>
+	<SubTexture name="fangirl right0007" x="1579" y="542" width="525" height="538"/>
+	<SubTexture name="fangirl right0008" x="1579" y="542" width="525" height="538"/>
+	<SubTexture name="fangirl right0009" x="1579" y="542" width="525" height="538"/>
+	<SubTexture name="fangirl up0000" x="2104" y="542" width="525" height="538" frameX="0" frameY="-10" frameWidth="525" frameHeight="548"/>
+	<SubTexture name="fangirl up0001" x="2629" y="542" width="525" height="545" frameX="0" frameY="-3" frameWidth="525" frameHeight="548"/>
+	<SubTexture name="fangirl up0002" x="3154" y="542" width="525" height="548"/>
+	<SubTexture name="fangirl up0003" x="3154" y="542" width="525" height="548"/>
+	<SubTexture name="fangirl up0004" x="3154" y="542" width="525" height="548"/>
+	<SubTexture name="fangirl up0005" x="3154" y="542" width="525" height="548"/>
+	<SubTexture name="fangirl up0006" x="3154" y="542" width="525" height="548"/>
+	<SubTexture name="fangirl up0007" x="3154" y="542" width="525" height="548"/>
+	<SubTexture name="fangirl up0008" x="3154" y="542" width="525" height="548"/>
+	<SubTexture name="fangirl up0009" x="3154" y="542" width="525" height="548"/>
+</TextureAtlas>

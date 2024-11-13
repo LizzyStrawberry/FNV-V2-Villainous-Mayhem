@@ -1,0 +1,89 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				-1,
+				-10
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "idle",
+			"loop": false,
+			"name": "ai idle"
+		},
+		{
+			"offsets": [
+				336,
+				-13
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singLEFT",
+			"loop": false,
+			"name": "ai left0"
+		},
+		{
+			"offsets": [
+				201,
+				-89
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singDOWN",
+			"loop": false,
+			"name": "ai down0"
+		},
+		{
+			"offsets": [
+				10,
+				20
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singUP",
+			"loop": false,
+			"name": "ai up"
+		},
+		{
+			"offsets": [
+				890,
+				-70
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "attack",
+			"loop": false,
+			"name": "ai attack"
+		},
+		{
+			"offsets": [
+				67,
+				-60
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singRIGHT",
+			"loop": false,
+			"name": "ai right0"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/ai",
+	"position": [
+		60,
+		40
+	],
+	"healthicon": "ai",
+	"flip_x": false,
+	"healthbar_colors": [
+		163,
+		187,
+		137
+	],
+	"camera_position": [
+		-100,
+		10
+	],
+	"sing_duration": 6.1,
+	"scale": 1.1
+}

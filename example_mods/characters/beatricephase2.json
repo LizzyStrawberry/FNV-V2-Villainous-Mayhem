@@ -1,0 +1,100 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				15,
+				-53
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "beatrice left",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-68,
+				-59
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "beatrice down",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-17,
+				7
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "beatrice up",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-92,
+				-17
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "beatrice right",
+			"indices": []
+		},
+		{
+			"offsets": [
+				-77,
+				-12
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "hey",
+			"indices": [],
+			"name": "beatrice hey"
+		},
+		{
+			"offsets": [
+				-78,
+				-12
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "hehe",
+			"indices": [],
+			"name": "beatrice hehe"
+		},
+		{
+			"offsets": [
+				-1,
+				-10
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "idle",
+			"loop": true,
+			"name": "beatrice idle"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/beatricephase2",
+	"position": [
+		50,
+		-70
+	],
+	"healthicon": "beatrice",
+	"flip_x": false,
+	"healthbar_colors": [
+		217,
+		46,
+		46
+	],
+	"camera_position": [
+		-80,
+		10
+	],
+	"sing_duration": 6.1,
+	"scale": 1.1
+}
