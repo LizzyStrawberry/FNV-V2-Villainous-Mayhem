@@ -5,7 +5,7 @@ function onCreate()
 		setScrollFactor('bg', 0.9, 0.9);
 		scaleObject('bg', 1.5, 1.5)
 		
-		makeLuaSprite('ground', 'bgs/morky/Ground', -270, -20);
+		makeLuaSprite('ground', 'bgs/morky/Ground', -300, -20);
 		setScrollFactor('ground', 0.9, 0.9);
 		scaleObject('ground', 1.5, 1.5)
 	

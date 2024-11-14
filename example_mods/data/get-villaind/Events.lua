@@ -1,36 +1,28 @@
-local shadersUsed = false
+local character = 0
 
 function onCreate()
-	addCharacterToList('lulababegf', 'boyfriend')
-	addCharacterToList('MorkyHypnoAgain', 'dad')
-	addCharacterToList('MorkyHypno', 'dad')
-	addCharacterToList('MorkyEgg', 'dad')
-	addCharacterToList('MorkyMoist', 'dad')
-	addCharacterToList('MorkyHank', 'dad')
+	addCharacterToList('Justky', 'dad')
+	addCharacterToList('Adamfriend', 'boyfriend')
+	
 	if boyfriendName == 'GFwav' then
-		addCharacterToList('GFwav', 'boyfriend')
-		var1 = true
+		character = 1
 	elseif boyfriendName == 'playablegf-old' then
-		addCharacterToList('playablegf-old', 'boyfriend')
-		var2 = true
+		character = 2
 	elseif boyfriendName == 'd-side gf' then
-		addCharacterToList('d-side gf', 'boyfriend')
-		var3 = true
+		character = 3
 	elseif boyfriendName == 'debugGF' then
-		addCharacterToList('debugGF', 'boyfriend')
-		var4 = true
+		character = 4
 	end
 	
-	precacheSound('hypnoGoBrrrrrr')
-	precacheSound('goldJumpscare')
-	
-	hBarY = getProperty('healthBar')
-	hBarBGY = getProperty('healthBarBG')
+	precacheSound('matpatRamble')
 	
 	setPropertyFromClass('GameOverSubstate', 'loopSoundName', '')
 end
 
 function onCreatePost()
+	removeLuaScript("custom_events/zCameraFix")
+    addLuaScript("custom_events/zCameraFix")
+	
 	makeLuaText('MorkyText', " ", 1000, 120, 520)
 	setTextSize('MorkyText', 35)
 	setObjectCamera('MorkyText', 'game')
@@ -38,53 +30,26 @@ function onCreatePost()
 	setProperty('MorkyText.alpha', 1)
 	addLuaText('MorkyText')
 	
-	makeAnimatedLuaSprite('static', 'effects/StaticHypno', -96, -65)
-	addAnimationByPrefix('static', 'fuck you', 'StaticHypno0', 24, false)
-	setProperty('static.alpha', 0)
-	scaleObject('static', 0.6, 0.6)
-	setObjectCamera('static', 'other')
-	setScrollFactor('static', 1, 1)
-	addLuaSprite('static', true)
-	
-	makeAnimatedLuaSprite('fakespace', 'effects/Extras', 530, 390)
-	addAnimationByPrefix('fakespace', 'troll', 'Spacebar0', 24, false)
-	setProperty('fakespace.alpha', 0)
-	setObjectCamera('fakespace', 'hud')
-	setScrollFactor('fakespace', 1, 1)
-	addLuaSprite('fakespace', true)
-	
-	makeAnimatedLuaSprite('Pendelum', 'effects/Pendelum_Phase2', 550, -500)
-	addAnimationByPrefix('Pendelum', 'weeeeeeeee', 'Pendelum Phase 20', 24, false)
-	setProperty('Pendelum.alpha', 1)
-	scaleObject('Pendelum', 1.4, 1.4)
-	setObjectCamera('Pendelum', 'hud')
-	setScrollFactor('Pendelum', 1, 1)
-	addLuaSprite('Pendelum', true)
-	
-	makeLuaSprite('trollchrome', 'effects/trollchrome', 0, 0)
-	setProperty('trollchrome.alpha', 0)
-	setObjectCamera('trollchrome', 'hud')
-	addLuaSprite('trollchrome', true)
-	
-	makeLuaSprite('morkyJumpscare', 'effects/morkyJumpscare', 0, 0)
-	setProperty('morkyJumpscare.alpha', 0)
-	setObjectCamera('morkyJumpscare', 'hud')
-	addLuaSprite('morkyJumpscare', true)
-	
-	if not botPlay then
-		makeLuaText('botPlayFake', "BOTPLAY", 1000, 140, 120)
-		setTextSize('botPlayFake', 35)
-		setObjectCamera('botPlayFake', 'hud')
-		setScrollFactor('botPlayFake', 0, 0)
-		setProperty('botPlayFake.alpha', 0)
-		addLuaText('botPlayFake')
+	makeLuaSprite('gameTHEORY', 'effects/gaemTheoreh', 350, 0)
+	setProperty('gameTHEORY.alpha', 0)
+	setObjectCamera('gameTHEORY', 'hud')
+	if mechanics then
+		addLuaSprite('gameTHEORY', true)
+	else
+		addLuaSprite('gameTHEORY', false)
 	end
-end
 
-function onSongStart() --set your time stuff ig
-    runHaxeCode([[
-        game.songLength = (184 * 1000);
-    ]])
+	if shadersEnabled and mechanics then
+		runHaxeCode([[
+			game.initLuaShader('multi');
+			shader0 = game.createRuntimeShader('multisplit');
+			game.camGame.setFilters([new ShaderFilter(shader0)]);
+			game.camHUD.setFilters([new ShaderFilter(shader0)]);
+
+			shader0.setFloat('multi',1);
+
+		]])
+	end 
 end
 
 function opponentNoteHit() -- health draining mechanic
@@ -92,184 +57,129 @@ function opponentNoteHit() -- health draining mechanic
 		if not isMayhemMode and difficulty == 1 and mechanics and getPropertyFromClass('ClientPrefs', 'buff3Active') == false then
 			if getProperty('health') > 0.2 then
 				if getPropertyFromClass('ClientPrefs', 'resistanceCharm') == 1 then
-					setProperty('health', health- 0.004);
+					setProperty('health', health- 0.06);
 				else
-					setProperty('health', health- 0.008);
+					setProperty('health', health- 0.012);
 				end
 			end
 		end
-	if curBeat >= 576 and curBeat <= 608 then
-		cameraShake('game', 0.02, 0.2)
-		cameraShake('hud', 0.02, 0.2)
-	end
 end
 
 function onUpdate()
-	if curStep >= 0 then
-		if curStep % 8 == 0 then
-			objectPlayAnimation('Pendelum', 'weeeeeeeee', true)
-			objectPlayAnimation('fakespace', 'troll', true)
-		end
+	if curStep >= 512 and curStep < 768 and mechanics then
+		setProperty('gameTHEORY.angle', getProperty('gameTHEORY.angle') + 10)
 	end
-	
-	if curStep == 160 then
-		doTweenAlpha('hudgobye', 'camHUD', 0, 0.5, 'linear')
+end
+
+function onStepHit()
+	if curStep == 135 then
+		doTweenAlpha('hudgobye', 'camHUD', 0, 0.5 / playbackRate, 'linear')
 	end
-	if curStep == 163 then
-		doTweenAlpha('MorkyText', 'MorkyText', 1, 0.07, 'cubeIn')
+	if curStep == 138 then
+		doTweenAlpha('MorkyText', 'MorkyText', 1, 0.07 / playbackRate, 'cubeIn')
 		setProperty('defaultCamZoom', 1.4)
 		setTextString('MorkyText', "Ha!")
 	end
-	if curStep == 170 then
+	if curStep == 148 then
 		setTextString('MorkyText', "Ha! Hah!")
 	end
-	if curStep == 178 then
+	if curStep == 157 then
 		setTextString('MorkyText', "Ha! Hah! Hah!")
 	end
-	if curStep == 186 then
+	if curStep == 166 then
 		setTextString('MorkyText', "Ha! Hah! Hah! Haaaaa!")
 	end
-	if curStep == 200 then
+	if curStep == 184 then
 		setTextString('MorkyText', "I")
 	end
-	if curStep == 204 then
+	if curStep == 189 then
 		setTextString('MorkyText', "I am")
 	end
-	if curStep == 208 then
+	if curStep == 192 then
 		setTextString('MorkyText', "I am Mor")
 	end
-	if curStep == 213 then
+	if curStep == 196 then
 		setTextString('MorkyText', "I am Morky!")
 	end
-	if curStep == 222 then
+	if curStep == 208 then
 		setTextString('MorkyText', "And")
 	end
-	if curStep == 224 then
+	if curStep == 210 then
 		setTextString('MorkyText', "And I")
 	end
-	if curStep == 228 then
-		setTextString('MorkyText', "And I am")
+	if curStep == 214 then
+		doTweenAlpha('MorkyText', 'MorkyText', 0, 0.6 / playbackRate, 'cubeInOut')
+		triggerEvent('Play Animation', 'pomnify', 'dad')
+		setProperty('defaultCamZoom', 1.1)
 	end
-	if curStep == 230 then
-		setTextString('MorkyText', "And I am a")
+	if curStep == 243 then
+		doTweenAngle('camGameGoSpeen', 'camGame', 360 * 3, 1.7 / playbackRate, 'cubeInOut')
 	end
-	if curStep == 234 then
-		setTextString('MorkyText', "And I am a Vi")
-	end
-	if curStep == 237 then
-		setTextString('MorkyText', "And I am a Villain!")
-	end
-	if curStep == 240 then
-		doTweenAlpha('MorkyText', 'MorkyText', 0, 1.6, 'cubeInOut')
-	end
-	if curStep == 248 then
-		doTweenAlpha('hudgobye', 'camHUD', 1, 1.6, 'cubeInOut')
+	if curStep == 252 then
+		doTweenZoom('camGameZoom', 'camGame', 1.6, 0.4 / playbackRate, 'elasticInOut')
 	end
 	if curStep == 256 then
+		cancelTween('camGameGoSpeen')
+		cancelTween('camGameZoom')
+		
+		setProperty('camGame.angle', 0)
+		
+		doTweenAlpha('hudgobye', 'camHUD', 1, 1.6 / playbackRate, 'circOut')
 		setProperty('defaultCamZoom', 0.9)
-		cameraFlash('game', 'ffffff', 0.8, false)
+		cameraFlash('game', 'ffffff', 0.8 / playbackRate, false)
 	end
-	
-	if curStep == 640 then
-		triggerEvent('Change Character', 'dad', 'MorkyEgg')
+	if curStep == 384 then
+		setProperty('defaultCamZoom', 1.6)
 	end
-	if curStep == 640 then
-		triggerEvent('Change Character', 'dad', 'MorkyEgg')
+	if curStep == 388 then
+		setProperty('defaultCamZoom', 0.9)
+		cameraFlash('game', 'ffffff', 0.8 / playbackRate, false)
 	end
-	if curStep == 720 then
-		triggerEvent('Change Character', 'dad', 'Morky')
+	if curStep == 512 then
+		playSound('matpatRamble')
+		doTweenAlpha('gaemTheoreh', 'gameTHEORY', 0.6, 17 / playbackRate, 'cubeInOut')
+		if mechanics then
+			doTweenX('gaemTheorehX', 'gameTHEORY.scale', 4.5, 21 / playbackRate, 'cubeInOut')
+			doTweenY('gaemTheorehY', 'gameTHEORY.scale', 4.5, 21 / playbackRate, 'cubeInOut')
+		end
 	end
-	if curStep == 896 then
-		setProperty('trollchrome.alpha', 1)
+	if curStep == 752 then
+		setProperty('defaultCamZoom', 1.3)
+		doTweenAlpha('gaemTheoreh', 'gameTHEORY', 0, 0.5 / playbackRate, 'circOut')
 	end
-	if curStep == 960 then
-		setProperty('trollchrome.alpha', 0)
+	if curStep == 768 then
+		setProperty('defaultCamZoom', 0.9)
+		cameraFlash('game', 'ffffff', 0.8 / playbackRate, false)
 	end
-	if curStep == 1024 then
-		setProperty('morkyJumpscare.alpha', 1)
-		playSound('goldJumpscare', 0.35)
+	if curStep == 1280 then
+		triggerEvent("Change Character", 'dad', 'Justky')
+		setProperty('defaultCamZoom', 1.3)
 	end
-	if curStep == 1032 then
-		doTweenAlpha('morkyJumpscare', 'morkyJumpscare', 0, 1.3, 'cubeInOut')
-	end
-	if curStep == 1126 then
-		triggerEvent('Change Character', 'dad', 'MorkyMoist')
-	end
-	if curStep == 1344 then
-		triggerEvent('Change Character', 'dad', 'MorkyHypno')
-	end
-	if curStep == 1401 then
-		doTweenY('Pendelum', 'Pendelum', 0, 0.3, 'cubeInOut')
-	end
-	if curStep == 1406 then
-		cameraFlash('game', 'FFFFFF', 1.7, false)
-		doTweenAngle('PendelumSpin', 'Pendelum', 360 * 1000, 24.5, 'circOut')
-		doTweenAngle('gameGoWeeee', 'camGame', 720, 24.5, 'cubeInOut')
-		doTweenAlpha('helloHypno', 'static', 1, 2.3, 'cubeInOut')
-		doTweenAlpha('hellofakeBar', 'fakespace', 1, 2.3, 'cubeInOut')
-		doTweenZoom('gamegobye', 'camGame', 0.2, 22.5, 'cubeInOut')
-		doTweenZoom('hudgobye', 'camHUD', 0.2, 22.5, 'cubeInOut')
-		addGlitchEffect('bg', 1.5, 0.6, 0.3)
+	if curStep == 1296 then
+		triggerEvent("Change Character", 'bf', 'adamfriend')
 	end
 	if curStep == 1408 then
-		triggerEvent('Change Character', 'dad', 'MorkyHypnoAgain')
-		triggerEvent('Change Character', 'boyfriend', 'lulababegf')
+		setProperty('defaultCamZoom', 1.1)
 	end
-	if curStep >= 1406 and curStep < 1536 then
-		if curStep % 2 == 0 then
-			objectPlayAnimation('static', 'fuck you', true)	
-		end
-		if curBeat % 8 == 0 then
-			doTweenX('bfw i d e', 'boyfriend.scale', 2.1, 1.4, 'linear')
-			doTweenX('dadw i d e', 'dad.scale', 1, 1.4, 'linear')
-			doTweenAngle('hudGoWeeee', 'camHUD', 5, 2.5, 'cubeOut')
-		end
-		if curBeat % 8 == 4 then
-			doTweenX('bfw i d e', 'boyfriend.scale', 1, 1.4, 'linear')
-			doTweenX('dadw i d e', 'dad.scale', 2.1, 1.4, 'linear')
-			doTweenAngle('hudGoWeeee', 'camHUD', -5, 2.5, 'cubeOut')
-		end
-		if curBeat % 4 == 0 then
-			doTweenAlpha('helloHypno', 'static', 1, 0.4, 'cubeInOut')
-		end
-		if curBeat % 4 == 2 then
-			doTweenAlpha('helloHypno', 'static', 0.3, 0.4, 'cubeInOut')
-		end
-		if curStep % 6 == 0 then
-			playSound('hypnoGoBrrrrrr', 0.25)
-		end
+	if curStep == 1520 then
+		setProperty('defaultCamZoom', 0.7)
 	end
-	if curStep >= 1536 and curStep < 1664 then
-		if curStep % 2 == 0 then
-			objectPlayAnimation('static', 'fuck you', true)	
-		end
-		if curBeat % 8 == 0 then
-			doTweenX('bfw i d e', 'boyfriend.scale', 2.1, 1.4, 'linear')
-			doTweenX('dadw i d e', 'dad.scale', 1, 1.4, 'linear')
-			doTweenAngle('hudGoWeeee', 'camHUD', 45, 2.5, 'cubeOut')
-		end
-		if curBeat % 8 == 4 then
-			doTweenX('bfw i d e', 'boyfriend.scale', 1, 1.4, 'linear')
-			doTweenX('dadw i d e', 'dad.scale', 2.1, 1.4, 'linear')
-			doTweenAngle('hudGoWeeee', 'camHUD', -45, 2.5, 'cubeOut')
-		end
-		if curBeat % 4 == 0 then
-			doTweenAlpha('helloHypno', 'static', 1, 0.4, 'cubeInOut')
-		end
-		if curBeat % 4 == 2 then
-			doTweenAlpha('helloHypno', 'static', 0.3, 0.4, 'cubeInOut')
-		end
-		if curStep % 6 == 0 then
-			playSound('hypnoGoBrrrrrr', 0.25)
-		end
+	if curStep == 1528 then
+		doTweenAngle('morkSpin', 'dad', 360 * 100, 2, 'circOut')
+		doTweenX('morkX', 'dad.scale', 40, 2, 'bounceInOut')
+		triggerEvent("Screen Shake", '0.8/'..playbackRate..', 0.035', '0.8/'..playbackRate..', 0.04')
 	end
-	if curStep == 1664 then
-		cameraFlash('game', 'FFFFFF', 0.7, false)
-		doTweenAlpha('hellofakeBar', 'fakespace', 0, 5.3, 'linear')
-		doTweenAngle('hudGoWeeee', 'camHUD', 0, 0.6, 'circOut')
-		doTweenY('Pendelum', 'Pendelum', -600, 0.3, 'cubeInOut')
-		doTweenAlpha('helloHypno', 'static', 0, 0.13, 'circOut')
+	if curStep == 1536 then
+		cancelTween('morkSpin')
+		cancelTween('morkX')
+		setProperty('dad.scale.x', 1)
+		setProperty('dad.angle', 0)
+		
+		setProperty('defaultCamZoom', 0.9)
+		cameraFlash('game', 'ffffff', 0.8 / playbackRate, false)
+		
 		triggerEvent('Change Character', 'dad', 'Morky')
+		
 		if var1 == true then
 			triggerEvent('Change Character', 'boyfriend', 'GFwav')
 		elseif var2 == true then
@@ -281,114 +191,169 @@ function onUpdate()
 		else
 			triggerEvent('Change Character', 'boyfriend', 'playablegf')
 		end
-		clearEffects('bg')
-	end
-	if curBeat == 498 then
-		doTweenAlpha('hudgobye', 'camHUD', 0, 0.5, 'linear')
-		addHaxeLibrary('flixel.FlxG')
-        addHaxeLibrary('flixel.system.FlxSound')
-		runHaxeCode([[
-            FlxTween.tween(game, {songLength: FlxG.sound.music.length}, 5, {ease: FlxEase.expoInOut})
-        ]])
-	end
-	if curBeat == 500 then
-		doTweenAlpha('MorkyText', 'MorkyText', 1, 0.07, 'cubeIn')
-		setProperty('defaultCamZoom', 1.4)
-		setTextString('MorkyText', "Mor")
-	end
-	if curBeat == 501 then
-		setTextString('MorkyText', "Morky!")
-	end
-	if curBeat == 502 then
-		setTextString('MorkyText', "Mor")
-	end
-	if curBeat == 503 then
-		setTextString('MorkyText', "Morky")
-	end
-	if curStep == 2015 then
-		setTextString('MorkyText', "Morkyyyy")
-	end
-	if curStep == 2019 then
-		setTextString('MorkyText', "roM")
-	end
-	if curBeat == 505 then
-		setTextString('MorkyText', "roMkyyyyyyyy")
-		runTimer('MorkyGlitching', 0.01)
-	end
-	if curBeat == 509 then
-		setTextString('MorkyText', "eeeeeeeeeeee")
-	end
-	if curBeat == 510 then
-		cameraShake('game', 0.05, 0.60)
-		setTextString('MorkyText', "roMkyyyyyyyy")
-		runTimer('MorkyGlitching', 0.01)
-	end
-	if curBeat == 512 then
-		cameraFlash('game', 'FFFFFF', 1.7, false)
-		doTweenAlpha('hudgoHello', 'camHUD', 1, 0.5, 'linear')
-		doTweenAlpha('MorkyText', 'MorkyText', 0, 0.07, 'cubeIn')
 		
+		addGlitchEffect('bg', 1.5, 0.6, 0.3)
+	end
+	if curStep == 1784 then
+		setProperty('defaultCamZoom', 1.7)
+	end
+	if curStep == 1792 then
 		setProperty('defaultCamZoom', 0.9)
+		
+		if mechanics then
+			noteTweenX('noteTweenX0', 0, defaultPlayerStrumX0, 0.7 / playbackRate, 'cubeInOut')
+			noteTweenX('noteTweenX1', 1, defaultPlayerStrumX1, 0.72 / playbackRate, 'cubeInOut')
+			noteTweenX('noteTweenX2', 2, defaultPlayerStrumX2, 0.74 / playbackRate, 'cubeInOut')
+			noteTweenX('noteTweenX3', 3, defaultPlayerStrumX3, 0.76 / playbackRate, 'cubeInOut')
+			
+			noteTweenX('noteTweenX4', 4, defaultOpponentStrumX0, 0.7 / playbackRate, 'cubeInOut')
+			noteTweenX('noteTweenX5', 5, defaultOpponentStrumX1, 0.72 / playbackRate, 'cubeInOut')
+			noteTweenX('noteTweenX6', 6, defaultOpponentStrumX2, 0.74 / playbackRate, 'cubeInOut')
+			noteTweenX('noteTweenX7', 7, defaultOpponentStrumX3, 0.76 / playbackRate, 'cubeInOut')
+		end
+	end
+	if curStep == 2032 then
+		if mechanics then
+			for i = 0, 7 do
+				cancelTween("noteTweenX"..i)
+				cancelTween("noteTweenX"..i.."FIX")
+			end
+			noteTweenX('noteTweenX0End', 0, defaultOpponentStrumX0, 0.7 / playbackRate, 'cubeInOut')
+			noteTweenX('noteTweenX1End', 1, defaultOpponentStrumX1, 0.72 / playbackRate, 'cubeInOut')
+			noteTweenX('noteTweenX2End', 2, defaultOpponentStrumX2, 0.74 / playbackRate, 'cubeInOut')
+			noteTweenX('noteTweenX3End', 3, defaultOpponentStrumX3, 0.76 / playbackRate, 'cubeInOut')
+			
+			noteTweenX('noteTweenX4End', 4, defaultPlayerStrumX0, 0.7 / playbackRate, 'cubeInOut')
+			noteTweenX('noteTweenX5End', 5, defaultPlayerStrumX1, 0.72 / playbackRate, 'cubeInOut')
+			noteTweenX('noteTweenX6End', 6, defaultPlayerStrumX2, 0.74 / playbackRate, 'cubeInOut')
+			noteTweenX('noteTweenX7End', 7, defaultPlayerStrumX3, 0.76 / playbackRate, 'cubeInOut')
+		end
+		setProperty('defaultCamZoom', 1.7)
 	end
 	if curStep == 2048 then
-		if shadersEnabled and shadersUsed == false then
-			addPulseEffect('game', 1.5, 0.2, 0.25, 0.22)
-			addPulseEffect('hud', 1.5, 0.2, 0.25, 0.22)
-			shadersUsed = true
-		end
+		setProperty('defaultCamZoom', 0.9)
+		cameraFlash('game', 'ffffff', 0.8 / playbackRate, false)
 	end
-	if curBeat >= 512 and curBeat <= 672 then
-		if not botPlay then
-			if curBeat % 8 == 0 then
-				doTweenAlpha('FakeBotplay', 'botPlayFake', 1, 0.7, 'easeIn')
-			end
-			if curBeat % 8 == 4 then
-				doTweenAlpha('FakeBotplay', 'botPlayFake', 0, 0.7, 'easeIn')
-			end
-		end
+	if curStep == 2296 then
+		callScript('scripts/VideoSpriteHandler', 'makeVideoSprite', {'theSilly', 'theBilly', -20, 275, 'camGame', 0})
+		setProperty('theSilly.alpha', 0)
+		scaleObject('theSilly', 2, 2)
 	end
-	if curBeat == 576 then
-		triggerEvent('Change Character', 'dad', 'MorkyHank')
+	if curStep == 2304 then
+		doTweenX('backgroundZoomX', 'bg.scale', 3, 0.6 / playbackRate, 'circOut')
+		doTweenY('backgroundZoomY', 'bg.scale', 3, 0.6 / playbackRate, 'circOut')
+		
+		doTweenAlpha('theSilly, please show up', 'theSilly', 0.5, 21 / playbackRate, 'cubeInOut')
+		setProperty('defaultCamZoom', 0.5)
 	end
-	if curBeat == 608 then
-		triggerEvent('Change Character', 'dad', 'Morky')
-	end
-	if curBeat == 672 then
-		cameraFlash('game', 'FFFFFF', 1.7, false)
-		if not botPlay then
-			doTweenAlpha('FakeBotplay', 'botPlayFake', 0, 0.7, 'easeIn')
-		end
-		clearEffects('game')
-		clearEffects('hud')
-	end
-	if curStep == 3239 then
-		doTweenAngle('morkSpin', 'dad', 360 * 100, 2, 'circOut')
-		doTweenX('morkX', 'dad.scale', 3, 2, 'bounceInOut')
-	end
-	if curStep == 3247 then
-		setProperty('camGame.alpha', 0)
-		callScript('scripts/VideoSpriteHandler', 'makeVideoSprite', {'morkyisfarded', 'morky farded', 0, 0, 'camHUD', 0})
+	if curStep == 2560 then
+		doTweenX('backgroundZoomX', 'bg.scale', 1.5, 0.6 / playbackRate, 'circOut')
+		doTweenY('backgroundZoomY', 'bg.scale', 1.5, 0.6 / playbackRate, 'circOut')
+		setProperty('defaultCamZoom', 0.9)
+		cameraFlash('game', 'ffffff', 0.8 / playbackRate, false)
+		setProperty('theSilly.alpha', 0)
+		
+		clearEffects('bg')
 	end
 end
 
+local count = 1
+function onBeatHit()
+	if (curBeat >= 64 and curBeat < 128) or (curBeat >= 192 and curBeat < 320) then
+		triggerEvent('Add Camera Zoom', '0.045', '0.048')
+	end
+	if (curBeat >= 128 and curBeat < 192) or (curBeat >= 320 and curBeat < 384) or (curBeat >= 448 and curBeat <= 508)
+	or (curBeat > 656 and curBeat <= 672) then
+		if curBeat % 2 == 0 then
+			triggerEvent('Add Camera Zoom', '0.065', '0.069')
+		end
+	end
+	if (curBeat >= 384 and curBeat < 448) or (curBeat >= 512 and curBeat <= 640) then
+		triggerEvent('Add Camera Zoom', '0.055', '0.058')
+		if curBeat % 2 == 0 then
+			runTimer('woop', 0.001)
+		end
+	end
+	
+	-- Multiplier shader
+	if shadersEnabled and mechanics then
+		if curBeat >= 192 and curBeat < 320 and curBeat % 4 == 0 then
+			if count > 4 then
+				count = 1
+			end
+			runHaxeCode([[
+				shader0.setFloat('multi',]]..count..[[);
+			]])
+			count = count + 1
+		end
+		if curBeat == 320 then
+			runHaxeCode([[
+				shader0.setFloat('multi', 1);
+			]])
+		end
+	end
+end
 function onGameOverStart()
 	if not isMayhemMode then
-		startVideo('oh my god you died!');
-		runTimer('timeToDie', 9)
+		startVideo('oh my god you died NEW!');
+		runTimer('timeToDie', 8)
 		setPropertyFromClass("openfl.Lib", "application.window.title", "HAHA, I aM MorKy, and I wiLL nOw CloSe uR gAem!! YoU cAn't Do ShIt nOW HAHAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 	end
 end
 
-local glitchText = {'romKYYYYYYYYYYYYYYYYYY', 'y', 'MORKYYYYYYYYYROMYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYWNGWRPONIBVWO',
-					'rom', 'moRKEEEEEEEEEEEEEEEEEEEE', 'M', 'Morkyyyyyyyyyyyyyyiewjhyoisrhnyoyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy',
-					'REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE', 'Sans', 'FORTNITE',
-					'myyyyrKOOOOOOOOOOOOOOOOOOOOOOoooOOoOoOoOoOoOoOoOoO'}
+function onTweenCompleted(tag)
+	if tag == 'noteTweenX3' then
+		noteTweenX('noteTweenX0FIX', 0, defaultOpponentStrumX0, 0.7 / playbackRate, 'cubeInOut')
+		noteTweenX('noteTweenX1FIX', 1, defaultOpponentStrumX1, 0.72 / playbackRate, 'cubeInOut')
+		noteTweenX('noteTweenX2FIX', 2, defaultOpponentStrumX2, 0.74 / playbackRate, 'cubeInOut')
+		noteTweenX('noteTweenX3FIX', 3, defaultOpponentStrumX3, 0.76 / playbackRate, 'cubeInOut')
+		
+		noteTweenX('noteTweenX4FIX', 4, defaultPlayerStrumX0, 0.7 / playbackRate, 'cubeInOut')
+		noteTweenX('noteTweenX5FIX', 5, defaultPlayerStrumX1, 0.72 / playbackRate, 'cubeInOut')
+		noteTweenX('noteTweenX6FIX', 6, defaultPlayerStrumX2, 0.74 / playbackRate, 'cubeInOut')
+		noteTweenX('noteTweenX7FIX', 7, defaultPlayerStrumX3, 0.76 / playbackRate, 'cubeInOut')
+	end
+	if tag == 'noteTweenX3FIX' then
+		noteTweenX('noteTweenX0', 0, defaultPlayerStrumX0, 0.7 / playbackRate, 'cubeInOut')
+		noteTweenX('noteTweenX1', 1, defaultPlayerStrumX1, 0.72 / playbackRate, 'cubeInOut')
+		noteTweenX('noteTweenX2', 2, defaultPlayerStrumX2, 0.74 / playbackRate, 'cubeInOut')
+		noteTweenX('noteTweenX3', 3, defaultPlayerStrumX3, 0.76 / playbackRate, 'cubeInOut')
+		
+		noteTweenX('noteTweenX4', 4, defaultOpponentStrumX0, 0.7 / playbackRate, 'cubeInOut')
+		noteTweenX('noteTweenX5', 5, defaultOpponentStrumX1, 0.72 / playbackRate, 'cubeInOut')
+		noteTweenX('noteTweenX6', 6, defaultOpponentStrumX2, 0.74 / playbackRate, 'cubeInOut')
+		noteTweenX('noteTweenX7', 7, defaultOpponentStrumX3, 0.76 / playbackRate, 'cubeInOut')
+	end
+end
+
 function onTimerCompleted(tag)
+	if tag == 'woop' then
+		setPropertyFromGroup('strumLineNotes', 0, 'x', getPropertyFromGroup('strumLineNotes', 0, 'x') - 20)
+		noteTweenX('noteTweenO0', 0, getPropertyFromGroup('strumLineNotes', 0, 'x') + 20, 0.6, 'sineOut')
+		
+		setPropertyFromGroup('strumLineNotes', 1, 'x', getPropertyFromGroup('strumLineNotes', 1, 'x') - 15)
+		noteTweenX('noteTweenO1', 1, getPropertyFromGroup('strumLineNotes', 1, 'x') + 15, 0.6, 'sineOut')
+		
+		setPropertyFromGroup('strumLineNotes', 2, 'x', getPropertyFromGroup('strumLineNotes', 2, 'x') + 15)
+		noteTweenX('noteTweenO2', 2, getPropertyFromGroup('strumLineNotes', 2, 'x') - 15, 0.6, 'sineOut')
+		
+		setPropertyFromGroup('strumLineNotes', 3, 'x', getPropertyFromGroup('strumLineNotes', 3, 'x') + 20)
+		noteTweenX('noteTweenO3', 3, getPropertyFromGroup('strumLineNotes', 3, 'x') - 20, 0.6, 'sineOut')
+		
+		setPropertyFromGroup('strumLineNotes', 4, 'x', getPropertyFromGroup('strumLineNotes', 4, 'x') - 20)
+		noteTweenX('noteTweenO4', 4, getPropertyFromGroup('strumLineNotes', 4, 'x') + 20, 0.6, 'sineOut')
+		
+		setPropertyFromGroup('strumLineNotes', 5, 'x', getPropertyFromGroup('strumLineNotes', 5, 'x') - 15)
+		noteTweenX('noteTweenO5', 5, getPropertyFromGroup('strumLineNotes', 5, 'x') + 15, 0.6, 'sineOut')
+		
+		setPropertyFromGroup('strumLineNotes', 6, 'x', getPropertyFromGroup('strumLineNotes', 6, 'x') + 15)
+		noteTweenX('noteTweenO6', 6, getPropertyFromGroup('strumLineNotes', 6, 'x') - 15, 0.6, 'sineOut')
+		
+		setPropertyFromGroup('strumLineNotes', 7, 'x', getPropertyFromGroup('strumLineNotes', 7, 'x') + 20)
+		noteTweenX('noteTweenO7', 7, getPropertyFromGroup('strumLineNotes', 7, 'x') - 20, 0.6, 'sineOut')
+	end
+	
 	if tag == 'timeToDie' then
 		os.exit(true);
-	end
-	if tag == 'MorkyGlitching' and (curBeat <= 508 or (curBeat >= 510 and curBeat <= 512)) then
-		setTextString('MorkyText', glitchText[getRandomInt(1, 11)])
-		runTimer('MorkyGlitching', 0.01)
 	end
 end

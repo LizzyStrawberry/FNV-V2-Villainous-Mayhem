@@ -393,7 +393,7 @@ class FreeplayBonusState extends MusicBeatState
 		message4.alpha = 0;
 		add(message4);
 
-		seizureWarning = new FlxText(700, selectionText.y + 400, FlxG.width, "WARNING: This song has scripted 'color shaders' that can possibly cause weak~ish seizures. We made them week, but if you're sensitive to it, make sure you go to options, and disable Shaders.", 16);
+		seizureWarning = new FlxText(700, selectionText.y + 400, FlxG.width, "WARNING: This song has scripted events that could make some people uncomfortable. We made them weak, but if you're REALLY sensitive, make sure you go to options, and disable mechanics.", 16);
 		seizureWarning.setFormat("VCR OSD Mono", 20, FlxColor.RED, CENTER);
 		seizureWarning.screenCenter(XY);
 		seizureWarning.y += 290;

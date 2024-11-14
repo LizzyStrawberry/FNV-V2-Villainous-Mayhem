@@ -5411,8 +5411,16 @@ class PlayState extends MusicBeatState
 		}
 		else
 		{
-			rating.x += boyfriend.x - 750;
-			rating.y -= boyfriend.y - 250;
+			if (Paths.formatToSongPath(SONG.song) == 'get-villaind-(old)' || Paths.formatToSongPath(SONG.song) == 'get-villaind')
+			{
+				rating.x += boyfriend.x - 750;
+				rating.y -= boyfriend.y - 550;
+			}
+			else
+			{
+				rating.x += boyfriend.x - 750;
+				rating.y -= boyfriend.y - 250;
+			}	
 		}
 
 		var comboSpr:FlxSprite = new FlxSprite().loadGraphic(Paths.image(pixelShitPart1 + 'combo' + pixelShitPart2));
@@ -5558,8 +5566,16 @@ class PlayState extends MusicBeatState
 			}
 			else
 			{
-				numScore.x += boyfriend.x - 550;
-				numScore.y -= boyfriend.y - 200;
+				if (Paths.formatToSongPath(SONG.song) == 'get-villaind-(old)' || Paths.formatToSongPath(SONG.song) == 'get-villaind')
+				{
+					rating.x += boyfriend.x - 550;
+					rating.y -= boyfriend.y + 100;
+				}
+				else
+				{
+					numScore.x += boyfriend.x - 550;
+					numScore.y -= boyfriend.y - 200;
+				}
 			}
 
 			if (!ClientPrefs.comboStacking)

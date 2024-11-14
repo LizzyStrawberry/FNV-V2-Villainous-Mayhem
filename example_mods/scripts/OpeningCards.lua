@@ -88,7 +88,9 @@ function onUpdate()
 		setTextString('NowPlay2', 'Composed by: Araz')
 	end
 	if songName == "Get Villain'd" then
-		setTextString('NowPlay2', 'Composed By: Zuyu')
+		canScale = true
+		scaleNum = 1.25
+		setTextString('NowPlay2', 'Composed By: TheRealOscamon')
 	end
 	
 	if songName == 'Cheap Skate (Legacy)' then

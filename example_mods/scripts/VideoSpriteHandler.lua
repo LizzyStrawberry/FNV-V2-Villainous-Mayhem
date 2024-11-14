@@ -27,7 +27,7 @@
         end
 ]]--
 
-local videoCache = {'morky farded'}
+local videoCache = {}
 --[[
     put your videoname here to cache it
     example: {'videoname','videoname2'}
@@ -39,6 +39,12 @@ local videoCache = {'morky farded'}
 
 -- [[the stuff ]] --
 function onCreate()
+	if songName == "Get Villain'd (Old)" then
+		videoCache = {'morky farded'}
+	elseif songName == "Get Villain'd" then
+		videoCache = {'theBilly'}
+	end
+	
     addHaxeLibrary('MP4Handler', 'vlc')
     addHaxeLibrary('Event', 'openfl.events')
     cacheFuck()

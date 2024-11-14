@@ -9318,9 +9318,9 @@
 			}
 		],
 		"player2": "Morky",
-		"gfVersion": "evelyn",
+		"gfVersion": "emptyChar",
 		"events": [],
-		"player3": "gf",
+		"player3": "emptyChar",
 		"song": "Get Villain'd",
 		"needsVoices": true,
 		"sections": 45,

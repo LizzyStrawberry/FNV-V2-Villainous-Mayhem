@@ -421,7 +421,8 @@ class InfoState extends MusicBeatState
 					FlxTween.tween(blackOut, {alpha: 0.8}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
 					FlxTween.tween(scrollAsset, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
 					FlxTween.tween(scrollDesc, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
-					scrollDesc.text = "I am Aileen's lore, nice to meet you\nlmao";
+					scrollDesc.text = "Aileen was born in her old hometown Lampside.\nShe used to live with her Mother who was\nan Employee in A.A.A.V (An Agency Against Villains),\nher Father who is a C-class Villain and\nher Twin Brother, Alverv.
+					\n[Click <G>here<G> to view the full extension]";
 				}
 				else
 				{

@@ -40,10 +40,7 @@ function onUpdate()
             if getProperty('dad.animation.curAnim.name') == 'singDOWN-alt' then
                 triggerEvent('Camera Follow Pos',xx,yy+ofs)
             end
-            if getProperty('dad.animation.curAnim.name') == 'idle-alt' then
-                triggerEvent('Camera Follow Pos',xx,yy)
-            end
-            if getProperty('dad.animation.curAnim.name') == 'idle' then
+            if getProperty('dad.animation.curAnim.name') == 'idle' or getProperty('dad.animation.curAnim.name') == 'pomnify' then
                 triggerEvent('Camera Follow Pos',xx,yy)
             end
         else
@@ -66,4 +63,29 @@ function onUpdate()
     else
         triggerEvent('Camera Follow Pos','','')
     end
+	
+	if curStep == 214 or curStep == 1280 then
+		xx = 350
+		yy = 630
+	end
+	if curStep == 1520 then
+		xx = 620
+		yy = 630
+	end
+	if curStep == 256 or curStep == 1536 then
+		xx = 520
+		yy = 590
+	end
+	if curStep == 1792 or curStep == 2304 then
+		xx = 620
+		yy = 630
+		xx2 = 620
+		yy2 = 630
+	end
+	if curStep == 2032 or curStep == 2560 then
+		xx = 520
+		yy = 590
+		xx2 = 950
+		yy2 = 620
+	end
 end

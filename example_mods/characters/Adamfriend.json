@@ -1,0 +1,78 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				-5,
+				0
+			],
+			"anim": "idle",
+			"fps": 24,
+			"name": "gf idle",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-4,
+				-132
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "gf down0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-2,
+				45
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "gf up0",
+			"indices": []
+		},
+		{
+			"offsets": [
+				125,
+				-69
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "gf left0"
+		},
+		{
+			"offsets": [
+				-4,
+				-36
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "gf right0"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/adamfriend",
+	"position": [
+		50,
+		130
+	],
+	"healthicon": "playablegf",
+	"flip_x": true,
+	"healthbar_colors": [
+		165,
+		0,
+		77
+	],
+	"camera_position": [
+		-10,
+		0
+	],
+	"sing_duration": 4,
+	"scale": 1
+}
