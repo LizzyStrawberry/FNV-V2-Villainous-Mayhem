@@ -277,7 +277,7 @@ function onBeatHit()
 	
 	-- Multiplier shader
 	if shadersEnabled and mechanics then
-		if curBeat >= 192 and curBeat < 320 and curBeat % 4 == 0 then
+		if curBeat >= 192 and curBeat < 256 and curBeat % 4 == 0 then
 			if count > 4 then
 				count = 1
 			end
@@ -286,7 +286,7 @@ function onBeatHit()
 			]])
 			count = count + 1
 		end
-		if curBeat == 320 then
+		if curBeat == 256 then
 			runHaxeCode([[
 				shader0.setFloat('multi', 1);
 			]])
@@ -296,7 +296,7 @@ end
 function onGameOverStart()
 	if not isMayhemMode then
 		startVideo('oh my god you died NEW!');
-		runTimer('timeToDie', 8)
+		runTimer('timeToDie', 9)
 		setPropertyFromClass("openfl.Lib", "application.window.title", "HAHA, I aM MorKy, and I wiLL nOw CloSe uR gAem!! YoU cAn't Do ShIt nOW HAHAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 	end
 end
