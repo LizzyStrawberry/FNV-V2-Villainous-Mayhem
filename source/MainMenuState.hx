@@ -183,7 +183,6 @@ class MainMenuState extends MusicBeatState
 	var blackOut:FlxSprite;
 	var blackOut2:FlxSprite;
 
-	var discord:FlxSprite;
 	var exclamationMark:FlxSprite;
 	var optionsButton:FlxSprite;
 	var shopButton:FlxSprite;
@@ -521,7 +520,7 @@ class MainMenuState extends MusicBeatState
 			NotificationAlert.saveNotifications();
 		}
 
-		inventoryButton = new FlxSprite(1168, 310).loadGraphic(Paths.image('inventoryButton'));
+		inventoryButton = new FlxSprite(1168, 230).loadGraphic(Paths.image('inventoryButton'));
 		inventoryButton.antialiasing = ClientPrefs.globalAntialiasing;
 		inventoryButton.alpha = 0.5;
 		inventoryButton.updateHitbox();
@@ -560,13 +559,6 @@ class MainMenuState extends MusicBeatState
 
 			CustomFontFormats.addMarkers(tokenShow);
 		add(tokenShow);
-
-		discord = new FlxSprite(1190, 210).loadGraphic(Paths.image('discord'));
-		discord.antialiasing = ClientPrefs.globalAntialiasing;
-		discord.alpha = 0.5;
-		discord.scale.set(0.5, 0.5);
-		discord.updateHitbox();
-		add(discord);
 
 		FlxG.mouse.visible = true;
 
@@ -1060,10 +1052,6 @@ class MainMenuState extends MusicBeatState
 				shopButton.alpha = 1;
 			else
 				shopButton.alpha = 0.5;
-			if (FlxG.mouse.overlaps(discord))
-				discord.alpha = 1;
-			else
-				discord.alpha = 0.5;
 			if (FlxG.mouse.overlaps(exclamationMark))
 				exclamationMark.alpha = 1;
 			else
@@ -1077,9 +1065,6 @@ class MainMenuState extends MusicBeatState
 			else
 				inventoryButton.alpha = 0.5;
 		}
-
-		if (FlxG.mouse.overlaps(discord) && FlxG.mouse.justPressed && askedForInfo == false && (!selectedSomethin && !storySelected && !inventoryOpened))
-			CoolUtil.browserLoad('https://discord.gg/7BvgW8RDuq');
 
 		if (FlxG.mouse.overlaps(optionsButton) && FlxG.mouse.justPressed && askedForInfo == false && (!selectedSomethin && !storySelected && !inventoryOpened))
 		{

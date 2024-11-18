@@ -79,8 +79,7 @@ function onUpdate()
 		endingSequence = 2;
 		setProperty('WarningTXT.alpha', 0)
 		setProperty('camHUD.visible', false)
-		runTimer('waitForSound', 50.90)
-		playSound('Week1_TrueEnd')
+		playSound('Week1_TrueEnd', 1, 'aileenRant')
 	end
 end
 
@@ -96,8 +95,14 @@ function onEndSong()
 	return Function_Continue
 end
 
+function onSoundFinished(tag)
+	if tag == 'aileenRant' then
+		endSong();
+	end
+end
+
 function onTweenCompleted(tag)
-	if tag == 'warningTXThi' then
+	if tag == 'endingTXT' then
 		endingSequence = 1
 	end
 end
@@ -123,10 +128,6 @@ function onTimerCompleted(tag)
 	
 	if tag == 'allowEnter' then
 		setTextString('WarningTXT', 'Press ENTER to Continue.')
-	 	doTweenAlpha('warningTXThi', 'WarningTXT', 1, 0.6, 'sineOut');
-	end
-	if tag == 'waitForSound' then
-		endingSequence = 3
-		endSong();
+	 	doTweenAlpha('endingTXT', 'WarningTXT', 1, 0.6, 'sineOut');
 	end
 end

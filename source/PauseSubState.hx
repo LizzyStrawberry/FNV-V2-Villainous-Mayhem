@@ -1372,7 +1372,7 @@ class PauseSubState extends MusicBeatSubstate
 
 	public static function restartSong(noTrans:Bool = false)
 	{
-		if (changedSettings) //If you changed your settings in quick settingsd (mainly Mechanics)
+		if (changedSettings) //If you changed your settings in quick settings (mainly Mechanics)
 		{
 			switch(levelInfo.text)
 			{
@@ -1389,8 +1389,9 @@ class PauseSubState extends MusicBeatSubstate
 							PlayState.SONG = Song.loadFromJson('toxic-mishap-villainous', 'toxic-mishap');
 						}
 					}
+
 				case "Villainy":
-					if (PlayState.storyDifficulty == 1)
+					if (PlayState.storyDifficulty == 0 || PlayState.storyDifficulty == 1) //On Freeplay: 0, on Story Mode: 1
 					{
 						if (ClientPrefs.mechanics == false)
 						{
@@ -1399,85 +1400,122 @@ class PauseSubState extends MusicBeatSubstate
 						}
 						else
 						{
+							trace('Its working! Mechanics for Villainy in Villainous!');
 							PlayState.SONG = Song.loadFromJson('villainy-villainous', 'villainy');
 						}
 					}
 
 				case "Toybox":
-					if (ClientPrefs.mechanics == false && PlayState.storyDifficulty == 0)
+					if (ClientPrefs.mechanics == false)
 					{
-						trace('Its working! No mechanics for Toybox in Casual!');
-						PlayState.SONG = Song.loadFromJson('toybox-casualMechanicless', 'toybox');
+						if (PlayState.storyDifficulty == 0)
+						{
+							trace('Its working! No mechanics for Toybox in Casual!');
+							PlayState.SONG = Song.loadFromJson('toybox-casualMechanicless', 'toybox');
+						}
+						else if (PlayState.storyDifficulty == 1)
+						{
+							trace('Its working! No mechanics for Toybox in Villainous!');
+							PlayState.SONG = Song.loadFromJson('toybox-villainousMechanicless', 'toybox');
+						}
 					}
-					else if (ClientPrefs.mechanics == false && PlayState.storyDifficulty == 1)
+					else if (ClientPrefs.mechanics == true)
 					{
-						PlayState.SONG = Song.loadFromJson('toybox-villainousMechanicless', 'toybox');
+						if (PlayState.storyDifficulty == 0)
+						{
+							trace('Its working! Mechanics for Toybox in Casual!');
+							PlayState.SONG = Song.loadFromJson('toybox', 'toybox');
+						}
+						else if (PlayState.storyDifficulty == 1)
+						{
+							trace('Its working! Mechanics for Toybox in Villainous!');
+							PlayState.SONG = Song.loadFromJson('toybox-villainous', 'toybox');
+						}
 					}
-					if (ClientPrefs.mechanics == true && PlayState.storyDifficulty == 0)
-					{
-						trace('Its working! Mechanics for Toybox in Casual!');
-						PlayState.SONG = Song.loadFromJson('toybox', 'toybox');
-					}
-					else if (ClientPrefs.mechanics == true && PlayState.storyDifficulty == 1)
-					{
-						PlayState.SONG = Song.loadFromJson('toybox-villainous', 'toybox');
-					}
+
 				case "Lustality Remix":
-					if (ClientPrefs.mechanics == false && PlayState.storyDifficulty == 0)
+					if (ClientPrefs.mechanics == false)
 					{
-						trace('Its working! No mechanics for Lustality Remix in Casual!');
-						PlayState.SONG = Song.loadFromJson('lustality-remix-casualMechanicless', 'lustality-remix');
+						if (PlayState.storyDifficulty == 0)
+						{
+							trace('Its working! No mechanics for Lustality Remix in Casual!');
+							PlayState.SONG = Song.loadFromJson('lustality-remix-casualMechanicless', 'lustality-remix');
+						}
+						else if (PlayState.storyDifficulty == 1)
+						{
+							trace('Its working! No mechanics for Lustality Remix in Villainous!');
+							PlayState.SONG = Song.loadFromJson('lustality-remix-villainousMechanicless', 'lustality-remix');
+						}
 					}
-					else if (ClientPrefs.mechanics == false && PlayState.storyDifficulty == 1)
+					else if (ClientPrefs.mechanics == true)
 					{
-						PlayState.SONG = Song.loadFromJson('lustality-remix-villainousMechanicless', 'lustality-remix');
+						if (PlayState.storyDifficulty == 0)
+						{
+							trace('Its working! Mechanics for Lustality Remix in Casual!');
+							PlayState.SONG = Song.loadFromJson('lustality-remix', 'lustality-remix');
+						}
+						else if (PlayState.storyDifficulty == 1)
+						{
+							trace('Its working! Mechanics for Lustality Remix in Villainous!');
+							PlayState.SONG = Song.loadFromJson('lustality-remix-villainous', 'lustality-remix');
+						}
+						
 					}
-					if (ClientPrefs.mechanics == true && PlayState.storyDifficulty == 0)
-					{
-						trace('Its working! Mechanics for Lustality Remix in Casual!');
-						PlayState.SONG = Song.loadFromJson('lustality-remix', 'lustality-remix');
-					}
-					else if (ClientPrefs.mechanics == true && PlayState.storyDifficulty == 1)
-					{
-						PlayState.SONG = Song.loadFromJson('lustality-remix-villainous', 'lustality-remix');
-					}
+
 				case "Lustality":
-					if (ClientPrefs.mechanics == false && PlayState.storyDifficulty == 0)
+					if (ClientPrefs.mechanics == false)
 					{
-						trace('Its working! No mechanics for Lustality in Casual!');
-						PlayState.SONG = Song.loadFromJson('lustality-casualMechanicless', 'lustality');
+						if (PlayState.storyDifficulty == 0)
+						{
+							trace('Its working! No mechanics for Lustality in Casual!');
+							PlayState.SONG = Song.loadFromJson('lustality-casualMechanicless', 'lustality');
+						}
+						else if (PlayState.storyDifficulty == 1)
+						{
+							trace('Its working! No mechanics for Lustality in Villainous!');
+							PlayState.SONG = Song.loadFromJson('lustality-villainousMechanicless', 'lustality');
+						}
 					}
-					else if (ClientPrefs.mechanics == false && PlayState.storyDifficulty == 1)
+					else if (ClientPrefs.mechanics == true)
 					{
-						PlayState.SONG = Song.loadFromJson('lustality-villainousMechanicless', 'lustality');
+						if (PlayState.storyDifficulty == 0)
+						{
+							trace('Its working! Mechanics for Lustality in Casual!');
+							PlayState.SONG = Song.loadFromJson('lustality', 'lustality');
+						}
+						else if (PlayState.storyDifficulty == 1)
+						{
+							trace('Its working! Mechanics for Lustality in Villainous!');
+							PlayState.SONG = Song.loadFromJson('lustality-villainous', 'lustality');
+						}
 					}
-					if (ClientPrefs.mechanics == true && PlayState.storyDifficulty == 0)
-					{
-						trace('Its working! Mechanics for Lustality in Casual!');
-						PlayState.SONG = Song.loadFromJson('lustality', 'lustality');
-					}
-					else if (ClientPrefs.mechanics == true && PlayState.storyDifficulty == 1)
-					{
-						PlayState.SONG = Song.loadFromJson('lustality-villainous', 'lustality');
-					}
+
 				case "Lustality V1":
-					if (ClientPrefs.mechanics == false && PlayState.storyDifficulty == 0)
+					if (ClientPrefs.mechanics == false)
 					{
-						trace('Its working! No mechanics for Lustality V1 in Casual!');
-						PlayState.SONG = Song.loadFromJson('lustality-v1-casualMechanicless', 'lustality-v1');
+						if (PlayState.storyDifficulty == 0)
+						{
+							trace('Its working! No mechanics for Lustality V1 in Casual!');
+							PlayState.SONG = Song.loadFromJson('lustality-v1-casualMechanicless', 'lustality-v1');
+						}
+						else if (PlayState.storyDifficulty == 1)
+						{
+							trace('Its working! No mechanics for Lustality V1 in Villainous!');
+							PlayState.SONG = Song.loadFromJson('lustality-v1-villainousMechanicless', 'lustality-v1');
+						}
 					}
-					else if (ClientPrefs.mechanics == false && PlayState.storyDifficulty == 1)
+					else if (ClientPrefs.mechanics == true)
 					{
-						PlayState.SONG = Song.loadFromJson('lustality-v1-villainousMechanicless', 'lustality-v1');
-					}
-					if (ClientPrefs.mechanics == true && PlayState.storyDifficulty == 0)
-					{
-						trace('Its working! Mechanics for Lustality V1 in Casual!');
-						PlayState.SONG = Song.loadFromJson('lustality-v1', 'lustality-v1');
-					}
-					else if (ClientPrefs.mechanics == true && PlayState.storyDifficulty == 1)
-					{
-						PlayState.SONG = Song.loadFromJson('lustality-v1-villainous', 'lustality-v1');
+						if (PlayState.storyDifficulty == 0)
+						{
+							trace('Its working! Mechanics for Lustality V1 in Casual!');
+							PlayState.SONG = Song.loadFromJson('lustality-v1', 'lustality-v1');
+						}
+						else if (PlayState.storyDifficulty == 1)
+						{
+							trace('Its working! Mechanics for Lustality V1 in Villainous!');
+							PlayState.SONG = Song.loadFromJson('lustality-v1-villainous', 'lustality-v1');
+						}
 					}
 
 				case "Toxic Mishap (Legacy)":
@@ -1490,6 +1528,7 @@ class PauseSubState extends MusicBeatSubstate
 						}
 						else
 						{
+							trace('Its working! Mechanics for Toxic Mishap (Legacy) in Villainous!');
 							PlayState.SONG = Song.loadFromJson('toxic-mishap-(legacy)-villainous', 'toxic-mishap-(legacy)');
 						}
 					}
