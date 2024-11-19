@@ -5411,16 +5411,18 @@ class PlayState extends MusicBeatState
 		}
 		else
 		{
-			if (Paths.formatToSongPath(SONG.song) == 'get-villaind-(old)' || Paths.formatToSongPath(SONG.song) == 'get-villaind')
+			switch(curStage)
 			{
-				rating.x += boyfriend.x - 750;
-				rating.y -= boyfriend.y - 550;
+				case 'M o r k y':
+					rating.x += boyfriend.x - 750;
+					rating.y -= boyfriend.y - 550;
+				case 'The Skeld': // Among Us
+					rating.x += boyfriend.x - 550;
+					rating.y -= boyfriend.y - 850;
+				default:
+					rating.x += boyfriend.x - 550;
+					rating.y -= boyfriend.y - 350;
 			}
-			else
-			{
-				rating.x += boyfriend.x - 750;
-				rating.y -= boyfriend.y - 250;
-			}	
 		}
 
 		var comboSpr:FlxSprite = new FlxSprite().loadGraphic(Paths.image(pixelShitPart1 + 'combo' + pixelShitPart2));
@@ -5440,8 +5442,18 @@ class PlayState extends MusicBeatState
 		}
 		else
 		{
-			comboSpr.x += boyfriend.x - 750;
-			comboSpr.y -= boyfriend.y - 250;
+			switch(curStage)
+			{
+				case 'M o r k y':
+					comboSpr.x += boyfriend.x - 750;
+					comboSpr.y -= boyfriend.y - 550;
+				case 'The Skeld': // Among Us
+					comboSpr.x += boyfriend.x - 750;
+					comboSpr.y -= boyfriend.y + 250;
+				default:
+					comboSpr.x += boyfriend.x - 850;
+					comboSpr.y -= boyfriend.y + 350;
+			}
 		}
 		comboSpr.y += 60;
 		comboSpr.velocity.x += FlxG.random.int(1, 10) * playbackRate;
@@ -5566,15 +5578,17 @@ class PlayState extends MusicBeatState
 			}
 			else
 			{
-				if (Paths.formatToSongPath(SONG.song) == 'get-villaind-(old)' || Paths.formatToSongPath(SONG.song) == 'get-villaind')
+				switch(curStage)
 				{
-					rating.x += boyfriend.x - 550;
-					rating.y -= boyfriend.y + 100;
-				}
-				else
-				{
-					numScore.x += boyfriend.x - 550;
-					numScore.y -= boyfriend.y - 200;
+					case 'M o r k y':
+						numScore.x += boyfriend.x - 550;
+						numScore.y -= boyfriend.y - 500;
+					case 'The Skeld': // Among Us
+						numScore.x += boyfriend.x - 350;
+						numScore.y -= boyfriend.y - 800;
+					default:
+						numScore.x += boyfriend.x - 350;
+						numScore.y -= boyfriend.y - 300;
 				}
 			}
 

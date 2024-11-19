@@ -351,7 +351,8 @@ function onUpdatePost(elapsed)
 			end
 		end
 		  
-		if dadName == 'Morky' or dadName == 'MorkyMoist' or dadName == 'MorkyHypno' or dadName == 'MorkyHypnoAgain' or dadName == 'MorkyEgg' then
+		if dadName == 'Morky' or dadName == 'MorkyMoist' or dadName == 'MorkyHypno' or dadName == 'MorkyHypnoAgain' or dadName == 'MorkyEgg'
+		or dadName == 'MorkyHank' or dadName == 'Justky' then
 			for i = 0, getProperty('opponentStrums.length')-1 do
 
 				setPropertyFromGroup('opponentStrums', i, 'texture', 'notes/MorkyNOTE_assets');
