@@ -291,7 +291,7 @@ class CharSelector extends MusicBeatState{
 
                 FlxG.sound.play(Paths.sound('confirmMenu'));
 
-                imageArray[curSelected].playAnim('hey', true);
+                imageArray[curSelected].playAnim('hey', false);
 
                 FlxFlicker.flicker(imageArray[curSelected], 0);
 
@@ -346,10 +346,11 @@ class CharSelector extends MusicBeatState{
                         trace("Locked Secret");
                 }
     
-            for (i in 0...imageArray.length)
-            {
-                imageArray[i].dance();
-            }
+            if (!alreadySelected)
+                for (i in 0...imageArray.length)
+                {
+                    imageArray[i].dance();
+                }
 
             super.update(elapsed);
         }
