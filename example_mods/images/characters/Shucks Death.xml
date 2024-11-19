@@ -1,35 +1,36 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<TextureAtlas imagePath="Shucks Death.png">
-	<!-- Created with Adobe Animate version 21.0.5.40714 -->
-	<!-- http://www.adobe.com/products/animate.html -->
-	<SubTexture name="gf death0000" x="4" y="4" width="506" height="749" frameX="-4" frameY="0" frameWidth="513" frameHeight="749"/>
-	<SubTexture name="gf death0001" x="510" y="4" width="505" height="749" frameX="-5" frameY="0" frameWidth="513" frameHeight="749"/>
-	<SubTexture name="gf death0002" x="1015" y="4" width="505" height="749" frameX="-5" frameY="0" frameWidth="513" frameHeight="749"/>
-	<SubTexture name="gf death0003" x="1520" y="4" width="504" height="749" frameX="-6" frameY="0" frameWidth="513" frameHeight="749"/>
-	<SubTexture name="gf death0004" x="2024" y="4" width="507" height="749" frameX="-6" frameY="0" frameWidth="513" frameHeight="749"/>
-	<SubTexture name="gf death0005" x="2024" y="4" width="507" height="749" frameX="-7" frameY="0" frameWidth="513" frameHeight="749"/>
-	<SubTexture name="gf death0006" x="2531" y="4" width="506" height="749" frameX="-7" frameY="0" frameWidth="513" frameHeight="749"/>
-	<SubTexture name="gf death0007" x="2024" y="4" width="507" height="749" frameX="-7" frameY="0" frameWidth="513" frameHeight="749"/>
-	<SubTexture name="gf death0008" x="3037" y="4" width="506" height="749" frameX="-7" frameY="0" frameWidth="513" frameHeight="749"/>
-	<SubTexture name="gf death0009" x="3543" y="4" width="503" height="749" frameX="-7" frameY="0" frameWidth="513" frameHeight="749"/>
-	<SubTexture name="gf death0010" x="4" y="753" width="503" height="749" frameX="-7" frameY="0" frameWidth="513" frameHeight="749"/>
-	<SubTexture name="gf death0011" x="507" y="753" width="503" height="749" frameX="-7" frameY="0" frameWidth="513" frameHeight="749"/>
-	<SubTexture name="gf death0012" x="1010" y="753" width="503" height="749" frameX="-7" frameY="0" frameWidth="513" frameHeight="749"/>
-	<SubTexture name="gf death0013" x="1513" y="753" width="507" height="749" frameX="-6" frameY="0" frameWidth="513" frameHeight="749"/>
-	<SubTexture name="gf death0014" x="2020" y="753" width="508" height="749" frameX="-5" frameY="0" frameWidth="513" frameHeight="749"/>
-	<SubTexture name="gf death0015" x="2528" y="753" width="509" height="749" frameX="-4" frameY="0" frameWidth="513" frameHeight="749"/>
-	<SubTexture name="gf death0016" x="3037" y="753" width="510" height="748" frameX="-3" frameY="0" frameWidth="513" frameHeight="749"/>
-	<SubTexture name="gf death0017" x="3547" y="753" width="511" height="748" frameX="-2" frameY="0" frameWidth="513" frameHeight="749"/>
-	<SubTexture name="gf death0018" x="4" y="1502" width="509" height="748" frameX="-1" frameY="0" frameWidth="513" frameHeight="749"/>
-	<SubTexture name="gf death0019" x="513" y="1502" width="509" height="748" frameX="-1" frameY="0" frameWidth="513" frameHeight="749"/>
-	<SubTexture name="gf death0020" x="513" y="1502" width="509" height="748" frameX="-1" frameY="0" frameWidth="513" frameHeight="749"/>
-	<SubTexture name="gf death0021" x="1022" y="1502" width="510" height="749" frameX="0" frameY="0" frameWidth="513" frameHeight="749"/>
-	<SubTexture name="gf death0022" x="1532" y="1502" width="512" height="749" frameX="-1" frameY="0" frameWidth="513" frameHeight="749"/>
-	<SubTexture name="gf death0023" x="1532" y="1502" width="512" height="749" frameX="-1" frameY="0" frameWidth="513" frameHeight="749"/>
-	<SubTexture name="gf death0024" x="2044" y="1502" width="512" height="749" frameX="-1" frameY="0" frameWidth="513" frameHeight="749"/>
-	<SubTexture name="gf death0025" x="2556" y="1502" width="512" height="749" frameX="-1" frameY="0" frameWidth="513" frameHeight="749"/>
-	<SubTexture name="gf death0026" x="2556" y="1502" width="512" height="749" frameX="-1" frameY="0" frameWidth="513" frameHeight="749"/>
-	<SubTexture name="gf death0027" x="3068" y="1502" width="508" height="749" frameX="-2" frameY="0" frameWidth="513" frameHeight="749"/>
-	<SubTexture name="gf death0028" x="3576" y="1502" width="508" height="749" frameX="-2" frameY="0" frameWidth="513" frameHeight="749"/>
-	<SubTexture name="gf death0029" x="4" y="2251" width="507" height="749" frameX="-3" frameY="0" frameWidth="513" frameHeight="749"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Created with Funkin Packer v0.1.3 https://neeeoo.github.io/funkin-packer/
+-->
+<TextureAtlas imagePath="Shucks Death.png" width="6159" height="1463">
+	<SubTexture name="gf death0000" x="1" y="713" width="471" height="749" frameX="-30" frameY="-0" frameWidth="514" frameHeight="749"/>
+	<SubTexture name="gf death0001" x="1435" y="713" width="471" height="749" frameX="-30" frameY="-0" frameWidth="514" frameHeight="749"/>
+	<SubTexture name="gf death0002" x="2383" y="713" width="470" height="749" frameX="-31" frameY="-0" frameWidth="514" frameHeight="749"/>
+	<SubTexture name="gf death0003" x="4275" y="713" width="469" height="749" frameX="-32" frameY="-0" frameWidth="514" frameHeight="749"/>
+	<SubTexture name="gf death0004" x="2856" y="713" width="470" height="749" frameX="-33" frameY="-0" frameWidth="514" frameHeight="749"/>
+	<SubTexture name="gf death0005" x="2856" y="713" width="470" height="749" frameX="-34" frameY="-0" frameWidth="514" frameHeight="749"/>
+	<SubTexture name="gf death0006" x="3329" y="713" width="470" height="749" frameX="-33" frameY="-0" frameWidth="514" frameHeight="749"/>
+	<SubTexture name="gf death0007" x="2856" y="713" width="470" height="749" frameX="-34" frameY="-0" frameWidth="514" frameHeight="749"/>
+	<SubTexture name="gf death0008" x="3802" y="713" width="470" height="749" frameX="-33" frameY="-0" frameWidth="514" frameHeight="749"/>
+	<SubTexture name="gf death0009" x="5219" y="713" width="468" height="749" frameX="-33" frameY="-0" frameWidth="514" frameHeight="749"/>
+	<SubTexture name="gf death0010" x="5258" y="1" width="468" height="709" frameX="-33" frameY="-0" frameWidth="514" frameHeight="749"/>
+	<SubTexture name="gf death0011" x="5690" y="713" width="468" height="749" frameX="-33" frameY="-0" frameWidth="514" frameHeight="749"/>
+	<SubTexture name="gf death0012" x="4747" y="713" width="469" height="749" frameX="-32" frameY="-0" frameWidth="514" frameHeight="749"/>
+	<SubTexture name="gf death0013" x="1909" y="713" width="471" height="749" frameX="-32" frameY="-0" frameWidth="514" frameHeight="749"/>
+	<SubTexture name="gf death0014" x="482" y="1" width="472" height="749" frameX="-31" frameY="-0" frameWidth="514" frameHeight="749"/>
+	<SubTexture name="gf death0015" x="3828" y="1" width="474" height="709" frameX="-29" frameY="-0" frameWidth="514" frameHeight="749"/>
+	<SubTexture name="gf death0016" x="2394" y="1" width="475" height="709" frameX="-28" frameY="-0" frameWidth="514" frameHeight="749"/>
+	<SubTexture name="gf death0017" x="1915" y="1" width="476" height="708" frameX="-27" frameY="-0" frameWidth="514" frameHeight="749"/>
+	<SubTexture name="gf death0018" x="2872" y="1" width="475" height="709" frameX="-26" frameY="-0" frameWidth="514" frameHeight="749"/>
+	<SubTexture name="gf death0019" x="957" y="1" width="476" height="709" frameX="-25" frameY="-0" frameWidth="514" frameHeight="749"/>
+	<SubTexture name="gf death0020" x="957" y="1" width="476" height="709" frameX="-25" frameY="-0" frameWidth="514" frameHeight="749"/>
+	<SubTexture name="gf death0021" x="1436" y="1" width="476" height="709" frameX="-25" frameY="-0" frameWidth="514" frameHeight="749"/>
+	<SubTexture name="gf death0022" x="1" y="1" width="478" height="709" frameX="-25" frameY="-0" frameWidth="514" frameHeight="749"/>
+	<SubTexture name="gf death0023" x="1" y="1" width="478" height="709" frameX="-25" frameY="-0" frameWidth="514" frameHeight="749"/>
+	<SubTexture name="gf death0024" x="475" y="753" width="477" height="709" frameX="-26" frameY="-0" frameWidth="514" frameHeight="749"/>
+	<SubTexture name="gf death0025" x="955" y="753" width="477" height="709" frameX="-26" frameY="-0" frameWidth="514" frameHeight="749"/>
+	<SubTexture name="gf death0026" x="955" y="753" width="477" height="709" frameX="-26" frameY="-0" frameWidth="514" frameHeight="749"/>
+	<SubTexture name="gf death0027" x="3350" y="1" width="475" height="709" frameX="-26" frameY="-0" frameWidth="514" frameHeight="749"/>
+	<SubTexture name="gf death0028" x="4305" y="1" width="474" height="709" frameX="-27" frameY="-0" frameWidth="514" frameHeight="749"/>
+	<SubTexture name="gf death0029" x="4782" y="1" width="473" height="709" frameX="-28" frameY="-0" frameWidth="514" frameHeight="749"/>
 </TextureAtlas>

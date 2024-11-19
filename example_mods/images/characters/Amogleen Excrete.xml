@@ -1,52 +1,53 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<TextureAtlas imagePath="Amogleen Excrete.png">
-	<!-- Created with Adobe Animate version 21.0.5.40714 -->
-	<!-- http://www.adobe.com/products/animate.html -->
-	<SubTexture name="amogleen down0000" x="4" y="4" width="272" height="211"/>
-	<SubTexture name="amogleen down0001" x="276" y="4" width="268" height="189" frameX="-4" frameY="-18" frameWidth="272" frameHeight="211"/>
-	<SubTexture name="amogleen down0002" x="544" y="4" width="268" height="191" frameX="-4" frameY="-17" frameWidth="272" frameHeight="211"/>
-	<SubTexture name="amogleen down0003" x="812" y="4" width="270" height="203" frameX="-2" frameY="-6" frameWidth="272" frameHeight="211"/>
-	<SubTexture name="amogleen down0004" x="1082" y="4" width="271" height="205" frameX="-1" frameY="-5" frameWidth="272" frameHeight="211"/>
-	<SubTexture name="amogleen down0005" x="1082" y="4" width="271" height="205" frameX="-1" frameY="-5" frameWidth="272" frameHeight="211"/>
-	<SubTexture name="amogleen down0006" x="1082" y="4" width="271" height="205" frameX="-1" frameY="-5" frameWidth="272" frameHeight="211"/>
-	<SubTexture name="amogleen down0007" x="1082" y="4" width="271" height="205" frameX="-1" frameY="-5" frameWidth="272" frameHeight="211"/>
-	<SubTexture name="amogleen idle0000" x="1353" y="4" width="253" height="264" frameX="-48" frameY="-4" frameWidth="305" frameHeight="269"/>
-	<SubTexture name="amogleen idle0001" x="1606" y="4" width="255" height="259" frameX="-46" frameY="-9" frameWidth="305" frameHeight="269"/>
-	<SubTexture name="amogleen idle0002" x="4" y="268" width="283" height="263" frameX="-21" frameY="-4" frameWidth="305" frameHeight="269"/>
-	<SubTexture name="amogleen idle0003" x="287" y="268" width="301" height="265" frameX="-4" frameY="-1" frameWidth="305" frameHeight="269"/>
-	<SubTexture name="amogleen idle0004" x="588" y="268" width="305" height="266" frameX="0" frameY="0" frameWidth="305" frameHeight="269"/>
-	<SubTexture name="amogleen idle0005" x="893" y="268" width="297" height="267" frameX="-8" frameY="0" frameWidth="305" frameHeight="269"/>
-	<SubTexture name="amogleen idle0006" x="1190" y="268" width="259" height="259" frameX="-43" frameY="-9" frameWidth="305" frameHeight="269"/>
-	<SubTexture name="amogleen idle0007" x="1449" y="268" width="249" height="254" frameX="-51" frameY="-15" frameWidth="305" frameHeight="269"/>
-	<SubTexture name="amogleen idle0008" x="1698" y="268" width="251" height="253" frameX="-50" frameY="-15" frameWidth="305" frameHeight="269"/>
-	<SubTexture name="amogleen idle0009" x="4" y="535" width="251" height="253" frameX="-50" frameY="-15" frameWidth="305" frameHeight="269"/>
-	<SubTexture name="amogleen idle0010" x="255" y="535" width="251" height="257" frameX="-50" frameY="-11" frameWidth="305" frameHeight="269"/>
-	<SubTexture name="amogleen idle0011" x="506" y="535" width="257" height="263" frameX="-44" frameY="-5" frameWidth="305" frameHeight="269"/>
-	<SubTexture name="amogleen idle0012" x="763" y="535" width="258" height="263" frameX="-43" frameY="-5" frameWidth="305" frameHeight="269"/>
-	<SubTexture name="amogleen idle0013" x="1021" y="535" width="257" height="262" frameX="-44" frameY="-6" frameWidth="305" frameHeight="269"/>
-	<SubTexture name="amogleen idle0014" x="1021" y="535" width="257" height="262" frameX="-44" frameY="-6" frameWidth="305" frameHeight="269"/>
-	<SubTexture name="amogleen left0000" x="1278" y="535" width="271" height="233" frameX="-17" frameY="-2" frameWidth="288" frameHeight="235"/>
-	<SubTexture name="amogleen left0001" x="1549" y="535" width="279" height="235" frameX="0" frameY="0" frameWidth="288" frameHeight="235"/>
-	<SubTexture name="amogleen left0002" x="4" y="798" width="280" height="235" frameX="-2" frameY="0" frameWidth="288" frameHeight="235"/>
-	<SubTexture name="amogleen left0003" x="284" y="798" width="272" height="233" frameX="-10" frameY="-2" frameWidth="288" frameHeight="235"/>
-	<SubTexture name="amogleen left0004" x="556" y="798" width="268" height="233" frameX="-14" frameY="-2" frameWidth="288" frameHeight="235"/>
-	<SubTexture name="amogleen left0005" x="556" y="798" width="268" height="233" frameX="-14" frameY="-2" frameWidth="288" frameHeight="235"/>
-	<SubTexture name="amogleen left0006" x="556" y="798" width="268" height="233" frameX="-14" frameY="-2" frameWidth="288" frameHeight="235"/>
-	<SubTexture name="amogleen left0007" x="556" y="798" width="268" height="233" frameX="-14" frameY="-2" frameWidth="288" frameHeight="235"/>
-	<SubTexture name="amogleen right0000" x="824" y="798" width="272" height="244" frameX="-14" frameY="-7" frameWidth="294" frameHeight="251"/>
-	<SubTexture name="amogleen right0001" x="1096" y="798" width="280" height="247" frameX="-14" frameY="-4" frameWidth="294" frameHeight="251"/>
-	<SubTexture name="amogleen right0002" x="1376" y="798" width="284" height="250" frameX="-2" frameY="-1" frameWidth="294" frameHeight="251"/>
-	<SubTexture name="amogleen right0003" x="1660" y="798" width="283" height="251" frameX="0" frameY="0" frameWidth="294" frameHeight="251"/>
-	<SubTexture name="amogleen right0004" x="4" y="1049" width="274" height="247" frameX="-9" frameY="-4" frameWidth="294" frameHeight="251"/>
-	<SubTexture name="amogleen right0005" x="278" y="1049" width="267" height="244" frameX="-16" frameY="-7" frameWidth="294" frameHeight="251"/>
-	<SubTexture name="amogleen right0006" x="545" y="1049" width="267" height="244" frameX="-16" frameY="-7" frameWidth="294" frameHeight="251"/>
-	<SubTexture name="amogleen right0007" x="545" y="1049" width="267" height="244" frameX="-16" frameY="-7" frameWidth="294" frameHeight="251"/>
-	<SubTexture name="amogleen up0000" x="812" y="1049" width="342" height="414" frameX="0" frameY="-12" frameWidth="342" frameHeight="428"/>
-	<SubTexture name="amogleen up0001" x="1154" y="1049" width="342" height="427" frameX="0" frameY="-1" frameWidth="342" frameHeight="428"/>
-	<SubTexture name="amogleen up0002" x="1496" y="1049" width="342" height="428"/>
-	<SubTexture name="amogleen up0003" x="4" y="1477" width="342" height="421" frameX="0" frameY="-5" frameWidth="342" frameHeight="428"/>
-	<SubTexture name="amogleen up0004" x="346" y="1477" width="342" height="415" frameX="0" frameY="-11" frameWidth="342" frameHeight="428"/>
-	<SubTexture name="amogleen up0005" x="688" y="1477" width="342" height="414" frameX="0" frameY="-12" frameWidth="342" frameHeight="428"/>
-	<SubTexture name="amogleen up0006" x="1030" y="1477" width="342" height="413" frameX="0" frameY="-13" frameWidth="342" frameHeight="428"/>
-	<SubTexture name="amogleen up0007" x="1030" y="1477" width="342" height="413" frameX="0" frameY="-13" frameWidth="342" frameHeight="428"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Created with Funkin Packer v0.1.3 https://neeeoo.github.io/funkin-packer/
+-->
+<TextureAtlas imagePath="Amogleen Excrete.png" width="1659" height="1785">
+	<SubTexture name="amogleen down0000" x="916" y="890" width="245" height="172" frameX="-14" frameY="-12" frameWidth="272" frameHeight="211"/>
+	<SubTexture name="amogleen down0001" x="1187" y="171" width="240" height="153" frameX="-19" frameY="-30" frameWidth="272" frameHeight="211"/>
+	<SubTexture name="amogleen down0002" x="1175" y="327" width="240" height="155" frameX="-19" frameY="-28" frameWidth="272" frameHeight="211"/>
+	<SubTexture name="amogleen down0003" x="916" y="1065" width="243" height="165" frameX="-16" frameY="-18" frameWidth="272" frameHeight="211"/>
+	<SubTexture name="amogleen down0004" x="1187" y="1" width="243" height="167" frameX="-16" frameY="-17" frameWidth="272" frameHeight="211"/>
+	<SubTexture name="amogleen down0005" x="1187" y="1" width="243" height="167" frameX="-16" frameY="-17" frameWidth="272" frameHeight="211"/>
+	<SubTexture name="amogleen down0006" x="1187" y="1" width="243" height="167" frameX="-16" frameY="-17" frameWidth="272" frameHeight="211"/>
+	<SubTexture name="amogleen down0007" x="1187" y="1" width="243" height="167" frameX="-16" frameY="-17" frameWidth="272" frameHeight="211"/>
+	<SubTexture name="amogleen idle0000" x="1429" y="667" width="222" height="223" frameX="-61" frameY="-23" frameWidth="305" frameHeight="269"/>
+	<SubTexture name="amogleen idle0001" x="1430" y="224" width="224" height="217" frameX="-59" frameY="-29" frameWidth="305" frameHeight="269"/>
+	<SubTexture name="amogleen idle0002" x="916" y="228" width="256" height="219" frameX="-30" frameY="-27" frameWidth="305" frameHeight="269"/>
+	<SubTexture name="amogleen idle0003" x="1" y="787" width="271" height="224" frameX="-16" frameY="-22" frameWidth="305" frameHeight="269"/>
+	<SubTexture name="amogleen idle0004" x="305" y="780" width="275" height="226" frameX="-12" frameY="-20" frameWidth="305" frameHeight="269"/>
+	<SubTexture name="amogleen idle0005" x="916" y="1" width="268" height="224" frameX="-19" frameY="-22" frameWidth="305" frameHeight="269"/>
+	<SubTexture name="amogleen idle0006" x="973" y="1331" width="225" height="217" frameX="-58" frameY="-29" frameWidth="305" frameHeight="269"/>
+	<SubTexture name="amogleen idle0007" x="1404" y="1113" width="212" height="212" frameX="-70" frameY="-34" frameWidth="305" frameHeight="269"/>
+	<SubTexture name="amogleen idle0008" x="1429" y="1328" width="211" height="212" frameX="-72" frameY="-34" frameWidth="305" frameHeight="269"/>
+	<SubTexture name="amogleen idle0009" x="1" y="1573" width="208" height="211" frameX="-74" frameY="-35" frameWidth="305" frameHeight="269"/>
+	<SubTexture name="amogleen idle0010" x="1429" y="893" width="219" height="217" frameX="-63" frameY="-29" frameWidth="305" frameHeight="269"/>
+	<SubTexture name="amogleen idle0011" x="1429" y="444" width="224" height="220" frameX="-58" frameY="-26" frameWidth="305" frameHeight="269"/>
+	<SubTexture name="amogleen idle0012" x="1201" y="1331" width="225" height="221" frameX="-57" frameY="-25" frameWidth="305" frameHeight="269"/>
+	<SubTexture name="amogleen idle0013" x="1433" y="1" width="225" height="220" frameX="-58" frameY="-26" frameWidth="305" frameHeight="269"/>
+	<SubTexture name="amogleen idle0014" x="1433" y="1" width="225" height="220" frameX="-58" frameY="-26" frameWidth="305" frameHeight="269"/>
+	<SubTexture name="amogleen left0000" x="1162" y="1126" width="236" height="202" frameX="-40" frameY="-18" frameWidth="288" frameHeight="235"/>
+	<SubTexture name="amogleen left0001" x="1" y="1149" width="244" height="204" frameX="-23" frameY="-16" frameWidth="288" frameHeight="235"/>
+	<SubTexture name="amogleen left0002" x="248" y="1149" width="244" height="204" frameX="-26" frameY="-16" frameWidth="288" frameHeight="235"/>
+	<SubTexture name="amogleen left0003" x="1164" y="921" width="237" height="202" frameX="-33" frameY="-18" frameWidth="288" frameHeight="235"/>
+	<SubTexture name="amogleen left0004" x="1" y="1367" width="233" height="201" frameX="-37" frameY="-19" frameWidth="288" frameHeight="235"/>
+	<SubTexture name="amogleen left0005" x="1" y="1367" width="233" height="201" frameX="-37" frameY="-19" frameWidth="288" frameHeight="235"/>
+	<SubTexture name="amogleen left0006" x="1" y="1367" width="233" height="201" frameX="-37" frameY="-19" frameWidth="288" frameHeight="235"/>
+	<SubTexture name="amogleen left0007" x="1" y="1367" width="233" height="201" frameX="-37" frameY="-19" frameWidth="288" frameHeight="235"/>
+	<SubTexture name="amogleen right0000" x="1167" y="704" width="238" height="214" frameX="-27" frameY="-14" frameWidth="294" frameHeight="251"/>
+	<SubTexture name="amogleen right0001" x="495" y="1149" width="244" height="215" frameX="-28" frameY="-13" frameWidth="294" frameHeight="251"/>
+	<SubTexture name="amogleen right0002" x="916" y="450" width="249" height="217" frameX="-16" frameY="-11" frameWidth="294" frameHeight="251"/>
+	<SubTexture name="amogleen right0003" x="916" y="670" width="248" height="217" frameX="-14" frameY="-11" frameWidth="294" frameHeight="251"/>
+	<SubTexture name="amogleen right0004" x="1168" y="485" width="240" height="216" frameX="-22" frameY="-12" frameWidth="294" frameHeight="251"/>
+	<SubTexture name="amogleen right0005" x="237" y="1356" width="230" height="214" frameX="-32" frameY="-14" frameWidth="294" frameHeight="251"/>
+	<SubTexture name="amogleen right0006" x="742" y="1331" width="228" height="213" frameX="-34" frameY="-15" frameWidth="294" frameHeight="251"/>
+	<SubTexture name="amogleen right0007" x="742" y="1331" width="228" height="213" frameX="-34" frameY="-15" frameWidth="294" frameHeight="251"/>
+	<SubTexture name="amogleen up0000" x="611" y="1" width="302" height="380" frameX="-15" frameY="-30" frameWidth="342" frameHeight="428"/>
+	<SubTexture name="amogleen up0001" x="306" y="1" width="302" height="392" frameX="-15" frameY="-19" frameWidth="342" frameHeight="428"/>
+	<SubTexture name="amogleen up0002" x="1" y="1" width="302" height="393" frameX="-15" frameY="-18" frameWidth="342" frameHeight="428"/>
+	<SubTexture name="amogleen up0003" x="1" y="397" width="301" height="387" frameX="-16" frameY="-23" frameWidth="342" frameHeight="428"/>
+	<SubTexture name="amogleen up0004" x="306" y="396" width="302" height="381" frameX="-15" frameY="-29" frameWidth="342" frameHeight="428"/>
+	<SubTexture name="amogleen up0005" x="611" y="384" width="302" height="380" frameX="-15" frameY="-30" frameWidth="342" frameHeight="428"/>
+	<SubTexture name="amogleen up0006" x="611" y="767" width="302" height="379" frameX="-15" frameY="-31" frameWidth="342" frameHeight="428"/>
+	<SubTexture name="amogleen up0007" x="611" y="767" width="302" height="379" frameX="-15" frameY="-31" frameWidth="342" frameHeight="428"/>
 </TextureAtlas>

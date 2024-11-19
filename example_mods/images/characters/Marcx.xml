@@ -1,60 +1,61 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<TextureAtlas imagePath="Marcx.png">
-	<!-- Created with Adobe Animate version 21.0.5.40714 -->
-	<!-- http://www.adobe.com/products/animate.html -->
-	<SubTexture name="marcx down0000" x="4" y="4" width="512" height="448" frameX="-4" frameY="0" frameWidth="516" frameHeight="448"/>
-	<SubTexture name="marcx down0001" x="516" y="4" width="514" height="440" frameX="-1" frameY="-8" frameWidth="516" frameHeight="448"/>
-	<SubTexture name="marcx down0002" x="1030" y="4" width="514" height="439" frameX="0" frameY="-9" frameWidth="516" frameHeight="448"/>
-	<SubTexture name="marcx down0003" x="1030" y="4" width="514" height="439" frameX="0" frameY="-9" frameWidth="516" frameHeight="448"/>
-	<SubTexture name="marcx down0004" x="1544" y="4" width="514" height="442" frameX="0" frameY="-6" frameWidth="516" frameHeight="448"/>
-	<SubTexture name="marcx down0005" x="2058" y="4" width="513" height="446" frameX="-2" frameY="-2" frameWidth="516" frameHeight="448"/>
-	<SubTexture name="marcx down0006" x="2571" y="4" width="512" height="447" frameX="-3" frameY="-1" frameWidth="516" frameHeight="448"/>
-	<SubTexture name="marcx down0007" x="2571" y="4" width="512" height="447" frameX="-3" frameY="-1" frameWidth="516" frameHeight="448"/>
-	<SubTexture name="marcx down0008" x="2571" y="4" width="512" height="447" frameX="-3" frameY="-1" frameWidth="516" frameHeight="448"/>
-	<SubTexture name="marcx down0009" x="2571" y="4" width="512" height="447" frameX="-3" frameY="-1" frameWidth="516" frameHeight="448"/>
-	<SubTexture name="marcx idle0000" x="3083" y="4" width="365" height="591" frameX="-13" frameY="-4" frameWidth="378" frameHeight="595"/>
-	<SubTexture name="marcx idle0001" x="3448" y="4" width="365" height="589" frameX="-13" frameY="-6" frameWidth="378" frameHeight="595"/>
-	<SubTexture name="marcx idle0002" x="4" y="595" width="372" height="575" frameX="-6" frameY="-20" frameWidth="378" frameHeight="595"/>
-	<SubTexture name="marcx idle0003" x="376" y="595" width="375" height="564" frameX="-3" frameY="-31" frameWidth="378" frameHeight="595"/>
-	<SubTexture name="marcx idle0004" x="751" y="595" width="378" height="560" frameX="0" frameY="-35" frameWidth="378" frameHeight="595"/>
-	<SubTexture name="marcx idle0005" x="751" y="595" width="378" height="560" frameX="0" frameY="-35" frameWidth="378" frameHeight="595"/>
-	<SubTexture name="marcx idle0006" x="1129" y="595" width="372" height="563" frameX="-6" frameY="-32" frameWidth="378" frameHeight="595"/>
-	<SubTexture name="marcx idle0007" x="1501" y="595" width="366" height="573" frameX="-12" frameY="-22" frameWidth="378" frameHeight="595"/>
-	<SubTexture name="marcx idle0008" x="3083" y="4" width="365" height="591" frameX="-13" frameY="-4" frameWidth="378" frameHeight="595"/>
-	<SubTexture name="marcx idle0009" x="1867" y="595" width="365" height="594" frameX="-13" frameY="-1" frameWidth="378" frameHeight="595"/>
-	<SubTexture name="marcx idle0010" x="2232" y="595" width="365" height="595" frameX="-13" frameY="0" frameWidth="378" frameHeight="595"/>
-	<SubTexture name="marcx idle0011" x="2232" y="595" width="365" height="595" frameX="-13" frameY="0" frameWidth="378" frameHeight="595"/>
-	<SubTexture name="marcx idle0012" x="2232" y="595" width="365" height="595" frameX="-13" frameY="0" frameWidth="378" frameHeight="595"/>
-	<SubTexture name="marcx idle0013" x="2232" y="595" width="365" height="595" frameX="-13" frameY="0" frameWidth="378" frameHeight="595"/>
-	<SubTexture name="marcx idle0014" x="1867" y="595" width="365" height="594" frameX="-13" frameY="-1" frameWidth="378" frameHeight="595"/>
-	<SubTexture name="marcx left0000" x="2597" y="595" width="490" height="631" frameX="-37" frameY="0" frameWidth="566" frameHeight="631"/>
-	<SubTexture name="marcx left0001" x="3087" y="595" width="531" height="631" frameX="-19" frameY="0" frameWidth="566" frameHeight="631"/>
-	<SubTexture name="marcx left0002" x="4" y="1226" width="566" height="631"/>
-	<SubTexture name="marcx left0003" x="570" y="1226" width="538" height="630" frameX="-23" frameY="0" frameWidth="566" frameHeight="631"/>
-	<SubTexture name="marcx left0004" x="1108" y="1226" width="458" height="630" frameX="-35" frameY="0" frameWidth="566" frameHeight="631"/>
-	<SubTexture name="marcx left0005" x="1566" y="1226" width="444" height="630" frameX="-39" frameY="0" frameWidth="566" frameHeight="631"/>
-	<SubTexture name="marcx left0006" x="2010" y="1226" width="442" height="630" frameX="-39" frameY="0" frameWidth="566" frameHeight="631"/>
-	<SubTexture name="marcx left0007" x="2010" y="1226" width="442" height="630" frameX="-39" frameY="0" frameWidth="566" frameHeight="631"/>
-	<SubTexture name="marcx left0008" x="2010" y="1226" width="442" height="630" frameX="-39" frameY="0" frameWidth="566" frameHeight="631"/>
-	<SubTexture name="marcx left0009" x="2010" y="1226" width="442" height="630" frameX="-39" frameY="0" frameWidth="566" frameHeight="631"/>
-	<SubTexture name="marcx right0000" x="2452" y="1226" width="395" height="559" frameX="-71" frameY="-13" frameWidth="495" frameHeight="573"/>
-	<SubTexture name="marcx right0001" x="2847" y="1226" width="468" height="573" frameX="-13" frameY="0" frameWidth="495" frameHeight="573"/>
-	<SubTexture name="marcx right0002" x="3315" y="1226" width="495" height="551" frameX="0" frameY="-21" frameWidth="495" frameHeight="573"/>
-	<SubTexture name="marcx right0003" x="4" y="1857" width="466" height="540" frameX="-11" frameY="-32" frameWidth="495" frameHeight="573"/>
-	<SubTexture name="marcx right0004" x="470" y="1857" width="407" height="546" frameX="-63" frameY="-26" frameWidth="495" frameHeight="573"/>
-	<SubTexture name="marcx right0005" x="877" y="1857" width="347" height="548" frameX="-118" frameY="-24" frameWidth="495" frameHeight="573"/>
-	<SubTexture name="marcx right0006" x="1224" y="1857" width="343" height="549" frameX="-121" frameY="-23" frameWidth="495" frameHeight="573"/>
-	<SubTexture name="marcx right0007" x="1224" y="1857" width="343" height="549" frameX="-121" frameY="-23" frameWidth="495" frameHeight="573"/>
-	<SubTexture name="marcx right0008" x="1224" y="1857" width="343" height="549" frameX="-121" frameY="-23" frameWidth="495" frameHeight="573"/>
-	<SubTexture name="marcx right0009" x="1224" y="1857" width="343" height="549" frameX="-121" frameY="-23" frameWidth="495" frameHeight="573"/>
-	<SubTexture name="marcx up0000" x="1567" y="1857" width="393" height="645" frameX="-11" frameY="-1" frameWidth="404" frameHeight="647"/>
-	<SubTexture name="marcx up0001" x="1960" y="1857" width="388" height="647" frameX="-16" frameY="0" frameWidth="404" frameHeight="647"/>
-	<SubTexture name="marcx up0002" x="2348" y="1857" width="388" height="647" frameX="-16" frameY="0" frameWidth="404" frameHeight="647"/>
-	<SubTexture name="marcx up0003" x="2348" y="1857" width="388" height="647" frameX="-16" frameY="0" frameWidth="404" frameHeight="647"/>
-	<SubTexture name="marcx up0004" x="2736" y="1857" width="388" height="647" frameX="-16" frameY="0" frameWidth="404" frameHeight="647"/>
-	<SubTexture name="marcx up0005" x="3124" y="1857" width="399" height="644" frameX="-5" frameY="-2" frameWidth="404" frameHeight="647"/>
-	<SubTexture name="marcx up0006" x="3523" y="1857" width="403" height="643" frameX="-1" frameY="-3" frameWidth="404" frameHeight="647"/>
-	<SubTexture name="marcx up0007" x="4" y="2504" width="404" height="643" frameX="0" frameY="-3" frameWidth="404" frameHeight="647"/>
-	<SubTexture name="marcx up0008" x="4" y="2504" width="404" height="643" frameX="0" frameY="-3" frameWidth="404" frameHeight="647"/>
-	<SubTexture name="marcx up0009" x="4" y="2504" width="404" height="643" frameX="0" frameY="-3" frameWidth="404" frameHeight="647"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Created with Funkin Packer v0.1.3 https://neeeoo.github.io/funkin-packer/
+-->
+<TextureAtlas imagePath="Marcx.png" width="3036" height="2976">
+	<SubTexture name="marcx down0000" x="425" y="1742" width="488" height="427" frameX="-17" frameY="-9" frameWidth="516" frameHeight="448"/>
+	<SubTexture name="marcx down0001" x="1852" y="1466" width="489" height="422" frameX="-15" frameY="-14" frameWidth="516" frameHeight="448"/>
+	<SubTexture name="marcx down0002" x="1852" y="1891" width="490" height="421" frameX="-14" frameY="-15" frameWidth="516" frameHeight="448"/>
+	<SubTexture name="marcx down0003" x="1852" y="1891" width="490" height="421" frameX="-14" frameY="-15" frameWidth="516" frameHeight="448"/>
+	<SubTexture name="marcx down0004" x="1781" y="1039" width="490" height="424" frameX="-14" frameY="-12" frameWidth="516" frameHeight="448"/>
+	<SubTexture name="marcx down0005" x="1467" y="610" width="488" height="426" frameX="-16" frameY="-10" frameWidth="516" frameHeight="448"/>
+	<SubTexture name="marcx down0006" x="1361" y="1718" width="488" height="427" frameX="-17" frameY="-9" frameWidth="516" frameHeight="448"/>
+	<SubTexture name="marcx down0007" x="1361" y="1718" width="488" height="427" frameX="-17" frameY="-9" frameWidth="516" frameHeight="448"/>
+	<SubTexture name="marcx down0008" x="1361" y="1718" width="488" height="427" frameX="-17" frameY="-9" frameWidth="516" frameHeight="448"/>
+	<SubTexture name="marcx down0009" x="1361" y="1718" width="488" height="427" frameX="-17" frameY="-9" frameWidth="516" frameHeight="448"/>
+	<SubTexture name="marcx idle0000" x="1573" y="2315" width="321" height="566" frameX="-29" frameY="-20" frameWidth="378" frameHeight="595"/>
+	<SubTexture name="marcx idle0001" x="2529" y="1" width="321" height="564" frameX="-29" frameY="-22" frameWidth="378" frameHeight="595"/>
+	<SubTexture name="marcx idle0002" x="717" y="2371" width="330" height="553" frameX="-22" frameY="-33" frameWidth="378" frameHeight="595"/>
+	<SubTexture name="marcx idle0003" x="2235" y="2400" width="333" height="544" frameX="-20" frameY="-42" frameWidth="378" frameHeight="595"/>
+	<SubTexture name="marcx idle0004" x="1897" y="2315" width="335" height="541" frameX="-18" frameY="-45" frameWidth="378" frameHeight="595"/>
+	<SubTexture name="marcx idle0005" x="1897" y="2315" width="335" height="541" frameX="-18" frameY="-45" frameWidth="378" frameHeight="595"/>
+	<SubTexture name="marcx idle0006" x="2607" y="568" width="330" height="544" frameX="-22" frameY="-42" frameWidth="378" frameHeight="595"/>
+	<SubTexture name="marcx idle0007" x="2680" y="1115" width="323" height="552" frameX="-27" frameY="-34" frameWidth="378" frameHeight="595"/>
+	<SubTexture name="marcx idle0008" x="1573" y="2315" width="321" height="566" frameX="-29" frameY="-20" frameWidth="378" frameHeight="595"/>
+	<SubTexture name="marcx idle0009" x="1249" y="2148" width="321" height="569" frameX="-29" frameY="-17" frameWidth="378" frameHeight="595"/>
+	<SubTexture name="marcx idle0010" x="1" y="2405" width="321" height="570" frameX="-29" frameY="-16" frameWidth="378" frameHeight="595"/>
+	<SubTexture name="marcx idle0011" x="1" y="2405" width="321" height="570" frameX="-29" frameY="-16" frameWidth="378" frameHeight="595"/>
+	<SubTexture name="marcx idle0012" x="1" y="2405" width="321" height="570" frameX="-29" frameY="-16" frameWidth="378" frameHeight="595"/>
+	<SubTexture name="marcx idle0013" x="1" y="2405" width="321" height="570" frameX="-29" frameY="-16" frameWidth="378" frameHeight="595"/>
+	<SubTexture name="marcx idle0014" x="1249" y="2148" width="321" height="569" frameX="-29" frameY="-17" frameWidth="378" frameHeight="595"/>
+	<SubTexture name="marcx left0000" x="1029" y="1" width="471" height="601" frameX="-47" frameY="-20" frameWidth="566" frameHeight="631"/>
+	<SubTexture name="marcx left0001" x="526" y="1" width="500" height="612" frameX="-29" frameY="-9" frameWidth="566" frameHeight="631"/>
+	<SubTexture name="marcx left0002" x="1" y="1" width="522" height="598" frameX="-10" frameY="-23" frameWidth="566" frameHeight="631"/>
+	<SubTexture name="marcx left0003" x="1" y="602" width="510" height="590" frameX="-33" frameY="-31" frameWidth="566" frameHeight="631"/>
+	<SubTexture name="marcx left0004" x="1029" y="605" width="435" height="594" frameX="-46" frameY="-27" frameWidth="566" frameHeight="631"/>
+	<SubTexture name="marcx left0005" x="514" y="616" width="423" height="594" frameX="-49" frameY="-27" frameWidth="566" frameHeight="631"/>
+	<SubTexture name="marcx left0006" x="1" y="1195" width="421" height="594" frameX="-49" frameY="-27" frameWidth="566" frameHeight="631"/>
+	<SubTexture name="marcx left0007" x="1" y="1195" width="421" height="594" frameX="-49" frameY="-27" frameWidth="566" frameHeight="631"/>
+	<SubTexture name="marcx left0008" x="1" y="1195" width="421" height="594" frameX="-49" frameY="-27" frameWidth="566" frameHeight="631"/>
+	<SubTexture name="marcx left0009" x="1" y="1195" width="421" height="594" frameX="-49" frameY="-27" frameWidth="566" frameHeight="631"/>
+	<SubTexture name="marcx right0000" x="2345" y="1866" width="364" height="531" frameX="-86" frameY="-22" frameWidth="495" frameHeight="573"/>
+	<SubTexture name="marcx right0001" x="940" y="1202" width="418" height="540" frameX="-50" frameY="-14" frameWidth="495" frameHeight="573"/>
+	<SubTexture name="marcx right0002" x="425" y="1213" width="427" height="526" frameX="-50" frameY="-27" frameWidth="495" frameHeight="573"/>
+	<SubTexture name="marcx right0003" x="1361" y="1202" width="417" height="513" frameX="-43" frameY="-40" frameWidth="495" frameHeight="573"/>
+	<SubTexture name="marcx right0004" x="342" y="2172" width="372" height="519" frameX="-82" frameY="-34" frameWidth="495" frameHeight="573"/>
+	<SubTexture name="marcx right0005" x="2571" y="2400" width="325" height="526" frameX="-126" frameY="-30" frameWidth="495" frameHeight="573"/>
+	<SubTexture name="marcx right0006" x="2712" y="1670" width="323" height="528" frameX="-127" frameY="-29" frameWidth="495" frameHeight="573"/>
+	<SubTexture name="marcx right0007" x="2712" y="1670" width="323" height="528" frameX="-127" frameY="-29" frameWidth="495" frameHeight="573"/>
+	<SubTexture name="marcx right0008" x="2712" y="1670" width="323" height="528" frameX="-127" frameY="-29" frameWidth="495" frameHeight="573"/>
+	<SubTexture name="marcx right0009" x="2712" y="1670" width="323" height="528" frameX="-127" frameY="-29" frameWidth="495" frameHeight="573"/>
+	<SubTexture name="marcx up0000" x="2344" y="1249" width="333" height="614" frameX="-43" frameY="-10" frameWidth="404" frameHeight="647"/>
+	<SubTexture name="marcx up0001" x="2196" y="1" width="330" height="622" frameX="-46" frameY="-3" frameWidth="404" frameHeight="647"/>
+	<SubTexture name="marcx up0002" x="916" y="1745" width="330" height="623" frameX="-46" frameY="-2" frameWidth="404" frameHeight="647"/>
+	<SubTexture name="marcx up0003" x="916" y="1745" width="330" height="623" frameX="-46" frameY="-2" frameWidth="404" frameHeight="647"/>
+	<SubTexture name="marcx up0004" x="2274" y="626" width="330" height="620" frameX="-46" frameY="-5" frameWidth="404" frameHeight="647"/>
+	<SubTexture name="marcx up0005" x="1" y="1792" width="338" height="610" frameX="-38" frameY="-15" frameWidth="404" frameHeight="647"/>
+	<SubTexture name="marcx up0006" x="1850" y="1" width="343" height="606" frameX="-33" frameY="-18" frameWidth="404" frameHeight="647"/>
+	<SubTexture name="marcx up0007" x="1503" y="1" width="344" height="606" frameX="-32" frameY="-18" frameWidth="404" frameHeight="647"/>
+	<SubTexture name="marcx up0008" x="1503" y="1" width="344" height="606" frameX="-32" frameY="-18" frameWidth="404" frameHeight="647"/>
+	<SubTexture name="marcx up0009" x="1503" y="1" width="344" height="606" frameX="-32" frameY="-18" frameWidth="404" frameHeight="647"/>
 </TextureAtlas>

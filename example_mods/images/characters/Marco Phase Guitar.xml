@@ -1,100 +1,101 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<TextureAtlas imagePath="Marco Phase Guitar.png">
-	<!-- Created with Adobe Animate version 21.0.5.40714 -->
-	<!-- http://www.adobe.com/products/animate.html -->
-	<SubTexture name="marco down0000" x="4" y="4" width="526" height="649" frameX="-18" frameY="0" frameWidth="547" frameHeight="649"/>
-	<SubTexture name="marco down0001" x="530" y="4" width="530" height="638" frameX="-5" frameY="-10" frameWidth="547" frameHeight="649"/>
-	<SubTexture name="marco down0002" x="1060" y="4" width="531" height="635" frameX="0" frameY="-12" frameWidth="547" frameHeight="649"/>
-	<SubTexture name="marco down0003" x="1060" y="4" width="531" height="635" frameX="0" frameY="-12" frameWidth="547" frameHeight="649"/>
-	<SubTexture name="marco down0004" x="1591" y="4" width="529" height="640" frameX="-8" frameY="-8" frameWidth="547" frameHeight="649"/>
-	<SubTexture name="marco down0005" x="2120" y="4" width="525" height="647" frameX="-19" frameY="-2" frameWidth="547" frameHeight="649"/>
-	<SubTexture name="marco down0006" x="2645" y="4" width="522" height="649" frameX="-25" frameY="0" frameWidth="547" frameHeight="649"/>
-	<SubTexture name="marco down0007" x="2645" y="4" width="522" height="649" frameX="-25" frameY="0" frameWidth="547" frameHeight="649"/>
-	<SubTexture name="marco down0008" x="2645" y="4" width="522" height="649" frameX="-25" frameY="0" frameWidth="547" frameHeight="649"/>
-	<SubTexture name="marco down0009" x="2645" y="4" width="522" height="649" frameX="-25" frameY="0" frameWidth="547" frameHeight="649"/>
-	<SubTexture name="marco idle0000" x="3167" y="4" width="482" height="760" frameX="0" frameY="-2" frameWidth="482" frameHeight="762"/>
-	<SubTexture name="marco idle0001" x="3649" y="4" width="482" height="758" frameX="0" frameY="-4" frameWidth="482" frameHeight="762"/>
-	<SubTexture name="marco idle0002" x="4131" y="4" width="482" height="749" frameX="0" frameY="-12" frameWidth="482" frameHeight="762"/>
-	<SubTexture name="marco idle0003" x="4613" y="4" width="482" height="744" frameX="0" frameY="-17" frameWidth="482" frameHeight="762"/>
-	<SubTexture name="marco idle0004" x="5095" y="4" width="482" height="743" frameX="0" frameY="-18" frameWidth="482" frameHeight="762"/>
-	<SubTexture name="marco idle0005" x="5095" y="4" width="482" height="743" frameX="0" frameY="-18" frameWidth="482" frameHeight="762"/>
-	<SubTexture name="marco idle0006" x="5095" y="4" width="482" height="743" frameX="0" frameY="-18" frameWidth="482" frameHeight="762"/>
-	<SubTexture name="marco idle0007" x="5095" y="4" width="482" height="743" frameX="0" frameY="-18" frameWidth="482" frameHeight="762"/>
-	<SubTexture name="marco idle0008" x="5577" y="4" width="482" height="744" frameX="0" frameY="-17" frameWidth="482" frameHeight="762"/>
-	<SubTexture name="marco idle0009" x="6059" y="4" width="482" height="758" frameX="0" frameY="-4" frameWidth="482" frameHeight="762"/>
-	<SubTexture name="marco idle0010" x="6541" y="4" width="482" height="761" frameX="0" frameY="-1" frameWidth="482" frameHeight="762"/>
-	<SubTexture name="marco idle0011" x="7023" y="4" width="482" height="762"/>
-	<SubTexture name="marco idle0012" x="7505" y="4" width="482" height="762"/>
-	<SubTexture name="marco idle0013" x="3167" y="4" width="482" height="760" frameX="0" frameY="-2" frameWidth="482" frameHeight="762"/>
-	<SubTexture name="marco idle0014" x="3167" y="4" width="482" height="760" frameX="0" frameY="-2" frameWidth="482" frameHeight="762"/>
-	<SubTexture name="marco left0000" x="4" y="766" width="631" height="770" frameX="-25" frameY="-17" frameWidth="696" frameHeight="787"/>
-	<SubTexture name="marco left0001" x="635" y="766" width="685" height="787" frameX="-9" frameY="0" frameWidth="696" frameHeight="787"/>
-	<SubTexture name="marco left0002" x="1320" y="766" width="696" height="764" frameX="0" frameY="-23" frameWidth="696" frameHeight="787"/>
-	<SubTexture name="marco left0003" x="2016" y="766" width="673" height="750" frameX="-16" frameY="-37" frameWidth="696" frameHeight="787"/>
-	<SubTexture name="marco left0004" x="2689" y="766" width="644" height="756" frameX="-25" frameY="-31" frameWidth="696" frameHeight="787"/>
-	<SubTexture name="marco left0005" x="3333" y="766" width="638" height="762" frameX="-26" frameY="-25" frameWidth="696" frameHeight="787"/>
-	<SubTexture name="marco left0006" x="3971" y="766" width="636" height="762" frameX="-26" frameY="-25" frameWidth="696" frameHeight="787"/>
-	<SubTexture name="marco left0007" x="3971" y="766" width="636" height="762" frameX="-26" frameY="-25" frameWidth="696" frameHeight="787"/>
-	<SubTexture name="marco left0008" x="3971" y="766" width="636" height="762" frameX="-26" frameY="-25" frameWidth="696" frameHeight="787"/>
-	<SubTexture name="marco left0009" x="3971" y="766" width="636" height="762" frameX="-26" frameY="-25" frameWidth="696" frameHeight="787"/>
-	<SubTexture name="marco pop off0000" x="4607" y="766" width="906" height="717" frameX="-45" frameY="0" frameWidth="1018" frameHeight="717"/>
-	<SubTexture name="marco pop off0001" x="5513" y="766" width="983" height="677" frameX="-3" frameY="-39" frameWidth="1018" frameHeight="717"/>
-	<SubTexture name="marco pop off0002" x="6496" y="766" width="1015" height="628" frameX="0" frameY="-86" frameWidth="1018" frameHeight="717"/>
-	<SubTexture name="marco pop off0003" x="4" y="1553" width="1017" height="620" frameX="0" frameY="-93" frameWidth="1018" frameHeight="717"/>
-	<SubTexture name="marco pop off0004" x="1021" y="1553" width="1014" height="619" frameX="-3" frameY="-94" frameWidth="1018" frameHeight="717"/>
-	<SubTexture name="marco pop off0005" x="2035" y="1553" width="973" height="619" frameX="-44" frameY="-94" frameWidth="1018" frameHeight="717"/>
-	<SubTexture name="marco pop off0006" x="3008" y="1553" width="910" height="621" frameX="-107" frameY="-92" frameWidth="1018" frameHeight="717"/>
-	<SubTexture name="marco pop off0007" x="3918" y="1553" width="905" height="623" frameX="-112" frameY="-90" frameWidth="1018" frameHeight="717"/>
-	<SubTexture name="marco pop off0008" x="3918" y="1553" width="905" height="623" frameX="-112" frameY="-90" frameWidth="1018" frameHeight="717"/>
-	<SubTexture name="marco pop off0009" x="4823" y="1553" width="905" height="620" frameX="-112" frameY="-93" frameWidth="1018" frameHeight="717"/>
-	<SubTexture name="marco pop off0010" x="5728" y="1553" width="905" height="619" frameX="-112" frameY="-94" frameWidth="1018" frameHeight="717"/>
-	<SubTexture name="marco pop off0011" x="5728" y="1553" width="905" height="619" frameX="-112" frameY="-94" frameWidth="1018" frameHeight="717"/>
-	<SubTexture name="marco pop off0012" x="5728" y="1553" width="905" height="619" frameX="-112" frameY="-94" frameWidth="1018" frameHeight="717"/>
-	<SubTexture name="marco pop off0013" x="5728" y="1553" width="905" height="619" frameX="-112" frameY="-94" frameWidth="1018" frameHeight="717"/>
-	<SubTexture name="marco pop off0014" x="5728" y="1553" width="905" height="619" frameX="-112" frameY="-94" frameWidth="1018" frameHeight="717"/>
-	<SubTexture name="marco pop off0015" x="5728" y="1553" width="905" height="619" frameX="-112" frameY="-94" frameWidth="1018" frameHeight="717"/>
-	<SubTexture name="marco pop off0016" x="5728" y="1553" width="905" height="619" frameX="-112" frameY="-94" frameWidth="1018" frameHeight="717"/>
-	<SubTexture name="marco pop off0017" x="5728" y="1553" width="905" height="619" frameX="-112" frameY="-94" frameWidth="1018" frameHeight="717"/>
-	<SubTexture name="marco pop off0018" x="5728" y="1553" width="905" height="619" frameX="-112" frameY="-94" frameWidth="1018" frameHeight="717"/>
-	<SubTexture name="marco pop off0019" x="5728" y="1553" width="905" height="619" frameX="-112" frameY="-94" frameWidth="1018" frameHeight="717"/>
-	<SubTexture name="marco pop off0020" x="5728" y="1553" width="905" height="619" frameX="-112" frameY="-94" frameWidth="1018" frameHeight="717"/>
-	<SubTexture name="marco pop off0021" x="5728" y="1553" width="905" height="619" frameX="-112" frameY="-94" frameWidth="1018" frameHeight="717"/>
-	<SubTexture name="marco pop off0022" x="6633" y="1553" width="904" height="616" frameX="-112" frameY="-97" frameWidth="1018" frameHeight="717"/>
-	<SubTexture name="marco pop off0023" x="4" y="2176" width="905" height="623" frameX="-112" frameY="-90" frameWidth="1018" frameHeight="717"/>
-	<SubTexture name="marco pop off0024" x="909" y="2176" width="906" height="629" frameX="-112" frameY="-85" frameWidth="1018" frameHeight="717"/>
-	<SubTexture name="marco pop off0025" x="1815" y="2176" width="906" height="631" frameX="-112" frameY="-83" frameWidth="1018" frameHeight="717"/>
-	<SubTexture name="marco pop off0026" x="1815" y="2176" width="906" height="631" frameX="-112" frameY="-83" frameWidth="1018" frameHeight="717"/>
-	<SubTexture name="marco pop off0027" x="1815" y="2176" width="906" height="631" frameX="-112" frameY="-83" frameWidth="1018" frameHeight="717"/>
-	<SubTexture name="marco pop off0028" x="1815" y="2176" width="906" height="631" frameX="-112" frameY="-83" frameWidth="1018" frameHeight="717"/>
-	<SubTexture name="marco pop off0029" x="1815" y="2176" width="906" height="631" frameX="-112" frameY="-83" frameWidth="1018" frameHeight="717"/>
-	<SubTexture name="marco pop off0030" x="1815" y="2176" width="906" height="631" frameX="-112" frameY="-83" frameWidth="1018" frameHeight="717"/>
-	<SubTexture name="marco pop off0031" x="1815" y="2176" width="906" height="631" frameX="-112" frameY="-83" frameWidth="1018" frameHeight="717"/>
-	<SubTexture name="marco pop off0032" x="1815" y="2176" width="906" height="631" frameX="-112" frameY="-83" frameWidth="1018" frameHeight="717"/>
-	<SubTexture name="marco pop off0033" x="1815" y="2176" width="906" height="631" frameX="-112" frameY="-83" frameWidth="1018" frameHeight="717"/>
-	<SubTexture name="marco pop off0034" x="1815" y="2176" width="906" height="631" frameX="-112" frameY="-83" frameWidth="1018" frameHeight="717"/>
-	<SubTexture name="marco pop off0035" x="1815" y="2176" width="906" height="631" frameX="-112" frameY="-83" frameWidth="1018" frameHeight="717"/>
-	<SubTexture name="marco pop off0036" x="1815" y="2176" width="906" height="631" frameX="-112" frameY="-83" frameWidth="1018" frameHeight="717"/>
-	<SubTexture name="marco pop off0037" x="1815" y="2176" width="906" height="631" frameX="-112" frameY="-83" frameWidth="1018" frameHeight="717"/>
-	<SubTexture name="marco pop off0038" x="1815" y="2176" width="906" height="631" frameX="-112" frameY="-83" frameWidth="1018" frameHeight="717"/>
-	<SubTexture name="marco pop off0039" x="1815" y="2176" width="906" height="631" frameX="-112" frameY="-83" frameWidth="1018" frameHeight="717"/>
-	<SubTexture name="marco right0000" x="2721" y="2176" width="693" height="704" frameX="-23" frameY="-55" frameWidth="716" frameHeight="759"/>
-	<SubTexture name="marco right0001" x="3414" y="2176" width="716" height="711" frameX="0" frameY="-48" frameWidth="716" frameHeight="759"/>
-	<SubTexture name="marco right0002" x="4130" y="2176" width="716" height="697" frameX="0" frameY="-62" frameWidth="716" frameHeight="759"/>
-	<SubTexture name="marco right0003" x="4846" y="2176" width="713" height="759" frameX="-3" frameY="0" frameWidth="716" frameHeight="759"/>
-	<SubTexture name="marco right0004" x="5559" y="2176" width="685" height="745" frameX="-31" frameY="-14" frameWidth="716" frameHeight="759"/>
-	<SubTexture name="marco right0005" x="6244" y="2176" width="665" height="741" frameX="-51" frameY="-18" frameWidth="716" frameHeight="759"/>
-	<SubTexture name="marco right0006" x="6909" y="2176" width="661" height="741" frameX="-55" frameY="-18" frameWidth="716" frameHeight="759"/>
-	<SubTexture name="marco right0007" x="6909" y="2176" width="661" height="741" frameX="-55" frameY="-18" frameWidth="716" frameHeight="759"/>
-	<SubTexture name="marco right0008" x="6909" y="2176" width="661" height="741" frameX="-55" frameY="-18" frameWidth="716" frameHeight="759"/>
-	<SubTexture name="marco right0009" x="6909" y="2176" width="661" height="741" frameX="-55" frameY="-18" frameWidth="716" frameHeight="759"/>
-	<SubTexture name="marco up0000" x="7570" y="2176" width="527" height="791" frameX="-1" frameY="-6" frameWidth="580" frameHeight="798"/>
-	<SubTexture name="marco up0001" x="4" y="2967" width="571" height="798" frameX="-2" frameY="0" frameWidth="580" frameHeight="798"/>
-	<SubTexture name="marco up0002" x="575" y="2967" width="580" height="798"/>
-	<SubTexture name="marco up0003" x="575" y="2967" width="580" height="798"/>
-	<SubTexture name="marco up0004" x="1155" y="2967" width="575" height="795" frameX="0" frameY="-3" frameWidth="580" frameHeight="798"/>
-	<SubTexture name="marco up0005" x="1730" y="2967" width="537" height="795" frameX="-3" frameY="-3" frameWidth="580" frameHeight="798"/>
-	<SubTexture name="marco up0006" x="2267" y="2967" width="526" height="792" frameX="-3" frameY="-5" frameWidth="580" frameHeight="798"/>
-	<SubTexture name="marco up0007" x="2267" y="2967" width="526" height="792" frameX="-3" frameY="-5" frameWidth="580" frameHeight="798"/>
-	<SubTexture name="marco up0008" x="2267" y="2967" width="526" height="792" frameX="-3" frameY="-5" frameWidth="580" frameHeight="798"/>
-	<SubTexture name="marco up0009" x="2267" y="2967" width="526" height="792" frameX="-3" frameY="-5" frameWidth="580" frameHeight="798"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Created with Funkin Packer v0.1.3 https://neeeoo.github.io/funkin-packer/
+-->
+<TextureAtlas imagePath="Marco Phase Guitar.png" width="8150" height="2745">
+	<SubTexture name="marco down0000" x="1553" y="596" width="471" height="602" frameX="-40" frameY="-12" frameWidth="547" frameHeight="649"/>
+	<SubTexture name="marco down0001" x="478" y="1" width="475" height="590" frameX="-26" frameY="-24" frameWidth="547" frameHeight="649"/>
+	<SubTexture name="marco down0002" x="1" y="1" width="474" height="587" frameX="-22" frameY="-27" frameWidth="547" frameHeight="649"/>
+	<SubTexture name="marco down0003" x="1" y="1" width="474" height="587" frameX="-22" frameY="-27" frameWidth="547" frameHeight="649"/>
+	<SubTexture name="marco down0004" x="956" y="1" width="474" height="591" frameX="-29" frameY="-23" frameWidth="547" frameHeight="649"/>
+	<SubTexture name="marco down0005" x="7122" y="1" width="471" height="598" frameX="-41" frameY="-16" frameWidth="547" frameHeight="649"/>
+	<SubTexture name="marco down0006" x="7596" y="1" width="470" height="601" frameX="-46" frameY="-13" frameWidth="547" frameHeight="649"/>
+	<SubTexture name="marco down0007" x="7596" y="1" width="470" height="601" frameX="-46" frameY="-13" frameWidth="547" frameHeight="649"/>
+	<SubTexture name="marco down0008" x="7596" y="1" width="470" height="601" frameX="-46" frameY="-13" frameWidth="547" frameHeight="649"/>
+	<SubTexture name="marco down0009" x="7596" y="1" width="470" height="601" frameX="-46" frameY="-13" frameWidth="547" frameHeight="649"/>
+	<SubTexture name="marco idle0000" x="5345" y="1253" width="421" height="722" frameX="-29" frameY="-20" frameWidth="482" frameHeight="762"/>
+	<SubTexture name="marco idle0001" x="4495" y="1252" width="422" height="719" frameX="-29" frameY="-23" frameWidth="482" frameHeight="762"/>
+	<SubTexture name="marco idle0002" x="4071" y="1252" width="421" height="710" frameX="-29" frameY="-31" frameWidth="482" frameHeight="762"/>
+	<SubTexture name="marco idle0003" x="2554" y="1206" width="421" height="705" frameX="-29" frameY="-36" frameWidth="482" frameHeight="762"/>
+	<SubTexture name="marco idle0004" x="2130" y="1204" width="421" height="704" frameX="-29" frameY="-37" frameWidth="482" frameHeight="762"/>
+	<SubTexture name="marco idle0005" x="2130" y="1204" width="421" height="704" frameX="-29" frameY="-37" frameWidth="482" frameHeight="762"/>
+	<SubTexture name="marco idle0006" x="2130" y="1204" width="421" height="704" frameX="-29" frameY="-37" frameWidth="482" frameHeight="762"/>
+	<SubTexture name="marco idle0007" x="2130" y="1204" width="421" height="704" frameX="-29" frameY="-37" frameWidth="482" frameHeight="762"/>
+	<SubTexture name="marco idle0008" x="2978" y="1206" width="421" height="706" frameX="-29" frameY="-35" frameWidth="482" frameHeight="762"/>
+	<SubTexture name="marco idle0009" x="4920" y="1253" width="422" height="719" frameX="-29" frameY="-23" frameWidth="482" frameHeight="762"/>
+	<SubTexture name="marco idle0010" x="6395" y="1268" width="421" height="723" frameX="-29" frameY="-19" frameWidth="482" frameHeight="762"/>
+	<SubTexture name="marco idle0011" x="6819" y="1268" width="421" height="724" frameX="-29" frameY="-18" frameWidth="482" frameHeight="762"/>
+	<SubTexture name="marco idle0012" x="7243" y="1299" width="421" height="724" frameX="-29" frameY="-18" frameWidth="482" frameHeight="762"/>
+	<SubTexture name="marco idle0013" x="5345" y="1253" width="421" height="722" frameX="-29" frameY="-20" frameWidth="482" frameHeight="762"/>
+	<SubTexture name="marco idle0014" x="5345" y="1253" width="421" height="722" frameX="-29" frameY="-20" frameWidth="482" frameHeight="762"/>
+	<SubTexture name="marco left0000" x="2432" y="1915" width="587" height="740" frameX="-51" frameY="-36" frameWidth="696" frameHeight="787"/>
+	<SubTexture name="marco left0001" x="4515" y="1975" width="628" height="757" frameX="-35" frameY="-19" frameWidth="696" frameHeight="787"/>
+	<SubTexture name="marco left0002" x="1798" y="1911" width="631" height="735" frameX="-26" frameY="-41" frameWidth="696" frameHeight="787"/>
+	<SubTexture name="marco left0003" x="5769" y="1260" width="623" height="722" frameX="-41" frameY="-54" frameWidth="696" frameHeight="787"/>
+	<SubTexture name="marco left0004" x="1" y="1889" width="600" height="727" frameX="-51" frameY="-49" frameWidth="696" frameHeight="787"/>
+	<SubTexture name="marco left0005" x="604" y="1890" width="595" height="733" frameX="-52" frameY="-43" frameWidth="696" frameHeight="787"/>
+	<SubTexture name="marco left0006" x="1202" y="1902" width="593" height="733" frameX="-52" frameY="-43" frameWidth="696" frameHeight="787"/>
+	<SubTexture name="marco left0007" x="1202" y="1902" width="593" height="733" frameX="-52" frameY="-43" frameWidth="696" frameHeight="787"/>
+	<SubTexture name="marco left0008" x="1202" y="1902" width="593" height="733" frameX="-52" frameY="-43" frameWidth="696" frameHeight="787"/>
+	<SubTexture name="marco left0009" x="1202" y="1902" width="593" height="733" frameX="-52" frameY="-43" frameWidth="696" frameHeight="787"/>
+	<SubTexture name="marco pop off0000" x="624" y="1198" width="858" height="689" frameX="-52" frameY="-10" frameWidth="1018" frameHeight="717"/>
+	<SubTexture name="marco pop off0001" x="5129" y="600" width="886" height="650" frameX="-55" frameY="-49" frameWidth="1018" frameHeight="717"/>
+	<SubTexture name="marco pop off0002" x="2027" y="599" width="876" height="602" frameX="-89" frameY="-96" frameWidth="1018" frameHeight="717"/>
+	<SubTexture name="marco pop off0003" x="4692" y="1" width="875" height="596" frameX="-92" frameY="-103" frameWidth="1018" frameHeight="717"/>
+	<SubTexture name="marco pop off0004" x="2208" y="1" width="872" height="595" frameX="-95" frameY="-104" frameWidth="1018" frameHeight="717"/>
+	<SubTexture name="marco pop off0005" x="3083" y="1" width="830" height="595" frameX="-137" frameY="-104" frameWidth="1018" frameHeight="717"/>
+	<SubTexture name="marco pop off0006" x="6346" y="1" width="773" height="597" frameX="-194" frameY="-102" frameWidth="1018" frameHeight="717"/>
+	<SubTexture name="marco pop off0007" x="777" y="596" width="773" height="599" frameX="-194" frameY="-100" frameWidth="1018" frameHeight="717"/>
+	<SubTexture name="marco pop off0008" x="777" y="596" width="773" height="599" frameX="-194" frameY="-100" frameWidth="1018" frameHeight="717"/>
+	<SubTexture name="marco pop off0009" x="5570" y="1" width="773" height="596" frameX="-194" frameY="-103" frameWidth="1018" frameHeight="717"/>
+	<SubTexture name="marco pop off0010" x="3916" y="1" width="773" height="595" frameX="-194" frameY="-104" frameWidth="1018" frameHeight="717"/>
+	<SubTexture name="marco pop off0011" x="3916" y="1" width="773" height="595" frameX="-194" frameY="-104" frameWidth="1018" frameHeight="717"/>
+	<SubTexture name="marco pop off0012" x="3916" y="1" width="773" height="595" frameX="-194" frameY="-104" frameWidth="1018" frameHeight="717"/>
+	<SubTexture name="marco pop off0013" x="3916" y="1" width="773" height="595" frameX="-194" frameY="-104" frameWidth="1018" frameHeight="717"/>
+	<SubTexture name="marco pop off0014" x="3916" y="1" width="773" height="595" frameX="-194" frameY="-104" frameWidth="1018" frameHeight="717"/>
+	<SubTexture name="marco pop off0015" x="3916" y="1" width="773" height="595" frameX="-194" frameY="-104" frameWidth="1018" frameHeight="717"/>
+	<SubTexture name="marco pop off0016" x="3916" y="1" width="773" height="595" frameX="-194" frameY="-104" frameWidth="1018" frameHeight="717"/>
+	<SubTexture name="marco pop off0017" x="3916" y="1" width="773" height="595" frameX="-194" frameY="-104" frameWidth="1018" frameHeight="717"/>
+	<SubTexture name="marco pop off0018" x="3916" y="1" width="773" height="595" frameX="-194" frameY="-104" frameWidth="1018" frameHeight="717"/>
+	<SubTexture name="marco pop off0019" x="3916" y="1" width="773" height="595" frameX="-194" frameY="-104" frameWidth="1018" frameHeight="717"/>
+	<SubTexture name="marco pop off0020" x="3916" y="1" width="773" height="595" frameX="-194" frameY="-104" frameWidth="1018" frameHeight="717"/>
+	<SubTexture name="marco pop off0021" x="3916" y="1" width="773" height="595" frameX="-194" frameY="-104" frameWidth="1018" frameHeight="717"/>
+	<SubTexture name="marco pop off0022" x="1433" y="1" width="772" height="592" frameX="-194" frameY="-107" frameWidth="1018" frameHeight="717"/>
+	<SubTexture name="marco pop off0023" x="1" y="594" width="773" height="598" frameX="-194" frameY="-100" frameWidth="1018" frameHeight="717"/>
+	<SubTexture name="marco pop off0024" x="2906" y="599" width="774" height="604" frameX="-194" frameY="-94" frameWidth="1018" frameHeight="717"/>
+	<SubTexture name="marco pop off0025" x="3683" y="599" width="773" height="605" frameX="-195" frameY="-93" frameWidth="1018" frameHeight="717"/>
+	<SubTexture name="marco pop off0026" x="3683" y="599" width="773" height="605" frameX="-195" frameY="-93" frameWidth="1018" frameHeight="717"/>
+	<SubTexture name="marco pop off0027" x="3683" y="599" width="773" height="605" frameX="-195" frameY="-93" frameWidth="1018" frameHeight="717"/>
+	<SubTexture name="marco pop off0028" x="3683" y="599" width="773" height="605" frameX="-195" frameY="-93" frameWidth="1018" frameHeight="717"/>
+	<SubTexture name="marco pop off0029" x="3683" y="599" width="773" height="605" frameX="-195" frameY="-93" frameWidth="1018" frameHeight="717"/>
+	<SubTexture name="marco pop off0030" x="3683" y="599" width="773" height="605" frameX="-195" frameY="-93" frameWidth="1018" frameHeight="717"/>
+	<SubTexture name="marco pop off0031" x="3683" y="599" width="773" height="605" frameX="-195" frameY="-93" frameWidth="1018" frameHeight="717"/>
+	<SubTexture name="marco pop off0032" x="3683" y="599" width="773" height="605" frameX="-195" frameY="-93" frameWidth="1018" frameHeight="717"/>
+	<SubTexture name="marco pop off0033" x="3683" y="599" width="773" height="605" frameX="-195" frameY="-93" frameWidth="1018" frameHeight="717"/>
+	<SubTexture name="marco pop off0034" x="3683" y="599" width="773" height="605" frameX="-195" frameY="-93" frameWidth="1018" frameHeight="717"/>
+	<SubTexture name="marco pop off0035" x="3683" y="599" width="773" height="605" frameX="-195" frameY="-93" frameWidth="1018" frameHeight="717"/>
+	<SubTexture name="marco pop off0036" x="3683" y="599" width="773" height="605" frameX="-195" frameY="-93" frameWidth="1018" frameHeight="717"/>
+	<SubTexture name="marco pop off0037" x="3683" y="599" width="773" height="605" frameX="-195" frameY="-93" frameWidth="1018" frameHeight="717"/>
+	<SubTexture name="marco pop off0038" x="3683" y="599" width="773" height="605" frameX="-195" frameY="-93" frameWidth="1018" frameHeight="717"/>
+	<SubTexture name="marco pop off0039" x="3683" y="599" width="773" height="605" frameX="-195" frameY="-93" frameWidth="1018" frameHeight="717"/>
+	<SubTexture name="marco right0000" x="6018" y="601" width="650" height="656" frameX="-40" frameY="-69" frameWidth="716" frameHeight="759"/>
+	<SubTexture name="marco right0001" x="6671" y="602" width="668" height="663" frameX="-32" frameY="-62" frameWidth="716" frameHeight="759"/>
+	<SubTexture name="marco right0002" x="4459" y="600" width="667" height="649" frameX="-45" frameY="-76" frameWidth="716" frameHeight="759"/>
+	<SubTexture name="marco right0003" x="3402" y="1207" width="666" height="708" frameX="-28" frameY="-17" frameWidth="716" frameHeight="759"/>
+	<SubTexture name="marco right0004" x="1485" y="1204" width="642" height="695" frameX="-45" frameY="-30" frameWidth="716" frameHeight="759"/>
+	<SubTexture name="marco right0005" x="7342" y="605" width="623" height="691" frameX="-61" frameY="-34" frameWidth="716" frameHeight="759"/>
+	<SubTexture name="marco right0006" x="1" y="1195" width="620" height="691" frameX="-64" frameY="-34" frameWidth="716" frameHeight="759"/>
+	<SubTexture name="marco right0007" x="1" y="1195" width="620" height="691" frameX="-64" frameY="-34" frameWidth="716" frameHeight="759"/>
+	<SubTexture name="marco right0008" x="1" y="1195" width="620" height="691" frameX="-64" frameY="-34" frameWidth="716" frameHeight="759"/>
+	<SubTexture name="marco right0009" x="1" y="1195" width="620" height="691" frameX="-64" frameY="-34" frameWidth="716" frameHeight="759"/>
+	<SubTexture name="marco up0000" x="7667" y="1299" width="482" height="751" frameX="-12" frameY="-28" frameWidth="580" frameHeight="798"/>
+	<SubTexture name="marco up0001" x="5146" y="1978" width="511" height="759" frameX="-26" frameY="-20" frameWidth="580" frameHeight="798"/>
+	<SubTexture name="marco up0002" x="5660" y="1985" width="522" height="759" frameX="-22" frameY="-20" frameWidth="580" frameHeight="798"/>
+	<SubTexture name="marco up0003" x="5660" y="1985" width="522" height="759" frameX="-22" frameY="-20" frameWidth="580" frameHeight="798"/>
+	<SubTexture name="marco up0004" x="3995" y="1974" width="517" height="756" frameX="-22" frameY="-23" frameWidth="580" frameHeight="798"/>
+	<SubTexture name="marco up0005" x="3508" y="1918" width="484" height="755" frameX="-23" frameY="-24" frameWidth="580" frameHeight="798"/>
+	<SubTexture name="marco up0006" x="3022" y="1918" width="483" height="753" frameX="-13" frameY="-26" frameWidth="580" frameHeight="798"/>
+	<SubTexture name="marco up0007" x="3022" y="1918" width="483" height="753" frameX="-13" frameY="-26" frameWidth="580" frameHeight="798"/>
+	<SubTexture name="marco up0008" x="3022" y="1918" width="483" height="753" frameX="-13" frameY="-26" frameWidth="580" frameHeight="798"/>
+	<SubTexture name="marco up0009" x="3022" y="1918" width="483" height="753" frameX="-13" frameY="-26" frameWidth="580" frameHeight="798"/>
 </TextureAtlas>

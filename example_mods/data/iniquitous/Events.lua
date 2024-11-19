@@ -101,10 +101,10 @@ function onUpdate()
 		setProperty('Base.alpha', 1)
 		setProperty('BGP2.alpha', 1)
 		
-		setProperty('dad.x', bfX - 220)
-		setProperty('dad.y', getProperty('boyfriend.y') - 600)
+		setProperty('dad.x', bfX + 100)
+		setProperty('dad.y', getProperty('boyfriend.y') - 550)
 		
-		setProperty('boyfriend.x', dadX - 100)
+		setProperty('boyfriend.x', dadX - 130)
 		
 		for i = 0, 7 do
 			noteTweenX('noteSwap'..i, i, noteSwap[i + 1], 0.8 + (i* 0.25), 'bounceOut')
@@ -260,8 +260,8 @@ function onUpdate()
 	if curBeat == 608 then
 		cameraFlash('hud', 'ff0000', 0.6, false)
 		triggerEvent('Change Character', 'dad', 'iniquitousP3')
-		setProperty('dad.x', bfX - 220)
-		setProperty('dad.y', getProperty('boyfriend.y') - 600)
+		setProperty('dad.x', bfX + 100)
+		setProperty('dad.y', getProperty('boyfriend.y') - 550)
 	end
 	if curBeat == 744 then
 		setProperty('blackBG.alpha', 1)
@@ -277,6 +277,7 @@ function onUpdate()
 		end
 	end
 end
+
 function onTimerCompleted(tag)
 	if tag == 'change' then
 		if getProperty('boyfriend.alpha') == 1 then

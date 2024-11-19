@@ -1,80 +1,81 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<TextureAtlas imagePath="Ourple Dead.png">
-	<!-- Created with Adobe Animate version 21.0.5.40714 -->
-	<!-- http://www.adobe.com/products/animate.html -->
-	<SubTexture name="ourple death loop0000" x="8" y="8" width="699" height="537"/>
-	<SubTexture name="ourple death loop0001" x="707" y="8" width="699" height="537"/>
-	<SubTexture name="ourple death loop0002" x="1406" y="8" width="699" height="537"/>
-	<SubTexture name="ourple death loop0003" x="1406" y="8" width="699" height="537"/>
-	<SubTexture name="ourple death loop0004" x="1406" y="8" width="699" height="537"/>
-	<SubTexture name="ourple death loop0005" x="1406" y="8" width="699" height="537"/>
-	<SubTexture name="ourple death loop0006" x="1406" y="8" width="699" height="537"/>
-	<SubTexture name="ourple death loop0007" x="1406" y="8" width="699" height="537"/>
-	<SubTexture name="ourple death loop0008" x="1406" y="8" width="699" height="537"/>
-	<SubTexture name="ourple death loop0009" x="1406" y="8" width="699" height="537"/>
-	<SubTexture name="ourple death loop0010" x="1406" y="8" width="699" height="537"/>
-	<SubTexture name="ourple death loop0011" x="1406" y="8" width="699" height="537"/>
-	<SubTexture name="ourple death loop0012" x="1406" y="8" width="699" height="537"/>
-	<SubTexture name="ourple death loop0013" x="1406" y="8" width="699" height="537"/>
-	<SubTexture name="ourple death loop0014" x="1406" y="8" width="699" height="537"/>
-	<SubTexture name="ourple first death0000" x="2105" y="8" width="1191" height="756"/>
-	<SubTexture name="ourple first death0001" x="3296" y="8" width="1191" height="756"/>
-	<SubTexture name="ourple first death0002" x="4487" y="8" width="1191" height="756"/>
-	<SubTexture name="ourple first death0003" x="5678" y="8" width="1191" height="756"/>
-	<SubTexture name="ourple first death0004" x="6869" y="8" width="1191" height="756"/>
-	<SubTexture name="ourple first death0005" x="6869" y="8" width="1191" height="756"/>
-	<SubTexture name="ourple first death0006" x="6869" y="8" width="1191" height="756"/>
-	<SubTexture name="ourple first death0007" x="6869" y="8" width="1191" height="756"/>
-	<SubTexture name="ourple first death0008" x="6869" y="8" width="1191" height="756"/>
-	<SubTexture name="ourple first death0009" x="6869" y="8" width="1191" height="756"/>
-	<SubTexture name="ourple first death0010" x="6869" y="8" width="1191" height="756"/>
-	<SubTexture name="ourple first death0011" x="6869" y="8" width="1191" height="756"/>
-	<SubTexture name="ourple first death0012" x="6869" y="8" width="1191" height="756"/>
-	<SubTexture name="ourple first death0013" x="8" y="764" width="1191" height="756"/>
-	<SubTexture name="ourple first death0014" x="1199" y="764" width="1191" height="756"/>
-	<SubTexture name="ourple first death0015" x="2390" y="764" width="1191" height="756"/>
-	<SubTexture name="ourple first death0016" x="3581" y="764" width="1191" height="756"/>
-	<SubTexture name="ourple first death0017" x="4772" y="764" width="1191" height="756"/>
-	<SubTexture name="ourple first death0018" x="5963" y="764" width="1191" height="756"/>
-	<SubTexture name="ourple first death0019" x="8" y="1520" width="1191" height="756"/>
-	<SubTexture name="ourple first death0020" x="1199" y="1520" width="1191" height="756"/>
-	<SubTexture name="ourple first death0021" x="2390" y="1520" width="1191" height="756"/>
-	<SubTexture name="ourple first death0022" x="3581" y="1520" width="1191" height="756"/>
-	<SubTexture name="ourple first death0023" x="4772" y="1520" width="1191" height="756"/>
-	<SubTexture name="ourple first death0024" x="5963" y="1520" width="1191" height="756"/>
-	<SubTexture name="ourple first death0025" x="8" y="2276" width="1191" height="756"/>
-	<SubTexture name="ourple first death0026" x="1199" y="2276" width="1191" height="756"/>
-	<SubTexture name="ourple first death0027" x="2390" y="2276" width="1191" height="756"/>
-	<SubTexture name="ourple first death0028" x="3581" y="2276" width="1191" height="756"/>
-	<SubTexture name="ourple first death0029" x="4772" y="2276" width="1191" height="756"/>
-	<SubTexture name="ourple first death0030" x="5963" y="2276" width="1191" height="756"/>
-	<SubTexture name="ourple first death0031" x="8" y="3032" width="1191" height="756"/>
-	<SubTexture name="ourple first death0032" x="1199" y="3032" width="1191" height="756"/>
-	<SubTexture name="ourple first death0033" x="2390" y="3032" width="1191" height="756"/>
-	<SubTexture name="ourple first death0034" x="3581" y="3032" width="1191" height="756"/>
-	<SubTexture name="ourple first death0035" x="4772" y="3032" width="1191" height="756"/>
-	<SubTexture name="ourple first death0036" x="5963" y="3032" width="1191" height="756"/>
-	<SubTexture name="ourple first death0037" x="8" y="3788" width="1191" height="756"/>
-	<SubTexture name="ourple first death0038" x="1199" y="3788" width="1191" height="756"/>
-	<SubTexture name="ourple first death0039" x="2390" y="3788" width="1191" height="756"/>
-	<SubTexture name="ourple first death0040" x="3581" y="3788" width="1191" height="756"/>
-	<SubTexture name="ourple first death0041" x="4772" y="3788" width="1191" height="756"/>
-	<SubTexture name="ourple first death0042" x="5963" y="3788" width="1191" height="756"/>
-	<SubTexture name="ourple first death0043" x="8" y="4544" width="1191" height="756"/>
-	<SubTexture name="ourple first death0044" x="1199" y="4544" width="1191" height="756"/>
-	<SubTexture name="ourple first death0045" x="2390" y="4544" width="1191" height="756"/>
-	<SubTexture name="ourple first death0046" x="3581" y="4544" width="1191" height="756"/>
-	<SubTexture name="ourple first death0047" x="4772" y="4544" width="1191" height="756"/>
-	<SubTexture name="ourple first death0048" x="4772" y="4544" width="1191" height="756"/>
-	<SubTexture name="ourple first death0049" x="5963" y="4544" width="1191" height="756"/>
-	<SubTexture name="ourple first death0050" x="8" y="5300" width="1191" height="756"/>
-	<SubTexture name="ourple first death0051" x="1199" y="5300" width="1191" height="756"/>
-	<SubTexture name="ourple first death0052" x="2390" y="5300" width="1191" height="756"/>
-	<SubTexture name="ourple first death0053" x="3581" y="5300" width="1191" height="756"/>
-	<SubTexture name="ourple first death0054" x="4772" y="5300" width="1191" height="756"/>
-	<SubTexture name="ourple first death0055" x="5963" y="5300" width="1191" height="756"/>
-	<SubTexture name="ourple first death0056" x="8" y="6056" width="1191" height="756"/>
-	<SubTexture name="ourple first death0057" x="1199" y="6056" width="1191" height="756"/>
-	<SubTexture name="ourple first death0058" x="1199" y="6056" width="1191" height="756"/>
-	<SubTexture name="ourple first death0059" x="1199" y="6056" width="1191" height="756"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Created with Funkin Packer v0.1.3 https://neeeoo.github.io/funkin-packer/
+-->
+<TextureAtlas imagePath="Ourple Dead.png" width="8187" height="1797">
+	<SubTexture name="ourple death loop0000" x="2475" y="470" width="637" height="481" frameX="-15" frameY="-19" frameWidth="699" frameHeight="537"/>
+	<SubTexture name="ourple death loop0001" x="3115" y="472" width="637" height="481" frameX="-15" frameY="-19" frameWidth="699" frameHeight="537"/>
+	<SubTexture name="ourple death loop0002" x="3755" y="475" width="638" height="481" frameX="-15" frameY="-19" frameWidth="699" frameHeight="537"/>
+	<SubTexture name="ourple death loop0003" x="3755" y="475" width="638" height="481" frameX="-15" frameY="-19" frameWidth="699" frameHeight="537"/>
+	<SubTexture name="ourple death loop0004" x="3755" y="475" width="638" height="481" frameX="-15" frameY="-19" frameWidth="699" frameHeight="537"/>
+	<SubTexture name="ourple death loop0005" x="3755" y="475" width="638" height="481" frameX="-15" frameY="-19" frameWidth="699" frameHeight="537"/>
+	<SubTexture name="ourple death loop0006" x="3755" y="475" width="638" height="481" frameX="-15" frameY="-19" frameWidth="699" frameHeight="537"/>
+	<SubTexture name="ourple death loop0007" x="3755" y="475" width="638" height="481" frameX="-15" frameY="-19" frameWidth="699" frameHeight="537"/>
+	<SubTexture name="ourple death loop0008" x="3755" y="475" width="638" height="481" frameX="-15" frameY="-19" frameWidth="699" frameHeight="537"/>
+	<SubTexture name="ourple death loop0009" x="3755" y="475" width="638" height="481" frameX="-15" frameY="-19" frameWidth="699" frameHeight="537"/>
+	<SubTexture name="ourple death loop0010" x="3755" y="475" width="638" height="481" frameX="-15" frameY="-19" frameWidth="699" frameHeight="537"/>
+	<SubTexture name="ourple death loop0011" x="3755" y="475" width="638" height="481" frameX="-15" frameY="-19" frameWidth="699" frameHeight="537"/>
+	<SubTexture name="ourple death loop0012" x="3755" y="475" width="638" height="481" frameX="-15" frameY="-19" frameWidth="699" frameHeight="537"/>
+	<SubTexture name="ourple death loop0013" x="3755" y="475" width="638" height="481" frameX="-15" frameY="-19" frameWidth="699" frameHeight="537"/>
+	<SubTexture name="ourple death loop0014" x="3755" y="475" width="638" height="481" frameX="-15" frameY="-19" frameWidth="699" frameHeight="537"/>
+	<SubTexture name="ourple first death0000" x="7263" y="482" width="327" height="648" frameX="-419" frameY="-25" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0001" x="1797" y="951" width="674" height="648" frameX="-274" frameY="-25" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0002" x="2474" y="956" width="871" height="648" frameX="-180" frameY="-25" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0003" x="3647" y="960" width="1047" height="648" frameX="-96" frameY="-25" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0004" x="7593" y="482" width="295" height="648" frameX="-429" frameY="-25" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0005" x="7593" y="482" width="295" height="648" frameX="-429" frameY="-25" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0006" x="7593" y="482" width="295" height="648" frameX="-429" frameY="-25" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0007" x="7593" y="482" width="295" height="648" frameX="-429" frameY="-25" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0008" x="7593" y="482" width="295" height="648" frameX="-429" frameY="-25" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0009" x="7593" y="482" width="295" height="648" frameX="-429" frameY="-25" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0010" x="7593" y="482" width="295" height="648" frameX="-429" frameY="-25" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0011" x="7593" y="482" width="295" height="648" frameX="-429" frameY="-25" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0012" x="7593" y="482" width="295" height="648" frameX="-429" frameY="-25" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0013" x="7891" y="482" width="295" height="649" frameX="-429" frameY="-24" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0014" x="1" y="935" width="295" height="649" frameX="-429" frameY="-24" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0015" x="299" y="935" width="295" height="649" frameX="-429" frameY="-24" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0016" x="597" y="945" width="296" height="649" frameX="-429" frameY="-24" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0017" x="896" y="945" width="299" height="649" frameX="-432" frameY="-24" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0018" x="1198" y="948" width="298" height="649" frameX="-421" frameY="-24" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0019" x="1499" y="948" width="295" height="650" frameX="-427" frameY="-24" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0020" x="3348" y="956" width="296" height="651" frameX="-426" frameY="-24" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0021" x="4697" y="960" width="296" height="652" frameX="-426" frameY="-24" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0022" x="5305" y="961" width="296" height="653" frameX="-426" frameY="-24" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0023" x="5604" y="962" width="296" height="654" frameX="-426" frameY="-24" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0024" x="5903" y="962" width="296" height="655" frameX="-426" frameY="-24" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0025" x="6202" y="963" width="296" height="656" frameX="-426" frameY="-24" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0026" x="6501" y="963" width="296" height="658" frameX="-426" frameY="-24" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0027" x="6800" y="1058" width="296" height="659" frameX="-426" frameY="-24" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0028" x="7099" y="1133" width="296" height="661" frameX="-426" frameY="-24" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0029" x="7398" y="1133" width="299" height="663" frameX="-426" frameY="-24" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0030" x="4996" y="961" width="306" height="652" frameX="-431" frameY="-36" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0031" x="6943" y="480" width="317" height="575" frameX="-439" frameY="-115" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0032" x="1" y="1" width="377" height="439" frameX="-468" frameY="-253" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0033" x="381" y="1" width="388" height="449" frameX="-457" frameY="-244" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0034" x="772" y="1" width="399" height="457" frameX="-446" frameY="-238" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0035" x="1174" y="1" width="409" height="459" frameX="-436" frameY="-238" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0036" x="1586" y="1" width="420" height="461" frameX="-425" frameY="-238" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0037" x="2009" y="1" width="430" height="463" frameX="-415" frameY="-238" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0038" x="2442" y="1" width="441" height="464" frameX="-404" frameY="-238" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0039" x="2886" y="1" width="450" height="466" frameX="-395" frameY="-238" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0040" x="3339" y="1" width="466" height="468" frameX="-385" frameY="-238" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0041" x="3808" y="1" width="485" height="469" frameX="-376" frameY="-238" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0042" x="4296" y="1" width="502" height="471" frameX="-368" frameY="-238" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0043" x="4801" y="1" width="519" height="472" frameX="-360" frameY="-238" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0044" x="5323" y="1" width="536" height="473" frameX="-352" frameY="-238" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0045" x="5862" y="1" width="550" height="474" frameX="-345" frameY="-238" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0046" x="6415" y="1" width="563" height="475" frameX="-339" frameY="-238" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0047" x="6981" y="1" width="575" height="476" frameX="-333" frameY="-238" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0048" x="6981" y="1" width="575" height="476" frameX="-333" frameY="-238" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0049" x="7559" y="1" width="595" height="478" frameX="-324" frameY="-238" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0050" x="1" y="453" width="605" height="479" frameX="-319" frameY="-238" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0051" x="609" y="463" width="613" height="479" frameX="-315" frameY="-238" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0052" x="1225" y="465" width="619" height="480" frameX="-312" frameY="-238" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0053" x="1847" y="468" width="625" height="480" frameX="-310" frameY="-238" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0054" x="4396" y="476" width="629" height="481" frameX="-308" frameY="-238" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0055" x="5028" y="477" width="633" height="481" frameX="-306" frameY="-238" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0056" x="5664" y="478" width="635" height="481" frameX="-305" frameY="-238" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0057" x="6302" y="479" width="638" height="481" frameX="-304" frameY="-238" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0058" x="6302" y="479" width="638" height="481" frameX="-304" frameY="-238" frameWidth="1191" frameHeight="756"/>
+	<SubTexture name="ourple first death0059" x="6302" y="479" width="638" height="481" frameX="-304" frameY="-238" frameWidth="1191" frameHeight="756"/>
 </TextureAtlas>

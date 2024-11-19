@@ -1,35 +1,36 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<TextureAtlas imagePath="KianaKillsYou.png">
-	<!-- Created with Adobe Animate version 21.0.5.40714 -->
-	<!-- http://www.adobe.com/products/animate.html -->
-	<SubTexture name="kiana kills you0000" x="0" y="0" width="1284" height="719"/>
-	<SubTexture name="kiana kills you0001" x="1284" y="0" width="1284" height="719"/>
-	<SubTexture name="kiana kills you0002" x="2568" y="0" width="1284" height="719"/>
-	<SubTexture name="kiana kills you0003" x="3852" y="0" width="1284" height="719"/>
-	<SubTexture name="kiana kills you0004" x="5136" y="0" width="1284" height="719"/>
-	<SubTexture name="kiana kills you0005" x="6420" y="0" width="1284" height="719"/>
-	<SubTexture name="kiana kills you0006" x="0" y="719" width="1284" height="719"/>
-	<SubTexture name="kiana kills you0007" x="1284" y="719" width="1284" height="719"/>
-	<SubTexture name="kiana kills you0008" x="2568" y="719" width="1284" height="719"/>
-	<SubTexture name="kiana kills you0009" x="3852" y="719" width="1284" height="719"/>
-	<SubTexture name="kiana kills you0010" x="5136" y="719" width="1284" height="719"/>
-	<SubTexture name="kiana kills you0011" x="6420" y="719" width="1284" height="719"/>
-	<SubTexture name="kiana kills you0012" x="0" y="1438" width="1284" height="719"/>
-	<SubTexture name="kiana kills you0013" x="1284" y="1438" width="1284" height="719"/>
-	<SubTexture name="kiana kills you0014" x="2568" y="1438" width="1284" height="719"/>
-	<SubTexture name="kiana kills you0015" x="3852" y="1438" width="1284" height="719"/>
-	<SubTexture name="kiana kills you0016" x="5136" y="1438" width="1284" height="719"/>
-	<SubTexture name="kiana kills you0017" x="6420" y="1438" width="1284" height="719"/>
-	<SubTexture name="kiana kills you0018" x="0" y="2157" width="1284" height="719"/>
-	<SubTexture name="kiana kills you0019" x="1284" y="2157" width="1284" height="719"/>
-	<SubTexture name="kiana kills you0020" x="2568" y="2157" width="1284" height="719"/>
-	<SubTexture name="kiana kills you0021" x="3852" y="2157" width="1284" height="719"/>
-	<SubTexture name="kiana kills you0022" x="5136" y="2157" width="1284" height="719"/>
-	<SubTexture name="kiana kills you0023" x="6420" y="2157" width="1284" height="719"/>
-	<SubTexture name="kiana kills you0024" x="0" y="2876" width="1284" height="719"/>
-	<SubTexture name="kiana kills you0025" x="5136" y="0" width="1284" height="719"/>
-	<SubTexture name="kiana kills you0026" x="3852" y="0" width="1284" height="719"/>
-	<SubTexture name="kiana kills you0027" x="1284" y="2876" width="1284" height="719"/>
-	<SubTexture name="kiana kills you0028" x="2568" y="2876" width="1284" height="719"/>
-	<SubTexture name="kiana kills you0029" x="3852" y="2876" width="1284" height="719"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Created with Funkin Packer v0.1.3 https://neeeoo.github.io/funkin-packer/
+-->
+<TextureAtlas imagePath="KianaKillsYou.png" width="5147" height="5046">
+	<SubTexture name="kiana kills you0000" x="1" y="1" width="1284" height="718" frameX="-0" frameY="-0" frameWidth="1284" frameHeight="719"/>
+	<SubTexture name="kiana kills you0001" x="1" y="722" width="1284" height="718" frameX="-0" frameY="-0" frameWidth="1284" frameHeight="719"/>
+	<SubTexture name="kiana kills you0002" x="1288" y="1" width="1284" height="718" frameX="-0" frameY="-0" frameWidth="1284" frameHeight="719"/>
+	<SubTexture name="kiana kills you0003" x="1288" y="722" width="1284" height="718" frameX="-0" frameY="-0" frameWidth="1284" frameHeight="719"/>
+	<SubTexture name="kiana kills you0004" x="1" y="1443" width="1284" height="718" frameX="-0" frameY="-0" frameWidth="1284" frameHeight="719"/>
+	<SubTexture name="kiana kills you0005" x="1288" y="1443" width="1284" height="718" frameX="-0" frameY="-0" frameWidth="1284" frameHeight="719"/>
+	<SubTexture name="kiana kills you0006" x="1" y="2164" width="1284" height="718" frameX="-0" frameY="-0" frameWidth="1284" frameHeight="719"/>
+	<SubTexture name="kiana kills you0007" x="1288" y="2164" width="1284" height="718" frameX="-0" frameY="-0" frameWidth="1284" frameHeight="719"/>
+	<SubTexture name="kiana kills you0008" x="2575" y="1" width="1284" height="718" frameX="-0" frameY="-0" frameWidth="1284" frameHeight="719"/>
+	<SubTexture name="kiana kills you0009" x="2575" y="722" width="1284" height="718" frameX="-0" frameY="-0" frameWidth="1284" frameHeight="719"/>
+	<SubTexture name="kiana kills you0010" x="2575" y="1443" width="1284" height="718" frameX="-0" frameY="-0" frameWidth="1284" frameHeight="719"/>
+	<SubTexture name="kiana kills you0011" x="2575" y="2164" width="1284" height="718" frameX="-0" frameY="-0" frameWidth="1284" frameHeight="719"/>
+	<SubTexture name="kiana kills you0012" x="1" y="2885" width="1284" height="718" frameX="-0" frameY="-0" frameWidth="1284" frameHeight="719"/>
+	<SubTexture name="kiana kills you0013" x="1288" y="2885" width="1284" height="718" frameX="-0" frameY="-0" frameWidth="1284" frameHeight="719"/>
+	<SubTexture name="kiana kills you0014" x="2575" y="2885" width="1284" height="718" frameX="-0" frameY="-0" frameWidth="1284" frameHeight="719"/>
+	<SubTexture name="kiana kills you0015" x="1" y="3606" width="1284" height="718" frameX="-0" frameY="-0" frameWidth="1284" frameHeight="719"/>
+	<SubTexture name="kiana kills you0016" x="1288" y="3606" width="1284" height="718" frameX="-0" frameY="-0" frameWidth="1284" frameHeight="719"/>
+	<SubTexture name="kiana kills you0017" x="2575" y="3606" width="1284" height="718" frameX="-0" frameY="-0" frameWidth="1284" frameHeight="719"/>
+	<SubTexture name="kiana kills you0018" x="3862" y="1" width="1284" height="718" frameX="-0" frameY="-0" frameWidth="1284" frameHeight="719"/>
+	<SubTexture name="kiana kills you0019" x="3862" y="722" width="1284" height="718" frameX="-0" frameY="-0" frameWidth="1284" frameHeight="719"/>
+	<SubTexture name="kiana kills you0020" x="3862" y="1443" width="1284" height="718" frameX="-0" frameY="-0" frameWidth="1284" frameHeight="719"/>
+	<SubTexture name="kiana kills you0021" x="3862" y="2164" width="1284" height="718" frameX="-0" frameY="-0" frameWidth="1284" frameHeight="719"/>
+	<SubTexture name="kiana kills you0022" x="3862" y="2885" width="1284" height="718" frameX="-0" frameY="-0" frameWidth="1284" frameHeight="719"/>
+	<SubTexture name="kiana kills you0023" x="3862" y="3606" width="1284" height="718" frameX="-0" frameY="-0" frameWidth="1284" frameHeight="719"/>
+	<SubTexture name="kiana kills you0024" x="1" y="4327" width="1284" height="718" frameX="-0" frameY="-0" frameWidth="1284" frameHeight="719"/>
+	<SubTexture name="kiana kills you0025" x="1" y="1443" width="1284" height="718" frameX="-0" frameY="-0" frameWidth="1284" frameHeight="719"/>
+	<SubTexture name="kiana kills you0026" x="1288" y="722" width="1284" height="718" frameX="-0" frameY="-0" frameWidth="1284" frameHeight="719"/>
+	<SubTexture name="kiana kills you0027" x="1288" y="4327" width="1284" height="718" frameX="-0" frameY="-0" frameWidth="1284" frameHeight="719"/>
+	<SubTexture name="kiana kills you0028" x="2575" y="4327" width="1284" height="718" frameX="-0" frameY="-0" frameWidth="1284" frameHeight="719"/>
+	<SubTexture name="kiana kills you0029" x="3862" y="4327" width="1284" height="718" frameX="-0" frameY="-0" frameWidth="1284" frameHeight="719"/>
 </TextureAtlas>

@@ -1,65 +1,66 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<TextureAtlas imagePath="Asul Phase 3.png">
-	<!-- Created with Adobe Animate version 21.0.5.40714 -->
-	<!-- http://www.adobe.com/products/animate.html -->
-	<SubTexture name="asul down0000" x="4" y="4" width="695" height="489"/>
-	<SubTexture name="asul down0001" x="699" y="4" width="695" height="489"/>
-	<SubTexture name="asul down0002" x="1394" y="4" width="695" height="488" frameX="0" frameY="0" frameWidth="695" frameHeight="489"/>
-	<SubTexture name="asul down0003" x="2089" y="4" width="695" height="488" frameX="0" frameY="0" frameWidth="695" frameHeight="489"/>
-	<SubTexture name="asul down0004" x="2784" y="4" width="695" height="489"/>
-	<SubTexture name="asul down0005" x="3479" y="4" width="695" height="489"/>
-	<SubTexture name="asul down0006" x="4174" y="4" width="695" height="489"/>
-	<SubTexture name="asul down0007" x="4869" y="4" width="695" height="489"/>
-	<SubTexture name="asul down0008" x="4174" y="4" width="695" height="489"/>
-	<SubTexture name="asul down0009" x="4869" y="4" width="695" height="489"/>
-	<SubTexture name="asul idle0000" x="5564" y="4" width="732" height="491" frameX="-28" frameY="-2" frameWidth="796" frameHeight="500"/>
-	<SubTexture name="asul idle0001" x="6296" y="4" width="732" height="491" frameX="-28" frameY="-2" frameWidth="796" frameHeight="500"/>
-	<SubTexture name="asul idle0002" x="7028" y="4" width="747" height="488" frameX="-19" frameY="-5" frameWidth="796" frameHeight="500"/>
-	<SubTexture name="asul idle0003" x="4" y="495" width="780" height="489" frameX="-9" frameY="-7" frameWidth="796" frameHeight="500"/>
-	<SubTexture name="asul idle0004" x="784" y="495" width="791" height="488" frameX="-2" frameY="-10" frameWidth="796" frameHeight="500"/>
-	<SubTexture name="asul idle0005" x="1575" y="495" width="796" height="489" frameX="0" frameY="-11" frameWidth="796" frameHeight="500"/>
-	<SubTexture name="asul idle0006" x="2371" y="495" width="796" height="489" frameX="0" frameY="-11" frameWidth="796" frameHeight="500"/>
-	<SubTexture name="asul idle0007" x="1575" y="495" width="796" height="489" frameX="0" frameY="-11" frameWidth="796" frameHeight="500"/>
-	<SubTexture name="asul idle0008" x="2371" y="495" width="796" height="489" frameX="0" frameY="-11" frameWidth="796" frameHeight="500"/>
-	<SubTexture name="asul idle0009" x="1575" y="495" width="796" height="489" frameX="0" frameY="-11" frameWidth="796" frameHeight="500"/>
-	<SubTexture name="asul idle0010" x="2371" y="495" width="796" height="489" frameX="0" frameY="-11" frameWidth="796" frameHeight="500"/>
-	<SubTexture name="asul idle0011" x="3167" y="495" width="783" height="484" frameX="-3" frameY="-10" frameWidth="796" frameHeight="500"/>
-	<SubTexture name="asul idle0012" x="3950" y="495" width="766" height="483" frameX="-9" frameY="-10" frameWidth="796" frameHeight="500"/>
-	<SubTexture name="asul idle0013" x="4716" y="495" width="741" height="484" frameX="-22" frameY="-9" frameWidth="796" frameHeight="500"/>
-	<SubTexture name="asul idle0014" x="5457" y="495" width="732" height="487" frameX="-28" frameY="-6" frameWidth="796" frameHeight="500"/>
-	<SubTexture name="asul idle0015" x="6296" y="4" width="732" height="491" frameX="-28" frameY="-2" frameWidth="796" frameHeight="500"/>
-	<SubTexture name="asul idle0016" x="6189" y="495" width="732" height="492" frameX="-28" frameY="-1" frameWidth="796" frameHeight="500"/>
-	<SubTexture name="asul idle0017" x="6921" y="495" width="732" height="493" frameX="-28" frameY="0" frameWidth="796" frameHeight="500"/>
-	<SubTexture name="asul idle0018" x="6189" y="495" width="732" height="492" frameX="-28" frameY="0" frameWidth="796" frameHeight="500"/>
-	<SubTexture name="asul idle0019" x="6921" y="495" width="732" height="493" frameX="-28" frameY="0" frameWidth="796" frameHeight="500"/>
-	<SubTexture name="asul left0000" x="4" y="988" width="660" height="515" frameX="-31" frameY="-11" frameWidth="753" frameHeight="527"/>
-	<SubTexture name="asul left0001" x="664" y="988" width="642" height="525" frameX="-16" frameY="-2" frameWidth="753" frameHeight="527"/>
-	<SubTexture name="asul left0002" x="1306" y="988" width="657" height="525" frameX="0" frameY="0" frameWidth="753" frameHeight="527"/>
-	<SubTexture name="asul left0003" x="1963" y="988" width="681" height="519" frameX="-10" frameY="-6" frameWidth="753" frameHeight="527"/>
-	<SubTexture name="asul left0004" x="2644" y="988" width="729" height="501" frameX="-17" frameY="-24" frameWidth="753" frameHeight="527"/>
-	<SubTexture name="asul left0005" x="3373" y="988" width="730" height="497" frameX="-23" frameY="-29" frameWidth="753" frameHeight="527"/>
-	<SubTexture name="asul left0006" x="4103" y="988" width="729" height="497" frameX="-24" frameY="-29" frameWidth="753" frameHeight="527"/>
-	<SubTexture name="asul left0007" x="4832" y="988" width="729" height="497" frameX="-24" frameY="-29" frameWidth="753" frameHeight="527"/>
-	<SubTexture name="asul left0008" x="4103" y="988" width="729" height="497" frameX="-24" frameY="-29" frameWidth="753" frameHeight="527"/>
-	<SubTexture name="asul left0009" x="4832" y="988" width="729" height="497" frameX="-24" frameY="-29" frameWidth="753" frameHeight="527"/>
-	<SubTexture name="asul right0000" x="5561" y="988" width="585" height="510" frameX="-17" frameY="-9" frameWidth="627" frameHeight="521"/>
-	<SubTexture name="asul right0001" x="6146" y="988" width="562" height="518" frameX="-48" frameY="-3" frameWidth="627" frameHeight="521"/>
-	<SubTexture name="asul right0002" x="6708" y="988" width="576" height="519" frameX="-51" frameY="0" frameWidth="627" frameHeight="521"/>
-	<SubTexture name="asul right0003" x="7284" y="988" width="578" height="512" frameX="-40" frameY="-6" frameWidth="627" frameHeight="521"/>
-	<SubTexture name="asul right0004" x="4" y="1513" width="610" height="517" frameX="-4" frameY="-2" frameWidth="627" frameHeight="521"/>
-	<SubTexture name="asul right0005" x="614" y="1513" width="615" height="519" frameX="0" frameY="-1" frameWidth="627" frameHeight="521"/>
-	<SubTexture name="asul right0006" x="1229" y="1513" width="615" height="520" frameX="0" frameY="0" frameWidth="627" frameHeight="521"/>
-	<SubTexture name="asul right0007" x="1844" y="1513" width="615" height="520" frameX="0" frameY="0" frameWidth="627" frameHeight="521"/>
-	<SubTexture name="asul right0008" x="1229" y="1513" width="615" height="520" frameX="0" frameY="0" frameWidth="627" frameHeight="521"/>
-	<SubTexture name="asul right0009" x="1844" y="1513" width="615" height="520" frameX="0" frameY="0" frameWidth="627" frameHeight="521"/>
-	<SubTexture name="asul up0000" x="2459" y="1513" width="685" height="511" frameX="0" frameY="-5" frameWidth="685" frameHeight="517"/>
-	<SubTexture name="asul up0001" x="3144" y="1513" width="685" height="513" frameX="0" frameY="-3" frameWidth="685" frameHeight="517"/>
-	<SubTexture name="asul up0002" x="3829" y="1513" width="685" height="517"/>
-	<SubTexture name="asul up0003" x="4514" y="1513" width="685" height="517"/>
-	<SubTexture name="asul up0004" x="5199" y="1513" width="685" height="513" frameX="0" frameY="-3" frameWidth="685" frameHeight="517"/>
-	<SubTexture name="asul up0005" x="5884" y="1513" width="685" height="511" frameX="0" frameY="-4" frameWidth="685" frameHeight="517"/>
-	<SubTexture name="asul up0006" x="6569" y="1513" width="685" height="510" frameX="0" frameY="-5" frameWidth="685" frameHeight="517"/>
-	<SubTexture name="asul up0007" x="7254" y="1513" width="685" height="511" frameX="0" frameY="-4" frameWidth="685" frameHeight="517"/>
-	<SubTexture name="asul up0008" x="6569" y="1513" width="685" height="510" frameX="0" frameY="-5" frameWidth="685" frameHeight="517"/>
-	<SubTexture name="asul up0009" x="7254" y="1513" width="685" height="511" frameX="0" frameY="-4" frameWidth="685" frameHeight="517"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Created with Funkin Packer v0.1.3 https://neeeoo.github.io/funkin-packer/
+-->
+<TextureAtlas imagePath="Asul Phase 3.png" width="8079" height="1887">
+	<SubTexture name="asul down0000" x="1282" y="894" width="631" height="473" frameX="-47" frameY="-6" frameWidth="695" frameHeight="489"/>
+	<SubTexture name="asul down0001" x="5543" y="448" width="631" height="468" frameX="-47" frameY="-11" frameWidth="695" frameHeight="489"/>
+	<SubTexture name="asul down0002" x="4274" y="445" width="632" height="466" frameX="-47" frameY="-13" frameWidth="695" frameHeight="489"/>
+	<SubTexture name="asul down0003" x="4909" y="447" width="631" height="466" frameX="-47" frameY="-13" frameWidth="695" frameHeight="489"/>
+	<SubTexture name="asul down0004" x="6177" y="450" width="631" height="468" frameX="-47" frameY="-11" frameWidth="695" frameHeight="489"/>
+	<SubTexture name="asul down0005" x="6811" y="450" width="632" height="470" frameX="-47" frameY="-9" frameWidth="695" frameHeight="489"/>
+	<SubTexture name="asul down0006" x="7446" y="450" width="631" height="470" frameX="-47" frameY="-9" frameWidth="695" frameHeight="489"/>
+	<SubTexture name="asul down0007" x="1" y="893" width="631" height="470" frameX="-47" frameY="-9" frameWidth="695" frameHeight="489"/>
+	<SubTexture name="asul down0008" x="7446" y="450" width="631" height="470" frameX="-47" frameY="-9" frameWidth="695" frameHeight="489"/>
+	<SubTexture name="asul down0009" x="1" y="893" width="631" height="470" frameX="-47" frameY="-9" frameWidth="695" frameHeight="489"/>
+	<SubTexture name="asul idle0000" x="6673" y="1" width="701" height="446" frameX="-44" frameY="-27" frameWidth="796" frameHeight="500"/>
+	<SubTexture name="asul idle0001" x="7377" y="1" width="701" height="446" frameX="-44" frameY="-27" frameWidth="796" frameHeight="500"/>
+	<SubTexture name="asul idle0002" x="5954" y="1" width="716" height="444" frameX="-35" frameY="-29" frameWidth="796" frameHeight="500"/>
+	<SubTexture name="asul idle0003" x="4499" y="1" width="748" height="441" frameX="-24" frameY="-32" frameWidth="796" frameHeight="500"/>
+	<SubTexture name="asul idle0004" x="1533" y="1" width="759" height="439" frameX="-17" frameY="-34" frameWidth="796" frameHeight="500"/>
+	<SubTexture name="asul idle0005" x="1" y="1" width="763" height="438" frameX="-16" frameY="-35" frameWidth="796" frameHeight="500"/>
+	<SubTexture name="asul idle0006" x="767" y="1" width="763" height="438" frameX="-16" frameY="-35" frameWidth="796" frameHeight="500"/>
+	<SubTexture name="asul idle0007" x="1" y="1" width="763" height="438" frameX="-16" frameY="-35" frameWidth="796" frameHeight="500"/>
+	<SubTexture name="asul idle0008" x="767" y="1" width="763" height="438" frameX="-16" frameY="-35" frameWidth="796" frameHeight="500"/>
+	<SubTexture name="asul idle0009" x="1" y="1" width="763" height="438" frameX="-16" frameY="-35" frameWidth="796" frameHeight="500"/>
+	<SubTexture name="asul idle0010" x="767" y="1" width="763" height="438" frameX="-16" frameY="-35" frameWidth="796" frameHeight="500"/>
+	<SubTexture name="asul idle0011" x="2295" y="1" width="750" height="439" frameX="-19" frameY="-34" frameWidth="796" frameHeight="500"/>
+	<SubTexture name="asul idle0012" x="3048" y="1" width="735" height="439" frameX="-24" frameY="-34" frameWidth="796" frameHeight="500"/>
+	<SubTexture name="asul idle0013" x="3786" y="1" width="710" height="440" frameX="-37" frameY="-33" frameWidth="796" frameHeight="500"/>
+	<SubTexture name="asul idle0014" x="5250" y="1" width="701" height="443" frameX="-44" frameY="-30" frameWidth="796" frameHeight="500"/>
+	<SubTexture name="asul idle0015" x="7377" y="1" width="701" height="446" frameX="-44" frameY="-27" frameWidth="796" frameHeight="500"/>
+	<SubTexture name="asul idle0016" x="1" y="442" width="701" height="448" frameX="-44" frameY="-25" frameWidth="796" frameHeight="500"/>
+	<SubTexture name="asul idle0017" x="2855" y="443" width="701" height="449" frameX="-44" frameY="-24" frameWidth="796" frameHeight="500"/>
+	<SubTexture name="asul idle0018" x="1" y="442" width="701" height="448" frameX="-44" frameY="-24" frameWidth="796" frameHeight="500"/>
+	<SubTexture name="asul idle0019" x="2855" y="443" width="701" height="449" frameX="-44" frameY="-24" frameWidth="796" frameHeight="500"/>
+	<SubTexture name="asul left0000" x="635" y="893" width="644" height="470" frameX="-41" frameY="-32" frameWidth="753" frameHeight="527"/>
+	<SubTexture name="asul left0001" x="1714" y="1370" width="609" height="483" frameX="-33" frameY="-19" frameWidth="753" frameHeight="527"/>
+	<SubTexture name="asul left0002" x="2326" y="1372" width="625" height="483" frameX="-10" frameY="-19" frameWidth="753" frameHeight="527"/>
+	<SubTexture name="asul left0003" x="2458" y="895" width="666" height="474" frameX="-19" frameY="-28" frameWidth="753" frameHeight="527"/>
+	<SubTexture name="asul left0004" x="3559" y="444" width="712" height="453" frameX="-26" frameY="-49" frameWidth="753" frameHeight="527"/>
+	<SubTexture name="asul left0005" x="705" y="442" width="715" height="448" frameX="-32" frameY="-54" frameWidth="753" frameHeight="527"/>
+	<SubTexture name="asul left0006" x="1423" y="443" width="713" height="448" frameX="-33" frameY="-54" frameWidth="753" frameHeight="527"/>
+	<SubTexture name="asul left0007" x="2139" y="443" width="713" height="448" frameX="-33" frameY="-54" frameWidth="753" frameHeight="527"/>
+	<SubTexture name="asul left0008" x="1423" y="443" width="713" height="448" frameX="-33" frameY="-54" frameWidth="753" frameHeight="527"/>
+	<SubTexture name="asul left0009" x="2139" y="443" width="713" height="448" frameX="-33" frameY="-54" frameWidth="753" frameHeight="527"/>
+	<SubTexture name="asul right0000" x="1916" y="894" width="539" height="473" frameX="-45" frameY="-34" frameWidth="627" frameHeight="521"/>
+	<SubTexture name="asul right0001" x="6674" y="923" width="499" height="480" frameX="-77" frameY="-27" frameWidth="627" frameHeight="521"/>
+	<SubTexture name="asul right0002" x="7176" y="923" width="511" height="481" frameX="-82" frameY="-26" frameWidth="627" frameHeight="521"/>
+	<SubTexture name="asul right0003" x="3127" y="900" width="515" height="475" frameX="-69" frameY="-32" frameWidth="627" frameHeight="521"/>
+	<SubTexture name="asul right0004" x="6114" y="921" width="557" height="479" frameX="-34" frameY="-28" frameWidth="627" frameHeight="521"/>
+	<SubTexture name="asul right0005" x="1" y="1366" width="568" height="481" frameX="-29" frameY="-27" frameWidth="627" frameHeight="521"/>
+	<SubTexture name="asul right0006" x="572" y="1366" width="568" height="482" frameX="-29" frameY="-26" frameWidth="627" frameHeight="521"/>
+	<SubTexture name="asul right0007" x="1143" y="1370" width="568" height="482" frameX="-29" frameY="-26" frameWidth="627" frameHeight="521"/>
+	<SubTexture name="asul right0008" x="572" y="1366" width="568" height="482" frameX="-29" frameY="-26" frameWidth="627" frameHeight="521"/>
+	<SubTexture name="asul right0009" x="1143" y="1370" width="568" height="482" frameX="-29" frameY="-26" frameWidth="627" frameHeight="521"/>
+	<SubTexture name="asul up0000" x="3645" y="900" width="614" height="476" frameX="-27" frameY="-15" frameWidth="685" frameHeight="517"/>
+	<SubTexture name="asul up0001" x="3571" y="1379" width="614" height="487" frameX="-27" frameY="-4" frameWidth="685" frameHeight="517"/>
+	<SubTexture name="asul up0002" x="4805" y="1396" width="615" height="490" frameX="-27" frameY="-1" frameWidth="685" frameHeight="517"/>
+	<SubTexture name="asul up0003" x="4188" y="1394" width="614" height="489" frameX="-27" frameY="-2" frameWidth="685" frameHeight="517"/>
+	<SubTexture name="asul up0004" x="2954" y="1378" width="614" height="486" frameX="-27" frameY="-5" frameWidth="685" frameHeight="517"/>
+	<SubTexture name="asul up0005" x="5496" y="919" width="615" height="478" frameX="-27" frameY="-13" frameWidth="685" frameHeight="517"/>
+	<SubTexture name="asul up0006" x="4262" y="914" width="614" height="477" frameX="-27" frameY="-14" frameWidth="685" frameHeight="517"/>
+	<SubTexture name="asul up0007" x="4879" y="916" width="614" height="477" frameX="-27" frameY="-14" frameWidth="685" frameHeight="517"/>
+	<SubTexture name="asul up0008" x="4262" y="914" width="614" height="477" frameX="-27" frameY="-14" frameWidth="685" frameHeight="517"/>
+	<SubTexture name="asul up0009" x="4879" y="916" width="614" height="477" frameX="-27" frameY="-14" frameWidth="685" frameHeight="517"/>
 </TextureAtlas>

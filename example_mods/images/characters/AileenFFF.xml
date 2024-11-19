@@ -1,100 +1,101 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<TextureAtlas imagePath="AileenFFF.png">
-	<!-- Created with Adobe Animate version 21.0.5.40714 -->
-	<!-- http://www.adobe.com/products/animate.html -->
-	<SubTexture name="aileen down0000" x="4" y="4" width="408" height="434" frameX="-1" frameY="0" frameWidth="411" frameHeight="434"/>
-	<SubTexture name="aileen down0001" x="412" y="4" width="390" height="426" frameX="0" frameY="-7" frameWidth="411" frameHeight="434"/>
-	<SubTexture name="aileen down0002" x="802" y="4" width="389" height="425" frameX="0" frameY="-8" frameWidth="411" frameHeight="434"/>
-	<SubTexture name="aileen down0003" x="1191" y="4" width="398" height="429" frameX="0" frameY="-5" frameWidth="411" frameHeight="434"/>
-	<SubTexture name="aileen down0004" x="1589" y="4" width="410" height="431" frameX="0" frameY="-3" frameWidth="411" frameHeight="434"/>
-	<SubTexture name="aileen down0005" x="1999" y="4" width="410" height="432" frameX="-1" frameY="-2" frameWidth="411" frameHeight="434"/>
-	<SubTexture name="aileen down0006" x="2409" y="4" width="410" height="432" frameX="-1" frameY="-2" frameWidth="411" frameHeight="434"/>
-	<SubTexture name="aileen down0007" x="2409" y="4" width="410" height="432" frameX="-1" frameY="-2" frameWidth="411" frameHeight="434"/>
-	<SubTexture name="aileen down0008" x="2409" y="4" width="410" height="432" frameX="-1" frameY="-2" frameWidth="411" frameHeight="434"/>
-	<SubTexture name="aileen down0009" x="2409" y="4" width="410" height="432" frameX="-1" frameY="-2" frameWidth="411" frameHeight="434"/>
-	<SubTexture name="aileen down miss0000" x="2819" y="4" width="423" height="388"/>
-	<SubTexture name="aileen down miss0001" x="3242" y="4" width="423" height="349" frameX="0" frameY="-37" frameWidth="423" frameHeight="388"/>
-	<SubTexture name="aileen down miss0002" x="3665" y="4" width="423" height="378" frameX="0" frameY="-9" frameWidth="423" frameHeight="388"/>
-	<SubTexture name="aileen down miss0003" x="3665" y="4" width="423" height="378" frameX="0" frameY="-9" frameWidth="423" frameHeight="388"/>
-	<SubTexture name="aileen down miss0004" x="3665" y="4" width="423" height="378" frameX="0" frameY="-9" frameWidth="423" frameHeight="388"/>
-	<SubTexture name="aileen down miss0005" x="3665" y="4" width="423" height="378" frameX="0" frameY="-9" frameWidth="423" frameHeight="388"/>
-	<SubTexture name="aileen down miss0006" x="3665" y="4" width="423" height="378" frameX="0" frameY="-9" frameWidth="423" frameHeight="388"/>
-	<SubTexture name="aileen down miss0007" x="3665" y="4" width="423" height="378" frameX="0" frameY="-9" frameWidth="423" frameHeight="388"/>
-	<SubTexture name="aileen down miss0008" x="3665" y="4" width="423" height="378" frameX="0" frameY="-9" frameWidth="423" frameHeight="388"/>
-	<SubTexture name="aileen down miss0009" x="3665" y="4" width="423" height="378" frameX="0" frameY="-9" frameWidth="423" frameHeight="388"/>
-	<SubTexture name="aileen idle0000" x="4" y="438" width="407" height="435" frameX="-12" frameY="-2" frameWidth="421" frameHeight="437"/>
-	<SubTexture name="aileen idle0001" x="411" y="438" width="399" height="428" frameX="-12" frameY="-8" frameWidth="421" frameHeight="437"/>
-	<SubTexture name="aileen idle0002" x="810" y="438" width="396" height="427" frameX="-2" frameY="-8" frameWidth="421" frameHeight="437"/>
-	<SubTexture name="aileen idle0003" x="1206" y="438" width="396" height="427" frameX="0" frameY="-8" frameWidth="421" frameHeight="437"/>
-	<SubTexture name="aileen idle0004" x="1206" y="438" width="396" height="427" frameX="0" frameY="-8" frameWidth="421" frameHeight="437"/>
-	<SubTexture name="aileen idle0005" x="1602" y="438" width="396" height="426" frameX="0" frameY="-9" frameWidth="421" frameHeight="437"/>
-	<SubTexture name="aileen idle0006" x="1998" y="438" width="396" height="427" frameX="-3" frameY="-9" frameWidth="421" frameHeight="437"/>
-	<SubTexture name="aileen idle0007" x="2394" y="438" width="405" height="430" frameX="-7" frameY="-6" frameWidth="421" frameHeight="437"/>
-	<SubTexture name="aileen idle0008" x="2799" y="438" width="407" height="435" frameX="-12" frameY="-2" frameWidth="421" frameHeight="437"/>
-	<SubTexture name="aileen idle0009" x="3206" y="438" width="408" height="436" frameX="-12" frameY="-1" frameWidth="421" frameHeight="437"/>
-	<SubTexture name="aileen idle0010" x="3614" y="438" width="408" height="437" frameX="-13" frameY="0" frameWidth="421" frameHeight="437"/>
-	<SubTexture name="aileen idle0011" x="4" y="875" width="408" height="437" frameX="-11" frameY="0" frameWidth="421" frameHeight="437"/>
-	<SubTexture name="aileen idle0012" x="412" y="875" width="407" height="437" frameX="-14" frameY="0" frameWidth="421" frameHeight="437"/>
-	<SubTexture name="aileen idle0013" x="819" y="875" width="408" height="437" frameX="-12" frameY="0" frameWidth="421" frameHeight="437"/>
-	<SubTexture name="aileen idle0014" x="1227" y="875" width="407" height="436" frameX="-12" frameY="-1" frameWidth="421" frameHeight="437"/>
-	<SubTexture name="aileen left0000" x="1634" y="875" width="417" height="436" frameX="-13" frameY="-5" frameWidth="430" frameHeight="441"/>
-	<SubTexture name="aileen left0001" x="2051" y="875" width="425" height="441" frameX="-4" frameY="0" frameWidth="430" frameHeight="441"/>
-	<SubTexture name="aileen left0002" x="2476" y="875" width="428" height="435" frameX="0" frameY="-6" frameWidth="430" frameHeight="441"/>
-	<SubTexture name="aileen left0003" x="2904" y="875" width="425" height="431" frameX="-4" frameY="-10" frameWidth="430" frameHeight="441"/>
-	<SubTexture name="aileen left0004" x="3329" y="875" width="415" height="429" frameX="-6" frameY="-12" frameWidth="430" frameHeight="441"/>
-	<SubTexture name="aileen left0005" x="4" y="1316" width="412" height="433" frameX="-7" frameY="-8" frameWidth="430" frameHeight="441"/>
-	<SubTexture name="aileen left0006" x="416" y="1316" width="412" height="434" frameX="-7" frameY="-7" frameWidth="430" frameHeight="441"/>
-	<SubTexture name="aileen left0007" x="828" y="1316" width="412" height="435" frameX="-7" frameY="-6" frameWidth="430" frameHeight="441"/>
-	<SubTexture name="aileen left0008" x="828" y="1316" width="412" height="435" frameX="-7" frameY="-6" frameWidth="430" frameHeight="441"/>
-	<SubTexture name="aileen left0009" x="828" y="1316" width="412" height="435" frameX="-7" frameY="-6" frameWidth="430" frameHeight="441"/>
-	<SubTexture name="aileen left miss0000" x="1240" y="1316" width="435" height="447" frameX="-24" frameY="0" frameWidth="459" frameHeight="447"/>
-	<SubTexture name="aileen left miss0001" x="1675" y="1316" width="446" height="447" frameX="0" frameY="0" frameWidth="459" frameHeight="447"/>
-	<SubTexture name="aileen left miss0002" x="2121" y="1316" width="437" height="447" frameX="-19" frameY="0" frameWidth="459" frameHeight="447"/>
-	<SubTexture name="aileen left miss0003" x="2121" y="1316" width="437" height="447" frameX="-19" frameY="0" frameWidth="459" frameHeight="447"/>
-	<SubTexture name="aileen left miss0004" x="2121" y="1316" width="437" height="447" frameX="-19" frameY="0" frameWidth="459" frameHeight="447"/>
-	<SubTexture name="aileen left miss0005" x="2121" y="1316" width="437" height="447" frameX="-19" frameY="0" frameWidth="459" frameHeight="447"/>
-	<SubTexture name="aileen left miss0006" x="2121" y="1316" width="437" height="447" frameX="-19" frameY="0" frameWidth="459" frameHeight="447"/>
-	<SubTexture name="aileen left miss0007" x="2121" y="1316" width="437" height="447" frameX="-19" frameY="0" frameWidth="459" frameHeight="447"/>
-	<SubTexture name="aileen left miss0008" x="2121" y="1316" width="437" height="447" frameX="-19" frameY="0" frameWidth="459" frameHeight="447"/>
-	<SubTexture name="aileen left miss0009" x="2121" y="1316" width="437" height="447" frameX="-19" frameY="0" frameWidth="459" frameHeight="447"/>
-	<SubTexture name="aileen right0000" x="2558" y="1316" width="382" height="437" frameX="0" frameY="-8" frameWidth="397" frameHeight="445"/>
-	<SubTexture name="aileen right0001" x="2940" y="1316" width="358" height="445" frameX="-11" frameY="0" frameWidth="397" frameHeight="445"/>
-	<SubTexture name="aileen right0002" x="3298" y="1316" width="353" height="438" frameX="-16" frameY="-7" frameWidth="397" frameHeight="445"/>
-	<SubTexture name="aileen right0003" x="3651" y="1316" width="354" height="434" frameX="-13" frameY="-11" frameWidth="397" frameHeight="445"/>
-	<SubTexture name="aileen right0004" x="4" y="1763" width="370" height="437" frameX="-11" frameY="-8" frameWidth="397" frameHeight="445"/>
-	<SubTexture name="aileen right0005" x="374" y="1763" width="387" height="438" frameX="-9" frameY="-7" frameWidth="397" frameHeight="445"/>
-	<SubTexture name="aileen right0006" x="761" y="1763" width="388" height="439" frameX="-9" frameY="-6" frameWidth="397" frameHeight="445"/>
-	<SubTexture name="aileen right0007" x="761" y="1763" width="388" height="439" frameX="-9" frameY="-6" frameWidth="397" frameHeight="445"/>
-	<SubTexture name="aileen right0008" x="761" y="1763" width="388" height="439" frameX="-9" frameY="-6" frameWidth="397" frameHeight="445"/>
-	<SubTexture name="aileen right0009" x="761" y="1763" width="388" height="439" frameX="-9" frameY="-6" frameWidth="397" frameHeight="445"/>
-	<SubTexture name="aileen right miss0000" x="1149" y="1763" width="413" height="447" frameX="-6" frameY="0" frameWidth="429" frameHeight="447"/>
-	<SubTexture name="aileen right miss0001" x="1562" y="1763" width="408" height="447" frameX="-21" frameY="0" frameWidth="429" frameHeight="447"/>
-	<SubTexture name="aileen right miss0002" x="1970" y="1763" width="415" height="447" frameX="0" frameY="0" frameWidth="429" frameHeight="447"/>
-	<SubTexture name="aileen right miss0003" x="1970" y="1763" width="415" height="447" frameX="0" frameY="0" frameWidth="429" frameHeight="447"/>
-	<SubTexture name="aileen right miss0004" x="1970" y="1763" width="415" height="447" frameX="0" frameY="0" frameWidth="429" frameHeight="447"/>
-	<SubTexture name="aileen right miss0005" x="1970" y="1763" width="415" height="447" frameX="0" frameY="0" frameWidth="429" frameHeight="447"/>
-	<SubTexture name="aileen right miss0006" x="1970" y="1763" width="415" height="447" frameX="0" frameY="0" frameWidth="429" frameHeight="447"/>
-	<SubTexture name="aileen right miss0007" x="1970" y="1763" width="415" height="447" frameX="0" frameY="0" frameWidth="429" frameHeight="447"/>
-	<SubTexture name="aileen right miss0008" x="1970" y="1763" width="415" height="447" frameX="0" frameY="0" frameWidth="429" frameHeight="447"/>
-	<SubTexture name="aileen right miss0009" x="1970" y="1763" width="415" height="447" frameX="0" frameY="0" frameWidth="429" frameHeight="447"/>
-	<SubTexture name="aileen up0000" x="2385" y="1763" width="433" height="472" frameX="-1" frameY="-9" frameWidth="436" frameHeight="482"/>
-	<SubTexture name="aileen up0001" x="2818" y="1763" width="435" height="482" frameX="-1" frameY="0" frameWidth="436" frameHeight="482"/>
-	<SubTexture name="aileen up0002" x="3253" y="1763" width="435" height="482" frameX="-1" frameY="0" frameWidth="436" frameHeight="482"/>
-	<SubTexture name="aileen up0003" x="4" y="2245" width="434" height="479" frameX="-1" frameY="-3" frameWidth="436" frameHeight="482"/>
-	<SubTexture name="aileen up0004" x="438" y="2245" width="419" height="474" frameX="0" frameY="-7" frameWidth="436" frameHeight="482"/>
-	<SubTexture name="aileen up0005" x="857" y="2245" width="415" height="473" frameX="0" frameY="-8" frameWidth="436" frameHeight="482"/>
-	<SubTexture name="aileen up0006" x="1272" y="2245" width="415" height="473" frameX="0" frameY="-8" frameWidth="436" frameHeight="482"/>
-	<SubTexture name="aileen up0007" x="1272" y="2245" width="415" height="473" frameX="0" frameY="-8" frameWidth="436" frameHeight="482"/>
-	<SubTexture name="aileen up0008" x="1272" y="2245" width="415" height="473" frameX="0" frameY="-8" frameWidth="436" frameHeight="482"/>
-	<SubTexture name="aileen up0009" x="1272" y="2245" width="415" height="473" frameX="0" frameY="-8" frameWidth="436" frameHeight="482"/>
-	<SubTexture name="aileen up miss0000" x="1687" y="2245" width="423" height="465" frameX="0" frameY="-43" frameWidth="423" frameHeight="510"/>
-	<SubTexture name="aileen up miss0001" x="2110" y="2245" width="423" height="510"/>
-	<SubTexture name="aileen up miss0002" x="2533" y="2245" width="423" height="467" frameX="0" frameY="-41" frameWidth="423" frameHeight="510"/>
-	<SubTexture name="aileen up miss0003" x="2533" y="2245" width="423" height="467" frameX="0" frameY="-41" frameWidth="423" frameHeight="510"/>
-	<SubTexture name="aileen up miss0004" x="2533" y="2245" width="423" height="467" frameX="0" frameY="-41" frameWidth="423" frameHeight="510"/>
-	<SubTexture name="aileen up miss0005" x="2533" y="2245" width="423" height="467" frameX="0" frameY="-41" frameWidth="423" frameHeight="510"/>
-	<SubTexture name="aileen up miss0006" x="2533" y="2245" width="423" height="467" frameX="0" frameY="-41" frameWidth="423" frameHeight="510"/>
-	<SubTexture name="aileen up miss0007" x="2533" y="2245" width="423" height="467" frameX="0" frameY="-41" frameWidth="423" frameHeight="510"/>
-	<SubTexture name="aileen up miss0008" x="2533" y="2245" width="423" height="467" frameX="0" frameY="-41" frameWidth="423" frameHeight="510"/>
-	<SubTexture name="aileen up miss0009" x="2533" y="2245" width="423" height="467" frameX="0" frameY="-41" frameWidth="423" frameHeight="510"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Created with Funkin Packer v0.1.3 https://neeeoo.github.io/funkin-packer/
+-->
+<TextureAtlas imagePath="AileenFFF.png" width="8152" height="1312">
+	<SubTexture name="aileen down0000" x="7765" y="1" width="386" height="409" frameX="-10" frameY="-11" frameWidth="411" frameHeight="434"/>
+	<SubTexture name="aileen down0001" x="1925" y="1" width="366" height="400" frameX="-9" frameY="-19" frameWidth="411" frameHeight="434"/>
+	<SubTexture name="aileen down0002" x="1180" y="1" width="365" height="399" frameX="-9" frameY="-20" frameWidth="411" frameHeight="434"/>
+	<SubTexture name="aileen down0003" x="3049" y="1" width="376" height="402" frameX="-9" frameY="-17" frameWidth="411" frameHeight="434"/>
+	<SubTexture name="aileen down0004" x="4622" y="1" width="386" height="405" frameX="-10" frameY="-14" frameWidth="411" frameHeight="434"/>
+	<SubTexture name="aileen down0005" x="5011" y="1" width="388" height="406" frameX="-10" frameY="-13" frameWidth="411" frameHeight="434"/>
+	<SubTexture name="aileen down0006" x="5402" y="1" width="388" height="406" frameX="-10" frameY="-13" frameWidth="411" frameHeight="434"/>
+	<SubTexture name="aileen down0007" x="5402" y="1" width="388" height="406" frameX="-10" frameY="-13" frameWidth="411" frameHeight="434"/>
+	<SubTexture name="aileen down0008" x="5402" y="1" width="388" height="406" frameX="-10" frameY="-13" frameWidth="411" frameHeight="434"/>
+	<SubTexture name="aileen down0009" x="5402" y="1" width="388" height="406" frameX="-10" frameY="-13" frameWidth="411" frameHeight="434"/>
+	<SubTexture name="aileen down miss0000" x="787" y="1" width="390" height="366" frameX="-7" frameY="-12" frameWidth="423" frameHeight="388"/>
+	<SubTexture name="aileen down miss0001" x="1" y="1" width="390" height="330" frameX="-7" frameY="-47" frameWidth="423" frameHeight="388"/>
+	<SubTexture name="aileen down miss0002" x="394" y="1" width="390" height="357" frameX="-7" frameY="-21" frameWidth="423" frameHeight="388"/>
+	<SubTexture name="aileen down miss0003" x="394" y="1" width="390" height="357" frameX="-7" frameY="-21" frameWidth="423" frameHeight="388"/>
+	<SubTexture name="aileen down miss0004" x="394" y="1" width="390" height="357" frameX="-7" frameY="-21" frameWidth="423" frameHeight="388"/>
+	<SubTexture name="aileen down miss0005" x="394" y="1" width="390" height="357" frameX="-7" frameY="-21" frameWidth="423" frameHeight="388"/>
+	<SubTexture name="aileen down miss0006" x="394" y="1" width="390" height="357" frameX="-7" frameY="-21" frameWidth="423" frameHeight="388"/>
+	<SubTexture name="aileen down miss0007" x="394" y="1" width="390" height="357" frameX="-7" frameY="-21" frameWidth="423" frameHeight="388"/>
+	<SubTexture name="aileen down miss0008" x="394" y="1" width="390" height="357" frameX="-7" frameY="-21" frameWidth="423" frameHeight="388"/>
+	<SubTexture name="aileen down miss0009" x="394" y="1" width="390" height="357" frameX="-7" frameY="-21" frameWidth="423" frameHeight="388"/>
+	<SubTexture name="aileen idle0000" x="1" y="334" width="387" height="412" frameX="-18" frameY="-10" frameWidth="421" frameHeight="437"/>
+	<SubTexture name="aileen idle0001" x="6194" y="1" width="379" height="407" frameX="-18" frameY="-15" frameWidth="421" frameHeight="437"/>
+	<SubTexture name="aileen idle0002" x="2294" y="1" width="375" height="400" frameX="-8" frameY="-22" frameWidth="421" frameHeight="437"/>
+	<SubTexture name="aileen idle0003" x="2672" y="1" width="374" height="400" frameX="-7" frameY="-22" frameWidth="421" frameHeight="437"/>
+	<SubTexture name="aileen idle0004" x="2672" y="1" width="374" height="400" frameX="-7" frameY="-22" frameWidth="421" frameHeight="437"/>
+	<SubTexture name="aileen idle0005" x="1548" y="1" width="374" height="399" frameX="-7" frameY="-23" frameWidth="421" frameHeight="437"/>
+	<SubTexture name="aileen idle0006" x="3830" y="1" width="376" height="403" frameX="-9" frameY="-19" frameWidth="421" frameHeight="437"/>
+	<SubTexture name="aileen idle0007" x="6576" y="1" width="386" height="407" frameX="-13" frameY="-15" frameWidth="421" frameHeight="437"/>
+	<SubTexture name="aileen idle0008" x="391" y="361" width="387" height="412" frameX="-18" frameY="-10" frameWidth="421" frameHeight="437"/>
+	<SubTexture name="aileen idle0009" x="1927" y="404" width="389" height="414" frameX="-18" frameY="-8" frameWidth="421" frameHeight="437"/>
+	<SubTexture name="aileen idle0010" x="3035" y="406" width="389" height="415" frameX="-19" frameY="-7" frameWidth="421" frameHeight="437"/>
+	<SubTexture name="aileen idle0011" x="3427" y="406" width="389" height="415" frameX="-17" frameY="-7" frameWidth="421" frameHeight="437"/>
+	<SubTexture name="aileen idle0012" x="3819" y="408" width="388" height="415" frameX="-20" frameY="-7" frameWidth="421" frameHeight="437"/>
+	<SubTexture name="aileen idle0013" x="4210" y="408" width="389" height="415" frameX="-18" frameY="-7" frameWidth="421" frameHeight="437"/>
+	<SubTexture name="aileen idle0014" x="2319" y="404" width="388" height="414" frameX="-18" frameY="-8" frameWidth="421" frameHeight="437"/>
+	<SubTexture name="aileen left0000" x="1106" y="403" width="402" height="410" frameX="-16" frameY="-16" frameWidth="430" frameHeight="441"/>
+	<SubTexture name="aileen left0001" x="6021" y="411" width="410" height="420" frameX="-6" frameY="-6" frameWidth="430" frameHeight="441"/>
+	<SubTexture name="aileen left0002" x="1511" y="404" width="413" height="410" frameX="-2" frameY="-16" frameWidth="430" frameHeight="441"/>
+	<SubTexture name="aileen left0003" x="4209" y="1" width="410" height="404" frameX="-6" frameY="-22" frameWidth="430" frameHeight="441"/>
+	<SubTexture name="aileen left0004" x="3428" y="1" width="399" height="402" frameX="-9" frameY="-24" frameWidth="430" frameHeight="441"/>
+	<SubTexture name="aileen left0005" x="5793" y="1" width="398" height="406" frameX="-9" frameY="-20" frameWidth="430" frameHeight="441"/>
+	<SubTexture name="aileen left0006" x="6965" y="1" width="397" height="408" frameX="-9" frameY="-18" frameWidth="430" frameHeight="441"/>
+	<SubTexture name="aileen left0007" x="7365" y="1" width="397" height="408" frameX="-9" frameY="-18" frameWidth="430" frameHeight="441"/>
+	<SubTexture name="aileen left0008" x="7365" y="1" width="397" height="408" frameX="-9" frameY="-18" frameWidth="430" frameHeight="441"/>
+	<SubTexture name="aileen left0009" x="7365" y="1" width="397" height="408" frameX="-9" frameY="-18" frameWidth="430" frameHeight="441"/>
+	<SubTexture name="aileen left miss0000" x="6434" y="411" width="401" height="423" frameX="-29" frameY="-13" frameWidth="459" frameHeight="447"/>
+	<SubTexture name="aileen left miss0001" x="6838" y="412" width="413" height="423" frameX="-4" frameY="-13" frameWidth="459" frameHeight="447"/>
+	<SubTexture name="aileen left miss0002" x="7254" y="412" width="404" height="423" frameX="-24" frameY="-13" frameWidth="459" frameHeight="447"/>
+	<SubTexture name="aileen left miss0003" x="7254" y="412" width="404" height="423" frameX="-24" frameY="-13" frameWidth="459" frameHeight="447"/>
+	<SubTexture name="aileen left miss0004" x="7254" y="412" width="404" height="423" frameX="-24" frameY="-13" frameWidth="459" frameHeight="447"/>
+	<SubTexture name="aileen left miss0005" x="7254" y="412" width="404" height="423" frameX="-24" frameY="-13" frameWidth="459" frameHeight="447"/>
+	<SubTexture name="aileen left miss0006" x="7254" y="412" width="404" height="423" frameX="-24" frameY="-13" frameWidth="459" frameHeight="447"/>
+	<SubTexture name="aileen left miss0007" x="7254" y="412" width="404" height="423" frameX="-24" frameY="-13" frameWidth="459" frameHeight="447"/>
+	<SubTexture name="aileen left miss0008" x="7254" y="412" width="404" height="423" frameX="-24" frameY="-13" frameWidth="459" frameHeight="447"/>
+	<SubTexture name="aileen left miss0009" x="7254" y="412" width="404" height="423" frameX="-24" frameY="-13" frameWidth="459" frameHeight="447"/>
+	<SubTexture name="aileen right0000" x="4602" y="409" width="354" height="416" frameX="-12" frameY="-14" frameWidth="397" frameHeight="445"/>
+	<SubTexture name="aileen right0001" x="765" y="786" width="327" height="424" frameX="-25" frameY="-6" frameWidth="397" frameHeight="445"/>
+	<SubTexture name="aileen right0002" x="2710" y="404" width="322" height="416" frameX="-30" frameY="-14" frameWidth="397" frameHeight="445"/>
+	<SubTexture name="aileen right0003" x="781" y="370" width="322" height="413" frameX="-28" frameY="-17" frameWidth="397" frameHeight="445"/>
+	<SubTexture name="aileen right0004" x="4959" y="410" width="339" height="416" frameX="-25" frameY="-14" frameWidth="397" frameHeight="445"/>
+	<SubTexture name="aileen right0005" x="5301" y="410" width="356" height="417" frameX="-23" frameY="-13" frameWidth="397" frameHeight="445"/>
+	<SubTexture name="aileen right0006" x="5660" y="410" width="358" height="417" frameX="-23" frameY="-13" frameWidth="397" frameHeight="445"/>
+	<SubTexture name="aileen right0007" x="5660" y="410" width="358" height="417" frameX="-23" frameY="-13" frameWidth="397" frameHeight="445"/>
+	<SubTexture name="aileen right0008" x="5660" y="410" width="358" height="417" frameX="-23" frameY="-13" frameWidth="397" frameHeight="445"/>
+	<SubTexture name="aileen right0009" x="5660" y="410" width="358" height="417" frameX="-23" frameY="-13" frameWidth="397" frameHeight="445"/>
+	<SubTexture name="aileen right miss0000" x="7661" y="413" width="380" height="423" frameX="-13" frameY="-13" frameWidth="429" frameHeight="447"/>
+	<SubTexture name="aileen right miss0001" x="1" y="749" width="376" height="423" frameX="-28" frameY="-13" frameWidth="429" frameHeight="447"/>
+	<SubTexture name="aileen right miss0002" x="380" y="776" width="382" height="423" frameX="-8" frameY="-13" frameWidth="429" frameHeight="447"/>
+	<SubTexture name="aileen right miss0003" x="380" y="776" width="382" height="423" frameX="-8" frameY="-13" frameWidth="429" frameHeight="447"/>
+	<SubTexture name="aileen right miss0004" x="380" y="776" width="382" height="423" frameX="-8" frameY="-13" frameWidth="429" frameHeight="447"/>
+	<SubTexture name="aileen right miss0005" x="380" y="776" width="382" height="423" frameX="-8" frameY="-13" frameWidth="429" frameHeight="447"/>
+	<SubTexture name="aileen right miss0006" x="380" y="776" width="382" height="423" frameX="-8" frameY="-13" frameWidth="429" frameHeight="447"/>
+	<SubTexture name="aileen right miss0007" x="380" y="776" width="382" height="423" frameX="-8" frameY="-13" frameWidth="429" frameHeight="447"/>
+	<SubTexture name="aileen right miss0008" x="380" y="776" width="382" height="423" frameX="-8" frameY="-13" frameWidth="429" frameHeight="447"/>
+	<SubTexture name="aileen right miss0009" x="380" y="776" width="382" height="423" frameX="-8" frameY="-13" frameWidth="429" frameHeight="447"/>
+	<SubTexture name="aileen up0000" x="1881" y="821" width="411" height="451" frameX="-10" frameY="-15" frameWidth="436" frameHeight="482"/>
+	<SubTexture name="aileen up0001" x="3902" y="826" width="413" height="460" frameX="-10" frameY="-6" frameWidth="436" frameHeight="482"/>
+	<SubTexture name="aileen up0002" x="4318" y="828" width="413" height="461" frameX="-10" frameY="-5" frameWidth="436" frameHeight="482"/>
+	<SubTexture name="aileen up0003" x="3487" y="826" width="412" height="458" frameX="-10" frameY="-8" frameWidth="436" frameHeight="482"/>
+	<SubTexture name="aileen up0004" x="3088" y="824" width="396" height="452" frameX="-10" frameY="-14" frameWidth="436" frameHeight="482"/>
+	<SubTexture name="aileen up0005" x="2295" y="821" width="394" height="451" frameX="-9" frameY="-14" frameWidth="436" frameHeight="482"/>
+	<SubTexture name="aileen up0006" x="2692" y="824" width="393" height="451" frameX="-9" frameY="-14" frameWidth="436" frameHeight="482"/>
+	<SubTexture name="aileen up0007" x="2692" y="824" width="393" height="451" frameX="-9" frameY="-14" frameWidth="436" frameHeight="482"/>
+	<SubTexture name="aileen up0008" x="2692" y="824" width="393" height="451" frameX="-9" frameY="-14" frameWidth="436" frameHeight="482"/>
+	<SubTexture name="aileen up0009" x="2692" y="824" width="393" height="451" frameX="-9" frameY="-14" frameWidth="436" frameHeight="482"/>
+	<SubTexture name="aileen up miss0000" x="1095" y="816" width="390" height="440" frameX="-7" frameY="-56" frameWidth="423" frameHeight="510"/>
+	<SubTexture name="aileen up miss0001" x="4734" y="829" width="390" height="482" frameX="-7" frameY="-15" frameWidth="423" frameHeight="510"/>
+	<SubTexture name="aileen up miss0002" x="1488" y="817" width="390" height="442" frameX="-7" frameY="-54" frameWidth="423" frameHeight="510"/>
+	<SubTexture name="aileen up miss0003" x="1488" y="817" width="390" height="442" frameX="-7" frameY="-54" frameWidth="423" frameHeight="510"/>
+	<SubTexture name="aileen up miss0004" x="1488" y="817" width="390" height="442" frameX="-7" frameY="-54" frameWidth="423" frameHeight="510"/>
+	<SubTexture name="aileen up miss0005" x="1488" y="817" width="390" height="442" frameX="-7" frameY="-54" frameWidth="423" frameHeight="510"/>
+	<SubTexture name="aileen up miss0006" x="1488" y="817" width="390" height="442" frameX="-7" frameY="-54" frameWidth="423" frameHeight="510"/>
+	<SubTexture name="aileen up miss0007" x="1488" y="817" width="390" height="442" frameX="-7" frameY="-54" frameWidth="423" frameHeight="510"/>
+	<SubTexture name="aileen up miss0008" x="1488" y="817" width="390" height="442" frameX="-7" frameY="-54" frameWidth="423" frameHeight="510"/>
+	<SubTexture name="aileen up miss0009" x="1488" y="817" width="390" height="442" frameX="-7" frameY="-54" frameWidth="423" frameHeight="510"/>
 </TextureAtlas>

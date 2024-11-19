@@ -1,190 +1,191 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<TextureAtlas imagePath="Cassette Goon.png">
-	<!-- Created with Adobe Animate version 21.0.5.40714 -->
-	<!-- http://www.adobe.com/products/animate.html -->
-	<SubTexture name="cassette girl down miss0000" x="4" y="4" width="518" height="658"/>
-	<SubTexture name="cassette girl down miss0001" x="522" y="4" width="518" height="552" frameX="0" frameY="-104" frameWidth="518" frameHeight="658"/>
-	<SubTexture name="cassette girl down miss0002" x="1040" y="4" width="518" height="625" frameX="0" frameY="-33" frameWidth="518" frameHeight="658"/>
-	<SubTexture name="cassette girl down miss0003" x="1040" y="4" width="518" height="625" frameX="0" frameY="-33" frameWidth="518" frameHeight="658"/>
-	<SubTexture name="cassette girl down miss0004" x="1040" y="4" width="518" height="625" frameX="0" frameY="-33" frameWidth="518" frameHeight="658"/>
-	<SubTexture name="cassette girl down miss0005" x="1040" y="4" width="518" height="625" frameX="0" frameY="-33" frameWidth="518" frameHeight="658"/>
-	<SubTexture name="cassette girl down miss0006" x="1040" y="4" width="518" height="625" frameX="0" frameY="-33" frameWidth="518" frameHeight="658"/>
-	<SubTexture name="cassette girl down miss0007" x="1040" y="4" width="518" height="625" frameX="0" frameY="-33" frameWidth="518" frameHeight="658"/>
-	<SubTexture name="cassette girl down miss0008" x="1040" y="4" width="518" height="625" frameX="0" frameY="-33" frameWidth="518" frameHeight="658"/>
-	<SubTexture name="cassette girl down miss0009" x="1040" y="4" width="518" height="625" frameX="0" frameY="-33" frameWidth="518" frameHeight="658"/>
-	<SubTexture name="cassette girl left miss0000" x="1558" y="4" width="446" height="702" frameX="0" frameY="0" frameWidth="486" frameHeight="702"/>
-	<SubTexture name="cassette girl left miss0001" x="2004" y="4" width="483" height="702" frameX="-3" frameY="0" frameWidth="486" frameHeight="702"/>
-	<SubTexture name="cassette girl left miss0002" x="2487" y="4" width="461" height="702" frameX="-1" frameY="0" frameWidth="486" frameHeight="702"/>
-	<SubTexture name="cassette girl left miss0003" x="2487" y="4" width="461" height="702" frameX="-1" frameY="0" frameWidth="486" frameHeight="702"/>
-	<SubTexture name="cassette girl left miss0004" x="2487" y="4" width="461" height="702" frameX="-1" frameY="0" frameWidth="486" frameHeight="702"/>
-	<SubTexture name="cassette girl left miss0005" x="2487" y="4" width="461" height="702" frameX="-1" frameY="0" frameWidth="486" frameHeight="702"/>
-	<SubTexture name="cassette girl left miss0006" x="2487" y="4" width="461" height="702" frameX="-1" frameY="0" frameWidth="486" frameHeight="702"/>
-	<SubTexture name="cassette girl left miss0007" x="2487" y="4" width="461" height="702" frameX="-1" frameY="0" frameWidth="486" frameHeight="702"/>
-	<SubTexture name="cassette girl left miss0008" x="2487" y="4" width="461" height="702" frameX="-1" frameY="0" frameWidth="486" frameHeight="702"/>
-	<SubTexture name="cassette girl left miss0009" x="2487" y="4" width="461" height="702" frameX="-1" frameY="0" frameWidth="486" frameHeight="702"/>
-	<SubTexture name="cassette girl right miss0000" x="2948" y="4" width="525" height="666" frameX="-47" frameY="0" frameWidth="572" frameHeight="666"/>
-	<SubTexture name="cassette girl right miss0001" x="3473" y="4" width="538" height="666" frameX="0" frameY="0" frameWidth="572" frameHeight="666"/>
-	<SubTexture name="cassette girl right miss0002" x="4011" y="4" width="530" height="666" frameX="-13" frameY="0" frameWidth="572" frameHeight="666"/>
-	<SubTexture name="cassette girl right miss0003" x="4011" y="4" width="530" height="666" frameX="-13" frameY="0" frameWidth="572" frameHeight="666"/>
-	<SubTexture name="cassette girl right miss0004" x="4011" y="4" width="530" height="666" frameX="-13" frameY="0" frameWidth="572" frameHeight="666"/>
-	<SubTexture name="cassette girl right miss0005" x="4011" y="4" width="530" height="666" frameX="-13" frameY="0" frameWidth="572" frameHeight="666"/>
-	<SubTexture name="cassette girl right miss0006" x="4011" y="4" width="530" height="666" frameX="-13" frameY="0" frameWidth="572" frameHeight="666"/>
-	<SubTexture name="cassette girl right miss0007" x="4011" y="4" width="530" height="666" frameX="-13" frameY="0" frameWidth="572" frameHeight="666"/>
-	<SubTexture name="cassette girl right miss0008" x="4011" y="4" width="530" height="666" frameX="-13" frameY="0" frameWidth="572" frameHeight="666"/>
-	<SubTexture name="cassette girl right miss0009" x="4011" y="4" width="530" height="666" frameX="-13" frameY="0" frameWidth="572" frameHeight="666"/>
-	<SubTexture name="cassette girl up miss0000" x="4541" y="4" width="521" height="643" frameX="-122" frameY="-218" frameWidth="721" frameHeight="861"/>
-	<SubTexture name="cassette girl up miss0001" x="5062" y="4" width="679" height="561" frameX="-36" frameY="-171" frameWidth="721" frameHeight="861"/>
-	<SubTexture name="cassette girl up miss0002" x="5741" y="4" width="692" height="677" frameX="-5" frameY="-87" frameWidth="721" frameHeight="861"/>
-	<SubTexture name="cassette girl up miss0003" x="6433" y="4" width="721" height="747" frameX="0" frameY="-25" frameWidth="721" frameHeight="861"/>
-	<SubTexture name="cassette girl up miss0004" x="7154" y="4" width="688" height="746" frameX="-26" frameY="-2" frameWidth="721" frameHeight="861"/>
-	<SubTexture name="cassette girl up miss0005" x="4" y="751" width="632" height="719" frameX="-62" frameY="0" frameWidth="721" frameHeight="861"/>
-	<SubTexture name="cassette girl up miss0006" x="636" y="751" width="582" height="692" frameX="-92" frameY="-8" frameWidth="721" frameHeight="861"/>
-	<SubTexture name="cassette girl up miss0007" x="1218" y="751" width="545" height="668" frameX="-114" frameY="-18" frameWidth="721" frameHeight="861"/>
-	<SubTexture name="cassette girl up miss0008" x="1763" y="751" width="522" height="652" frameX="-127" frameY="-26" frameWidth="721" frameHeight="861"/>
-	<SubTexture name="cassette girl up miss0009" x="2285" y="751" width="519" height="647" frameX="-127" frameY="-28" frameWidth="721" frameHeight="861"/>
-	<SubTexture name="cassette goon down0000" x="2804" y="751" width="427" height="619" frameX="0" frameY="0" frameWidth="435" frameHeight="619"/>
-	<SubTexture name="cassette goon down0001" x="3231" y="751" width="380" height="601" frameX="-24" frameY="-18" frameWidth="435" frameHeight="619"/>
-	<SubTexture name="cassette goon down0002" x="3611" y="751" width="378" height="610" frameX="-24" frameY="-9" frameWidth="435" frameHeight="619"/>
-	<SubTexture name="cassette goon down0003" x="3989" y="751" width="380" height="609" frameX="-24" frameY="-10" frameWidth="435" frameHeight="619"/>
-	<SubTexture name="cassette goon down0004" x="4369" y="751" width="419" height="592" frameX="-5" frameY="-27" frameWidth="435" frameHeight="619"/>
-	<SubTexture name="cassette goon down0005" x="4788" y="751" width="428" height="593" frameX="-5" frameY="-26" frameWidth="435" frameHeight="619"/>
-	<SubTexture name="cassette goon down0006" x="5216" y="751" width="430" height="602" frameX="-5" frameY="-17" frameWidth="435" frameHeight="619"/>
-	<SubTexture name="cassette goon down0007" x="5646" y="751" width="430" height="608" frameX="-5" frameY="-11" frameWidth="435" frameHeight="619"/>
-	<SubTexture name="cassette goon down0008" x="6076" y="751" width="430" height="609" frameX="-5" frameY="-10" frameWidth="435" frameHeight="619"/>
-	<SubTexture name="cassette goon down0009" x="6076" y="751" width="430" height="609" frameX="-5" frameY="-10" frameWidth="435" frameHeight="619"/>
-	<SubTexture name="cassette goon idle0000" x="6506" y="751" width="411" height="681" frameX="-8" frameY="-12" frameWidth="435" frameHeight="693"/>
-	<SubTexture name="cassette goon idle0001" x="6917" y="751" width="411" height="679" frameX="-8" frameY="-14" frameWidth="435" frameHeight="693"/>
-	<SubTexture name="cassette goon idle0002" x="7328" y="751" width="411" height="692" frameX="-17" frameY="-1" frameWidth="435" frameHeight="693"/>
-	<SubTexture name="cassette goon idle0003" x="7739" y="751" width="384" height="692" frameX="-49" frameY="0" frameWidth="435" frameHeight="693"/>
-	<SubTexture name="cassette goon idle0004" x="4" y="1470" width="381" height="691" frameX="-54" frameY="-1" frameWidth="435" frameHeight="693"/>
-	<SubTexture name="cassette goon idle0005" x="385" y="1470" width="380" height="690" frameX="-55" frameY="-2" frameWidth="435" frameHeight="693"/>
-	<SubTexture name="cassette goon idle0006" x="765" y="1470" width="382" height="685" frameX="-49" frameY="-7" frameWidth="435" frameHeight="693"/>
-	<SubTexture name="cassette goon idle0007" x="1147" y="1470" width="405" height="677" frameX="-19" frameY="-16" frameWidth="435" frameHeight="693"/>
-	<SubTexture name="cassette goon idle0008" x="1552" y="1470" width="411" height="681" frameX="-8" frameY="-12" frameWidth="435" frameHeight="693"/>
-	<SubTexture name="cassette goon idle0009" x="1963" y="1470" width="417" height="683" frameX="-2" frameY="-10" frameWidth="435" frameHeight="693"/>
-	<SubTexture name="cassette goon idle0010" x="2380" y="1470" width="419" height="685" frameX="0" frameY="-8" frameWidth="435" frameHeight="693"/>
-	<SubTexture name="cassette goon idle0011" x="2799" y="1470" width="419" height="685" frameX="0" frameY="-8" frameWidth="435" frameHeight="693"/>
-	<SubTexture name="cassette goon idle0012" x="3218" y="1470" width="419" height="685" frameX="0" frameY="-8" frameWidth="435" frameHeight="693"/>
-	<SubTexture name="cassette goon idle0013" x="3637" y="1470" width="419" height="685" frameX="0" frameY="-8" frameWidth="435" frameHeight="693"/>
-	<SubTexture name="cassette goon idle0014" x="4056" y="1470" width="417" height="683" frameX="-2" frameY="-10" frameWidth="435" frameHeight="693"/>
-	<SubTexture name="cassette goon idle alt0000" x="4473" y="1470" width="411" height="681" frameX="-8" frameY="-12" frameWidth="435" frameHeight="693"/>
-	<SubTexture name="cassette goon idle alt0001" x="4884" y="1470" width="411" height="679" frameX="-8" frameY="-14" frameWidth="435" frameHeight="693"/>
-	<SubTexture name="cassette goon idle alt0002" x="5295" y="1470" width="411" height="692" frameX="-17" frameY="-1" frameWidth="435" frameHeight="693"/>
-	<SubTexture name="cassette goon idle alt0003" x="5706" y="1470" width="384" height="692" frameX="-49" frameY="0" frameWidth="435" frameHeight="693"/>
-	<SubTexture name="cassette goon idle alt0004" x="6090" y="1470" width="381" height="691" frameX="-54" frameY="-1" frameWidth="435" frameHeight="693"/>
-	<SubTexture name="cassette goon idle alt0005" x="6471" y="1470" width="380" height="690" frameX="-55" frameY="-2" frameWidth="435" frameHeight="693"/>
-	<SubTexture name="cassette goon idle alt0006" x="6851" y="1470" width="382" height="685" frameX="-49" frameY="-7" frameWidth="435" frameHeight="693"/>
-	<SubTexture name="cassette goon idle alt0007" x="7233" y="1470" width="405" height="677" frameX="-19" frameY="-16" frameWidth="435" frameHeight="693"/>
-	<SubTexture name="cassette goon idle alt0008" x="7638" y="1470" width="411" height="681" frameX="-8" frameY="-12" frameWidth="435" frameHeight="693"/>
-	<SubTexture name="cassette goon idle alt0009" x="4" y="2162" width="417" height="683" frameX="-2" frameY="-10" frameWidth="435" frameHeight="693"/>
-	<SubTexture name="cassette goon idle alt0010" x="421" y="2162" width="419" height="685" frameX="0" frameY="-8" frameWidth="435" frameHeight="693"/>
-	<SubTexture name="cassette goon idle alt0011" x="840" y="2162" width="419" height="685" frameX="0" frameY="-8" frameWidth="435" frameHeight="693"/>
-	<SubTexture name="cassette goon idle alt0012" x="1259" y="2162" width="419" height="685" frameX="0" frameY="-8" frameWidth="435" frameHeight="693"/>
-	<SubTexture name="cassette goon idle alt0013" x="1678" y="2162" width="419" height="685" frameX="0" frameY="-8" frameWidth="435" frameHeight="693"/>
-	<SubTexture name="cassette goon idle alt0014" x="2097" y="2162" width="417" height="683" frameX="-2" frameY="-10" frameWidth="435" frameHeight="693"/>
-	<SubTexture name="cassette goon left0000" x="2514" y="2162" width="480" height="608" frameX="-49" frameY="-12" frameWidth="529" frameHeight="620"/>
-	<SubTexture name="cassette goon left0001" x="2994" y="2162" width="496" height="620" frameX="-19" frameY="0" frameWidth="529" frameHeight="620"/>
-	<SubTexture name="cassette goon left0002" x="3490" y="2162" width="514" height="608" frameX="0" frameY="-12" frameWidth="529" frameHeight="620"/>
-	<SubTexture name="cassette goon left0003" x="4004" y="2162" width="505" height="602" frameX="-9" frameY="-18" frameWidth="529" frameHeight="620"/>
-	<SubTexture name="cassette goon left0004" x="4509" y="2162" width="488" height="605" frameX="-27" frameY="-15" frameWidth="529" frameHeight="620"/>
-	<SubTexture name="cassette goon left0005" x="4997" y="2162" width="474" height="607" frameX="-45" frameY="-13" frameWidth="529" frameHeight="620"/>
-	<SubTexture name="cassette goon left0006" x="5471" y="2162" width="463" height="607" frameX="-52" frameY="-13" frameWidth="529" frameHeight="620"/>
-	<SubTexture name="cassette goon left0007" x="5934" y="2162" width="463" height="607" frameX="-52" frameY="-13" frameWidth="529" frameHeight="620"/>
-	<SubTexture name="cassette goon left0008" x="6397" y="2162" width="468" height="607" frameX="-47" frameY="-13" frameWidth="529" frameHeight="620"/>
-	<SubTexture name="cassette goon left0009" x="6865" y="2162" width="469" height="607" frameX="-46" frameY="-13" frameWidth="529" frameHeight="620"/>
-	<SubTexture name="cassette goon right0000" x="7334" y="2162" width="394" height="675" frameX="0" frameY="-47" frameWidth="441" frameHeight="723"/>
-	<SubTexture name="cassette goon right0001" x="7728" y="2162" width="422" height="723" frameX="0" frameY="0" frameWidth="441" frameHeight="723"/>
-	<SubTexture name="cassette goon right0002" x="4" y="2885" width="440" height="700" frameX="-1" frameY="-22" frameWidth="441" frameHeight="723"/>
-	<SubTexture name="cassette goon right0003" x="444" y="2885" width="424" height="671" frameX="-1" frameY="-51" frameWidth="441" frameHeight="723"/>
-	<SubTexture name="cassette goon right0004" x="868" y="2885" width="389" height="679" frameX="0" frameY="-43" frameWidth="441" frameHeight="723"/>
-	<SubTexture name="cassette goon right0005" x="1257" y="2885" width="384" height="683" frameX="0" frameY="-40" frameWidth="441" frameHeight="723"/>
-	<SubTexture name="cassette goon right0006" x="1641" y="2885" width="393" height="687" frameX="0" frameY="-36" frameWidth="441" frameHeight="723"/>
-	<SubTexture name="cassette goon right0007" x="2034" y="2885" width="395" height="687" frameX="0" frameY="-36" frameWidth="441" frameHeight="723"/>
-	<SubTexture name="cassette goon right0008" x="2034" y="2885" width="395" height="687" frameX="0" frameY="-36" frameWidth="441" frameHeight="723"/>
-	<SubTexture name="cassette goon right0009" x="2034" y="2885" width="395" height="687" frameX="0" frameY="-36" frameWidth="441" frameHeight="723"/>
-	<SubTexture name="cassette goon shoot0000" x="2429" y="2885" width="481" height="726" frameX="0" frameY="0" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0001" x="2910" y="2885" width="492" height="710" frameX="0" frameY="-16" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0002" x="3402" y="2885" width="512" height="683" frameX="0" frameY="-43" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0003" x="3914" y="2885" width="513" height="683" frameX="0" frameY="-43" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0004" x="4427" y="2885" width="513" height="683" frameX="0" frameY="-43" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0005" x="4427" y="2885" width="513" height="683" frameX="0" frameY="-43" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0006" x="4427" y="2885" width="513" height="683" frameX="0" frameY="-43" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0007" x="4427" y="2885" width="513" height="683" frameX="0" frameY="-43" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0008" x="4427" y="2885" width="513" height="683" frameX="0" frameY="-43" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0009" x="4427" y="2885" width="513" height="683" frameX="0" frameY="-43" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0010" x="4427" y="2885" width="513" height="683" frameX="0" frameY="-43" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0011" x="4427" y="2885" width="513" height="683" frameX="0" frameY="-43" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0012" x="4427" y="2885" width="513" height="683" frameX="0" frameY="-43" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0013" x="4427" y="2885" width="513" height="683" frameX="0" frameY="-43" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0014" x="4427" y="2885" width="513" height="683" frameX="0" frameY="-43" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0015" x="4427" y="2885" width="513" height="683" frameX="0" frameY="-43" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0016" x="4427" y="2885" width="513" height="683" frameX="0" frameY="-43" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0017" x="4427" y="2885" width="513" height="683" frameX="0" frameY="-43" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0018" x="4427" y="2885" width="513" height="683" frameX="0" frameY="-43" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0019" x="4427" y="2885" width="513" height="683" frameX="0" frameY="-43" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0020" x="4940" y="2885" width="516" height="682" frameX="0" frameY="-44" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0021" x="5456" y="2885" width="539" height="679" frameX="0" frameY="-47" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0022" x="5995" y="2885" width="580" height="683" frameX="0" frameY="-43" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0023" x="6575" y="2885" width="423" height="684" frameX="0" frameY="-42" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0024" x="6998" y="2885" width="411" height="684" frameX="0" frameY="-42" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0025" x="7409" y="2885" width="411" height="684" frameX="0" frameY="-42" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0026" x="4" y="3611" width="411" height="684" frameX="0" frameY="-42" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0027" x="4" y="3611" width="411" height="684" frameX="0" frameY="-42" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0028" x="4" y="3611" width="411" height="684" frameX="0" frameY="-42" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0029" x="4" y="3611" width="411" height="684" frameX="0" frameY="-42" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0030" x="4" y="3611" width="411" height="684" frameX="0" frameY="-42" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0031" x="4" y="3611" width="411" height="684" frameX="0" frameY="-42" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0032" x="4" y="3611" width="411" height="684" frameX="0" frameY="-42" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0033" x="4" y="3611" width="411" height="684" frameX="0" frameY="-42" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0034" x="4" y="3611" width="411" height="684" frameX="0" frameY="-42" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0035" x="4" y="3611" width="411" height="684" frameX="0" frameY="-42" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0036" x="4" y="3611" width="411" height="684" frameX="0" frameY="-42" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0037" x="4" y="3611" width="411" height="684" frameX="0" frameY="-42" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0038" x="4" y="3611" width="411" height="684" frameX="0" frameY="-42" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0039" x="4" y="3611" width="411" height="684" frameX="0" frameY="-42" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0040" x="4" y="3611" width="411" height="684" frameX="0" frameY="-42" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0041" x="4" y="3611" width="411" height="684" frameX="0" frameY="-42" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0042" x="4" y="3611" width="411" height="684" frameX="0" frameY="-42" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0043" x="4" y="3611" width="411" height="684" frameX="0" frameY="-42" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0044" x="4" y="3611" width="411" height="684" frameX="0" frameY="-42" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0045" x="4" y="3611" width="411" height="684" frameX="0" frameY="-42" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0046" x="4" y="3611" width="411" height="684" frameX="0" frameY="-42" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0047" x="4" y="3611" width="411" height="684" frameX="0" frameY="-42" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0048" x="4" y="3611" width="411" height="684" frameX="0" frameY="-42" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0049" x="4" y="3611" width="411" height="684" frameX="0" frameY="-42" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0050" x="4" y="3611" width="411" height="684" frameX="0" frameY="-42" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0051" x="4" y="3611" width="411" height="684" frameX="0" frameY="-42" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0052" x="4" y="3611" width="411" height="684" frameX="0" frameY="-42" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0053" x="4" y="3611" width="411" height="684" frameX="0" frameY="-42" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0054" x="4" y="3611" width="411" height="684" frameX="0" frameY="-42" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0055" x="4" y="3611" width="411" height="684" frameX="0" frameY="-42" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0056" x="4" y="3611" width="411" height="684" frameX="0" frameY="-42" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0057" x="4" y="3611" width="411" height="684" frameX="0" frameY="-42" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0058" x="4" y="3611" width="411" height="684" frameX="0" frameY="-42" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0059" x="4" y="3611" width="411" height="684" frameX="0" frameY="-42" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0060" x="4" y="3611" width="411" height="684" frameX="0" frameY="-42" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0061" x="4" y="3611" width="411" height="684" frameX="0" frameY="-42" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0062" x="4" y="3611" width="411" height="684" frameX="0" frameY="-42" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0063" x="4" y="3611" width="411" height="684" frameX="0" frameY="-42" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0064" x="4" y="3611" width="411" height="684" frameX="0" frameY="-42" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0065" x="4" y="3611" width="411" height="684" frameX="0" frameY="-42" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0066" x="4" y="3611" width="411" height="684" frameX="0" frameY="-42" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0067" x="4" y="3611" width="411" height="684" frameX="0" frameY="-42" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0068" x="4" y="3611" width="411" height="684" frameX="0" frameY="-42" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0069" x="4" y="3611" width="411" height="684" frameX="0" frameY="-42" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0070" x="4" y="3611" width="411" height="684" frameX="0" frameY="-42" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0071" x="4" y="3611" width="411" height="684" frameX="0" frameY="-42" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0072" x="4" y="3611" width="411" height="684" frameX="0" frameY="-42" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0073" x="4" y="3611" width="411" height="684" frameX="0" frameY="-42" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon shoot0074" x="4" y="3611" width="411" height="684" frameX="0" frameY="-42" frameWidth="580" frameHeight="726"/>
-	<SubTexture name="cassette goon up0000" x="415" y="3611" width="387" height="664" frameX="-3" frameY="-37" frameWidth="420" frameHeight="702"/>
-	<SubTexture name="cassette goon up0001" x="802" y="3611" width="415" height="701" frameX="-3" frameY="-1" frameWidth="420" frameHeight="702"/>
-	<SubTexture name="cassette goon up0002" x="1217" y="3611" width="417" height="702" frameX="-3" frameY="0" frameWidth="420" frameHeight="702"/>
-	<SubTexture name="cassette goon up0003" x="1634" y="3611" width="415" height="694" frameX="-3" frameY="-8" frameWidth="420" frameHeight="702"/>
-	<SubTexture name="cassette goon up0004" x="2049" y="3611" width="383" height="676" frameX="-10" frameY="-26" frameWidth="420" frameHeight="702"/>
-	<SubTexture name="cassette goon up0005" x="2432" y="3611" width="364" height="677" frameX="-3" frameY="-25" frameWidth="420" frameHeight="702"/>
-	<SubTexture name="cassette goon up0006" x="2796" y="3611" width="363" height="679" frameX="0" frameY="-23" frameWidth="420" frameHeight="702"/>
-	<SubTexture name="cassette goon up0007" x="2796" y="3611" width="363" height="679" frameX="0" frameY="-23" frameWidth="420" frameHeight="702"/>
-	<SubTexture name="cassette goon up0008" x="2796" y="3611" width="363" height="679" frameX="0" frameY="-23" frameWidth="420" frameHeight="702"/>
-	<SubTexture name="cassette goon up0009" x="2796" y="3611" width="363" height="679" frameX="0" frameY="-23" frameWidth="420" frameHeight="702"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Created with Funkin Packer v0.1.3 https://neeeoo.github.io/funkin-packer/
+-->
+<TextureAtlas imagePath="Cassette Goon.png" width="8169" height="3310">
+	<SubTexture name="cassette girl down miss0000" x="3748" y="592" width="417" height="614" frameX="-45" frameY="-42" frameWidth="518" frameHeight="658"/>
+	<SubTexture name="cassette girl down miss0001" x="637" y="1" width="417" height="516" frameX="-45" frameY="-138" frameWidth="518" frameHeight="658"/>
+	<SubTexture name="cassette girl down miss0002" x="2147" y="1" width="417" height="583" frameX="-45" frameY="-72" frameWidth="518" frameHeight="658"/>
+	<SubTexture name="cassette girl down miss0003" x="2147" y="1" width="417" height="583" frameX="-45" frameY="-72" frameWidth="518" frameHeight="658"/>
+	<SubTexture name="cassette girl down miss0004" x="2147" y="1" width="417" height="583" frameX="-45" frameY="-72" frameWidth="518" frameHeight="658"/>
+	<SubTexture name="cassette girl down miss0005" x="2147" y="1" width="417" height="583" frameX="-45" frameY="-72" frameWidth="518" frameHeight="658"/>
+	<SubTexture name="cassette girl down miss0006" x="2147" y="1" width="417" height="583" frameX="-45" frameY="-72" frameWidth="518" frameHeight="658"/>
+	<SubTexture name="cassette girl down miss0007" x="2147" y="1" width="417" height="583" frameX="-45" frameY="-72" frameWidth="518" frameHeight="658"/>
+	<SubTexture name="cassette girl down miss0008" x="2147" y="1" width="417" height="583" frameX="-45" frameY="-72" frameWidth="518" frameHeight="658"/>
+	<SubTexture name="cassette girl down miss0009" x="2147" y="1" width="417" height="583" frameX="-45" frameY="-72" frameWidth="518" frameHeight="658"/>
+	<SubTexture name="cassette girl left miss0000" x="673" y="2518" width="358" height="681" frameX="-45" frameY="-16" frameWidth="486" frameHeight="702"/>
+	<SubTexture name="cassette girl left miss0001" x="2115" y="2531" width="395" height="681" frameX="-45" frameY="-16" frameWidth="486" frameHeight="702"/>
+	<SubTexture name="cassette girl left miss0002" x="1034" y="2519" width="373" height="681" frameX="-45" frameY="-16" frameWidth="486" frameHeight="702"/>
+	<SubTexture name="cassette girl left miss0003" x="1034" y="2519" width="373" height="681" frameX="-45" frameY="-16" frameWidth="486" frameHeight="702"/>
+	<SubTexture name="cassette girl left miss0004" x="1034" y="2519" width="373" height="681" frameX="-45" frameY="-16" frameWidth="486" frameHeight="702"/>
+	<SubTexture name="cassette girl left miss0005" x="1034" y="2519" width="373" height="681" frameX="-45" frameY="-16" frameWidth="486" frameHeight="702"/>
+	<SubTexture name="cassette girl left miss0006" x="1034" y="2519" width="373" height="681" frameX="-45" frameY="-16" frameWidth="486" frameHeight="702"/>
+	<SubTexture name="cassette girl left miss0007" x="1034" y="2519" width="373" height="681" frameX="-45" frameY="-16" frameWidth="486" frameHeight="702"/>
+	<SubTexture name="cassette girl left miss0008" x="1034" y="2519" width="373" height="681" frameX="-45" frameY="-16" frameWidth="486" frameHeight="702"/>
+	<SubTexture name="cassette girl left miss0009" x="1034" y="2519" width="373" height="681" frameX="-45" frameY="-16" frameWidth="486" frameHeight="702"/>
+	<SubTexture name="cassette girl right miss0000" x="4623" y="594" width="457" height="639" frameX="-56" frameY="-23" frameWidth="572" frameHeight="666"/>
+	<SubTexture name="cassette girl right miss0001" x="5083" y="594" width="490" height="639" frameX="-11" frameY="-23" frameWidth="572" frameHeight="666"/>
+	<SubTexture name="cassette girl right miss0002" x="5576" y="594" width="479" height="639" frameX="-23" frameY="-23" frameWidth="572" frameHeight="666"/>
+	<SubTexture name="cassette girl right miss0003" x="5576" y="594" width="479" height="639" frameX="-23" frameY="-23" frameWidth="572" frameHeight="666"/>
+	<SubTexture name="cassette girl right miss0004" x="5576" y="594" width="479" height="639" frameX="-23" frameY="-23" frameWidth="572" frameHeight="666"/>
+	<SubTexture name="cassette girl right miss0005" x="5576" y="594" width="479" height="639" frameX="-23" frameY="-23" frameWidth="572" frameHeight="666"/>
+	<SubTexture name="cassette girl right miss0006" x="5576" y="594" width="479" height="639" frameX="-23" frameY="-23" frameWidth="572" frameHeight="666"/>
+	<SubTexture name="cassette girl right miss0007" x="5576" y="594" width="479" height="639" frameX="-23" frameY="-23" frameWidth="572" frameHeight="666"/>
+	<SubTexture name="cassette girl right miss0008" x="5576" y="594" width="479" height="639" frameX="-23" frameY="-23" frameWidth="572" frameHeight="666"/>
+	<SubTexture name="cassette girl right miss0009" x="5576" y="594" width="479" height="639" frameX="-23" frameY="-23" frameWidth="572" frameHeight="666"/>
+	<SubTexture name="cassette girl up miss0000" x="425" y="520" width="405" height="596" frameX="-179" frameY="-264" frameWidth="721" frameHeight="861"/>
+	<SubTexture name="cassette girl up miss0001" x="1" y="1" width="633" height="475" frameX="-41" frameY="-223" frameWidth="721" frameHeight="861"/>
+	<SubTexture name="cassette girl up miss0002" x="1057" y="1" width="664" height="581" frameX="-8" frameY="-114" frameWidth="721" frameHeight="861"/>
+	<SubTexture name="cassette girl up miss0003" x="7487" y="1927" width="675" height="678" frameX="-11" frameY="-37" frameWidth="721" frameHeight="861"/>
+	<SubTexture name="cassette girl up miss0004" x="4695" y="2577" width="628" height="697" frameX="-44" frameY="-10" frameWidth="721" frameHeight="861"/>
+	<SubTexture name="cassette girl up miss0005" x="6586" y="1921" width="563" height="679" frameX="-84" frameY="-7" frameWidth="721" frameHeight="861"/>
+	<SubTexture name="cassette girl up miss0006" x="6058" y="594" width="501" height="648" frameX="-122" frameY="-14" frameWidth="721" frameHeight="861"/>
+	<SubTexture name="cassette girl up miss0007" x="4168" y="594" width="452" height="619" frameX="-151" frameY="-24" frameWidth="721" frameHeight="861"/>
+	<SubTexture name="cassette girl up miss0008" x="2418" y="587" width="423" height="602" frameX="-168" frameY="-31" frameWidth="721" frameHeight="861"/>
+	<SubTexture name="cassette girl up miss0009" x="833" y="585" width="413" height="596" frameX="-174" frameY="-33" frameWidth="721" frameHeight="861"/>
+	<SubTexture name="cassette goon down0000" x="3327" y="591" width="418" height="607" frameX="-2" frameY="-10" frameWidth="435" frameHeight="619"/>
+	<SubTexture name="cassette goon down0001" x="3474" y="1" width="370" height="587" frameX="-28" frameY="-29" frameWidth="435" frameHeight="619"/>
+	<SubTexture name="cassette goon down0002" x="2048" y="587" width="367" height="597" frameX="-29" frameY="-20" frameWidth="435" frameHeight="619"/>
+	<SubTexture name="cassette goon down0003" x="1249" y="585" width="372" height="596" frameX="-27" frameY="-21" frameWidth="435" frameHeight="619"/>
+	<SubTexture name="cassette goon down0004" x="2567" y="1" width="412" height="583" frameX="-6" frameY="-34" frameWidth="435" frameHeight="619"/>
+	<SubTexture name="cassette goon down0005" x="1724" y="1" width="420" height="582" frameX="-5" frameY="-35" frameWidth="435" frameHeight="619"/>
+	<SubTexture name="cassette goon down0006" x="7552" y="1" width="421" height="592" frameX="-5" frameY="-25" frameWidth="435" frameHeight="619"/>
+	<SubTexture name="cassette goon down0007" x="1" y="479" width="421" height="595" frameX="-5" frameY="-22" frameWidth="435" frameHeight="619"/>
+	<SubTexture name="cassette goon down0008" x="1624" y="586" width="421" height="596" frameX="-5" frameY="-21" frameWidth="435" frameHeight="619"/>
+	<SubTexture name="cassette goon down0009" x="1624" y="586" width="421" height="596" frameX="-5" frameY="-21" frameWidth="435" frameHeight="619"/>
+	<SubTexture name="cassette goon idle0000" x="1781" y="1856" width="356" height="668" frameX="-38" frameY="-21" frameWidth="435" frameHeight="693"/>
+	<SubTexture name="cassette goon idle0001" x="2140" y="1860" width="359" height="668" frameX="-38" frameY="-21" frameWidth="435" frameHeight="693"/>
+	<SubTexture name="cassette goon idle0002" x="3195" y="2549" width="366" height="681" frameX="-47" frameY="-8" frameWidth="435" frameHeight="693"/>
+	<SubTexture name="cassette goon idle0003" x="2854" y="2538" width="338" height="682" frameX="-79" frameY="-7" frameWidth="435" frameHeight="693"/>
+	<SubTexture name="cassette goon idle0004" x="1779" y="2527" width="333" height="681" frameX="-84" frameY="-8" frameWidth="435" frameHeight="693"/>
+	<SubTexture name="cassette goon idle0005" x="1" y="2409" width="332" height="680" frameX="-84" frameY="-9" frameWidth="435" frameHeight="693"/>
+	<SubTexture name="cassette goon idle0006" x="5376" y="1905" width="335" height="676" frameX="-78" frameY="-13" frameWidth="435" frameHeight="693"/>
+	<SubTexture name="cassette goon idle0007" x="6441" y="1247" width="353" height="667" frameX="-48" frameY="-22" frameWidth="435" frameHeight="693"/>
+	<SubTexture name="cassette goon idle0008" x="4651" y="1236" width="349" height="666" frameX="-38" frameY="-24" frameWidth="435" frameHeight="693"/>
+	<SubTexture name="cassette goon idle0009" x="5003" y="1236" width="355" height="666" frameX="-32" frameY="-24" frameWidth="435" frameHeight="693"/>
+	<SubTexture name="cassette goon idle0010" x="6797" y="1251" width="358" height="667" frameX="-29" frameY="-23" frameWidth="435" frameHeight="693"/>
+	<SubTexture name="cassette goon idle0011" x="2502" y="1860" width="358" height="668" frameX="-29" frameY="-22" frameWidth="435" frameHeight="693"/>
+	<SubTexture name="cassette goon idle0012" x="3922" y="1885" width="363" height="669" frameX="-29" frameY="-21" frameWidth="435" frameHeight="693"/>
+	<SubTexture name="cassette goon idle0013" x="4288" y="1905" width="364" height="669" frameX="-29" frameY="-21" frameWidth="435" frameHeight="693"/>
+	<SubTexture name="cassette goon idle0014" x="4655" y="1905" width="361" height="669" frameX="-32" frameY="-21" frameWidth="435" frameHeight="693"/>
+	<SubTexture name="cassette goon idle alt0000" x="2863" y="1866" width="356" height="669" frameX="-38" frameY="-21" frameWidth="435" frameHeight="693"/>
+	<SubTexture name="cassette goon idle alt0001" x="3560" y="1877" width="359" height="669" frameX="-38" frameY="-21" frameWidth="435" frameHeight="693"/>
+	<SubTexture name="cassette goon idle alt0002" x="1410" y="2522" width="366" height="681" frameX="-47" frameY="-8" frameWidth="435" frameHeight="693"/>
+	<SubTexture name="cassette goon idle alt0003" x="2513" y="2531" width="338" height="682" frameX="-79" frameY="-7" frameWidth="435" frameHeight="693"/>
+	<SubTexture name="cassette goon idle alt0004" x="336" y="2451" width="334" height="681" frameX="-83" frameY="-8" frameWidth="435" frameHeight="693"/>
+	<SubTexture name="cassette goon idle alt0005" x="7152" y="1924" width="332" height="680" frameX="-84" frameY="-9" frameWidth="435" frameHeight="693"/>
+	<SubTexture name="cassette goon idle alt0006" x="3222" y="1866" width="335" height="676" frameX="-78" frameY="-13" frameWidth="435" frameHeight="693"/>
+	<SubTexture name="cassette goon idle alt0007" x="5724" y="1245" width="353" height="667" frameX="-48" frameY="-22" frameWidth="435" frameHeight="693"/>
+	<SubTexture name="cassette goon idle alt0008" x="3938" y="1216" width="349" height="666" frameX="-38" frameY="-24" frameWidth="435" frameHeight="693"/>
+	<SubTexture name="cassette goon idle alt0009" x="2475" y="1192" width="355" height="665" frameX="-32" frameY="-24" frameWidth="435" frameHeight="693"/>
+	<SubTexture name="cassette goon idle alt0010" x="4290" y="1236" width="358" height="666" frameX="-29" frameY="-23" frameWidth="435" frameHeight="693"/>
+	<SubTexture name="cassette goon idle alt0011" x="6080" y="1245" width="358" height="667" frameX="-29" frameY="-22" frameWidth="435" frameHeight="693"/>
+	<SubTexture name="cassette goon idle alt0012" x="684" y="1847" width="363" height="668" frameX="-29" frameY="-21" frameWidth="435" frameHeight="693"/>
+	<SubTexture name="cassette goon idle alt0013" x="1050" y="1848" width="364" height="668" frameX="-29" frameY="-21" frameWidth="435" frameHeight="693"/>
+	<SubTexture name="cassette goon idle alt0014" x="1417" y="1851" width="361" height="668" frameX="-32" frameY="-21" frameWidth="435" frameHeight="693"/>
+	<SubTexture name="cassette goon left0000" x="4323" y="1" width="465" height="590" frameX="-52" frameY="-27" frameWidth="529" frameHeight="620"/>
+	<SubTexture name="cassette goon left0001" x="2844" y="589" width="480" height="604" frameX="-22" frameY="-13" frameWidth="529" frameHeight="620"/>
+	<SubTexture name="cassette goon left0002" x="4791" y="1" width="498" height="590" frameX="-3" frameY="-27" frameWidth="529" frameHeight="620"/>
+	<SubTexture name="cassette goon left0003" x="2982" y="1" width="489" height="585" frameX="-12" frameY="-32" frameWidth="529" frameHeight="620"/>
+	<SubTexture name="cassette goon left0004" x="3847" y="1" width="473" height="588" frameX="-29" frameY="-29" frameWidth="529" frameHeight="620"/>
+	<SubTexture name="cassette goon left0005" x="5292" y="1" width="456" height="590" frameX="-51" frameY="-27" frameWidth="529" frameHeight="620"/>
+	<SubTexture name="cassette goon left0006" x="5751" y="1" width="444" height="590" frameX="-58" frameY="-27" frameWidth="529" frameHeight="620"/>
+	<SubTexture name="cassette goon left0007" x="6198" y="1" width="443" height="590" frameX="-59" frameY="-27" frameWidth="529" frameHeight="620"/>
+	<SubTexture name="cassette goon left0008" x="6644" y="1" width="450" height="590" frameX="-52" frameY="-27" frameWidth="529" frameHeight="620"/>
+	<SubTexture name="cassette goon left0009" x="7097" y="1" width="452" height="590" frameX="-50" frameY="-27" frameWidth="529" frameHeight="620"/>
+	<SubTexture name="cassette goon right0000" x="6955" y="594" width="358" height="654" frameX="-14" frameY="-64" frameWidth="441" frameHeight="723"/>
+	<SubTexture name="cassette goon right0001" x="5326" y="2588" width="389" height="698" frameX="-14" frameY="-20" frameWidth="441" frameHeight="723"/>
+	<SubTexture name="cassette goon right0002" x="6177" y="1917" width="406" height="676" frameX="-15" frameY="-42" frameWidth="441" frameHeight="723"/>
+	<SubTexture name="cassette goon right0003" x="6562" y="594" width="390" height="650" frameX="-14" frameY="-68" frameWidth="441" frameHeight="723"/>
+	<SubTexture name="cassette goon right0004" x="7815" y="596" width="353" height="658" frameX="-15" frameY="-60" frameWidth="441" frameHeight="723"/>
+	<SubTexture name="cassette goon right0005" x="833" y="1184" width="350" height="660" frameX="-14" frameY="-58" frameWidth="441" frameHeight="723"/>
+	<SubTexture name="cassette goon right0006" x="3576" y="1209" width="359" height="665" frameX="-14" frameY="-53" frameWidth="441" frameHeight="723"/>
+	<SubTexture name="cassette goon right0007" x="5361" y="1236" width="360" height="666" frameX="-15" frameY="-52" frameWidth="441" frameHeight="723"/>
+	<SubTexture name="cassette goon right0008" x="5361" y="1236" width="360" height="666" frameX="-15" frameY="-52" frameWidth="441" frameHeight="723"/>
+	<SubTexture name="cassette goon right0009" x="5361" y="1236" width="360" height="666" frameX="-15" frameY="-52" frameWidth="441" frameHeight="723"/>
+	<SubTexture name="cassette goon shoot0000" x="6158" y="2596" width="423" height="713" frameX="-30" frameY="-9" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0001" x="5718" y="2588" width="437" height="700" frameX="-30" frameY="-22" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0002" x="5714" y="1915" width="460" height="670" frameX="-30" frameY="-52" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0003" x="7158" y="1254" width="462" height="667" frameX="-30" frameY="-55" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0004" x="7623" y="1257" width="462" height="667" frameX="-30" frameY="-55" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0005" x="7623" y="1257" width="462" height="667" frameX="-30" frameY="-55" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0006" x="7623" y="1257" width="462" height="667" frameX="-30" frameY="-55" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0007" x="7623" y="1257" width="462" height="667" frameX="-30" frameY="-55" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0008" x="7623" y="1257" width="462" height="667" frameX="-30" frameY="-55" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0009" x="7623" y="1257" width="462" height="667" frameX="-30" frameY="-55" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0010" x="7623" y="1257" width="462" height="667" frameX="-30" frameY="-55" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0011" x="7623" y="1257" width="462" height="667" frameX="-30" frameY="-55" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0012" x="7623" y="1257" width="462" height="667" frameX="-30" frameY="-55" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0013" x="7623" y="1257" width="462" height="667" frameX="-30" frameY="-55" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0014" x="7623" y="1257" width="462" height="667" frameX="-30" frameY="-55" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0015" x="7623" y="1257" width="462" height="667" frameX="-30" frameY="-55" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0016" x="7623" y="1257" width="462" height="667" frameX="-30" frameY="-55" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0017" x="7623" y="1257" width="462" height="667" frameX="-30" frameY="-55" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0018" x="7623" y="1257" width="462" height="667" frameX="-30" frameY="-55" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0019" x="7623" y="1257" width="462" height="667" frameX="-30" frameY="-55" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0020" x="365" y="1119" width="465" height="659" frameX="-30" frameY="-63" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0021" x="7316" y="596" width="496" height="655" frameX="-30" frameY="-67" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0022" x="1186" y="1185" width="535" height="660" frameX="-30" frameY="-62" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0023" x="1724" y="1187" width="390" height="661" frameX="-30" frameY="-61" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0024" x="2117" y="1192" width="355" height="661" frameX="-30" frameY="-61" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0025" x="2833" y="1196" width="367" height="661" frameX="-18" frameY="-61" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0026" x="3203" y="1201" width="370" height="662" frameX="-15" frameY="-61" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0027" x="3203" y="1201" width="370" height="662" frameX="-15" frameY="-61" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0028" x="3203" y="1201" width="370" height="662" frameX="-15" frameY="-61" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0029" x="3203" y="1201" width="370" height="662" frameX="-15" frameY="-61" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0030" x="3203" y="1201" width="370" height="662" frameX="-15" frameY="-61" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0031" x="3203" y="1201" width="370" height="662" frameX="-15" frameY="-61" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0032" x="3203" y="1201" width="370" height="662" frameX="-15" frameY="-61" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0033" x="3203" y="1201" width="370" height="662" frameX="-15" frameY="-61" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0034" x="3203" y="1201" width="370" height="662" frameX="-15" frameY="-61" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0035" x="3203" y="1201" width="370" height="662" frameX="-15" frameY="-61" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0036" x="3203" y="1201" width="370" height="662" frameX="-15" frameY="-61" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0037" x="3203" y="1201" width="370" height="662" frameX="-15" frameY="-61" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0038" x="3203" y="1201" width="370" height="662" frameX="-15" frameY="-61" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0039" x="3203" y="1201" width="370" height="662" frameX="-15" frameY="-61" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0040" x="3203" y="1201" width="370" height="662" frameX="-15" frameY="-61" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0041" x="3203" y="1201" width="370" height="662" frameX="-15" frameY="-61" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0042" x="3203" y="1201" width="370" height="662" frameX="-15" frameY="-61" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0043" x="3203" y="1201" width="370" height="662" frameX="-15" frameY="-61" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0044" x="3203" y="1201" width="370" height="662" frameX="-15" frameY="-61" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0045" x="3203" y="1201" width="370" height="662" frameX="-15" frameY="-61" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0046" x="3203" y="1201" width="370" height="662" frameX="-15" frameY="-61" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0047" x="3203" y="1201" width="370" height="662" frameX="-15" frameY="-61" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0048" x="3203" y="1201" width="370" height="662" frameX="-15" frameY="-61" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0049" x="3203" y="1201" width="370" height="662" frameX="-15" frameY="-61" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0050" x="3203" y="1201" width="370" height="662" frameX="-15" frameY="-61" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0051" x="3203" y="1201" width="370" height="662" frameX="-15" frameY="-61" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0052" x="3203" y="1201" width="370" height="662" frameX="-15" frameY="-61" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0053" x="3203" y="1201" width="370" height="662" frameX="-15" frameY="-61" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0054" x="3203" y="1201" width="370" height="662" frameX="-15" frameY="-61" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0055" x="3203" y="1201" width="370" height="662" frameX="-15" frameY="-61" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0056" x="3203" y="1201" width="370" height="662" frameX="-15" frameY="-61" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0057" x="3203" y="1201" width="370" height="662" frameX="-15" frameY="-61" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0058" x="3203" y="1201" width="370" height="662" frameX="-15" frameY="-61" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0059" x="3203" y="1201" width="370" height="662" frameX="-15" frameY="-61" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0060" x="3203" y="1201" width="370" height="662" frameX="-15" frameY="-61" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0061" x="3203" y="1201" width="370" height="662" frameX="-15" frameY="-61" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0062" x="3203" y="1201" width="370" height="662" frameX="-15" frameY="-61" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0063" x="3203" y="1201" width="370" height="662" frameX="-15" frameY="-61" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0064" x="3203" y="1201" width="370" height="662" frameX="-15" frameY="-61" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0065" x="3203" y="1201" width="370" height="662" frameX="-15" frameY="-61" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0066" x="3203" y="1201" width="370" height="662" frameX="-15" frameY="-61" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0067" x="3203" y="1201" width="370" height="662" frameX="-15" frameY="-61" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0068" x="3203" y="1201" width="370" height="662" frameX="-15" frameY="-61" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0069" x="3203" y="1201" width="370" height="662" frameX="-15" frameY="-61" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0070" x="3203" y="1201" width="370" height="662" frameX="-15" frameY="-61" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0071" x="3203" y="1201" width="370" height="662" frameX="-15" frameY="-61" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0072" x="3203" y="1201" width="370" height="662" frameX="-15" frameY="-61" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0073" x="3203" y="1201" width="370" height="662" frameX="-15" frameY="-61" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon shoot0074" x="3203" y="1201" width="370" height="662" frameX="-15" frameY="-61" frameWidth="580" frameHeight="726"/>
+	<SubTexture name="cassette goon up0000" x="1" y="1077" width="361" height="659" frameX="-10" frameY="-41" frameWidth="420" frameHeight="702"/>
+	<SubTexture name="cassette goon up0001" x="3940" y="2577" width="373" height="693" frameX="-31" frameY="-7" frameWidth="420" frameHeight="702"/>
+	<SubTexture name="cassette goon up0002" x="4316" y="2577" width="376" height="694" frameX="-31" frameY="-6" frameWidth="420" frameHeight="702"/>
+	<SubTexture name="cassette goon up0003" x="3564" y="2557" width="373" height="684" frameX="-31" frameY="-16" frameWidth="420" frameHeight="702"/>
+	<SubTexture name="cassette goon up0004" x="5019" y="1905" width="354" height="669" frameX="-20" frameY="-31" frameWidth="420" frameHeight="702"/>
+	<SubTexture name="cassette goon up0005" x="1" y="1739" width="339" height="667" frameX="-5" frameY="-33" frameWidth="420" frameHeight="702"/>
+	<SubTexture name="cassette goon up0006" x="343" y="1781" width="338" height="667" frameX="-2" frameY="-33" frameWidth="420" frameHeight="702"/>
+	<SubTexture name="cassette goon up0007" x="343" y="1781" width="338" height="667" frameX="-2" frameY="-33" frameWidth="420" frameHeight="702"/>
+	<SubTexture name="cassette goon up0008" x="343" y="1781" width="338" height="667" frameX="-2" frameY="-33" frameWidth="420" frameHeight="702"/>
+	<SubTexture name="cassette goon up0009" x="343" y="1781" width="338" height="667" frameX="-2" frameY="-33" frameWidth="420" frameHeight="702"/>
 </TextureAtlas>

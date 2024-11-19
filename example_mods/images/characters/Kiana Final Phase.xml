@@ -1,95 +1,92 @@
-<?xml version="1.0" encoding="utf-8"?>
-<TextureAtlas imagePath="Kiana Final Phase.png">
-	<!-- Created with Adobe Animate version 23.0.2.103 -->
-	<!-- http://www.adobe.com/products/animate.html -->
-	<SubTexture name="Kiana Idle0000" x="0" y="0" width="2326" height="1601" frameX="-185" frameY="0" frameWidth="2511" frameHeight="1601"/>
-	<SubTexture name="Kiana Idle0001" x="0" y="0" width="2326" height="1601" frameX="-185" frameY="0" frameWidth="2511" frameHeight="1601"/>
-	<SubTexture name="Kiana Idle0002" x="2326" y="0" width="2326" height="1601" frameX="-185" frameY="0" frameWidth="2511" frameHeight="1601"/>
-	<SubTexture name="Kiana Idle0003" x="2326" y="0" width="2326" height="1601" frameX="-185" frameY="0" frameWidth="2511" frameHeight="1601"/>
-	<SubTexture name="Kiana Idle0004" x="4652" y="0" width="2326" height="1601" frameX="-185" frameY="0" frameWidth="2511" frameHeight="1601"/>
-	<SubTexture name="Kiana Idle0005" x="4652" y="0" width="2326" height="1601" frameX="-185" frameY="0" frameWidth="2511" frameHeight="1601"/>
-	<SubTexture name="Kiana Idle0006" x="0" y="1601" width="2326" height="1600" frameX="-185" frameY="0" frameWidth="2511" frameHeight="1601"/>
-	<SubTexture name="Kiana Idle0007" x="0" y="1601" width="2326" height="1600" frameX="-185" frameY="0" frameWidth="2511" frameHeight="1601"/>
-	<SubTexture name="Kiana Idle0008" x="2326" y="1601" width="2459" height="1600" frameX="-52" frameY="0" frameWidth="2511" frameHeight="1601"/>
-	<SubTexture name="Kiana Idle0009" x="2326" y="1601" width="2459" height="1600" frameX="-52" frameY="0" frameWidth="2511" frameHeight="1601"/>
-	<SubTexture name="Kiana Idle0010" x="4785" y="1601" width="2504" height="1600" frameX="-7" frameY="0" frameWidth="2511" frameHeight="1601"/>
-	<SubTexture name="Kiana Idle0011" x="4785" y="1601" width="2504" height="1600" frameX="-7" frameY="0" frameWidth="2511" frameHeight="1601"/>
-	<SubTexture name="Kiana Idle0012" x="0" y="3201" width="2510" height="1600" frameX="-1" frameY="0" frameWidth="2511" frameHeight="1601"/>
-	<SubTexture name="Kiana Idle0013" x="0" y="3201" width="2510" height="1600" frameX="-1" frameY="0" frameWidth="2511" frameHeight="1601"/>
-	<SubTexture name="Kiana Idle0014" x="2510" y="3201" width="2511" height="1600" frameX="0" frameY="0" frameWidth="2511" frameHeight="1601"/>
-	<SubTexture name="Kiana Idle0015" x="2510" y="3201" width="2511" height="1600" frameX="0" frameY="0" frameWidth="2511" frameHeight="1601"/>
-	<SubTexture name="Kiana Idle0016" x="0" y="3201" width="2510" height="1600" frameX="-1" frameY="0" frameWidth="2511" frameHeight="1601"/>
-	<SubTexture name="Kiana Idle0017" x="0" y="3201" width="2510" height="1600" frameX="-1" frameY="0" frameWidth="2511" frameHeight="1601"/>
-	<SubTexture name="Kiana Idle0018" x="4785" y="1601" width="2504" height="1600" frameX="-7" frameY="0" frameWidth="2511" frameHeight="1601"/>
-	<SubTexture name="Kiana Idle0019" x="4785" y="1601" width="2504" height="1600" frameX="-7" frameY="0" frameWidth="2511" frameHeight="1601"/>
-	<SubTexture name="Kiana Idle0020" x="5021" y="3201" width="2459" height="1600" frameX="-52" frameY="0" frameWidth="2511" frameHeight="1601"/>
-	<SubTexture name="Kiana Idle0021" x="5021" y="3201" width="2459" height="1600" frameX="-52" frameY="0" frameWidth="2511" frameHeight="1601"/>
-	<SubTexture name="Kiana Idle0022" x="0" y="4801" width="2326" height="1600" frameX="-185" frameY="0" frameWidth="2511" frameHeight="1601"/>
-	<SubTexture name="Kiana Idle0023" x="0" y="4801" width="2326" height="1600" frameX="-185" frameY="0" frameWidth="2511" frameHeight="1601"/>
-	<SubTexture name="Kiana Idle0024" x="2326" y="4801" width="2326" height="1601" frameX="-185" frameY="0" frameWidth="2511" frameHeight="1601"/>
-	<SubTexture name="Kiana Idle0025" x="2326" y="4801" width="2326" height="1601" frameX="-185" frameY="0" frameWidth="2511" frameHeight="1601"/>
-	<SubTexture name="Kiana Idle0026" x="4652" y="4801" width="2326" height="1601" frameX="-185" frameY="0" frameWidth="2511" frameHeight="1601"/>
-	<SubTexture name="Kiana Idle0027" x="4652" y="4801" width="2326" height="1601" frameX="-185" frameY="0" frameWidth="2511" frameHeight="1601"/>
-	<SubTexture name="Kiana Idle0028" x="0" y="0" width="2326" height="1601" frameX="-185" frameY="0" frameWidth="2511" frameHeight="1601"/>
-	<SubTexture name="Kiana Idle0029" x="0" y="0" width="2326" height="1601" frameX="-185" frameY="0" frameWidth="2511" frameHeight="1601"/>
-
-<SubTexture name="Kiana Right0000" x="8192" y="0" width="2479" height="1601"/>
-	<SubTexture name="Kiana Right0001" x="8192" y="0" width="2479" height="1601"/>
-	<SubTexture name="Kiana Right0002" x="10671" y="0" width="2353" height="1601" frameX="-90" frameY="0" frameWidth="2479" frameHeight="1601"/>
-	<SubTexture name="Kiana Right0003" x="10671" y="0" width="2353" height="1601" frameX="-90" frameY="0" frameWidth="2479" frameHeight="1601"/>
-	<SubTexture name="Kiana Right0004" x="13024" y="0" width="2340" height="1601" frameX="-91" frameY="0" frameWidth="2479" frameHeight="1601"/>
-	<SubTexture name="Kiana Right0005" x="13024" y="0" width="2340" height="1601" frameX="-91" frameY="0" frameWidth="2479" frameHeight="1601"/>
-	<SubTexture name="Kiana Right0006" x="8192" y="1601" width="2349" height="1601" frameX="-89" frameY="0" frameWidth="2479" frameHeight="1601"/>
-	<SubTexture name="Kiana Right0007" x="8192" y="1601" width="2349" height="1601" frameX="-89" frameY="0" frameWidth="2479" frameHeight="1601"/>
-	<SubTexture name="Kiana Right0008" x="10541" y="1601" width="2351" height="1601" frameX="-89" frameY="0" frameWidth="2479" frameHeight="1601"/>
-	<SubTexture name="Kiana Right0009" x="10541" y="1601" width="2351" height="1601" frameX="-89" frameY="0" frameWidth="2479" frameHeight="1601"/>
-	<SubTexture name="Kiana Right0010" x="10541" y="1601" width="2351" height="1601" frameX="-89" frameY="0" frameWidth="2479" frameHeight="1601"/>
-	<SubTexture name="Kiana Right0011" x="10541" y="1601" width="2351" height="1601" frameX="-89" frameY="0" frameWidth="2479" frameHeight="1601"/>
-	<SubTexture name="Kiana Right0012" x="10541" y="1601" width="2351" height="1601" frameX="-89" frameY="0" frameWidth="2479" frameHeight="1601"/>
-	<SubTexture name="Kiana Right0013" x="10541" y="1601" width="2351" height="1601" frameX="-89" frameY="0" frameWidth="2479" frameHeight="1601"/>
-
-	<SubTexture name="Kiana Up0000" x="12892" y="1601" width="2464" height="1724"/>
-	<SubTexture name="Kiana Up0001" x="12892" y="1601" width="2464" height="1724"/>
-	<SubTexture name="Kiana Up0002" x="8192" y="3325" width="2394" height="1689" frameX="-63" frameY="-30" frameWidth="2464" frameHeight="1724"/>
-	<SubTexture name="Kiana Up0003" x="8192" y="3325" width="2394" height="1689" frameX="-63" frameY="-30" frameWidth="2464" frameHeight="1724"/>
-	<SubTexture name="Kiana Up0004" x="10586" y="3325" width="2368" height="1677" frameX="-86" frameY="-40" frameWidth="2464" frameHeight="1724"/>
-	<SubTexture name="Kiana Up0005" x="10586" y="3325" width="2368" height="1677" frameX="-86" frameY="-40" frameWidth="2464" frameHeight="1724"/>
-	<SubTexture name="Kiana Up0006" x="12954" y="3325" width="2399" height="1693" frameX="-61" frameY="-25" frameWidth="2464" frameHeight="1724"/>
-	<SubTexture name="Kiana Up0007" x="12954" y="3325" width="2399" height="1693" frameX="-61" frameY="-25" frameWidth="2464" frameHeight="1724"/>
-	<SubTexture name="Kiana Up0008" x="8192" y="5018" width="2410" height="1699" frameX="-52" frameY="-20" frameWidth="2464" frameHeight="1724"/>
-	<SubTexture name="Kiana Up0009" x="8192" y="5018" width="2410" height="1699" frameX="-52" frameY="-20" frameWidth="2464" frameHeight="1724"/>
-	<SubTexture name="Kiana Up0010" x="8192" y="5018" width="2410" height="1699" frameX="-52" frameY="-20" frameWidth="2464" frameHeight="1724"/>
-	<SubTexture name="Kiana Up0011" x="8192" y="5018" width="2410" height="1699" frameX="-52" frameY="-20" frameWidth="2464" frameHeight="1724"/>
-	<SubTexture name="Kiana Up0012" x="8192" y="5018" width="2410" height="1699" frameX="-52" frameY="-20" frameWidth="2464" frameHeight="1724"/>
-	<SubTexture name="Kiana Up0013" x="8192" y="5018" width="2410" height="1699" frameX="-52" frameY="-20" frameWidth="2464" frameHeight="1724"/>
-
-<SubTexture name="Kiana Down0000" x="0" y="8192" width="2323" height="1600" frameX="-16" frameY="0" frameWidth="2339" frameHeight="1600"/>
-	<SubTexture name="Kiana Down0001" x="0" y="8192" width="2323" height="1600" frameX="-16" frameY="0" frameWidth="2339" frameHeight="1600"/>
-	<SubTexture name="Kiana Down0002" x="2323" y="8192" width="2321" height="1600" frameX="-18" frameY="0" frameWidth="2339" frameHeight="1600"/>
-	<SubTexture name="Kiana Down0003" x="2323" y="8192" width="2321" height="1600" frameX="-18" frameY="0" frameWidth="2339" frameHeight="1600"/>
-	<SubTexture name="Kiana Down0004" x="4644" y="8192" width="2339" height="1600"/>
-	<SubTexture name="Kiana Down0005" x="4644" y="8192" width="2339" height="1600"/>
-	<SubTexture name="Kiana Down0006" x="0" y="9792" width="2325" height="1600" frameX="-14" frameY="0" frameWidth="2339" frameHeight="1600"/>
-	<SubTexture name="Kiana Down0007" x="0" y="9792" width="2325" height="1600" frameX="-14" frameY="0" frameWidth="2339" frameHeight="1600"/>
-	<SubTexture name="Kiana Down0008" x="2325" y="9792" width="2321" height="1600" frameX="-18" frameY="0" frameWidth="2339" frameHeight="1600"/>
-	<SubTexture name="Kiana Down0009" x="2325" y="9792" width="2321" height="1600" frameX="-18" frameY="0" frameWidth="2339" frameHeight="1600"/>
-	<SubTexture name="Kiana Down0010" x="2325" y="9792" width="2321" height="1600" frameX="-18" frameY="0" frameWidth="2339" frameHeight="1600"/>
-	<SubTexture name="Kiana Down0011" x="2325" y="9792" width="2321" height="1600" frameX="-18" frameY="0" frameWidth="2339" frameHeight="1600"/>
-	<SubTexture name="Kiana Down0012" x="2325" y="9792" width="2321" height="1600" frameX="-18" frameY="0" frameWidth="2339" frameHeight="1600"/>
-	<SubTexture name="Kiana Down0013" x="2325" y="9792" width="2321" height="1600" frameX="-18" frameY="0" frameWidth="2339" frameHeight="1600"/>
-
-	<SubTexture name="Kiana Left0000" x="4646" y="9792" width="2450" height="1601"/>
-	<SubTexture name="Kiana Left0001" x="4646" y="9792" width="2450" height="1601"/>
-	<SubTexture name="Kiana Left0002" x="0" y="11393" width="2417" height="1601" frameX="-33" frameY="0" frameWidth="2450" frameHeight="1601"/>
-	<SubTexture name="Kiana Left0003" x="0" y="11393" width="2417" height="1601" frameX="-33" frameY="0" frameWidth="2450" frameHeight="1601"/>
-	<SubTexture name="Kiana Left0004" x="2417" y="11393" width="2406" height="1601" frameX="-44" frameY="0" frameWidth="2450" frameHeight="1601"/>
-	<SubTexture name="Kiana Left0005" x="2417" y="11393" width="2406" height="1601" frameX="-44" frameY="0" frameWidth="2450" frameHeight="1601"/>
-	<SubTexture name="Kiana Left0006" x="4823" y="11393" width="2419" height="1601" frameX="-31" frameY="0" frameWidth="2450" frameHeight="1601"/>
-	<SubTexture name="Kiana Left0007" x="4823" y="11393" width="2419" height="1601" frameX="-31" frameY="0" frameWidth="2450" frameHeight="1601"/>
-	<SubTexture name="Kiana Left0008" x="0" y="12994" width="2423" height="1601" frameX="-27" frameY="0" frameWidth="2450" frameHeight="1601"/>
-	<SubTexture name="Kiana Left0009" x="0" y="12994" width="2423" height="1601" frameX="-27" frameY="0" frameWidth="2450" frameHeight="1601"/>
-	<SubTexture name="Kiana Left0010" x="0" y="12994" width="2423" height="1601" frameX="-27" frameY="0" frameWidth="2450" frameHeight="1601"/>
-	<SubTexture name="Kiana Left0011" x="0" y="12994" width="2423" height="1601" frameX="-27" frameY="0" frameWidth="2450" frameHeight="1601"/>
-	<SubTexture name="Kiana Left0012" x="0" y="12994" width="2423" height="1601" frameX="-27" frameY="0" frameWidth="2450" frameHeight="1601"/>
-	<SubTexture name="Kiana Left0013" x="0" y="12994" width="2423" height="1601" frameX="-27" frameY="0" frameWidth="2450" frameHeight="1601"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Created with Funkin Packer v0.1.3 https://neeeoo.github.io/funkin-packer/
+-->
+<TextureAtlas imagePath="Kiana Final Phase.png" width="16382" height="7711">
+	<SubTexture name="Kiana Idle0000" x="9423" y="4464" width="2326" height="1510" frameX="-185" frameY="-91" frameWidth="2511" frameHeight="1601"/>
+	<SubTexture name="Kiana Idle0001" x="9423" y="4464" width="2326" height="1510" frameX="-185" frameY="-91" frameWidth="2511" frameHeight="1601"/>
+	<SubTexture name="Kiana Idle0002" x="11752" y="4473" width="2326" height="1510" frameX="-185" frameY="-91" frameWidth="2511" frameHeight="1601"/>
+	<SubTexture name="Kiana Idle0003" x="11752" y="4473" width="2326" height="1510" frameX="-185" frameY="-91" frameWidth="2511" frameHeight="1601"/>
+	<SubTexture name="Kiana Idle0004" x="2353" y="4258" width="2326" height="1507" frameX="-185" frameY="-94" frameWidth="2511" frameHeight="1601"/>
+	<SubTexture name="Kiana Idle0005" x="2353" y="4258" width="2326" height="1507" frameX="-185" frameY="-94" frameWidth="2511" frameHeight="1601"/>
+	<SubTexture name="Kiana Idle0006" x="4682" y="2793" width="2326" height="1488" frameX="-185" frameY="-112" frameWidth="2511" frameHeight="1601"/>
+	<SubTexture name="Kiana Idle0007" x="4682" y="2793" width="2326" height="1488" frameX="-185" frameY="-112" frameWidth="2511" frameHeight="1601"/>
+	<SubTexture name="Kiana Idle0008" x="4834" y="1352" width="2386" height="1438" frameX="-125" frameY="-162" frameWidth="2511" frameHeight="1601"/>
+	<SubTexture name="Kiana Idle0009" x="4834" y="1352" width="2386" height="1438" frameX="-125" frameY="-162" frameWidth="2511" frameHeight="1601"/>
+	<SubTexture name="Kiana Idle0010" x="2419" y="1347" width="2412" height="1419" frameX="-99" frameY="-181" frameWidth="2511" frameHeight="1601"/>
+	<SubTexture name="Kiana Idle0011" x="2419" y="1347" width="2412" height="1419" frameX="-99" frameY="-181" frameWidth="2511" frameHeight="1601"/>
+	<SubTexture name="Kiana Idle0012" x="11628" y="1" width="2415" height="1416" frameX="-96" frameY="-184" frameWidth="2511" frameHeight="1601"/>
+	<SubTexture name="Kiana Idle0013" x="11628" y="1" width="2415" height="1416" frameX="-96" frameY="-184" frameWidth="2511" frameHeight="1601"/>
+	<SubTexture name="Kiana Idle0014" x="1" y="1345" width="2415" height="1416" frameX="-96" frameY="-184" frameWidth="2511" frameHeight="1601"/>
+	<SubTexture name="Kiana Idle0015" x="1" y="1345" width="2415" height="1416" frameX="-96" frameY="-184" frameWidth="2511" frameHeight="1601"/>
+	<SubTexture name="Kiana Idle0016" x="11628" y="1" width="2415" height="1416" frameX="-96" frameY="-184" frameWidth="2511" frameHeight="1601"/>
+	<SubTexture name="Kiana Idle0017" x="11628" y="1" width="2415" height="1416" frameX="-96" frameY="-184" frameWidth="2511" frameHeight="1601"/>
+	<SubTexture name="Kiana Idle0018" x="2419" y="1347" width="2412" height="1419" frameX="-99" frameY="-181" frameWidth="2511" frameHeight="1601"/>
+	<SubTexture name="Kiana Idle0019" x="2419" y="1347" width="2412" height="1419" frameX="-99" frameY="-181" frameWidth="2511" frameHeight="1601"/>
+	<SubTexture name="Kiana Idle0020" x="7223" y="1353" width="2386" height="1438" frameX="-125" frameY="-162" frameWidth="2511" frameHeight="1601"/>
+	<SubTexture name="Kiana Idle0021" x="7223" y="1353" width="2386" height="1438" frameX="-125" frameY="-162" frameWidth="2511" frameHeight="1601"/>
+	<SubTexture name="Kiana Idle0022" x="7011" y="2794" width="2326" height="1488" frameX="-185" frameY="-112" frameWidth="2511" frameHeight="1601"/>
+	<SubTexture name="Kiana Idle0023" x="7011" y="2794" width="2326" height="1488" frameX="-185" frameY="-112" frameWidth="2511" frameHeight="1601"/>
+	<SubTexture name="Kiana Idle0024" x="7094" y="4397" width="2326" height="1507" frameX="-185" frameY="-94" frameWidth="2511" frameHeight="1601"/>
+	<SubTexture name="Kiana Idle0025" x="7094" y="4397" width="2326" height="1507" frameX="-185" frameY="-94" frameWidth="2511" frameHeight="1601"/>
+	<SubTexture name="Kiana Idle0026" x="1" y="5755" width="2326" height="1510" frameX="-185" frameY="-91" frameWidth="2511" frameHeight="1601"/>
+	<SubTexture name="Kiana Idle0027" x="1" y="5755" width="2326" height="1510" frameX="-185" frameY="-91" frameWidth="2511" frameHeight="1601"/>
+	<SubTexture name="Kiana Idle0028" x="9423" y="4464" width="2326" height="1510" frameX="-185" frameY="-91" frameWidth="2511" frameHeight="1601"/>
+	<SubTexture name="Kiana Idle0029" x="9423" y="4464" width="2326" height="1510" frameX="-185" frameY="-91" frameWidth="2511" frameHeight="1601"/>
+	<SubTexture name="Kiana Right0000" x="4682" y="4285" width="2409" height="1497" frameX="-70" frameY="-104" frameWidth="2479" frameHeight="1601"/>
+	<SubTexture name="Kiana Right0001" x="4682" y="4285" width="2409" height="1497" frameX="-70" frameY="-104" frameWidth="2479" frameHeight="1601"/>
+	<SubTexture name="Kiana Right0002" x="11686" y="2973" width="2353" height="1488" frameX="-90" frameY="-113" frameWidth="2479" frameHeight="1601"/>
+	<SubTexture name="Kiana Right0003" x="11686" y="2973" width="2353" height="1488" frameX="-90" frameY="-113" frameWidth="2479" frameHeight="1601"/>
+	<SubTexture name="Kiana Right0004" x="9612" y="1420" width="2326" height="1483" frameX="-91" frameY="-118" frameWidth="2479" frameHeight="1601"/>
+	<SubTexture name="Kiana Right0005" x="9612" y="1420" width="2326" height="1483" frameX="-91" frameY="-118" frameWidth="2479" frameHeight="1601"/>
+	<SubTexture name="Kiana Right0006" x="1" y="4258" width="2349" height="1494" frameX="-89" frameY="-107" frameWidth="2479" frameHeight="1601"/>
+	<SubTexture name="Kiana Right0007" x="1" y="4258" width="2349" height="1494" frameX="-89" frameY="-107" frameWidth="2479" frameHeight="1601"/>
+	<SubTexture name="Kiana Right0008" x="14042" y="2973" width="2328" height="1497" frameX="-89" frameY="-104" frameWidth="2479" frameHeight="1601"/>
+	<SubTexture name="Kiana Right0009" x="14042" y="2973" width="2328" height="1497" frameX="-89" frameY="-104" frameWidth="2479" frameHeight="1601"/>
+	<SubTexture name="Kiana Right0010" x="14042" y="2973" width="2328" height="1497" frameX="-89" frameY="-104" frameWidth="2479" frameHeight="1601"/>
+	<SubTexture name="Kiana Right0011" x="14042" y="2973" width="2328" height="1497" frameX="-89" frameY="-104" frameWidth="2479" frameHeight="1601"/>
+	<SubTexture name="Kiana Right0012" x="14042" y="2973" width="2328" height="1497" frameX="-89" frameY="-104" frameWidth="2479" frameHeight="1601"/>
+	<SubTexture name="Kiana Right0013" x="14042" y="2973" width="2328" height="1497" frameX="-89" frameY="-104" frameWidth="2479" frameHeight="1601"/>
+	<SubTexture name="Kiana Up0000" x="11688" y="5986" width="2378" height="1724" frameX="-67" frameY="-0" frameWidth="2464" frameHeight="1724"/>
+	<SubTexture name="Kiana Up0001" x="11688" y="5986" width="2378" height="1724" frameX="-67" frameY="-0" frameWidth="2464" frameHeight="1724"/>
+	<SubTexture name="Kiana Up0002" x="4656" y="5785" width="2338" height="1688" frameX="-107" frameY="-31" frameWidth="2464" frameHeight="1724"/>
+	<SubTexture name="Kiana Up0003" x="4656" y="5785" width="2338" height="1688" frameX="-107" frameY="-31" frameWidth="2464" frameHeight="1724"/>
+	<SubTexture name="Kiana Up0004" x="2330" y="5768" width="2323" height="1668" frameX="-122" frameY="-49" frameWidth="2464" frameHeight="1724"/>
+	<SubTexture name="Kiana Up0005" x="2330" y="5768" width="2323" height="1668" frameX="-122" frameY="-49" frameWidth="2464" frameHeight="1724"/>
+	<SubTexture name="Kiana Up0006" x="6997" y="5907" width="2340" height="1691" frameX="-105" frameY="-27" frameWidth="2464" frameHeight="1724"/>
+	<SubTexture name="Kiana Up0007" x="6997" y="5907" width="2340" height="1691" frameX="-105" frameY="-27" frameWidth="2464" frameHeight="1724"/>
+	<SubTexture name="Kiana Up0008" x="9340" y="5977" width="2345" height="1698" frameX="-100" frameY="-20" frameWidth="2464" frameHeight="1724"/>
+	<SubTexture name="Kiana Up0009" x="9340" y="5977" width="2345" height="1698" frameX="-100" frameY="-20" frameWidth="2464" frameHeight="1724"/>
+	<SubTexture name="Kiana Up0010" x="9340" y="5977" width="2345" height="1698" frameX="-100" frameY="-20" frameWidth="2464" frameHeight="1724"/>
+	<SubTexture name="Kiana Up0011" x="9340" y="5977" width="2345" height="1698" frameX="-100" frameY="-20" frameWidth="2464" frameHeight="1724"/>
+	<SubTexture name="Kiana Up0012" x="9340" y="5977" width="2345" height="1698" frameX="-100" frameY="-20" frameWidth="2464" frameHeight="1724"/>
+	<SubTexture name="Kiana Up0013" x="9340" y="5977" width="2345" height="1698" frameX="-100" frameY="-20" frameWidth="2464" frameHeight="1724"/>
+	<SubTexture name="Kiana Down0000" x="9302" y="1" width="2323" height="1349" frameX="-16" frameY="-251" frameWidth="2339" frameHeight="1600"/>
+	<SubTexture name="Kiana Down0001" x="9302" y="1" width="2323" height="1349" frameX="-16" frameY="-251" frameWidth="2339" frameHeight="1600"/>
+	<SubTexture name="Kiana Down0002" x="1" y="1" width="2321" height="1326" frameX="-18" frameY="-274" frameWidth="2339" frameHeight="1600"/>
+	<SubTexture name="Kiana Down0003" x="1" y="1" width="2321" height="1326" frameX="-18" frameY="-274" frameWidth="2339" frameHeight="1600"/>
+	<SubTexture name="Kiana Down0004" x="6974" y="1" width="2325" height="1348" frameX="-14" frameY="-252" frameWidth="2339" frameHeight="1600"/>
+	<SubTexture name="Kiana Down0005" x="6974" y="1" width="2325" height="1348" frameX="-14" frameY="-252" frameWidth="2339" frameHeight="1600"/>
+	<SubTexture name="Kiana Down0006" x="4649" y="1" width="2322" height="1343" frameX="-17" frameY="-257" frameWidth="2339" frameHeight="1600"/>
+	<SubTexture name="Kiana Down0007" x="4649" y="1" width="2322" height="1343" frameX="-17" frameY="-257" frameWidth="2339" frameHeight="1600"/>
+	<SubTexture name="Kiana Down0008" x="2325" y="1" width="2321" height="1341" frameX="-18" frameY="-259" frameWidth="2339" frameHeight="1600"/>
+	<SubTexture name="Kiana Down0009" x="2325" y="1" width="2321" height="1341" frameX="-18" frameY="-259" frameWidth="2339" frameHeight="1600"/>
+	<SubTexture name="Kiana Down0010" x="2325" y="1" width="2321" height="1341" frameX="-18" frameY="-259" frameWidth="2339" frameHeight="1600"/>
+	<SubTexture name="Kiana Down0011" x="2325" y="1" width="2321" height="1341" frameX="-18" frameY="-259" frameWidth="2339" frameHeight="1600"/>
+	<SubTexture name="Kiana Down0012" x="2325" y="1" width="2321" height="1341" frameX="-18" frameY="-259" frameWidth="2339" frameHeight="1600"/>
+	<SubTexture name="Kiana Down0013" x="2325" y="1" width="2321" height="1341" frameX="-18" frameY="-259" frameWidth="2339" frameHeight="1600"/>
+	<SubTexture name="Kiana Left0000" x="9340" y="2906" width="2343" height="1488" frameX="-106" frameY="-113" frameWidth="2450" frameHeight="1601"/>
+	<SubTexture name="Kiana Left0001" x="9340" y="2906" width="2343" height="1488" frameX="-106" frameY="-113" frameWidth="2450" frameHeight="1601"/>
+	<SubTexture name="Kiana Left0002" x="1" y="2764" width="2337" height="1485" frameX="-112" frameY="-116" frameWidth="2450" frameHeight="1601"/>
+	<SubTexture name="Kiana Left0003" x="1" y="2764" width="2337" height="1485" frameX="-112" frameY="-116" frameWidth="2450" frameHeight="1601"/>
+	<SubTexture name="Kiana Left0004" x="14046" y="1" width="2335" height="1482" frameX="-114" frameY="-119" frameWidth="2450" frameHeight="1601"/>
+	<SubTexture name="Kiana Left0005" x="14046" y="1" width="2335" height="1482" frameX="-114" frameY="-119" frameWidth="2450" frameHeight="1601"/>
+	<SubTexture name="Kiana Left0006" x="11941" y="1486" width="2338" height="1484" frameX="-111" frameY="-117" frameWidth="2450" frameHeight="1601"/>
+	<SubTexture name="Kiana Left0007" x="11941" y="1486" width="2338" height="1484" frameX="-111" frameY="-117" frameWidth="2450" frameHeight="1601"/>
+	<SubTexture name="Kiana Left0008" x="2341" y="2769" width="2338" height="1486" frameX="-111" frameY="-115" frameWidth="2450" frameHeight="1601"/>
+	<SubTexture name="Kiana Left0009" x="2341" y="2769" width="2338" height="1486" frameX="-111" frameY="-115" frameWidth="2450" frameHeight="1601"/>
+	<SubTexture name="Kiana Left0010" x="2341" y="2769" width="2338" height="1486" frameX="-111" frameY="-115" frameWidth="2450" frameHeight="1601"/>
+	<SubTexture name="Kiana Left0011" x="2341" y="2769" width="2338" height="1486" frameX="-111" frameY="-115" frameWidth="2450" frameHeight="1601"/>
+	<SubTexture name="Kiana Left0012" x="2341" y="2769" width="2338" height="1486" frameX="-111" frameY="-115" frameWidth="2450" frameHeight="1601"/>
+	<SubTexture name="Kiana Left0013" x="2341" y="2769" width="2338" height="1486" frameX="-111" frameY="-115" frameWidth="2450" frameHeight="1601"/>
 </TextureAtlas>

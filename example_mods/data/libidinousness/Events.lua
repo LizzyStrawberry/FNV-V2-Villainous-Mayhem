@@ -40,9 +40,7 @@ function onBeatHit()
 			triggerEvent('Add Camera Zoom', '0.05', '0.05')
 		end
 	end
-end
 
-function onUpdate()
 	if not lowQuality then
 		if curBeat == 16 then
 			doTweenAlpha('boyfriend', 'boyfriend', 1, 0.9 / playbackRate, 'circOut')

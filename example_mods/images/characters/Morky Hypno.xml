@@ -1,48 +1,56 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<TextureAtlas imagePath="Morky Hypno.png">
-	<!-- Created with Adobe Animate version 21.0.5.40714 -->
-	<!-- http://www.adobe.com/products/animate.html -->
-	<SubTexture name="morky down0000" x="0" y="0" width="710" height="497" frameX="0" frameY="0" frameWidth="710" frameHeight="498"/>
-	<SubTexture name="morky down0001" x="714" y="0" width="710" height="462" frameX="0" frameY="-36" frameWidth="710" frameHeight="498"/>
-	<SubTexture name="morky down0002" x="1428" y="0" width="710" height="473" frameX="0" frameY="-25" frameWidth="710" frameHeight="498"/>
-	<SubTexture name="morky down0003" x="2142" y="0" width="710" height="478" frameX="0" frameY="-20" frameWidth="710" frameHeight="498"/>
-	<SubTexture name="morky down0004" x="2142" y="0" width="710" height="478" frameX="0" frameY="-20" frameWidth="710" frameHeight="498"/>
-	<SubTexture name="morky down0005" x="2142" y="0" width="710" height="478" frameX="0" frameY="-20" frameWidth="710" frameHeight="498"/>
-	<SubTexture name="morky down0006" x="2142" y="0" width="710" height="478" frameX="0" frameY="-20" frameWidth="710" frameHeight="498"/>
-	<SubTexture name="morky idle0000" x="2856" y="0" width="811" height="635" frameX="0" frameY="-4" frameWidth="811" frameHeight="639"/>
-	<SubTexture name="morky idle0001" x="0" y="639" width="811" height="630" frameX="0" frameY="-9" frameWidth="811" frameHeight="639"/>
-	<SubTexture name="morky idle0002" x="815" y="639" width="811" height="562" frameX="0" frameY="-77" frameWidth="811" frameHeight="639"/>
-	<SubTexture name="morky idle0003" x="1630" y="639" width="811" height="559" frameX="0" frameY="-80" frameWidth="811" frameHeight="639"/>
-	<SubTexture name="morky idle0004" x="1630" y="639" width="811" height="559" frameX="0" frameY="-80" frameWidth="811" frameHeight="639"/>
-	<SubTexture name="morky idle0005" x="2445" y="639" width="811" height="572" frameX="0" frameY="-67" frameWidth="811" frameHeight="639"/>
-	<SubTexture name="morky idle0006" x="3260" y="639" width="811" height="603" frameX="0" frameY="-36" frameWidth="811" frameHeight="639"/>
-	<SubTexture name="morky idle0007" x="2856" y="0" width="811" height="635" frameX="0" frameY="-4" frameWidth="811" frameHeight="639"/>
-	<SubTexture name="morky idle0008" x="0" y="1273" width="811" height="639"/>
-	<SubTexture name="morky idle0009" x="0" y="1273" width="811" height="639"/>
-	<SubTexture name="morky idle0010" x="0" y="1273" width="811" height="639"/>
-	<SubTexture name="morky idle0011" x="0" y="1273" width="811" height="639"/>
-	<SubTexture name="morky idle0012" x="0" y="1273" width="811" height="639"/>
-	<SubTexture name="morky idle0013" x="0" y="1273" width="811" height="639"/>
-	<SubTexture name="morky idle0014" x="0" y="1273" width="811" height="639"/>
-	<SubTexture name="morky left0000" x="815" y="1273" width="488" height="655" frameX="-30" frameY="0" frameWidth="518" frameHeight="655"/>
-	<SubTexture name="morky left0001" x="1307" y="1273" width="518" height="655"/>
-	<SubTexture name="morky left0002" x="1829" y="1273" width="508" height="655" frameX="-10" frameY="0" frameWidth="518" frameHeight="655"/>
-	<SubTexture name="morky left0003" x="2341" y="1273" width="505" height="655" frameX="-13" frameY="0" frameWidth="518" frameHeight="655"/>
-	<SubTexture name="morky left0004" x="2341" y="1273" width="505" height="655" frameX="-13" frameY="0" frameWidth="518" frameHeight="655"/>
-	<SubTexture name="morky left0005" x="2341" y="1273" width="505" height="655" frameX="-13" frameY="0" frameWidth="518" frameHeight="655"/>
-	<SubTexture name="morky left0006" x="2341" y="1273" width="505" height="655" frameX="-13" frameY="0" frameWidth="518" frameHeight="655"/>
-	<SubTexture name="morky right0000" x="2850" y="1273" width="548" height="575" frameX="0" frameY="0" frameWidth="591" frameHeight="575"/>
-	<SubTexture name="morky right0001" x="3402" y="1273" width="591" height="575"/>
-	<SubTexture name="morky right0002" x="0" y="1932" width="584" height="575" frameX="0" frameY="0" frameWidth="591" frameHeight="575"/>
-	<SubTexture name="morky right0003" x="588" y="1932" width="580" height="575" frameX="0" frameY="0" frameWidth="591" frameHeight="575"/>
-	<SubTexture name="morky right0004" x="588" y="1932" width="580" height="575" frameX="0" frameY="0" frameWidth="591" frameHeight="575"/>
-	<SubTexture name="morky right0005" x="588" y="1932" width="580" height="575" frameX="0" frameY="0" frameWidth="591" frameHeight="575"/>
-	<SubTexture name="morky right0006" x="588" y="1932" width="580" height="575" frameX="0" frameY="0" frameWidth="591" frameHeight="575"/>
-	<SubTexture name="morky up0000" x="1172" y="1932" width="994" height="514" frameX="0" frameY="-34" frameWidth="994" frameHeight="548"/>
-	<SubTexture name="morky up0001" x="2170" y="1932" width="994" height="548"/>
-	<SubTexture name="morky up0002" x="0" y="2511" width="994" height="535" frameX="0" frameY="-13" frameWidth="994" frameHeight="548"/>
-	<SubTexture name="morky up0003" x="998" y="2511" width="994" height="533" frameX="0" frameY="-15" frameWidth="994" frameHeight="548"/>
-	<SubTexture name="morky up0004" x="998" y="2511" width="994" height="533" frameX="0" frameY="-15" frameWidth="994" frameHeight="548"/>
-	<SubTexture name="morky up0005" x="998" y="2511" width="994" height="533" frameX="0" frameY="-15" frameWidth="994" frameHeight="548"/>
-	<SubTexture name="morky up0006" x="998" y="2511" width="994" height="533" frameX="0" frameY="-15" frameWidth="994" frameHeight="548"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Created with Funkin Packer v0.1.3 https://neeeoo.github.io/funkin-packer/
+-->
+<TextureAtlas imagePath="Morky Hypno.png" width="3621" height="3086">
+	<SubTexture name="morky down0000" x="2119" y="2309" width="710" height="497" frameX="-0" frameY="-0" frameWidth="710" frameHeight="498"/>
+	<SubTexture name="morky down0001" x="2832" y="2083" width="710" height="462" frameX="-0" frameY="-36" frameWidth="710" frameHeight="498"/>
+	<SubTexture name="morky down0002" x="2831" y="1608" width="710" height="472" frameX="-0" frameY="-25" frameWidth="710" frameHeight="498"/>
+	<SubTexture name="morky down0003" x="2831" y="1128" width="710" height="477" frameX="-0" frameY="-20" frameWidth="710" frameHeight="498"/>
+	<SubTexture name="morky down0004" x="2831" y="1128" width="710" height="477" frameX="-0" frameY="-20" frameWidth="710" frameHeight="498"/>
+	<SubTexture name="morky down0005" x="2831" y="1128" width="710" height="477" frameX="-0" frameY="-20" frameWidth="710" frameHeight="498"/>
+	<SubTexture name="morky down0006" x="2831" y="1128" width="710" height="477" frameX="-0" frameY="-20" frameWidth="710" frameHeight="498"/>
+	<SubTexture name="morky idle0000" x="1812" y="518" width="811" height="635" frameX="-0" frameY="-4" frameWidth="811" frameHeight="639"/>
+	<SubTexture name="morky idle0001" x="491" y="1852" width="811" height="630" frameX="-0" frameY="-9" frameWidth="811" frameHeight="639"/>
+	<SubTexture name="morky idle0002" x="2809" y="1" width="811" height="562" frameX="-0" frameY="-77" frameWidth="811" frameHeight="639"/>
+	<SubTexture name="morky idle0003" x="2809" y="566" width="811" height="559" frameX="-0" frameY="-80" frameWidth="811" frameHeight="639"/>
+	<SubTexture name="morky idle0004" x="2809" y="566" width="811" height="559" frameX="-0" frameY="-80" frameWidth="811" frameHeight="639"/>
+	<SubTexture name="morky idle0005" x="2017" y="1156" width="811" height="572" frameX="-0" frameY="-67" frameWidth="811" frameHeight="639"/>
+	<SubTexture name="morky idle0006" x="1305" y="1855" width="811" height="603" frameX="-0" frameY="-36" frameWidth="811" frameHeight="639"/>
+	<SubTexture name="morky idle0007" x="1812" y="518" width="811" height="635" frameX="-0" frameY="-4" frameWidth="811" frameHeight="639"/>
+	<SubTexture name="morky idle0008" x="1" y="1" width="811" height="639" frameX="-0" frameY="-0" frameWidth="811" frameHeight="639"/>
+	<SubTexture name="morky idle0009" x="1" y="1" width="811" height="639" frameX="-0" frameY="-0" frameWidth="811" frameHeight="639"/>
+	<SubTexture name="morky idle0010" x="1" y="1" width="811" height="639" frameX="-0" frameY="-0" frameWidth="811" frameHeight="639"/>
+	<SubTexture name="morky idle0011" x="1" y="1" width="811" height="639" frameX="-0" frameY="-0" frameWidth="811" frameHeight="639"/>
+	<SubTexture name="morky idle0012" x="1" y="1" width="811" height="639" frameX="-0" frameY="-0" frameWidth="811" frameHeight="639"/>
+	<SubTexture name="morky idle0013" x="1" y="1" width="811" height="639" frameX="-0" frameY="-0" frameWidth="811" frameHeight="639"/>
+	<SubTexture name="morky idle0014" x="1" y="1" width="811" height="639" frameX="-0" frameY="-0" frameWidth="811" frameHeight="639"/>
+	<SubTexture name="morky left0000" x="1" y="1852" width="487" height="655" frameX="-30" frameY="-0" frameWidth="518" frameHeight="655"/>
+	<SubTexture name="morky left0001" x="998" y="539" width="518" height="655" frameX="-0" frameY="-0" frameWidth="518" frameHeight="655"/>
+	<SubTexture name="morky left0002" x="1" y="1194" width="508" height="655" frameX="-10" frameY="-0" frameWidth="518" frameHeight="655"/>
+	<SubTexture name="morky left0003" x="1509" y="1197" width="505" height="655" frameX="-13" frameY="-0" frameWidth="518" frameHeight="655"/>
+	<SubTexture name="morky left0004" x="1509" y="1197" width="505" height="655" frameX="-13" frameY="-0" frameWidth="518" frameHeight="655"/>
+	<SubTexture name="morky left0005" x="1509" y="1197" width="505" height="655" frameX="-13" frameY="-0" frameWidth="518" frameHeight="655"/>
+	<SubTexture name="morky left0006" x="1509" y="1197" width="505" height="655" frameX="-13" frameY="-0" frameWidth="518" frameHeight="655"/>
+	<SubTexture name="morky right0000" x="1171" y="2485" width="548" height="575" frameX="-0" frameY="-0" frameWidth="591" frameHeight="575"/>
+	<SubTexture name="morky right0001" x="2119" y="1731" width="591" height="575" frameX="-0" frameY="-0" frameWidth="591" frameHeight="575"/>
+	<SubTexture name="morky right0002" x="1" y="2510" width="584" height="575" frameX="-0" frameY="-0" frameWidth="591" frameHeight="575"/>
+	<SubTexture name="morky right0003" x="588" y="2485" width="580" height="575" frameX="-0" frameY="-0" frameWidth="591" frameHeight="575"/>
+	<SubTexture name="morky right0004" x="588" y="2485" width="580" height="575" frameX="-0" frameY="-0" frameWidth="591" frameHeight="575"/>
+	<SubTexture name="morky right0005" x="588" y="2485" width="580" height="575" frameX="-0" frameY="-0" frameWidth="591" frameHeight="575"/>
+	<SubTexture name="morky right0006" x="588" y="2485" width="580" height="575" frameX="-0" frameY="-0" frameWidth="591" frameHeight="575"/>
+	<SubTexture name="morky up0000" x="1812" y="1" width="994" height="514" frameX="-0" frameY="-34" frameWidth="994" frameHeight="548"/>
+	<SubTexture name="morky up0001" x="1" y="643" width="994" height="548" frameX="-0" frameY="-0" frameWidth="994" frameHeight="548"/>
+	<SubTexture name="morky up0002" x="815" y="1" width="994" height="535" frameX="-0" frameY="-13" frameWidth="994" frameHeight="548"/>
+	<SubTexture name="morky up0003" x="512" y="1197" width="994" height="533" frameX="-0" frameY="-15" frameWidth="994" frameHeight="548"/>
+	<SubTexture name="morky up0004" x="512" y="1197" width="994" height="533" frameX="-0" frameY="-15" frameWidth="994" frameHeight="548"/>
+	<SubTexture name="morky up0005" x="512" y="1197" width="994" height="533" frameX="-0" frameY="-15" frameWidth="994" frameHeight="548"/>
+	<SubTexture name="morky up0006" x="512" y="1197" width="994" height="533" frameX="-0" frameY="-15" frameWidth="994" frameHeight="548"/>
+	<SubTexture name="morky rigtht0000" x="1519" y="753" width="116" height="104" frameX="-0" frameY="-0" frameWidth="129" frameHeight="104"/>
+	<SubTexture name="morky rigtht0001" x="1519" y="539" width="128" height="104" frameX="-1" frameY="-0" frameWidth="129" frameHeight="104"/>
+	<SubTexture name="morky rigtht0002" x="1519" y="646" width="118" height="104" frameX="-0" frameY="-0" frameWidth="129" frameHeight="104"/>
+	<SubTexture name="morky rigtht0003" x="1519" y="860" width="114" height="104" frameX="-0" frameY="-0" frameWidth="129" frameHeight="104"/>
+	<SubTexture name="morky rigtht0004" x="1519" y="860" width="114" height="104" frameX="-0" frameY="-0" frameWidth="129" frameHeight="104"/>
+	<SubTexture name="morky rigtht0005" x="1519" y="860" width="114" height="104" frameX="-0" frameY="-0" frameWidth="129" frameHeight="104"/>
+	<SubTexture name="morky rigtht0006" x="1519" y="860" width="114" height="104" frameX="-0" frameY="-0" frameWidth="129" frameHeight="104"/>
 </TextureAtlas>

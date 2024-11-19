@@ -1,122 +1,123 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<TextureAtlas imagePath="TC Dead.png">
-	<!-- Created with Adobe Animate version 21.0.5.40714 -->
-	<!-- http://www.adobe.com/products/animate.html -->
-	<SubTexture name="TC dies0000" x="4" y="4" width="364" height="694" frameX="-26" frameY="-115" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0001" x="368" y="4" width="367" height="697" frameX="-26" frameY="-112" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0002" x="735" y="4" width="368" height="698" frameX="-26" frameY="-111" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0003" x="1103" y="4" width="463" height="809" frameX="-21" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0004" x="1566" y="4" width="463" height="809" frameX="-21" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0005" x="2029" y="4" width="463" height="809" frameX="-21" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0006" x="2492" y="4" width="463" height="809" frameX="-21" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0007" x="2955" y="4" width="463" height="809" frameX="-21" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0008" x="3418" y="4" width="463" height="809" frameX="-21" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0009" x="3418" y="4" width="463" height="809" frameX="-21" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0010" x="3418" y="4" width="463" height="809" frameX="-21" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0011" x="3418" y="4" width="463" height="809" frameX="-21" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0012" x="3418" y="4" width="463" height="809" frameX="-21" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0013" x="3418" y="4" width="463" height="809" frameX="-21" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0014" x="3418" y="4" width="463" height="809" frameX="-21" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0015" x="3418" y="4" width="463" height="809" frameX="-21" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0016" x="3418" y="4" width="463" height="809" frameX="-21" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0017" x="3418" y="4" width="463" height="809" frameX="-21" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0018" x="3418" y="4" width="463" height="809" frameX="-21" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0019" x="3881" y="4" width="463" height="809" frameX="-21" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0020" x="4344" y="4" width="463" height="809" frameX="-21" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0021" x="4807" y="4" width="467" height="809" frameX="-17" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0022" x="5274" y="4" width="463" height="809" frameX="-21" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0023" x="5737" y="4" width="463" height="809" frameX="-21" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0024" x="6200" y="4" width="463" height="809" frameX="-21" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0025" x="6663" y="4" width="463" height="809" frameX="-21" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0026" x="7126" y="4" width="474" height="809" frameX="-10" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0027" x="7600" y="4" width="463" height="809" frameX="-21" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0028" x="4" y="813" width="463" height="815" frameX="-21" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0029" x="467" y="813" width="463" height="809" frameX="-21" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0030" x="467" y="813" width="463" height="809" frameX="-21" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0031" x="467" y="813" width="463" height="809" frameX="-21" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0032" x="467" y="813" width="463" height="809" frameX="-21" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0033" x="467" y="813" width="463" height="809" frameX="-21" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0034" x="467" y="813" width="463" height="809" frameX="-21" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0035" x="467" y="813" width="463" height="809" frameX="-21" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0036" x="467" y="813" width="463" height="809" frameX="-21" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0037" x="930" y="813" width="463" height="809" frameX="-21" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0038" x="1393" y="813" width="463" height="808" frameX="-21" frameY="-1" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0039" x="1856" y="813" width="463" height="808" frameX="-21" frameY="-1" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0040" x="2319" y="813" width="464" height="808" frameX="-21" frameY="-1" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0041" x="2783" y="813" width="463" height="808" frameX="-22" frameY="-1" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0042" x="3246" y="813" width="463" height="808" frameX="-22" frameY="-1" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0043" x="3709" y="813" width="477" height="809" frameX="0" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0044" x="4186" y="813" width="477" height="809" frameX="0" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0045" x="4663" y="813" width="477" height="809" frameX="0" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0046" x="5140" y="813" width="477" height="809" frameX="0" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0047" x="5617" y="813" width="477" height="809" frameX="0" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0048" x="5617" y="813" width="477" height="809" frameX="0" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0049" x="5617" y="813" width="477" height="809" frameX="0" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0050" x="5617" y="813" width="477" height="809" frameX="0" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0051" x="5617" y="813" width="477" height="809" frameX="0" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0052" x="5617" y="813" width="477" height="809" frameX="0" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0053" x="5617" y="813" width="477" height="809" frameX="0" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0054" x="5617" y="813" width="477" height="809" frameX="0" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0055" x="5617" y="813" width="477" height="809" frameX="0" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0056" x="5617" y="813" width="477" height="809" frameX="0" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0057" x="5617" y="813" width="477" height="809" frameX="0" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0058" x="5617" y="813" width="477" height="809" frameX="0" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies0059" x="5617" y="813" width="477" height="809" frameX="0" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies loop0000" x="5617" y="813" width="477" height="809" frameX="0" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies loop0001" x="5617" y="813" width="477" height="809" frameX="0" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies loop0002" x="5617" y="813" width="477" height="809" frameX="0" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies loop0003" x="5617" y="813" width="477" height="809" frameX="0" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies loop0004" x="5617" y="813" width="477" height="809" frameX="0" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies loop0005" x="5617" y="813" width="477" height="809" frameX="0" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies loop0006" x="5617" y="813" width="477" height="809" frameX="0" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies loop0007" x="5617" y="813" width="477" height="809" frameX="0" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies loop0008" x="5617" y="813" width="477" height="809" frameX="0" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies loop0009" x="5617" y="813" width="477" height="809" frameX="0" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies loop0010" x="5617" y="813" width="477" height="809" frameX="0" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies loop0011" x="5617" y="813" width="477" height="809" frameX="0" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies loop0012" x="5617" y="813" width="477" height="809" frameX="0" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies loop0013" x="5617" y="813" width="477" height="809" frameX="0" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies loop0014" x="5617" y="813" width="477" height="809" frameX="0" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies loop0015" x="5617" y="813" width="477" height="809" frameX="0" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC dies loop0016" x="5617" y="813" width="477" height="809" frameX="0" frameY="0" frameWidth="485" frameHeight="815"/>
-	<SubTexture name="TC revives0000" x="6094" y="813" width="477" height="809" frameX="0" frameY="0" frameWidth="560" frameHeight="809"/>
-	<SubTexture name="TC revives0001" x="6571" y="813" width="477" height="809" frameX="0" frameY="0" frameWidth="560" frameHeight="809"/>
-	<SubTexture name="TC revives0002" x="7048" y="813" width="477" height="809" frameX="0" frameY="0" frameWidth="560" frameHeight="809"/>
-	<SubTexture name="TC revives0003" x="7525" y="813" width="477" height="809" frameX="0" frameY="0" frameWidth="560" frameHeight="809"/>
-	<SubTexture name="TC revives0004" x="7525" y="813" width="477" height="809" frameX="0" frameY="0" frameWidth="560" frameHeight="809"/>
-	<SubTexture name="TC revives0005" x="7525" y="813" width="477" height="809" frameX="0" frameY="0" frameWidth="560" frameHeight="809"/>
-	<SubTexture name="TC revives0006" x="7525" y="813" width="477" height="809" frameX="0" frameY="0" frameWidth="560" frameHeight="809"/>
-	<SubTexture name="TC revives0007" x="7525" y="813" width="477" height="809" frameX="0" frameY="0" frameWidth="560" frameHeight="809"/>
-	<SubTexture name="TC revives0008" x="7525" y="813" width="477" height="809" frameX="0" frameY="0" frameWidth="560" frameHeight="809"/>
-	<SubTexture name="TC revives0009" x="7525" y="813" width="477" height="809" frameX="0" frameY="0" frameWidth="560" frameHeight="809"/>
-	<SubTexture name="TC revives0010" x="4" y="1628" width="477" height="809" frameX="0" frameY="0" frameWidth="560" frameHeight="809"/>
-	<SubTexture name="TC revives0011" x="481" y="1628" width="477" height="809" frameX="0" frameY="0" frameWidth="560" frameHeight="809"/>
-	<SubTexture name="TC revives0012" x="958" y="1628" width="477" height="809" frameX="0" frameY="0" frameWidth="560" frameHeight="809"/>
-	<SubTexture name="TC revives0013" x="1435" y="1628" width="477" height="809" frameX="0" frameY="0" frameWidth="560" frameHeight="809"/>
-	<SubTexture name="TC revives0014" x="1435" y="1628" width="477" height="809" frameX="0" frameY="0" frameWidth="560" frameHeight="809"/>
-	<SubTexture name="TC revives0015" x="1435" y="1628" width="477" height="809" frameX="0" frameY="0" frameWidth="560" frameHeight="809"/>
-	<SubTexture name="TC revives0016" x="1435" y="1628" width="477" height="809" frameX="0" frameY="0" frameWidth="560" frameHeight="809"/>
-	<SubTexture name="TC revives0017" x="1435" y="1628" width="477" height="809" frameX="0" frameY="0" frameWidth="560" frameHeight="809"/>
-	<SubTexture name="TC revives0018" x="1912" y="1628" width="477" height="809" frameX="0" frameY="0" frameWidth="560" frameHeight="809"/>
-	<SubTexture name="TC revives0019" x="2389" y="1628" width="477" height="809" frameX="0" frameY="0" frameWidth="560" frameHeight="809"/>
-	<SubTexture name="TC revives0020" x="2866" y="1628" width="477" height="809" frameX="0" frameY="0" frameWidth="560" frameHeight="809"/>
-	<SubTexture name="TC revives0021" x="3343" y="1628" width="556" height="809" frameX="0" frameY="0" frameWidth="560" frameHeight="809"/>
-	<SubTexture name="TC revives0022" x="3899" y="1628" width="560" height="809"/>
-	<SubTexture name="TC revives0023" x="4459" y="1628" width="560" height="809"/>
-	<SubTexture name="TC revives0024" x="4459" y="1628" width="560" height="809"/>
-	<SubTexture name="TC revives0025" x="5019" y="1628" width="559" height="809" frameX="0" frameY="0" frameWidth="560" frameHeight="809"/>
-	<SubTexture name="TC revives0026" x="5578" y="1628" width="559" height="809" frameX="0" frameY="0" frameWidth="560" frameHeight="809"/>
-	<SubTexture name="TC revives0027" x="5578" y="1628" width="559" height="809" frameX="0" frameY="0" frameWidth="560" frameHeight="809"/>
-	<SubTexture name="TC revives0028" x="5578" y="1628" width="559" height="809" frameX="0" frameY="0" frameWidth="560" frameHeight="809"/>
-	<SubTexture name="TC revives0029" x="5578" y="1628" width="559" height="809" frameX="0" frameY="0" frameWidth="560" frameHeight="809"/>
-	<SubTexture name="TC revives0030" x="5578" y="1628" width="559" height="809" frameX="0" frameY="0" frameWidth="560" frameHeight="809"/>
-	<SubTexture name="TC revives0031" x="5578" y="1628" width="559" height="809" frameX="0" frameY="0" frameWidth="560" frameHeight="809"/>
-	<SubTexture name="TC revives0032" x="5578" y="1628" width="559" height="809" frameX="0" frameY="0" frameWidth="560" frameHeight="809"/>
-	<SubTexture name="TC revives0033" x="5578" y="1628" width="559" height="809" frameX="0" frameY="0" frameWidth="560" frameHeight="809"/>
-	<SubTexture name="TC revives0034" x="5578" y="1628" width="559" height="809" frameX="0" frameY="0" frameWidth="560" frameHeight="809"/>
-	<SubTexture name="TC revives0035" x="5578" y="1628" width="559" height="809" frameX="0" frameY="0" frameWidth="560" frameHeight="809"/>
-	<SubTexture name="TC revives0036" x="5578" y="1628" width="559" height="809" frameX="0" frameY="0" frameWidth="560" frameHeight="809"/>
-	<SubTexture name="TC revives0037" x="5578" y="1628" width="559" height="809" frameX="0" frameY="0" frameWidth="560" frameHeight="809"/>
-	<SubTexture name="TC revives0038" x="5578" y="1628" width="559" height="809" frameX="0" frameY="0" frameWidth="560" frameHeight="809"/>
-	<SubTexture name="TC revives0039" x="5578" y="1628" width="559" height="809" frameX="0" frameY="0" frameWidth="560" frameHeight="809"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Created with Funkin Packer v0.1.3 https://neeeoo.github.io/funkin-packer/
+-->
+<TextureAtlas imagePath="TC Dead.png" width="3743" height="3816">
+	<SubTexture name="TC dies0000" x="2898" y="2051" width="331" height="676" frameX="-46" frameY="-122" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0001" x="2902" y="685" width="331" height="680" frameX="-48" frameY="-118" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0002" x="2902" y="1" width="332" height="681" frameX="-48" frameY="-117" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0003" x="2898" y="1368" width="332" height="680" frameX="-47" frameY="-118" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0004" x="2489" y="1" width="410" height="778" frameX="-39" frameY="-19" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0005" x="1" y="1570" width="411" height="779" frameX="-39" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0006" x="415" y="1567" width="410" height="779" frameX="-39" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0007" x="828" y="1567" width="410" height="779" frameX="-39" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0008" x="1241" y="1567" width="410" height="779" frameX="-39" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0009" x="1241" y="1567" width="410" height="779" frameX="-39" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0010" x="1241" y="1567" width="410" height="779" frameX="-39" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0011" x="1241" y="1567" width="410" height="779" frameX="-39" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0012" x="1241" y="1567" width="410" height="779" frameX="-39" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0013" x="1241" y="1567" width="410" height="779" frameX="-39" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0014" x="1241" y="1567" width="410" height="779" frameX="-39" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0015" x="1241" y="1567" width="410" height="779" frameX="-39" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0016" x="1241" y="1567" width="410" height="779" frameX="-39" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0017" x="1241" y="1567" width="410" height="779" frameX="-39" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0018" x="1241" y="1567" width="410" height="779" frameX="-39" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0019" x="1655" y="1" width="411" height="779" frameX="-38" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0020" x="1655" y="783" width="411" height="779" frameX="-38" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0021" x="2069" y="1" width="417" height="779" frameX="-32" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0022" x="1654" y="1565" width="411" height="779" frameX="-38" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0023" x="2068" y="1565" width="411" height="779" frameX="-38" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0024" x="2069" y="783" width="411" height="779" frameX="-38" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0025" x="1" y="2352" width="411" height="779" frameX="-38" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0026" x="415" y="2349" width="411" height="779" frameX="-38" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0027" x="829" y="2349" width="411" height="779" frameX="-38" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0028" x="1" y="1" width="411" height="783" frameX="-38" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0029" x="1243" y="2349" width="411" height="779" frameX="-38" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0030" x="1243" y="2349" width="411" height="779" frameX="-38" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0031" x="1243" y="2349" width="411" height="779" frameX="-38" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0032" x="1243" y="2349" width="411" height="779" frameX="-38" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0033" x="1243" y="2349" width="411" height="779" frameX="-38" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0034" x="1243" y="2349" width="411" height="779" frameX="-38" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0035" x="1243" y="2349" width="411" height="779" frameX="-38" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0036" x="1243" y="2349" width="411" height="779" frameX="-38" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0037" x="1657" y="2347" width="411" height="779" frameX="-38" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0038" x="2071" y="2347" width="411" height="779" frameX="-38" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0039" x="2482" y="1565" width="411" height="779" frameX="-39" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0040" x="2483" y="783" width="410" height="779" frameX="-39" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0041" x="2485" y="2347" width="410" height="778" frameX="-39" frameY="-19" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0042" x="2671" y="3128" width="252" height="661" frameX="-122" frameY="-136" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0043" x="3236" y="685" width="252" height="660" frameX="-122" frameY="-137" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0044" x="415" y="784" width="410" height="780" frameX="-39" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0045" x="1" y="787" width="410" height="780" frameX="-39" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0046" x="828" y="1" width="410" height="780" frameX="-39" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0047" x="415" y="1" width="410" height="780" frameX="-39" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0048" x="415" y="1" width="410" height="780" frameX="-39" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0049" x="415" y="1" width="410" height="780" frameX="-39" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0050" x="415" y="1" width="410" height="780" frameX="-39" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0051" x="415" y="1" width="410" height="780" frameX="-39" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0052" x="415" y="1" width="410" height="780" frameX="-39" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0053" x="415" y="1" width="410" height="780" frameX="-39" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0054" x="415" y="1" width="410" height="780" frameX="-39" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0055" x="415" y="1" width="410" height="780" frameX="-39" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0056" x="415" y="1" width="410" height="780" frameX="-39" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0057" x="415" y="1" width="410" height="780" frameX="-39" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0058" x="415" y="1" width="410" height="780" frameX="-39" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies0059" x="415" y="1" width="410" height="780" frameX="-39" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies loop0000" x="415" y="1" width="410" height="780" frameX="-39" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies loop0001" x="415" y="1" width="410" height="780" frameX="-39" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies loop0002" x="415" y="1" width="410" height="780" frameX="-39" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies loop0003" x="415" y="1" width="410" height="780" frameX="-39" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies loop0004" x="415" y="1" width="410" height="780" frameX="-39" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies loop0005" x="415" y="1" width="410" height="780" frameX="-39" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies loop0006" x="415" y="1" width="410" height="780" frameX="-39" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies loop0007" x="415" y="1" width="410" height="780" frameX="-39" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies loop0008" x="415" y="1" width="410" height="780" frameX="-39" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies loop0009" x="415" y="1" width="410" height="780" frameX="-39" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies loop0010" x="415" y="1" width="410" height="780" frameX="-39" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies loop0011" x="415" y="1" width="410" height="780" frameX="-39" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies loop0012" x="415" y="1" width="410" height="780" frameX="-39" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies loop0013" x="415" y="1" width="410" height="780" frameX="-39" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies loop0014" x="415" y="1" width="410" height="780" frameX="-39" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies loop0015" x="415" y="1" width="410" height="780" frameX="-39" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC dies loop0016" x="415" y="1" width="410" height="780" frameX="-39" frameY="-18" frameWidth="485" frameHeight="815"/>
+	<SubTexture name="TC revives0000" x="1241" y="1" width="411" height="780" frameX="-39" frameY="-18" frameWidth="560" frameHeight="809"/>
+	<SubTexture name="TC revives0001" x="828" y="784" width="410" height="780" frameX="-39" frameY="-18" frameWidth="560" frameHeight="809"/>
+	<SubTexture name="TC revives0002" x="1241" y="784" width="410" height="780" frameX="-39" frameY="-18" frameWidth="560" frameHeight="809"/>
+	<SubTexture name="TC revives0003" x="2926" y="2730" width="252" height="661" frameX="-122" frameY="-137" frameWidth="560" frameHeight="809"/>
+	<SubTexture name="TC revives0004" x="2926" y="2730" width="252" height="661" frameX="-122" frameY="-137" frameWidth="560" frameHeight="809"/>
+	<SubTexture name="TC revives0005" x="2926" y="2730" width="252" height="661" frameX="-122" frameY="-137" frameWidth="560" frameHeight="809"/>
+	<SubTexture name="TC revives0006" x="2926" y="2730" width="252" height="661" frameX="-122" frameY="-137" frameWidth="560" frameHeight="809"/>
+	<SubTexture name="TC revives0007" x="2926" y="2730" width="252" height="661" frameX="-122" frameY="-137" frameWidth="560" frameHeight="809"/>
+	<SubTexture name="TC revives0008" x="2926" y="2730" width="252" height="661" frameX="-122" frameY="-137" frameWidth="560" frameHeight="809"/>
+	<SubTexture name="TC revives0009" x="2926" y="2730" width="252" height="661" frameX="-122" frameY="-137" frameWidth="560" frameHeight="809"/>
+	<SubTexture name="TC revives0010" x="3236" y="1348" width="250" height="660" frameX="-122" frameY="-138" frameWidth="560" frameHeight="809"/>
+	<SubTexture name="TC revives0011" x="3232" y="2670" width="251" height="654" frameX="-117" frameY="-144" frameWidth="560" frameHeight="809"/>
+	<SubTexture name="TC revives0012" x="3491" y="1" width="251" height="653" frameX="-117" frameY="-145" frameWidth="560" frameHeight="809"/>
+	<SubTexture name="TC revives0013" x="3491" y="657" width="251" height="652" frameX="-117" frameY="-146" frameWidth="560" frameHeight="809"/>
+	<SubTexture name="TC revives0014" x="3491" y="657" width="251" height="652" frameX="-117" frameY="-146" frameWidth="560" frameHeight="809"/>
+	<SubTexture name="TC revives0015" x="3491" y="657" width="251" height="652" frameX="-117" frameY="-146" frameWidth="560" frameHeight="809"/>
+	<SubTexture name="TC revives0016" x="3491" y="657" width="251" height="652" frameX="-117" frameY="-146" frameWidth="560" frameHeight="809"/>
+	<SubTexture name="TC revives0017" x="3491" y="657" width="251" height="652" frameX="-117" frameY="-146" frameWidth="560" frameHeight="809"/>
+	<SubTexture name="TC revives0018" x="3233" y="2011" width="251" height="656" frameX="-117" frameY="-142" frameWidth="560" frameHeight="809"/>
+	<SubTexture name="TC revives0019" x="3237" y="1" width="250" height="661" frameX="-121" frameY="-137" frameWidth="560" frameHeight="809"/>
+	<SubTexture name="TC revives0020" x="2393" y="3129" width="275" height="671" frameX="-100" frameY="-127" frameWidth="560" frameHeight="809"/>
+	<SubTexture name="TC revives0021" x="1913" y="3129" width="477" height="680" frameX="-49" frameY="-117" frameWidth="560" frameHeight="809"/>
+	<SubTexture name="TC revives0022" x="1" y="3134" width="475" height="681" frameX="-51" frameY="-116" frameWidth="560" frameHeight="809"/>
+	<SubTexture name="TC revives0023" x="479" y="3131" width="475" height="681" frameX="-51" frameY="-116" frameWidth="560" frameHeight="809"/>
+	<SubTexture name="TC revives0024" x="479" y="3131" width="475" height="681" frameX="-51" frameY="-116" frameWidth="560" frameHeight="809"/>
+	<SubTexture name="TC revives0025" x="957" y="3131" width="475" height="681" frameX="-51" frameY="-116" frameWidth="560" frameHeight="809"/>
+	<SubTexture name="TC revives0026" x="1435" y="3131" width="475" height="681" frameX="-51" frameY="-116" frameWidth="560" frameHeight="809"/>
+	<SubTexture name="TC revives0027" x="1435" y="3131" width="475" height="681" frameX="-51" frameY="-116" frameWidth="560" frameHeight="809"/>
+	<SubTexture name="TC revives0028" x="1435" y="3131" width="475" height="681" frameX="-51" frameY="-116" frameWidth="560" frameHeight="809"/>
+	<SubTexture name="TC revives0029" x="1435" y="3131" width="475" height="681" frameX="-51" frameY="-116" frameWidth="560" frameHeight="809"/>
+	<SubTexture name="TC revives0030" x="1435" y="3131" width="475" height="681" frameX="-51" frameY="-116" frameWidth="560" frameHeight="809"/>
+	<SubTexture name="TC revives0031" x="1435" y="3131" width="475" height="681" frameX="-51" frameY="-116" frameWidth="560" frameHeight="809"/>
+	<SubTexture name="TC revives0032" x="1435" y="3131" width="475" height="681" frameX="-51" frameY="-116" frameWidth="560" frameHeight="809"/>
+	<SubTexture name="TC revives0033" x="1435" y="3131" width="475" height="681" frameX="-51" frameY="-116" frameWidth="560" frameHeight="809"/>
+	<SubTexture name="TC revives0034" x="1435" y="3131" width="475" height="681" frameX="-51" frameY="-116" frameWidth="560" frameHeight="809"/>
+	<SubTexture name="TC revives0035" x="1435" y="3131" width="475" height="681" frameX="-51" frameY="-116" frameWidth="560" frameHeight="809"/>
+	<SubTexture name="TC revives0036" x="1435" y="3131" width="475" height="681" frameX="-51" frameY="-116" frameWidth="560" frameHeight="809"/>
+	<SubTexture name="TC revives0037" x="1435" y="3131" width="475" height="681" frameX="-51" frameY="-116" frameWidth="560" frameHeight="809"/>
+	<SubTexture name="TC revives0038" x="1435" y="3131" width="475" height="681" frameX="-51" frameY="-116" frameWidth="560" frameHeight="809"/>
+	<SubTexture name="TC revives0039" x="1435" y="3131" width="475" height="681" frameX="-51" frameY="-116" frameWidth="560" frameHeight="809"/>
 </TextureAtlas>

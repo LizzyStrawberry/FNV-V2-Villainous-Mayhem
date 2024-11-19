@@ -1,52 +1,53 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<TextureAtlas imagePath="Aizi.png">
-	<!-- Created with Adobe Animate version 21.0.5.40714 -->
-	<!-- http://www.adobe.com/products/animate.html -->
-	<SubTexture name="aizi down0000" x="4" y="4" width="694" height="373"/>
-	<SubTexture name="aizi down0001" x="698" y="4" width="694" height="336" frameX="0" frameY="-33" frameWidth="694" frameHeight="373"/>
-	<SubTexture name="aizi down0002" x="1392" y="4" width="694" height="357" frameX="0" frameY="-14" frameWidth="694" frameHeight="373"/>
-	<SubTexture name="aizi down0003" x="2086" y="4" width="694" height="366" frameX="0" frameY="-6" frameWidth="694" frameHeight="373"/>
-	<SubTexture name="aizi down0004" x="4" y="4" width="694" height="373"/>
-	<SubTexture name="aizi down0005" x="4" y="4" width="694" height="373"/>
-	<SubTexture name="aizi down0006" x="4" y="4" width="694" height="373"/>
-	<SubTexture name="aizi down0007" x="4" y="4" width="694" height="373"/>
-	<SubTexture name="aizi idle0000" x="2780" y="4" width="527" height="435" frameX="-22" frameY="-9" frameWidth="572" frameHeight="444"/>
-	<SubTexture name="aizi idle0001" x="3307" y="4" width="527" height="426" frameX="-22" frameY="-17" frameWidth="572" frameHeight="444"/>
-	<SubTexture name="aizi idle0002" x="4" y="439" width="539" height="395" frameX="-16" frameY="-48" frameWidth="572" frameHeight="444"/>
-	<SubTexture name="aizi idle0003" x="543" y="439" width="572" height="380" frameX="0" frameY="-63" frameWidth="572" frameHeight="444"/>
-	<SubTexture name="aizi idle0004" x="1115" y="439" width="572" height="372" frameX="0" frameY="-70" frameWidth="572" frameHeight="444"/>
-	<SubTexture name="aizi idle0005" x="1115" y="439" width="572" height="372" frameX="0" frameY="-70" frameWidth="572" frameHeight="444"/>
-	<SubTexture name="aizi idle0006" x="1687" y="439" width="550" height="389" frameX="-11" frameY="-54" frameWidth="572" frameHeight="444"/>
-	<SubTexture name="aizi idle0007" x="2237" y="439" width="527" height="427" frameX="-22" frameY="-16" frameWidth="572" frameHeight="444"/>
-	<SubTexture name="aizi idle0008" x="2780" y="4" width="527" height="435" frameX="-22" frameY="-9" frameWidth="572" frameHeight="444"/>
-	<SubTexture name="aizi idle0009" x="2764" y="439" width="527" height="440" frameX="-22" frameY="-4" frameWidth="572" frameHeight="444"/>
-	<SubTexture name="aizi idle0010" x="3291" y="439" width="527" height="444" frameX="-22" frameY="0" frameWidth="572" frameHeight="444"/>
-	<SubTexture name="aizi idle0011" x="3291" y="439" width="527" height="444" frameX="-22" frameY="0" frameWidth="572" frameHeight="444"/>
-	<SubTexture name="aizi idle0012" x="3291" y="439" width="527" height="444" frameX="-22" frameY="0" frameWidth="572" frameHeight="444"/>
-	<SubTexture name="aizi idle0013" x="3291" y="439" width="527" height="444" frameX="-22" frameY="0" frameWidth="572" frameHeight="444"/>
-	<SubTexture name="aizi idle0014" x="2780" y="4" width="527" height="435" frameX="-22" frameY="-9" frameWidth="572" frameHeight="444"/>
-	<SubTexture name="aizi left0000" x="4" y="883" width="422" height="545" frameX="-19" frameY="0" frameWidth="441" frameHeight="545"/>
-	<SubTexture name="aizi left0001" x="4" y="883" width="422" height="545" frameX="0" frameY="0" frameWidth="441" frameHeight="545"/>
-	<SubTexture name="aizi left0002" x="4" y="883" width="422" height="545" frameX="-5" frameY="0" frameWidth="441" frameHeight="545"/>
-	<SubTexture name="aizi left0003" x="4" y="883" width="422" height="545" frameX="-8" frameY="0" frameWidth="441" frameHeight="545"/>
-	<SubTexture name="aizi left0004" x="4" y="883" width="422" height="545" frameX="-9" frameY="0" frameWidth="441" frameHeight="545"/>
-	<SubTexture name="aizi left0005" x="4" y="883" width="422" height="545" frameX="-9" frameY="0" frameWidth="441" frameHeight="545"/>
-	<SubTexture name="aizi left0006" x="4" y="883" width="422" height="545" frameX="-9" frameY="0" frameWidth="441" frameHeight="545"/>
-	<SubTexture name="aizi left0007" x="4" y="883" width="422" height="545" frameX="-9" frameY="0" frameWidth="441" frameHeight="545"/>
-	<SubTexture name="aizi right0000" x="426" y="883" width="538" height="417" frameX="0" frameY="0" frameWidth="562" frameHeight="417"/>
-	<SubTexture name="aizi right0001" x="964" y="883" width="546" height="417" frameX="-16" frameY="0" frameWidth="562" frameHeight="417"/>
-	<SubTexture name="aizi right0002" x="1510" y="883" width="539" height="417" frameX="-5" frameY="0" frameWidth="562" frameHeight="417"/>
-	<SubTexture name="aizi right0003" x="2049" y="883" width="537" height="417" frameX="-2" frameY="0" frameWidth="562" frameHeight="417"/>
-	<SubTexture name="aizi right0004" x="2586" y="883" width="537" height="417" frameX="-1" frameY="0" frameWidth="562" frameHeight="417"/>
-	<SubTexture name="aizi right0005" x="2586" y="883" width="537" height="417" frameX="-1" frameY="0" frameWidth="562" frameHeight="417"/>
-	<SubTexture name="aizi right0006" x="2586" y="883" width="537" height="417" frameX="-1" frameY="0" frameWidth="562" frameHeight="417"/>
-	<SubTexture name="aizi right0007" x="2586" y="883" width="537" height="417" frameX="-1" frameY="0" frameWidth="562" frameHeight="417"/>
-	<SubTexture name="aizi up0000" x="3123" y="883" width="686" height="565" frameX="0" frameY="-53" frameWidth="686" frameHeight="618"/>
-	<SubTexture name="aizi up0001" x="4" y="1448" width="686" height="618"/>
-	<SubTexture name="aizi up0002" x="690" y="1448" width="686" height="580" frameX="0" frameY="-38" frameWidth="686" frameHeight="618"/>
-	<SubTexture name="aizi up0003" x="1376" y="1448" width="686" height="577" frameX="0" frameY="-41" frameWidth="686" frameHeight="618"/>
-	<SubTexture name="aizi up0004" x="1376" y="1448" width="686" height="577" frameX="0" frameY="-41" frameWidth="686" frameHeight="618"/>
-	<SubTexture name="aizi up0005" x="1376" y="1448" width="686" height="577" frameX="0" frameY="-41" frameWidth="686" frameHeight="618"/>
-	<SubTexture name="aizi up0006" x="1376" y="1448" width="686" height="577" frameX="0" frameY="-41" frameWidth="686" frameHeight="618"/>
-	<SubTexture name="aizi up0007" x="1376" y="1448" width="686" height="577" frameX="0" frameY="-41" frameWidth="686" frameHeight="618"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Created with Funkin Packer v0.1.3 https://neeeoo.github.io/funkin-packer/
+-->
+<TextureAtlas imagePath="Aizi.png" width="2365" height="2589">
+	<SubTexture name="aizi down0000" x="1502" y="2059" width="606" height="269" frameX="-57" frameY="-56" frameWidth="694" frameHeight="373"/>
+	<SubTexture name="aizi down0001" x="1713" y="2331" width="606" height="242" frameX="-57" frameY="-84" frameWidth="694" frameHeight="373"/>
+	<SubTexture name="aizi down0002" x="1103" y="2331" width="607" height="257" frameX="-57" frameY="-68" frameWidth="694" frameHeight="373"/>
+	<SubTexture name="aizi down0003" x="494" y="2311" width="606" height="264" frameX="-57" frameY="-61" frameWidth="694" frameHeight="373"/>
+	<SubTexture name="aizi down0004" x="1502" y="2059" width="606" height="269" frameX="-57" frameY="-56" frameWidth="694" frameHeight="373"/>
+	<SubTexture name="aizi down0005" x="1502" y="2059" width="606" height="269" frameX="-57" frameY="-56" frameWidth="694" frameHeight="373"/>
+	<SubTexture name="aizi down0006" x="1502" y="2059" width="606" height="269" frameX="-57" frameY="-56" frameWidth="694" frameHeight="373"/>
+	<SubTexture name="aizi down0007" x="1502" y="2059" width="606" height="269" frameX="-57" frameY="-56" frameWidth="694" frameHeight="373"/>
+	<SubTexture name="aizi idle0000" x="1376" y="578" width="487" height="399" frameX="-28" frameY="-28" frameWidth="572" frameHeight="444"/>
+	<SubTexture name="aizi idle0001" x="520" y="1571" width="487" height="390" frameX="-28" frameY="-37" frameWidth="572" frameHeight="444"/>
+	<SubTexture name="aizi idle0002" x="1866" y="351" width="498" height="362" frameX="-22" frameY="-66" frameWidth="572" frameHeight="444"/>
+	<SubTexture name="aizi idle0003" x="1774" y="1" width="530" height="347" frameX="-5" frameY="-81" frameWidth="572" frameHeight="444"/>
+	<SubTexture name="aizi idle0004" x="1688" y="980" width="530" height="342" frameX="-5" frameY="-86" frameWidth="572" frameHeight="444"/>
+	<SubTexture name="aizi idle0005" x="1688" y="980" width="530" height="342" frameX="-5" frameY="-86" frameWidth="572" frameHeight="444"/>
+	<SubTexture name="aizi idle0006" x="1" y="1592" width="509" height="356" frameX="-16" frameY="-72" frameWidth="572" frameHeight="444"/>
+	<SubTexture name="aizi idle0007" x="1198" y="1550" width="487" height="391" frameX="-28" frameY="-36" frameWidth="572" frameHeight="444"/>
+	<SubTexture name="aizi idle0008" x="1376" y="578" width="487" height="399" frameX="-28" frameY="-28" frameWidth="572" frameHeight="444"/>
+	<SubTexture name="aizi idle0009" x="1198" y="1143" width="487" height="404" frameX="-28" frameY="-23" frameWidth="572" frameHeight="444"/>
+	<SubTexture name="aizi idle0010" x="690" y="1143" width="505" height="425" frameX="-28" frameY="-19" frameWidth="572" frameHeight="444"/>
+	<SubTexture name="aizi idle0011" x="690" y="1143" width="505" height="425" frameX="-28" frameY="-19" frameWidth="572" frameHeight="444"/>
+	<SubTexture name="aizi idle0012" x="690" y="1143" width="505" height="425" frameX="-28" frameY="-19" frameWidth="572" frameHeight="444"/>
+	<SubTexture name="aizi idle0013" x="690" y="1143" width="505" height="425" frameX="-28" frameY="-19" frameWidth="572" frameHeight="444"/>
+	<SubTexture name="aizi idle0014" x="1376" y="578" width="487" height="399" frameX="-28" frameY="-28" frameWidth="572" frameHeight="444"/>
+	<SubTexture name="aizi left0000" x="1377" y="1" width="394" height="489" frameX="-23" frameY="-42" frameWidth="441" frameHeight="545"/>
+	<SubTexture name="aizi left0001" x="1377" y="1" width="394" height="489" frameX="-4" frameY="-42" frameWidth="441" frameHeight="545"/>
+	<SubTexture name="aizi left0002" x="1377" y="1" width="394" height="489" frameX="-9" frameY="-42" frameWidth="441" frameHeight="545"/>
+	<SubTexture name="aizi left0003" x="1377" y="1" width="394" height="489" frameX="-12" frameY="-42" frameWidth="441" frameHeight="545"/>
+	<SubTexture name="aizi left0004" x="1377" y="1" width="394" height="489" frameX="-13" frameY="-42" frameWidth="441" frameHeight="545"/>
+	<SubTexture name="aizi left0005" x="1377" y="1" width="394" height="489" frameX="-13" frameY="-42" frameWidth="441" frameHeight="545"/>
+	<SubTexture name="aizi left0006" x="1377" y="1" width="394" height="489" frameX="-13" frameY="-42" frameWidth="441" frameHeight="545"/>
+	<SubTexture name="aizi left0007" x="1377" y="1" width="394" height="489" frameX="-13" frameY="-42" frameWidth="441" frameHeight="545"/>
+	<SubTexture name="aizi right0000" x="1010" y="1944" width="489" height="364" frameX="-22" frameY="-28" frameWidth="562" frameHeight="417"/>
+	<SubTexture name="aizi right0001" x="1688" y="1325" width="495" height="364" frameX="-40" frameY="-28" frameWidth="562" frameHeight="417"/>
+	<SubTexture name="aizi right0002" x="1" y="1951" width="490" height="364" frameX="-27" frameY="-28" frameWidth="562" frameHeight="417"/>
+	<SubTexture name="aizi right0003" x="1688" y="1692" width="490" height="364" frameX="-23" frameY="-28" frameWidth="562" frameHeight="417"/>
+	<SubTexture name="aizi right0004" x="1" y="1199" width="516" height="390" frameX="-22" frameY="-2" frameWidth="562" frameHeight="417"/>
+	<SubTexture name="aizi right0005" x="1" y="1199" width="516" height="390" frameX="-22" frameY="-2" frameWidth="562" frameHeight="417"/>
+	<SubTexture name="aizi right0006" x="1" y="1199" width="516" height="390" frameX="-22" frameY="-2" frameWidth="562" frameHeight="417"/>
+	<SubTexture name="aizi right0007" x="1" y="1199" width="516" height="390" frameX="-22" frameY="-2" frameWidth="562" frameHeight="417"/>
+	<SubTexture name="aizi up0000" x="690" y="578" width="683" height="562" frameX="-0" frameY="-53" frameWidth="686" frameHeight="618"/>
+	<SubTexture name="aizi up0001" x="1" y="1" width="686" height="615" frameX="-0" frameY="-0" frameWidth="686" frameHeight="618"/>
+	<SubTexture name="aizi up0002" x="1" y="619" width="686" height="577" frameX="-0" frameY="-38" frameWidth="686" frameHeight="618"/>
+	<SubTexture name="aizi up0003" x="690" y="1" width="684" height="574" frameX="-0" frameY="-41" frameWidth="686" frameHeight="618"/>
+	<SubTexture name="aizi up0004" x="690" y="1" width="684" height="574" frameX="-0" frameY="-41" frameWidth="686" frameHeight="618"/>
+	<SubTexture name="aizi up0005" x="690" y="1" width="684" height="574" frameX="-0" frameY="-41" frameWidth="686" frameHeight="618"/>
+	<SubTexture name="aizi up0006" x="690" y="1" width="684" height="574" frameX="-0" frameY="-41" frameWidth="686" frameHeight="618"/>
+	<SubTexture name="aizi up0007" x="690" y="1" width="684" height="574" frameX="-0" frameY="-41" frameWidth="686" frameHeight="618"/>
 </TextureAtlas>

@@ -1,125 +1,126 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<TextureAtlas imagePath="Uzi.png">
-	<!-- Created with Adobe Animate version 21.0.5.40714 -->
-	<!-- http://www.adobe.com/products/animate.html -->
-	<SubTexture name="uzi dodge0000" x="4" y="4" width="461" height="542" frameX="-18" frameY="-94" frameWidth="1108" frameHeight="1279"/>
-	<SubTexture name="uzi dodge0001" x="465" y="4" width="551" height="569" frameX="-5" frameY="-67" frameWidth="1108" frameHeight="1279"/>
-	<SubTexture name="uzi dodge0002" x="1016" y="4" width="542" height="580" frameX="-1" frameY="-56" frameWidth="1108" frameHeight="1279"/>
-	<SubTexture name="uzi dodge0003" x="1558" y="4" width="556" height="588" frameX="0" frameY="-48" frameWidth="1108" frameHeight="1279"/>
-	<SubTexture name="uzi dodge0004" x="2114" y="4" width="1104" height="1113" frameX="0" frameY="-42" frameWidth="1108" frameHeight="1279"/>
-	<SubTexture name="uzi dodge0005" x="3218" y="4" width="1108" height="1117" frameX="0" frameY="-38" frameWidth="1108" frameHeight="1279"/>
-	<SubTexture name="uzi dodge0006" x="4326" y="4" width="1102" height="1235" frameX="0" frameY="-34" frameWidth="1108" frameHeight="1279"/>
-	<SubTexture name="uzi dodge0007" x="5428" y="4" width="1098" height="1243" frameX="0" frameY="-33" frameWidth="1108" frameHeight="1279"/>
-	<SubTexture name="uzi dodge0008" x="6526" y="4" width="1097" height="1248" frameX="0" frameY="-31" frameWidth="1108" frameHeight="1279"/>
-	<SubTexture name="uzi dodge0009" x="4" y="1252" width="1097" height="1251" frameX="0" frameY="-28" frameWidth="1108" frameHeight="1279"/>
-	<SubTexture name="uzi dodge0010" x="1101" y="1252" width="1097" height="1247" frameX="0" frameY="-32" frameWidth="1108" frameHeight="1279"/>
-	<SubTexture name="uzi dodge0011" x="2198" y="1252" width="1097" height="1256" frameX="0" frameY="-23" frameWidth="1108" frameHeight="1279"/>
-	<SubTexture name="uzi dodge0012" x="3295" y="1252" width="1097" height="1279" frameX="0" frameY="0" frameWidth="1108" frameHeight="1279"/>
-	<SubTexture name="uzi dodge0013" x="4392" y="1252" width="1097" height="1258" frameX="0" frameY="-21" frameWidth="1108" frameHeight="1279"/>
-	<SubTexture name="uzi dodge0014" x="5489" y="1252" width="1097" height="1258" frameX="0" frameY="-21" frameWidth="1108" frameHeight="1279"/>
-	<SubTexture name="uzi dodge0015" x="6586" y="1252" width="1097" height="1258" frameX="0" frameY="-21" frameWidth="1108" frameHeight="1279"/>
-	<SubTexture name="uzi dodge0016" x="4" y="2531" width="1097" height="1258" frameX="0" frameY="-21" frameWidth="1108" frameHeight="1279"/>
-	<SubTexture name="uzi dodge0017" x="1101" y="2531" width="1097" height="1258" frameX="0" frameY="-21" frameWidth="1108" frameHeight="1279"/>
-	<SubTexture name="uzi dodge0018" x="2198" y="2531" width="1097" height="1258" frameX="0" frameY="-21" frameWidth="1108" frameHeight="1279"/>
-	<SubTexture name="uzi dodge0019" x="3295" y="2531" width="1097" height="1258" frameX="0" frameY="-21" frameWidth="1108" frameHeight="1279"/>
-	<SubTexture name="uzi dodge0020" x="4392" y="2531" width="1097" height="1258" frameX="0" frameY="-21" frameWidth="1108" frameHeight="1279"/>
-	<SubTexture name="uzi dodge0021" x="5489" y="2531" width="1097" height="1258" frameX="0" frameY="-21" frameWidth="1108" frameHeight="1279"/>
-	<SubTexture name="uzi dodge0022" x="5489" y="2531" width="1097" height="1258" frameX="0" frameY="-21" frameWidth="1108" frameHeight="1279"/>
-	<SubTexture name="uzi dodge0023" x="5489" y="2531" width="1097" height="1258" frameX="0" frameY="-21" frameWidth="1108" frameHeight="1279"/>
-	<SubTexture name="uzi dodge0024" x="5489" y="2531" width="1097" height="1258" frameX="0" frameY="-21" frameWidth="1108" frameHeight="1279"/>
-	<SubTexture name="uzi down0000" x="6586" y="2531" width="398" height="382" frameX="0" frameY="-1" frameWidth="398" frameHeight="383"/>
-	<SubTexture name="uzi down0001" x="6984" y="2531" width="395" height="379" frameX="-3" frameY="-3" frameWidth="398" frameHeight="383"/>
-	<SubTexture name="uzi down0002" x="7379" y="2531" width="394" height="378" frameX="-4" frameY="-4" frameWidth="398" frameHeight="383"/>
-	<SubTexture name="uzi down0003" x="7379" y="2531" width="394" height="378" frameX="-4" frameY="-4" frameWidth="398" frameHeight="383"/>
-	<SubTexture name="uzi down0004" x="7773" y="2531" width="394" height="381" frameX="-4" frameY="-1" frameWidth="398" frameHeight="383"/>
-	<SubTexture name="uzi down0005" x="4" y="3789" width="396" height="383" frameX="-2" frameY="0" frameWidth="398" frameHeight="383"/>
-	<SubTexture name="uzi down0006" x="400" y="3789" width="397" height="383" frameX="-1" frameY="0" frameWidth="398" frameHeight="383"/>
-	<SubTexture name="uzi down0007" x="400" y="3789" width="397" height="383" frameX="-1" frameY="0" frameWidth="398" frameHeight="383"/>
-	<SubTexture name="uzi down0008" x="400" y="3789" width="397" height="383" frameX="-1" frameY="0" frameWidth="398" frameHeight="383"/>
-	<SubTexture name="uzi down0009" x="400" y="3789" width="397" height="383" frameX="-1" frameY="0" frameWidth="398" frameHeight="383"/>
-	<SubTexture name="uzi down miss0000" x="797" y="3789" width="409" height="367"/>
-	<SubTexture name="uzi down miss0001" x="1206" y="3789" width="409" height="306" frameX="0" frameY="-55" frameWidth="409" frameHeight="367"/>
-	<SubTexture name="uzi down miss0002" x="1615" y="3789" width="409" height="363" frameX="0" frameY="-3" frameWidth="409" frameHeight="367"/>
-	<SubTexture name="uzi down miss0003" x="1615" y="3789" width="409" height="363" frameX="0" frameY="-3" frameWidth="409" frameHeight="367"/>
-	<SubTexture name="uzi down miss0004" x="1615" y="3789" width="409" height="363" frameX="0" frameY="-3" frameWidth="409" frameHeight="367"/>
-	<SubTexture name="uzi down miss0005" x="1615" y="3789" width="409" height="363" frameX="0" frameY="-3" frameWidth="409" frameHeight="367"/>
-	<SubTexture name="uzi down miss0006" x="1615" y="3789" width="409" height="363" frameX="0" frameY="-3" frameWidth="409" frameHeight="367"/>
-	<SubTexture name="uzi down miss0007" x="1615" y="3789" width="409" height="363" frameX="0" frameY="-3" frameWidth="409" frameHeight="367"/>
-	<SubTexture name="uzi down miss0008" x="1615" y="3789" width="409" height="363" frameX="0" frameY="-3" frameWidth="409" frameHeight="367"/>
-	<SubTexture name="uzi down miss0009" x="1615" y="3789" width="409" height="363" frameX="0" frameY="-3" frameWidth="409" frameHeight="367"/>
-	<SubTexture name="uzi idle0000" x="2024" y="3789" width="291" height="534" frameX="-12" frameY="-5" frameWidth="326" frameHeight="539"/>
-	<SubTexture name="uzi idle0001" x="2315" y="3789" width="288" height="531" frameX="-12" frameY="-8" frameWidth="326" frameHeight="539"/>
-	<SubTexture name="uzi idle0002" x="2603" y="3789" width="287" height="520" frameX="-4" frameY="-18" frameWidth="326" frameHeight="539"/>
-	<SubTexture name="uzi idle0003" x="2890" y="3789" width="295" height="515" frameX="0" frameY="-23" frameWidth="326" frameHeight="539"/>
-	<SubTexture name="uzi idle0004" x="2890" y="3789" width="295" height="515" frameX="0" frameY="-23" frameWidth="326" frameHeight="539"/>
-	<SubTexture name="uzi idle0005" x="2890" y="3789" width="295" height="515" frameX="0" frameY="-23" frameWidth="326" frameHeight="539"/>
-	<SubTexture name="uzi idle0006" x="3185" y="3789" width="295" height="513" frameX="0" frameY="-25" frameWidth="326" frameHeight="539"/>
-	<SubTexture name="uzi idle0007" x="3480" y="3789" width="279" height="521" frameX="-9" frameY="-17" frameWidth="326" frameHeight="539"/>
-	<SubTexture name="uzi idle0008" x="2024" y="3789" width="291" height="534" frameX="-12" frameY="-5" frameWidth="326" frameHeight="539"/>
-	<SubTexture name="uzi idle0009" x="3759" y="3789" width="303" height="538" frameX="-12" frameY="-1" frameWidth="326" frameHeight="539"/>
-	<SubTexture name="uzi idle0010" x="4062" y="3789" width="311" height="539" frameX="-12" frameY="0" frameWidth="326" frameHeight="539"/>
-	<SubTexture name="uzi idle0011" x="4373" y="3789" width="314" height="539" frameX="-12" frameY="0" frameWidth="326" frameHeight="539"/>
-	<SubTexture name="uzi idle0012" x="4373" y="3789" width="314" height="539" frameX="-12" frameY="0" frameWidth="326" frameHeight="539"/>
-	<SubTexture name="uzi idle0013" x="4687" y="3789" width="311" height="539" frameX="-12" frameY="0" frameWidth="326" frameHeight="539"/>
-	<SubTexture name="uzi idle0014" x="4998" y="3789" width="300" height="538" frameX="-12" frameY="-1" frameWidth="326" frameHeight="539"/>
-	<SubTexture name="uzi left0000" x="5298" y="3789" width="293" height="509" frameX="-41" frameY="-14" frameWidth="350" frameHeight="524"/>
-	<SubTexture name="uzi left0001" x="5591" y="3789" width="318" height="524" frameX="-31" frameY="0" frameWidth="350" frameHeight="524"/>
-	<SubTexture name="uzi left0002" x="5909" y="3789" width="350" height="496" frameX="0" frameY="-27" frameWidth="350" frameHeight="524"/>
-	<SubTexture name="uzi left0003" x="6259" y="3789" width="339" height="485" frameX="-5" frameY="-37" frameWidth="350" frameHeight="524"/>
-	<SubTexture name="uzi left0004" x="6598" y="3789" width="315" height="492" frameX="-11" frameY="-31" frameWidth="350" frameHeight="524"/>
-	<SubTexture name="uzi left0005" x="6913" y="3789" width="302" height="498" frameX="-19" frameY="-25" frameWidth="350" frameHeight="524"/>
-	<SubTexture name="uzi left0006" x="7215" y="3789" width="301" height="499" frameX="-20" frameY="-24" frameWidth="350" frameHeight="524"/>
-	<SubTexture name="uzi left0007" x="7215" y="3789" width="301" height="499" frameX="-20" frameY="-24" frameWidth="350" frameHeight="524"/>
-	<SubTexture name="uzi left0008" x="7215" y="3789" width="301" height="499" frameX="-20" frameY="-24" frameWidth="350" frameHeight="524"/>
-	<SubTexture name="uzi left0009" x="7215" y="3789" width="301" height="499" frameX="-20" frameY="-24" frameWidth="350" frameHeight="524"/>
-	<SubTexture name="uzi left miss0000" x="7516" y="3789" width="313" height="501" frameX="-39" frameY="0" frameWidth="352" frameHeight="501"/>
-	<SubTexture name="uzi left miss0001" x="7829" y="3789" width="326" height="501" frameX="0" frameY="0" frameWidth="352" frameHeight="501"/>
-	<SubTexture name="uzi left miss0002" x="4" y="4328" width="317" height="501" frameX="-27" frameY="0" frameWidth="352" frameHeight="501"/>
-	<SubTexture name="uzi left miss0003" x="4" y="4328" width="317" height="501" frameX="-27" frameY="0" frameWidth="352" frameHeight="501"/>
-	<SubTexture name="uzi left miss0004" x="4" y="4328" width="317" height="501" frameX="-27" frameY="0" frameWidth="352" frameHeight="501"/>
-	<SubTexture name="uzi left miss0005" x="4" y="4328" width="317" height="501" frameX="-27" frameY="0" frameWidth="352" frameHeight="501"/>
-	<SubTexture name="uzi left miss0006" x="4" y="4328" width="317" height="501" frameX="-27" frameY="0" frameWidth="352" frameHeight="501"/>
-	<SubTexture name="uzi left miss0007" x="4" y="4328" width="317" height="501" frameX="-27" frameY="0" frameWidth="352" frameHeight="501"/>
-	<SubTexture name="uzi left miss0008" x="4" y="4328" width="317" height="501" frameX="-27" frameY="0" frameWidth="352" frameHeight="501"/>
-	<SubTexture name="uzi left miss0009" x="4" y="4328" width="317" height="501" frameX="-27" frameY="0" frameWidth="352" frameHeight="501"/>
-	<SubTexture name="uzi right0000" x="321" y="4328" width="436" height="494" frameX="-1" frameY="-5" frameWidth="460" frameHeight="500"/>
-	<SubTexture name="uzi right0001" x="757" y="4328" width="452" height="497" frameX="-5" frameY="-3" frameWidth="460" frameHeight="500"/>
-	<SubTexture name="uzi right0002" x="1209" y="4328" width="454" height="492" frameX="-6" frameY="-6" frameWidth="460" frameHeight="500"/>
-	<SubTexture name="uzi right0003" x="1663" y="4328" width="447" height="486" frameX="-3" frameY="-12" frameWidth="460" frameHeight="500"/>
-	<SubTexture name="uzi right0004" x="2110" y="4328" width="424" height="494" frameX="0" frameY="-4" frameWidth="460" frameHeight="500"/>
-	<SubTexture name="uzi right0005" x="2534" y="4328" width="422" height="497" frameX="-1" frameY="-1" frameWidth="460" frameHeight="500"/>
-	<SubTexture name="uzi right0006" x="2956" y="4328" width="422" height="498" frameX="-1" frameY="0" frameWidth="460" frameHeight="500"/>
-	<SubTexture name="uzi right0007" x="2956" y="4328" width="422" height="498" frameX="-1" frameY="0" frameWidth="460" frameHeight="500"/>
-	<SubTexture name="uzi right0008" x="2956" y="4328" width="422" height="498" frameX="-1" frameY="0" frameWidth="460" frameHeight="500"/>
-	<SubTexture name="uzi right0009" x="2956" y="4328" width="422" height="498" frameX="-1" frameY="0" frameWidth="460" frameHeight="500"/>
-	<SubTexture name="uzi right miss0000" x="3378" y="4328" width="392" height="489" frameX="0" frameY="0" frameWidth="396" frameHeight="489"/>
-	<SubTexture name="uzi right miss0001" x="3770" y="4328" width="370" height="489" frameX="-26" frameY="0" frameWidth="396" frameHeight="489"/>
-	<SubTexture name="uzi right miss0002" x="4140" y="4328" width="384" height="489" frameX="-9" frameY="0" frameWidth="396" frameHeight="489"/>
-	<SubTexture name="uzi right miss0003" x="4140" y="4328" width="384" height="489" frameX="-9" frameY="0" frameWidth="396" frameHeight="489"/>
-	<SubTexture name="uzi right miss0004" x="4140" y="4328" width="384" height="489" frameX="-9" frameY="0" frameWidth="396" frameHeight="489"/>
-	<SubTexture name="uzi right miss0005" x="4140" y="4328" width="384" height="489" frameX="-9" frameY="0" frameWidth="396" frameHeight="489"/>
-	<SubTexture name="uzi right miss0006" x="4140" y="4328" width="384" height="489" frameX="-9" frameY="0" frameWidth="396" frameHeight="489"/>
-	<SubTexture name="uzi right miss0007" x="4140" y="4328" width="384" height="489" frameX="-9" frameY="0" frameWidth="396" frameHeight="489"/>
-	<SubTexture name="uzi right miss0008" x="4140" y="4328" width="384" height="489" frameX="-9" frameY="0" frameWidth="396" frameHeight="489"/>
-	<SubTexture name="uzi right miss0009" x="4140" y="4328" width="384" height="489" frameX="-9" frameY="0" frameWidth="396" frameHeight="489"/>
-	<SubTexture name="uzi up0000" x="4524" y="4328" width="357" height="548" frameX="0" frameY="-8" frameWidth="357" frameHeight="557"/>
-	<SubTexture name="uzi up0001" x="4881" y="4328" width="357" height="555" frameX="0" frameY="-2" frameWidth="357" frameHeight="557"/>
-	<SubTexture name="uzi up0002" x="5238" y="4328" width="357" height="557"/>
-	<SubTexture name="uzi up0003" x="5238" y="4328" width="357" height="557"/>
-	<SubTexture name="uzi up0004" x="5595" y="4328" width="357" height="554" frameX="0" frameY="-3" frameWidth="357" frameHeight="557"/>
-	<SubTexture name="uzi up0005" x="5952" y="4328" width="357" height="550" frameX="0" frameY="-6" frameWidth="357" frameHeight="557"/>
-	<SubTexture name="uzi up0006" x="6309" y="4328" width="357" height="548" frameX="0" frameY="-8" frameWidth="357" frameHeight="557"/>
-	<SubTexture name="uzi up0007" x="6309" y="4328" width="357" height="548" frameX="0" frameY="-8" frameWidth="357" frameHeight="557"/>
-	<SubTexture name="uzi up0008" x="6309" y="4328" width="357" height="548" frameX="0" frameY="-8" frameWidth="357" frameHeight="557"/>
-	<SubTexture name="uzi up0009" x="6309" y="4328" width="357" height="548" frameX="0" frameY="-8" frameWidth="357" frameHeight="557"/>
-	<SubTexture name="uzi up miss0000" x="6666" y="4328" width="370" height="543" frameX="0" frameY="-19" frameWidth="370" frameHeight="563"/>
-	<SubTexture name="uzi up miss0001" x="7036" y="4328" width="370" height="563"/>
-	<SubTexture name="uzi up miss0002" x="7406" y="4328" width="370" height="508" frameX="0" frameY="-53" frameWidth="370" frameHeight="563"/>
-	<SubTexture name="uzi up miss0003" x="7406" y="4328" width="370" height="508" frameX="0" frameY="-53" frameWidth="370" frameHeight="563"/>
-	<SubTexture name="uzi up miss0004" x="7406" y="4328" width="370" height="508" frameX="0" frameY="-53" frameWidth="370" frameHeight="563"/>
-	<SubTexture name="uzi up miss0005" x="7406" y="4328" width="370" height="508" frameX="0" frameY="-53" frameWidth="370" frameHeight="563"/>
-	<SubTexture name="uzi up miss0006" x="7406" y="4328" width="370" height="508" frameX="0" frameY="-53" frameWidth="370" frameHeight="563"/>
-	<SubTexture name="uzi up miss0007" x="7406" y="4328" width="370" height="508" frameX="0" frameY="-53" frameWidth="370" frameHeight="563"/>
-	<SubTexture name="uzi up miss0008" x="7406" y="4328" width="370" height="508" frameX="0" frameY="-53" frameWidth="370" frameHeight="563"/>
-	<SubTexture name="uzi up miss0009" x="7406" y="4328" width="370" height="508" frameX="0" frameY="-53" frameWidth="370" frameHeight="563"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Created with Funkin Packer v0.1.3 https://neeeoo.github.io/funkin-packer/
+-->
+<TextureAtlas imagePath="Uzi.png" width="3878" height="3765">
+	<SubTexture name="uzi dodge0000" x="339" y="1798" width="440" height="527" frameX="-26" frameY="-97" frameWidth="1108" frameHeight="1279"/>
+	<SubTexture name="uzi dodge0001" x="1667" y="1180" width="539" height="554" frameX="-13" frameY="-70" frameWidth="1108" frameHeight="1279"/>
+	<SubTexture name="uzi dodge0002" x="1688" y="576" width="513" height="564" frameX="-10" frameY="-60" frameWidth="1108" frameHeight="1279"/>
+	<SubTexture name="uzi dodge0003" x="1688" y="1" width="527" height="572" frameX="-8" frameY="-52" frameWidth="1108" frameHeight="1279"/>
+	<SubTexture name="uzi dodge0004" x="575" y="1190" width="535" height="577" frameX="-8" frameY="-47" frameWidth="1108" frameHeight="1279"/>
+	<SubTexture name="uzi dodge0005" x="1122" y="1180" width="542" height="582" frameX="-8" frameY="-42" frameWidth="1108" frameHeight="1279"/>
+	<SubTexture name="uzi dodge0006" x="1" y="1210" width="571" height="585" frameX="-8" frameY="-39" frameWidth="1108" frameHeight="1279"/>
+	<SubTexture name="uzi dodge0007" x="1124" y="591" width="552" height="586" frameX="-8" frameY="-38" frameWidth="1108" frameHeight="1279"/>
+	<SubTexture name="uzi dodge0008" x="563" y="599" width="556" height="588" frameX="-8" frameY="-36" frameWidth="1108" frameHeight="1279"/>
+	<SubTexture name="uzi dodge0009" x="1" y="616" width="559" height="591" frameX="-8" frameY="-33" frameWidth="1108" frameHeight="1279"/>
+	<SubTexture name="uzi dodge0010" x="1124" y="1" width="561" height="587" frameX="-8" frameY="-37" frameWidth="1108" frameHeight="1279"/>
+	<SubTexture name="uzi dodge0011" x="561" y="1" width="560" height="595" frameX="-8" frameY="-29" frameWidth="1108" frameHeight="1279"/>
+	<SubTexture name="uzi dodge0012" x="1" y="1" width="557" height="612" frameX="-8" frameY="-12" frameWidth="1108" frameHeight="1279"/>
+	<SubTexture name="uzi dodge0013" x="2072" y="2253" width="454" height="497" frameX="-8" frameY="-127" frameWidth="1108" frameHeight="1279"/>
+	<SubTexture name="uzi dodge0014" x="1150" y="2294" width="454" height="493" frameX="-8" frameY="-131" frameWidth="1108" frameHeight="1279"/>
+	<SubTexture name="uzi dodge0015" x="2346" y="2753" width="382" height="459" frameX="-8" frameY="-165" frameWidth="1108" frameHeight="1279"/>
+	<SubTexture name="uzi dodge0016" x="2731" y="2417" width="358" height="459" frameX="-8" frameY="-165" frameWidth="1108" frameHeight="1279"/>
+	<SubTexture name="uzi dodge0017" x="3153" y="1" width="347" height="459" frameX="-8" frameY="-165" frameWidth="1108" frameHeight="1279"/>
+	<SubTexture name="uzi dodge0018" x="3153" y="463" width="340" height="459" frameX="-8" frameY="-165" frameWidth="1108" frameHeight="1279"/>
+	<SubTexture name="uzi dodge0019" x="3066" y="972" width="282" height="459" frameX="-8" frameY="-165" frameWidth="1108" frameHeight="1279"/>
+	<SubTexture name="uzi dodge0020" x="1" y="3305" width="454" height="459" frameX="-8" frameY="-165" frameWidth="1108" frameHeight="1279"/>
+	<SubTexture name="uzi dodge0021" x="458" y="3305" width="332" height="459" frameX="-8" frameY="-165" frameWidth="1108" frameHeight="1279"/>
+	<SubTexture name="uzi dodge0022" x="458" y="3305" width="332" height="459" frameX="-8" frameY="-165" frameWidth="1108" frameHeight="1279"/>
+	<SubTexture name="uzi dodge0023" x="458" y="3305" width="332" height="459" frameX="-8" frameY="-165" frameWidth="1108" frameHeight="1279"/>
+	<SubTexture name="uzi dodge0024" x="458" y="3305" width="332" height="459" frameX="-8" frameY="-165" frameWidth="1108" frameHeight="1279"/>
+	<SubTexture name="uzi down0000" x="3503" y="1" width="374" height="348" frameX="-10" frameY="-13" frameWidth="398" frameHeight="383"/>
+	<SubTexture name="uzi down0001" x="3486" y="1055" width="370" height="344" frameX="-14" frameY="-17" frameWidth="398" frameHeight="383"/>
+	<SubTexture name="uzi down0002" x="3486" y="1402" width="368" height="344" frameX="-16" frameY="-17" frameWidth="398" frameHeight="383"/>
+	<SubTexture name="uzi down0003" x="3486" y="1402" width="368" height="344" frameX="-16" frameY="-17" frameWidth="398" frameHeight="383"/>
+	<SubTexture name="uzi down0004" x="3486" y="1749" width="368" height="346" frameX="-16" frameY="-15" frameWidth="398" frameHeight="383"/>
+	<SubTexture name="uzi down0005" x="3496" y="704" width="371" height="348" frameX="-13" frameY="-13" frameWidth="398" frameHeight="383"/>
+	<SubTexture name="uzi down0006" x="3503" y="352" width="373" height="349" frameX="-11" frameY="-13" frameWidth="398" frameHeight="383"/>
+	<SubTexture name="uzi down0007" x="3503" y="352" width="373" height="349" frameX="-11" frameY="-13" frameWidth="398" frameHeight="383"/>
+	<SubTexture name="uzi down0008" x="3503" y="352" width="373" height="349" frameX="-11" frameY="-13" frameWidth="398" frameHeight="383"/>
+	<SubTexture name="uzi down0009" x="3503" y="352" width="373" height="349" frameX="-11" frameY="-13" frameWidth="398" frameHeight="383"/>
+	<SubTexture name="uzi down miss0000" x="2730" y="3274" width="375" height="322" frameX="-20" frameY="-17" frameWidth="409" frameHeight="367"/>
+	<SubTexture name="uzi down miss0001" x="2410" y="1954" width="375" height="269" frameX="-20" frameY="-69" frameWidth="409" frameHeight="367"/>
+	<SubTexture name="uzi down miss0002" x="3108" y="3274" width="375" height="320" frameX="-20" frameY="-19" frameWidth="409" frameHeight="367"/>
+	<SubTexture name="uzi down miss0003" x="3108" y="3274" width="375" height="320" frameX="-20" frameY="-19" frameWidth="409" frameHeight="367"/>
+	<SubTexture name="uzi down miss0004" x="3108" y="3274" width="375" height="320" frameX="-20" frameY="-19" frameWidth="409" frameHeight="367"/>
+	<SubTexture name="uzi down miss0005" x="3108" y="3274" width="375" height="320" frameX="-20" frameY="-19" frameWidth="409" frameHeight="367"/>
+	<SubTexture name="uzi down miss0006" x="3108" y="3274" width="375" height="320" frameX="-20" frameY="-19" frameWidth="409" frameHeight="367"/>
+	<SubTexture name="uzi down miss0007" x="3108" y="3274" width="375" height="320" frameX="-20" frameY="-19" frameWidth="409" frameHeight="367"/>
+	<SubTexture name="uzi down miss0008" x="3108" y="3274" width="375" height="320" frameX="-20" frameY="-19" frameWidth="409" frameHeight="367"/>
+	<SubTexture name="uzi down miss0009" x="3108" y="3274" width="375" height="320" frameX="-20" frameY="-19" frameWidth="409" frameHeight="367"/>
+	<SubTexture name="uzi idle0000" x="2209" y="1093" width="265" height="491" frameX="-19" frameY="-31" frameWidth="326" frameHeight="539"/>
+	<SubTexture name="uzi idle0001" x="2529" y="494" width="261" height="488" frameX="-19" frameY="-34" frameWidth="326" frameHeight="539"/>
+	<SubTexture name="uzi idle0002" x="2529" y="1470" width="266" height="481" frameX="-12" frameY="-41" frameWidth="326" frameHeight="539"/>
+	<SubTexture name="uzi idle0003" x="2790" y="985" width="273" height="477" frameX="-8" frameY="-45" frameWidth="326" frameHeight="539"/>
+	<SubTexture name="uzi idle0004" x="2790" y="985" width="273" height="477" frameX="-8" frameY="-45" frameWidth="326" frameHeight="539"/>
+	<SubTexture name="uzi idle0005" x="2790" y="985" width="273" height="477" frameX="-8" frameY="-45" frameWidth="326" frameHeight="539"/>
+	<SubTexture name="uzi idle0006" x="2793" y="494" width="273" height="475" frameX="-8" frameY="-47" frameWidth="326" frameHeight="539"/>
+	<SubTexture name="uzi idle0007" x="2529" y="985" width="258" height="482" frameX="-16" frameY="-40" frameWidth="326" frameHeight="539"/>
+	<SubTexture name="uzi idle0008" x="2209" y="1093" width="265" height="491" frameX="-19" frameY="-31" frameWidth="326" frameHeight="539"/>
+	<SubTexture name="uzi idle0009" x="1757" y="2257" width="278" height="494" frameX="-19" frameY="-28" frameWidth="326" frameHeight="539"/>
+	<SubTexture name="uzi idle0010" x="1" y="2332" width="287" height="495" frameX="-19" frameY="-27" frameWidth="326" frameHeight="539"/>
+	<SubTexture name="uzi idle0011" x="291" y="2332" width="289" height="495" frameX="-19" frameY="-27" frameWidth="326" frameHeight="539"/>
+	<SubTexture name="uzi idle0012" x="291" y="2332" width="289" height="495" frameX="-19" frameY="-27" frameWidth="326" frameHeight="539"/>
+	<SubTexture name="uzi idle0013" x="583" y="2328" width="286" height="495" frameX="-19" frameY="-27" frameWidth="326" frameHeight="539"/>
+	<SubTexture name="uzi idle0014" x="872" y="2296" width="275" height="494" frameX="-19" frameY="-28" frameWidth="326" frameHeight="539"/>
+	<SubTexture name="uzi left0000" x="2798" y="1465" width="278" height="474" frameX="-48" frameY="-25" frameWidth="350" frameHeight="524"/>
+	<SubTexture name="uzi left0001" x="2529" y="1" width="283" height="490" frameX="-38" frameY="-9" frameWidth="350" frameHeight="524"/>
+	<SubTexture name="uzi left0002" x="1443" y="3256" width="304" height="457" frameX="-8" frameY="-42" frameWidth="350" frameHeight="524"/>
+	<SubTexture name="uzi left0003" x="2421" y="3274" width="306" height="448" frameX="-15" frameY="-51" frameWidth="350" frameHeight="524"/>
+	<SubTexture name="uzi left0004" x="1750" y="3274" width="295" height="455" frameX="-22" frameY="-44" frameWidth="350" frameHeight="524"/>
+	<SubTexture name="uzi left0005" x="793" y="3294" width="286" height="459" frameX="-28" frameY="-40" frameWidth="350" frameHeight="524"/>
+	<SubTexture name="uzi left0006" x="2056" y="2753" width="287" height="460" frameX="-29" frameY="-39" frameWidth="350" frameHeight="524"/>
+	<SubTexture name="uzi left0007" x="2056" y="2753" width="287" height="460" frameX="-29" frameY="-39" frameWidth="350" frameHeight="524"/>
+	<SubTexture name="uzi left0008" x="2056" y="2753" width="287" height="460" frameX="-29" frameY="-39" frameWidth="350" frameHeight="524"/>
+	<SubTexture name="uzi left0009" x="2056" y="2753" width="287" height="460" frameX="-29" frameY="-39" frameWidth="350" frameHeight="524"/>
+	<SubTexture name="uzi left miss0000" x="2798" y="1942" width="278" height="472" frameX="-57" frameY="-11" frameWidth="352" frameHeight="501"/>
+	<SubTexture name="uzi left miss0001" x="1" y="2830" width="296" height="472" frameX="-15" frameY="-11" frameWidth="352" frameHeight="501"/>
+	<SubTexture name="uzi left miss0002" x="300" y="2830" width="283" height="472" frameX="-44" frameY="-11" frameWidth="352" frameHeight="501"/>
+	<SubTexture name="uzi left miss0003" x="300" y="2830" width="283" height="472" frameX="-44" frameY="-11" frameWidth="352" frameHeight="501"/>
+	<SubTexture name="uzi left miss0004" x="300" y="2830" width="283" height="472" frameX="-44" frameY="-11" frameWidth="352" frameHeight="501"/>
+	<SubTexture name="uzi left miss0005" x="300" y="2830" width="283" height="472" frameX="-44" frameY="-11" frameWidth="352" frameHeight="501"/>
+	<SubTexture name="uzi left miss0006" x="300" y="2830" width="283" height="472" frameX="-44" frameY="-11" frameWidth="352" frameHeight="501"/>
+	<SubTexture name="uzi left miss0007" x="300" y="2830" width="283" height="472" frameX="-44" frameY="-11" frameWidth="352" frameHeight="501"/>
+	<SubTexture name="uzi left miss0008" x="300" y="2830" width="283" height="472" frameX="-44" frameY="-11" frameWidth="352" frameHeight="501"/>
+	<SubTexture name="uzi left miss0009" x="300" y="2830" width="283" height="472" frameX="-44" frameY="-11" frameWidth="352" frameHeight="501"/>
+	<SubTexture name="uzi right0000" x="1690" y="2754" width="363" height="462" frameX="-17" frameY="-19" frameWidth="460" frameHeight="500"/>
+	<SubTexture name="uzi right0001" x="586" y="2826" width="375" height="465" frameX="-40" frameY="-17" frameWidth="460" frameHeight="500"/>
+	<SubTexture name="uzi right0002" x="3092" y="2814" width="376" height="457" frameX="-57" frameY="-24" frameWidth="460" frameHeight="500"/>
+	<SubTexture name="uzi right0003" x="2048" y="3274" width="370" height="450" frameX="-33" frameY="-31" frameWidth="460" frameHeight="500"/>
+	<SubTexture name="uzi right0004" x="1082" y="3260" width="358" height="459" frameX="-22" frameY="-22" frameWidth="460" frameHeight="500"/>
+	<SubTexture name="uzi right0005" x="1328" y="2790" width="359" height="463" frameX="-21" frameY="-18" frameWidth="460" frameHeight="500"/>
+	<SubTexture name="uzi right0006" x="964" y="2793" width="361" height="464" frameX="-19" frameY="-17" frameWidth="460" frameHeight="500"/>
+	<SubTexture name="uzi right0007" x="964" y="2793" width="361" height="464" frameX="-19" frameY="-17" frameWidth="460" frameHeight="500"/>
+	<SubTexture name="uzi right0008" x="964" y="2793" width="361" height="464" frameX="-19" frameY="-17" frameWidth="460" frameHeight="500"/>
+	<SubTexture name="uzi right0009" x="964" y="2793" width="361" height="464" frameX="-19" frameY="-17" frameWidth="460" frameHeight="500"/>
+	<SubTexture name="uzi right miss0000" x="3092" y="1434" width="357" height="457" frameX="-6" frameY="-18" frameWidth="396" frameHeight="489"/>
+	<SubTexture name="uzi right miss0001" x="3079" y="1894" width="338" height="457" frameX="-33" frameY="-18" frameWidth="396" frameHeight="489"/>
+	<SubTexture name="uzi right miss0002" x="3092" y="2354" width="349" height="457" frameX="-15" frameY="-18" frameWidth="396" frameHeight="489"/>
+	<SubTexture name="uzi right miss0003" x="3092" y="2354" width="349" height="457" frameX="-15" frameY="-18" frameWidth="396" frameHeight="489"/>
+	<SubTexture name="uzi right miss0004" x="3092" y="2354" width="349" height="457" frameX="-15" frameY="-18" frameWidth="396" frameHeight="489"/>
+	<SubTexture name="uzi right miss0005" x="3092" y="2354" width="349" height="457" frameX="-15" frameY="-18" frameWidth="396" frameHeight="489"/>
+	<SubTexture name="uzi right miss0006" x="3092" y="2354" width="349" height="457" frameX="-15" frameY="-18" frameWidth="396" frameHeight="489"/>
+	<SubTexture name="uzi right miss0007" x="3092" y="2354" width="349" height="457" frameX="-15" frameY="-18" frameWidth="396" frameHeight="489"/>
+	<SubTexture name="uzi right miss0008" x="3092" y="2354" width="349" height="457" frameX="-15" frameY="-18" frameWidth="396" frameHeight="489"/>
+	<SubTexture name="uzi right miss0009" x="3092" y="2354" width="349" height="457" frameX="-15" frameY="-18" frameWidth="396" frameHeight="489"/>
+	<SubTexture name="uzi up0000" x="2218" y="1" width="308" height="514" frameX="-11" frameY="-28" frameWidth="357" frameHeight="557"/>
+	<SubTexture name="uzi up0001" x="1108" y="1770" width="320" height="521" frameX="-9" frameY="-21" frameWidth="357" frameHeight="557"/>
+	<SubTexture name="uzi up0002" x="782" y="1770" width="323" height="523" frameX="-9" frameY="-19" frameWidth="357" frameHeight="557"/>
+	<SubTexture name="uzi up0003" x="782" y="1770" width="323" height="523" frameX="-9" frameY="-19" frameWidth="357" frameHeight="557"/>
+	<SubTexture name="uzi up0004" x="1431" y="1765" width="323" height="520" frameX="-9" frameY="-22" frameWidth="357" frameHeight="557"/>
+	<SubTexture name="uzi up0005" x="1757" y="1737" width="312" height="517" frameX="-10" frameY="-25" frameWidth="357" frameHeight="557"/>
+	<SubTexture name="uzi up0006" x="2209" y="576" width="309" height="514" frameX="-10" frameY="-28" frameWidth="357" frameHeight="557"/>
+	<SubTexture name="uzi up0007" x="2209" y="576" width="309" height="514" frameX="-10" frameY="-28" frameWidth="357" frameHeight="557"/>
+	<SubTexture name="uzi up0008" x="2209" y="576" width="309" height="514" frameX="-10" frameY="-28" frameWidth="357" frameHeight="557"/>
+	<SubTexture name="uzi up0009" x="2209" y="576" width="309" height="514" frameX="-10" frameY="-28" frameWidth="357" frameHeight="557"/>
+	<SubTexture name="uzi up miss0000" x="2072" y="1737" width="335" height="513" frameX="-17" frameY="-37" frameWidth="370" frameHeight="563"/>
+	<SubTexture name="uzi up miss0001" x="1" y="1798" width="335" height="531" frameX="-17" frameY="-19" frameWidth="370" frameHeight="563"/>
+	<SubTexture name="uzi up miss0002" x="2815" y="1" width="335" height="479" frameX="-17" frameY="-70" frameWidth="370" frameHeight="563"/>
+	<SubTexture name="uzi up miss0003" x="2815" y="1" width="335" height="479" frameX="-17" frameY="-70" frameWidth="370" frameHeight="563"/>
+	<SubTexture name="uzi up miss0004" x="2815" y="1" width="335" height="479" frameX="-17" frameY="-70" frameWidth="370" frameHeight="563"/>
+	<SubTexture name="uzi up miss0005" x="2815" y="1" width="335" height="479" frameX="-17" frameY="-70" frameWidth="370" frameHeight="563"/>
+	<SubTexture name="uzi up miss0006" x="2815" y="1" width="335" height="479" frameX="-17" frameY="-70" frameWidth="370" frameHeight="563"/>
+	<SubTexture name="uzi up miss0007" x="2815" y="1" width="335" height="479" frameX="-17" frameY="-70" frameWidth="370" frameHeight="563"/>
+	<SubTexture name="uzi up miss0008" x="2815" y="1" width="335" height="479" frameX="-17" frameY="-70" frameWidth="370" frameHeight="563"/>
+	<SubTexture name="uzi up miss0009" x="2815" y="1" width="335" height="479" frameX="-17" frameY="-70" frameWidth="370" frameHeight="563"/>
 </TextureAtlas>

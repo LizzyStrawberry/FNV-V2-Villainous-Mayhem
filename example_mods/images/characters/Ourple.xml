@@ -1,113 +1,114 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<TextureAtlas imagePath="Ourple.png">
-	<!-- Created with Adobe Animate version 21.0.5.40714 -->
-	<!-- http://www.adobe.com/products/animate.html -->
-	<SubTexture name="ourple call0000" x="8" y="8" width="400" height="603"/>
-	<SubTexture name="ourple call0001" x="8" y="8" width="400" height="603"/>
-	<SubTexture name="ourple call0002" x="8" y="8" width="400" height="603"/>
-	<SubTexture name="ourple call0003" x="8" y="8" width="400" height="603"/>
-	<SubTexture name="ourple call0004" x="8" y="8" width="400" height="603"/>
-	<SubTexture name="ourple call0005" x="8" y="8" width="400" height="603"/>
-	<SubTexture name="ourple call0006" x="8" y="8" width="400" height="603"/>
-	<SubTexture name="ourple call0007" x="408" y="8" width="400" height="603"/>
-	<SubTexture name="ourple call0008" x="408" y="8" width="400" height="603"/>
-	<SubTexture name="ourple call0009" x="408" y="8" width="400" height="603"/>
-	<SubTexture name="ourple call0010" x="408" y="8" width="400" height="603"/>
-	<SubTexture name="ourple call0011" x="408" y="8" width="400" height="603"/>
-	<SubTexture name="ourple call0012" x="408" y="8" width="400" height="603"/>
-	<SubTexture name="ourple call0013" x="408" y="8" width="400" height="603"/>
-	<SubTexture name="ourple call0014" x="408" y="8" width="400" height="603"/>
-	<SubTexture name="ourple down0000" x="808" y="8" width="430" height="466"/>
-	<SubTexture name="ourple down0001" x="1238" y="8" width="430" height="466"/>
-	<SubTexture name="ourple down0002" x="1668" y="8" width="430" height="466"/>
-	<SubTexture name="ourple down0003" x="2098" y="8" width="430" height="466"/>
-	<SubTexture name="ourple down0004" x="2528" y="8" width="430" height="466"/>
-	<SubTexture name="ourple down0005" x="2528" y="8" width="430" height="466"/>
-	<SubTexture name="ourple down0006" x="2528" y="8" width="430" height="466"/>
-	<SubTexture name="ourple down miss0000" x="2958" y="8" width="467" height="486"/>
-	<SubTexture name="ourple down miss0001" x="3425" y="8" width="467" height="486"/>
-	<SubTexture name="ourple down miss0002" x="8" y="611" width="467" height="486"/>
-	<SubTexture name="ourple down miss0003" x="8" y="611" width="467" height="486"/>
-	<SubTexture name="ourple down miss0004" x="8" y="611" width="467" height="486"/>
-	<SubTexture name="ourple down miss0005" x="8" y="611" width="467" height="486"/>
-	<SubTexture name="ourple down miss0006" x="8" y="611" width="467" height="486"/>
-	<SubTexture name="ourple idle0000" x="475" y="611" width="333" height="603"/>
-	<SubTexture name="ourple idle0001" x="808" y="611" width="333" height="603"/>
-	<SubTexture name="ourple idle0002" x="1141" y="611" width="333" height="603"/>
-	<SubTexture name="ourple idle0003" x="1141" y="611" width="333" height="603"/>
-	<SubTexture name="ourple idle0004" x="1474" y="611" width="333" height="603"/>
-	<SubTexture name="ourple idle0005" x="1807" y="611" width="333" height="603"/>
-	<SubTexture name="ourple idle0006" x="2140" y="611" width="333" height="603"/>
-	<SubTexture name="ourple idle0007" x="2473" y="611" width="333" height="603"/>
-	<SubTexture name="ourple idle0008" x="2806" y="611" width="333" height="603"/>
-	<SubTexture name="ourple idle0009" x="3139" y="611" width="333" height="603"/>
-	<SubTexture name="ourple idle0010" x="3472" y="611" width="333" height="603"/>
-	<SubTexture name="ourple idle0011" x="8" y="1214" width="333" height="603"/>
-	<SubTexture name="ourple idle0012" x="8" y="1214" width="333" height="603"/>
-	<SubTexture name="ourple idle0013" x="341" y="1214" width="333" height="603"/>
-	<SubTexture name="ourple idle0014" x="674" y="1214" width="333" height="603"/>
-	<SubTexture name="ourple idle0015" x="2806" y="611" width="333" height="603"/>
-	<SubTexture name="ourple jumpscare0000" x="1007" y="1214" width="756" height="743"/>
-	<SubTexture name="ourple jumpscare0001" x="1763" y="1214" width="756" height="743"/>
-	<SubTexture name="ourple jumpscare0002" x="1007" y="1214" width="756" height="743"/>
-	<SubTexture name="ourple jumpscare0003" x="1763" y="1214" width="756" height="743"/>
-	<SubTexture name="ourple jumpscare0004" x="1007" y="1214" width="756" height="743"/>
-	<SubTexture name="ourple jumpscare0005" x="1763" y="1214" width="756" height="743"/>
-	<SubTexture name="ourple left0000" x="2519" y="1214" width="436" height="598"/>
-	<SubTexture name="ourple left0001" x="2955" y="1214" width="436" height="598"/>
-	<SubTexture name="ourple left0002" x="3391" y="1214" width="436" height="598"/>
-	<SubTexture name="ourple left0003" x="8" y="1957" width="436" height="598"/>
-	<SubTexture name="ourple left0004" x="444" y="1957" width="436" height="598"/>
-	<SubTexture name="ourple left0005" x="444" y="1957" width="436" height="598"/>
-	<SubTexture name="ourple left0006" x="444" y="1957" width="436" height="598"/>
-	<SubTexture name="ourple left miss0000" x="880" y="1957" width="449" height="610"/>
-	<SubTexture name="ourple left miss0001" x="1329" y="1957" width="449" height="610"/>
-	<SubTexture name="ourple left miss0002" x="1778" y="1957" width="449" height="610"/>
-	<SubTexture name="ourple left miss0003" x="1778" y="1957" width="449" height="610"/>
-	<SubTexture name="ourple left miss0004" x="1778" y="1957" width="449" height="610"/>
-	<SubTexture name="ourple left miss0005" x="1778" y="1957" width="449" height="610"/>
-	<SubTexture name="ourple left miss0006" x="1778" y="1957" width="449" height="610"/>
-	<SubTexture name="ourple right0000" x="2227" y="1957" width="538" height="605"/>
-	<SubTexture name="ourple right0001" x="2765" y="1957" width="538" height="605"/>
-	<SubTexture name="ourple right0002" x="3303" y="1957" width="538" height="605"/>
-	<SubTexture name="ourple right0003" x="8" y="2567" width="538" height="605"/>
-	<SubTexture name="ourple right0004" x="546" y="2567" width="538" height="605"/>
-	<SubTexture name="ourple right0005" x="546" y="2567" width="538" height="605"/>
-	<SubTexture name="ourple right0006" x="546" y="2567" width="538" height="605"/>
-	<SubTexture name="ourple right miss0000" x="1084" y="2567" width="532" height="639"/>
-	<SubTexture name="ourple right miss0001" x="1616" y="2567" width="532" height="639"/>
-	<SubTexture name="ourple right miss0002" x="2148" y="2567" width="532" height="639"/>
-	<SubTexture name="ourple right miss0003" x="2148" y="2567" width="532" height="639"/>
-	<SubTexture name="ourple right miss0004" x="2148" y="2567" width="532" height="639"/>
-	<SubTexture name="ourple right miss0005" x="2148" y="2567" width="532" height="639"/>
-	<SubTexture name="ourple right miss0006" x="2148" y="2567" width="532" height="639"/>
-	<SubTexture name="ourple up0000" x="2680" y="2567" width="321" height="699"/>
-	<SubTexture name="ourple up0001" x="3001" y="2567" width="321" height="699"/>
-	<SubTexture name="ourple up0002" x="3322" y="2567" width="321" height="699"/>
-	<SubTexture name="ourple up0003" x="3643" y="2567" width="321" height="699"/>
-	<SubTexture name="ourple up0004" x="8" y="3266" width="321" height="699"/>
-	<SubTexture name="ourple up0005" x="8" y="3266" width="321" height="699"/>
-	<SubTexture name="ourple up0006" x="8" y="3266" width="321" height="699"/>
-	<SubTexture name="ourple up miss0000" x="329" y="3266" width="349" height="714"/>
-	<SubTexture name="ourple up miss0001" x="678" y="3266" width="349" height="714"/>
-	<SubTexture name="ourple up miss0002" x="1027" y="3266" width="349" height="714"/>
-	<SubTexture name="ourple up miss0003" x="1027" y="3266" width="349" height="714"/>
-	<SubTexture name="ourple up miss0004" x="1027" y="3266" width="349" height="714"/>
-	<SubTexture name="ourple up miss0005" x="1027" y="3266" width="349" height="714"/>
-	<SubTexture name="ourple up miss0006" x="1027" y="3266" width="349" height="714"/>
-	<SubTexture name="ourple vpose0000" x="1376" y="3266" width="566" height="794"/>
-	<SubTexture name="ourple vpose0001" x="1942" y="3266" width="566" height="794"/>
-	<SubTexture name="ourple vpose0002" x="2508" y="3266" width="566" height="794"/>
-	<SubTexture name="ourple vpose0003" x="3074" y="3266" width="566" height="794"/>
-	<SubTexture name="ourple vpose0004" x="3074" y="3266" width="566" height="794"/>
-	<SubTexture name="ourple vpose0005" x="3074" y="3266" width="566" height="794"/>
-	<SubTexture name="ourple vpose0006" x="3074" y="3266" width="566" height="794"/>
-	<SubTexture name="ourple vpose0007" x="3074" y="3266" width="566" height="794"/>
-	<SubTexture name="ourple vpose0008" x="3074" y="3266" width="566" height="794"/>
-	<SubTexture name="ourple vpose0009" x="3074" y="3266" width="566" height="794"/>
-	<SubTexture name="ourple vpose0010" x="3074" y="3266" width="566" height="794"/>
-	<SubTexture name="ourple vpose0011" x="3074" y="3266" width="566" height="794"/>
-	<SubTexture name="ourple vpose0012" x="3074" y="3266" width="566" height="794"/>
-	<SubTexture name="ourple vpose0013" x="3074" y="3266" width="566" height="794"/>
-	<SubTexture name="ourple vpose0014" x="3074" y="3266" width="566" height="794"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Created with Funkin Packer v0.1.3 https://neeeoo.github.io/funkin-packer/
+-->
+<TextureAtlas imagePath="Ourple.png" width="3330" height="3708">
+	<SubTexture name="ourple call0000" x="2383" y="1819" width="344" height="572" frameX="-30" frameY="-24" frameWidth="400" frameHeight="603"/>
+	<SubTexture name="ourple call0001" x="2383" y="1819" width="344" height="572" frameX="-30" frameY="-24" frameWidth="400" frameHeight="603"/>
+	<SubTexture name="ourple call0002" x="2383" y="1819" width="344" height="572" frameX="-30" frameY="-24" frameWidth="400" frameHeight="603"/>
+	<SubTexture name="ourple call0003" x="2383" y="1819" width="344" height="572" frameX="-30" frameY="-24" frameWidth="400" frameHeight="603"/>
+	<SubTexture name="ourple call0004" x="2383" y="1819" width="344" height="572" frameX="-30" frameY="-24" frameWidth="400" frameHeight="603"/>
+	<SubTexture name="ourple call0005" x="2383" y="1819" width="344" height="572" frameX="-30" frameY="-24" frameWidth="400" frameHeight="603"/>
+	<SubTexture name="ourple call0006" x="2383" y="1819" width="344" height="572" frameX="-30" frameY="-24" frameWidth="400" frameHeight="603"/>
+	<SubTexture name="ourple call0007" x="1" y="2682" width="367" height="572" frameX="-7" frameY="-24" frameWidth="400" frameHeight="603"/>
+	<SubTexture name="ourple call0008" x="1" y="2682" width="367" height="572" frameX="-7" frameY="-24" frameWidth="400" frameHeight="603"/>
+	<SubTexture name="ourple call0009" x="1" y="2682" width="367" height="572" frameX="-7" frameY="-24" frameWidth="400" frameHeight="603"/>
+	<SubTexture name="ourple call0010" x="1" y="2682" width="367" height="572" frameX="-7" frameY="-24" frameWidth="400" frameHeight="603"/>
+	<SubTexture name="ourple call0011" x="1" y="2682" width="367" height="572" frameX="-7" frameY="-24" frameWidth="400" frameHeight="603"/>
+	<SubTexture name="ourple call0012" x="1" y="2682" width="367" height="572" frameX="-7" frameY="-24" frameWidth="400" frameHeight="603"/>
+	<SubTexture name="ourple call0013" x="1" y="2682" width="367" height="572" frameX="-7" frameY="-24" frameWidth="400" frameHeight="603"/>
+	<SubTexture name="ourple call0014" x="1" y="2682" width="367" height="572" frameX="-7" frameY="-24" frameWidth="400" frameHeight="603"/>
+	<SubTexture name="ourple down0000" x="384" y="3257" width="380" height="446" frameX="-27" frameY="-16" frameWidth="430" frameHeight="466"/>
+	<SubTexture name="ourple down0001" x="2299" y="3292" width="380" height="384" frameX="-27" frameY="-77" frameWidth="430" frameHeight="466"/>
+	<SubTexture name="ourple down0002" x="1533" y="3216" width="380" height="411" frameX="-27" frameY="-50" frameWidth="430" frameHeight="466"/>
+	<SubTexture name="ourple down0003" x="1150" y="3235" width="380" height="418" frameX="-27" frameY="-44" frameWidth="430" frameHeight="466"/>
+	<SubTexture name="ourple down0004" x="2737" y="2881" width="380" height="408" frameX="-27" frameY="-53" frameWidth="430" frameHeight="466"/>
+	<SubTexture name="ourple down0005" x="2737" y="2881" width="380" height="408" frameX="-27" frameY="-53" frameWidth="430" frameHeight="466"/>
+	<SubTexture name="ourple down0006" x="2737" y="2881" width="380" height="408" frameX="-27" frameY="-53" frameWidth="430" frameHeight="466"/>
+	<SubTexture name="ourple down miss0000" x="767" y="3257" width="380" height="436" frameX="-55" frameY="-45" frameWidth="467" frameHeight="486"/>
+	<SubTexture name="ourple down miss0001" x="1916" y="3292" width="380" height="387" frameX="-55" frameY="-92" frameWidth="467" frameHeight="486"/>
+	<SubTexture name="ourple down miss0002" x="1" y="3257" width="380" height="450" frameX="-55" frameY="-31" frameWidth="467" frameHeight="486"/>
+	<SubTexture name="ourple down miss0003" x="1" y="3257" width="380" height="450" frameX="-55" frameY="-31" frameWidth="467" frameHeight="486"/>
+	<SubTexture name="ourple down miss0004" x="1" y="3257" width="380" height="450" frameX="-55" frameY="-31" frameWidth="467" frameHeight="486"/>
+	<SubTexture name="ourple down miss0005" x="1" y="3257" width="380" height="450" frameX="-55" frameY="-31" frameWidth="467" frameHeight="486"/>
+	<SubTexture name="ourple down miss0006" x="1" y="3257" width="380" height="450" frameX="-55" frameY="-31" frameWidth="467" frameHeight="486"/>
+	<SubTexture name="ourple idle0000" x="2507" y="581" width="228" height="568" frameX="-48" frameY="-30" frameWidth="333" frameHeight="603"/>
+	<SubTexture name="ourple idle0001" x="2994" y="1626" width="242" height="530" frameX="-41" frameY="-67" frameWidth="333" frameHeight="603"/>
+	<SubTexture name="ourple idle0002" x="2984" y="2159" width="246" height="527" frameX="-39" frameY="-70" frameWidth="333" frameHeight="603"/>
+	<SubTexture name="ourple idle0003" x="2984" y="2159" width="246" height="527" frameX="-39" frameY="-70" frameWidth="333" frameHeight="603"/>
+	<SubTexture name="ourple idle0004" x="3083" y="1" width="246" height="540" frameX="-39" frameY="-57" frameWidth="333" frameHeight="603"/>
+	<SubTexture name="ourple idle0005" x="2754" y="1138" width="237" height="552" frameX="-44" frameY="-46" frameWidth="333" frameHeight="603"/>
+	<SubTexture name="ourple idle0006" x="2152" y="1819" width="228" height="577" frameX="-48" frameY="-21" frameWidth="333" frameHeight="603"/>
+	<SubTexture name="ourple idle0007" x="2242" y="607" width="228" height="582" frameX="-48" frameY="-16" frameWidth="333" frameHeight="603"/>
+	<SubTexture name="ourple idle0008" x="2507" y="1" width="228" height="577" frameX="-55" frameY="-21" frameWidth="333" frameHeight="603"/>
+	<SubTexture name="ourple idle0009" x="2738" y="572" width="228" height="563" frameX="-55" frameY="-35" frameWidth="333" frameHeight="603"/>
+	<SubTexture name="ourple idle0010" x="3083" y="544" width="244" height="540" frameX="-47" frameY="-58" frameWidth="333" frameHeight="603"/>
+	<SubTexture name="ourple idle0011" x="2994" y="1087" width="244" height="536" frameX="-47" frameY="-62" frameWidth="333" frameHeight="603"/>
+	<SubTexture name="ourple idle0012" x="2994" y="1087" width="244" height="536" frameX="-47" frameY="-62" frameWidth="333" frameHeight="603"/>
+	<SubTexture name="ourple idle0013" x="2737" y="2328" width="244" height="550" frameX="-47" frameY="-48" frameWidth="333" frameHeight="603"/>
+	<SubTexture name="ourple idle0014" x="2730" y="1763" width="235" height="562" frameX="-51" frameY="-36" frameWidth="333" frameHeight="603"/>
+	<SubTexture name="ourple idle0015" x="2507" y="1" width="228" height="577" frameX="-55" frameY="-21" frameWidth="333" frameHeight="603"/>
+	<SubTexture name="ourple jumpscare0000" x="885" y="1" width="654" height="709" frameX="-61" frameY="-25" frameWidth="756" frameHeight="743"/>
+	<SubTexture name="ourple jumpscare0001" x="1" y="1439" width="700" height="658" frameX="-15" frameY="-76" frameWidth="756" frameHeight="743"/>
+	<SubTexture name="ourple jumpscare0002" x="885" y="1" width="654" height="709" frameX="-61" frameY="-25" frameWidth="756" frameHeight="743"/>
+	<SubTexture name="ourple jumpscare0003" x="1" y="1439" width="700" height="658" frameX="-15" frameY="-76" frameWidth="756" frameHeight="743"/>
+	<SubTexture name="ourple jumpscare0004" x="885" y="1" width="654" height="709" frameX="-61" frameY="-25" frameWidth="756" frameHeight="743"/>
+	<SubTexture name="ourple jumpscare0005" x="1" y="1439" width="700" height="658" frameX="-15" frameY="-76" frameWidth="756" frameHeight="743"/>
+	<SubTexture name="ourple left0000" x="1095" y="2664" width="342" height="568" frameX="-79" frameY="-22" frameWidth="436" frameHeight="598"/>
+	<SubTexture name="ourple left0001" x="1440" y="2645" width="379" height="568" frameX="-20" frameY="-22" frameWidth="436" frameHeight="598"/>
+	<SubTexture name="ourple left0002" x="1822" y="2476" width="348" height="568" frameX="-69" frameY="-22" frameWidth="436" frameHeight="598"/>
+	<SubTexture name="ourple left0003" x="2738" y="1" width="342" height="568" frameX="-79" frameY="-22" frameWidth="436" frameHeight="598"/>
+	<SubTexture name="ourple left0004" x="2400" y="1192" width="351" height="568" frameX="-64" frameY="-22" frameWidth="436" frameHeight="598"/>
+	<SubTexture name="ourple left0005" x="2400" y="1192" width="351" height="568" frameX="-64" frameY="-22" frameWidth="436" frameHeight="598"/>
+	<SubTexture name="ourple left0006" x="2400" y="1192" width="351" height="568" frameX="-64" frameY="-22" frameWidth="436" frameHeight="598"/>
+	<SubTexture name="ourple left miss0000" x="2383" y="2394" width="351" height="572" frameX="-69" frameY="-30" frameWidth="449" frameHeight="610"/>
+	<SubTexture name="ourple left miss0001" x="371" y="2682" width="369" height="572" frameX="-41" frameY="-30" frameWidth="449" frameHeight="610"/>
+	<SubTexture name="ourple left miss0002" x="743" y="2682" width="349" height="572" frameX="-74" frameY="-30" frameWidth="449" frameHeight="610"/>
+	<SubTexture name="ourple left miss0003" x="743" y="2682" width="349" height="572" frameX="-74" frameY="-30" frameWidth="449" frameHeight="610"/>
+	<SubTexture name="ourple left miss0004" x="743" y="2682" width="349" height="572" frameX="-74" frameY="-30" frameWidth="449" frameHeight="610"/>
+	<SubTexture name="ourple left miss0005" x="743" y="2682" width="349" height="572" frameX="-74" frameY="-30" frameWidth="449" frameHeight="610"/>
+	<SubTexture name="ourple left miss0006" x="743" y="2682" width="349" height="572" frameX="-74" frameY="-30" frameWidth="449" frameHeight="610"/>
+	<SubTexture name="ourple right0000" x="1" y="2100" width="429" height="579" frameX="-33" frameY="-23" frameWidth="538" frameHeight="605"/>
+	<SubTexture name="ourple right0001" x="433" y="2100" width="442" height="579" frameX="-55" frameY="-23" frameWidth="538" frameHeight="605"/>
+	<SubTexture name="ourple right0002" x="878" y="2082" width="422" height="579" frameX="-19" frameY="-23" frameWidth="538" frameHeight="605"/>
+	<SubTexture name="ourple right0003" x="1303" y="2063" width="420" height="579" frameX="-16" frameY="-23" frameWidth="538" frameHeight="605"/>
+	<SubTexture name="ourple right0004" x="1726" y="1894" width="423" height="579" frameX="-21" frameY="-23" frameWidth="538" frameHeight="605"/>
+	<SubTexture name="ourple right0005" x="1726" y="1894" width="423" height="579" frameX="-21" frameY="-23" frameWidth="538" frameHeight="605"/>
+	<SubTexture name="ourple right0006" x="1726" y="1894" width="423" height="579" frameX="-21" frameY="-23" frameWidth="538" frameHeight="605"/>
+	<SubTexture name="ourple right miss0000" x="2078" y="1" width="426" height="603" frameX="-34" frameY="-33" frameWidth="532" frameHeight="639"/>
+	<SubTexture name="ourple right miss0001" x="1689" y="1288" width="440" height="603" frameX="-59" frameY="-33" frameWidth="532" frameHeight="639"/>
+	<SubTexture name="ourple right miss0002" x="1810" y="609" width="429" height="603" frameX="-42" frameY="-33" frameWidth="532" frameHeight="639"/>
+	<SubTexture name="ourple right miss0003" x="1810" y="609" width="429" height="603" frameX="-42" frameY="-33" frameWidth="532" frameHeight="639"/>
+	<SubTexture name="ourple right miss0004" x="1810" y="609" width="429" height="603" frameX="-42" frameY="-33" frameWidth="532" frameHeight="639"/>
+	<SubTexture name="ourple right miss0005" x="1810" y="609" width="429" height="603" frameX="-42" frameY="-33" frameWidth="532" frameHeight="639"/>
+	<SubTexture name="ourple right miss0006" x="1810" y="609" width="429" height="603" frameX="-42" frameY="-33" frameWidth="532" frameHeight="639"/>
+	<SubTexture name="ourple up0000" x="1542" y="656" width="265" height="629" frameX="-26" frameY="-63" frameWidth="321" frameHeight="699"/>
+	<SubTexture name="ourple up0001" x="885" y="1402" width="265" height="677" frameX="-26" frameY="-15" frameWidth="321" frameHeight="699"/>
+	<SubTexture name="ourple up0002" x="1810" y="1" width="265" height="605" frameX="-26" frameY="-87" frameWidth="321" frameHeight="699"/>
+	<SubTexture name="ourple up0003" x="2132" y="1215" width="265" height="601" frameX="-26" frameY="-91" frameWidth="321" frameHeight="699"/>
+	<SubTexture name="ourple up0004" x="1421" y="1288" width="265" height="618" frameX="-26" frameY="-74" frameWidth="321" frameHeight="699"/>
+	<SubTexture name="ourple up0005" x="1421" y="1288" width="265" height="618" frameX="-26" frameY="-74" frameWidth="321" frameHeight="699"/>
+	<SubTexture name="ourple up0006" x="1421" y="1288" width="265" height="618" frameX="-26" frameY="-74" frameWidth="321" frameHeight="699"/>
+	<SubTexture name="ourple up miss0000" x="1542" y="1" width="265" height="652" frameX="-19" frameY="-56" frameWidth="349" frameHeight="714"/>
+	<SubTexture name="ourple up miss0001" x="1" y="725" width="265" height="689" frameX="-19" frameY="-19" frameWidth="349" frameHeight="714"/>
+	<SubTexture name="ourple up miss0002" x="1153" y="1402" width="265" height="658" frameX="-19" frameY="-50" frameWidth="349" frameHeight="714"/>
+	<SubTexture name="ourple up miss0003" x="1153" y="1402" width="265" height="658" frameX="-19" frameY="-50" frameWidth="349" frameHeight="714"/>
+	<SubTexture name="ourple up miss0004" x="1153" y="1402" width="265" height="658" frameX="-19" frameY="-50" frameWidth="349" frameHeight="714"/>
+	<SubTexture name="ourple up miss0005" x="1153" y="1402" width="265" height="658" frameX="-19" frameY="-50" frameWidth="349" frameHeight="714"/>
+	<SubTexture name="ourple up miss0006" x="1153" y="1402" width="265" height="658" frameX="-19" frameY="-50" frameWidth="349" frameHeight="714"/>
+	<SubTexture name="ourple vpose0000" x="885" y="713" width="439" height="686" frameX="-74" frameY="-63" frameWidth="566" frameHeight="794"/>
+	<SubTexture name="ourple vpose0001" x="443" y="722" width="439" height="714" frameX="-74" frameY="-36" frameWidth="566" frameHeight="794"/>
+	<SubTexture name="ourple vpose0002" x="443" y="1" width="439" height="718" frameX="-74" frameY="-32" frameWidth="566" frameHeight="794"/>
+	<SubTexture name="ourple vpose0003" x="1" y="1" width="439" height="721" frameX="-74" frameY="-29" frameWidth="566" frameHeight="794"/>
+	<SubTexture name="ourple vpose0004" x="1" y="1" width="439" height="721" frameX="-74" frameY="-29" frameWidth="566" frameHeight="794"/>
+	<SubTexture name="ourple vpose0005" x="1" y="1" width="439" height="721" frameX="-74" frameY="-29" frameWidth="566" frameHeight="794"/>
+	<SubTexture name="ourple vpose0006" x="1" y="1" width="439" height="721" frameX="-74" frameY="-29" frameWidth="566" frameHeight="794"/>
+	<SubTexture name="ourple vpose0007" x="1" y="1" width="439" height="721" frameX="-74" frameY="-29" frameWidth="566" frameHeight="794"/>
+	<SubTexture name="ourple vpose0008" x="1" y="1" width="439" height="721" frameX="-74" frameY="-29" frameWidth="566" frameHeight="794"/>
+	<SubTexture name="ourple vpose0009" x="1" y="1" width="439" height="721" frameX="-74" frameY="-29" frameWidth="566" frameHeight="794"/>
+	<SubTexture name="ourple vpose0010" x="1" y="1" width="439" height="721" frameX="-74" frameY="-29" frameWidth="566" frameHeight="794"/>
+	<SubTexture name="ourple vpose0011" x="1" y="1" width="439" height="721" frameX="-74" frameY="-29" frameWidth="566" frameHeight="794"/>
+	<SubTexture name="ourple vpose0012" x="1" y="1" width="439" height="721" frameX="-74" frameY="-29" frameWidth="566" frameHeight="794"/>
+	<SubTexture name="ourple vpose0013" x="1" y="1" width="439" height="721" frameX="-74" frameY="-29" frameWidth="566" frameHeight="794"/>
+	<SubTexture name="ourple vpose0014" x="1" y="1" width="439" height="721" frameX="-74" frameY="-29" frameWidth="566" frameHeight="794"/>
 </TextureAtlas>

@@ -49,18 +49,18 @@
 				0,
 				0
 			],
-			"indices": [],
+			"loop": true,
 			"fps": 18,
 			"anim": "idle",
-			"loop": true,
+			"indices": [],
 			"name": "iniquitous idle"
 		}
 	],
 	"no_antialiasing": false,
 	"image": "characters/iniquitous phase 2",
 	"position": [
-		0,
-		0
+		250,
+		250
 	],
 	"healthicon": "iniquitous",
 	"flip_x": false,
@@ -74,5 +74,5 @@
 		0
 	],
 	"sing_duration": 6.1,
-	"scale": 1
+	"scale": 2
 }

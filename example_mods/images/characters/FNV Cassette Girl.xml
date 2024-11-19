@@ -1,157 +1,158 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<TextureAtlas imagePath="FNV Cassette Girl.png">
-	<!-- Created with Adobe Animate version 21.0.5.40714 -->
-	<!-- http://www.adobe.com/products/animate.html -->
-	<SubTexture name="Kinn told me to sneak this in0000" x="0" y="0" width="452" height="445"/>
-	<SubTexture name="cassette girl death confirm0000" x="456" y="0" width="1664" height="936"/>
-	<SubTexture name="cassette girl death confirm0001" x="456" y="0" width="1664" height="936"/>
-	<SubTexture name="cassette girl death confirm0002" x="456" y="0" width="1664" height="936"/>
-	<SubTexture name="cassette girl death confirm0003" x="456" y="0" width="1664" height="936"/>
-	<SubTexture name="cassette girl death confirm0004" x="456" y="0" width="1664" height="936"/>
-	<SubTexture name="cassette girl death confirm0005" x="456" y="0" width="1664" height="936"/>
-	<SubTexture name="cassette girl death confirm0006" x="456" y="0" width="1664" height="936"/>
-	<SubTexture name="cassette girl death confirm0007" x="456" y="0" width="1664" height="936"/>
-	<SubTexture name="cassette girl death confirm0008" x="456" y="0" width="1664" height="936"/>
-	<SubTexture name="cassette girl death confirm0009" x="456" y="0" width="1664" height="936"/>
-	<SubTexture name="cassette girl death confirm0010" x="456" y="0" width="1664" height="936"/>
-	<SubTexture name="cassette girl death confirm0011" x="456" y="0" width="1664" height="936"/>
-	<SubTexture name="cassette girl death confirm0012" x="456" y="0" width="1664" height="936"/>
-	<SubTexture name="cassette girl death confirm0013" x="456" y="0" width="1664" height="936"/>
-	<SubTexture name="cassette girl death confirm0014" x="456" y="0" width="1664" height="936"/>
-	<SubTexture name="cassette girl death confirm0015" x="456" y="0" width="1664" height="936"/>
-	<SubTexture name="cassette girl death confirm0016" x="456" y="0" width="1664" height="936"/>
-	<SubTexture name="cassette girl death confirm0017" x="456" y="0" width="1664" height="936"/>
-	<SubTexture name="cassette girl death confirm0018" x="456" y="0" width="1664" height="936"/>
-	<SubTexture name="cassette girl death confirm0019" x="456" y="0" width="1664" height="936"/>
-	<SubTexture name="cassette girl death confirm0020" x="456" y="0" width="1664" height="936"/>
-	<SubTexture name="cassette girl death confirm0021" x="456" y="0" width="1664" height="936"/>
-	<SubTexture name="cassette girl death confirm0022" x="456" y="0" width="1664" height="936"/>
-	<SubTexture name="cassette girl death confirm0023" x="456" y="0" width="1664" height="936"/>
-	<SubTexture name="cassette girl death confirm0024" x="456" y="0" width="1664" height="936"/>
-	<SubTexture name="cassette girl death confirm0025" x="456" y="0" width="1664" height="936"/>
-	<SubTexture name="cassette girl death confirm0026" x="456" y="0" width="1664" height="936"/>
-	<SubTexture name="cassette girl death confirm0027" x="456" y="0" width="1664" height="936"/>
-	<SubTexture name="cassette girl death confirm0028" x="456" y="0" width="1664" height="936"/>
-	<SubTexture name="cassette girl death confirm0029" x="456" y="0" width="1664" height="936"/>
-	<SubTexture name="cassette girl down0000" x="2124" y="0" width="327" height="574" frameX="-2" frameY="-2" frameWidth="329" frameHeight="576"/>
-	<SubTexture name="cassette girl down0001" x="2455" y="0" width="328" height="567" frameX="-1" frameY="-9" frameWidth="329" frameHeight="576"/>
-	<SubTexture name="cassette girl down0002" x="2787" y="0" width="327" height="567" frameX="-2" frameY="-9" frameWidth="329" frameHeight="576"/>
-	<SubTexture name="cassette girl down0003" x="3118" y="0" width="327" height="566" frameX="-2" frameY="-10" frameWidth="329" frameHeight="576"/>
-	<SubTexture name="cassette girl down0004" x="3449" y="0" width="327" height="569" frameX="-2" frameY="-7" frameWidth="329" frameHeight="576"/>
-	<SubTexture name="cassette girl down0005" x="3780" y="0" width="329" height="575" frameX="0" frameY="-1" frameWidth="329" frameHeight="576"/>
-	<SubTexture name="cassette girl down0006" x="4113" y="0" width="329" height="576"/>
-	<SubTexture name="cassette girl down0007" x="4113" y="0" width="329" height="576"/>
-	<SubTexture name="cassette girl down0008" x="4113" y="0" width="329" height="576"/>
-	<SubTexture name="cassette girl down0009" x="4113" y="0" width="329" height="576"/>
-	<SubTexture name="cassette girl down miss0000" x="4446" y="0" width="600" height="622" frameX="0" frameY="0" frameWidth="600" frameHeight="635"/>
-	<SubTexture name="cassette girl down miss0001" x="5050" y="0" width="600" height="622" frameX="0" frameY="-10" frameWidth="600" frameHeight="635"/>
-	<SubTexture name="cassette girl down miss0002" x="5654" y="0" width="600" height="622" frameX="0" frameY="-12" frameWidth="600" frameHeight="635"/>
-	<SubTexture name="cassette girl down miss0003" x="6258" y="0" width="600" height="622" frameX="0" frameY="-13" frameWidth="600" frameHeight="635"/>
-	<SubTexture name="cassette girl down miss0004" x="6862" y="0" width="600" height="622" frameX="0" frameY="-13" frameWidth="600" frameHeight="635"/>
-	<SubTexture name="cassette girl down miss0005" x="7466" y="0" width="600" height="622" frameX="0" frameY="-13" frameWidth="600" frameHeight="635"/>
-	<SubTexture name="cassette girl down miss0006" x="0" y="940" width="600" height="622" frameX="0" frameY="-13" frameWidth="600" frameHeight="635"/>
-	<SubTexture name="cassette girl down miss0007" x="604" y="940" width="600" height="622" frameX="0" frameY="-13" frameWidth="600" frameHeight="635"/>
-	<SubTexture name="cassette girl down miss0008" x="1208" y="940" width="600" height="622" frameX="0" frameY="-13" frameWidth="600" frameHeight="635"/>
-	<SubTexture name="cassette girl first death0000" x="1812" y="940" width="1664" height="936"/>
-	<SubTexture name="cassette girl first death0001" x="1812" y="940" width="1664" height="936"/>
-	<SubTexture name="cassette girl first death0002" x="1812" y="940" width="1664" height="936"/>
-	<SubTexture name="cassette girl first death0003" x="1812" y="940" width="1664" height="936"/>
-	<SubTexture name="cassette girl first death0004" x="1812" y="940" width="1664" height="936"/>
-	<SubTexture name="cassette girl first death0005" x="1812" y="940" width="1664" height="936"/>
-	<SubTexture name="cassette girl first death0006" x="1812" y="940" width="1664" height="936"/>
-	<SubTexture name="cassette girl first death0007" x="1812" y="940" width="1664" height="936"/>
-	<SubTexture name="cassette girl first death0008" x="1812" y="940" width="1664" height="936"/>
-	<SubTexture name="cassette girl first death0009" x="1812" y="940" width="1664" height="936"/>
-	<SubTexture name="cassette girl first death0010" x="1812" y="940" width="1664" height="936"/>
-	<SubTexture name="cassette girl first death0011" x="1812" y="940" width="1664" height="936"/>
-	<SubTexture name="cassette girl first death0012" x="1812" y="940" width="1664" height="936"/>
-	<SubTexture name="cassette girl first death0013" x="1812" y="940" width="1664" height="936"/>
-	<SubTexture name="cassette girl first death0014" x="1812" y="940" width="1664" height="936"/>
-	<SubTexture name="cassette girl first death0015" x="1812" y="940" width="1664" height="936"/>
-	<SubTexture name="cassette girl first death0016" x="1812" y="940" width="1664" height="936"/>
-	<SubTexture name="cassette girl first death0017" x="1812" y="940" width="1664" height="936"/>
-	<SubTexture name="cassette girl first death0018" x="1812" y="940" width="1664" height="936"/>
-	<SubTexture name="cassette girl first death0019" x="1812" y="940" width="1664" height="936"/>
-	<SubTexture name="cassette girl first death0020" x="1812" y="940" width="1664" height="936"/>
-	<SubTexture name="cassette girl first death0021" x="1812" y="940" width="1664" height="936"/>
-	<SubTexture name="cassette girl first death0022" x="1812" y="940" width="1664" height="936"/>
-	<SubTexture name="cassette girl first death0023" x="1812" y="940" width="1664" height="936"/>
-	<SubTexture name="cassette girl first death0024" x="1812" y="940" width="1664" height="936"/>
-	<SubTexture name="cassette girl first death0025" x="1812" y="940" width="1664" height="936"/>
-	<SubTexture name="cassette girl first death0026" x="1812" y="940" width="1664" height="936"/>
-	<SubTexture name="cassette girl first death0027" x="1812" y="940" width="1664" height="936"/>
-	<SubTexture name="cassette girl first death0028" x="1812" y="940" width="1664" height="936"/>
-	<SubTexture name="cassette girl first death0029" x="1812" y="940" width="1664" height="936"/>
-	<SubTexture name="cassette girl idle0000" x="3480" y="940" width="331" height="577" frameX="-10" frameY="-2" frameWidth="345" frameHeight="579"/>
-	<SubTexture name="cassette girl idle0001" x="3815" y="940" width="327" height="574" frameX="-10" frameY="-5" frameWidth="345" frameHeight="579"/>
-	<SubTexture name="cassette girl idle0002" x="4146" y="940" width="326" height="566" frameX="-11" frameY="-12" frameWidth="345" frameHeight="579"/>
-	<SubTexture name="cassette girl idle0003" x="4476" y="940" width="328" height="565" frameX="-12" frameY="-13" frameWidth="345" frameHeight="579"/>
-	<SubTexture name="cassette girl idle0004" x="4808" y="940" width="329" height="564" frameX="-13" frameY="-14" frameWidth="345" frameHeight="579"/>
-	<SubTexture name="cassette girl idle0005" x="4808" y="940" width="329" height="564" frameX="-13" frameY="-14" frameWidth="345" frameHeight="579"/>
-	<SubTexture name="cassette girl idle0006" x="5141" y="940" width="328" height="567" frameX="-13" frameY="-11" frameWidth="345" frameHeight="579"/>
-	<SubTexture name="cassette girl idle0007" x="5473" y="940" width="337" height="572" frameX="0" frameY="-6" frameWidth="345" frameHeight="579"/>
-	<SubTexture name="cassette girl idle0008" x="5814" y="940" width="331" height="577" frameX="-10" frameY="-2" frameWidth="345" frameHeight="579"/>
-	<SubTexture name="cassette girl idle0009" x="6149" y="940" width="342" height="579" frameX="-3" frameY="0" frameWidth="345" frameHeight="579"/>
-	<SubTexture name="cassette girl idle0010" x="6495" y="940" width="343" height="578" frameX="-1" frameY="-1" frameWidth="345" frameHeight="579"/>
-	<SubTexture name="cassette girl idle0011" x="6842" y="940" width="340" height="577" frameX="-1" frameY="-2" frameWidth="345" frameHeight="579"/>
-	<SubTexture name="cassette girl idle0012" x="7186" y="940" width="338" height="577" frameX="-3" frameY="-2" frameWidth="345" frameHeight="579"/>
-	<SubTexture name="cassette girl idle0013" x="7528" y="940" width="334" height="577" frameX="-7" frameY="-2" frameWidth="345" frameHeight="579"/>
-	<SubTexture name="cassette girl idle0014" x="7528" y="940" width="334" height="577" frameX="-9" frameY="-2" frameWidth="345" frameHeight="579"/>
-	<SubTexture name="cassette girl left0000" x="0" y="1880" width="398" height="568" frameX="-3" frameY="-3" frameWidth="401" frameHeight="571"/>
-	<SubTexture name="cassette girl left0001" x="402" y="1880" width="399" height="571" frameX="0" frameY="0" frameWidth="401" frameHeight="571"/>
-	<SubTexture name="cassette girl left0002" x="805" y="1880" width="398" height="565" frameX="-1" frameY="-6" frameWidth="401" frameHeight="571"/>
-	<SubTexture name="cassette girl left0003" x="1207" y="1880" width="399" height="562" frameX="-1" frameY="-9" frameWidth="401" frameHeight="571"/>
-	<SubTexture name="cassette girl left0004" x="1610" y="1880" width="397" height="560" frameX="-3" frameY="-11" frameWidth="401" frameHeight="571"/>
-	<SubTexture name="cassette girl left0005" x="2011" y="1880" width="398" height="561" frameX="-3" frameY="-10" frameWidth="401" frameHeight="571"/>
-	<SubTexture name="cassette girl left0006" x="2413" y="1880" width="398" height="561" frameX="-3" frameY="-10" frameWidth="401" frameHeight="571"/>
-	<SubTexture name="cassette girl left0007" x="2815" y="1880" width="398" height="561" frameX="-3" frameY="-10" frameWidth="401" frameHeight="571"/>
-	<SubTexture name="cassette girl left0008" x="2815" y="1880" width="398" height="561" frameX="-3" frameY="-10" frameWidth="401" frameHeight="571"/>
-	<SubTexture name="cassette girl left0009" x="2815" y="1880" width="398" height="561" frameX="-3" frameY="-10" frameWidth="401" frameHeight="571"/>
-	<SubTexture name="cassette girl left miss0000" x="3217" y="1880" width="693" height="353" frameX="-302" frameY="-15" frameWidth="995" frameHeight="368"/>
-	<SubTexture name="cassette girl left miss0001" x="3914" y="1880" width="692" height="368" frameX="-270" frameY="0" frameWidth="995" frameHeight="368"/>
-	<SubTexture name="cassette girl left miss0002" x="4610" y="1880" width="942" height="353" frameX="-12" frameY="-15" frameWidth="995" frameHeight="368"/>
-	<SubTexture name="cassette girl left miss0003" x="5556" y="1880" width="951" height="362" frameX="0" frameY="-6" frameWidth="995" frameHeight="368"/>
-	<SubTexture name="cassette girl left miss0004" x="6511" y="1880" width="692" height="353" frameX="-258" frameY="-15" frameWidth="995" frameHeight="368"/>
-	<SubTexture name="cassette girl left miss0005" x="6511" y="1880" width="692" height="353" frameX="-258" frameY="-15" frameWidth="995" frameHeight="368"/>
-	<SubTexture name="cassette girl left miss0006" x="6511" y="1880" width="692" height="353" frameX="-258" frameY="-15" frameWidth="995" frameHeight="368"/>
-	<SubTexture name="cassette girl left miss0007" x="6511" y="1880" width="692" height="353" frameX="-258" frameY="-15" frameWidth="995" frameHeight="368"/>
-	<SubTexture name="cassette girl left miss0008" x="6511" y="1880" width="692" height="353" frameX="-258" frameY="-15" frameWidth="995" frameHeight="368"/>
-	<SubTexture name="cassette girl right0000" x="7207" y="1880" width="346" height="570" frameX="0" frameY="0" frameWidth="358" frameHeight="570"/>
-	<SubTexture name="cassette girl right0001" x="7557" y="1880" width="355" height="570" frameX="0" frameY="0" frameWidth="358" frameHeight="570"/>
-	<SubTexture name="cassette girl right0002" x="0" y="2455" width="357" height="567" frameX="-1" frameY="-3" frameWidth="358" frameHeight="570"/>
-	<SubTexture name="cassette girl right0003" x="361" y="2455" width="353" height="565" frameX="-1" frameY="-5" frameWidth="358" frameHeight="570"/>
-	<SubTexture name="cassette girl right0004" x="718" y="2455" width="350" height="565" frameX="-1" frameY="-5" frameWidth="358" frameHeight="570"/>
-	<SubTexture name="cassette girl right0005" x="1072" y="2455" width="349" height="565" frameX="-1" frameY="-5" frameWidth="358" frameHeight="570"/>
-	<SubTexture name="cassette girl right0006" x="1425" y="2455" width="349" height="565" frameX="-1" frameY="-5" frameWidth="358" frameHeight="570"/>
-	<SubTexture name="cassette girl right0007" x="1425" y="2455" width="349" height="565" frameX="-1" frameY="-5" frameWidth="358" frameHeight="570"/>
-	<SubTexture name="cassette girl right0008" x="1425" y="2455" width="349" height="565" frameX="-1" frameY="-5" frameWidth="358" frameHeight="570"/>
-	<SubTexture name="cassette girl right0009" x="1425" y="2455" width="349" height="565" frameX="-1" frameY="-5" frameWidth="358" frameHeight="570"/>
-	<SubTexture name="cassette girl right miss0000" x="1778" y="2455" width="694" height="499" frameX="0" frameY="0" frameWidth="707" frameHeight="499"/>
-	<SubTexture name="cassette girl right miss0001" x="2476" y="2455" width="694" height="499" frameX="-9" frameY="0" frameWidth="707" frameHeight="499"/>
-	<SubTexture name="cassette girl right miss0002" x="3174" y="2455" width="694" height="499" frameX="-11" frameY="0" frameWidth="707" frameHeight="499"/>
-	<SubTexture name="cassette girl right miss0003" x="3872" y="2455" width="695" height="499" frameX="-12" frameY="0" frameWidth="707" frameHeight="499"/>
-	<SubTexture name="cassette girl right miss0004" x="4571" y="2455" width="695" height="499" frameX="-12" frameY="0" frameWidth="707" frameHeight="499"/>
-	<SubTexture name="cassette girl right miss0005" x="5270" y="2455" width="695" height="499" frameX="-12" frameY="0" frameWidth="707" frameHeight="499"/>
-	<SubTexture name="cassette girl right miss0006" x="5969" y="2455" width="695" height="499" frameX="-12" frameY="0" frameWidth="707" frameHeight="499"/>
-	<SubTexture name="cassette girl right miss0007" x="6668" y="2455" width="695" height="499" frameX="-12" frameY="0" frameWidth="707" frameHeight="499"/>
-	<SubTexture name="cassette girl right miss0008" x="7367" y="2455" width="695" height="499" frameX="-12" frameY="0" frameWidth="707" frameHeight="499"/>
-	<SubTexture name="cassette girl up0000" x="0" y="3026" width="334" height="581" frameX="-2" frameY="-8" frameWidth="336" frameHeight="590"/>
-	<SubTexture name="cassette girl up0001" x="338" y="3026" width="335" height="588" frameX="-1" frameY="-2" frameWidth="336" frameHeight="590"/>
-	<SubTexture name="cassette girl up0002" x="677" y="3026" width="336" height="590"/>
-	<SubTexture name="cassette girl up0003" x="1017" y="3026" width="336" height="590"/>
-	<SubTexture name="cassette girl up0004" x="1357" y="3026" width="335" height="589" frameX="-1" frameY="-1" frameWidth="336" frameHeight="590"/>
-	<SubTexture name="cassette girl up0005" x="1696" y="3026" width="335" height="585" frameX="-1" frameY="-5" frameWidth="336" frameHeight="590"/>
-	<SubTexture name="cassette girl up0006" x="2035" y="3026" width="335" height="584" frameX="-1" frameY="-6" frameWidth="336" frameHeight="590"/>
-	<SubTexture name="cassette girl up0007" x="2035" y="3026" width="335" height="584" frameX="-1" frameY="-6" frameWidth="336" frameHeight="590"/>
-	<SubTexture name="cassette girl up0008" x="2035" y="3026" width="335" height="584" frameX="-1" frameY="-6" frameWidth="336" frameHeight="590"/>
-	<SubTexture name="cassette girl up0009" x="2035" y="3026" width="335" height="584" frameX="-1" frameY="-6" frameWidth="336" frameHeight="590"/>
-	<SubTexture name="cassette girl up miss0000" x="2374" y="3026" width="473" height="631" frameX="-24" frameY="-6" frameWidth="497" frameHeight="637"/>
-	<SubTexture name="cassette girl up miss0001" x="2851" y="3026" width="482" height="630" frameX="-15" frameY="-1" frameWidth="497" frameHeight="637"/>
-	<SubTexture name="cassette girl up miss0002" x="3337" y="3026" width="497" height="630" frameX="0" frameY="0" frameWidth="497" frameHeight="637"/>
-	<SubTexture name="cassette girl up miss0003" x="3838" y="3026" width="477" height="630" frameX="-20" frameY="0" frameWidth="497" frameHeight="637"/>
-	<SubTexture name="cassette girl up miss0004" x="4319" y="3026" width="494" height="630" frameX="-3" frameY="0" frameWidth="497" frameHeight="637"/>
-	<SubTexture name="cassette girl up miss0005" x="4817" y="3026" width="470" height="630" frameX="-27" frameY="0" frameWidth="497" frameHeight="637"/>
-	<SubTexture name="cassette girl up miss0006" x="5291" y="3026" width="494" height="630" frameX="-3" frameY="0" frameWidth="497" frameHeight="637"/>
-	<SubTexture name="cassette girl up miss0007" x="5789" y="3026" width="492" height="630" frameX="-5" frameY="0" frameWidth="497" frameHeight="637"/>
-	<SubTexture name="cassette girl up miss0008" x="6285" y="3026" width="485" height="630" frameX="-12" frameY="0" frameWidth="497" frameHeight="637"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Created with Funkin Packer v0.1.3 https://neeeoo.github.io/funkin-packer/
+-->
+<TextureAtlas imagePath="FNV Cassette Girl.png" width="4649" height="4529">
+	<SubTexture name="Kinn told me to sneak this in0000" x="1963" y="1610" width="354" height="396" frameX="-26" frameY="-29" frameWidth="452" frameHeight="445"/>
+	<SubTexture name="cassette girl death confirm0000" x="1" y="1" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl death confirm0001" x="1" y="1" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl death confirm0002" x="1" y="1" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl death confirm0003" x="1" y="1" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl death confirm0004" x="1" y="1" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl death confirm0005" x="1" y="1" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl death confirm0006" x="1" y="1" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl death confirm0007" x="1" y="1" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl death confirm0008" x="1" y="1" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl death confirm0009" x="1" y="1" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl death confirm0010" x="1" y="1" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl death confirm0011" x="1" y="1" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl death confirm0012" x="1" y="1" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl death confirm0013" x="1" y="1" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl death confirm0014" x="1" y="1" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl death confirm0015" x="1" y="1" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl death confirm0016" x="1" y="1" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl death confirm0017" x="1" y="1" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl death confirm0018" x="1" y="1" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl death confirm0019" x="1" y="1" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl death confirm0020" x="1" y="1" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl death confirm0021" x="1" y="1" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl death confirm0022" x="1" y="1" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl death confirm0023" x="1" y="1" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl death confirm0024" x="1" y="1" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl death confirm0025" x="1" y="1" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl death confirm0026" x="1" y="1" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl death confirm0027" x="1" y="1" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl death confirm0028" x="1" y="1" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl death confirm0029" x="1" y="1" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl down0000" x="1652" y="3983" width="290" height="539" frameX="-20" frameY="-12" frameWidth="329" frameHeight="576"/>
+	<SubTexture name="cassette girl down0001" x="4212" y="2743" width="293" height="532" frameX="-17" frameY="-19" frameWidth="329" frameHeight="576"/>
+	<SubTexture name="cassette girl down0002" x="4265" y="3278" width="294" height="528" frameX="-16" frameY="-23" frameWidth="329" frameHeight="576"/>
+	<SubTexture name="cassette girl down0003" x="4266" y="3809" width="295" height="527" frameX="-15" frameY="-24" frameWidth="329" frameHeight="576"/>
+	<SubTexture name="cassette girl down0004" x="3568" y="3858" width="295" height="530" frameX="-15" frameY="-21" frameWidth="329" frameHeight="576"/>
+	<SubTexture name="cassette girl down0005" x="2361" y="3792" width="293" height="538" frameX="-17" frameY="-13" frameWidth="329" frameHeight="576"/>
+	<SubTexture name="cassette girl down0006" x="3273" y="3784" width="292" height="539" frameX="-18" frameY="-12" frameWidth="329" frameHeight="576"/>
+	<SubTexture name="cassette girl down0007" x="3273" y="3784" width="292" height="539" frameX="-18" frameY="-12" frameWidth="329" frameHeight="576"/>
+	<SubTexture name="cassette girl down0008" x="3273" y="3784" width="292" height="539" frameX="-18" frameY="-12" frameWidth="329" frameHeight="576"/>
+	<SubTexture name="cassette girl down0009" x="3273" y="3784" width="292" height="539" frameX="-18" frameY="-12" frameWidth="329" frameHeight="576"/>
+	<SubTexture name="cassette girl down miss0000" x="1963" y="2061" width="512" height="583" frameX="-48" frameY="-29" frameWidth="600" frameHeight="635"/>
+	<SubTexture name="cassette girl down miss0001" x="2478" y="2061" width="513" height="583" frameX="-47" frameY="-40" frameWidth="600" frameHeight="635"/>
+	<SubTexture name="cassette girl down miss0002" x="2323" y="1474" width="513" height="584" frameX="-47" frameY="-41" frameWidth="600" frameHeight="635"/>
+	<SubTexture name="cassette girl down miss0003" x="1" y="2811" width="512" height="583" frameX="-48" frameY="-43" frameWidth="600" frameHeight="635"/>
+	<SubTexture name="cassette girl down miss0004" x="516" y="2811" width="513" height="583" frameX="-47" frameY="-43" frameWidth="600" frameHeight="635"/>
+	<SubTexture name="cassette girl down miss0005" x="1032" y="2811" width="513" height="583" frameX="-47" frameY="-43" frameWidth="600" frameHeight="635"/>
+	<SubTexture name="cassette girl down miss0006" x="1548" y="2811" width="512" height="583" frameX="-48" frameY="-43" frameWidth="600" frameHeight="635"/>
+	<SubTexture name="cassette girl down miss0007" x="2063" y="2647" width="513" height="583" frameX="-47" frameY="-43" frameWidth="600" frameHeight="635"/>
+	<SubTexture name="cassette girl down miss0008" x="2579" y="2647" width="513" height="583" frameX="-47" frameY="-43" frameWidth="600" frameHeight="635"/>
+	<SubTexture name="cassette girl first death0000" x="1" y="940" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl first death0001" x="1" y="940" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl first death0002" x="1" y="940" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl first death0003" x="1" y="940" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl first death0004" x="1" y="940" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl first death0005" x="1" y="940" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl first death0006" x="1" y="940" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl first death0007" x="1" y="940" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl first death0008" x="1" y="940" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl first death0009" x="1" y="940" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl first death0010" x="1" y="940" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl first death0011" x="1" y="940" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl first death0012" x="1" y="940" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl first death0013" x="1" y="940" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl first death0014" x="1" y="940" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl first death0015" x="1" y="940" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl first death0016" x="1" y="940" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl first death0017" x="1" y="940" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl first death0018" x="1" y="940" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl first death0019" x="1" y="940" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl first death0020" x="1" y="940" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl first death0021" x="1" y="940" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl first death0022" x="1" y="940" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl first death0023" x="1" y="940" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl first death0024" x="1" y="940" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl first death0025" x="1" y="940" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl first death0026" x="1" y="940" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl first death0027" x="1" y="940" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl first death0028" x="1" y="940" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl first death0029" x="1" y="940" width="1664" height="936" frameX="-0" frameY="-0" frameWidth="1664" frameHeight="936"/>
+	<SubTexture name="cassette girl idle0000" x="3658" y="1" width="302" height="548" frameX="-18" frameY="-15" frameWidth="345" frameHeight="579"/>
+	<SubTexture name="cassette girl idle0001" x="3895" y="1103" width="298" height="545" frameX="-18" frameY="-18" frameWidth="345" frameHeight="579"/>
+	<SubTexture name="cassette girl idle0002" x="2970" y="3786" width="295" height="539" frameX="-19" frameY="-23" frameWidth="345" frameHeight="579"/>
+	<SubTexture name="cassette girl idle0003" x="4192" y="2203" width="296" height="537" frameX="-21" frameY="-25" frameWidth="345" frameHeight="579"/>
+	<SubTexture name="cassette girl idle0004" x="4259" y="1640" width="296" height="536" frameX="-22" frameY="-26" frameWidth="345" frameHeight="579"/>
+	<SubTexture name="cassette girl idle0005" x="4259" y="1640" width="296" height="536" frameX="-22" frameY="-26" frameWidth="345" frameHeight="579"/>
+	<SubTexture name="cassette girl idle0006" x="2667" y="3787" width="295" height="539" frameX="-22" frameY="-23" frameWidth="345" frameHeight="579"/>
+	<SubTexture name="cassette girl idle0007" x="3960" y="552" width="296" height="545" frameX="-18" frameY="-17" frameWidth="345" frameHeight="579"/>
+	<SubTexture name="cassette girl idle0008" x="3658" y="552" width="299" height="548" frameX="-21" frameY="-15" frameWidth="345" frameHeight="579"/>
+	<SubTexture name="cassette girl idle0009" x="3273" y="3232" width="307" height="549" frameX="-17" frameY="-14" frameWidth="345" frameHeight="579"/>
+	<SubTexture name="cassette girl idle0010" x="3584" y="1103" width="308" height="548" frameX="-15" frameY="-15" frameWidth="345" frameHeight="579"/>
+	<SubTexture name="cassette girl idle0011" x="3584" y="1654" width="305" height="548" frameX="-15" frameY="-15" frameWidth="345" frameHeight="579"/>
+	<SubTexture name="cassette girl idle0012" x="3583" y="2205" width="303" height="548" frameX="-17" frameY="-15" frameWidth="345" frameHeight="579"/>
+	<SubTexture name="cassette girl idle0013" x="3583" y="2756" width="300" height="548" frameX="-20" frameY="-15" frameWidth="345" frameHeight="579"/>
+	<SubTexture name="cassette girl idle0014" x="3583" y="2756" width="300" height="548" frameX="-22" frameY="-15" frameWidth="345" frameHeight="579"/>
+	<SubTexture name="cassette girl left0000" x="3899" y="3307" width="363" height="545" frameX="-5" frameY="-10" frameWidth="401" frameHeight="571"/>
+	<SubTexture name="cassette girl left0001" x="3892" y="1654" width="364" height="546" frameX="-2" frameY="-9" frameWidth="401" frameHeight="571"/>
+	<SubTexture name="cassette girl left0002" x="1285" y="3983" width="364" height="542" frameX="-2" frameY="-13" frameWidth="401" frameHeight="571"/>
+	<SubTexture name="cassette girl left0003" x="3899" y="3855" width="364" height="539" frameX="-3" frameY="-16" frameWidth="401" frameHeight="571"/>
+	<SubTexture name="cassette girl left0004" x="4196" y="1100" width="362" height="537" frameX="-6" frameY="-18" frameWidth="401" frameHeight="571"/>
+	<SubTexture name="cassette girl left0005" x="1945" y="3958" width="362" height="538" frameX="-6" frameY="-17" frameWidth="401" frameHeight="571"/>
+	<SubTexture name="cassette girl left0006" x="4286" y="1" width="362" height="538" frameX="-6" frameY="-17" frameWidth="401" frameHeight="571"/>
+	<SubTexture name="cassette girl left0007" x="4286" y="542" width="362" height="538" frameX="-6" frameY="-17" frameWidth="401" frameHeight="571"/>
+	<SubTexture name="cassette girl left0008" x="4286" y="542" width="362" height="538" frameX="-6" frameY="-17" frameWidth="401" frameHeight="571"/>
+	<SubTexture name="cassette girl left0009" x="4286" y="542" width="362" height="538" frameX="-6" frameY="-17" frameWidth="401" frameHeight="571"/>
+	<SubTexture name="cassette girl left miss0000" x="2323" y="1142" width="605" height="329" frameX="-341" frameY="-35" frameWidth="995" frameHeight="368"/>
+	<SubTexture name="cassette girl left miss0001" x="2541" y="467" width="606" height="340" frameX="-308" frameY="-24" frameWidth="995" frameHeight="368"/>
+	<SubTexture name="cassette girl left miss0002" x="1668" y="346" width="870" height="329" frameX="-36" frameY="-35" frameWidth="995" frameHeight="368"/>
+	<SubTexture name="cassette girl left miss0003" x="1668" y="1" width="903" height="342" frameX="-0" frameY="-22" frameWidth="995" frameHeight="368"/>
+	<SubTexture name="cassette girl left miss0004" x="2323" y="810" width="606" height="329" frameX="-296" frameY="-35" frameWidth="995" frameHeight="368"/>
+	<SubTexture name="cassette girl left miss0005" x="2323" y="810" width="606" height="329" frameX="-296" frameY="-35" frameWidth="995" frameHeight="368"/>
+	<SubTexture name="cassette girl left miss0006" x="2323" y="810" width="606" height="329" frameX="-296" frameY="-35" frameWidth="995" frameHeight="368"/>
+	<SubTexture name="cassette girl left miss0007" x="2323" y="810" width="606" height="329" frameX="-296" frameY="-35" frameWidth="995" frameHeight="368"/>
+	<SubTexture name="cassette girl left miss0008" x="2323" y="810" width="606" height="329" frameX="-296" frameY="-35" frameWidth="995" frameHeight="368"/>
+	<SubTexture name="cassette girl right0000" x="3583" y="3307" width="313" height="548" frameX="-21" frameY="-14" frameWidth="358" frameHeight="570"/>
+	<SubTexture name="cassette girl right0001" x="3886" y="2756" width="323" height="548" frameX="-20" frameY="-14" frameWidth="358" frameHeight="570"/>
+	<SubTexture name="cassette girl right0002" x="1" y="3983" width="324" height="545" frameX="-20" frameY="-17" frameWidth="358" frameHeight="570"/>
+	<SubTexture name="cassette girl right0003" x="3963" y="1" width="320" height="542" frameX="-21" frameY="-20" frameWidth="358" frameHeight="570"/>
+	<SubTexture name="cassette girl right0004" x="328" y="3983" width="316" height="543" frameX="-21" frameY="-19" frameWidth="358" frameHeight="570"/>
+	<SubTexture name="cassette girl right0005" x="647" y="3983" width="316" height="543" frameX="-21" frameY="-19" frameWidth="358" frameHeight="570"/>
+	<SubTexture name="cassette girl right0006" x="966" y="3983" width="316" height="543" frameX="-21" frameY="-19" frameWidth="358" frameHeight="570"/>
+	<SubTexture name="cassette girl right0007" x="966" y="3983" width="316" height="543" frameX="-21" frameY="-19" frameWidth="358" frameHeight="570"/>
+	<SubTexture name="cassette girl right0008" x="966" y="3983" width="316" height="543" frameX="-21" frameY="-19" frameWidth="358" frameHeight="570"/>
+	<SubTexture name="cassette girl right0009" x="966" y="3983" width="316" height="543" frameX="-21" frameY="-19" frameWidth="358" frameHeight="570"/>
+	<SubTexture name="cassette girl right miss0000" x="1668" y="678" width="652" height="463" frameX="-30" frameY="-21" frameWidth="707" frameHeight="499"/>
+	<SubTexture name="cassette girl right miss0001" x="1668" y="1144" width="652" height="463" frameX="-38" frameY="-21" frameWidth="707" frameHeight="499"/>
+	<SubTexture name="cassette girl right miss0002" x="1" y="1879" width="651" height="463" frameX="-41" frameY="-21" frameWidth="707" frameHeight="499"/>
+	<SubTexture name="cassette girl right miss0003" x="655" y="1879" width="651" height="463" frameX="-43" frameY="-21" frameWidth="707" frameHeight="499"/>
+	<SubTexture name="cassette girl right miss0004" x="1309" y="1879" width="651" height="463" frameX="-43" frameY="-21" frameWidth="707" frameHeight="499"/>
+	<SubTexture name="cassette girl right miss0005" x="1" y="2345" width="651" height="463" frameX="-43" frameY="-21" frameWidth="707" frameHeight="499"/>
+	<SubTexture name="cassette girl right miss0006" x="655" y="2345" width="651" height="463" frameX="-43" frameY="-21" frameWidth="707" frameHeight="499"/>
+	<SubTexture name="cassette girl right miss0007" x="1309" y="2345" width="651" height="463" frameX="-43" frameY="-21" frameWidth="707" frameHeight="499"/>
+	<SubTexture name="cassette girl right miss0008" x="2574" y="1" width="651" height="463" frameX="-43" frameY="-21" frameWidth="707" frameHeight="499"/>
+	<SubTexture name="cassette girl up0000" x="3889" y="2205" width="300" height="548" frameX="-3" frameY="-16" frameWidth="336" frameHeight="590"/>
+	<SubTexture name="cassette girl up0001" x="2361" y="3233" width="303" height="556" frameX="-2" frameY="-8" frameWidth="336" frameHeight="590"/>
+	<SubTexture name="cassette girl up0002" x="1749" y="3397" width="303" height="558" frameX="-2" frameY="-6" frameWidth="336" frameHeight="590"/>
+	<SubTexture name="cassette girl up0003" x="2055" y="3397" width="303" height="558" frameX="-2" frameY="-6" frameWidth="336" frameHeight="590"/>
+	<SubTexture name="cassette girl up0004" x="3279" y="1396" width="302" height="557" frameX="-3" frameY="-7" frameWidth="336" frameHeight="590"/>
+	<SubTexture name="cassette girl up0005" x="2667" y="3233" width="300" height="551" frameX="-3" frameY="-13" frameWidth="336" frameHeight="590"/>
+	<SubTexture name="cassette girl up0006" x="2970" y="3233" width="300" height="550" frameX="-3" frameY="-14" frameWidth="336" frameHeight="590"/>
+	<SubTexture name="cassette girl up0007" x="2970" y="3233" width="300" height="550" frameX="-3" frameY="-14" frameWidth="336" frameHeight="590"/>
+	<SubTexture name="cassette girl up0008" x="2970" y="3233" width="300" height="550" frameX="-3" frameY="-14" frameWidth="336" frameHeight="590"/>
+	<SubTexture name="cassette girl up0009" x="2970" y="3233" width="300" height="550" frameX="-3" frameY="-14" frameWidth="336" frameHeight="590"/>
+	<SubTexture name="cassette girl up miss0000" x="3228" y="1" width="427" height="583" frameX="-39" frameY="-38" frameWidth="497" frameHeight="637"/>
+	<SubTexture name="cassette girl up miss0001" x="2839" y="1474" width="437" height="583" frameX="-29" frameY="-32" frameWidth="497" frameHeight="637"/>
+	<SubTexture name="cassette girl up miss0002" x="2994" y="2060" width="457" height="583" frameX="-9" frameY="-31" frameWidth="497" frameHeight="637"/>
+	<SubTexture name="cassette girl up miss0003" x="2932" y="810" width="423" height="583" frameX="-43" frameY="-31" frameWidth="497" frameHeight="637"/>
+	<SubTexture name="cassette girl up miss0004" x="3095" y="2646" width="448" height="583" frameX="-18" frameY="-31" frameWidth="497" frameHeight="637"/>
+	<SubTexture name="cassette girl up miss0005" x="1" y="3397" width="422" height="583" frameX="-44" frameY="-31" frameWidth="497" frameHeight="637"/>
+	<SubTexture name="cassette girl up miss0006" x="426" y="3397" width="449" height="583" frameX="-17" frameY="-31" frameWidth="497" frameHeight="637"/>
+	<SubTexture name="cassette girl up miss0007" x="878" y="3397" width="439" height="583" frameX="-27" frameY="-31" frameWidth="497" frameHeight="637"/>
+	<SubTexture name="cassette girl up miss0008" x="1320" y="3397" width="426" height="583" frameX="-40" frameY="-31" frameWidth="497" frameHeight="637"/>
 </TextureAtlas>
