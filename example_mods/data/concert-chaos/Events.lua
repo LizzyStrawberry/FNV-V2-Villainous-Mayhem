@@ -19,6 +19,9 @@ function onCreate()
 		addCharacterToList('kaizokuCCP3', 'dad')
 		addCharacterToList('debugGuyScaled', 'dad')
 		addCharacterToList('aileenCCP1', 'dad')
+		
+		precacheImage('notes/AileenNOTE_assets')
+		precacheImage('notes/MarcoNOTE_assets')
 	end
 	
 	setProperty('dad.alpha', 0);
@@ -395,6 +398,14 @@ function onUpdatePost()
 end
 
 function onStepHit()
+	if curStep == 848 then
+		changeNoteskin('AileenNOTE_assets')
+	end
+	if curStep == 1360 then
+		changeNoteskin('MarcoNOTE_assets')
+	end
+	
+	
 	if curStep >= 2640 and curStep <= 2895 then
 		if curStep % 4 == 0 then
 			setProperty('clones.scale.y', clonesOriginScaleY - 0.08)
@@ -405,6 +416,12 @@ function onStepHit()
 		if curStep % 8 == 0 then
 			objectPlayAnimation('Audience', 'clap', true)
 		end
+	end
+end
+
+function changeNoteskin(noteSkin)
+	for i = 0, 3 do
+		setPropertyFromGroup('opponentStrums', i, 'texture', 'notes/'..noteSkin);
 	end
 end
 

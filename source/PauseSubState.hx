@@ -116,7 +116,6 @@ class PauseSubState extends MusicBeatSubstate
 		levelInfo.setFormat(Paths.font("vcr.ttf"), 32);
 		levelInfo.updateHitbox();
 
-
 		bgGradient = new FlxSprite(0, 0).loadGraphic(Paths.image('pauseGradient/gradient_Null'));
 		pauseCard = new FlxSprite(0, 0).loadGraphic(Paths.image('pauseMenu/pause_Default'));
 		switch (levelInfo.text) //Add your song's name shown in the pause menu (Case Sensitive), and add the color of the gradient and the pause card you want
@@ -285,7 +284,7 @@ class PauseSubState extends MusicBeatSubstate
 		arrows.antialiasing = ClientPrefs.globalAntialiasing;
 		add(arrows);
 
-		charmIcon = new FlxSprite(0, 0).loadGraphic(Paths.image('shop/prizes/prize_Charm_1'));
+		charmIcon = new FlxSprite(0, 0).loadGraphic(Paths.image('inventory/charmN0'));
 		charmIcon.alpha = 0;
 		charmIcon.x += 70;
 		charmIcon.y += 70;

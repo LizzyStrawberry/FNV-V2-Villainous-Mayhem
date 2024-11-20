@@ -77,6 +77,7 @@ function onStepHit()
 		
 		if curBeat == 128 then
 			skippedIntro = false
+			callScript("OpeningCards", "setUpCard", true)
 			setProperty('camGame.alpha', 1)
 			cameraFlash('game', 'FFFFFF', 0.7 / playbackRate, false)
 		end

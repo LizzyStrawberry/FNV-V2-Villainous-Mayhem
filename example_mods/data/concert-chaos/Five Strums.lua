@@ -89,6 +89,16 @@ function onCreatePost()
         setProperty('fourth'..i..'.alpha', 0)
         setProperty('fifth'..i..'.alpha', 0)
     end
+	if getPropertyFromClass('ClientPrefs', 'optimizationMode') == false then
+		for i = 0, 3 do
+			setPropertyFromGroup('opponentStrums', i + 4, 'texture', 'notes/AileenNOTE_assets');
+			setPropertyFromGroup('opponentStrums', i + 8, 'texture', 'notes/MarcoNOTE_assets');
+			setPropertyFromGroup('opponentStrums', i + 12, 'texture', 'notes/LilyNOTE_assets');
+			
+			setPropertyFromGroup('strumLineNotes', i + 4, 'texture', 'notes/AileenNOTE_assets');
+			setPropertyFromGroup('strumLineNotes', i + 12, 'texture', 'notes/LilyNOTE_assets');
+		end
+	end
 end
 function TweenLinear(t, b, c, d)
     return c*t/d+b
@@ -107,12 +117,6 @@ function onUpdatePost()
             end
         end
     end
-	if getPropertyFromClass('ClientPrefs', 'optimizationMode') == false then
-		for i = 0, 3 do
-			setPropertyFromGroup('strumLineNotes', i + 4, 'texture', 'notes/AileenNOTE_assets');
-			setPropertyFromGroup('strumLineNotes', i + 12, 'texture', 'notes/LilyNOTE_assets');
-		end
-	end
 end
 local ThirdTweening=true
 local FourthTweening=false

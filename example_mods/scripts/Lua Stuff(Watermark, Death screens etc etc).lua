@@ -243,28 +243,22 @@ function onCreate()
 	end
 end
 
-function onUpdatePost(elapsed)
+function onCreatePost()
 	if getPropertyFromClass('ClientPrefs', 'optimizationMode') == false then
 		-- Dad Characters
 		for i = 1, #(marcoNoteVars) do
 			if dadName == marcoNoteVars[i] then
-				for i = 0, getProperty('opponentStrums.length')-1 do
-
-					setPropertyFromGroup('opponentStrums', i, 'texture', 'notes/MarcoNOTE_assets');
-
-					if not getPropertyFromGroup('notes', i, 'mustPress')
-						and (getPropertyFromGroup('notes', i, 'noteType') == '' or getPropertyFromGroup('notes', i, 'noteType') == 'Hey!'
-						or getPropertyFromGroup('notes', i, 'noteType') == 'No Animation' or getPropertyFromGroup('notes', i, 'noteType') == 'GF Sing') then
+				for note = 0, getProperty('unspawnNotes.length')-1 do
+					if not getPropertyFromGroup('unspawnNotes', note, 'mustPress') then
 						if songName == 'Breacher' then
-							if gfSection or getPropertyFromGroup('notes', i, 'noteType') == 'GF Sing' then
-								setPropertyFromGroup('notes', i, 'texture', 'notes/AileenNOTE_assets');
+							if gfSection or getPropertyFromGroup('unspawnNotes', i, 'noteType') == 'GF Sing' then
+								setPropertyFromGroup('unspawnNotes', note, 'texture', "notes/AileenNOTE_assets");
 							else
-								setPropertyFromGroup('notes', i, 'texture', 'notes/MarcoNOTE_assets');
+								setPropertyFromGroup('unspawnNotes', note, 'texture', "notes/MarcoNOTE_assets");
 							end
 						else
-							setPropertyFromGroup('notes', i, 'texture', 'notes/MarcoNOTE_assets');
+							setPropertyFromGroup('unspawnNotes', note, 'texture', "notes/MarcoNOTE_assets");
 						end
-						
 					end
 				end
 			end
@@ -272,318 +266,235 @@ function onUpdatePost(elapsed)
 		
 		for i = 1, #(marcoCCNoteVars) do
 			if dadName == marcoCCNoteVars[i] then
-				for i = 0, 3 do
-					setPropertyFromGroup('opponentStrums', i, 'texture', 'notes/MarcoNOTE_assets');
-
-					if not getPropertyFromGroup('notes', i, 'mustPress')
-						and (getPropertyFromGroup('notes', i, 'noteType') == '' or getPropertyFromGroup('notes', i, 'noteType') == 'Hey!'
-						or getPropertyFromGroup('notes', i, 'noteType') == 'No Animation') then
-						setPropertyFromGroup('notes', i, 'texture', 'notes/MarcoNOTE_assets');
+				for note = 0, getProperty('unspawnNotes.length')-1 do
+					if not getPropertyFromGroup('unspawnNotes', note, 'mustPress') and
+					(getPropertyFromGroup('unspawnNotes', note, 'noteType') ~= 'forceAileenNoteSkin' and getPropertyFromGroup('unspawnNotes', note, 'noteType') ~= 'yuri'
+					 and getPropertyFromGroup('unspawnNotes', note, 'noteType') ~= 'protag') then
+						setPropertyFromGroup('unspawnNotes', note, 'texture', 'notes/MarcoNOTE_assets');
 					end
 				end
 			end
 		end
 		
-		if dadName == 'marcoOurple' then
-			for i = 0, getProperty('opponentStrums.length')-1 do
-
-				setPropertyFromGroup('opponentStrums', i, 'texture', 'notes/ourpleNOTE_assets');
-
-				if not getPropertyFromGroup('notes', i, 'mustPress')
-					and (getPropertyFromGroup('notes', i, 'noteType') == '' or getPropertyFromGroup('notes', i, 'noteType') == 'Hey!'
-					or getPropertyFromGroup('notes', i, 'noteType') == 'No Animation' or getPropertyFromGroup('notes', i, 'noteType') == 'GF Sing') then
-					setPropertyFromGroup('notes', i, 'texture', 'notes/ourpleNOTE_assets');
+		if dadName == 'marcoOurple' then	
+			for note = 0, getProperty('unspawnNotes.length')-1 do
+				if not getPropertyFromGroup('unspawnNotes', note, 'mustPress') then
+					setPropertyFromGroup('unspawnNotes', note, 'texture', 'notes/ourpleNOTE_assets');
 				end
 			end
 		end
 		
 		if dadName == 'beatricephase1' or dadName == 'beatricephase2' 
 		or dadName == 'BeatriceLegacyP1' or dadName == 'BeatriceLegacyP2' then
-			for i = 0, getProperty('opponentStrums.length')-1 do
-
-				setPropertyFromGroup('opponentStrums', i, 'texture', 'notes/BeatriceNOTE_assets');
-
-				if not getPropertyFromGroup('notes', i, 'mustPress')
-					and (getPropertyFromGroup('notes', i, 'noteType') == '' or getPropertyFromGroup('notes', i, 'noteType') == 'Hey!'
-					or getPropertyFromGroup('notes', i, 'noteType') == 'No Animation' or getPropertyFromGroup('notes', i, 'noteType') == 'GF Sing') then
-					setPropertyFromGroup('notes', i, 'texture', 'notes/BeatriceNOTE_assets');
+			for note = 0, getProperty('unspawnNotes.length')-1 do
+				if not getPropertyFromGroup('unspawnNotes', note, 'mustPress') then
+					setPropertyFromGroup('unspawnNotes', note, 'texture', 'notes/BeatriceNOTE_assets');
 				end
 			end
 		end
 		  
-		if dadName == 'aileen' or dadName == 'aileen-old' then
-			for i = 0, getProperty('opponentStrums.length')-1 do
-
-				setPropertyFromGroup('opponentStrums', i, 'texture', 'notes/AileenNOTE_assets');
-
-				if not getPropertyFromGroup('notes', i, 'mustPress')
-					and (getPropertyFromGroup('notes', i, 'noteType') == '' or getPropertyFromGroup('notes', i, 'noteType') == 'Hey!'
-					or getPropertyFromGroup('notes', i, 'noteType') == 'No Animation' or getPropertyFromGroup('notes', i, 'noteType') == 'GF Sing') then
-					setPropertyFromGroup('notes', i, 'texture', 'notes/AileenNOTE_assets');
-				end
-			end
-		end
-		if dadName == 'aileenCCP1' then
-			for i = 0, 3 do
-
-				setPropertyFromGroup('opponentStrums', i, 'texture', 'notes/AileenNOTE_assets');
-
-				if not getPropertyFromGroup('notes', i, 'mustPress')
-					and (getPropertyFromGroup('notes', i, 'noteType') == '' or getPropertyFromGroup('notes', i, 'noteType') == 'Hey!'
-					or getPropertyFromGroup('notes', i, 'noteType') == 'No Animation' or getPropertyFromGroup('notes', i, 'noteType') == 'GF Sing') then
-					setPropertyFromGroup('notes', i, 'texture', 'notes/AileenNOTE_assets');
+		if dadName == 'aileen' or dadName == 'aileen-old' then			
+			for note = 0, getProperty('unspawnNotes.length')-1 do
+				if not getPropertyFromGroup('unspawnNotes', note, 'mustPress') then
+					setPropertyFromGroup('unspawnNotes', note, 'texture', 'notes/AileenNOTE_assets');
 				end
 			end
 		end
 		
-		if dadName == 'kianaPhase3' or dadName == 'kianaPhase2' or dadName == 'kiana' or dadName == 'kianaAttack' 
-		or dadName == 'KianaFinalPhase' then
-			for i = 0, getProperty('opponentStrums.length')-1 do
-
-				setPropertyFromGroup('opponentStrums', i, 'texture', 'notes/KianaNOTE_assets');
-
-				if not getPropertyFromGroup('notes', i, 'mustPress')
-					and (getPropertyFromGroup('notes', i, 'noteType') == '' or getPropertyFromGroup('notes', i, 'noteType') == 'Hey!'
-					or getPropertyFromGroup('notes', i, 'noteType') == 'No Animation' or getPropertyFromGroup('notes', i, 'noteType') == 'GF Sing') then
-					setPropertyFromGroup('notes', i, 'texture', 'notes/KianaNOTE_assets');
+		if dadName == 'kianaPhase3' or dadName == 'kianaPhase2' or dadName == 'kiana'
+		or dadName == 'kianaAttack' or dadName == 'KianaFinalPhase' then
+			for note = 0, getProperty('unspawnNotes.length')-1 do
+				if not getPropertyFromGroup('unspawnNotes', note, 'mustPress') then
+					setPropertyFromGroup('unspawnNotes', note, 'texture', 'notes/KianaNOTE_assets');
 				end
-
 			end
 		end
 		  
-		if dadName == 'Morky' or dadName == 'MorkyMoist' or dadName == 'MorkyHypno' or dadName == 'MorkyHypnoAgain' or dadName == 'MorkyEgg'
-		or dadName == 'MorkyHank' or dadName == 'Justky' then
-			for i = 0, getProperty('opponentStrums.length')-1 do
-
-				setPropertyFromGroup('opponentStrums', i, 'texture', 'notes/MorkyNOTE_assets');
-
-				if not getPropertyFromGroup('notes', i, 'mustPress')
-					and (getPropertyFromGroup('notes', i, 'noteType') == '' or getPropertyFromGroup('notes', i, 'noteType') == 'Hey!'
-					or getPropertyFromGroup('notes', i, 'noteType') == 'No Animation' or getPropertyFromGroup('notes', i, 'noteType') == 'GF Sing') then
-					setPropertyFromGroup('notes', i, 'texture', 'notes/MorkyNOTE_assets');
+		if dadName == 'Morky' or dadName == 'MorkyMoist' or dadName == 'MorkyHypno'
+		or dadName == 'MorkyHypnoAgain' or dadName == 'MorkyEgg' or dadName == 'MorkyHank' or dadName == 'Justky' then
+			for note = 0, getProperty('unspawnNotes.length')-1 do
+				if not getPropertyFromGroup('unspawnNotes', note, 'mustPress') then
+					setPropertyFromGroup('unspawnNotes', note, 'texture', 'notes/MorkyNOTE_assets');
 				end
-
 			end
 		end
 		  
-		if dadName == 'NicFLP' then
-			for i = 0, getProperty('opponentStrums.length')-1 do
-
-				setPropertyFromGroup('opponentStrums', i, 'texture', 'notes/NicNOTE_assets');
-
-				if not getPropertyFromGroup('notes', i, 'mustPress')
-					and (getPropertyFromGroup('notes', i, 'noteType') == '' or getPropertyFromGroup('notes', i, 'noteType') == 'Hey!'
-					or getPropertyFromGroup('notes', i, 'noteType') == 'No Animation' or getPropertyFromGroup('notes', i, 'noteType') == 'GF Sing') then
-					setPropertyFromGroup('notes', i, 'texture', 'notes/NicNOTE_assets');
+		if dadName == 'NicFLP' then				
+			for note = 0, getProperty('unspawnNotes.length')-1 do
+				if not getPropertyFromGroup('unspawnNotes', note, 'mustPress') then
+					setPropertyFromGroup('unspawnNotes', note, 'texture', 'notes/NicNOTE_assets');
 				end
-
 			end
 		end
 		
 		if dadName == 'DV Phase 0' or dadName == 'DV' or dadName == 'DVTurn' or dadName == 'DV Phase 2' then
-			for i = 0, getProperty('opponentStrums.length')-1 do
-
-				setPropertyFromGroup('opponentStrums', i, 'texture', 'notes/dvNOTE_assets');
-
-				if not getPropertyFromGroup('notes', i, 'mustPress')
-					and (getPropertyFromGroup('notes', i, 'noteType') == '' or getPropertyFromGroup('notes', i, 'noteType') == 'Hey!'
-					or getPropertyFromGroup('notes', i, 'noteType') == 'No Animation' or getPropertyFromGroup('notes', i, 'noteType') == 'GF Sing') then
-					setPropertyFromGroup('notes', i, 'texture', 'notes/dvNOTE_assets');
+			for note = 0, getProperty('unspawnNotes.length')-1 do
+				if not getPropertyFromGroup('unspawnNotes', note, 'mustPress') then
+					setPropertyFromGroup('unspawnNotes', note, 'texture', 'notes/dvNOTE_assets');
 				end
-
 			end
 		end
 		
 		if dadName == 'FangirlIntro' or dadName == 'FangirlP1' or dadName == 'FangirlP2' then
-			for i = 0, getProperty('opponentStrums.length')-1 do
-
-				setPropertyFromGroup('opponentStrums', i, 'texture', 'notes/FangirlNOTE_assets');
-
-				if not getPropertyFromGroup('notes', i, 'mustPress')
-					and (getPropertyFromGroup('notes', i, 'noteType') == '' or getPropertyFromGroup('notes', i, 'noteType') == 'Hey!'
-					or getPropertyFromGroup('notes', i, 'noteType') == 'No Animation' or getPropertyFromGroup('notes', i, 'noteType') == 'GF Sing') then
-					setPropertyFromGroup('notes', i, 'texture', 'notes/FangirlNOTE_assets');
+			for note = 0, getProperty('unspawnNotes.length')-1 do
+				if not getPropertyFromGroup('unspawnNotes', note, 'mustPress') then
+					setPropertyFromGroup('unspawnNotes', note, 'texture', 'notes/FangirlNOTE_assets');
 				end
-
 			end
 		end
 		
 		if dadName == 'fnv' then
-			for i = 0, getProperty('opponentStrums.length')-1 do
-
-				setPropertyFromGroup('opponentStrums', i, 'texture', 'notes/FNVNOTE_assets');
-
-				if not getPropertyFromGroup('notes', i, 'mustPress')
-					and (getPropertyFromGroup('notes', i, 'noteType') == '' or getPropertyFromGroup('notes', i, 'noteType') == 'Hey!'
-					or getPropertyFromGroup('notes', i, 'noteType') == 'No Animation' or getPropertyFromGroup('notes', i, 'noteType') == 'GF Sing') then
-					setPropertyFromGroup('notes', i, 'texture', 'notes/FNVNOTE_assets');
+			for note = 0, getProperty('unspawnNotes.length')-1 do
+				if not getPropertyFromGroup('unspawnNotes', note, 'mustPress') then
+					setPropertyFromGroup('unspawnNotes', note, 'texture', 'notes/FNVNOTE_assets');
 				end
-
 			end
 		end
 		
 		if dadName == 'iniquitousP1' or dadName == 'iniquitousP2' or dadName == 'iniquitousP3' then
-			for i = 0, getProperty('opponentStrums.length')-1 do
-				
-				if songName == 'Iniquitous' and curBeat >= 608 then
-					setPropertyFromGroup('opponentStrums', i, 'texture', 'notes/IniquitousMechanicNOTE_assets');
-				else
-					setPropertyFromGroup('opponentStrums', i, 'texture', 'notes/IniquitousNOTE_assets');
+			for note = 0, getProperty('unspawnNotes.length')-1 do
+				if not getPropertyFromGroup('unspawnNotes', note, 'mustPress') then
+					setPropertyFromGroup('unspawnNotes', note, 'texture', 'notes/IniquitousNOTE_assets');
 				end
-
-				if not getPropertyFromGroup('notes', i, 'mustPress')
-					and (getPropertyFromGroup('notes', i, 'noteType') == '' or getPropertyFromGroup('notes', i, 'noteType') == 'Hey!'
-					or getPropertyFromGroup('notes', i, 'noteType') == 'No Animation' or getPropertyFromGroup('notes', i, 'noteType') == 'GF Sing') then
-					if songName == 'Iniquitous' and curBeat >= 608 then
-						setPropertyFromGroup('notes', i, 'texture', 'notes/IniquitousMechanicNOTE_assets');
-					else
-						setPropertyFromGroup('notes', i, 'texture', 'notes/IniquitousNOTE_assets');
-					end
+			end
+		end
+		
+		if dadName == 'AsulP1' or dadName == 'AsulP2' or dadName == 'AsulP3' then
+			for note = 0, getProperty('unspawnNotes.length')-1 do
+				if not getPropertyFromGroup('unspawnNotes', note, 'mustPress') then
+					setPropertyFromGroup('unspawnNotes', note, 'texture', 'notes/AsulNOTE_assets');
 				end
-
+			end
+		end
+		
+		if dadName == 'narrin' or dadName == 'Narrin Side' then
+			for note = 0, getProperty('unspawnNotes.length')-1 do
+				if not getPropertyFromGroup('unspawnNotes', note, 'mustPress') then
+					setPropertyFromGroup('unspawnNotes', note, 'texture', 'notes/NarrinNOTE_assets');
+				end
+			end
+		end
+		
+		if dadName == 'Yaku' then
+			for note = 0, getProperty('unspawnNotes.length')-1 do
+				if not getPropertyFromGroup('unspawnNotes', note, 'mustPress') then
+					setPropertyFromGroup('unspawnNotes', note, 'texture', 'notes/YakuNOTE_assets');
+				end
 			end
 		end
 		
 		if boyfriendName == 'aileenTofu' or boyfriendName == 'aileenTofuAlt' then
-		   for i = 0, getProperty('playerStrums.length')-1 do
-
-				setPropertyFromGroup('playerStrums', i, 'texture', 'notes/AileenNOTE_assets');
-
-				if (getPropertyFromGroup('unspawnNotes', i, 'noteType') == '' or getPropertyFromGroup('unspawnNotes', i, 'noteType') == 'Hey!'
-				or getPropertyFromGroup('unspawnNotes', i, 'noteType') == 'No Animation' or getPropertyFromGroup('unspawnNotes', i, 'noteType') == 'GF Sing') then
-					setPropertyFromGroup('unspawnNotes', i, 'texture', 'notes/AileenNOTE_assets');
+			for note = 0, getProperty('unspawnNotes.length')-1 do
+				if getPropertyFromGroup('unspawnNotes', note, 'mustPress') then
+					setPropertyFromGroup('unspawnNotes', note, 'texture', 'notes/AileenNOTE_assets');
 					if getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Inwards' then
-						setPropertyFromGroup('unspawnNotes', i, 'noteSplashTexture', 'noteSplashes/Inwards/AileenNoteSplashesInwards');
+						setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Inwards/AileenNoteSplashesInwards');
 					elseif getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Diamonds' then
-						setPropertyFromGroup('unspawnNotes', i, 'noteSplashTexture', 'noteSplashes/Diamonds/AileenNoteSplashesDiamond');
+						setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Diamonds/AileenNoteSplashesDiamond');
 					elseif getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Sparkles' then
-						setPropertyFromGroup('unspawnNotes', i, 'noteSplashTexture', 'noteSplashes/Sparkles/AileenNoteSplashesSparkle');
+						setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Sparkles/AileenNoteSplashesSparkle');
 					elseif getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Outwards' then
-						setPropertyFromGroup('unspawnNotes', i, 'noteSplashTexture', 'noteSplashes/Normal/AileenNoteSplashes');
+						setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Normal/AileenNoteSplashes');
 					end
 				end
-
 			end
 		end
 		  
 		if boyfriendName == 'TC' or boyfriendName == 'TCAlt' then
-		   for i = 0, getProperty('playerStrums.length')-1 do
-
-				setPropertyFromGroup('playerStrums', i, 'texture', 'notes/TCNOTE_assets');
-
-				if (getPropertyFromGroup('unspawnNotes', i, 'noteType') == '' or getPropertyFromGroup('unspawnNotes', i, 'noteType') == 'Hey!'
-				or getPropertyFromGroup('unspawnNotes', i, 'noteType') == 'No Animation' or getPropertyFromGroup('unspawnNotes', i, 'noteType') == 'GF Sing') then
-					setPropertyFromGroup('unspawnNotes', i, 'texture', 'notes/TCNOTE_assets');
+			for note = 0, getProperty('unspawnNotes.length')-1 do
+				if getPropertyFromGroup('unspawnNotes', note, 'mustPress') then
+					setPropertyFromGroup('unspawnNotes', note, 'texture', 'notes/TCNOTE_assets');
 					if getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Inwards' then
-						setPropertyFromGroup('unspawnNotes', i, 'noteSplashTexture', 'noteSplashes/Inwards/TCnoteSplashesInwards');
+						setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Inwards/TCnoteSplashesInwards');
 					elseif getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Diamonds' then
-						setPropertyFromGroup('unspawnNotes', i, 'noteSplashTexture', 'noteSplashes/Diamonds/TCnoteSplashesDiamond');
+						setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Diamonds/TCnoteSplashesDiamond');
 					elseif getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Sparkles' then
-						setPropertyFromGroup('unspawnNotes', i, 'noteSplashTexture', 'noteSplashes/Sparkles/TCnoteSplashesSparkle');
+						setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Sparkles/TCnoteSplashesSparkle');
 					elseif getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Outwards' then
-						setPropertyFromGroup('unspawnNotes', i, 'noteSplashTexture', 'noteSplashes/Normal/TCnoteSplashes');
+						setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Normal/TCnoteSplashes');
 					end
 				end
-
 			end
 		end
 		  
 		if boyfriendName == 'GFwav' then
-			for i = 0, getProperty('playerStrums.length')-1 do
-
-				setPropertyFromGroup('playerStrums', i, 'texture', 'notes/NicNOTE_assets');
-
-				if (getPropertyFromGroup('unspawnNotes', i, 'noteType') == '' or getPropertyFromGroup('unspawnNotes', i, 'noteType') == 'Hey!'
-				or getPropertyFromGroup('unspawnNotes', i, 'noteType') == 'No Animation' or getPropertyFromGroup('unspawnNotes', i, 'noteType') == 'GF Sing') then
-					setPropertyFromGroup('unspawnNotes', i, 'texture', 'notes/NicNOTE_assets');
+			for note = 0, getProperty('unspawnNotes.length')-1 do
+				if getPropertyFromGroup('unspawnNotes', note, 'mustPress')
+				and (getPropertyFromGroup('unspawnNotes', note, 'noteType') ~= 'Real Poison' and getPropertyFromGroup('unspawnNotes', note, 'noteType') ~= 'Static Notes'
+				and getPropertyFromGroup('unspawnNotes', note, 'noteType') ~= 'Lust Notes') then
+					setPropertyFromGroup('unspawnNotes', note, 'texture', 'notes/NicNOTE_assets');
 					if getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Inwards' then
-						setPropertyFromGroup('unspawnNotes', i, 'noteSplashTexture', 'noteSplashes/Inwards/NicNoteSplashesInwards');
+						setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Inwards/NicNoteSplashesInwards');
 					elseif getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Diamonds' then
-						setPropertyFromGroup('unspawnNotes', i, 'noteSplashTexture', 'noteSplashes/Diamonds/NicNoteSplashesDiamond');
+						setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Diamonds/NicNoteSplashesDiamond');
 					elseif getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Sparkles' then
-						setPropertyFromGroup('unspawnNotes', i, 'noteSplashTexture', 'noteSplashes/Sparkles/NicNoteSplashesSparkle');
+						setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Sparkles/NicNoteSplashesSparkle');
 					elseif getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Outwards' then
-						setPropertyFromGroup('unspawnNotes', i, 'noteSplashTexture', 'noteSplashes/Normal/NicNoteSplashes');
+						setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Normal/NicNoteSplashes');
 					end
 				end
 			end
 		end
 		  
 		if boyfriendName == 'ourple' then
-			for i = 0, getProperty('playerStrums.length')-1 do
-
-				setPropertyFromGroup('playerStrums', i, 'texture', 'notes/ourpleNOTE_assets');
-
-				if getPropertyFromGroup('unspawnNotes', i, 'noteType') == '' then
-					setPropertyFromGroup('unspawnNotes', i, 'texture', 'notes/ourpleNOTE_assets');
+			for note = 0, getProperty('unspawnNotes.length')-1 do
+				if getPropertyFromGroup('unspawnNotes', note, 'mustPress') then
+					setPropertyFromGroup('unspawnNotes', note, 'texture', 'notes/ourpleNOTE_assets');
 					if getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Inwards' then
-						setPropertyFromGroup('unspawnNotes', i, 'noteSplashTexture', 'noteSplashes/Inwards/ourpleNoteSplashesInwards');
+						setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Inwards/ourpleNoteSplashesInwards');
 					elseif getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Diamonds' then
-						setPropertyFromGroup('unspawnNotes', i, 'noteSplashTexture', 'noteSplashes/Diamonds/ourpleNoteSplashesDiamond');
+						setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Diamonds/ourpleNoteSplashesDiamond');
 					elseif getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Sparkles' then
-						setPropertyFromGroup('unspawnNotes', i, 'noteSplashTexture', 'noteSplashes/Sparkles/ourpleNoteSplashesSparkle');
+						setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Sparkles/ourpleNoteSplashesSparkle');
 					elseif getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Outwards' then
-						setPropertyFromGroup('unspawnNotes', i, 'noteSplashTexture', 'noteSplashes/Normal/ourpleNoteSplashes');
+						setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Normal/ourpleNoteSplashes');
 					end
 				end
 			end
 		end
 		
 		if boyfriendName == 'Kyu' or boyfriendName == 'KyuAlt' then
-			for i = 0, getProperty('playerStrums.length')-1 do
-
-				setPropertyFromGroup('playerStrums', i, 'texture', 'notes/KyuNOTE_assets');
-
-				if getPropertyFromGroup('unspawnNotes', i, 'noteType') == '' then
-					setPropertyFromGroup('unspawnNotes', i, 'texture', 'notes/KyuNOTE_assets');
+			for note = 0, getProperty('unspawnNotes.length')-1 do
+				if getPropertyFromGroup('unspawnNotes', note, 'mustPress') then
+					setPropertyFromGroup('unspawnNotes', note, 'texture', 'notes/KyuNOTE_assets');
 					if getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Inwards' then
-						setPropertyFromGroup('unspawnNotes', i, 'noteSplashTexture', 'noteSplashes/Inwards/kyuNoteSplashesInwards');
+						setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Inwards/kyuNoteSplashesInwards');
 					elseif getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Diamonds' then
-						setPropertyFromGroup('unspawnNotes', i, 'noteSplashTexture', 'noteSplashes/Diamonds/kyuNoteSplashesDiamond');
+						setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Diamonds/kyuNoteSplashesDiamond');
 					elseif getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Sparkles' then
-						setPropertyFromGroup('unspawnNotes', i, 'noteSplashTexture', 'noteSplashes/Sparkles/kyuNoteSplashesSparkle');
+						setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Sparkles/kyuNoteSplashesSparkle');
 					elseif getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Outwards' then
-						setPropertyFromGroup('unspawnNotes', i, 'noteSplashTexture', 'noteSplashes/Normal/kyuNoteSplashes');
+						setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Normal/kyuNoteSplashes');
 					end
-				end
-			end
-			for i = 0, getProperty('opponentStrums.length')-1 do
-				if not getPropertyFromGroup('notes', i, 'mustPress')
-					and (getPropertyFromGroup('notes', i, 'noteType') == '' or getPropertyFromGroup('notes', i, 'noteType') == 'Hey!'
-					or getPropertyFromGroup('notes', i, 'noteType') == 'No Animation' or getPropertyFromGroup('notes', i, 'noteType') == 'GF Sing') then
-					setPropertyFromGroup('notes', i, 'texture', 'NOTE_assets');
 				end
 			end
 		end
 		
 		if boyfriendName == 'marcoFFFP1' or boyfriendName == 'marcoFFFP2' then
-			for i = 0, getProperty('playerStrums.length')-1 do
-
-				setPropertyFromGroup('playerStrums', i, 'texture', 'notes/MarcoNOTE_assets');
-
-				if (getPropertyFromGroup('unspawnNotes', i, 'noteType') == '' or getPropertyFromGroup('unspawnNotes', i, 'noteType') == 'Hey!'
-				or getPropertyFromGroup('unspawnNotes', i, 'noteType') == 'No Animation') then
-					setPropertyFromGroup('unspawnNotes', i, 'texture', 'notes/MarcoNOTE_assets');
-					if getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Inwards' then
-						setPropertyFromGroup('unspawnNotes', i, 'noteSplashTexture', 'noteSplashes/Inwards/MarcoNoteSplashesInwards');
-					elseif getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Diamonds' then
-						setPropertyFromGroup('unspawnNotes', i, 'noteSplashTexture', 'noteSplashes/Diamonds/MarcoNoteSplashesDiamond');
-					elseif getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Sparkles' then
-						setPropertyFromGroup('unspawnNotes', i, 'noteSplashTexture', 'noteSplashes/Sparkles/MarcoNoteSplashesSparkle');
-					elseif getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Outwards' then
-						setPropertyFromGroup('unspawnNotes', i, 'noteSplashTexture', 'noteSplashes/Normal/MarcoNoteSplashes');
-					end
-				end
-				if getPropertyFromGroup('unspawnNotes', i, 'noteType') == 'GF Sing' then
-					setPropertyFromGroup('unspawnNotes', i, 'texture', 'notes/AileenNOTE_assets');
-					if getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Inwards' then
-						setPropertyFromGroup('unspawnNotes', i, 'noteSplashTexture', 'noteSplashes/Inwards/AileenNoteSplashesInwards');
-					elseif getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Diamonds' then
-						setPropertyFromGroup('unspawnNotes', i, 'noteSplashTexture', 'noteSplashes/Diamonds/AileenNoteSplashesDiamond');
-					elseif getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Sparkles' then
-						setPropertyFromGroup('unspawnNotes', i, 'noteSplashTexture', 'noteSplashes/Sparkles/AileenNoteSplashesSparkle');
-					elseif getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Outwards' then
-						setPropertyFromGroup('unspawnNotes', i, 'noteSplashTexture', 'noteSplashes/Normal/AileenNoteSplashes');
+			for note = 0, getProperty('unspawnNotes.length')-1 do
+				if getPropertyFromGroup('unspawnNotes', note, 'mustPress') then
+					if getPropertyFromGroup('unspawnNotes', note, 'noteType') == 'GF Sing' then
+						setPropertyFromGroup('unspawnNotes', note, 'texture', 'notes/AileenNOTE_assets');
+						if getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Inwards' then
+							setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Inwards/AileenNoteSplashesInwards');
+						elseif getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Diamonds' then
+							setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Diamonds/AileenNoteSplashesDiamond');
+						elseif getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Sparkles' then
+							setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Sparkles/AileenNoteSplashesSparkle');
+						elseif getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Outwards' then
+							setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Normal/AileenNoteSplashes');
+						end
+					else
+						setPropertyFromGroup('unspawnNotes', note, 'texture', 'notes/MarcoNOTE_assets');
+						if getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Inwards' then
+							setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Inwards/MarcoNoteSplashesInwards');
+						elseif getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Diamonds' then
+							setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Diamonds/MarcoNoteSplashesDiamond');
+						elseif getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Sparkles' then
+							setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Sparkles/MarcoNoteSplashesSparkle');
+						elseif getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Outwards' then
+							setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Normal/MarcoNoteSplashes');
+						end
 					end
 				end
 			end
@@ -591,64 +502,44 @@ function onUpdatePost(elapsed)
 		
 		for i = 1, #(lilyNoteVars) do
 			if boyfriendName == lilyNoteVars[i] then
-				for i = 0, getProperty('playerStrums.length')-1 do
-
-					setPropertyFromGroup('playerStrums', i, 'texture', 'notes/LilyNOTE_assets');
-
-					if getPropertyFromGroup('unspawnNotes', i, 'noteType') == '' then
-						setPropertyFromGroup('unspawnNotes', i, 'texture', 'notes/LilyNOTE_assets');
+				for note = 0, getProperty('unspawnNotes.length')-1 do
+					if getPropertyFromGroup('unspawnNotes', note, 'mustPress') then
+						setPropertyFromGroup('unspawnNotes', note, 'texture', 'notes/LilyNOTE_assets');
 					end
 				end
 			end
+			
 		end
 		
 		if boyfriendName == 'gfIniquitousP1' or boyfriendName == 'gfIniquitousP2' then
 			for i = 0, getProperty('playerStrums.length')-1 do
-			
 				setPropertyFromGroup('playerStrums', i, 'texture', 'notes/IniquitousMechanicNOTE_assets');
+			end
+				
+			for note = 0, getProperty('unspawnNotes.length')-1 do
+				if getPropertyFromGroup('unspawnNotes', note, 'mustPress') then
+					setPropertyFromGroup('unspawnNotes', note, 'texture', 'notes/IniquitousMechanicNOTE_assets');
+				end
+			end
+		end
+	end
+end
 
-				if (getPropertyFromGroup('unspawnNotes', i, 'noteType') == '' or getPropertyFromGroup('unspawnNotes', i, 'noteType') == 'Hey!'
-				or getPropertyFromGroup('unspawnNotes', i, 'noteType') == 'No Animation' or getPropertyFromGroup('unspawnNotes', i, 'noteType') == 'GF Sing') then
+local characterChanged = false
+function onUpdatePost(elapsed)
+	-- For Iniquitous Specifically
+	if dadName == 'iniquitousP3' and not characterChanged then
+		for i = 0, getProperty('opponentStrums.length')-1 do
+			if songName == 'Iniquitous' and curBeat == 608 then
+				setPropertyFromGroup('opponentStrums', i, 'texture', 'notes/IniquitousMechanicNOTE_assets');
+				characterChanged = true
+			end
+		end
+				
+		for note = 0, getProperty('unspawnNotes.length')-1 do
+			if not getPropertyFromGroup('unspawnNotes', note, 'mustPress') then
+				if songName == 'Iniquitous' and curBeat == 608 then
 					setPropertyFromGroup('unspawnNotes', i, 'texture', 'notes/IniquitousMechanicNOTE_assets');
-				end
-			end
-		end
-		
-		if dadName == 'AsulP1' or dadName == 'AsulP2' or dadName == 'AsulP3' then
-			for i = 0, getProperty('opponentStrums.length')-1 do
-
-				setPropertyFromGroup('opponentStrums', i, 'texture', 'notes/AsulNOTE_assets');
-
-				if not getPropertyFromGroup('notes', i, 'mustPress')
-					and (getPropertyFromGroup('notes', i, 'noteType') == '' or getPropertyFromGroup('notes', i, 'noteType') == 'Hey!'
-					or getPropertyFromGroup('notes', i, 'noteType') == 'No Animation' or getPropertyFromGroup('notes', i, 'noteType') == 'GF Sing') then
-						setPropertyFromGroup('notes', i, 'texture', 'notes/AsulNOTE_assets');
-				end
-			end
-		end
-		
-		if dadName == 'narrin' or dadName == 'Narrin Side' then
-			for i = 0, getProperty('opponentStrums.length')-1 do
-
-				setPropertyFromGroup('opponentStrums', i, 'texture', 'notes/NarrinNOTE_assets');
-
-				if not getPropertyFromGroup('notes', i, 'mustPress')
-					and (getPropertyFromGroup('notes', i, 'noteType') == '' or getPropertyFromGroup('notes', i, 'noteType') == 'Hey!'
-					or getPropertyFromGroup('notes', i, 'noteType') == 'No Animation' or getPropertyFromGroup('notes', i, 'noteType') == 'GF Sing') then
-						setPropertyFromGroup('notes', i, 'texture', 'notes/NarrinNOTE_assets');
-				end
-			end
-		end
-		
-		if dadName == 'Yaku' then
-			for i = 0, getProperty('opponentStrums.length')-1 do
-
-				setPropertyFromGroup('opponentStrums', i, 'texture', 'notes/YakuNOTE_assets');
-
-				if not getPropertyFromGroup('notes', i, 'mustPress')
-					and (getPropertyFromGroup('notes', i, 'noteType') == '' or getPropertyFromGroup('notes', i, 'noteType') == 'Hey!'
-					or getPropertyFromGroup('notes', i, 'noteType') == 'No Animation' or getPropertyFromGroup('notes', i, 'noteType') == 'GF Sing') then
-						setPropertyFromGroup('notes', i, 'texture', 'notes/YakuNOTE_assets');
 				end
 			end
 		end

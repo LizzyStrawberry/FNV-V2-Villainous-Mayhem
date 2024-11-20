@@ -972,12 +972,14 @@ function onCreatePost()
 end
 
 function onUpdate()
-	setProperty('coloredPlayerCircle.color', getColorFromHex(bfColor))
-	setProperty('coloredOpponentCircle.color', getColorFromHex(dadColor))
-	setProperty('coloredPlayerCircle.alpha', getProperty('iconP1.alpha'))
-	setProperty('iconPlayer.alpha', getProperty('iconP1.alpha'))
-	setProperty('coloredOpponentCircle.alpha', getProperty('iconP2.alpha'))
-	setProperty('iconOpponent.alpha', getProperty('iconP2.alpha'))
+	if getPropertyFromClass('ClientPrefs', 'optimizationMode') == false then
+		setProperty('coloredPlayerCircle.color', getColorFromHex(bfColor))
+		setProperty('coloredOpponentCircle.color', getColorFromHex(dadColor))
+		setProperty('coloredPlayerCircle.alpha', getProperty('iconP1.alpha'))
+		setProperty('iconPlayer.alpha', getProperty('iconP1.alpha'))
+		setProperty('coloredOpponentCircle.alpha', getProperty('iconP2.alpha'))
+		setProperty('iconOpponent.alpha', getProperty('iconP2.alpha'))
+	end
 end
 
 function onUpdatePost()
