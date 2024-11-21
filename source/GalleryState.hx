@@ -672,18 +672,7 @@ class GalleryState extends MusicBeatState
 					imageNumber = 10;
 				currentImage.loadGraphic(Paths.image('Gallery/adMechanic/image_' + imageNumber));
 				numberCounter.text = imageNumber + "/10";
-
-				switch(imageNumber)
-				{
-					case 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10:
-					{
-						if ((imageNumber == 1 || imageNumber == 10) && messageShown == false)
-						{
-							imageText.text = "All Pop up images used for the Ad Mechanic [In Order | All credits go to their respective artists]";
-							messageShown = true;
-						}
-					}
-				}
+				imageText.text = "All Pop up images used for the Ad Mechanic [In Order | All credits go to their respective artists]";
 			}
 
 			if (categorySelected == 6)
