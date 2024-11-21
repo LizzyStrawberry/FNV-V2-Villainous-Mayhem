@@ -133,6 +133,7 @@ class FunkinLua {
 		set('isIniquitousMode', PlayState.isIniquitousMode);
 		set('isInjectionMode', PlayState.isInjectionMode);
 		set('isMayhemMode', PlayState.isMayhemMode);
+		set('isCrossoverSection', ClientPrefs.onCrossSection);
 		set('difficulty', PlayState.storyDifficulty);
 
 		var difficultyName:String = CoolUtil.difficulties[PlayState.storyDifficulty];

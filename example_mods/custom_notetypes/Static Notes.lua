@@ -1,5 +1,10 @@
 function onCreate()
 	if mechanics then
+		precacheImage('effects/static')
+		for i = 1, 4 do
+			precacheSound('Static Noises/Glitch-'..i)
+		end
+		
 		makeAnimatedLuaSprite('Static', 'effects/static', 0, 0)
 		addAnimationByPrefix('Static', 'Stun', 'static stun', 24, true)
 		setProperty('Static.alpha', 0)
@@ -7,10 +12,6 @@ function onCreate()
 		setScrollFactor('Static', 0, 0)
 		setObjectCamera('Static', 'hud')
 		addLuaSprite('Static', true)
-		
-		for i = 1, 4 do
-			precacheSound('Static Noises/Glitch-'..i)
-		end
 		
 		--Iterate over all notes
 		for i = 0, getProperty('unspawnNotes.length')-1 do

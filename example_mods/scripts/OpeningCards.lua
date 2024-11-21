@@ -1,3 +1,4 @@
+allowIntroCard = true
 finishSequence = false
 local canScale = false
 local scaleNum = 0;
@@ -54,10 +55,6 @@ function onCreatePost()
 		setUpCardDetails(false, 1, 32, "Composed By: D3MON1X")
 	end
 	if songName == 'Nunconventional' then
-		setUpCardDetails(false, 1, 32, "Composed By: Zuyu")
-	end
-	if songName == 'Nunconventional Simp' then
-		setTextString('NowPlay', 'Nunconventional')
 		setUpCardDetails(false, 1, 32, "Composed By: Zuyu")
 	end
 	if songName == 'Point Blank' then
@@ -126,10 +123,6 @@ function onCreatePost()
 	if songName == 'Nunsational' then
 		setUpCardDetails(true, 1.50, 30, "Cover By: Strawberry | OG By: Tenzalt")
 	end
-	if songName == 'Nunsational Simp' then
-		setTextString('NowPlay', 'Nunsational')
-		setUpCardDetails(true, 1.50, 30, "Cover By: Strawberry | OG By: Tenzalt")
-	end
 	if songName == 'Tofu' then
 		setUpCardDetails(true, 1.50, 28, "Cover By: Strawberry | OG By: SuperiorFox")
 	end
@@ -189,13 +182,13 @@ function onCreatePost()
 end
 
 function onSongStart()
-	if not finishSequence then
+	if allowIntroCard then
 		setUpCard(false)
 	end
 end
 
 function onStepHit()
-	if not finishSequence then
+	if allowIntroCard and not finishSequence then
 		if curStep % 128 == 64 then
 			doTweenAlpha('NowPlay1Bye', 'NowPlay', 0, 0.3 / playbackRate, 'cubeInOut')
 			doTweenAlpha('NowPlay2Hi', 'NowPlay2', 1, 0.3 / playbackRate, 'cubeInOut')
@@ -234,7 +227,7 @@ function setUpCard(ending)
 		end
 	elseif ending then
 		finishSequence = true
-		
+
 		for i = 1, #(vars) do
 			cancelTween(vars[i])
 		end

@@ -284,11 +284,15 @@ function onCreatePost()
 			end
 		end
 		
-		if dadName == 'beatricephase1' or dadName == 'beatricephase2' 
+		if dadName == 'beatricephase1' or dadName == 'beatricephase2'
 		or dadName == 'BeatriceLegacyP1' or dadName == 'BeatriceLegacyP2' then
 			for note = 0, getProperty('unspawnNotes.length')-1 do
 				if not getPropertyFromGroup('unspawnNotes', note, 'mustPress') then
-					setPropertyFromGroup('unspawnNotes', note, 'texture', 'notes/BeatriceNOTE_assets');
+					if isStoryMode and songName == "Point Blank" then
+						setPropertyFromGroup('unspawnNotes', note, 'texture', 'notes/YakuNOTE_assets');
+					else
+						setPropertyFromGroup('unspawnNotes', note, 'texture', 'notes/BeatriceNOTE_assets');
+					end
 				end
 			end
 		end
@@ -387,15 +391,6 @@ function onCreatePost()
 			for note = 0, getProperty('unspawnNotes.length')-1 do
 				if getPropertyFromGroup('unspawnNotes', note, 'mustPress') then
 					setPropertyFromGroup('unspawnNotes', note, 'texture', 'notes/AileenNOTE_assets');
-					if getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Inwards' then
-						setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Inwards/AileenNoteSplashesInwards');
-					elseif getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Diamonds' then
-						setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Diamonds/AileenNoteSplashesDiamond');
-					elseif getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Sparkles' then
-						setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Sparkles/AileenNoteSplashesSparkle');
-					elseif getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Outwards' then
-						setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Normal/AileenNoteSplashes');
-					end
 				end
 			end
 		end
@@ -404,15 +399,6 @@ function onCreatePost()
 			for note = 0, getProperty('unspawnNotes.length')-1 do
 				if getPropertyFromGroup('unspawnNotes', note, 'mustPress') then
 					setPropertyFromGroup('unspawnNotes', note, 'texture', 'notes/TCNOTE_assets');
-					if getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Inwards' then
-						setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Inwards/TCnoteSplashesInwards');
-					elseif getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Diamonds' then
-						setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Diamonds/TCnoteSplashesDiamond');
-					elseif getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Sparkles' then
-						setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Sparkles/TCnoteSplashesSparkle');
-					elseif getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Outwards' then
-						setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Normal/TCnoteSplashes');
-					end
 				end
 			end
 		end
@@ -423,15 +409,6 @@ function onCreatePost()
 				and (getPropertyFromGroup('unspawnNotes', note, 'noteType') ~= 'Real Poison' and getPropertyFromGroup('unspawnNotes', note, 'noteType') ~= 'Static Notes'
 				and getPropertyFromGroup('unspawnNotes', note, 'noteType') ~= 'Lust Notes') then
 					setPropertyFromGroup('unspawnNotes', note, 'texture', 'notes/NicNOTE_assets');
-					if getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Inwards' then
-						setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Inwards/NicNoteSplashesInwards');
-					elseif getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Diamonds' then
-						setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Diamonds/NicNoteSplashesDiamond');
-					elseif getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Sparkles' then
-						setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Sparkles/NicNoteSplashesSparkle');
-					elseif getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Outwards' then
-						setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Normal/NicNoteSplashes');
-					end
 				end
 			end
 		end
@@ -440,15 +417,6 @@ function onCreatePost()
 			for note = 0, getProperty('unspawnNotes.length')-1 do
 				if getPropertyFromGroup('unspawnNotes', note, 'mustPress') then
 					setPropertyFromGroup('unspawnNotes', note, 'texture', 'notes/ourpleNOTE_assets');
-					if getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Inwards' then
-						setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Inwards/ourpleNoteSplashesInwards');
-					elseif getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Diamonds' then
-						setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Diamonds/ourpleNoteSplashesDiamond');
-					elseif getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Sparkles' then
-						setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Sparkles/ourpleNoteSplashesSparkle');
-					elseif getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Outwards' then
-						setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Normal/ourpleNoteSplashes');
-					end
 				end
 			end
 		end
@@ -457,15 +425,6 @@ function onCreatePost()
 			for note = 0, getProperty('unspawnNotes.length')-1 do
 				if getPropertyFromGroup('unspawnNotes', note, 'mustPress') then
 					setPropertyFromGroup('unspawnNotes', note, 'texture', 'notes/KyuNOTE_assets');
-					if getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Inwards' then
-						setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Inwards/kyuNoteSplashesInwards');
-					elseif getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Diamonds' then
-						setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Diamonds/kyuNoteSplashesDiamond');
-					elseif getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Sparkles' then
-						setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Sparkles/kyuNoteSplashesSparkle');
-					elseif getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Outwards' then
-						setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Normal/kyuNoteSplashes');
-					end
 				end
 			end
 		end
@@ -475,26 +434,8 @@ function onCreatePost()
 				if getPropertyFromGroup('unspawnNotes', note, 'mustPress') then
 					if getPropertyFromGroup('unspawnNotes', note, 'noteType') == 'GF Sing' then
 						setPropertyFromGroup('unspawnNotes', note, 'texture', 'notes/AileenNOTE_assets');
-						if getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Inwards' then
-							setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Inwards/AileenNoteSplashesInwards');
-						elseif getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Diamonds' then
-							setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Diamonds/AileenNoteSplashesDiamond');
-						elseif getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Sparkles' then
-							setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Sparkles/AileenNoteSplashesSparkle');
-						elseif getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Outwards' then
-							setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Normal/AileenNoteSplashes');
-						end
 					else
 						setPropertyFromGroup('unspawnNotes', note, 'texture', 'notes/MarcoNOTE_assets');
-						if getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Inwards' then
-							setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Inwards/MarcoNoteSplashesInwards');
-						elseif getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Diamonds' then
-							setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Diamonds/MarcoNoteSplashesDiamond');
-						elseif getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Sparkles' then
-							setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Sparkles/MarcoNoteSplashesSparkle');
-						elseif getPropertyFromClass('ClientPrefs', 'noteSplashMode') == 'Outwards' then
-							setPropertyFromGroup('unspawnNotes', note, 'noteSplashTexture', 'noteSplashes/Normal/MarcoNoteSplashes');
-						end
 					end
 				end
 			end

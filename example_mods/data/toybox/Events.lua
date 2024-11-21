@@ -30,7 +30,7 @@ function onCreatePost()
 end
 
 function onUpdate()
-	if curBeat == 32 then
+	if curStep == 128 then
 		setProperty('camGame.alpha', 1)
 		cameraFlash('game', 'FFFFFF', 0.6 / playbackRate, false)
 	end

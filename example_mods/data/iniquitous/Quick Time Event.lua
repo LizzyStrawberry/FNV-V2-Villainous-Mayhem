@@ -49,11 +49,15 @@ function onCreate()
 		end
 end
 
+local autoPlay = false
 function onUpdate()
 	if mechanics then
+		if not autoPlay then
+			autoPlay = botPlay or getPropertyFromClass('ClientPrefs', 'autoCharm') == 1
+		end
 		if qteActive == true then
 			--debugPrint('QTE SCALE: '..string.format("%.2f",getProperty('qte.scale.x')))
-			if botPlay then --IF BOTPLAY IS ENABLED
+			if autoPlay then --IF BOTPLAY or AUTO DODGE CHARM IS ENABLED
 				if getProperty('qte.scale.x') <= getProperty('qteGoal.scale.x') and getProperty('qte.scale.x') >= getProperty('qteGoal.scale.x') - 0.03 then			
 					playSound('checkmark')
 					

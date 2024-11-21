@@ -30,14 +30,26 @@ class NoteSplash extends FlxSprite
 		alpha = 0.6;
 
 		if(texture == null) {
-			if (ClientPrefs.noteSplashMode == 'Inwards')
-				texture = 'noteSplashesInwards';
-			else if (ClientPrefs.noteSplashMode == 'Outwards')
-				texture = 'noteSplashes';
-			else if (ClientPrefs.noteSplashMode == 'Diamonds')
-				texture = 'noteSplashesDiamond';
-			else if (ClientPrefs.noteSplashMode == 'Sparkles')
-				texture = 'noteSplashesSparkle';
+			var whatSplashType:String = ClientPrefs.noteSplashMode;
+
+			switch(PlayState.SONG.player1)
+			{
+				case 'aileenTofu' | "aileenTofuAlt":
+					texture = 'noteSplashes/' + whatSplashType + '/AileenNoteSplashes' + whatSplashType;
+				case 'TC' | 'TCAlt':
+					texture = 'noteSplashes/' + whatSplashType + '/TCnoteSplashes' + whatSplashType;
+				case 'GFwav':
+					texture = 'noteSplashes/' + whatSplashType + '/NicNoteSplashes' + whatSplashType;
+				case 'ourple':
+					texture = 'noteSplashes/' + whatSplashType + '/ourpleNoteSplashes' + whatSplashType;
+				case 'Kyu' | 'KyuAlt':
+					texture = 'noteSplashes/' + whatSplashType + '/KyuNoteSplashes' + whatSplashType;
+				case 'marcoFFFP1' | 'marcoFFFP2':
+					texture = 'noteSplashes/' + whatSplashType + '/MarcoNoteSplashes' + whatSplashType;
+
+				default:
+					texture = "noteSplashes" + whatSplashType;
+			}
 
 			if(PlayState.SONG.splashSkin != null && PlayState.SONG.splashSkin.length > 0) texture = PlayState.SONG.splashSkin;
 		}

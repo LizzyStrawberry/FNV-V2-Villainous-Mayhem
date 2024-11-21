@@ -80,6 +80,9 @@ function onUpdate()
 		runTimer('change', 0.01)
 	end
 	if curBeat == 128 then
+		callScript("scripts/OpeningCards", "setUpCard", false)
+		setGlobalFromScript('scripts/OpeningCards', 'allowIntroCard', true)
+
 		doTweenAlpha('hud', 'camHUD', 1, 0.8, 'circOut')
 		runTimer('change', 0.01)
 	end

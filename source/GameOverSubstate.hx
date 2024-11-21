@@ -41,6 +41,7 @@ class GameOverSubstate extends MusicBeatSubstate
 	public static var mayhemed:Bool = false;
 
 	public static var instance:GameOverSubstate;
+	public static var playerSelected:String = "";
 
 	public static function resetVariables() {
 		characterName = 'playablegf';
@@ -53,6 +54,8 @@ class GameOverSubstate extends MusicBeatSubstate
 	{
 		instance = this;
 		PlayState.instance.callOnLuas('onGameOverStart', []);
+
+		playerSelected = PlayState.SONG.player1;
 
 		if (!PlayState.isMayhemMode && PlayState.SONG.stage == 'debug' && !initializedVideo)
 		{
@@ -583,5 +586,7 @@ class GameOverSubstate extends MusicBeatSubstate
 					}
 				}
 		}
+	
+		PlayState.SONG.player1 = playerSelected;
 	}
 }

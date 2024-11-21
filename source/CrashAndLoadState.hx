@@ -137,7 +137,7 @@ class CrashAndLoadState extends MusicBeatState
 		add(no);
 
         FlxTween.tween(text, {y: text.y + 10}, 5.7, {ease: FlxEase.cubeInOut, type: PINGPONG});
-        //FlxTween.tween(songText, {y: songText.y + 10}, 5.75, {ease: FlxEase.cubeInOut, type: PINGPONG});
+        FlxTween.tween(songText, {y: songText.y + 10}, 5.75, {ease: FlxEase.cubeInOut, type: PINGPONG});
         FlxTween.tween(songDifficultyText, {y: songDifficultyText.y + 10}, 5.8, {ease: FlxEase.cubeInOut, type: PINGPONG});
 
         changeSelection();

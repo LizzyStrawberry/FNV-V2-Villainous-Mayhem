@@ -112,7 +112,15 @@ class StoryMenuState extends MusicBeatState
 		{
 			ClientPrefs.iniquitousWeekUnlocked = true;
 			NotificationAlert.sendCategoryNotification = true;
+			NotificationAlert.sendMessage = true;
 			ClientPrefs.saveSettings();
+
+			FlxG.sound.music.fadeOut(0.2);
+			new FlxTimer().start(0.2, function(tmr:FlxTimer)
+            {
+                FlxG.sound.playMusic(Paths.music('malumIctum'));
+                FlxG.sound.music.fadeIn(2.0);
+            });
 		}
 
 		scoreText = new FlxText(10, 665, 0, "SCORE: 49324858", 36);
@@ -397,16 +405,16 @@ class StoryMenuState extends MusicBeatState
 		add(message4);
 
 		//check the save feature
-		trace('Saved Score :' + ClientPrefs.storyModeCrashScore);
-		trace('Saved Misses: ' + ClientPrefs.storyModeCrashMisses);
-		trace('Saved Week: ' + ClientPrefs.storyModeCrashWeek);
-		trace('Saved Week Name: ' + ClientPrefs.storyModeCrashWeekName);
-		trace('Saved Song: ' + ClientPrefs.storyModeCrashMeasure);
-		trace('Saved Difficulty: ' + ClientPrefs.storyModeCrashDifficulty);
-		trace('Saved High Score for Week: ' + ClientPrefs.campaignHighScore);
-		trace('Saved Total Rating for the Week: ' + ClientPrefs.campaignRating);
-		trace('Saved Best Combo for the Week so far: ' + ClientPrefs.campaignBestCombo);
-		trace('Saved Songs Played For Week: ' + ClientPrefs.campaignSongsPlayed);
+		trace('Current Saved Score :' + ClientPrefs.storyModeCrashScore);
+		trace('Current Saved Misses: ' + ClientPrefs.storyModeCrashMisses);
+		trace('Current Saved Week: ' + ClientPrefs.storyModeCrashWeek);
+		trace('Current Saved Week Name: ' + ClientPrefs.storyModeCrashWeekName);
+		trace('Current Saved Song: ' + ClientPrefs.storyModeCrashMeasure);
+		trace('Current Saved Difficulty: ' + ClientPrefs.storyModeCrashDifficulty);
+		trace('Current Saved High Score for Week: ' + ClientPrefs.campaignHighScore);
+		trace('Current Saved Total Rating for the Week: ' + ClientPrefs.campaignRating);
+		trace('Current Saved Best Combo for the Week so far: ' + ClientPrefs.campaignBestCombo);
+		trace('Current Saved Songs Played For Week: ' + ClientPrefs.campaignSongsPlayed);
 
 		if (ClientPrefs.storyModeCrashMeasure == '')
 		{
@@ -559,6 +567,7 @@ class StoryMenuState extends MusicBeatState
 					changeWeek(0);
 					changeDifficulty();
 					FlxG.sound.play(Paths.sound('scrollMenu'));
+					scoreText.visible = true;
 				}
 				if (FlxG.keys.justPressed.TWO || (FlxG.mouse.overlaps(categoryNum2) && FlxG.mouse.justPressed))
 				{
@@ -566,6 +575,7 @@ class StoryMenuState extends MusicBeatState
 					changeWeek(0);
 					changeDifficulty();
 					FlxG.sound.play(Paths.sound('scrollMenu'));
+					scoreText.visible = true;
 				}
 				if (FlxG.keys.justPressed.THREE || (FlxG.mouse.overlaps(categoryNum3) && FlxG.mouse.justPressed))
 				{
@@ -573,6 +583,7 @@ class StoryMenuState extends MusicBeatState
 					changeWeek(0);
 					changeDifficulty();
 					FlxG.sound.play(Paths.sound('scrollMenu'));
+					scoreText.visible = true;
 				}
 				if (ClientPrefs.crossoverUnlocked == false && (FlxG.keys.justPressed.FOUR || (FlxG.mouse.overlaps(categoryNum4) && FlxG.mouse.justPressed)))
 				{
@@ -580,6 +591,7 @@ class StoryMenuState extends MusicBeatState
 					changeWeek(0);
 					changeDifficulty();
 					FlxG.sound.play(Paths.sound('scrollMenu'));
+					scoreText.visible = false;
 				}
 
 				if(FlxG.mouse.wheel != 0)
@@ -656,6 +668,11 @@ class StoryMenuState extends MusicBeatState
 					FlxG.sound.play(Paths.sound('accessDenied'));
 				}
 				else if (ClientPrefs.iniquitousWeekUnlocked == false && loadedWeeks[curWeek].storyName == "Iniquitous Week")
+				{
+					FlxG.camera.shake(0.01, 0.5, null, false, FlxAxes.XY);
+					FlxG.sound.play(Paths.sound('accessDenied'));
+				}
+				else if (ClientPrefs.roadMapUnlocked == false && loadedWeeks[curWeek].storyName == "Crossover Week")
 				{
 					FlxG.camera.shake(0.01, 0.5, null, false, FlxAxes.XY);
 					FlxG.sound.play(Paths.sound('accessDenied'));
@@ -949,123 +966,117 @@ class StoryMenuState extends MusicBeatState
 			}
 			else
 			{
-				if (ClientPrefs.roadMapUnlocked == false && loadedWeeks[curWeek].storyName == "Crossover Week")
+				if (stopspamming == false)
 				{
-					FlxG.camera.shake(0.01, 0.5, null, false, FlxAxes.XY);
-					FlxG.sound.play(Paths.sound('accessDenied'));
+					grpWeekText.members[curWeek].startFlashing();
+			
+					FlxFlicker.flicker(sprDifficulty, 1, 0.04, false);
+					FlxFlicker.flicker(play, 1, 0.04, false);
+			
+					for (char in grpWeekCharacters.members)
+					{
+						if (char.character != '' && char.hasConfirmAnimation)
+							char.animation.play('confirm');
+					}
+					stopspamming = true;
+				}
+				
+				var distort:String = "";
+				switch (loadedWeeks[curWeek].storyName)
+				{
+					case "Main Week":
+						ClientPrefs.mainWeekPlayed = true;
+						ClientPrefs.saveSettings();
+
+					case "Beatrice Week":
+						ClientPrefs.nunWeekPlayed = true;
+						ClientPrefs.saveSettings();
+
+					case "Kiana Week":
+						ClientPrefs.kianaWeekPlayed = true;
+						ClientPrefs.saveSettings();
+
+					case "D-side Week":
+						ClientPrefs.dsideWeekPlayed = true;
+						ClientPrefs.saveSettings();
+
+					case "Morky Week":
+						ClientPrefs.morkyWeekPlayed = true;
+						ClientPrefs.saveSettings();
+
+					case "Sus Week":
+						ClientPrefs.susWeekPlayed = true;
+						ClientPrefs.saveSettings();
+
+					case "Legacy Week":
+						ClientPrefs.legacyWeekPlayed = true;
+						ClientPrefs.saveSettings();
+
+					case "Iniquitous Week":
+						FlxG.sound.music.stop();
+						distort = "Distorted";
+				}
+
+				FlxG.sound.play(Paths.sound('confirmMenu' + distort));
+				selectedWeek = true;
+				FlxG.mouse.visible = false;
+				if (ClientPrefs.roadMapUnlocked == true && loadedWeeks[curWeek].storyName == "Crossover Week")
+				{
+					FlxG.camera.flash(FlxColor.WHITE, 1);
+					FlxG.sound.music.volume = 0;
+					ClientPrefs.storyModeCrashDifficultyNum = PlayState.storyDifficulty;
+					ClientPrefs.saveSettings();
+					ClientPrefs.onCrossSection = true;
+					PlayState.isStoryMode = false;
+					new FlxTimer().start(1, function(tmr:FlxTimer)
+					{
+							MusicBeatState.switchState(new CrossoverState());
+					});
 				}
 				else
 				{
-					if (stopspamming == false)
-					{
-						grpWeekText.members[curWeek].startFlashing();
-			
-						FlxFlicker.flicker(sprDifficulty, 1, 0.04, false);
-						FlxFlicker.flicker(play, 1, 0.04, false);
-			
-						for (char in grpWeekCharacters.members)
-						{
-							if (char.character != '' && char.hasConfirmAnimation)
-							{
-								char.animation.play('confirm');
-							}
-						}
-						stopspamming = true;
-					}
-						
-					switch (loadedWeeks[curWeek].storyName)
-					{
-						case "Main Week":
-							ClientPrefs.mainWeekPlayed = true;
-							ClientPrefs.saveSettings();
+					PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0].toLowerCase() + diffic, PlayState.storyPlaylist[0].toLowerCase());
+					PlayState.campaignScore = 0;
+					PlayState.campaignMisses = 0;
 
-						case "Beatrice Week":
-							ClientPrefs.nunWeekPlayed = true;
-							ClientPrefs.saveSettings();
-
-						case "Kiana Week":
-							ClientPrefs.kianaWeekPlayed = true;
-							ClientPrefs.saveSettings();
-
-						case "D-side Week":
-							ClientPrefs.dsideWeekPlayed = true;
-							ClientPrefs.saveSettings();
-
-						case "Morky Week":
-							ClientPrefs.morkyWeekPlayed = true;
-							ClientPrefs.saveSettings();
-
-						case "Sus Week":
-							ClientPrefs.susWeekPlayed = true;
-							ClientPrefs.saveSettings();
-
-						case "Legacy Week":
-							ClientPrefs.legacyWeekPlayed = true;
-							ClientPrefs.saveSettings();
-					}
-
-					FlxG.sound.play(Paths.sound('confirmMenu'));
-					selectedWeek = true;
-					FlxG.mouse.visible = false;
-					if (ClientPrefs.roadMapUnlocked == true && loadedWeeks[curWeek].storyName == "Crossover Week")
-					{
-						FlxG.camera.flash(FlxColor.WHITE, 1);
-						FlxG.sound.music.volume = 0;
-						ClientPrefs.storyModeCrashDifficultyNum = PlayState.storyDifficulty;
-						ClientPrefs.saveSettings();
-						ClientPrefs.onCrossSection = true;
-						PlayState.isStoryMode = false;
-						new FlxTimer().start(1, function(tmr:FlxTimer)
-						{
-							MusicBeatState.switchState(new CrossoverState());
-						});
-					}
-					else
-					{
-						PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0].toLowerCase() + diffic, PlayState.storyPlaylist[0].toLowerCase());
-						PlayState.campaignScore = 0;
-						PlayState.campaignMisses = 0;
+					if (WeekData.getWeekFileName() == 'weeklegacy') //checking if it is the legacy week
+						PlayState.SONG.player1 = 'playablegf-old'; //change the player to the old version
+					if (WeekData.getWeekFileName() == 'weekmorky') //checking if it is the Morky week
+						PlayState.SONG.player1 = 'Spendthrift GF'; //change the player to the Spendthrift version
 	
-						if (WeekData.getWeekFileName() == 'weeklegacy') //checking if it is the legacy week
-							PlayState.SONG.player1 = 'playablegf-old'; //change the player to the old version
+					//Crash / Save detection reset
+					ClientPrefs.resetStoryModeProgress(true); //Also reset tokens!
 
-						if (WeekData.getWeekFileName() == 'weekmorky') //checking if it is the Morky week
-							PlayState.SONG.player1 = 'Spendthrift GF'; //change the player to the Spendthrift version
+					ClientPrefs.storyModeCrashDifficulty = diffic; //Difficulty Name
+					ClientPrefs.storyModeCrashDifficultyNum = curDifficulty; //Difficulty Number
+					ClientPrefs.storyModeCrashWeek = curWeek; //Week Number
+					ClientPrefs.storyModeCrashWeekName = WeekData.getWeekFileName(); //Week Name
+				
+					ClientPrefs.campaignBestCombo = 0;
+					ClientPrefs.campaignRating = 0;
+					ClientPrefs.campaignHighScore = 0;
+					ClientPrefs.campaignSongsPlayed = 0;
+					ClientPrefs.saveSettings();
 	
-						//Crash / Save detection reset
-						ClientPrefs.storyModeCrashDifficulty = diffic;
-						ClientPrefs.storyModeCrashWeek = curWeek;
-						ClientPrefs.storyModeCrashWeekName = WeekData.getWeekFileName();
-						ClientPrefs.storyModeCrashDifficultyNum = curDifficulty;
-						ClientPrefs.storyModeCrashMeasure = '';
-						ClientPrefs.storyModeCrashScore = 0;
-						ClientPrefs.storyModeCrashMisses = 0;
-						ClientPrefs.campaignBestCombo = 0;
-						ClientPrefs.campaignRating = 0;
-						ClientPrefs.campaignHighScore = 0;
-						ClientPrefs.campaignSongsPlayed = 0;
-						ClientPrefs.saveSettings();
-	
-						trace('Saved Score :' + ClientPrefs.storyModeCrashScore);
-						trace('Saved Misses: ' + ClientPrefs.storyModeCrashMisses);
-						trace('Saved Week: ' + ClientPrefs.storyModeCrashWeek);
-						trace('Saved Week Name: ' + ClientPrefs.storyModeCrashWeekName);
-						trace('Saved Song: ' + ClientPrefs.storyModeCrashMeasure);
-						trace('Saved Difficulty: ' + ClientPrefs.storyModeCrashDifficulty + " - " + ClientPrefs.storyModeCrashDifficultyNum);
-						trace('Saved High Score for Week: ' + ClientPrefs.campaignHighScore);
-						trace('Saved Total Rating for the Week: ' + ClientPrefs.campaignRating);
-						trace('Saved Best Combo for the Week so far: ' + ClientPrefs.campaignBestCombo);
-						trace('Saved Songs Played For Week: ' + ClientPrefs.campaignSongsPlayed);
-						trace('CURRENT WEEK: ' + WeekData.getWeekFileName() + ' - ' + ClientPrefs.storyModeCrashWeek);
+					trace('Loaded Story Mode Settings:');
+					trace('Saved Score :' + ClientPrefs.storyModeCrashScore);
+					trace('Saved Misses: ' + ClientPrefs.storyModeCrashMisses);
+					trace('Saved Week + Name: ' + ClientPrefs.storyModeCrashWeekName + ' - ' + ClientPrefs.storyModeCrashWeek);
+					trace('Saved Song: ' + ClientPrefs.storyModeCrashMeasure);
+					trace('Saved Difficulty: ' + ClientPrefs.storyModeCrashDifficulty + " - " + ClientPrefs.storyModeCrashDifficultyNum + "\n");
+					trace('Loaded Results Settings:');
+					trace('Saved High Score for Week: ' + ClientPrefs.campaignHighScore);
+					trace('Saved Total Rating for the Week: ' + ClientPrefs.campaignRating);
+					trace('Saved Best Combo for the Week so far: ' + ClientPrefs.campaignBestCombo);
+					trace('Saved Songs Played For Week: ' + ClientPrefs.campaignSongsPlayed);
 		
-						FlxG.camera.flash(FlxColor.WHITE, 1);
-						new FlxTimer().start(1, function(tmr:FlxTimer)
-						{
-							LoadingState.loadAndSwitchState(new PlayState(), true);
-							FreeplayState.destroyFreeplayVocals();
-						});
-					}
-				}	
+					FlxG.camera.flash(FlxColor.WHITE, 1);
+					new FlxTimer().start(1, function(tmr:FlxTimer)
+					{
+						LoadingState.loadAndSwitchState(new PlayState(), true);
+						FreeplayState.destroyFreeplayVocals();
+					});
+				}
 			}
 		} else {
 			FlxG.sound.play(Paths.sound('cancelMenu'));

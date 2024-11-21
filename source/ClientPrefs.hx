@@ -1099,8 +1099,9 @@ class ClientPrefs {
 		nicFound = true;
 		nicViewed = true;
 		nicPlayed = true;
+		debugFound = true;
 		debugViewed = true;
-		tofuFound = true;
+		debugPlayed = true;
 		fnvFound = true;
 		fnvViewed = true;
 		fnvPlayed = true;
@@ -1154,6 +1155,7 @@ class ClientPrefs {
 		kaizokuScroll = true;
 
 		Achievements.debugUnlock();
+		ClientPrefs.saveSettings();
 		trace("Settings Saved!");
 	}
 
@@ -1811,17 +1813,17 @@ class ClientPrefs {
 		ClientPrefs.storyModeCrashDifficultyNum = -1; // Difficulty Number
 
 		trace('Story Mode Settings:');
-		trace('Saved Score :' + ClientPrefs.storyModeCrashScore);
-		trace('Saved Misses: ' + ClientPrefs.storyModeCrashMisses);
-		trace('Saved Week: ' + ClientPrefs.storyModeCrashWeek);
-		trace('Saved Week Name: ' + ClientPrefs.storyModeCrashWeekName);
-		trace('Saved Song: ' + ClientPrefs.storyModeCrashMeasure);
-		trace('Saved Difficulty: ' + ClientPrefs.storyModeCrashDifficulty + " - " + ClientPrefs.storyModeCrashDifficultyNum);
+		trace('Resetted Score to:' + ClientPrefs.storyModeCrashScore);
+		trace('Resetted Misses to: ' + ClientPrefs.storyModeCrashMisses);
+		trace('Resetted Week to: ' + ClientPrefs.storyModeCrashWeek);
+		trace('Resetted Week Name to: ' + ClientPrefs.storyModeCrashWeekName);
+		trace('Resetted Song to: ' + ClientPrefs.storyModeCrashMeasure);
+		trace('Resetted Difficulty to: ' + ClientPrefs.storyModeCrashDifficulty + " - " + ClientPrefs.storyModeCrashDifficultyNum + "\n");
 
 		if (resetTokens)
 		{
 			ClientPrefs.tokensAchieved = 0;
-			trace('Saved Tokens Achieved: ' + ClientPrefs.tokensAchieved);
+			trace('Resetted Already-Achieved Tokens to: ' + ClientPrefs.tokensAchieved + "\n");
 		}
 
 		ClientPrefs.saveSettings();

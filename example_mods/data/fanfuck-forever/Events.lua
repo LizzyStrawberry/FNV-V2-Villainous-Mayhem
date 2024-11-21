@@ -19,6 +19,8 @@ function onCreate()
 	setProperty('camHUD.alpha', 0)
 	setProperty('dad.alpha', 0)
 	setProperty('boyfriend.alpha', 0)
+	
+	setGlobalFromScript('scripts/OpeningCards', 'allowIntroCard', false)
 end
 
 function opponentNoteHit() -- health draining mechanic
@@ -71,5 +73,12 @@ function onUpdate()
 	if curStep == 546 then
 		triggerEvent('Change Character', 'dad', 'FangirlP2')
 		triggerEvent('Change Character', 'bf', 'marcoFFFP2')
+	end
+end
+
+function onBeatHit()
+	if curBeat == 36 then
+		callScript("scripts/OpeningCards", "setUpCard", false)
+		setGlobalFromScript('scripts/OpeningCards', 'allowIntroCard', true)
 	end
 end

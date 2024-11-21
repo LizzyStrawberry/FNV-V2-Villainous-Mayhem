@@ -10,13 +10,11 @@ function onStartCountdown() -- for dialogue
 	end
 	if mechanics and difficulty >= 0 then
 		if not allowCountdown then
-			doTweenAlpha('warningimage', 'Warning', 1, 1, 'cubeInOut');
-			doTweenAlpha('warningTXT', 'WarningTXT', 1, 1, 'cubeInOut');
+			doTweenAlpha('warningimage', 'Warning', 1, 1 / playbackRate, 'cubeInOut');
 			return Function_Stop;
 		end
 		if allowCountdown then
-			cancelTimer('textgoBye')
-			cancelTimer('textgoHi')
+			cancelAllTweens()
 			runTimer('removeEverything', 1)
 			return Function_Continue
 		end
@@ -57,22 +55,32 @@ function onUpdate()
 		if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.Y') and confirmed == 0 then
 			allowCountdown = true
 			startCountdown();
-			doTweenAlpha('nomorewarningimage', 'Warning', 0, 1, 'sineOut');
-			doTweenAlpha('nomorewarningTXT', 'WarningTXT', 0, 1, 'sineOut');
+			doTweenAlpha('nomorewarningimage', 'Warning', 0, 1 / playbackRate, 'sineOut');
+			doTweenAlpha('nomorewarningTXT', 'WarningTXT', 0, 1 / playbackRate, 'sineOut');
 			playSound('confirmMenu');
 			confirmed = 1
 		end
 	end
 end
 
+function cancelAllTweens()
+	cancelTween('warningimage')
+
+	cancelTween('warningTXTbye')
+	cancelTween('warningTXThi')
+	
+	cancelTimer('textgoBye')
+	cancelTimer('textgohi')
+end
+
 function onTimerCompleted(tag)
 	if tag == 'textgohi' then
 		runTimer('textgoBye', 1)
-		doTweenAlpha('warningTXTbye', 'WarningTXT', 0, 0.6, 'sineOut');
+		doTweenAlpha('warningTXTbye', 'WarningTXT', 0, 0.6 / playbackRate, 'sineOut');
 	end
 	if tag == 'textgoBye' then
 		runTimer('textgohi', 1)
-		doTweenAlpha('warningTXThi', 'WarningTXT', 1, 0.6, 'sineOut');
+		doTweenAlpha('warningTXThi', 'WarningTXT', 1, 0.6 / playbackRate, 'sineOut');
 	end
 	if tag == 'removeEverything' then
 		removeLuaSprite('Warning', true)
