@@ -12,6 +12,10 @@ function onCreate()
 		character = 3
 	elseif boyfriendName == 'debugGF' then
 		character = 4
+	elseif boyfriendName == 'amongGF' then
+		character = 5
+	elseif boyfriendName == 'Spendthrift GF' then
+		character = 6
 	end
 	
 	precacheSound('matpatRamble')
@@ -180,14 +184,18 @@ function onStepHit()
 		
 		triggerEvent('Change Character', 'dad', 'Morky')
 		
-		if var1 == true then
+		if character == 1 then
 			triggerEvent('Change Character', 'boyfriend', 'GFwav')
-		elseif var2 == true then
+		elseif character == 2 then
 			triggerEvent('Change Character', 'boyfriend', 'playablegf-old')
-		elseif var3 == true then
+		elseif character == 3 then
 			triggerEvent('Change Character', 'boyfriend', 'd-side gf')
-		elseif var4 == true then
+		elseif character == 4 then
 			triggerEvent('Change Character', 'boyfriend', 'debugGF')
+		elseif character == 5 then
+			triggerEvent('Change Character', 'boyfriend', 'amongGF')
+		elseif character == 6 then
+			triggerEvent('Change Character', 'boyfriend', 'Spendthrift GF')
 		else
 			triggerEvent('Change Character', 'boyfriend', 'playablegf')
 		end
