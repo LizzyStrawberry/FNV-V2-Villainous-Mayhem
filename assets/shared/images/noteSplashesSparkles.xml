@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TextureAtlas imagePath="NicNoteSplashesSparkle.png">
+<TextureAtlas imagePath="noteSplashesSparkles.png">
 	<!-- Created with Adobe Animate version 21.0.5.40714 -->
 	<!-- http://www.adobe.com/products/animate.html -->
 	<SubTexture name="note splash sparkle blue 10000" x="4" y="4" width="219" height="214" frameX="-24" frameY="-10" frameWidth="306" frameHeight="254"/>

@@ -1390,7 +1390,7 @@ class PauseSubState extends MusicBeatSubstate
 					}
 
 				case "Villainy":
-					if (PlayState.storyDifficulty == 0 || PlayState.storyDifficulty == 1) //On Freeplay: 0, on Story Mode: 1
+					if (PlayState.storyDifficulty == 0 || (PlayState.storyDifficulty == 1 && PlayState.isStoryMode == true)) //On Freeplay: 0, on Story Mode: 1
 					{
 						if (ClientPrefs.mechanics == false)
 						{
