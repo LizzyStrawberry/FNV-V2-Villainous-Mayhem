@@ -72,6 +72,8 @@ function onCreate()
 			makeLuaText('watermark2', "Injection Mode | " ..difficultyName, 1000, 0, 660)
 		elseif isMayhemMode then
 			makeLuaText('watermark2', "Mayhem Mode", 1000, 0, 660)
+		elseif isCrossoverSection then
+			makeLuaText('watermark2', "Crossover Mode | " ..difficultyName, 1000, 0, 660)
 		else
 			makeLuaText('watermark2', "Freeplay | " ..difficultyName, 1000, 0, 660)
 		end

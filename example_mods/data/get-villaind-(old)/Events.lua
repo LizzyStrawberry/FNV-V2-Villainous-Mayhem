@@ -7,7 +7,6 @@ function onCreate()
 	addCharacterToList('MorkyEgg', 'dad')
 	addCharacterToList('MorkyMoist', 'dad')
 	addCharacterToList('MorkyHank', 'dad')
-	
 	if boyfriendName == 'GFwav' then
 		character = 1
 	elseif boyfriendName == 'playablegf-old' then
@@ -16,10 +15,6 @@ function onCreate()
 		character = 3
 	elseif boyfriendName == 'debugGF' then
 		character = 4
-	elseif boyfriendName == 'amongGF' then
-		character = 5
-	elseif boyfriendName == 'Spendthrift GF' then
-		character = 6
 	end
 	
 	precacheSound('hypnoGoBrrrrrr')
@@ -365,10 +360,6 @@ function onStepHit()
 			triggerEvent('Change Character', 'boyfriend', 'd-side gf')
 		elseif character == 4 then
 			triggerEvent('Change Character', 'boyfriend', 'debugGF')
-		elseif character == 5 then
-			triggerEvent('Change Character', 'boyfriend', 'amongGF')
-		elseif character == 6 then
-			triggerEvent('Change Character', 'boyfriend', 'Spendthrift GF')
 		else
 			triggerEvent('Change Character', 'boyfriend', 'playablegf')
 		end
