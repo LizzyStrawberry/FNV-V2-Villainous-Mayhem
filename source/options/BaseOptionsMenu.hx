@@ -154,6 +154,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 			if(ClientPrefs.optimizationMode == true)
 			{
 				ClientPrefs.shaders = false;
+				ClientPrefs.cacheOnGPU = false;
 				ClientPrefs.mechanics = false;
 				ClientPrefs.missRelatedCombos = false;
 				ClientPrefs.comboPosition = 'Hud';
