@@ -278,7 +278,7 @@ class Paths
 				newGraphic.persist = true;
 				newGraphic.destroyOnNoUse = false;
 				currentTrackedAssets.set(file, newGraphic);
-				trace('$file has been cached to GPU.');
+				//trace('$file has been cached to GPU.');
 				return newGraphic;
 			}
 	
