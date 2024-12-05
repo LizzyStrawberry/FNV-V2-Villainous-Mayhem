@@ -3402,11 +3402,6 @@ class PlayState extends MusicBeatState
 	{
 		// FOR THE MENU INVENTORY
 		ClientPrefs.charInventory = PlayState.SONG.player1;
-		
-		/*if (FlxG.keys.justPressed.NINE)
-		{
-			iconP1.swapOldIcon();
-		}*/
 
 		callOnLuas('onUpdate', [elapsed]);
 

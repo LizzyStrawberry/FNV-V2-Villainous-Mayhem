@@ -18,6 +18,7 @@ class ClientPrefs {
 	public static var lowQuality:Bool = false;
 
 	public static var shaders:Bool = true;
+	public static var cacheOnGPU:Bool = true;
 	public static var gore:Bool = true;
 	public static var optimizationMode:Bool = false;
 	public static var comboPosition:String = 'Hud';
@@ -371,6 +372,7 @@ class ClientPrefs {
 		FlxG.save.data.comboPosition = comboPosition;
 		FlxG.save.data.gore = gore;
 		FlxG.save.data.shaders = shaders;
+		FlxG.save.data.cacheOnGPU = cacheOnGPU;
 		FlxG.save.data.mechanics = mechanics;
 		FlxG.save.data.missRelatedCombos = missRelatedCombos;
 		FlxG.save.data.trampolineMode = trampolineMode;
@@ -604,6 +606,7 @@ class ClientPrefs {
 		FlxG.save.data.comboPosition = 'Hud';
 		FlxG.save.data.gore = true;
 		FlxG.save.data.shaders = true;
+		FlxG.save.data.cacheOnGPU = true;
 		FlxG.save.data.mechanics = true;
 		FlxG.save.data.missRelatedCombos = true;
 		FlxG.save.data.trampolineMode = false;
@@ -825,6 +828,7 @@ class ClientPrefs {
 		comboPosition = 'Hud';
 		gore = true;
 		shaders = true;
+		cacheOnGPU = true;
 		mechanics = true;
 		missRelatedCombos = true;
 		trampolineMode = false;
@@ -1209,6 +1213,9 @@ class ClientPrefs {
 		}
 		if(FlxG.save.data.shaders != null) {
 			shaders = FlxG.save.data.shaders;
+		}
+		if(FlxG.save.data.cacheOnGPU != null) {
+			cacheOnGPU = FlxG.save.data.cacheOnGPU;
 		}
 		if(FlxG.save.data.mechanics != null) {
 			mechanics = FlxG.save.data.mechanics;
