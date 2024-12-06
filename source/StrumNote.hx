@@ -91,7 +91,7 @@ class StrumNote extends FlxSprite
 					skin = 'notes/KianaNOTE_assets';
 				case 'Morky' | 'MorkyMoist' | 'MorkyHypno' | 'MorkyHypnoAgain'
 					| 'MorkyEgg' | 'MorkyHank' | 'Justky':
-					skin = 'notes/NicNOTE_assets';
+					skin = 'notes/MorkyNOTE_assets';
 				case 'NicFLP':
 					skin = 'notes/NicNOTE_assets';
 				case 'DV Phase 0' | 'DV' | 'DVTurn' | 'DV Phase 2':
