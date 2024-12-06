@@ -45,6 +45,7 @@
 	
 	<!-- PSYCH ENGINE CUSTOMIZATION -->
 	<define name="DEBUG_ALLOWED"/>
+	<define name="STARTUP_CACHE"/> <!-- DELETE THIS TO REMOVE CACHING AT THE START OF THE GAME -->
 	<define name="MODS_ALLOWED" if="desktop" />
 	<define name="LUA_ALLOWED" if="desktop" />
 	<define name="ACHIEVEMENTS_ALLOWED" />
