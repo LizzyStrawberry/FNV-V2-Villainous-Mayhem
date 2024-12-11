@@ -30,6 +30,15 @@ function onCreatePost()
 	setProperty('MorkyText.alpha', 1)
 	addLuaText('MorkyText')
 	
+	makeLuaSprite('morkyJumpscare', 'effects/morkyJumpscare', 0, 0)
+	setProperty('morkyJumpscare.alpha', 0)
+	setObjectCamera('morkyJumpscare', 'hud')
+	addLuaSprite('morkyJumpscare', true)
+	
+	makeLuaSprite('mcdonnies', 'effects/mcdonnies', 350, 350)
+	setProperty('mcdonnies.alpha', 0)
+	addLuaSprite('mcdonnies', true)
+	
 	makeLuaSprite('gameTHEORY', 'effects/gaemTheoreh', 350, 0)
 	setProperty('gameTHEORY.alpha', 0)
 	setObjectCamera('gameTHEORY', 'hud')
@@ -154,6 +163,7 @@ function onStepHit()
 	if curStep == 1280 then
 		triggerEvent("Change Character", 'dad', 'Justky')
 		setProperty('defaultCamZoom', 1.3)
+		doTweenAlpha('mcdonnies', 'mcdonnies', 1, 1.5 / playbackRate, 'cubeInOut')
 	end
 	if curStep == 1296 then
 		triggerEvent("Change Character", 'bf', 'adamfriend')
@@ -168,12 +178,17 @@ function onStepHit()
 		doTweenAngle('morkSpin', 'dad', 360 * 100, 2, 'circOut')
 		doTweenX('morkX', 'dad.scale', 40, 2, 'bounceInOut')
 		triggerEvent("Screen Shake", '0.8/'..playbackRate..', 0.035', '0.8/'..playbackRate..', 0.04')
+		
+		setProperty('morkyJumpscare.alpha', 1)
+		doTweenAlpha('morkyJumpscare', 'morkyJumpscare', 0, 0.7 / playbackRate, 'circOut')
 	end
 	if curStep == 1536 then
 		cancelTween('morkSpin')
 		cancelTween('morkX')
 		setProperty('dad.scale.x', 1)
 		setProperty('dad.angle', 0)
+		
+		removeLuaSprite('mcdonnies', true)
 		
 		setProperty('defaultCamZoom', 0.9)
 		cameraFlash('game', 'ffffff', 0.8 / playbackRate, false)
