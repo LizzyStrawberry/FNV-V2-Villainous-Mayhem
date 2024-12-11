@@ -871,25 +871,14 @@ class FreeplayXtraBonusState extends MusicBeatState
 		else
 			CoolUtil.difficulties = CoolUtil.defaultDifficulties.copy();
 
-		if (songs[curSelected].songName == "It's Kiana")
-			CoolUtil.difficulties = CoolUtil.tcDifficulties.copy();
-		if (songs[curSelected].songName == "Shucks V2")
-			CoolUtil.difficulties = CoolUtil.tcDifficulties.copy();
-		if (songs[curSelected].songName == 'Slow.FLP (Old)')
-			CoolUtil.difficulties = CoolUtil.defaultDifficulties.copy();
-		if (songs[curSelected].songName == 'Marauder (Old)')
-			CoolUtil.difficulties = CoolUtil.defaultDifficulties.copy();
-		if (songs[curSelected].songName == 'Get Villaind (Old)')
-			CoolUtil.difficulties = CoolUtil.defaultDifficulties.copy();
-		if (songs[curSelected].songName == "Get Pico'd")
+		if (songs[curSelected].songName == "It's Kiana" || songs[curSelected].songName == "Shucks V2")
+			CoolUtil.difficulties = ["Villainous"];
+		else
 			CoolUtil.difficulties = CoolUtil.defaultDifficulties.copy();
 
 		if(CoolUtil.difficulties.contains(CoolUtil.tcDifficulty))
 			curDifficulty = Math.round(Math.max(0, CoolUtil.tcDifficulties.indexOf(CoolUtil.tcDifficulty)));
-		else
-			curDifficulty = 0;
-
-		if(CoolUtil.difficulties.contains(CoolUtil.defaultDifficulty))
+		else if(CoolUtil.difficulties.contains(CoolUtil.defaultDifficulty))
 			curDifficulty = Math.round(Math.max(0, CoolUtil.defaultDifficulties.indexOf(CoolUtil.defaultDifficulty)));
 		else
 			curDifficulty = 0;

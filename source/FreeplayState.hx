@@ -1218,15 +1218,9 @@ class FreeplayState extends MusicBeatState
 
 		if(CoolUtil.difficulties.contains(CoolUtil.bossFightDifficulty))
 			curDifficulty = Math.round(Math.max(0, CoolUtil.bossFightDifficulties.indexOf(CoolUtil.bossFightDifficulty)));
-		else
-			curDifficulty = 0;
-
-		if(CoolUtil.difficulties.contains(CoolUtil.tcDifficulty))
+		else if(CoolUtil.difficulties.contains(CoolUtil.tcDifficulty))
 			curDifficulty = Math.round(Math.max(0, CoolUtil.tcDifficulties.indexOf(CoolUtil.tcDifficulty)));
-		else
-			curDifficulty = 0;
-
-		if(CoolUtil.difficulties.contains(CoolUtil.defaultDifficulty))
+		else if(CoolUtil.difficulties.contains(CoolUtil.defaultDifficulty))
 			curDifficulty = Math.round(Math.max(0, CoolUtil.defaultDifficulties.indexOf(CoolUtil.defaultDifficulty)));
 		else
 			curDifficulty = 0;

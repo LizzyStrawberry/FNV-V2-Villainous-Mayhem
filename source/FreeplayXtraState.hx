@@ -1130,27 +1130,14 @@ class FreeplayXtraState extends MusicBeatState
 		else
 			CoolUtil.difficulties = CoolUtil.defaultDifficulties.copy();
 
-		if (songs[curSelected].songName == 'Nunsational')
+		if (songs[curSelected].songName == 'Nunsational' || songs[curSelected].songName == 'Fanfuck Forever' || songs[curSelected].songName == 'Slow.FLP')
 			CoolUtil.difficulties = CoolUtil.defaultDifficulties.copy();
-		if (songs[curSelected].songName == 'FNV')
-			CoolUtil.difficulties = CoolUtil.tcDifficulties.copy();
-		if (songs[curSelected].songName == 'Slow.FLP')
-			CoolUtil.difficulties = CoolUtil.defaultDifficulties.copy();
-		if (songs[curSelected].songName == 'Rainy Daze')
-			CoolUtil.difficulties = CoolUtil.tcDifficulties.copy();
-		if (songs[curSelected].songName == 'Jerry')
-			CoolUtil.difficulties = CoolUtil.tcDifficulties.copy();
-		if (songs[curSelected].songName == 'Fanfuck Forever')
-			CoolUtil.difficulties = CoolUtil.defaultDifficulties.copy();
-		if (songs[curSelected].songName == 'Marauder')
+		if (songs[curSelected].songName == 'FNV' || songs[curSelected].songName == 'Rainy Daze' || songs[curSelected].songName == 'Jerry' || songs[curSelected].songName == 'Marauder')
 			CoolUtil.difficulties = CoolUtil.tcDifficulties.copy();
 
 		if(CoolUtil.difficulties.contains(CoolUtil.tcDifficulty))
 			curDifficulty = Math.round(Math.max(0, CoolUtil.tcDifficulties.indexOf(CoolUtil.tcDifficulty)));
-		else
-			curDifficulty = 0;
-
-		if(CoolUtil.difficulties.contains(CoolUtil.defaultDifficulty))
+		else if(CoolUtil.difficulties.contains(CoolUtil.defaultDifficulty))
 			curDifficulty = Math.round(Math.max(0, CoolUtil.defaultDifficulties.indexOf(CoolUtil.defaultDifficulty)));
 		else
 			curDifficulty = 0;

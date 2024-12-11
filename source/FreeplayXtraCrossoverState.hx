@@ -856,19 +856,6 @@ class FreeplayXtraCrossoverState extends MusicBeatState
 		else
 			CoolUtil.difficulties = CoolUtil.defaultDifficulties.copy();
 
-		if (songs[curSelected].songName == 'Tactical Mishap')
-			CoolUtil.difficulties = CoolUtil.defaultDifficulties.copy();
-		if (songs[curSelected].songName == 'VGuy')
-			CoolUtil.difficulties = CoolUtil.defaultDifficulties.copy();
-		if (songs[curSelected].songName == 'Fast Food Therapy')
-			CoolUtil.difficulties = CoolUtil.defaultDifficulties.copy();
-		if (songs[curSelected].songName == 'Concert Chaos')
-			CoolUtil.difficulties = CoolUtil.defaultDifficulties.copy();
-		if (songs[curSelected].songName == 'Negotiation')
-			CoolUtil.difficulties = CoolUtil.defaultDifficulties.copy();
-		if (songs[curSelected].songName == 'Breacher')
-			CoolUtil.difficulties = CoolUtil.defaultDifficulties.copy();
-
 		if(CoolUtil.difficulties.contains(CoolUtil.defaultDifficulty))
 			curDifficulty = Math.round(Math.max(0, CoolUtil.defaultDifficulties.indexOf(CoolUtil.defaultDifficulty)));
 		else

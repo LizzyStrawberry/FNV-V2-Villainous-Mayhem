@@ -1,6 +1,7 @@
 --Idea by MoonScarf
 --Created by Kevin Kuntz
-
+local healthToDraining
+local healthDrainRate = 0.3
 local healthDraining = false
 function onCreatePost()
 	if mechanics then
@@ -20,6 +21,10 @@ function onCreatePost()
 					setPropertyFromGroup('unspawnNotes', i, 'offsetX', getPropertyFromGroup('unspawnNotes', i, 'offsetX') + 640)
 				end
 			end
+		end
+		
+		if isMayhemMode then
+			healthDrainRate = 0.03
 		end
 	end
 end
@@ -61,69 +66,36 @@ function boundTo(value, min, max)
 	return math.max(min, math.min(max, value))
 end
 
-function onUpdate()
+function onUpdate(elapsed)
 	if mechanics then
 		health = getProperty('health')
+		if getPropertyFromClass('ClientPrefs', 'resistanceCharm') == 1 then
+			healthToDrain = (healthDrainRate * elapsed) / 2
+		else
+			healthToDrain = healthDrainRate * elapsed
+		end
 		
 		if healthDraining == true and getPropertyFromClass('ClientPrefs', 'buff3Active') == false then 
-			if curStep % 1 == 0 then
-				if framerate <= 240 and framerate >= 120 then
-					if getPropertyFromClass('ClientPrefs', 'resistanceCharm') == 1 then
-						if isMayhemMode then
-							setProperty('health', health - 0.0135)
-						else
-							setProperty('health', health - 0.00135)
-						end
-					else
-						if isMayhemMode then
-							setProperty('health', health - 0.037)
-						else
-							setProperty('health', health - 0.0037)
-						end
-					end
-				elseif framerate < 120 and framerate >= 60 then
-					if getPropertyFromClass('ClientPrefs', 'resistanceCharm') == 1 then
-						if isMayhemMode then
-							setProperty('health', health - 0.025)
-						else
-							setProperty('health', health - 0.0025)
-						end
-					else
-						if isMayhemMode then
-							setProperty('health', health - 0.05)
-						else
-							setProperty('health', health - 0.0005)
-						end
-					end
-				elseif framerate <= 59 and framerate >= 30 then
-					if getPropertyFromClass('ClientPrefs', 'resistanceCharm') == 1 then
-						if isMayhemMode then
-							setProperty('health', health - 0.0365)
-						else
-							setProperty('health', health - 0.00365)
-						end
-					else
-						if isMayhemMode then
-							setProperty('health', health - 0.07)
-						else
-							setProperty('health', health - 0.007)
-						end
-					end
-				end
-			end
+			setProperty('health', health - healthToDrain)
 		end
 	end
 end
 
+local drainingDur = 1.3
 function noteMiss(id, noteData, noteType, isSustainNote)
 	if mechanics then
 		if noteType == 'Note Shifter' then
 			--debugPrint('Timer Started!')
 			cameraFlash('game', '4c9e64', 0.5, false)
-		
-			--debugPrint('Draining health...')
 			healthDraining = true
-			runTimer('PoisonEnd', 1.3)
+			
+			if difficultyName == "Iniquitous" then
+				drainingDur = 0.75
+			else
+				drainingDur = 1.3
+			end
+
+			runTimer('PoisonEnd', drainingDur)
 		end
 	end
 end
