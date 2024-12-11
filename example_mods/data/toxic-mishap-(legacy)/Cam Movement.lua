@@ -22,11 +22,11 @@ function onUpdate()
         if mustHitSection == false then
             if getProperty('dad.animation.curAnim.name') == 'singRIGHT' then
                 triggerEvent('Camera Follow Pos',xx-ofs,yy)
-            if getProperty('dad.animation.curAnim.name') == 'singLEFT' then
+            elseif getProperty('dad.animation.curAnim.name') == 'singLEFT' then
                 triggerEvent('Camera Follow Pos',xx+ofs,yy)
-            if getProperty('dad.animation.curAnim.name') == 'singDOWN' then
+            elseif getProperty('dad.animation.curAnim.name') == 'singDOWN' then
                 triggerEvent('Camera Follow Pos',xx,yy-ofs)
-            if getProperty('dad.animation.curAnim.name') == 'singUP' then
+            elseif getProperty('dad.animation.curAnim.name') == 'singUP' then
                 triggerEvent('Camera Follow Pos',xx,yy+ofs)
             else
                 triggerEvent('Camera Follow Pos',xx,yy)

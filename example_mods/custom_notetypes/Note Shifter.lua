@@ -24,7 +24,7 @@ function onCreatePost()
 		end
 		
 		if isMayhemMode then
-			healthDrainRate = 0.03
+			healthDrainRate = 3
 		end
 	end
 end
