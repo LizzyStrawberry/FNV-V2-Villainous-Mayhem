@@ -180,13 +180,13 @@ function onStepHit()
 		
 		triggerEvent('Change Character', 'dad', 'Morky')
 		
-		if var1 == true then
+		if character == 1 then
 			triggerEvent('Change Character', 'boyfriend', 'GFwav')
-		elseif var2 == true then
+		elseif character == 2 then
 			triggerEvent('Change Character', 'boyfriend', 'playablegf-old')
-		elseif var3 == true then
+		elseif character == 3 then
 			triggerEvent('Change Character', 'boyfriend', 'd-side gf')
-		elseif var4 == true then
+		elseif character == 4 then
 			triggerEvent('Change Character', 'boyfriend', 'debugGF')
 		else
 			triggerEvent('Change Character', 'boyfriend', 'playablegf')
