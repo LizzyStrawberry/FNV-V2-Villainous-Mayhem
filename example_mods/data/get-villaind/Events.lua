@@ -1,5 +1,8 @@
 local character = 0
 
+local notePos = {}
+local notePosX = {}
+
 function onCreate()
 	addCharacterToList('Justky', 'dad')
 	addCharacterToList('Adamfriend', 'boyfriend')
@@ -22,6 +25,11 @@ end
 function onCreatePost()
 	removeLuaScript("custom_events/zCameraFix")
     addLuaScript("custom_events/zCameraFix")
+	
+	for i = 0,7 do
+		x = getPropertyFromGroup('strumLineNotes', i, 'x')
+		table.insert(notePosX, x)
+	end
 	
 	makeLuaText('MorkyText', " ", 1000, 120, 520)
 	setTextSize('MorkyText', 35)
@@ -56,9 +64,15 @@ function onCreatePost()
 			game.camHUD.setFilters([new ShaderFilter(shader0)]);
 
 			shader0.setFloat('multi',1);
-
 		]])
 	end 
+end
+
+function onSongStart()
+	for i = 0,7 do 
+		y = getPropertyFromGroup('strumLineNotes', i, 'y')
+		table.insert(notePos, y)
+	end
 end
 
 function opponentNoteHit() -- health draining mechanic
@@ -163,13 +177,15 @@ function onStepHit()
 	if curStep == 1280 then
 		triggerEvent("Change Character", 'dad', 'Justky')
 		setProperty('defaultCamZoom', 1.3)
-		doTweenAlpha('mcdonnies', 'mcdonnies', 1, 1.5 / playbackRate, 'cubeInOut')
 	end
 	if curStep == 1296 then
 		triggerEvent("Change Character", 'bf', 'adamfriend')
 	end
 	if curStep == 1408 then
 		setProperty('defaultCamZoom', 1.1)
+	end
+	if curStep == 1414 then
+		doTweenAlpha('mcdonnies', 'mcdonnies', 1, 1.5 / playbackRate, 'cubeInOut')
 	end
 	if curStep == 1520 then
 		setProperty('defaultCamZoom', 0.7)
@@ -233,6 +249,7 @@ function onStepHit()
 				cancelTween("noteTweenX"..i)
 				cancelTween("noteTweenX"..i.."FIX")
 			end
+			
 			noteTweenX('noteTweenX0End', 0, defaultOpponentStrumX0, 0.7 / playbackRate, 'cubeInOut')
 			noteTweenX('noteTweenX1End', 1, defaultOpponentStrumX1, 0.72 / playbackRate, 'cubeInOut')
 			noteTweenX('noteTweenX2End', 2, defaultOpponentStrumX2, 0.74 / playbackRate, 'cubeInOut')
@@ -268,6 +285,20 @@ function onStepHit()
 		cameraFlash('game', 'ffffff', 0.8 / playbackRate, false)
 		setProperty('theSilly.alpha', 0)
 		
+		for i = 0, 7 do
+			noteTweenY('noteGoUp'..i, i, notePos[i + 1], 0.7 / playbackRate, 'elasticOut')
+		end
+			
+		noteTweenX('noteTweenX0End', 0, defaultOpponentStrumX0, 0.7 / playbackRate, 'cubeInOut')
+		noteTweenX('noteTweenX1End', 1, defaultOpponentStrumX1, 0.72 / playbackRate, 'cubeInOut')
+		noteTweenX('noteTweenX2End', 2, defaultOpponentStrumX2, 0.74 / playbackRate, 'cubeInOut')
+		noteTweenX('noteTweenX3End', 3, defaultOpponentStrumX3, 0.76 / playbackRate, 'cubeInOut')
+			
+		noteTweenX('noteTweenX4End', 4, defaultPlayerStrumX0, 0.7 / playbackRate, 'cubeInOut')
+		noteTweenX('noteTweenX5End', 5, defaultPlayerStrumX1, 0.72 / playbackRate, 'cubeInOut')
+		noteTweenX('noteTweenX6End', 6, defaultPlayerStrumX2, 0.74 / playbackRate, 'cubeInOut')
+		noteTweenX('noteTweenX7End', 7, defaultPlayerStrumX3, 0.76 / playbackRate, 'cubeInOut')
+			
 		clearEffects('bg')
 	end
 end
@@ -305,6 +336,33 @@ function onBeatHit()
 			runHaxeCode([[
 				shader0.setFloat('multi', 1);
 			]])
+		end
+	end
+	
+	-- Note Moving
+	if (curBeat >= 512 and curBeat < 640) then
+		if curBeat % 1 == 0 then
+			for i = 0, 7 do
+				setPropertyFromGroup('strumLineNotes', i, 'y', notePos[i + 1])
+				setPropertyFromGroup('strumLineNotes', i, 'scale.x', 1.0)
+				setPropertyFromGroup('strumLineNotes', i, 'scale.y', 0.35)
+				
+				noteTweenY('noteGoUp'..i, i, notePos[i + 1] - 20, 0.7 / playbackRate, 'elasticOut')
+				noteTweenScaleX('noteXSCALE'..i, i, 0.7, 0.7 / playbackRate, 'circOut')
+				noteTweenScaleY('noteYSCALE'..i, i, 0.7, 0.7 / playbackRate, 'circOut')
+			end
+		end
+		if curBeat % 2 == 0 then
+			for i = 0, 7 do
+				cancelTween('noteGoRight'..i)
+				noteTweenX('noteGoLeft'..i, i, notePosX[i + 1] - 80, 0.7 / playbackRate, 'expoOut')
+			end
+		end
+		if curBeat % 2 == 1 then
+			for i = 0, 7 do
+				cancelTween('noteGoLeft'..i)
+				noteTweenX('noteGoRight'..i, i, notePosX[i + 1] + 80, 0.7 / playbackRate, 'expoOut')
+			end
 		end
 	end
 end
