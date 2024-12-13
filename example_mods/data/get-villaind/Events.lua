@@ -64,6 +64,7 @@ function onCreatePost()
 			game.camHUD.setFilters([new ShaderFilter(shader0)]);
 
 			shader0.setFloat('multi',1);
+
 		]])
 	end 
 end
@@ -204,11 +205,10 @@ function onStepHit()
 		setProperty('dad.scale.x', 1)
 		setProperty('dad.angle', 0)
 		
-		removeLuaSprite('mcdonnies', true)
-		
 		setProperty('defaultCamZoom', 0.9)
 		cameraFlash('game', 'ffffff', 0.8 / playbackRate, false)
 		
+		removeLuaSprite('mcdonnies', true)
 		triggerEvent('Change Character', 'dad', 'Morky')
 		
 		if character == 1 then
@@ -249,7 +249,6 @@ function onStepHit()
 				cancelTween("noteTweenX"..i)
 				cancelTween("noteTweenX"..i.."FIX")
 			end
-			
 			noteTweenX('noteTweenX0End', 0, defaultOpponentStrumX0, 0.7 / playbackRate, 'cubeInOut')
 			noteTweenX('noteTweenX1End', 1, defaultOpponentStrumX1, 0.72 / playbackRate, 'cubeInOut')
 			noteTweenX('noteTweenX2End', 2, defaultOpponentStrumX2, 0.74 / playbackRate, 'cubeInOut')
@@ -265,8 +264,14 @@ function onStepHit()
 	if curStep == 2048 then
 		setProperty('defaultCamZoom', 0.9)
 		cameraFlash('game', 'ffffff', 0.8 / playbackRate, false)
+		
+		callScript('scripts/VideoSpriteHandler', 'makeVideoSprite', {'flamies', 'flames', -20, 175, 'camGame', 0})
+		setProperty('flamies.alpha', 0.5)
+		scaleObject('flamies', 2, 2)
 	end
 	if curStep == 2296 then
+		doTweenAlpha('flamies', 'flamies', 0, 0.6 / playbackRate, 'cubeInOut')
+		
 		callScript('scripts/VideoSpriteHandler', 'makeVideoSprite', {'theSilly', 'theBilly', -20, 275, 'camGame', 0})
 		setProperty('theSilly.alpha', 0)
 		scaleObject('theSilly', 2, 2)
@@ -285,10 +290,6 @@ function onStepHit()
 		cameraFlash('game', 'ffffff', 0.8 / playbackRate, false)
 		setProperty('theSilly.alpha', 0)
 		
-		for i = 0, 7 do
-			noteTweenY('noteGoUp'..i, i, notePos[i + 1], 0.7 / playbackRate, 'elasticOut')
-		end
-			
 		noteTweenX('noteTweenX0End', 0, defaultOpponentStrumX0, 0.7 / playbackRate, 'cubeInOut')
 		noteTweenX('noteTweenX1End', 1, defaultOpponentStrumX1, 0.72 / playbackRate, 'cubeInOut')
 		noteTweenX('noteTweenX2End', 2, defaultOpponentStrumX2, 0.74 / playbackRate, 'cubeInOut')
@@ -298,7 +299,7 @@ function onStepHit()
 		noteTweenX('noteTweenX5End', 5, defaultPlayerStrumX1, 0.72 / playbackRate, 'cubeInOut')
 		noteTweenX('noteTweenX6End', 6, defaultPlayerStrumX2, 0.74 / playbackRate, 'cubeInOut')
 		noteTweenX('noteTweenX7End', 7, defaultPlayerStrumX3, 0.76 / playbackRate, 'cubeInOut')
-			
+		
 		clearEffects('bg')
 	end
 end
@@ -355,13 +356,13 @@ function onBeatHit()
 		if curBeat % 2 == 0 then
 			for i = 0, 7 do
 				cancelTween('noteGoRight'..i)
-				noteTweenX('noteGoLeft'..i, i, notePosX[i + 1] - 80, 0.7 / playbackRate, 'expoOut')
+				noteTweenX('noteGoLeft'..i, i, notePosX[i + 1] - 280, 0.7 / playbackRate, 'expoOut')
 			end
 		end
 		if curBeat % 2 == 1 then
 			for i = 0, 7 do
 				cancelTween('noteGoLeft'..i)
-				noteTweenX('noteGoRight'..i, i, notePosX[i + 1] + 80, 0.7 / playbackRate, 'expoOut')
+				noteTweenX('noteGoRight'..i, i, notePosX[i + 1] + 280, 0.7 / playbackRate, 'expoOut')
 			end
 		end
 	end

@@ -42,7 +42,7 @@ function onCreate()
 	if songName == "Get Villain'd (Old)" then
 		videoCache = {'morky farded'}
 	elseif songName == "Get Villain'd" then
-		videoCache = {'theBilly'}
+		videoCache = {'theBilly', 'flames'}
 	end
 	
     addHaxeLibrary('MP4Handler', 'vlc')
