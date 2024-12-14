@@ -75,10 +75,10 @@ extern class LibVLC
 	static function audio_set_delay(p_mi:LibVLC_MediaPlayer, i_delay:Int64):Int;
 
 	@:native("libvlc_audio_get_volume")
-	static function audio_get_volume(p_mi:LibVLC_MediaPlayer):Int;
+	static function audio_get_volume(p_mi:LibVLC_MediaPlayer):Float;
 
 	@:native("libvlc_audio_set_volume")
-	static function audio_set_volume(p_mi:LibVLC_MediaPlayer, i_volume:Int):Int;
+	static function audio_set_volume(p_mi:LibVLC_MediaPlayer, i_volume:Float):Float;
 
 	@:native("libvlc_event_attach")
 	static function event_attach(p_event_manager:LibVLC_EventManager, i_event_type:LibVLC_EventType, f_callback:LibVLC_Event_Callback,

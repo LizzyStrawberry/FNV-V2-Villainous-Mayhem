@@ -116,7 +116,7 @@ class VLCBitmap extends Bitmap
 	public var length(get, never):Int;
 	public var duration(get, never):Int;
 	public var mrl(get, never):String;
-	public var volume(get, set):Int;
+	public var volume(get, set):Float;
 	public var delay(get, set):Int;
 	public var rate(get, set):Float;
 	public var fps(get, never):Float;
@@ -458,7 +458,7 @@ class VLCBitmap extends Bitmap
 		return '';
 	}
 
-	@:noCompletion private function get_volume():Int
+	@:noCompletion private function get_volume():Float
 	{
 		if (mediaPlayer != null)
 			return LibVLC.audio_get_volume(mediaPlayer);
@@ -466,7 +466,7 @@ class VLCBitmap extends Bitmap
 		return 0;
 	}
 
-	@:noCompletion private function set_volume(value:Int):Int
+	@:noCompletion private function set_volume(value:Float):Float
 	{
 		if (mediaPlayer != null)
 			LibVLC.audio_set_volume(mediaPlayer, value);

@@ -31,7 +31,7 @@ function onUpdate()
                 triggerEvent('Camera Follow Pos',xx,yy-ofs)
             elseif getProperty('dad.animation.curAnim.name') == 'singDOWN' then
                 triggerEvent('Camera Follow Pos',xx,yy+ofs)
-            elseif
+            else
                 triggerEvent('Camera Follow Pos',xx,yy)
             end
         else
