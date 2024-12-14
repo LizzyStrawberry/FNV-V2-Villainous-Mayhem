@@ -13,6 +13,8 @@ function onCreate()
 				setPropertyFromGroup('unspawnNotes', i, 'texture', 'notes/ActualPoisonNotesIniquitousMode'); --Change texture
 			end
 			setPropertyFromGroup('unspawnNotes', i, 'hitCausesMiss', true);
+			setPropertyFromGroup('unspawnNotes', i, 'hitHealth', 0);
+			setPropertyFromGroup('unspawnNotes', i, 'missHealth', 0);
 			setPropertyFromGroup('unspawnNotes', i, 'ignoreNote', true);
 		end
 	end

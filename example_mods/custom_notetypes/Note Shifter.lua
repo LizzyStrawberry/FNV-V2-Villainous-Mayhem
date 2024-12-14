@@ -20,6 +20,8 @@ function onCreatePost()
 				else
 					setPropertyFromGroup('unspawnNotes', i, 'offsetX', getPropertyFromGroup('unspawnNotes', i, 'offsetX') + 640)
 				end
+
+				setPropertyFromGroup('unspawnNotes', i, 'missHealth', 0);
 			end
 		end
 		
