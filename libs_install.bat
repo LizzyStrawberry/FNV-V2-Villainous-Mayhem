@@ -12,7 +12,7 @@ haxelib --always set flixel-ui 2.4.0
 haxelib --always set flixel 4.11.0
 haxelib --always set hmm 3.1.0
 haxelib --always set hscript 2.4.0
-haxelib --always set hxcodec 2.5.1
+haxelib --always set hxcodec 2.6.1
 haxelib --always set hxcpp 4.2.1
 haxelib --always git hxvm-luajit https://github.com/nebulazorua/hxvm-luajit
 haxelib --always set layout 1.2.1

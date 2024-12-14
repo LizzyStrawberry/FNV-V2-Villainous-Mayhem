@@ -27,7 +27,7 @@ import Alphabet;
 import sys.FileSystem;
 #end
 
-import vlc.MP4Handler;
+import hxcodec.VideoHandler;
 import flash.system.System;
 
 class InfoState extends MusicBeatState
@@ -378,7 +378,7 @@ class InfoState extends MusicBeatState
 			showedFard = true;
 			FlxG.sound.music.stop();
 			FlxG.sound.play(Paths.sound('fart'));
-			var video:MP4Handler = new MP4Handler();
+			var video:VideoHandler = new VideoHandler();
 			video.finishCallback = function()
 			{
 				System.exit(0);				

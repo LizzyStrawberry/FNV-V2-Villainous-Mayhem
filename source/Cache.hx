@@ -52,10 +52,18 @@ class Cache extends MusicBeatState
 
 		FlxG.worldBounds.set(0,0);
 
+		PlayerSettings.init();
+		FlxG.save.bind('funkin', 'ninjamuffin99');
+		ClientPrefs.loadPrefs();
+
 		bitmapData = new Map<String,FlxGraphic>();
 		bitmapData2 = new Map<String,FlxGraphic>();
 
-		var menuBG:FlxSprite = new FlxSprite().loadGraphic(Paths.image('Gallery/titleScreens/loadingScreen-' + FlxG.random.int(1, 8)));
+		var menuBG:FlxSprite;
+		if (!ClientPrefs.firstTime)
+			menuBG = new FlxSprite().loadGraphic(Paths.image('Gallery/titleScreens/loadingScreen-6'));
+		else
+			menuBG = new FlxSprite().loadGraphic(Paths.image('Gallery/titleScreens/loadingScreen-' + FlxG.random.int(1, 8)));
 		menuBG.screenCenter();
 		add(menuBG);
 
@@ -200,7 +208,7 @@ class Cache extends MusicBeatState
 			}
 			shitz.text = text;
 			var goldHighlight = new FlxTextFormat(0xFFD700, true, false, null, false);
-			shitz.applyMarkup(shitz.text, [new FlxTextFormatMarkerPair(goldHighlight, "<G>"),]);
+			shitz.applyMarkup(shitz.text, [new FlxTextFormatMarkerPair(goldHighlight, "<G>")]);
 			move++;
 		}
 
@@ -270,8 +278,9 @@ class Cache extends MusicBeatState
 		#end
 
 		tween.cancel();
-		shitz.text = "Done!";
 		currentLoaded = maxLoaded;
+		shitz.text = "Done!";
+		shitz.color = FlxColor.WHITE;
 		FlxG.camera.flash(FlxColor.WHITE, 1);
 		FlxG.sound.play(Paths.sound('confirmMenu'));
 		new FlxTimer().start(1.5, function(tmr:FlxTimer)

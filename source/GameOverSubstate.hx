@@ -16,7 +16,7 @@ import Song.SwagSong;
 import sys.FileSystem;
 import sys.io.File;
 
-import vlc.MP4Handler;
+import hxcodec.VideoHandler;
 import flash.system.System;
 
 class GameOverSubstate extends MusicBeatSubstate
@@ -64,40 +64,26 @@ class GameOverSubstate extends MusicBeatSubstate
 			if (FlxG.sound.music != null)
 			FlxG.sound.music.stop();
 		
-			var video:MP4Handler = new MP4Handler();
-			video.playVideo(Paths.video('thereIsAProblem'));
-			initializedVideo = true;
-			video.finishCallback = function()
-			{
-				System.exit(0);
-			};
+			createDeathVideo('thereIsAProblem', true, true);
 		}
 
 		if (PlayState.SONG.stage == '00015' && !initializedVideo)
-			{
-				FlxG.sound.music.stop();
-				lime.app.Application.current.window.title = "run.";
-				var video:MP4Handler = new MP4Handler();
-				video.playVideo(Paths.video('run'));
-				initializedVideo = true;
-				video.finishCallback = function()
-				{
-					System.exit(0);
-				};
-			}
+		{
+			FlxG.sound.music.stop();
+			lime.app.Application.current.window.title = "run.";
+			createDeathVideo('run', false, true);
+		}
 
 		if (!PlayState.isMayhemMode && PlayState.SONG.stage == 'Nic' && !initializedVideo)
+			createDeathVideo('NicDeathScreen', false, false);
+		
+		if (!PlayState.isMayhemMode && PlayState.SONG.stage == 'M o r k y' && !initializedVideo)
 		{
-			if (FlxG.sound.music != null)
-			FlxG.sound.music.stop();
-			
-			var video:MP4Handler = new MP4Handler();
-			video.playVideo(Paths.video('NicDeathScreen'));
-			initializedVideo = true;
-			video.finishCallback = function()
-			{
-				MusicBeatState.resetState();
-			};
+			lime.app.Application.current.window.title = "HAHA, I aM MorKy, and I wiLL nOw CloSe uR gAem!! YoU cAn't Do ShIt nOW HAHAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+			if (Paths.formatToSongPath(PlayState.SONG.song) == 'get-villaind') // New
+				createDeathVideo('oh my god you died NEW!', false, true);
+			else
+				createDeathVideo('oh my god you died!', false, true);
 		}
 
 		if (PlayState.isInjectionMode)
@@ -187,7 +173,7 @@ class GameOverSubstate extends MusicBeatSubstate
 
 		if (controls.ACCEPT)
 		{
-			if (PlayState.SONG.stage == 'M o r k y')
+			if ((PlayState.SONG.stage == "DV's BG" && initializedVideo))
 			{
 				//do nothing
 			}
@@ -195,9 +181,9 @@ class GameOverSubstate extends MusicBeatSubstate
 			{
 				System.exit(0);
 			}
-			else if (PlayState.SONG.stage == "DV's BG" && initializedVideo)
+			else if (initializedVideo == true)
 			{
-				//Do Nothing please
+				//do nothing, imma do this to prevent people from going back to the menu on Songs
 			}
 			else if (PlayState.isInjectionMode || PlayState.isMayhemMode)
 			{
@@ -209,42 +195,12 @@ class GameOverSubstate extends MusicBeatSubstate
 
 		if (controls.BACK)
 		{
-			if (PlayState.SONG.stage == 'M o r k y')
+			if (PlayState.SONG.stage == "DV's BG" && !initializedVideo)
 			{
-				//do nothing
-			}
-			else if (PlayState.SONG.stage == "DV's BG" && !initializedVideo)
-				{
-					if (PlayState.SONG.player1 == "cassettteGirl")
-					{
-						if (FlxG.sound.music != null)
-							FlxG.sound.music.stop();
-			
-						var video:MP4Handler = new MP4Handler();
-						video.playVideo(Paths.video('DVCrash'));
-						initializedVideo = true;
-						video.finishCallback = function()
-						{
-							System.exit(0);
-						};
-					}
-					else
-					{
-						if (FlxG.sound.music != null)
-							FlxG.sound.music.stop();
-			
-						var video:MP4Handler = new MP4Handler();
-						video.playVideo(Paths.video('DVCrashPico'));
-						initializedVideo = true;
-						video.finishCallback = function()
-						{
-							System.exit(0);
-						};
-					}
-				}
-			else if (PlayState.SONG.stage == 'debug')
-			{
-				//do nothing
+				if (PlayState.SONG.player1 == "cassettteGirl") // Casette Girl Death
+					createDeathVideo("DVCrash", false, true);
+				else
+					createDeathVideo("DVCrashPico", false, true);
 			}
 			else if (initializedVideo == true)
 			{
@@ -422,6 +378,24 @@ class GameOverSubstate extends MusicBeatSubstate
 				});
 			PlayState.instance.callOnLuas('onGameOverConfirm', [true]);
 		}
+	}
+
+	function createDeathVideo(videoPath:String = '', canSkip:Bool = true, crashGame:Bool = false)
+	{
+		if (FlxG.sound.music != null)
+			FlxG.sound.music.stop();
+
+		initializedVideo = true;
+
+		var video:VideoHandler = new VideoHandler();
+		video.playVideo(Paths.video(videoPath), canSkip);
+		video.finishCallback = function()
+		{
+			if (crashGame)
+				System.exit(0);
+			else
+				MusicBeatState.resetState();
+		};
 	}
 
 	function checkForMechanics()

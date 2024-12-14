@@ -37,7 +37,7 @@ import WeekData;
 import sys.FileSystem;
 #end
 
-import vlc.MP4Handler;
+import hxcodec.VideoHandler;
 import flash.system.System;
 
 class ShopState extends MusicBeatState
@@ -4367,7 +4367,7 @@ class ShopState extends MusicBeatState
 									FlxG.sound.play(Paths.sound('shop/mouseClick'));
 									FlxG.sound.play(Paths.sound('confirmMenu'));
 						
-									var video:MP4Handler = new MP4Handler();
+									var video:VideoHandler = new VideoHandler();
 									video.playVideo(Paths.video('Zeels Naked Pics'));
 									initializedVideo = true;
 									video.finishCallback = function()

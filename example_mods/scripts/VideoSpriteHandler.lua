@@ -45,14 +45,14 @@ function onCreate()
 		videoCache = {'theBilly', 'flames'}
 	end
 	
-    addHaxeLibrary('MP4Handler', 'vlc')
+    addHaxeLibrary('VideoHandler', 'hxcodec')
     addHaxeLibrary('Event', 'openfl.events')
     cacheFuck()
 end
 local videoSprites = {}
 function makeVideoSprite(tag, videoPath, x, y, camera, hasVolume)
     runHaxeCode([[
-        ]]..tag..[[ = new MP4Handler();
+        ]]..tag..[[ = new VideoHandler();
         ]]..tag..[[.playVideo(Paths.video("]]..videoPath..[["));
         ]]..tag..[[.visible = false; 
         ]]..tag..[[.volume = ]]..(hasVolume and 1 or 0)..[[;
@@ -79,9 +79,9 @@ function cacheFuck()
         for i = 1,#videoCache do
             local tag = videoCache[i]..'c'
             runHaxeCode([[
-            ]]..tag..[[ = new MP4Handler();
+            ]]..tag..[[ = new VideoHandler();
             ]]..tag..[[.playVideo(Paths.video("]]..videoCache[i]..[["));
-            ]]..tag..[[.finishVideo();
+            ]]..tag..[[.onVLCEndReached();
             ]])
         end
         --debugPrint('bro the video has been cached!')

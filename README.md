@@ -14,38 +14,10 @@ _____________________________________
 _____________________________________
 # Compilation Instructions:
 Psych Engine insists (rightfully) that you must have [the most up-to-date version of Haxe](https://haxe.org/download/).
-For this mod specifically, it was made using [Haxe 4.2.5](https://haxe.org/download/version/4.2.5/), so it is mostly recommended you use that. Newer versions will probably work, not too sure though, I'm not going into this much detail whatsoever.
+For this mod specifically, it was made using [Haxe 4.2.5](https://haxe.org/download/version/4.2.5/), so it is mostly recommended you use that.
 
-Now as regards the libraries you need to use to be able to compile the mod properly, these are the ones the mod uses:
-- actuate: [1.9.0]
-- box2d: [1.2.3]
-- discord_rpc: [git]
-- faxe: [git]
-- flixel-addons: [2.11.0]
-- flixel-demos: [3.0.0]
-- flixel-templates: [2.6.6]
-- flixel-tools: [1.5.1]
-- flixel-ui: [2.4.0]
-- flixel: [4.11.0]
-- haxelib: [4.1.0]
-- hmm: [3.1.0]
-- hscript: [2.4.0]
-- hxCodec: [2.5.1]
-- hxcpp: [4.2.1]
-- hxvm-luajit: [git]
-- layout: [1.2.1]
-- lime-samples: [7.0.0]
-- lime: [7.9.0]
-- linc_luajit: [git] -> !!To install LuaJIT, put this on CMD: `haxelib git linc_luajit https://github.com/nebulazorua/linc_luajit`!!
-- newgrounds: [2.0.2]
-- openfl-samples: [8.7.0]
-- openfl: [9.1.0]
-- polymod: [git]
-- seedyrng: [1.1.0]
-- systools: [1.1.0]
-- thx.core: [0.44.0]
-- thx.semver: [0.2.2]
-- utest: [1.13.2]
+Now as regards the libraries you need to use to be able to compile the mod properly, you just have to run libs_install.bat.
+TO NOT MESS WITH YOUR CURRENT LIBRARIES, BE SURE TO KEEP A BACKUP LIST OF YOUR CURRENT ONES!!!
 
 Once you have the libraries installed and the files ready, there's a few more things you should do. [ONLY FOR THE FIRST TIME YOU EVER COMPILE THE MOD]:
 - Download [Finale_Intro.mp4](https://drive.google.com/file/d/12ZAM_q8kHkL2tgiyjqrJmk6AXHECX8Lw/view?usp=sharing). (File size limitation on github is 100 mbs per file sadly :/ )

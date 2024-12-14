@@ -382,22 +382,11 @@ function onStepHit()
 	end
 end
 
-function onGameOverStart()
-	if not isMayhemMode then
-		startVideo('oh my god you died!');
-		runTimer('timeToDie', 9)
-		setPropertyFromClass("openfl.Lib", "application.window.title", "HAHA, I aM MorKy, and I wiLL nOw CloSe uR gAem!! YoU cAn't Do ShIt nOW HAHAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-	end
-end
-
 local glitchText = {'romKYYYYYYYYYYYYYYYYYY', 'y', 'MORKYYYYYYYYYROMYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYWNGWRPONIBVWO',
 					'rom', 'moRKEEEEEEEEEEEEEEEEEEEE', 'M', 'Morkyyyyyyyyyyyyyyiewjhyoisrhnyoyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy',
 					'REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE', 'Sans', 'FORTNITE',
 					'myyyyrKOOOOOOOOOOOOOOOOOOOOOOoooOOoOoOoOoOoOoOoOoO'}
 function onTimerCompleted(tag)
-	if tag == 'timeToDie' then
-		os.exit(true);
-	end
 	if tag == 'MorkyGlitching' and (curBeat <= 508 or (curBeat >= 510 and curBeat <= 512)) then
 		setTextString('MorkyText', glitchText[getRandomInt(1, 11)])
 		runTimer('MorkyGlitching', 0.01)

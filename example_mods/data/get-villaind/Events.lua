@@ -367,13 +367,6 @@ function onBeatHit()
 		end
 	end
 end
-function onGameOverStart()
-	if not isMayhemMode then
-		startVideo('oh my god you died NEW!');
-		runTimer('timeToDie', 9)
-		setPropertyFromClass("openfl.Lib", "application.window.title", "HAHA, I aM MorKy, and I wiLL nOw CloSe uR gAem!! YoU cAn't Do ShIt nOW HAHAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-	end
-end
 
 function onTweenCompleted(tag)
 	if tag == 'noteTweenX3' then
@@ -425,9 +418,5 @@ function onTimerCompleted(tag)
 		
 		setPropertyFromGroup('strumLineNotes', 7, 'x', getPropertyFromGroup('strumLineNotes', 7, 'x') + 20)
 		noteTweenX('noteTweenO7', 7, getPropertyFromGroup('strumLineNotes', 7, 'x') - 20, 0.6, 'sineOut')
-	end
-	
-	if tag == 'timeToDie' then
-		os.exit(true);
 	end
 end
