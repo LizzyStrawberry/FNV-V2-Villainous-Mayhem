@@ -18,10 +18,8 @@ function onStartCountdown() -- for dialogue
 end
 
 function onTimerCompleted(tag, loops, loopsLeft)
-	if getPropertyFromClass('ClientPrefs', 'dialogueWarning') then
-		if tag == 'startDialogue' then -- Timer completed, play dialogue
-			startDialogue('dialogue', '');
-		end
+	if tag == 'startDialogue' then -- Timer completed, play dialogue
+		startDialogue('dialogue', '');
 	end
 end
 

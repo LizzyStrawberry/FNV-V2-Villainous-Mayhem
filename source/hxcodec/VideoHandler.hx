@@ -52,7 +52,7 @@ class VideoHandler extends VLCBitmap
 
 		// The Media Player isn't `null at this point...
 		#if FLX_SOUND_SYSTEM
-			volume = ((FlxG.sound.muted || !canUseSound) ? 0 : 1) * (FlxG.sound.volume * 100);
+			volume = ((FlxG.sound.muted || !canUseSound) ? 0 : 1) * (FlxG.sound.volume * 250);
 		#end
 
 		if (openingCallback != null)
@@ -128,7 +128,7 @@ class VideoHandler extends VLCBitmap
 		}
 
 		#if FLX_SOUND_SYSTEM
-			volume = ((FlxG.sound.muted || !canUseSound) ? 0 : 1) * (FlxG.sound.volume * 100);
+			volume = ((FlxG.sound.muted || !canUseSound) ? 0 : 1) * (FlxG.sound.volume * 250);
 		#end
 	}
 

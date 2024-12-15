@@ -127,10 +127,8 @@ function onTweenCompleted(tag)
 end
 
 function onTimerCompleted(tag)
-	if getPropertyFromClass('ClientPrefs', 'dialogueWarning') then
-		if tag == 'startDialogue' then -- Timer completed, play dialogue
-			startDialogue('dialogue', '');
-		end
+	if tag == 'startDialogue' then -- Timer completed, play dialogue
+		startDialogue('dialogue', '');
 	end
 	
 	if tag == 'textgohi' then
