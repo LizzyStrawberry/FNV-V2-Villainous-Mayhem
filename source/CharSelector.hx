@@ -453,13 +453,6 @@ class CharSelector extends MusicBeatState{
         icon = new HealthIcon(unlockedCharacters[curSelected], true);
 
         // This code is for Psych but if necessary can be use on other engines too
-        if (unlockedCharacters[curSelected] == 'bf-car' || unlockedCharacters[curSelected] == 'bf-christmas' || unlockedCharacters[curSelected] == 'bf-holding-gf')
-            icon.changeIcon('bf');
-        if (unlockedCharacters[curSelected] == 'pico-player')
-            icon.changeIcon('pico');
-        if (unlockedCharacters[curSelected] == 'tankman-player')
-            icon.changeIcon('tankman');
-
         //for icons that do not load in
         if (unlockedCharacters[curSelected] == 'd-side gf')
             icon.changeIcon('dsidegf');

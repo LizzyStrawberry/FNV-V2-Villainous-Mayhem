@@ -44,7 +44,7 @@ class MusicBeatState extends FlxUIState
 		if (transitionType == 'stickers')
 		{
 			openSubState(new CustomStickerTransition(false));
-			transitionType = "fade";
+			transitionType = "fade"; //Reset back to fade just in case
 		}
 
 		FlxTransitionableState.skipNextTransOut = false;

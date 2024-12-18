@@ -43,6 +43,9 @@ class CustomStickerTransition extends MusicBeatSubstate {
         super();
         this.spawn = spawn;
 
+        if (stickerTween != null)
+            stickerTween.cancel();
+        
         stickerCam = new FlxCamera(0, 0, FlxG.width, FlxG.height);
         stickerCam.scroll.x = 0;
         stickerCam.scroll.y = 0;
@@ -80,18 +83,16 @@ class CustomStickerTransition extends MusicBeatSubstate {
 
             stickersBackupVars[i] = [stickerPath, sticker.x, sticker.y, sticker.angle, sticker.scale.x];
 
-            FlxTween.tween(sticker.scale, {x: 1.3, y: 1.3}, 0.03, {startDelay: i * 0.02, ease: FlxEase.bounceInOut, type: PERSIST});
-            stickerTween = FlxTween.tween(sticker, {alpha: 1}, 0.03, {startDelay: i * 0.02, onComplete: function(twn:FlxTween) {
+            stickerTween = FlxTween.tween(sticker, {alpha: 1, "scale.x": 1.3, "scale.y": 1.3}, 0.03, {startDelay: i * 0.02, ease: FlxEase.bounceInOut, onComplete: function(twn:FlxTween) {
                 FlxG.sound.play(Paths.sound('stickerSounds/keyClick' + FlxG.random.int(1, 9)));
                 stickersBackupVars[i][1] = sticker.x;
                 stickersBackupVars[i][2] = sticker.y;
                 if (i == numStickers - 1)
-                    {
-                        //trace('hlelo');
-                        new FlxTimer().start(0.14, function (tmr:FlxTimer) {
-                            finishCallback();
-                        });
-                    }
+                {
+                    new FlxTimer().start(0.14, function (tmr:FlxTimer) {
+                        finishCallback();
+                    });
+                }
             }});
         }
     }
@@ -125,8 +126,7 @@ class CustomStickerTransition extends MusicBeatSubstate {
     {
         //trace('removing stickers!!1!');
         for (i in 0...stickersBackup.length) {
-            FlxTween.tween(stickersBackup[i].scale, {x: stickersBackupVars[i][4], y: stickersBackupVars[i][4]}, 0.03, {startDelay: i * 0.02, ease: FlxEase.bounceInOut, type: PERSIST});
-            FlxTween.tween(stickersBackup[i], {alpha: 0}, 0.03, {startDelay: i * 0.02, onComplete: function(twn:FlxTween) {
+            stickerTween = FlxTween.tween(stickersBackup[i], {alpha: 0, "scale.x": stickersBackupVars[i][4], "scale.y": stickersBackupVars[i][4]}, 0.03, {startDelay: i * 0.02, ease: FlxEase.bounceInOut, onComplete: function(twn:FlxTween) {
                 FlxG.sound.play(Paths.sound('stickerSounds/keyClick' + FlxG.random.int(1, 9)));
                 if (stickers[i] != null && stickersBackup[i] != null)
                 {
