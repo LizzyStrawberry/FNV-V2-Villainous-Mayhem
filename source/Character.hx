@@ -332,6 +332,9 @@ class Character extends FlxSprite
 					playAnim('danceLeft' + idleSuffix);
 			}
 			else if(animation.getByName('idle' + idleSuffix) != null) {
+				if (PlayState.inPlayState && PlayState.SONG.player1 == 'playablegf' && PlayState.instance.health <= .399)
+					playAnim('idleass', true);
+				else
 					playAnim('idle' + idleSuffix);
 			}
 		}

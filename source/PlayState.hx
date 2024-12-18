@@ -85,6 +85,7 @@ using StringTools;
 
 class PlayState extends MusicBeatState
 {
+	public static var inPlayState:Bool = false;
 	public static var STRUM_X = 42;
 	public static var STRUM_X_MIDDLESCROLL = -278;
 
@@ -381,6 +382,7 @@ class PlayState extends MusicBeatState
 
 	override public function create()
 	{
+		inPlayState = true;
 		//trace('Playback Rate: ' + playbackRate);
 		Paths.clearStoredMemory();
 
@@ -3752,10 +3754,7 @@ class PlayState extends MusicBeatState
 			if(!cpuControlled) {
 				keyShit();
 			} else if(boyfriend.animation.curAnim != null && boyfriend.holdTimer > Conductor.stepCrochet * (0.0011 / FlxG.sound.music.pitch) * boyfriend.singDuration && boyfriend.animation.curAnim.name.startsWith('sing') && !boyfriend.animation.curAnim.name.endsWith('miss')) {
-				if (PlayState.SONG.player1 == 'playablegf' && health <= .399)
-					boyfriend.playAnim('idleass', true);
-				else
-					boyfriend.dance();
+				boyfriend.dance();
 				//boyfriend.animation.curAnim.finish();
 			}
 
@@ -4622,6 +4621,7 @@ class PlayState extends MusicBeatState
 				return;
 			}
 
+			inPlayState = false;
 
 			if (isStoryMode)
 			{
@@ -5827,13 +5827,7 @@ class PlayState extends MusicBeatState
 				#end
 			}
 			else if (boyfriend.animation.curAnim != null && boyfriend.holdTimer > Conductor.stepCrochet * (0.0011 / FlxG.sound.music.pitch) * boyfriend.singDuration && boyfriend.animation.curAnim.name.startsWith('sing') && !boyfriend.animation.curAnim.name.endsWith('miss'))
-			{
-				if (PlayState.SONG.player1 == 'playablegf' && health <= .399)
-					boyfriend.playAnim('idleass', true);
-				else
-					boyfriend.dance();
-				//boyfriend.animation.curAnim.finish();
-			}
+				boyfriend.dance();
 		}
 
 		// TO DO: Find a better way to handle controller inputs, this should work for now
@@ -6055,7 +6049,7 @@ class PlayState extends MusicBeatState
 				char = gf;
 			}
 
-			if (choseAttack == true && PlayState.SONG.player1 == 'playablegf' && Paths.formatToSongPath(SONG.song) == 'lustality-remix') //This is for Lustality Remix
+			if (choseAttack == true && boyfriend.curCharacter == 'playablegf' && Paths.formatToSongPath(SONG.song) == 'lustality-remix') //This is for Lustality Remix
 			{
 				char.specialAnim = true;
 				//Do nothing else
@@ -6184,17 +6178,12 @@ class PlayState extends MusicBeatState
 				}
 				else
 				{
-					if (choseAttack == true && PlayState.SONG.player1 == 'playablegf' && Paths.formatToSongPath(SONG.song) == 'lustality-remix') //This is for Lustality Remix
+					if ((choseAttack == true && boyfriend.curCharacter == 'playablegf' && Paths.formatToSongPath(SONG.song) == 'lustality-remix') || reloadingGun == true) //This is for Lustality Remix
 					{
 						boyfriend.specialAnim = true;
 						//Do nothing else
 					}
-					else if (reloadingGun == true)
-					{
-						boyfriend.specialAnim = true;
-						//Do nothing else
-					}
-					else if (PlayState.SONG.player1 == 'playablegf' && (note.rating == 'good' || note.rating == 'bad' || note.rating == 'shit'))
+					else if (boyfriend.curCharacter == 'playablegf' && (note.rating == 'good' || note.rating == 'bad' || note.rating == 'shit'))
 						boyfriend.playAnim(animToPlay + 'ass' + note.animSuffix, true);
 					else
 						boyfriend.playAnim(animToPlay + note.animSuffix, true);
@@ -6541,20 +6530,11 @@ class PlayState extends MusicBeatState
 		iconP2.updateHitbox();
 
 		if (gf != null && curBeat % Math.round(gfSpeed * gf.danceEveryNumBeats) == 0 && gf.animation.curAnim != null && !gf.animation.curAnim.name.startsWith("sing") && !gf.stunned)
-		{
 			gf.dance();
-		}
 		if (curBeat % boyfriend.danceEveryNumBeats == 0 && boyfriend.animation.curAnim != null && !boyfriend.animation.curAnim.name.startsWith('sing') && !boyfriend.stunned)
-		{
-			if (PlayState.SONG.player1 == 'playablegf' && health <= .399)
-				boyfriend.playAnim('idleass', true);
-			else
-				boyfriend.dance();
-		}
+			boyfriend.dance();
 		if (curBeat % dad.danceEveryNumBeats == 0 && dad.animation.curAnim != null && !dad.animation.curAnim.name.startsWith('sing') && !dad.stunned)
-		{
 			dad.dance();
-		}
 
 		switch (curStage)
 		{
