@@ -2822,6 +2822,19 @@ class PlayState extends MusicBeatState
 					var angleDir = strumDirection * Math.PI / 180;
 					if (daNote.copyAngle)
 						daNote.angle = strumDirection - 90 + strumAngle;
+					
+					// This fixes the issue with rotating the sustains, idc if it still looks a bit off
+					if (daNote.isSustainNote) {
+						var strumDirection:Float = strumGroup.members[daNote.noteData].direction;
+						daNote.angle = strumDirection - 90;
+						
+						if(daNote.angle == 180 && strumScroll == true){
+							daNote.angle = 0;
+						
+						}
+						daNote.updateHitbox();
+					}
+					
 
 					if(daNote.copyAlpha)
 						daNote.alpha = strumAlpha;
