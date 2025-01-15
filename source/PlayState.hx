@@ -1020,6 +1020,20 @@ class PlayState extends MusicBeatState
 
 		super.create();
 
+		// Rotation with sustains fix (From Note direction script by emi3_)
+		for (note in unspawnNotes) {
+			note.extraData['directionOffset'] = 0;
+			note.extraData['distanceOffset'] = 0;
+			if (note.isSustainNote) {
+				var isSustainEnd = StringTools.endsWith(note.animation.name, 'holdend');
+				note.sustainLength = (isSustainEnd ? (note.strumTime - note.prevNote.strumTime) : (note.nextNote.strumTime - note.strumTime));
+				note.extraData['isSustainEnd'] = isSustainEnd;
+				note.offsetX = 0;
+				note.offsetY = 0;
+				note.copyAngle = true;
+			}
+		}
+
 		cacheCountdown();
 		cachePopUpScore();
 		for (key => type in precacheList)
@@ -2075,6 +2089,7 @@ class PlayState extends MusicBeatState
 	var debugNum:Int = 0;
 	private var noteTypeMap:Map<String, Bool> = new Map<String, Bool>();
 	private var eventPushedMap:Map<String, Bool> = new Map<String, Bool>();
+	var degtorad = Math.PI / 180;
 	private function generateSong(dataPath:String):Void
 	{
 		// FlxG.log.add(ChartParser.parse());
@@ -2188,7 +2203,7 @@ class PlayState extends MusicBeatState
 						swagNote.tail.push(sustainNote);
 						sustainNote.parent = swagNote;
 						unspawnNotes.push(sustainNote);
-
+						
 						if (sustainNote.mustPress)
 						{
 							sustainNote.x += FlxG.width / 2; // general offset
@@ -2823,7 +2838,7 @@ class PlayState extends MusicBeatState
 					if (daNote.copyAngle)
 						daNote.angle = strumDirection - 90 + strumAngle;
 					
-					// This fixes the issue with rotating the sustains, idc if it still looks a bit off
+					// This fixes the issue with rotating the sustains, idc if it still looks a bit off | EDIT: with the other rotation code I got from emi3_, it looks even better ong
 					if (daNote.isSustainNote) {
 						var strumDirection:Float = strumGroup.members[daNote.noteData].direction;
 						daNote.angle = strumDirection - 90;
@@ -2953,6 +2968,51 @@ class PlayState extends MusicBeatState
 			i(elapsed);
 		}
 		callOnLuas('onUpdatePost', [elapsed]);
+
+		// Rotation with sustains fix (From Note direction script by emi3_)
+		for (note in notes) {
+			var strum = getNoteStrum(note);
+			var fullAngle = strum.direction + note.extraData['directionOffset'];
+			var angRad = fullAngle * degtorad;
+			var sus = note.isSustainNote;
+	
+			note.distance = getNoteDistance(note.strumTime - Conductor.songPosition, note) + note.extraData['distanceOffset'];
+			var downscrollMult = strum.downScroll ? -1 : 1;
+			var yD = note.distance + note.offsetY;
+			var xD = note.offsetX;
+	
+			if (note.isSustainNote) {
+				var isSustainEnd = note.extraData['isSustainEnd'];
+				var topCut = (note.antialiasing ? 2 : 0);
+				var bottomCut = (isSustainEnd ? 0 : topCut);
+				note.flipY = false;
+				note.flipX = strum.downScroll;
+				note.origin.set(note.frameWidth * .5, 0);
+				note.offset.set(-(strum.width - note.frameWidth) * .5, -strum.height * .5);
+				if (note.copyAngle) {
+					note.angle = (fullAngle - 90) + note.offsetAngle;
+					if (strum.downScroll) note.angle = 180 - note.angle;
+				} // script by
+				var reducing = (note.mustPress || !note.ignoreNote) && (note.wasGoodHit || (note.prevNote.wasGoodHit && !note.canBeHit));
+				var rect = (note.clipRect == null ? (note.clipRect = new FlxRect(0, 0, note.frameWidth, 0)) : note.clipRect); // emi3_
+				var clipPoint = (reducing ? Math.min(Math.max((-note.distance) / note.scale.y, 0), note.frameHeight - bottomCut) : 0) + topCut;
+				rect.y = clipPoint; // ^w^
+				rect.height = note.frameHeight - bottomCut - clipPoint;
+				note.clipRect = rect;
+				var susSY = strum.scale.x;
+				if (!isSustainEnd)
+					susSY = getNoteDistance(note.sustainLength, note) / (note.frameHeight - bottomCut - topCut);
+				var cutOffset = topCut * note.scale.y * downscrollMult;
+				note.offset.x += cutOffset * Math.cos(angRad);
+				note.offset.y += cutOffset * Math.sin(angRad);
+				note.scale.set(strum.scale.x, susSY);
+			} else if (note.copyAngle) {
+				note.angle = strum.angle + note.offsetAngle;
+			}
+	
+			if (note.copyX) note.x = strum.x + Math.cos(angRad) * yD + Math.sin(angRad) * xD;
+			if (note.copyY) note.y = strum.y + Math.sin(angRad) * yD * downscrollMult - Math.cos(angRad) * xD;
+		}
 	}
 
 	function openPauseMenu()
@@ -5513,6 +5573,17 @@ class PlayState extends MusicBeatState
 		callOnLuas('onBeatHit', []);
 	}
 
+	
+	// Rotation with sustains fix (From Note direction script by emi3_)
+	function getNoteDistance(ms:Float, note:Note)
+	{
+		return (0.45 * ms * songSpeed * note.multSpeed);
+	}
+	function getNoteStrum(note:Note)
+	{
+		return (note.mustPress ? playerStrums : opponentStrums).members[note.noteData];
+	} 
+	
 	override function sectionHit()
 	{
 		super.sectionHit();

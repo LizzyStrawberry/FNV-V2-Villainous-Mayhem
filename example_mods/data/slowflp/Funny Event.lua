@@ -146,13 +146,13 @@ end
 
 function onUpdate()
 	if curBeat == 30 then
-		doTweenZoom('camZoom', 'camGame', 1.4, 0.4, 'quintIn')
+		doTweenZoom('camZoom', 'camGame', 1.4, 0.4 / playbackRate, 'quintIn')
 		setProperty('camZooming', true)
 	end
 	
 	if curBeat == 32 then
 		cancelTween('camZoom')
-		doTweenZoom('camZoom', 'camGame', 0.7, 0.7, 'sineOut')
+		doTweenZoom('camZoom', 'camGame', 0.7, 0.7 / playbackRate, 'sineOut')
 		cameraFlash('game', 'FFFFFF', 0.6 / playbackRate, false)
 		setProperty('defaultCamZoom', 0.7)
 	end
@@ -167,52 +167,52 @@ function onUpdate()
 	end
 	
 	if curBeat == 200 then
-		noteTweenY('GFNote1', 4, notePos[5] + 900, 12, 'cubeInOut')
-		noteTweenY('GFNote2', 5, notePos[6] + 900, 12.6, 'cubeInOut')
-		noteTweenY('GFNote3', 7, notePos[8] + 900, 13.2, 'cubeInOut')
+		noteTweenY('GFNote1', 4, notePos[5] + 900, 12 / playbackRate, 'cubeInOut')
+		noteTweenY('GFNote2', 5, notePos[6] + 900, 12.6 / playbackRate, 'cubeInOut')
+		noteTweenY('GFNote3', 7, notePos[8] + 900, 13.2 / playbackRate, 'cubeInOut')
 		
-		noteTweenAngle('GFNoteAngle1', 4, -10, 7, 'cubeInOut')
-		noteTweenAngle('GFNoteAngle2', 5, 10, 7.6, 'cubeInOut')
-		noteTweenAngle('GFNoteAngle3', 7, 15, 8.2, 'cubeInOut')
+		noteTweenAngle('GFNoteAngle1', 4, -10, 7 / playbackRate, 'cubeInOut')
+		noteTweenAngle('GFNoteAngle2', 5, 10, 7.6 / playbackRate, 'cubeInOut')
+		noteTweenAngle('GFNoteAngle3', 7, 15, 8.2 / playbackRate, 'cubeInOut')
 	end
 	
 	if curBeat == 208 then
-		doTweenAngle('camAngle', 'camGame', 25, 36, 'cubeInOut')
-		doTweenAngle('camAngleHUD', 'camHUD', 25, 36, 'cubeInOut')
+		doTweenAngle('camAngle', 'camGame', 25, 36 / playbackRate, 'cubeInOut')
+		doTweenAngle('camAngleHUD', 'camHUD', 25, 36 / playbackRate, 'cubeInOut')
 		
-		doTweenZoom('camGame', 'camGame', 1.4, 34, 'cubeInOut')
+		doTweenZoom('camGame', 'camGame', 1.4, 34 / playbackRate, 'cubeInOut')
 		
-		noteTweenDirection('GFDirectionChange', 6, 360 * 100, 34, 'cubeInOut')
-		noteTweenAngle('GFAngleChange', 6, 450 * 100, 34, 'cubeInOut')
+		noteTweenDirection('GFDirectionChange', 6, 360 * 100, 34 / playbackRate, 'cubeInOut')
+		noteTweenAngle('GFAngleChange', 6, 360 * 100, 34 / playbackRate, 'cubeInOut')
 		
-		doTweenColor('whiteBG', 'whiteBG', '820101', 36, 'cubeInOut')
+		doTweenColor('whiteBG', 'whiteBG', '820101', 36 / playbackRate, 'cubeInOut')
 	end
 	
 	if curBeat == 286 then
-		doTweenAngle('camAngle', 'camGame', 0, 0.6, 'cubeInOut')
-		doTweenAngle('camAngleHUD', 'camHUD', 0, 0.6, 'cubeInOut')
-		noteTweenY('GFNote1', 4, notePos[5], 1, 'cubeInOut')
-		noteTweenY('GFNote2', 5, notePos[6], 1, 'cubeInOut')
-		noteTweenY('GFNote3', 7, notePos[8], 1, 'cubeInOut')
+		doTweenAngle('camAngle', 'camGame', 0, 0.6 / playbackRate, 'cubeInOut')
+		doTweenAngle('camAngleHUD', 'camHUD', 0, 0.6 / playbackRate, 'cubeInOut')
+		noteTweenY('GFNote1', 4, notePos[5], 1 / playbackRate, 'cubeInOut')
+		noteTweenY('GFNote2', 5, notePos[6], 1 / playbackRate, 'cubeInOut')
+		noteTweenY('GFNote3', 7, notePos[8], 1 / playbackRate, 'cubeInOut')
 	end
 	
 	if curBeat == 288 then
-		doTweenColor('whiteBG', 'whiteBG', 'FFFFFF', 0.01, 'linear')
+		doTweenColor('whiteBG', 'whiteBG', 'FFFFFF', 0.01 / playbackRate, 'linear')
 		cameraFlash('game', 'FFFFFF', 0.7, false)
 	end
 	
 	if curBeat == 292 then
 		setProperty('NicJumpscare.alpha', 1)
-		doTweenX('scaleX', 'NicJumpscare.scale', 1, 0.5, 'circOut')
-		doTweenY('scaleY', 'NicJumpscare.scale', 1, 0.5, 'circOut')
+		doTweenX('scaleX', 'NicJumpscare.scale', 1, 0.5 / playbackRate, 'circOut')
+		doTweenY('scaleY', 'NicJumpscare.scale', 1, 0.5 / playbackRate, 'circOut')
 	end
 end
 
 function onTweenCompleted(tag)
 	if tag == 'GFNoteAngle2' then
-		noteTweenAngle('GFNoteAngleFix1', 4, 0, 1, 'cubeInOut')
-		noteTweenAngle('GFNoteAngleFix2', 5, 0, 1, 'cubeInOut')
-		noteTweenAngle('GFNoteAngleFix3', 7, 0, 1, 'cubeInOut')
+		noteTweenAngle('GFNoteAngleFix1', 4, 0, 1 / playbackRate, 'cubeInOut')
+		noteTweenAngle('GFNoteAngleFix2', 5, 0, 1 / playbackRate, 'cubeInOut')
+		noteTweenAngle('GFNoteAngleFix3', 7, 0, 1 / playbackRate, 'cubeInOut')
 	end
 end
 
