@@ -341,7 +341,7 @@ class InfoState extends MusicBeatState
 						case 'marco':
 							CoolUtil.browserLoad('https://docs.google.com/document/d/1C8gNNa3uo0NFByPt96AF2D7HdPNsXng4GcuzuNPnaOA/edit?usp=sharing');
 						case 'aileen':
-
+							CoolUtil.browserLoad('https://docs.google.com/document/d/19EtuvfK-s7Zc0bS0IeYCsvP3qgGli34bgRnMo-pvkL0/edit?usp=sharing');
 						case 'beatrice':
 
 						case 'evelyn':
@@ -386,7 +386,7 @@ class InfoState extends MusicBeatState
 			new FlxTimer().start(1, function (tmr:FlxTimer) {
 				System.exit(0);
 			});
-			video.playVideo(Paths.video('morky farded'));
+			video.playVideo(Paths.video('morky farded'), false); // Make it so it's not skippable
 		}
 
 		super.update(elapsed);
@@ -421,7 +421,7 @@ class InfoState extends MusicBeatState
 					FlxTween.tween(blackOut, {alpha: 0.8}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
 					FlxTween.tween(scrollAsset, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
 					FlxTween.tween(scrollDesc, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
-					scrollDesc.text = "Aileen was born in her old hometown Lampside.\nShe used to live with her Mother who was\nan Employee in A.A.A.V (An Agency Against Villains),\nher Father who is a C-class Villain and\nher Twin Brother, Alverv.
+					scrollDesc.text = "Aileen was born in her old hometown Lampside.\nShe used to live with her Mother who was an\nEmployee in A.A.A.V (An Agency Against Villains),\nher Father who is a C-class Villain and\nher Twin Brother, Alverv.
 					\n[Click <G>here<G> to view the full extension]";
 				}
 				else

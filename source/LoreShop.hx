@@ -93,9 +93,9 @@ class LoreShop extends MusicBeatState
 		hermit.scale.x = 0.85;
         hermit.scale.y = 0.85;
 		hermit.animation.addByPrefix('idle', 'hermit idle0', 24, true);//on 'idle normal' change it to your xml one
-		hermit.animation.addByPrefix('intro', 'hermit intro0', 24, true);
-		hermit.animation.addByPrefix('exit', 'hermit exit0', 24, true);
-		hermit.animation.addByPrefix('give', 'hermit give0', 24, true);
+		hermit.animation.addByPrefix('intro', 'hermit intro0', 24, false);
+		hermit.animation.addByPrefix('exit', 'hermit exit0', 24, false);
+		hermit.animation.addByPrefix('give', 'hermit give0', 24, false);
 		hermit.animation.play('idle');//you can rename the anim however you want to
 		hermit.offset.set(-5, 0);
 		hermit.scrollFactor.set();
