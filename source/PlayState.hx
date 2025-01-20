@@ -2853,6 +2853,50 @@ class PlayState extends MusicBeatState
 						daNote.updateHitbox();
 					}
 					
+					// Rotation with sustains fix (From Note direction script by emi3_)
+					if (Paths.formatToSongPath(SONG.song) != 'vguy') // Shit's broken here sadly
+					{
+						var fullAngle = strumDirection + daNote.extraData['directionOffset'];
+						var angRad = fullAngle * degtorad;
+						var sus = daNote.isSustainNote;
+			
+						daNote.distance = getNoteDistance(daNote.strumTime - Conductor.songPosition, daNote) + daNote.extraData['distanceOffset'];
+						var downscrollMult = strumScroll ? -1 : 1;
+						var yD = daNote.distance + daNote.offsetY;
+						var xD = daNote.offsetX;
+			
+						if (daNote.isSustainNote) {
+							var isSustainEnd = daNote.extraData['isSustainEnd'];
+							var topCut = (daNote.antialiasing ? 2 : 0);
+							var bottomCut = (isSustainEnd ? 0 : topCut);
+							daNote.flipY = false;
+							daNote.flipX = strumScroll;
+							daNote.origin.set(daNote.frameWidth * .5, 0);
+							daNote.offset.set(-(strumGroup.members[daNote.noteData].width - daNote.frameWidth) * .5, -strumGroup.members[daNote.noteData].height * .5);
+							if (daNote.copyAngle) {
+								daNote.angle = (fullAngle - 90) + daNote.offsetAngle;
+								if (strumScroll) daNote.angle = 180 - daNote.angle;
+							} // script by
+							var reducing = (daNote.mustPress || !daNote.ignoreNote) && (daNote.wasGoodHit || (daNote.prevNote.wasGoodHit && !daNote.canBeHit));
+							var rect = (daNote.clipRect == null ? (daNote.clipRect = new FlxRect(0, 0, daNote.frameWidth, 0)) : daNote.clipRect); // emi3_
+							var clipPoint = (reducing ? Math.min(Math.max((-daNote.distance) / daNote.scale.y, 0), daNote.frameHeight - bottomCut) : 0) + topCut;
+							rect.y = clipPoint; // ^w^
+							rect.height = daNote.frameHeight - bottomCut - clipPoint;
+							daNote.clipRect = rect;
+							var susSY = strumGroup.members[daNote.noteData].scale.x;
+							if (!isSustainEnd)
+								susSY = getNoteDistance(daNote.sustainLength, daNote) / (daNote.frameHeight - bottomCut - topCut);
+							var cutOffset = topCut * daNote.scale.y * downscrollMult;
+							daNote.offset.x += cutOffset * Math.cos(angRad);
+							daNote.offset.y += cutOffset * Math.sin(angRad);
+							daNote.scale.set(strumGroup.members[daNote.noteData].scale.x, susSY);
+						} else if (daNote.copyAngle) {
+							daNote.angle = strumAngle + daNote.offsetAngle;
+						}
+				
+						if (daNote.copyX) daNote.x = strumX + Math.cos(angRad) * yD + Math.sin(angRad) * xD;
+						if (daNote.copyY) daNote.y = strumY + Math.sin(angRad) * yD * downscrollMult - Math.cos(angRad) * xD;
+					}
 
 					if(daNote.copyAlpha)
 						daNote.alpha = strumAlpha;
@@ -2971,54 +3015,6 @@ class PlayState extends MusicBeatState
 			i(elapsed);
 		}
 		callOnLuas('onUpdatePost', [elapsed]);
-
-		// Rotation with sustains fix (From Note direction script by emi3_)
-		if (Paths.formatToSongPath(SONG.song) != 'vguy') // Shit's broken here sadly
-		{
-			for (note in notes) {
-				var strum = getNoteStrum(note);
-				var fullAngle = strum.direction + note.extraData['directionOffset'];
-				var angRad = fullAngle * degtorad;
-				var sus = note.isSustainNote;
-		
-				note.distance = getNoteDistance(note.strumTime - Conductor.songPosition, note) + note.extraData['distanceOffset'];
-				var downscrollMult = strum.downScroll ? -1 : 1;
-				var yD = note.distance + note.offsetY;
-				var xD = note.offsetX;
-		
-				if (note.isSustainNote) {
-					var isSustainEnd = note.extraData['isSustainEnd'];
-					var topCut = (note.antialiasing ? 2 : 0);
-					var bottomCut = (isSustainEnd ? 0 : topCut);
-					note.flipY = false;
-					note.flipX = strum.downScroll;
-					note.origin.set(note.frameWidth * .5, 0);
-					note.offset.set(-(strum.width - note.frameWidth) * .5, -strum.height * .5);
-					if (note.copyAngle) {
-						note.angle = (fullAngle - 90) + note.offsetAngle;
-						if (strum.downScroll) note.angle = 180 - note.angle;
-					} // script by
-					var reducing = (note.mustPress || !note.ignoreNote) && (note.wasGoodHit || (note.prevNote.wasGoodHit && !note.canBeHit));
-					var rect = (note.clipRect == null ? (note.clipRect = new FlxRect(0, 0, note.frameWidth, 0)) : note.clipRect); // emi3_
-					var clipPoint = (reducing ? Math.min(Math.max((-note.distance) / note.scale.y, 0), note.frameHeight - bottomCut) : 0) + topCut;
-					rect.y = clipPoint; // ^w^
-					rect.height = note.frameHeight - bottomCut - clipPoint;
-					note.clipRect = rect;
-					var susSY = strum.scale.x;
-					if (!isSustainEnd)
-						susSY = getNoteDistance(note.sustainLength, note) / (note.frameHeight - bottomCut - topCut);
-					var cutOffset = topCut * note.scale.y * downscrollMult;
-					note.offset.x += cutOffset * Math.cos(angRad);
-					note.offset.y += cutOffset * Math.sin(angRad);
-					note.scale.set(strum.scale.x, susSY);
-				} else if (note.copyAngle) {
-					note.angle = strum.angle + note.offsetAngle;
-				}
-		
-				if (note.copyX) note.x = strum.x + Math.cos(angRad) * yD + Math.sin(angRad) * xD;
-				if (note.copyY) note.y = strum.y + Math.sin(angRad) * yD * downscrollMult - Math.cos(angRad) * xD;
-			}
-		}
 	}
 
 	function openPauseMenu()
@@ -5585,10 +5581,6 @@ class PlayState extends MusicBeatState
 	{
 		return (0.45 * ms * songSpeed * note.multSpeed);
 	}
-	function getNoteStrum(note:Note)
-	{
-		return (note.mustPress ? playerStrums : opponentStrums).members[note.noteData];
-	} 
 	
 	override function sectionHit()
 	{
