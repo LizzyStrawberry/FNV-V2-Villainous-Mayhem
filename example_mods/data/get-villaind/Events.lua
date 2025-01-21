@@ -15,6 +15,8 @@ function onCreate()
 		character = 3
 	elseif boyfriendName == 'debugGF' then
 		character = 4
+	elseif boyfriendName == 'Spendthrift GF' then
+		character = 5
 	end
 	
 	precacheSound('matpatRamble')
@@ -81,7 +83,7 @@ function opponentNoteHit() -- health draining mechanic
 		if not isMayhemMode and difficulty == 1 and mechanics and getPropertyFromClass('ClientPrefs', 'buff3Active') == false then
 			if getProperty('health') > 0.2 then
 				if getPropertyFromClass('ClientPrefs', 'resistanceCharm') == 1 then
-					setProperty('health', health- 0.06);
+					setProperty('health', health- 0.006);
 				else
 					setProperty('health', health- 0.012);
 				end
@@ -212,15 +214,17 @@ function onStepHit()
 		triggerEvent('Change Character', 'dad', 'Morky')
 		
 		if character == 1 then
-			triggerEvent('Change Character', 'boyfriend', 'GFwav')
+			triggerEvent('Change Character', 'bf', 'GFwav')
 		elseif character == 2 then
-			triggerEvent('Change Character', 'boyfriend', 'playablegf-old')
+			triggerEvent('Change Character', 'bf', 'playablegf-old')
 		elseif character == 3 then
-			triggerEvent('Change Character', 'boyfriend', 'd-side gf')
+			triggerEvent('Change Character', 'bf', 'd-side gf')
 		elseif character == 4 then
-			triggerEvent('Change Character', 'boyfriend', 'debugGF')
+			triggerEvent('Change Character', 'bf', 'debugGF')
+		elseif character == 5 then
+			triggerEvent('Change Character', 'bf', 'Spendthrift GF')
 		else
-			triggerEvent('Change Character', 'boyfriend', 'playablegf')
+			triggerEvent('Change Character', 'bf', 'playablegf')
 		end
 		
 		addGlitchEffect('bg', 1.5, 0.6, 0.3)

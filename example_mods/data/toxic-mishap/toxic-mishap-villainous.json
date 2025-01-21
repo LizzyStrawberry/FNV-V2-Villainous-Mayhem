@@ -1,12 +1,11 @@
 {
 	"song": {
-		"loadingScreen": "load_week1",
 		"player1": "playablegf",
-		"events": [],
-		"gfVersion": "normalSpeaker",
-		"player2": "marco",
+		"loadingScreen": "load_week1",
 		"notes": [
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						0,
@@ -47,11 +46,11 @@
 						"Real Poison"
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": true
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						2400,
@@ -92,11 +91,11 @@
 						"Real Poison"
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": true
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						2742.85714285714,
@@ -136,11 +135,11 @@
 						"Real Poison"
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": true
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						4114.28571428571,
@@ -187,11 +186,11 @@
 						"Real Poison"
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": true
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						5485.71428571429,
@@ -237,11 +236,11 @@
 						"Real Poison"
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": false
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						7885.71428571429,
@@ -264,11 +263,11 @@
 						428.571428571429
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": false
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						8228.57142857143,
@@ -296,11 +295,11 @@
 						0
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": false
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						9600,
@@ -323,11 +322,11 @@
 						428.571428571429
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": false
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						10971.4285714286,
@@ -384,11 +383,11 @@
 						"Real Poison"
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": true
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						12342.8571428571,
@@ -417,11 +416,11 @@
 						0
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": true
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						13714.2857142857,
@@ -491,11 +490,11 @@
 						"Real Poison"
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": true
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						15085.7142857143,
@@ -546,11 +545,11 @@
 						"Real Poison"
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": true
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						16457.1428571429,
@@ -679,11 +678,11 @@
 						"Real Poison"
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": false
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						17828.5714285714,
@@ -712,11 +711,11 @@
 						0
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": false
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						19714.2857142857,
@@ -771,11 +770,11 @@
 						"Real Poison"
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": false
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						20571.4285714286,
@@ -814,11 +813,11 @@
 						0
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": false
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						21942.8571428571,
@@ -847,29 +846,29 @@
 						"Real Poison"
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": false
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": false
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": false
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": false
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						27428.5714285714,
@@ -931,11 +930,11 @@
 						"Real Poison"
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": true
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						28800,
@@ -992,11 +991,11 @@
 						"Real Poison"
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": true
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						30171.4285714286,
@@ -1053,11 +1052,11 @@
 						"Real Poison"
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": true
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						31542.8571428571,
@@ -1124,11 +1123,11 @@
 						"Real Poison"
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": true
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						32914.2857142857,
@@ -1188,11 +1187,11 @@
 						"Real Poison"
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": false
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						34285.7142857143,
@@ -1225,11 +1224,11 @@
 						0
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": false
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						35657.1428571429,
@@ -1262,11 +1261,11 @@
 						0
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": false
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						37028.5714285714,
@@ -1309,11 +1308,11 @@
 						0
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": false
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						38571.4285714286,
@@ -1356,11 +1355,11 @@
 						0
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": false
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						39771.4285714286,
@@ -1403,12 +1402,12 @@
 						0
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"gfSection": false,
 				"mustHitSection": false
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						41142.8571428572,
@@ -1483,11 +1482,11 @@
 						"Real Poison"
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": false
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						42514.2857142857,
@@ -1562,11 +1561,11 @@
 						"Real Poison"
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": false
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						44057.1428571429,
@@ -1673,11 +1672,11 @@
 						"Real Poison"
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": true
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						45257.1428571429,
@@ -1784,11 +1783,11 @@
 						"Real Poison"
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": true
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						46628.5714285714,
@@ -1895,11 +1894,11 @@
 						"Real Poison"
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": true
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						48000,
@@ -2016,11 +2015,11 @@
 						"Real Poison"
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": true
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						49371.4285714286,
@@ -2092,11 +2091,11 @@
 						"Real Poison"
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": true
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						50742.8571428572,
@@ -2168,11 +2167,11 @@
 						"Real Poison"
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": true
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						52971.4285714286,
@@ -2239,11 +2238,11 @@
 						"Real Poison"
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": true
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						53485.7142857143,
@@ -2315,11 +2314,11 @@
 						"Real Poison"
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": true
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						54857.1428571429,
@@ -2383,11 +2382,11 @@
 						"Real Poison"
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": false
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						56228.5714285714,
@@ -2435,11 +2434,11 @@
 						0
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": false
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						58457.1428571429,
@@ -2482,11 +2481,11 @@
 						0
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": false
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						58971.4285714286,
@@ -2572,11 +2571,11 @@
 						"Real Poison"
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": false
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						60342.8571428572,
@@ -2721,11 +2720,11 @@
 						"Real Poison"
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": true
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						61714.2857142857,
@@ -2870,11 +2869,11 @@
 						"Real Poison"
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": true
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						63085.7142857143,
@@ -3019,11 +3018,11 @@
 						"Real Poison"
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": false
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						64457.1428571429,
@@ -3168,11 +3167,11 @@
 						"Real Poison"
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": false
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						65828.5714285714,
@@ -3317,11 +3316,11 @@
 						"Real Poison"
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": true
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						67200,
@@ -3466,11 +3465,11 @@
 						0
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": true
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						68571.4285714286,
@@ -3615,11 +3614,11 @@
 						"Real Poison"
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": false
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						69942.8571428572,
@@ -3764,11 +3763,11 @@
 						"Real Poison"
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": false
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						71314.2857142857,
@@ -3873,12 +3872,12 @@
 						"Real Poison"
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"gfSection": false,
 				"mustHitSection": true
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						72685.7142857143,
@@ -4023,11 +4022,11 @@
 						"Real Poison"
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": true
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						74057.1428571429,
@@ -4132,11 +4131,11 @@
 						"Real Poison"
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": true
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						75428.5714285714,
@@ -4291,11 +4290,11 @@
 						"Real Poison"
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": true
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						76800,
@@ -4400,11 +4399,11 @@
 						"Real Poison"
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": false
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						78171.4285714286,
@@ -4519,11 +4518,11 @@
 						"Real Poison"
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": false
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						79542.8571428572,
@@ -4628,11 +4627,11 @@
 						"Real Poison"
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": false
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						80914.2857142857,
@@ -4767,11 +4766,11 @@
 						"Real Poison"
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": false
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						82285.7142857143,
@@ -4886,12 +4885,12 @@
 						"Real Poison"
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"altAnim": false,
 				"mustHitSection": true
 			},
 			{
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						83657.1428571429,
@@ -5016,12 +5015,10 @@
 						"Real Poison"
 					]
 				],
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"mustHitSection": true
 			},
 			{
-				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						85028.5714285715,
@@ -5142,13 +5139,13 @@
 						"Real Poison"
 					]
 				],
-				"lengthInSteps": 16,
-				"bpm": 180,
+				"typeOfSection": 0,
+				"mustHitSection": true,
 				"changeBPM": false,
-				"mustHitSection": true
+				"bpm": 180
 			},
 			{
-				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						86400,
@@ -5271,13 +5268,13 @@
 						"Real Poison"
 					]
 				],
-				"lengthInSteps": 16,
-				"bpm": 180,
+				"typeOfSection": 0,
+				"mustHitSection": true,
 				"changeBPM": false,
-				"mustHitSection": true
+				"bpm": 180
 			},
 			{
-				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						87771.4285714286,
@@ -5392,13 +5389,13 @@
 						"Real Poison"
 					]
 				],
-				"lengthInSteps": 16,
-				"bpm": 180,
+				"typeOfSection": 0,
+				"mustHitSection": false,
 				"changeBPM": false,
-				"mustHitSection": false
+				"bpm": 180
 			},
 			{
-				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						89142.8571428572,
@@ -5523,13 +5520,13 @@
 						"Real Poison"
 					]
 				],
-				"lengthInSteps": 16,
-				"bpm": 180,
+				"typeOfSection": 0,
+				"mustHitSection": false,
 				"changeBPM": false,
-				"mustHitSection": false
+				"bpm": 180
 			},
 			{
-				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						90514.2857142858,
@@ -5644,13 +5641,13 @@
 						"Real Poison"
 					]
 				],
-				"lengthInSteps": 16,
-				"bpm": 180,
+				"typeOfSection": 0,
+				"mustHitSection": false,
 				"changeBPM": false,
-				"mustHitSection": false
+				"bpm": 180
 			},
 			{
-				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						91885.7142857143,
@@ -5755,13 +5752,13 @@
 						"Real Poison"
 					]
 				],
-				"lengthInSteps": 16,
-				"bpm": 180,
+				"typeOfSection": 0,
+				"mustHitSection": false,
 				"changeBPM": false,
-				"mustHitSection": false
+				"bpm": 180
 			},
 			{
-				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
 						93257.1428571429,
@@ -5876,14 +5873,12 @@
 						"Real Poison"
 					]
 				],
-				"lengthInSteps": 16,
-				"bpm": 180,
+				"typeOfSection": 0,
+				"mustHitSection": true,
 				"changeBPM": false,
-				"mustHitSection": true
+				"bpm": 180
 			},
 			{
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"sectionNotes": [
 					[
 						94628.5714285714,
@@ -6013,14 +6008,14 @@
 						"Real Poison"
 					]
 				],
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"altAnim": false,
-				"bpm": 180,
+				"mustHitSection": true,
 				"changeBPM": false,
-				"mustHitSection": true
+				"bpm": 180
 			},
 			{
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"sectionNotes": [
 					[
 						96000.0000000001,
@@ -6141,14 +6136,14 @@
 						"Real Poison"
 					]
 				],
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"altAnim": false,
-				"bpm": 180,
+				"mustHitSection": true,
 				"changeBPM": false,
-				"mustHitSection": true
+				"bpm": 180
 			},
 			{
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"sectionNotes": [
 					[
 						97371.4285714286,
@@ -6271,12 +6266,16 @@
 						"Real Poison"
 					]
 				],
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"altAnim": false,
-				"bpm": 130,
+				"mustHitSection": true,
 				"changeBPM": false,
-				"mustHitSection": true
+				"bpm": 130
 			},
 			{
+				"lengthInSteps": 16,
+				"typeOfSection": 0,
 				"sectionNotes": [
 					[
 						98742.8571428571,
@@ -6391,14 +6390,14 @@
 						"Real Poison"
 					]
 				],
-				"typeOfSection": 0,
-				"lengthInSteps": 16,
 				"altAnim": false,
-				"mustHitSection": false,
+				"bpm": 130,
 				"changeBPM": false,
-				"bpm": 130
+				"mustHitSection": false
 			},
 			{
+				"lengthInSteps": 16,
+				"typeOfSection": 0,
 				"sectionNotes": [
 					[
 						100114.285714286,
@@ -6528,14 +6527,14 @@
 						"Real Poison"
 					]
 				],
-				"typeOfSection": 0,
-				"lengthInSteps": 16,
 				"altAnim": false,
-				"mustHitSection": false,
+				"bpm": 130,
 				"changeBPM": false,
-				"bpm": 130
+				"mustHitSection": false
 			},
 			{
+				"lengthInSteps": 16,
+				"typeOfSection": 0,
 				"sectionNotes": [
 					[
 						101485.714285714,
@@ -6650,14 +6649,14 @@
 						"Real Poison"
 					]
 				],
-				"typeOfSection": 0,
-				"lengthInSteps": 16,
 				"altAnim": false,
-				"mustHitSection": false,
+				"bpm": 130,
 				"changeBPM": false,
-				"bpm": 130
+				"mustHitSection": false
 			},
 			{
+				"lengthInSteps": 16,
+				"typeOfSection": 0,
 				"sectionNotes": [
 					[
 						102857.142857143,
@@ -6767,14 +6766,14 @@
 						"Real Poison"
 					]
 				],
-				"typeOfSection": 0,
-				"lengthInSteps": 16,
 				"altAnim": false,
-				"mustHitSection": false,
+				"bpm": 130,
 				"changeBPM": false,
-				"bpm": 130
+				"mustHitSection": false
 			},
 			{
+				"lengthInSteps": 16,
+				"typeOfSection": 0,
 				"sectionNotes": [
 					[
 						104228.571428571,
@@ -6797,14 +6796,14 @@
 						257.142857142857
 					]
 				],
-				"typeOfSection": 0,
-				"lengthInSteps": 16,
 				"altAnim": false,
-				"mustHitSection": false,
+				"bpm": 130,
 				"changeBPM": false,
-				"bpm": 130
+				"mustHitSection": false
 			},
 			{
+				"lengthInSteps": 16,
+				"typeOfSection": 0,
 				"sectionNotes": [
 					[
 						105600,
@@ -6822,16 +6821,12 @@
 						257.142857142857
 					]
 				],
-				"typeOfSection": 0,
-				"lengthInSteps": 16,
 				"altAnim": false,
-				"mustHitSection": false,
+				"bpm": 130,
 				"changeBPM": false,
-				"bpm": 130
+				"mustHitSection": false
 			},
 			{
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"sectionNotes": [
 					[
 						106971.428571428,
@@ -6849,12 +6844,16 @@
 						0
 					]
 				],
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"altAnim": false,
-				"bpm": 130,
+				"mustHitSection": false,
 				"changeBPM": false,
-				"mustHitSection": false
+				"bpm": 130
 			},
 			{
+				"lengthInSteps": 16,
+				"typeOfSection": 0,
 				"sectionNotes": [
 					[
 						108342.857142857,
@@ -6872,16 +6871,12 @@
 						257.142857142857
 					]
 				],
-				"typeOfSection": 0,
-				"lengthInSteps": 16,
 				"altAnim": false,
-				"mustHitSection": false,
+				"bpm": 130,
 				"changeBPM": false,
-				"bpm": 130
+				"mustHitSection": false
 			},
 			{
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"sectionNotes": [
 					[
 						109714.285714286,
@@ -6927,12 +6922,16 @@
 						"Real Poison"
 					]
 				],
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"altAnim": false,
-				"bpm": 130,
+				"mustHitSection": true,
 				"changeBPM": false,
-				"mustHitSection": true
+				"bpm": 130
 			},
 			{
+				"lengthInSteps": 16,
+				"typeOfSection": 0,
 				"sectionNotes": [
 					[
 						112114.285714286,
@@ -6973,14 +6972,14 @@
 						"Real Poison"
 					]
 				],
-				"typeOfSection": 0,
-				"lengthInSteps": 16,
 				"altAnim": false,
-				"mustHitSection": true,
+				"bpm": 130,
 				"changeBPM": false,
-				"bpm": 130
+				"mustHitSection": true
 			},
 			{
+				"lengthInSteps": 16,
+				"typeOfSection": 0,
 				"sectionNotes": [
 					[
 						112457.142857143,
@@ -7020,14 +7019,14 @@
 						428.571428571429
 					]
 				],
-				"typeOfSection": 0,
-				"lengthInSteps": 16,
 				"altAnim": false,
-				"mustHitSection": true,
+				"bpm": 130,
 				"changeBPM": false,
-				"bpm": 130
+				"mustHitSection": true
 			},
 			{
+				"lengthInSteps": 16,
+				"typeOfSection": 0,
 				"sectionNotes": [
 					[
 						113828.571428571,
@@ -7074,16 +7073,12 @@
 						"Real Poison"
 					]
 				],
-				"typeOfSection": 0,
-				"lengthInSteps": 16,
 				"altAnim": false,
-				"mustHitSection": true,
+				"bpm": 130,
 				"changeBPM": false,
-				"bpm": 130
+				"mustHitSection": true
 			},
 			{
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"sectionNotes": [
 					[
 						115200,
@@ -7159,15 +7154,15 @@
 						"Real Poison"
 					]
 				],
-				"altAnim": false,
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"gfSection": false,
-				"bpm": 130,
+				"altAnim": false,
+				"mustHitSection": true,
 				"changeBPM": false,
-				"mustHitSection": true
+				"bpm": 130
 			},
 			{
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"sectionNotes": [
 					[
 						116571.428571428,
@@ -7238,15 +7233,15 @@
 						"Real Poison"
 					]
 				],
-				"altAnim": false,
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"gfSection": false,
-				"bpm": 130,
+				"altAnim": false,
+				"mustHitSection": true,
 				"changeBPM": false,
-				"mustHitSection": true
+				"bpm": 130
 			},
 			{
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"sectionNotes": [
 					[
 						117942.857142857,
@@ -7312,13 +7307,17 @@
 						"Real Poison"
 					]
 				],
-				"altAnim": false,
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"gfSection": false,
-				"bpm": 130,
+				"altAnim": false,
+				"mustHitSection": true,
 				"changeBPM": false,
-				"mustHitSection": true
+				"bpm": 130
 			},
 			{
+				"lengthInSteps": 16,
+				"typeOfSection": 0,
 				"sectionNotes": [
 					[
 						119314.285714285,
@@ -7415,6 +7414,387 @@
 					[
 						120514.285714285,
 						1,
+						0,
+						"Real Poison"
+					]
+				],
+				"altAnim": false,
+				"gfSection": false,
+				"bpm": 130,
+				"changeBPM": false,
+				"mustHitSection": true
+			},
+			{
+				"lengthInSteps": 16,
+				"typeOfSection": 0,
+				"sectionNotes": [
+					[
+						120685.714285714,
+						7,
+						600
+					],
+					[
+						121371.428571428,
+						6,
+						600
+					],
+					[
+						120685.714285714,
+						5,
+						0
+					],
+					[
+						121371.428571428,
+						4,
+						0
+					],
+					[
+						120685.714285714,
+						0,
+						600
+					],
+					[
+						120685.714285714,
+						2,
+						0
+					],
+					[
+						121371.428571428,
+						3,
+						0
+					],
+					[
+						121371.428571428,
+						1,
+						600
+					],
+					[
+						120685.714285714,
+						4,
+						0,
+						"Real Poison"
+					],
+					[
+						121371.428571428,
+						5,
+						0,
+						"Real Poison"
+					]
+				],
+				"altAnim": false,
+				"gfSection": false,
+				"bpm": 130,
+				"changeBPM": false,
+				"mustHitSection": false
+			},
+			{
+				"sectionNotes": [
+					[
+						122057.142857143,
+						4,
+						600
+					],
+					[
+						122742.857142857,
+						7,
+						600
+					],
+					[
+						122057.142857143,
+						7,
+						0
+					],
+					[
+						122742.857142857,
+						5,
+						0
+					],
+					[
+						122057.142857143,
+						3,
+						600
+					],
+					[
+						122057.142857143,
+						0,
+						0
+					],
+					[
+						122742.857142857,
+						2,
+						0
+					],
+					[
+						122742.857142857,
+						0,
+						600
+					],
+					[
+						122742.857142857,
+						6,
+						0,
+						"Real Poison"
+					],
+					[
+						122057.142857143,
+						5,
+						0,
+						"Real Poison"
+					]
+				],
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
+				"gfSection": false,
+				"altAnim": false,
+				"mustHitSection": false,
+				"changeBPM": false,
+				"bpm": 130
+			},
+			{
+				"sectionNotes": [
+					[
+						123428.571428571,
+						6,
+						600
+					],
+					[
+						124114.285714285,
+						5,
+						600
+					],
+					[
+						123428.571428571,
+						4,
+						0
+					],
+					[
+						124114.285714285,
+						7,
+						0
+					],
+					[
+						123428.571428571,
+						1,
+						600
+					],
+					[
+						123428.571428571,
+						3,
+						0
+					],
+					[
+						124114.285714285,
+						0,
+						0
+					],
+					[
+						124114.285714285,
+						2,
+						600
+					],
+					[
+						123428.571428571,
+						7,
+						0,
+						"Real Poison"
+					],
+					[
+						124114.285714285,
+						4,
+						0,
+						"Real Poison"
+					]
+				],
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
+				"gfSection": false,
+				"altAnim": false,
+				"mustHitSection": false,
+				"changeBPM": false,
+				"bpm": 130
+			},
+			{
+				"sectionNotes": [
+					[
+						124800,
+						6,
+						600
+					],
+					[
+						125485.714285714,
+						5,
+						0
+					],
+					[
+						125657.142857143,
+						6,
+						0
+					],
+					[
+						125828.571428571,
+						7,
+						0
+					],
+					[
+						126000,
+						5,
+						0
+					],
+					[
+						124800,
+						1,
+						600
+					],
+					[
+						125485.714285714,
+						2,
+						0
+					],
+					[
+						125657.142857143,
+						1,
+						0
+					],
+					[
+						125828.571428571,
+						0,
+						0
+					],
+					[
+						126000,
+						2,
+						0
+					],
+					[
+						124800,
+						7,
+						0,
+						"Real Poison"
+					],
+					[
+						125485.714285714,
+						4,
+						0,
+						"Real Poison"
+					],
+					[
+						125828.571428571,
+						4,
+						0,
+						"Real Poison"
+					]
+				],
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
+				"gfSection": false,
+				"altAnim": false,
+				"mustHitSection": false,
+				"changeBPM": false,
+				"bpm": 130
+			},
+			{
+				"sectionNotes": [
+					[
+						126342.857142857,
+						3,
+						0
+					],
+					[
+						126171.428571429,
+						2,
+						0
+					],
+					[
+						126514.285714286,
+						2,
+						0
+					],
+					[
+						126685.714285714,
+						0,
+						0
+					],
+					[
+						126857.142857143,
+						2,
+						0
+					],
+					[
+						127028.571428571,
+						3,
+						0
+					],
+					[
+						127200,
+						2,
+						0
+					],
+					[
+						127371.428571429,
+						3,
+						0
+					],
+					[
+						126171.428571429,
+						5,
+						0
+					],
+					[
+						126342.857142857,
+						4,
+						0
+					],
+					[
+						126514.285714286,
+						5,
+						0
+					],
+					[
+						126685.714285714,
+						7,
+						0
+					],
+					[
+						126857.142857143,
+						5,
+						0
+					],
+					[
+						127028.571428571,
+						4,
+						0
+					],
+					[
+						127200,
+						5,
+						0
+					],
+					[
+						127371.428571429,
+						4,
+						0
+					],
+					[
+						126171.428571429,
+						0,
+						0,
+						"Real Poison"
+					],
+					[
+						126514.285714286,
+						3,
+						0,
+						"Real Poison"
+					],
+					[
+						126857.142857143,
+						0,
+						0,
+						"Real Poison"
+					],
+					[
+						127200,
+						0,
 						0,
 						"Real Poison"
 					]
@@ -7430,54 +7810,106 @@
 			{
 				"sectionNotes": [
 					[
-						120685.714285714,
-						7,
-						600
-					],
-					[
-						121371.428571428,
-						6,
-						600
-					],
-					[
-						120685.714285714,
-						5,
+						127542.857142857,
+						1,
 						0
 					],
 					[
-						121371.428571428,
-						4,
-						0
-					],
-					[
-						120685.714285714,
-						0,
-						600
-					],
-					[
-						120685.714285714,
+						127714.285714286,
 						2,
 						0
 					],
 					[
-						121371.428571428,
+						127885.714285714,
 						3,
 						0
 					],
 					[
-						121371.428571428,
-						1,
-						600
+						128057.142857143,
+						0,
+						0
 					],
 					[
-						120685.714285714,
+						128228.571428571,
+						2,
+						0
+					],
+					[
+						128571.428571429,
+						2,
+						0
+					],
+					[
+						128742.857142857,
+						3,
+						0
+					],
+					[
+						128400,
+						1,
+						0
+					],
+					[
+						127542.857142857,
+						6,
+						0
+					],
+					[
+						127714.285714286,
+						5,
+						0
+					],
+					[
+						127885.714285714,
 						4,
+						0
+					],
+					[
+						128057.142857143,
+						7,
+						0
+					],
+					[
+						128228.571428571,
+						5,
+						0
+					],
+					[
+						128400,
+						6,
+						0
+					],
+					[
+						128571.428571429,
+						5,
+						0
+					],
+					[
+						128742.857142857,
+						6,
+						0
+					],
+					[
+						127542.857142857,
+						3,
 						0,
 						"Real Poison"
 					],
 					[
-						121371.428571428,
-						5,
+						127885.714285714,
+						1,
+						0,
+						"Real Poison"
+					],
+					[
+						128228.571428571,
+						3,
+						0,
+						"Real Poison"
+					],
+					[
+						128571.428571429,
+						0,
 						0,
 						"Real Poison"
 					]
@@ -7486,448 +7918,11 @@
 				"lengthInSteps": 16,
 				"gfSection": false,
 				"altAnim": false,
-				"mustHitSection": false,
+				"mustHitSection": true,
 				"changeBPM": false,
 				"bpm": 130
 			},
 			{
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
-				"sectionNotes": [
-					[
-						122057.142857143,
-						4,
-						600
-					],
-					[
-						122742.857142857,
-						7,
-						600
-					],
-					[
-						122057.142857143,
-						7,
-						0
-					],
-					[
-						122742.857142857,
-						5,
-						0
-					],
-					[
-						122057.142857143,
-						3,
-						600
-					],
-					[
-						122057.142857143,
-						0,
-						0
-					],
-					[
-						122742.857142857,
-						2,
-						0
-					],
-					[
-						122742.857142857,
-						0,
-						600
-					],
-					[
-						122742.857142857,
-						6,
-						0,
-						"Real Poison"
-					],
-					[
-						122057.142857143,
-						5,
-						0,
-						"Real Poison"
-					]
-				],
-				"altAnim": false,
-				"gfSection": false,
-				"bpm": 130,
-				"changeBPM": false,
-				"mustHitSection": false
-			},
-			{
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
-				"sectionNotes": [
-					[
-						123428.571428571,
-						6,
-						600
-					],
-					[
-						124114.285714285,
-						5,
-						600
-					],
-					[
-						123428.571428571,
-						4,
-						0
-					],
-					[
-						124114.285714285,
-						7,
-						0
-					],
-					[
-						123428.571428571,
-						1,
-						600
-					],
-					[
-						123428.571428571,
-						3,
-						0
-					],
-					[
-						124114.285714285,
-						0,
-						0
-					],
-					[
-						124114.285714285,
-						2,
-						600
-					],
-					[
-						123428.571428571,
-						7,
-						0,
-						"Real Poison"
-					],
-					[
-						124114.285714285,
-						4,
-						0,
-						"Real Poison"
-					]
-				],
-				"altAnim": false,
-				"gfSection": false,
-				"bpm": 130,
-				"changeBPM": false,
-				"mustHitSection": false
-			},
-			{
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
-				"sectionNotes": [
-					[
-						124800,
-						6,
-						600
-					],
-					[
-						125485.714285714,
-						5,
-						0
-					],
-					[
-						125657.142857143,
-						6,
-						0
-					],
-					[
-						125828.571428571,
-						7,
-						0
-					],
-					[
-						126000,
-						5,
-						0
-					],
-					[
-						124800,
-						1,
-						600
-					],
-					[
-						125485.714285714,
-						2,
-						0
-					],
-					[
-						125657.142857143,
-						1,
-						0
-					],
-					[
-						125828.571428571,
-						0,
-						0
-					],
-					[
-						126000,
-						2,
-						0
-					],
-					[
-						124800,
-						7,
-						0,
-						"Real Poison"
-					],
-					[
-						125485.714285714,
-						4,
-						0,
-						"Real Poison"
-					],
-					[
-						125828.571428571,
-						4,
-						0,
-						"Real Poison"
-					]
-				],
-				"altAnim": false,
-				"gfSection": false,
-				"bpm": 130,
-				"changeBPM": false,
-				"mustHitSection": false
-			},
-			{
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
-				"sectionNotes": [
-					[
-						126342.857142857,
-						3,
-						0
-					],
-					[
-						126171.428571429,
-						2,
-						0
-					],
-					[
-						126514.285714286,
-						2,
-						0
-					],
-					[
-						126685.714285714,
-						0,
-						0
-					],
-					[
-						126857.142857143,
-						2,
-						0
-					],
-					[
-						127028.571428571,
-						3,
-						0
-					],
-					[
-						127200,
-						2,
-						0
-					],
-					[
-						127371.428571429,
-						3,
-						0
-					],
-					[
-						126171.428571429,
-						5,
-						0
-					],
-					[
-						126342.857142857,
-						4,
-						0
-					],
-					[
-						126514.285714286,
-						5,
-						0
-					],
-					[
-						126685.714285714,
-						7,
-						0
-					],
-					[
-						126857.142857143,
-						5,
-						0
-					],
-					[
-						127028.571428571,
-						4,
-						0
-					],
-					[
-						127200,
-						5,
-						0
-					],
-					[
-						127371.428571429,
-						4,
-						0
-					],
-					[
-						126171.428571429,
-						0,
-						0,
-						"Real Poison"
-					],
-					[
-						126514.285714286,
-						3,
-						0,
-						"Real Poison"
-					],
-					[
-						126857.142857143,
-						0,
-						0,
-						"Real Poison"
-					],
-					[
-						127200,
-						0,
-						0,
-						"Real Poison"
-					]
-				],
-				"altAnim": false,
-				"gfSection": false,
-				"bpm": 130,
-				"changeBPM": false,
-				"mustHitSection": true
-			},
-			{
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
-				"sectionNotes": [
-					[
-						127542.857142857,
-						1,
-						0
-					],
-					[
-						127714.285714286,
-						2,
-						0
-					],
-					[
-						127885.714285714,
-						3,
-						0
-					],
-					[
-						128057.142857143,
-						0,
-						0
-					],
-					[
-						128228.571428571,
-						2,
-						0
-					],
-					[
-						128571.428571429,
-						2,
-						0
-					],
-					[
-						128742.857142857,
-						3,
-						0
-					],
-					[
-						128400,
-						1,
-						0
-					],
-					[
-						127542.857142857,
-						6,
-						0
-					],
-					[
-						127714.285714286,
-						5,
-						0
-					],
-					[
-						127885.714285714,
-						4,
-						0
-					],
-					[
-						128057.142857143,
-						7,
-						0
-					],
-					[
-						128228.571428571,
-						5,
-						0
-					],
-					[
-						128400,
-						6,
-						0
-					],
-					[
-						128571.428571429,
-						5,
-						0
-					],
-					[
-						128742.857142857,
-						6,
-						0
-					],
-					[
-						127542.857142857,
-						3,
-						0,
-						"Real Poison"
-					],
-					[
-						127885.714285714,
-						1,
-						0,
-						"Real Poison"
-					],
-					[
-						128228.571428571,
-						3,
-						0,
-						"Real Poison"
-					],
-					[
-						128571.428571429,
-						0,
-						0,
-						"Real Poison"
-					]
-				],
-				"altAnim": false,
-				"gfSection": false,
-				"bpm": 130,
-				"changeBPM": false,
-				"mustHitSection": true
-			},
-			{
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"sectionNotes": [
 					[
 						128914.285714286,
@@ -8034,13 +8029,17 @@
 						"Real Poison"
 					]
 				],
-				"altAnim": false,
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"gfSection": false,
-				"bpm": 130,
+				"altAnim": false,
+				"mustHitSection": false,
 				"changeBPM": false,
-				"mustHitSection": false
+				"bpm": 130
 			},
 			{
+				"lengthInSteps": 16,
+				"typeOfSection": 0,
 				"sectionNotes": [
 					[
 						130285.714285714,
@@ -8147,15 +8146,15 @@
 						"Real Poison"
 					]
 				],
-				"typeOfSection": 0,
-				"lengthInSteps": 16,
-				"gfSection": false,
 				"altAnim": false,
-				"mustHitSection": false,
+				"gfSection": false,
+				"bpm": 130,
 				"changeBPM": false,
-				"bpm": 130
+				"mustHitSection": false
 			},
 			{
+				"lengthInSteps": 16,
+				"typeOfSection": 0,
 				"sectionNotes": [
 					[
 						131657.142857143,
@@ -8300,15 +8299,15 @@
 						"Real Poison"
 					]
 				],
-				"typeOfSection": 0,
-				"lengthInSteps": 16,
-				"gfSection": false,
 				"altAnim": false,
-				"mustHitSection": true,
+				"gfSection": false,
+				"bpm": 130,
 				"changeBPM": false,
-				"bpm": 130
+				"mustHitSection": true
 			},
 			{
+				"lengthInSteps": 16,
+				"typeOfSection": 0,
 				"sectionNotes": [
 					[
 						133028.571428571,
@@ -8453,17 +8452,13 @@
 						"Real Poison"
 					]
 				],
-				"typeOfSection": 0,
-				"lengthInSteps": 16,
-				"gfSection": false,
 				"altAnim": false,
-				"mustHitSection": true,
+				"gfSection": false,
+				"bpm": 130,
 				"changeBPM": false,
-				"bpm": 130
+				"mustHitSection": true
 			},
 			{
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"sectionNotes": [
 					[
 						134400,
@@ -8608,15 +8603,15 @@
 						0
 					]
 				],
-				"altAnim": false,
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"gfSection": false,
-				"bpm": 130,
+				"altAnim": false,
+				"mustHitSection": false,
 				"changeBPM": false,
-				"mustHitSection": false
+				"bpm": 130
 			},
 			{
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"sectionNotes": [
 					[
 						135771.428571429,
@@ -8761,13 +8756,17 @@
 						"Real Poison"
 					]
 				],
-				"altAnim": false,
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"gfSection": false,
-				"bpm": 130,
+				"altAnim": false,
+				"mustHitSection": false,
 				"changeBPM": false,
-				"mustHitSection": false
+				"bpm": 130
 			},
 			{
+				"lengthInSteps": 16,
+				"typeOfSection": 0,
 				"sectionNotes": [
 					[
 						137314.285714286,
@@ -8874,348 +8873,231 @@
 						"Real Poison"
 					]
 				],
-				"typeOfSection": 0,
-				"lengthInSteps": 16,
-				"gfSection": false,
-				"altAnim": false,
-				"mustHitSection": true,
-				"changeBPM": false,
-				"bpm": 130
-			},
-			{
-				"sectionNotes": [
-					[
-						138514.285714286,
-						2,
-						0
-					],
-					[
-						138685.714285714,
-						1,
-						0
-					],
-					[
-						138857.142857143,
-						0,
-						0
-					],
-					[
-						139028.571428571,
-						3,
-						0
-					],
-					[
-						139200,
-						1,
-						0
-					],
-					[
-						139542.857142857,
-						1,
-						0
-					],
-					[
-						139714.285714286,
-						0,
-						0
-					],
-					[
-						139371.428571429,
-						2,
-						0
-					],
-					[
-						138514.285714286,
-						5,
-						0
-					],
-					[
-						138685.714285714,
-						6,
-						0
-					],
-					[
-						138857.142857143,
-						7,
-						0
-					],
-					[
-						139028.571428571,
-						4,
-						0
-					],
-					[
-						139200,
-						6,
-						0
-					],
-					[
-						139371.428571429,
-						5,
-						0
-					],
-					[
-						139542.857142857,
-						6,
-						0
-					],
-					[
-						139714.285714286,
-						5,
-						0
-					],
-					[
-						138514.285714286,
-						0,
-						0,
-						"Real Poison"
-					],
-					[
-						138857.142857143,
-						2,
-						0,
-						"Real Poison"
-					],
-					[
-						139200,
-						0,
-						0,
-						"Real Poison"
-					],
-					[
-						139542.857142857,
-						3,
-						0,
-						"Real Poison"
-					]
-				],
-				"typeOfSection": 0,
-				"lengthInSteps": 16,
-				"gfSection": false,
-				"altAnim": false,
-				"mustHitSection": true,
-				"changeBPM": false,
-				"bpm": 130
-			},
-			{
-				"typeOfSection": 0,
-				"sectionNotes": [
-					[
-						139885.714285714,
-						5,
-						0
-					],
-					[
-						140057.142857143,
-						7,
-						0
-					],
-					[
-						140228.571428571,
-						5,
-						0
-					],
-					[
-						140400,
-						6,
-						0
-					],
-					[
-						140571.428571429,
-						5,
-						0
-					],
-					[
-						140742.857142857,
-						4,
-						0
-					],
-					[
-						140914.285714286,
-						5,
-						0
-					],
-					[
-						141085.714285714,
-						4,
-						0
-					],
-					[
-						139885.714285714,
-						2,
-						0
-					],
-					[
-						140057.142857143,
-						0,
-						0
-					],
-					[
-						140228.571428571,
-						2,
-						0
-					],
-					[
-						140400,
-						1,
-						0
-					],
-					[
-						140571.428571429,
-						2,
-						0
-					],
-					[
-						140742.857142857,
-						3,
-						0
-					],
-					[
-						140914.285714286,
-						2,
-						0
-					],
-					[
-						141085.714285714,
-						3,
-						0
-					],
-					[
-						139885.714285714,
-						6,
-						0,
-						"Real Poison"
-					],
-					[
-						140228.571428571,
-						4,
-						0,
-						"Real Poison"
-					],
-					[
-						140571.428571429,
-						6,
-						0,
-						"Real Poison"
-					],
-					[
-						140914.285714286,
-						7,
-						0,
-						"Real Poison"
-					]
-				],
-				"sectionBeats": 4,
 				"altAnim": false,
 				"gfSection": false,
 				"bpm": 130,
 				"changeBPM": false,
-				"mustHitSection": false
+				"mustHitSection": true
+			},
+			{
+				"lengthInSteps": 16,
+				"typeOfSection": 0,
+				"sectionNotes": [
+					[
+						138514.285714286,
+						2,
+						0
+					],
+					[
+						138685.714285714,
+						1,
+						0
+					],
+					[
+						138857.142857143,
+						0,
+						0
+					],
+					[
+						139028.571428571,
+						3,
+						0
+					],
+					[
+						139200,
+						1,
+						0
+					],
+					[
+						139542.857142857,
+						1,
+						0
+					],
+					[
+						139714.285714286,
+						0,
+						0
+					],
+					[
+						139371.428571429,
+						2,
+						0
+					],
+					[
+						138514.285714286,
+						5,
+						0
+					],
+					[
+						138685.714285714,
+						6,
+						0
+					],
+					[
+						138857.142857143,
+						7,
+						0
+					],
+					[
+						139028.571428571,
+						4,
+						0
+					],
+					[
+						139200,
+						6,
+						0
+					],
+					[
+						139371.428571429,
+						5,
+						0
+					],
+					[
+						139542.857142857,
+						6,
+						0
+					],
+					[
+						139714.285714286,
+						5,
+						0
+					],
+					[
+						138514.285714286,
+						0,
+						0,
+						"Real Poison"
+					],
+					[
+						138857.142857143,
+						2,
+						0,
+						"Real Poison"
+					],
+					[
+						139200,
+						0,
+						0,
+						"Real Poison"
+					],
+					[
+						139542.857142857,
+						3,
+						0,
+						"Real Poison"
+					]
+				],
+				"altAnim": false,
+				"gfSection": false,
+				"bpm": 130,
+				"changeBPM": false,
+				"mustHitSection": true
 			},
 			{
 				"sectionBeats": 4,
 				"sectionNotes": [
 					[
-						141257.142857143,
+						139885.714285714,
 						5,
 						0
 					],
 					[
-						141428.571428571,
-						6,
-						0
-					],
-					[
-						141600,
+						140057.142857143,
 						7,
 						0
 					],
 					[
-						141771.428571429,
+						140228.571428571,
+						5,
+						0
+					],
+					[
+						140400,
+						6,
+						0
+					],
+					[
+						140571.428571429,
+						5,
+						0
+					],
+					[
+						140742.857142857,
 						4,
 						0
 					],
 					[
-						141942.857142857,
-						6,
-						0
-					],
-					[
-						142285.714285714,
-						6,
-						0
-					],
-					[
-						142457.142857143,
-						7,
-						0
-					],
-					[
-						142114.285714286,
+						140914.285714286,
 						5,
 						0
 					],
 					[
-						141257.142857143,
+						141085.714285714,
+						4,
+						0
+					],
+					[
+						139885.714285714,
 						2,
 						0
 					],
 					[
-						141428.571428571,
-						1,
-						0
-					],
-					[
-						141600,
+						140057.142857143,
 						0,
 						0
 					],
 					[
-						141771.428571429,
+						140228.571428571,
+						2,
+						0
+					],
+					[
+						140400,
+						1,
+						0
+					],
+					[
+						140571.428571429,
+						2,
+						0
+					],
+					[
+						140742.857142857,
 						3,
 						0
 					],
 					[
-						141942.857142857,
-						1,
-						0
-					],
-					[
-						142114.285714286,
+						140914.285714286,
 						2,
 						0
 					],
 					[
-						142285.714285714,
-						1,
+						141085.714285714,
+						3,
 						0
 					],
 					[
-						142457.142857143,
-						0,
-						0
-					],
-					[
-						141257.142857143,
+						139885.714285714,
 						6,
 						0,
 						"Real Poison"
 					],
 					[
-						141600,
+						140228.571428571,
 						4,
 						0,
 						"Real Poison"
 					],
 					[
-						142285.714285714,
-						4,
+						140571.428571429,
+						6,
 						0,
 						"Real Poison"
 					],
 					[
-						141942.857142857,
-						5,
+						140914.285714286,
+						7,
 						0,
 						"Real Poison"
 					]
@@ -9228,8 +9110,121 @@
 				"bpm": 130
 			},
 			{
-				"lengthInSteps": 16,
 				"typeOfSection": 0,
+				"sectionNotes": [
+					[
+						141257.142857143,
+						5,
+						0
+					],
+					[
+						141428.571428571,
+						6,
+						0
+					],
+					[
+						141600,
+						7,
+						0
+					],
+					[
+						141771.428571429,
+						4,
+						0
+					],
+					[
+						141942.857142857,
+						6,
+						0
+					],
+					[
+						142285.714285714,
+						6,
+						0
+					],
+					[
+						142457.142857143,
+						7,
+						0
+					],
+					[
+						142114.285714286,
+						5,
+						0
+					],
+					[
+						141257.142857143,
+						2,
+						0
+					],
+					[
+						141428.571428571,
+						1,
+						0
+					],
+					[
+						141600,
+						0,
+						0
+					],
+					[
+						141771.428571429,
+						3,
+						0
+					],
+					[
+						141942.857142857,
+						1,
+						0
+					],
+					[
+						142114.285714286,
+						2,
+						0
+					],
+					[
+						142285.714285714,
+						1,
+						0
+					],
+					[
+						142457.142857143,
+						0,
+						0
+					],
+					[
+						141257.142857143,
+						6,
+						0,
+						"Real Poison"
+					],
+					[
+						141600,
+						4,
+						0,
+						"Real Poison"
+					],
+					[
+						142285.714285714,
+						4,
+						0,
+						"Real Poison"
+					],
+					[
+						141942.857142857,
+						5,
+						0,
+						"Real Poison"
+					]
+				],
+				"sectionBeats": 4,
+				"altAnim": false,
+				"gfSection": false,
+				"bpm": 130,
+				"changeBPM": false,
+				"mustHitSection": false
+			},
+			{
 				"sectionNotes": [
 					[
 						142628.571428571,
@@ -9374,14 +9369,14 @@
 						"Real Poison"
 					]
 				],
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"altAnim": false,
-				"bpm": 130,
+				"mustHitSection": true,
 				"changeBPM": false,
-				"mustHitSection": true
+				"bpm": 130
 			},
 			{
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"sectionNotes": [
 					[
 						144000,
@@ -9526,14 +9521,14 @@
 						"Real Poison"
 					]
 				],
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"altAnim": false,
-				"bpm": 130,
+				"mustHitSection": true,
 				"changeBPM": false,
-				"mustHitSection": true
+				"bpm": 130
 			},
 			{
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"sectionNotes": [
 					[
 						145371.428571429,
@@ -9678,14 +9673,14 @@
 						"Real Poison"
 					]
 				],
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"altAnim": false,
-				"bpm": 130,
+				"mustHitSection": false,
 				"changeBPM": false,
-				"mustHitSection": false
+				"bpm": 130
 			},
 			{
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"sectionNotes": [
 					[
 						146742.857142857,
@@ -9830,14 +9825,14 @@
 						"Real Poison"
 					]
 				],
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"altAnim": false,
-				"bpm": 130,
+				"mustHitSection": false,
 				"changeBPM": false,
-				"mustHitSection": false
+				"bpm": 130
 			},
 			{
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"sectionNotes": [
 					[
 						148114.285714286,
@@ -9952,14 +9947,14 @@
 						"Real Poison"
 					]
 				],
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"altAnim": false,
-				"bpm": 130,
+				"mustHitSection": true,
 				"changeBPM": false,
-				"mustHitSection": true
+				"bpm": 130
 			},
 			{
-				"lengthInSteps": 16,
-				"typeOfSection": 0,
 				"sectionNotes": [
 					[
 						149485.714285714,
@@ -10084,13 +10079,15 @@
 						"Real Poison"
 					]
 				],
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
 				"altAnim": false,
-				"bpm": 130,
+				"mustHitSection": true,
 				"changeBPM": false,
-				"mustHitSection": true
+				"bpm": 130
 			},
 			{
-				"sectionBeats": 4,
+				"typeOfSection": 0,
 				"sectionNotes": [
 					[
 						150857.142857143,
@@ -10211,15 +10208,15 @@
 						"Real Poison"
 					]
 				],
-				"typeOfSection": 0,
-				"gfSection": false,
+				"sectionBeats": 4,
 				"altAnim": false,
-				"mustHitSection": true,
+				"gfSection": false,
+				"bpm": 130,
 				"changeBPM": false,
-				"bpm": 130
+				"mustHitSection": true
 			},
 			{
-				"typeOfSection": 0,
+				"sectionBeats": 4,
 				"sectionNotes": [
 					[
 						152228.571428571,
@@ -10342,15 +10339,15 @@
 						"Real Poison"
 					]
 				],
-				"sectionBeats": 4,
-				"altAnim": false,
+				"typeOfSection": 0,
 				"gfSection": false,
-				"bpm": 130,
+				"altAnim": false,
+				"mustHitSection": true,
 				"changeBPM": false,
-				"mustHitSection": true
+				"bpm": 130
 			},
 			{
-				"typeOfSection": 0,
+				"sectionBeats": 4,
 				"sectionNotes": [
 					[
 						153600,
@@ -10465,15 +10462,15 @@
 						"Real Poison"
 					]
 				],
-				"sectionBeats": 4,
-				"altAnim": false,
+				"typeOfSection": 0,
 				"gfSection": false,
-				"bpm": 130,
+				"altAnim": false,
+				"mustHitSection": false,
 				"changeBPM": false,
-				"mustHitSection": false
+				"bpm": 130
 			},
 			{
-				"sectionBeats": 4,
+				"typeOfSection": 0,
 				"sectionNotes": [
 					[
 						154971.428571429,
@@ -10598,15 +10595,15 @@
 						"Real Poison"
 					]
 				],
-				"typeOfSection": 0,
-				"gfSection": false,
+				"sectionBeats": 4,
 				"altAnim": false,
-				"mustHitSection": false,
+				"gfSection": false,
+				"bpm": 130,
 				"changeBPM": false,
-				"bpm": 130
+				"mustHitSection": false
 			},
 			{
-				"typeOfSection": 0,
+				"sectionBeats": 4,
 				"sectionNotes": [
 					[
 						156342.857142857,
@@ -10721,15 +10718,15 @@
 						"Real Poison"
 					]
 				],
-				"sectionBeats": 4,
-				"altAnim": false,
+				"typeOfSection": 0,
 				"gfSection": false,
-				"bpm": 130,
+				"altAnim": false,
+				"mustHitSection": false,
 				"changeBPM": false,
-				"mustHitSection": false
+				"bpm": 130
 			},
 			{
-				"typeOfSection": 0,
+				"sectionBeats": 4,
 				"sectionNotes": [
 					[
 						157714.285714286,
@@ -10839,15 +10836,15 @@
 						0
 					]
 				],
-				"sectionBeats": 4,
-				"altAnim": false,
+				"typeOfSection": 0,
 				"gfSection": false,
-				"bpm": 130,
+				"altAnim": false,
+				"mustHitSection": false,
 				"changeBPM": false,
-				"mustHitSection": false
+				"bpm": 130
 			},
 			{
-				"typeOfSection": 0,
+				"sectionBeats": 4,
 				"sectionNotes": [
 					[
 						159085.714285714,
@@ -10962,15 +10959,15 @@
 						"Real Poison"
 					]
 				],
-				"sectionBeats": 4,
-				"altAnim": false,
+				"typeOfSection": 0,
 				"gfSection": false,
-				"bpm": 130,
+				"altAnim": false,
+				"mustHitSection": true,
 				"changeBPM": false,
-				"mustHitSection": true
+				"bpm": 130
 			},
 			{
-				"typeOfSection": 0,
+				"sectionBeats": 4,
 				"sectionNotes": [
 					[
 						160457.142857143,
@@ -11100,15 +11097,15 @@
 						"Real Poison"
 					]
 				],
-				"sectionBeats": 4,
-				"altAnim": false,
+				"typeOfSection": 0,
 				"gfSection": false,
-				"bpm": 130,
+				"altAnim": false,
+				"mustHitSection": true,
 				"changeBPM": false,
-				"mustHitSection": true
+				"bpm": 130
 			},
 			{
-				"typeOfSection": 0,
+				"sectionBeats": 4,
 				"sectionNotes": [
 					[
 						161828.571428571,
@@ -11229,15 +11226,15 @@
 						"Real Poison"
 					]
 				],
-				"sectionBeats": 4,
-				"altAnim": false,
+				"typeOfSection": 0,
 				"gfSection": false,
-				"bpm": 130,
+				"altAnim": false,
+				"mustHitSection": true,
 				"changeBPM": false,
-				"mustHitSection": true
+				"bpm": 130
 			},
 			{
-				"typeOfSection": 0,
+				"sectionBeats": 4,
 				"sectionNotes": [
 					[
 						163200,
@@ -11360,15 +11357,15 @@
 						"Real Poison"
 					]
 				],
-				"sectionBeats": 4,
-				"altAnim": false,
+				"typeOfSection": 0,
 				"gfSection": false,
-				"bpm": 130,
+				"altAnim": false,
+				"mustHitSection": true,
 				"changeBPM": false,
-				"mustHitSection": true
+				"bpm": 130
 			},
 			{
-				"typeOfSection": 0,
+				"sectionBeats": 4,
 				"sectionNotes": [
 					[
 						164571.428571429,
@@ -11483,15 +11480,15 @@
 						"Real Poison"
 					]
 				],
-				"sectionBeats": 4,
-				"altAnim": false,
+				"typeOfSection": 0,
 				"gfSection": false,
-				"bpm": 130,
+				"altAnim": false,
+				"mustHitSection": false,
 				"changeBPM": false,
-				"mustHitSection": false
+				"bpm": 130
 			},
 			{
-				"typeOfSection": 0,
+				"sectionBeats": 4,
 				"sectionNotes": [
 					[
 						165942.857142857,
@@ -11621,15 +11618,15 @@
 						"Real Poison"
 					]
 				],
-				"sectionBeats": 4,
-				"altAnim": false,
+				"typeOfSection": 0,
 				"gfSection": false,
-				"bpm": 130,
+				"altAnim": false,
+				"mustHitSection": false,
 				"changeBPM": false,
-				"mustHitSection": false
+				"bpm": 130
 			},
 			{
-				"typeOfSection": 0,
+				"sectionBeats": 4,
 				"sectionNotes": [
 					[
 						167314.285714286,
@@ -11744,15 +11741,15 @@
 						"Real Poison"
 					]
 				],
-				"sectionBeats": 4,
-				"altAnim": false,
+				"typeOfSection": 0,
 				"gfSection": false,
-				"bpm": 130,
+				"altAnim": false,
+				"mustHitSection": false,
 				"changeBPM": false,
-				"mustHitSection": false
+				"bpm": 130
 			},
 			{
-				"typeOfSection": 0,
+				"sectionBeats": 4,
 				"sectionNotes": [
 					[
 						168685.714285714,
@@ -11862,25 +11859,25 @@
 						"Real Poison"
 					]
 				],
-				"sectionBeats": 4,
-				"altAnim": false,
+				"typeOfSection": 0,
 				"gfSection": false,
-				"bpm": 130,
+				"altAnim": false,
+				"mustHitSection": false,
 				"changeBPM": false,
-				"mustHitSection": false
+				"bpm": 130
 			},
 			{
-				"typeOfSection": 0,
+				"sectionBeats": 4,
 				"sectionNotes": [],
-				"sectionBeats": 4,
-				"altAnim": false,
+				"typeOfSection": 0,
 				"gfSection": false,
-				"bpm": 130,
+				"altAnim": false,
+				"mustHitSection": false,
 				"changeBPM": false,
-				"mustHitSection": false
+				"bpm": 130
 			},
 			{
-				"typeOfSection": 0,
+				"sectionBeats": 4,
 				"sectionNotes": [
 					[
 						171428.571428571,
@@ -11921,15 +11918,15 @@
 						"Real Poison"
 					]
 				],
-				"sectionBeats": 4,
-				"altAnim": false,
+				"typeOfSection": 0,
 				"gfSection": false,
-				"bpm": 130,
+				"altAnim": false,
+				"mustHitSection": true,
 				"changeBPM": false,
-				"mustHitSection": true
+				"bpm": 130
 			},
 			{
-				"typeOfSection": 0,
+				"sectionBeats": 4,
 				"sectionNotes": [
 					[
 						173828.571428571,
@@ -11975,15 +11972,15 @@
 						85.7142857142857
 					]
 				],
-				"sectionBeats": 4,
-				"altAnim": false,
+				"typeOfSection": 0,
 				"gfSection": false,
-				"bpm": 130,
+				"altAnim": false,
+				"mustHitSection": true,
 				"changeBPM": false,
-				"mustHitSection": true
+				"bpm": 130
 			},
 			{
-				"typeOfSection": 0,
+				"sectionBeats": 4,
 				"sectionNotes": [
 					[
 						174171.428571429,
@@ -12023,15 +12020,15 @@
 						"Real Poison"
 					]
 				],
-				"sectionBeats": 4,
-				"altAnim": false,
+				"typeOfSection": 0,
 				"gfSection": false,
-				"bpm": 130,
+				"altAnim": false,
+				"mustHitSection": true,
 				"changeBPM": false,
-				"mustHitSection": true
+				"bpm": 130
 			},
 			{
-				"typeOfSection": 0,
+				"sectionBeats": 4,
 				"sectionNotes": [
 					[
 						175542.857142857,
@@ -12078,15 +12075,15 @@
 						"Real Poison"
 					]
 				],
-				"sectionBeats": 4,
-				"altAnim": false,
+				"typeOfSection": 0,
 				"gfSection": false,
-				"bpm": 130,
+				"altAnim": false,
+				"mustHitSection": true,
 				"changeBPM": false,
-				"mustHitSection": true
+				"bpm": 130
 			},
 			{
-				"sectionBeats": 4,
+				"typeOfSection": 0,
 				"sectionNotes": [
 					[
 						176914.285714286,
@@ -12132,15 +12129,15 @@
 						"Real Poison"
 					]
 				],
-				"typeOfSection": 0,
-				"gfSection": false,
+				"sectionBeats": 4,
 				"altAnim": false,
-				"mustHitSection": false,
+				"gfSection": false,
+				"bpm": 130,
 				"changeBPM": false,
-				"bpm": 130
+				"mustHitSection": false
 			},
 			{
-				"typeOfSection": 0,
+				"sectionBeats": 4,
 				"sectionNotes": [
 					[
 						179314.285714286,
@@ -12163,15 +12160,15 @@
 						428.571428571429
 					]
 				],
-				"sectionBeats": 4,
-				"altAnim": false,
+				"typeOfSection": 0,
 				"gfSection": false,
-				"bpm": 130,
+				"altAnim": false,
+				"mustHitSection": false,
 				"changeBPM": false,
-				"mustHitSection": false
+				"bpm": 130
 			},
 			{
-				"typeOfSection": 0,
+				"sectionBeats": 4,
 				"sectionNotes": [
 					[
 						179657.142857143,
@@ -12199,15 +12196,15 @@
 						0
 					]
 				],
-				"sectionBeats": 4,
-				"altAnim": false,
+				"typeOfSection": 0,
 				"gfSection": false,
-				"bpm": 130,
+				"altAnim": false,
+				"mustHitSection": false,
 				"changeBPM": false,
-				"mustHitSection": false
+				"bpm": 130
 			},
 			{
-				"typeOfSection": 0,
+				"sectionBeats": 4,
 				"sectionNotes": [
 					[
 						181028.571428571,
@@ -12230,15 +12227,15 @@
 						428.571428571429
 					]
 				],
-				"sectionBeats": 4,
-				"altAnim": false,
+				"typeOfSection": 0,
 				"gfSection": false,
-				"bpm": 130,
+				"altAnim": false,
+				"mustHitSection": false,
 				"changeBPM": false,
-				"mustHitSection": false
+				"bpm": 130
 			},
 			{
-				"typeOfSection": 0,
+				"sectionBeats": 4,
 				"sectionNotes": [
 					[
 						182400,
@@ -12295,15 +12292,15 @@
 						"Real Poison"
 					]
 				],
-				"sectionBeats": 4,
-				"altAnim": false,
+				"typeOfSection": 0,
 				"gfSection": false,
-				"bpm": 130,
+				"altAnim": false,
+				"mustHitSection": true,
 				"changeBPM": false,
-				"mustHitSection": true
+				"bpm": 130
 			},
 			{
-				"typeOfSection": 0,
+				"sectionBeats": 4,
 				"sectionNotes": [
 					[
 						183771.428571429,
@@ -12332,15 +12329,15 @@
 						0
 					]
 				],
-				"sectionBeats": 4,
-				"altAnim": false,
+				"typeOfSection": 0,
 				"gfSection": false,
-				"bpm": 130,
+				"altAnim": false,
+				"mustHitSection": true,
 				"changeBPM": false,
-				"mustHitSection": true
+				"bpm": 130
 			},
 			{
-				"typeOfSection": 0,
+				"sectionBeats": 4,
 				"sectionNotes": [
 					[
 						185142.857142857,
@@ -12410,15 +12407,15 @@
 						"Real Poison"
 					]
 				],
-				"sectionBeats": 4,
-				"altAnim": false,
+				"typeOfSection": 0,
 				"gfSection": false,
-				"bpm": 130,
+				"altAnim": false,
+				"mustHitSection": true,
 				"changeBPM": false,
-				"mustHitSection": true
+				"bpm": 130
 			},
 			{
-				"typeOfSection": 0,
+				"sectionBeats": 4,
 				"sectionNotes": [
 					[
 						186514.285714286,
@@ -12469,15 +12466,15 @@
 						"Real Poison"
 					]
 				],
-				"sectionBeats": 4,
-				"altAnim": false,
+				"typeOfSection": 0,
 				"gfSection": false,
-				"bpm": 130,
+				"altAnim": false,
+				"mustHitSection": true,
 				"changeBPM": false,
-				"mustHitSection": true
+				"bpm": 130
 			},
 			{
-				"typeOfSection": 0,
+				"sectionBeats": 4,
 				"sectionNotes": [
 					[
 						187885.714285714,
@@ -12606,15 +12603,15 @@
 						"Real Poison"
 					]
 				],
-				"sectionBeats": 4,
-				"altAnim": false,
+				"typeOfSection": 0,
 				"gfSection": false,
-				"bpm": 130,
+				"altAnim": false,
+				"mustHitSection": false,
 				"changeBPM": false,
-				"mustHitSection": false
+				"bpm": 130
 			},
 			{
-				"typeOfSection": 0,
+				"sectionBeats": 4,
 				"sectionNotes": [
 					[
 						189257.142857143,
@@ -12643,15 +12640,15 @@
 						0
 					]
 				],
-				"sectionBeats": 4,
-				"altAnim": false,
+				"typeOfSection": 0,
 				"gfSection": false,
-				"bpm": 130,
+				"altAnim": false,
+				"mustHitSection": false,
 				"changeBPM": false,
-				"mustHitSection": false
+				"bpm": 130
 			},
 			{
-				"typeOfSection": 0,
+				"sectionBeats": 4,
 				"sectionNotes": [
 					[
 						191142.857142857,
@@ -12706,15 +12703,15 @@
 						"Real Poison"
 					]
 				],
-				"sectionBeats": 4,
-				"altAnim": false,
+				"typeOfSection": 0,
 				"gfSection": false,
-				"bpm": 130,
+				"altAnim": false,
+				"mustHitSection": false,
 				"changeBPM": false,
-				"mustHitSection": false
+				"bpm": 130
 			},
 			{
-				"typeOfSection": 0,
+				"sectionBeats": 4,
 				"sectionNotes": [
 					[
 						192000,
@@ -12753,15 +12750,15 @@
 						0
 					]
 				],
-				"sectionBeats": 4,
-				"altAnim": false,
+				"typeOfSection": 0,
 				"gfSection": false,
-				"bpm": 130,
+				"altAnim": false,
+				"mustHitSection": false,
 				"changeBPM": false,
-				"mustHitSection": false
+				"bpm": 130
 			},
 			{
-				"typeOfSection": 0,
+				"sectionBeats": 4,
 				"sectionNotes": [
 					[
 						193371.428571429,
@@ -12790,100 +12787,20 @@
 						"Real Poison"
 					]
 				],
-				"sectionBeats": 4,
-				"altAnim": false,
-				"gfSection": false,
-				"bpm": 130,
-				"changeBPM": false,
-				"mustHitSection": false
-			},
-			{
-				"typeOfSection": 0,
-				"sectionNotes": [],
-				"sectionBeats": 4,
-				"altAnim": false,
-				"gfSection": false,
-				"bpm": 130,
-				"changeBPM": false,
-				"mustHitSection": false
-			},
-			{
-				"typeOfSection": 0,
-				"sectionNotes": [],
-				"sectionBeats": 4,
-				"altAnim": false,
-				"gfSection": false,
-				"bpm": 130,
-				"changeBPM": false,
-				"mustHitSection": true
-			},
-			{
-				"sectionBeats": 4,
-				"sectionNotes": [],
 				"typeOfSection": 0,
 				"gfSection": false,
 				"altAnim": false,
-				"mustHitSection": true,
+				"mustHitSection": false,
 				"changeBPM": false,
 				"bpm": 130
 			},
 			{
-				"typeOfSection": 0,
-				"sectionNotes": [],
-				"sectionBeats": 4,
-				"altAnim": false,
-				"gfSection": false,
-				"bpm": 130,
-				"changeBPM": false,
-				"mustHitSection": false
-			},
-			{
-				"typeOfSection": 0,
-				"sectionNotes": [],
-				"sectionBeats": 4,
-				"altAnim": false,
-				"gfSection": false,
-				"bpm": 130,
-				"changeBPM": false,
-				"mustHitSection": false
-			},
-			{
-				"typeOfSection": 0,
-				"sectionNotes": [],
-				"sectionBeats": 4,
-				"altAnim": false,
-				"gfSection": false,
-				"bpm": 130,
-				"changeBPM": false,
-				"mustHitSection": true
-			},
-			{
-				"typeOfSection": 0,
-				"sectionNotes": [],
-				"sectionBeats": 4,
-				"altAnim": false,
-				"gfSection": false,
-				"bpm": 130,
-				"changeBPM": false,
-				"mustHitSection": true
-			},
-			{
-				"typeOfSection": 0,
-				"sectionNotes": [],
-				"sectionBeats": 4,
-				"altAnim": false,
-				"gfSection": false,
-				"bpm": 130,
-				"changeBPM": false,
-				"mustHitSection": true
-			},
-			{
 				"sectionBeats": 4,
 				"sectionNotes": [],
 				"typeOfSection": 0,
 				"gfSection": false,
 				"altAnim": false,
-				"mustHitSection": true,
+				"mustHitSection": false,
 				"changeBPM": false,
 				"bpm": 130
 			},
@@ -12898,12 +12815,32 @@
 				"bpm": 130
 			},
 			{
+				"typeOfSection": 0,
+				"sectionNotes": [],
+				"sectionBeats": 4,
+				"altAnim": false,
+				"gfSection": false,
+				"bpm": 130,
+				"changeBPM": false,
+				"mustHitSection": true
+			},
+			{
 				"sectionBeats": 4,
 				"sectionNotes": [],
 				"typeOfSection": 0,
 				"gfSection": false,
 				"altAnim": false,
-				"mustHitSection": true,
+				"mustHitSection": false,
+				"changeBPM": false,
+				"bpm": 130
+			},
+			{
+				"sectionBeats": 4,
+				"sectionNotes": [],
+				"typeOfSection": 0,
+				"gfSection": false,
+				"altAnim": false,
+				"mustHitSection": false,
 				"changeBPM": false,
 				"bpm": 130
 			},
@@ -12948,6 +12885,56 @@
 				"mustHitSection": true
 			},
 			{
+				"typeOfSection": 0,
+				"sectionNotes": [],
+				"sectionBeats": 4,
+				"altAnim": false,
+				"gfSection": false,
+				"bpm": 130,
+				"changeBPM": false,
+				"mustHitSection": true
+			},
+			{
+				"typeOfSection": 0,
+				"sectionNotes": [],
+				"sectionBeats": 4,
+				"altAnim": false,
+				"gfSection": false,
+				"bpm": 130,
+				"changeBPM": false,
+				"mustHitSection": true
+			},
+			{
+				"typeOfSection": 0,
+				"sectionNotes": [],
+				"sectionBeats": 4,
+				"altAnim": false,
+				"gfSection": false,
+				"bpm": 130,
+				"changeBPM": false,
+				"mustHitSection": true
+			},
+			{
+				"typeOfSection": 0,
+				"sectionNotes": [],
+				"sectionBeats": 4,
+				"altAnim": false,
+				"gfSection": false,
+				"bpm": 130,
+				"changeBPM": false,
+				"mustHitSection": true
+			},
+			{
+				"typeOfSection": 0,
+				"sectionNotes": [],
+				"sectionBeats": 4,
+				"altAnim": false,
+				"gfSection": false,
+				"bpm": 130,
+				"changeBPM": false,
+				"mustHitSection": true
+			},
+			{
 				"sectionBeats": 4,
 				"sectionNotes": [],
 				"typeOfSection": 0,
@@ -12955,87 +12942,7 @@
 				"altAnim": false,
 				"mustHitSection": true,
 				"changeBPM": false,
-				"bpm": 175
-			},
-			{
-				"typeOfSection": 0,
-				"sectionNotes": [],
-				"sectionBeats": 4,
-				"altAnim": false,
-				"gfSection": false,
-				"bpm": 175,
-				"changeBPM": false,
-				"mustHitSection": true
-			},
-			{
-				"typeOfSection": 0,
-				"sectionNotes": [],
-				"sectionBeats": 4,
-				"altAnim": false,
-				"gfSection": false,
-				"bpm": 175,
-				"changeBPM": false,
-				"mustHitSection": true
-			},
-			{
-				"typeOfSection": 0,
-				"sectionNotes": [],
-				"sectionBeats": 4,
-				"altAnim": false,
-				"gfSection": false,
-				"bpm": 175,
-				"changeBPM": false,
-				"mustHitSection": true
-			},
-			{
-				"sectionBeats": 4,
-				"sectionNotes": [],
-				"typeOfSection": 0,
-				"gfSection": false,
-				"altAnim": false,
-				"mustHitSection": true,
-				"changeBPM": false,
-				"bpm": 175
-			},
-			{
-				"sectionBeats": 4,
-				"sectionNotes": [],
-				"typeOfSection": 0,
-				"gfSection": false,
-				"altAnim": false,
-				"mustHitSection": true,
-				"changeBPM": false,
-				"bpm": 175
-			},
-			{
-				"typeOfSection": 0,
-				"sectionNotes": [],
-				"sectionBeats": 4,
-				"altAnim": false,
-				"gfSection": false,
-				"bpm": 175,
-				"changeBPM": false,
-				"mustHitSection": true
-			},
-			{
-				"typeOfSection": 0,
-				"sectionNotes": [],
-				"sectionBeats": 4,
-				"altAnim": false,
-				"gfSection": false,
-				"bpm": 175,
-				"changeBPM": false,
-				"mustHitSection": true
-			},
-			{
-				"typeOfSection": 0,
-				"sectionNotes": [],
-				"sectionBeats": 4,
-				"altAnim": false,
-				"gfSection": false,
-				"bpm": 175,
-				"changeBPM": false,
-				"mustHitSection": true
+				"bpm": 130
 			},
 			{
 				"typeOfSection": 0,
@@ -13078,34 +12985,134 @@
 				"bpm": 175
 			},
 			{
+				"typeOfSection": 0,
+				"sectionNotes": [],
 				"sectionBeats": 4,
-				"sectionNotes": [],
-				"typeOfSection": 0,
-				"gfSection": false,
 				"altAnim": false,
-				"mustHitSection": true,
-				"changeBPM": false,
-				"bpm": 175
-			},
-			{
-				"sectionBeats": 4,
-				"sectionNotes": [],
-				"typeOfSection": 0,
 				"gfSection": false,
-				"altAnim": false,
-				"mustHitSection": true,
-				"changeBPM": false,
-				"bpm": 175
-			},
-			{
-				"gfSection": false,
-				"altAnim": false,
-				"typeOfSection": 0,
-				"sectionNotes": [],
 				"bpm": 175,
-				"sectionBeats": 4,
 				"changeBPM": false,
 				"mustHitSection": true
+			},
+			{
+				"typeOfSection": 0,
+				"sectionNotes": [],
+				"sectionBeats": 4,
+				"altAnim": false,
+				"gfSection": false,
+				"bpm": 175,
+				"changeBPM": false,
+				"mustHitSection": true
+			},
+			{
+				"sectionBeats": 4,
+				"sectionNotes": [],
+				"typeOfSection": 0,
+				"gfSection": false,
+				"altAnim": false,
+				"mustHitSection": true,
+				"changeBPM": false,
+				"bpm": 175
+			},
+			{
+				"sectionBeats": 4,
+				"sectionNotes": [],
+				"typeOfSection": 0,
+				"gfSection": false,
+				"altAnim": false,
+				"mustHitSection": true,
+				"changeBPM": false,
+				"bpm": 175
+			},
+			{
+				"sectionBeats": 4,
+				"sectionNotes": [],
+				"typeOfSection": 0,
+				"gfSection": false,
+				"altAnim": false,
+				"mustHitSection": true,
+				"changeBPM": false,
+				"bpm": 175
+			},
+			{
+				"sectionBeats": 4,
+				"sectionNotes": [],
+				"typeOfSection": 0,
+				"gfSection": false,
+				"altAnim": false,
+				"mustHitSection": true,
+				"changeBPM": false,
+				"bpm": 175
+			},
+			{
+				"typeOfSection": 0,
+				"sectionNotes": [],
+				"sectionBeats": 4,
+				"altAnim": false,
+				"gfSection": false,
+				"bpm": 175,
+				"changeBPM": false,
+				"mustHitSection": true
+			},
+			{
+				"typeOfSection": 0,
+				"sectionNotes": [],
+				"sectionBeats": 4,
+				"altAnim": false,
+				"gfSection": false,
+				"bpm": 175,
+				"changeBPM": false,
+				"mustHitSection": true
+			},
+			{
+				"typeOfSection": 0,
+				"sectionNotes": [],
+				"sectionBeats": 4,
+				"altAnim": false,
+				"gfSection": false,
+				"bpm": 175,
+				"changeBPM": false,
+				"mustHitSection": true
+			},
+			{
+				"typeOfSection": 0,
+				"sectionNotes": [],
+				"sectionBeats": 4,
+				"altAnim": false,
+				"gfSection": false,
+				"bpm": 175,
+				"changeBPM": false,
+				"mustHitSection": true
+			},
+			{
+				"typeOfSection": 0,
+				"sectionNotes": [],
+				"sectionBeats": 4,
+				"altAnim": false,
+				"gfSection": false,
+				"bpm": 175,
+				"changeBPM": false,
+				"mustHitSection": true
+			},
+			{
+				"sectionBeats": 4,
+				"sectionNotes": [],
+				"typeOfSection": 0,
+				"gfSection": false,
+				"altAnim": false,
+				"mustHitSection": true,
+				"changeBPM": false,
+				"bpm": 175
+			},
+			{
+				"sectionBeats": 4,
+				"sectionNotes": [],
+				"typeOfSection": 0,
+				"gfSection": false,
+				"altAnim": false,
+				"mustHitSection": true,
+				"changeBPM": false,
+				"bpm": 175
 			},
 			{
 				"gfSection": false,
@@ -13118,13 +13125,16 @@
 				"mustHitSection": true
 			}
 		],
+		"player2": "marco",
+		"gfVersion": "normalSpeaker",
+		"events": [],
 		"player3": "normalSpeaker",
 		"song": "Toxic Mishap",
-		"stage": "Marco's Hideout",
-		"validScore": true,
-		"sections": 45,
 		"needsVoices": true,
-		"bpm": 175,
-		"speed": 3.1
+		"sections": 45,
+		"validScore": true,
+		"stage": "Marco's Hideout",
+		"speed": 3.1,
+		"bpm": 175
 	}
 }

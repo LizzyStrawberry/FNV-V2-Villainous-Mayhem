@@ -18,7 +18,9 @@ import flixel.util.FlxStringUtil;
 
 class PauseSubState extends MusicBeatSubstate
 {
-	var options:Array<String> = ['Mechanics', 'Shaders', 'Cinematic Bars', 'Scroll Type', 'BotPlay', 'FrameRate']; //Main Options for Story Mode
+	var options:Array<String> = ['Mechanics', 'Shaders', 'Cinematic Bars', 'Scroll Type', 'BotPlay', 'MoreOptions']; //Main Quick Options for Story Mode
+	public static var pauseOptions:Bool = false;
+
 	private var grpOpts:FlxTypedGroup<Alphabet>;
 	var curOption:Int = 0;
 	var grpMenuShit:FlxTypedGroup<Alphabet>;
@@ -67,9 +69,9 @@ class PauseSubState extends MusicBeatSubstate
 
 		//Setup Quick Settings for injection mode, mayhem mode
 		if (PlayState.isInjectionMode || PlayState.isMayhemMode)
-			options = ['Shaders', 'Cinematic Bars', 'Scroll Type', 'FrameRate'];
+			options = ['Shaders', 'Cinematic Bars', 'Scroll Type', 'MoreOptions'];
 		if (PlayState.isIniquitousMode)
-			options = ['Shaders', 'Cinematic Bars', 'Scroll Type', 'BotPlay', 'FrameRate'];
+			options = ['Shaders', 'Cinematic Bars', 'Scroll Type', 'BotPlay', 'MoreOptions'];
 		changedSettings = false;
 		playerSelected = PlayState.SONG.player1;
 
@@ -560,7 +562,7 @@ class PauseSubState extends MusicBeatSubstate
 				changeOption(1);
 			}
 
-			if (!delay)
+			if (!delay && curOption != 5)
 			{
 				if (controls.UI_LEFT_P)
 				{
@@ -570,6 +572,41 @@ class PauseSubState extends MusicBeatSubstate
 				if (controls.UI_RIGHT_P)
 				{
 					applyOption(1);
+				}
+			}
+
+			// Exclusively for "More Options.."
+			if (PlayState.isInjectionMode || PlayState.isMayhemMode)
+			{
+				if (curOption == 3 && controls.ACCEPT)
+				{
+					PlayState.instance.paused = true;
+					PlayState.instance.vocals.volume = 0;
+
+					pauseOptions = true;
+					LoadingState.loadAndSwitchState(new options.OptionsState());
+				}
+			}
+			else if (PlayState.isIniquitousMode)
+			{
+				if (curOption == 4 && controls.ACCEPT)
+				{
+					PlayState.instance.paused = true;
+					PlayState.instance.vocals.volume = 0;
+
+					pauseOptions = true;
+					LoadingState.loadAndSwitchState(new options.OptionsState());
+				}
+			}
+			else
+			{
+				if (curOption == 5 && controls.ACCEPT)
+				{
+					PlayState.instance.paused = true;
+					PlayState.instance.vocals.volume = 0;
+
+					pauseOptions = true;
+					LoadingState.loadAndSwitchState(new options.OptionsState());
 				}
 			}
 
@@ -794,12 +831,6 @@ class PauseSubState extends MusicBeatSubstate
 								ClientPrefs.gameplaySettings.set('botplay', false);
 								botplayOn = false;
 								trace ("Botplay: False.");
-							case 5:
-								if (ClientPrefs.framerate > 30)
-								{
-									ClientPrefs.framerate -= 1;
-									onChangeFramerate();
-								}
 						}
 						delay = true;
 						new FlxTimer().start(0.05, function (tmr:FlxTimer) {
@@ -836,12 +867,6 @@ class PauseSubState extends MusicBeatSubstate
 								ClientPrefs.gameplaySettings.set('botplay', true);
 								botplayOn = true;
 								trace ("Botplay: True.");
-							case 5:
-								if (ClientPrefs.framerate < 240)
-								{
-									ClientPrefs.framerate += 1;
-									onChangeFramerate();
-								}
 						}
 						delay = true;
 						new FlxTimer().start(0.05, function (tmr:FlxTimer) {
@@ -874,12 +899,6 @@ class PauseSubState extends MusicBeatSubstate
 							case 2:
 								ClientPrefs.downScroll = false;
 								trace ("Downscroll: False");
-							case 3:
-								if (ClientPrefs.framerate > 30)
-								{
-									ClientPrefs.framerate -= 1;
-									onChangeFramerate();
-								}
 						}
 						delay = true;
 						new FlxTimer().start(0.05, function (tmr:FlxTimer) {
@@ -905,12 +924,6 @@ class PauseSubState extends MusicBeatSubstate
 							case 2:
 								ClientPrefs.downScroll = true;
 								trace ("Downscroll: True");
-							case 3:
-								if (ClientPrefs.framerate < 240)
-								{
-									ClientPrefs.framerate += 1;
-									onChangeFramerate();
-								}
 						}
 						delay = true;
 						new FlxTimer().start(0.05, function (tmr:FlxTimer) {
@@ -947,12 +960,6 @@ class PauseSubState extends MusicBeatSubstate
 								ClientPrefs.gameplaySettings.set('botplay', false);
 								botplayOn = false;
 								trace ("Botplay: False.");
-							case 4:
-								if (ClientPrefs.framerate > 30)
-								{
-									ClientPrefs.framerate -= 1;
-									onChangeFramerate();
-								}
 						}
 						delay = true;
 						new FlxTimer().start(0.05, function (tmr:FlxTimer) {
@@ -982,12 +989,6 @@ class PauseSubState extends MusicBeatSubstate
 								ClientPrefs.gameplaySettings.set('botplay', true);
 								botplayOn = true;
 								trace ("Botplay: True.");
-							case 4:
-								if (ClientPrefs.framerate < 240)
-								{
-									ClientPrefs.framerate += 1;
-									onChangeFramerate();
-								}
 						}
 						delay = true;
 						new FlxTimer().start(0.05, function (tmr:FlxTimer) {
@@ -1046,7 +1047,7 @@ class PauseSubState extends MusicBeatSubstate
 							optionInfo.text = "Determine whether you want to turn botplay on or off.\n\n<R>WARNING:<R>\nTurning botplay <G>ON<G> will reset your gameplay, aswell as your progress.\nTo disable, press CTRL on the Story Mode / Freeplay Menu.";
 						case 5:
 							optionInfo.y = 320;
-							optionInfo.text = "Set up how many frames per second you want.\nJust as simple as that.";
+							optionInfo.text = "Press ENTER to access all of FNV's settings.\nNo progress will be lost.";
 					}
 	
 					
@@ -1121,7 +1122,7 @@ class PauseSubState extends MusicBeatSubstate
 						}
 					}
 					if (item.ID == 5)
-						item.text = "Frame Rate (" + ClientPrefs.framerate + ")";
+						item.text = "More Options..";
 				}
 			}
 			
@@ -1157,7 +1158,7 @@ class PauseSubState extends MusicBeatSubstate
 							optionInfo.text = "Determine whether you want your notes to be scrolled upwards or downwards.\n\n(Settings are applied once you move to the next song.)";
 						case 3:
 							optionInfo.y = 320;
-							optionInfo.text = "Set up how many frames per second you want.\nJust as simple as that.";
+							optionInfo.text = "Press ENTER to access all of FNV's settings.\nNo progress will be lost.";
 					}
 	
 					if (ClientPrefs.shaders == true)
@@ -1203,7 +1204,7 @@ class PauseSubState extends MusicBeatSubstate
 						}
 					}
 					if (item.ID == 3)
-						item.text = "Frame Rate (" + ClientPrefs.framerate + ")";
+						item.text = "More Options..";
 				}
 			}
 
@@ -1243,7 +1244,7 @@ class PauseSubState extends MusicBeatSubstate
 							optionInfo.text = "Determine whether you want to turn botplay on or off.\n\n<R>WARNING:<R>\nTurning botplay <G>ON<G> will reset your gameplay, aswell as your progress.\nTo disable, press CTRL on the Story Mode / Freeplay Menu.";
 						case 4:
 							optionInfo.y = 320;
-							optionInfo.text = "Set up how many frames per second you want.\nJust as simple as that.";
+							optionInfo.text = "Press ENTER to access all of FNV's settings.\nNo progress will be lost.";
 					}
 	
 					if (ClientPrefs.shaders == true)
@@ -1303,7 +1304,7 @@ class PauseSubState extends MusicBeatSubstate
 						}
 					}
 					if (item.ID == 4)
-						item.text = "Frame Rate (" + ClientPrefs.framerate + ")";
+						item.text = "More Options..";
 				}
 			}
 
@@ -1550,20 +1551,6 @@ class PauseSubState extends MusicBeatSubstate
 		else
 		{
 			MusicBeatState.resetState();
-		}
-	}
-
-	function onChangeFramerate()
-	{
-		if(ClientPrefs.framerate > FlxG.drawFramerate)
-		{
-			FlxG.updateFramerate = ClientPrefs.framerate;
-			FlxG.drawFramerate = ClientPrefs.framerate;
-		}
-		else
-		{
-			FlxG.drawFramerate = ClientPrefs.framerate;
-			FlxG.updateFramerate = ClientPrefs.framerate;
 		}
 	}
 

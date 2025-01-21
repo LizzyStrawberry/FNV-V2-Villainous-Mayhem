@@ -728,8 +728,7 @@ class InfoState extends MusicBeatState
 							titleText.text = "Kiana";
 	
 							desc.text = "Aliases: The First Dweller, Lust demon, Basilisk, Professional Nut Gargler\nAge: ???\nSpecies: Part Entity - Part Ancient Deity\nHeight: 4'11 (Seductive Form) - 43 ft (Real Form)
-							\nA Fluid thirsty 'Dweller'\nfrom The Unnamed Dimension.\nShe will use her seductive form\nto lure prey from other dimensions\nso she can feed on their desires and souls.
-							\n'STUPID BITCH'";
+							\nA Fluid thirsty 'Dweller'\nfrom The Unnamed Dimension.\nShe will use her seductive form\nto lure prey from other dimensions\nso she can feed on their desires and souls.\n'STUPID BITCH'";
 						}
 						else
 						{
@@ -1112,9 +1111,7 @@ class InfoState extends MusicBeatState
 							titleText.text = "FNV";
 	
 							desc.text = "Real Name: Friday Night Villainy\nAliases: FNV\nAge: FNV\nSpecies: FNV\nHeight: FNV
-							
 							\nFNV
-							
 							\n'fnv'";
 						}
 						else
@@ -1226,8 +1223,6 @@ class InfoState extends MusicBeatState
 							titleText.text = "Jerry";
 	
 							desc.text = "His name is Jerry.\n
-							\n
-							\n
 							\n
 							\n
 							\n

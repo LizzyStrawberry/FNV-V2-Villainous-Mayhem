@@ -183,6 +183,13 @@ class OptionsState extends MusicBeatState
 				FlxTween.tween(yes, {alpha: 0}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
 				FlxTween.tween(no, {alpha: 0}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
 			}
+			else if (PauseSubState.pauseOptions == true)
+			{
+				PauseSubState.pauseOptions = false;
+				StageData.loadDirectory(PlayState.SONG);
+				LoadingState.loadAndSwitchState(new PlayState());
+				FlxG.sound.music.volume = 0;
+			} 
 			else if (ClientPrefs.optionsFreeplay == true)
 			{
 				FlxG.sound.play(Paths.sound('cancelMenu'));
