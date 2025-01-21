@@ -15,6 +15,8 @@ function onCreate()
 		character = 3
 	elseif boyfriendName == 'debugGF' then
 		character = 4
+	elseif boyfriendName == 'Spendthrift GF' then
+		character = 5
 	end
 	
 	precacheSound('hypnoGoBrrrrrr')
@@ -353,15 +355,17 @@ function onStepHit()
 		doTweenAlpha('helloHypno', 'static', 0, 0.13, 'circOut')
 		triggerEvent('Change Character', 'dad', 'Morky')
 		if character == 1 then
-			triggerEvent('Change Character', 'boyfriend', 'GFwav')
+			triggerEvent('Change Character', 'bf', 'GFwav')
 		elseif character == 2 then
-			triggerEvent('Change Character', 'boyfriend', 'playablegf-old')
+			triggerEvent('Change Character', 'bf', 'playablegf-old')
 		elseif character == 3 then
-			triggerEvent('Change Character', 'boyfriend', 'd-side gf')
+			triggerEvent('Change Character', 'bf', 'd-side gf')
 		elseif character == 4 then
-			triggerEvent('Change Character', 'boyfriend', 'debugGF')
+			triggerEvent('Change Character', 'bf', 'debugGF')
+		elseif character == 5 then
+			triggerEvent('Change Character', 'bf', 'Spendthrift GF')
 		else
-			triggerEvent('Change Character', 'boyfriend', 'playablegf')
+			triggerEvent('Change Character', 'bf', 'playablegf')
 		end
 		clearEffects('bg')
 	end
