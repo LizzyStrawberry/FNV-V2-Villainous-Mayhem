@@ -241,7 +241,7 @@ class Cache extends MusicBeatState
 			graph.persist = true;
 			graph.destroyOnNoUse = false;
 			bitmapData.set(replaced,graph);
-			trace(i);
+			trace("Character Cached: " + i);
 			if (FlxG.random.int(1, 5) == 3)
 				currentLoaded += 2;
 			else
@@ -255,7 +255,7 @@ class Cache extends MusicBeatState
 			graph.persist = true;
 			graph.destroyOnNoUse = false;
 			bitmapData.set(replaced,graph);
-			trace(i);
+			trace("Character Cached: " + i);
 			if (FlxG.random.int(1, 5) == 3)
 				currentLoaded += 2;
 			else
@@ -265,7 +265,7 @@ class Cache extends MusicBeatState
 
 		for (i in music)
 		{
-			trace(i);
+			trace("Song Cached: " + i);
 			if (FlxG.random.int(1, 5) == 3)
 				currentLoaded += 2;
 			else

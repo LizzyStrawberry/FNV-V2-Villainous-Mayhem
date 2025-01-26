@@ -22,7 +22,7 @@ function onUpdate()
 	end
     if followchars == true then
         if mustHitSection == false then
-            elseif getProperty('dad.animation.curAnim.name') == 'singLEFT' then
+            if getProperty('dad.animation.curAnim.name') == 'singLEFT' then
                 triggerEvent('Camera Follow Pos',xx-ofs,yy)
             elseif getProperty('dad.animation.curAnim.name') == 'singRIGHT' then
                 triggerEvent('Camera Follow Pos',xx+ofs,yy)

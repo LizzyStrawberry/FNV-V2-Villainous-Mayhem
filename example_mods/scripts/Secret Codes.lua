@@ -89,6 +89,7 @@ function onUpdate(elapsed)
 			else
 				triggerEvent('Change Character', 'bf', 'aileenTofu')
 			end
+			scaleObject('lizGoingThroughHell', 0.4, 0.4)
 			setProperty('lizGoingThroughHell.alpha', 1)
 			doTweenAlpha('poof', 'lizGoingThroughHell', 0, 0.7 / playbackRate, 'cubeOut')
 			doTweenX('poofX', 'lizGoingThroughHell.scale', 2, 0.7 / playbackRate, 'cubeOut')

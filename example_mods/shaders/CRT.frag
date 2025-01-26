@@ -12,7 +12,7 @@ float warp = 0.75; // simulate curvature of CRT monitor
 float scan = 0.75; // simulate darkness between scanlines
 
 void main()
-	{
+{
     // squared distance from center
     vec2 uv = fragCoord/iResolution.xy;
     vec2 dc = abs(0.5-uv);
@@ -26,10 +26,12 @@ void main()
     if (uv.y > 1.0 || uv.x < 0.0 || uv.x > 1.0 || uv.y < 0.0)
         fragColor = vec4(0.0,0.0,0.0,1.0);
     else
-    	{
+    {
+        float oga = texture(iChannel0, uv).a;
+
         // determine if we are drawing in a scanline
         float apply = abs(sin(fragCoord.y)*0.5*scan);
         // sample the texture
-    	fragColor = vec4(mix(texture(iChannel0,uv).rgb,vec3(0.0),apply),1.0);
-        }
-	}
+    	fragColor = vec4(mix(texture(iChannel0,uv).rgb,vec3(0.0),apply),oga);
+    }
+}

@@ -7,23 +7,29 @@ function onCreate()
 
 		makeLuaSprite('camShader', nil)
         makeGraphic('camShader', screenWidth, screenHeight)
-        setSpriteShader('camShader', "CRT")	
-        
+        setSpriteShader('camShader', "CRT")
+		
         runHaxeCode([[
             trace(game.getLuaObject('camShader').shader + ' Has Been Loaded!');                      
             FlxG.game.setFilters([new ShaderFilter(game.getLuaObject('camShader').shader)]);
+			game.camGame.setFilters([new ShaderFilter(game.getLuaObject('camShader').shader)]);
+			game.camHUD.setFilters([new ShaderFilter(game.getLuaObject('camShader').shader)]);
         ]])
 	end
 end
 
 function onUpdate(elapsed)
 	setShaderFloat('camShader', 'iTime', os.clock())
+	setShaderFloat('camGame', 'iTime', os.clock())
+	setShaderFloat('camHUD', 'iTime', os.clock())
 end
 
 function onDestroy()
     if shadersEnabled then
         runHaxeCode([[
             FlxG.game.setFilters([]);
+            game.camGame.setFilters([]);
+            game.camHUD.setFilters([]);
         ]])
     end
 end

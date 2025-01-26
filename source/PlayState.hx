@@ -1024,7 +1024,7 @@ class PlayState extends MusicBeatState
 		super.create();
 
 		// Rotation with sustains fix (From Note direction script by emi3_)
-		if (Paths.formatToSongPath(SONG.song) == 'vguy' || Paths.formatToSongPath(SONG.song) == 'toxic-mishap') // Shit's broken here sadly
+		if (Paths.formatToSongPath(SONG.song) == 'vguy' || Paths.formatToSongPath(SONG.song) == 'unpaid-catastrophe') // Shit's broken here sadly, don't feel like fixing ngl
 		{
 			allowRotationFix = false;
 			trace("Rotation fix has been disabled");
@@ -2980,7 +2980,7 @@ class PlayState extends MusicBeatState
 		}
 		callOnLuas('onUpdatePost', [elapsed]);
 
-		if (allowRotationFix) // Shit's broken here sadly
+		if (allowRotationFix && generatedMusic && !inCutscene && startedCountdown)
 		{
 			notes.forEachAlive(function(daNote:Note)
 			{
@@ -5888,6 +5888,8 @@ class PlayState extends MusicBeatState
 							unlock = true;
 							if (!Achievements.isAchievementUnlocked('WeekMorkyVillainous_Beaten'))
 								ClientPrefs.weeksUnlocked += 1;
+							ClientPrefs.eggs += 1;
+							
 							ClientPrefs.saveSettings();
 						}
 					case 'WeekMorkyVillainous_Beaten':
@@ -5896,6 +5898,8 @@ class PlayState extends MusicBeatState
 							unlock = true;
 							if (!Achievements.isAchievementUnlocked('WeekMorky_Beaten'))
 								ClientPrefs.weeksUnlocked += 1;
+							ClientPrefs.eggs += 1;
+
 							ClientPrefs.saveSettings();
 						}
 					case 'WeekSus_Beaten':
@@ -5904,6 +5908,8 @@ class PlayState extends MusicBeatState
 							unlock = true;
 							if (!Achievements.isAchievementUnlocked('WeekSusVillainous_Beaten'))
 								ClientPrefs.weeksUnlocked += 1;
+							ClientPrefs.eggs += 1;
+
 							ClientPrefs.saveSettings();
 						}
 					case 'WeekSusVillainous_Beaten':
@@ -5912,6 +5918,8 @@ class PlayState extends MusicBeatState
 							unlock = true;
 							if (!Achievements.isAchievementUnlocked('WeekSus_Beaten'))
 								ClientPrefs.weeksUnlocked += 1;
+							ClientPrefs.eggs += 1;
+
 							ClientPrefs.saveSettings();
 						}
 					case 'WeekLegacy_Beaten':
@@ -5920,6 +5928,8 @@ class PlayState extends MusicBeatState
 							unlock = true;
 							if (!Achievements.isAchievementUnlocked('WeekLegacyVillainous_Beaten'))
 								ClientPrefs.weeksUnlocked += 1;
+							ClientPrefs.eggs += 1;
+
 							ClientPrefs.saveSettings();
 						}
 					case 'WeekLegacyVillainous_Beaten':
@@ -5928,6 +5938,8 @@ class PlayState extends MusicBeatState
 							unlock = true;
 							if (!Achievements.isAchievementUnlocked('WeekLegacy_Beaten'))
 								ClientPrefs.weeksUnlocked += 1;
+							ClientPrefs.eggs += 1;
+
 							ClientPrefs.saveSettings();
 						}
 					case 'WeekDside_Beaten':
@@ -5936,6 +5948,8 @@ class PlayState extends MusicBeatState
 							unlock = true;
 							if (!Achievements.isAchievementUnlocked('WeekDsideVillainous_Beaten'))
 								ClientPrefs.weeksUnlocked += 1;
+							ClientPrefs.eggs += 1;
+
 							ClientPrefs.saveSettings();
 						}
 					case 'WeekDsideVillainous_Beaten':
@@ -5944,6 +5958,8 @@ class PlayState extends MusicBeatState
 							unlock = true;
 							if (!Achievements.isAchievementUnlocked('WeekDside_Beaten'))
 								ClientPrefs.weeksUnlocked += 1;
+							ClientPrefs.eggs += 1;
+
 							ClientPrefs.saveSettings();
 						}
 					case 'weekIniquitous_Beaten':
@@ -5951,6 +5967,8 @@ class PlayState extends MusicBeatState
 						{
 							ClientPrefs.iniquitousWeekBeaten = true;
 							ClientPrefs.weeksUnlocked += 1;
+							ClientPrefs.eggs += 1;
+
 							ClientPrefs.saveSettings();
 						}
 
@@ -5963,66 +5981,114 @@ class PlayState extends MusicBeatState
 					case 'tofu_Beaten':
 						if(Paths.formatToSongPath(SONG.song) == 'tofu' && !changedDifficulty && !usedPractice && CoolUtil.difficultyString() == 'VILLAINOUS') {
 							unlock = true;
+							ClientPrefs.eggs += 1;
+							
+							ClientPrefs.saveSettings();
 						}
 					case 'marcochrome_Beaten':
 						if(Paths.formatToSongPath(SONG.song) == 'marcochrome' && !changedDifficulty && !usedPractice && CoolUtil.difficultyString() == 'VILLAINOUS') {
 							unlock = true;
+							ClientPrefs.eggs += 1;
+							
+							ClientPrefs.saveSettings();
 						}
 					case 'lustality_Beaten':
 						if(Paths.formatToSongPath(SONG.song) == 'lustality' && !changedDifficulty && !usedPractice && CoolUtil.difficultyString() == 'VILLAINOUS') {
 							unlock = true;
+							ClientPrefs.eggs += 1;
+							
+							ClientPrefs.saveSettings();
 						}
 					case 'lustalityV1_Beaten':
 						if(Paths.formatToSongPath(SONG.song) == 'lustality-v1' && !changedDifficulty && !usedPractice && CoolUtil.difficultyString() == 'VILLAINOUS') {
 							unlock = true;
+							ClientPrefs.eggs += 1;
+							
+							ClientPrefs.saveSettings();
 						}
 					case 'nunsational_Beaten':
 						if(Paths.formatToSongPath(SONG.song) == 'nunsational' && !changedDifficulty && !usedPractice && CoolUtil.difficultyString() == 'VILLAINOUS') {
 							unlock = true;
+							ClientPrefs.eggs += 1;
+							
+							ClientPrefs.saveSettings();
 						}
 					case 'FNV_Beaten':
 						if(Paths.formatToSongPath(SONG.song) == 'fnv' && !changedDifficulty && !usedPractice && CoolUtil.difficultyString() == 'VILLAINOUS') {
 							unlock = true;
+							ClientPrefs.eggs += 1;
+							
+							ClientPrefs.saveSettings();
 						}
 					case 'nic_Beaten':
 						if(Paths.formatToSongPath(SONG.song) == 'slowflp' && !changedDifficulty && !usedPractice && CoolUtil.difficultyString() == 'VILLAINOUS') {
 							unlock = true;
+							ClientPrefs.eggs += 1;
+							
+							ClientPrefs.saveSettings();
 						}
 					case 'fanfuck_Beaten':
 						if(Paths.formatToSongPath(SONG.song) == 'fanfuck-forever' && !changedDifficulty && !usedPractice && CoolUtil.difficultyString() == 'VILLAINOUS') {
 							unlock = true;
+							ClientPrefs.eggs += 1;
+							
+							ClientPrefs.saveSettings();
 						}
 					case 'rainyDaze_Beaten':
 						if(Paths.formatToSongPath(SONG.song) == 'rainy-daze' && !changedDifficulty && !usedPractice && CoolUtil.difficultyString() == 'VILLAINOUS') {
 							unlock = true;
+							ClientPrefs.eggs += 1;
+							
+							ClientPrefs.saveSettings();
 						}
 					case 'marauder_Beaten':
 						if(Paths.formatToSongPath(SONG.song) == 'marauder' && !changedDifficulty && !usedPractice && CoolUtil.difficultyString() == 'VILLAINOUS') {
 							unlock = true;
+							ClientPrefs.eggs += 1;
+							
+							ClientPrefs.saveSettings();
 						}
 					case 'vGuy_Beaten':
 						if(Paths.formatToSongPath(SONG.song) == 'vguy' && !changedDifficulty && !usedPractice && CoolUtil.difficultyString() == 'VILLAINOUS') {
 							unlock = true;
+							ClientPrefs.eggs += 1;
+							
+							ClientPrefs.saveSettings();
 						}
 					case 'fastFoodTherapy_Beaten':
 						if(Paths.formatToSongPath(SONG.song) == 'fast-food-therapy' && !changedDifficulty && !usedPractice && CoolUtil.difficultyString() == 'VILLAINOUS') {
 							unlock = true;
+							ClientPrefs.eggs += 1;
+							
+							ClientPrefs.saveSettings();
 						}
 					case 'tacticalMishap_Beaten':
 						if(Paths.formatToSongPath(SONG.song) == 'tactical-mishap' && !changedDifficulty && !usedPractice && CoolUtil.difficultyString() == 'VILLAINOUS') {
 							unlock = true;
+							ClientPrefs.eggs += 1;
+							
+							ClientPrefs.saveSettings();
 						}
 					case 'breacher_Beaten':
 						if(Paths.formatToSongPath(SONG.song) == 'breacher' && !changedDifficulty && !usedPractice && CoolUtil.difficultyString() == 'VILLAINOUS') {
 							unlock = true;
+							ClientPrefs.eggs += 1;
+							
+							ClientPrefs.saveSettings();
 						}
 					case 'concertChaos_Beaten':
 						if(Paths.formatToSongPath(SONG.song) == 'concert-chaos' && !changedDifficulty && !usedPractice && CoolUtil.difficultyString() == 'VILLAINOUS') {
 							unlock = true;
+							ClientPrefs.eggs += 1;
+							
+							ClientPrefs.saveSettings();
 						}
 					case 'itsKiana_Beaten':
 						if(Paths.formatToSongPath(SONG.song) == 'its-kiana' && !changedDifficulty && !usedPractice && CoolUtil.difficultyString() == 'VILLAINOUS') {
 							unlock = true;
+							ClientPrefs.eggs += 1;
+							
+							ClientPrefs.saveSettings();
 						}
 					case 'FNV_Completed':
 						if(	//Main Songs
