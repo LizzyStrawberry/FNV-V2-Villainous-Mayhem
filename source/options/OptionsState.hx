@@ -162,6 +162,7 @@ class OptionsState extends MusicBeatState
 		super.update(elapsed);
 
 		if (controls.BACK || FlxG.mouse.justPressedRight) {
+			FlxG.sound.play(Paths.sound('cancelMenu'));
 			if (erasingData && !shiftingBack)
 			{
 				shiftingBack = true;
@@ -192,7 +193,6 @@ class OptionsState extends MusicBeatState
 			} 
 			else if (ClientPrefs.optionsFreeplay == true)
 			{
-				FlxG.sound.play(Paths.sound('cancelMenu'));
 				if (FreeplayCategoryState.freeplayName == 'MAIN') //go to Main Freeplay
 					MusicBeatState.switchState(new FreeplayState());
 				else if (FreeplayCategoryState.freeplayName == 'BONUS') //go to Bonus Freeplay

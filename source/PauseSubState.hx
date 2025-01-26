@@ -584,7 +584,7 @@ class PauseSubState extends MusicBeatSubstate
 					PlayState.instance.vocals.volume = 0;
 
 					pauseOptions = true;
-					LoadingState.loadAndSwitchState(new options.OptionsState());
+					MusicBeatState.switchState(new options.OptionsState());
 				}
 			}
 			else if (PlayState.isIniquitousMode)
@@ -595,7 +595,7 @@ class PauseSubState extends MusicBeatSubstate
 					PlayState.instance.vocals.volume = 0;
 
 					pauseOptions = true;
-					LoadingState.loadAndSwitchState(new options.OptionsState());
+					MusicBeatState.switchState(new options.OptionsState());
 				}
 			}
 			else
@@ -606,7 +606,7 @@ class PauseSubState extends MusicBeatSubstate
 					PlayState.instance.vocals.volume = 0;
 
 					pauseOptions = true;
-					LoadingState.loadAndSwitchState(new options.OptionsState());
+					MusicBeatState.switchState(new options.OptionsState());
 				}
 			}
 

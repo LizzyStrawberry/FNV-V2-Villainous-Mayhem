@@ -44,6 +44,7 @@ class LoadingState extends MusicBeatState
 		'TIP:\nPress the arrows to play. Seriously, you KNOW how to play, right?',
 		'TIP:\nCheck out our shop(s), to unlock songs, weeks, charms, exclusive items and more!',
 		'TIP:\nThe Mayhem Bar gives you temporary powers, so use it wisely!',
+		'TIP:\nMarco\'s Note and Camera Movement is inverted on purpose, it was never a mistake!',
 		'FUN FACT:\nEvelyn is a robot.',
 		'FUN FACT:\nFNV has 3 shops in total!',
 		'TIP:\nHaving a hard time on a song? Use a charm!',

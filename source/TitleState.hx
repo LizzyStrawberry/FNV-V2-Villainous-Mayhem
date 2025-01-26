@@ -132,8 +132,6 @@ class TitleState extends MusicBeatState
 		FlxG.sound.volumeUpKeys = volumeUpKeys;
 		FlxG.keys.preventDefaultKeys = [TAB];
 
-		PlayerSettings.init();
-
 		curWacky = FlxG.random.getObject(getIntroTextShit());
 
 		// DEBUG BULLSHIT
@@ -141,10 +139,12 @@ class TitleState extends MusicBeatState
 		swagShader = new ColorSwap();
 		super.create();
 
-		FlxG.save.bind('funkin', 'ninjamuffin99');
-
-		ClientPrefs.loadPrefs();
-		NotificationAlert.loadNotifications();
+		#if !STARTUP_CACHE
+			PlayerSettings.init();
+			ClientPrefs.loadPrefs();
+			NotificationAlert.loadNotifications();
+			FlxG.save.bind('funkin', 'ninjamuffin99');
+		#end
 
 		#if CHECK_FOR_UPDATES
 		if(ClientPrefs.checkForUpdates && !closedState) {

@@ -94,13 +94,13 @@ class AchievementsMenuState extends MusicBeatState
 		}
 
 		if(FlxG.mouse.wheel != 0)
-			{
-				changeSelection(-shiftMult * FlxG.mouse.wheel);
-			}
+		{
+			changeSelection(-shiftMult * FlxG.mouse.wheel);
+		}
 
 		if (controls.BACK || FlxG.mouse.justPressedRight) {
 			FlxG.sound.play(Paths.sound('cancelMenu'));
-			LoadingState.loadAndSwitchState(new options.OptionsState());
+			MusicBeatState.switchState(new options.OptionsState());
 		}
 	}
 

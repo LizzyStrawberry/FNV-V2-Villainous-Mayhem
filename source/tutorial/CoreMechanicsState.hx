@@ -119,8 +119,8 @@ class CoreMechanicsState extends MusicBeatState
 	{
 		curImageSelected += change;
 		if (curImageSelected < 1)
-			curImageSelected = 6;
-		if (curImageSelected > 6)
+			curImageSelected = 7;
+		if (curImageSelected > 7)
 			curImageSelected = 1;
 
         currentImage.loadGraphic(Paths.image('tutorials/mechanics/MechanicsSel-' + curImageSelected));
@@ -143,6 +143,9 @@ class CoreMechanicsState extends MusicBeatState
 				descText.size = 18;
 			case 6:
 				descText.text = "Each buff gets unlocked by finishing each of the 3 main weeks of the mod (Weeks 1 - 3).\nThe Health Regeneration buff heals you periodically for a few seconds!\nThe Second Chance buff lets you continue playing with full health if you manage to lose all your health upon it's activation! BEWARE: it only works once per song, and it only grants you a second chance when you lose all your health before the bar depletes down!\nThe Immunity buff let's you miss as much as you want without losing health, either by the opponent, or you, or the mechanics given ingame!\nYou can only use 1 buff per song, aka the one you select from your inventory, and it's free of charge!";
+				descText.size = 18;
+			case 7:
+				descText.text = "Lastly, if you ever see this sign on your instructions screen, it means that this song will be a BOSS FIGHT!\nIn Boss Fights, Health Regeneration per note is slower, and the enemy can deal a lot more damage to you!\nThe miss penalty is also wau stricter, so consider using your charms and buffs if you find yourself in a difficult situation!";
 				descText.size = 18;
 		} 
 		
