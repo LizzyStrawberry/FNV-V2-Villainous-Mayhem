@@ -1,92 +1,48 @@
 {
 	"animations": [
 		{
-			"loop": false,
-			"offsets": [
-				790,
-				-228
-			],
-			"anim": "singLEFT",
-			"fps": 24,
-			"name": "yaku left",
-			"indices": []
-		},
-		{
-			"loop": false,
-			"offsets": [
-				56,
-				-144
-			],
-			"anim": "singDOWN",
-			"fps": 24,
-			"name": "yaku down",
-			"indices": []
-		},
-		{
-			"loop": false,
-			"offsets": [
-				220,
-				130
-			],
-			"anim": "singUP",
-			"fps": 24,
-			"name": "yaku up",
-			"indices": []
-		},
-		{
-			"loop": false,
-			"offsets": [
-				9,
-				-274
-			],
-			"anim": "singRIGHT",
-			"fps": 24,
-			"name": "yaku right",
-			"indices": []
-		},
-		{
-			"loop": false,
 			"offsets": [
 				178,
 				-4
 			],
-			"anim": "intro1",
+			"loop": false,
 			"fps": 24,
-			"name": "yaku intro1",
-			"indices": []
+			"anim": "intro1",
+			"indices": [],
+			"name": "yaku intro1"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				326,
 				-2
 			],
-			"anim": "intro2",
+			"loop": false,
 			"fps": 24,
-			"name": "yaku intro2",
-			"indices": []
+			"anim": "intro2",
+			"indices": [],
+			"name": "yaku intro2"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				209,
 				-24
 			],
-			"anim": "intro3",
+			"loop": false,
 			"fps": 24,
-			"name": "yaku intro3",
-			"indices": []
+			"anim": "intro3",
+			"indices": [],
+			"name": "yaku intro3"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				47,
 				-234
 			],
-			"anim": "attack",
+			"loop": false,
 			"fps": 24,
-			"name": "yaku attack",
-			"indices": []
+			"anim": "attack",
+			"indices": [],
+			"name": "yaku attack"
 		},
 		{
 			"loop": false,
@@ -97,7 +53,128 @@
 			"anim": "idle",
 			"fps": 24,
 			"name": "yaku Idle",
-			"indices": []
+			"indices": [
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9,
+				10,
+				11,
+				12,
+				13,
+				14,
+				15
+			]
+		},
+		{
+			"loop": false,
+			"offsets": [
+				790,
+				-228
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "yaku left",
+			"indices": [
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9
+			]
+		},
+		{
+			"loop": false,
+			"offsets": [
+				56,
+				-144
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "yaku down",
+			"indices": [
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9
+			]
+		},
+		{
+			"loop": false,
+			"offsets": [
+				220,
+				130
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "yaku up",
+			"indices": [
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9
+			]
+		},
+		{
+			"loop": false,
+			"offsets": [
+				790,
+				-228
+			],
+			"anim": "singLEFT-loop",
+			"fps": 24,
+			"name": "yaku left",
+			"indices": [
+				6,
+				7,
+				8,
+				9
+			]
+		},
+		{
+			"offsets": [
+				9,
+				-274
+			],
+			"indices": [
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9
+			],
+			"fps": 24,
+			"anim": "singRIGHT",
+			"loop": false,
+			"name": "yaku right"
 		}
 	],
 	"no_antialiasing": false,
@@ -117,6 +194,6 @@
 		-110,
 		-190
 	],
-	"sing_duration": 6.1,
+	"sing_duration": 4.00000000000001,
 	"scale": 1.4
 }

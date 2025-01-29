@@ -1,4 +1,4 @@
-local hudThings = {'watermark', 'watermark2', 'healthBar', 'healthBarBG', 'iconP1', 'iconP2', 'charmSocket', 'scoreTxt'}
+local hudThings = {'watermark', 'watermark2', 'healthBar', 'healthBarBG', 'iconP1', 'iconP2', 'scoreTxt'}
 local scrollSpeed = 1.2
 local dur = 1
 function onCreate()
@@ -133,9 +133,35 @@ function onUpdate()
 			setProperty(hudThings[i]..'.alpha', 1)
 		end
 	end
-	if curStep == 2400 or curStep == 2432 or curStep == 2528 or curStep == 2562 or curStep == 2656 then
-		cameraFlash('game', 'FFFFFF', 0.6 / playbackRate, false)
-		triggerEvent('Screen Shake', dur..', 0.005', dur..', 0.008')
+		
+	if curStep == 2372 then
+		callScript('scripts/VideoSpriteHandler', 'makeVideoSprite', {'goneCrazy', 'Shucks Cutscene', 0, 0, 'camHUD', 0})
+		setProperty('goneCrazy.alpha', 0)
+	end
+	if curStep == 2380 then
+		hudThings = {'watermark', 'watermark2', 'healthBar', 'healthBarBG', 'iconP1', 'iconP2', 'scoreTxt', 'timeBar', 'timeBarBG', 'timeTxt'}
+		for i = 1, #(hudThings) do
+			doTweenAlpha(hudThings[i], hudThings[i], 0, 0.8 / playbackRate, 'cubeInOut')
+		end
+		doTweenAlpha('blackBG', 'blackBG', 0, 0.8 / playbackRate, 'cubeInOut')
+	end
+	if curStep == 2388 then
+		for i = 0, 7 do
+			noteTweenAlpha('fuckYouNote'..i, i, 0, 0.8 / playbackRate, 'circOut')
+		end
+		doTweenAlpha('goneCrazy', 'goneCrazy', 1, 0.8 / playbackRate, 'cubeInOut')
+	end
+	if curStep == 2640 then
+		for i = 0, 7 do
+			noteTweenAlpha('fuckYouNote'..i, i, 1, 0.8 / playbackRate, 'cubeInOut')
+		end
+		for i = 1, #(hudThings) do
+			doTweenAlpha(hudThings[i], hudThings[i], 1, 0.8 / playbackRate, 'cubeInOut')
+		end
+	end
+	if curStep == 2656 then
+		cameraFlash('game', 'FFFFFF', 1.3 / playbackRate, false)
+		setProperty('goneCrazy.alpha', 0)
 	end
 	
 	--Lyrics!
@@ -346,7 +372,7 @@ function onBeatHit()
 	end
 	
 	if (curBeat >= 176 and curBeat <= 366) or (curBeat >= 368 and curBeat <= 400) or (curBeat >= 504 and curStep <= 2393)
-	or (curBeat >= 600 and curBeat < 728) or (curBeat >= 729 and curBeat <= 792) or (curBeat >= 856 and curBeat < 984) then
+	or (curBeat >= 664 and curBeat < 728) or (curBeat >= 729 and curBeat <= 792) or (curBeat >= 856 and curBeat < 984) then
 		triggerEvent('Add Camera Zoom', '0.105', '0.105')
 	end
 	if curBeat % 2 == 0 then

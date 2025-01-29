@@ -43,6 +43,8 @@ function onCreate()
 		videoCache = {'morky farded'}
 	elseif songName == "Get Villain'd" then
 		videoCache = {'theBilly', 'flames'}
+	elseif songName == "Shucks V2" then
+		videoCache = {'Shucks Cutscene'}
 	end
 	
     addHaxeLibrary('VideoHandler', 'hxcodec')
@@ -54,7 +56,8 @@ function makeVideoSprite(tag, videoPath, x, y, camera, hasVolume)
     runHaxeCode([[
         ]]..tag..[[ = new VideoHandler();
         ]]..tag..[[.playVideo(Paths.video("]]..videoPath..[["));
-        ]]..tag..[[.visible = false; 
+        ]]..tag..[[.visible = false;
+		]]..tag..[[.rate = ]]..playbackRate..[[;
         ]]..tag..[[.volume = ]]..(hasVolume and 1 or 0)..[[;
         setVar("]]..tag..[[hasVolume", ]]..(hasVolume and 1 or 0)..[[);
 
