@@ -1,6 +1,6 @@
 function onCreate()
 	-- background shit
-	if getPropertyFromClass('ClientPrefs', 'optimizationMode') == false then
+	if not optimizationMode then
 		makeLuaSprite('stageConfront', 'bgs/lily/stageConfront', 270, -150)
 		setScrollFactor('stageConfront', 0.9, 0.9)
 		setProperty('stageConfront.alpha', 0)

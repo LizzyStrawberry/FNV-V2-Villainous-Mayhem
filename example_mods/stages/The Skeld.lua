@@ -1,6 +1,6 @@
 function onCreate()
 	-- background shit
-	if getPropertyFromClass('ClientPrefs', 'optimizationMode') == false then
+	if not optimizationMode then
 		if songName == 'Sussus Marcus' then
 			makeLuaSprite('bg', 'bgs/marcussy/backgroundSky', -640, -150);
 			setScrollFactor('bg', 0.9, 0.9);

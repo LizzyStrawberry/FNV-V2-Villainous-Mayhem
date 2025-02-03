@@ -1,6 +1,3 @@
-
-
-
 --[[
     Made By BBPanzu
     Improved By Cherry
@@ -39,40 +36,45 @@ local videoCache = {}
 
 -- [[the stuff ]] --
 function onCreate()
-	if songName == "Get Villain'd (Old)" then
-		videoCache = {'morky farded'}
-	elseif songName == "Get Villain'd" then
-		videoCache = {'theBilly', 'flames'}
-	elseif songName == "Shucks V2" then
-		videoCache = {'Shucks Cutscene'}
+	if not optimizationMode then
+		if songName == "Get Villain'd (Old)" then
+			videoCache = {'morky farded'}
+		elseif songName == "Get Villain'd" then
+			videoCache = {'theBilly', 'flames'}
+		elseif songName == "Shucks V2" then
+			videoCache = {'Shucks Cutscene'}
+		end
+		
+		addHaxeLibrary('VideoHandler', 'hxcodec')
+		addHaxeLibrary('Event', 'openfl.events')
+		cacheFuck()
 	end
-	
-    addHaxeLibrary('VideoHandler', 'hxcodec')
-    addHaxeLibrary('Event', 'openfl.events')
-    cacheFuck()
 end
+
 local videoSprites = {}
 function makeVideoSprite(tag, videoPath, x, y, camera, hasVolume)
-    runHaxeCode([[
-        ]]..tag..[[ = new VideoHandler();
-        ]]..tag..[[.playVideo(Paths.video("]]..videoPath..[["));
-        ]]..tag..[[.visible = false;
-		]]..tag..[[.rate = ]]..playbackRate..[[;
-        ]]..tag..[[.volume = ]]..(hasVolume and 1 or 0)..[[;
-        setVar("]]..tag..[[hasVolume", ]]..(hasVolume and 1 or 0)..[[);
+	if not optimizationMode then
+		runHaxeCode([[
+			]]..tag..[[ = new VideoHandler();
+			]]..tag..[[.playVideo(Paths.video("]]..videoPath..[["));
+			]]..tag..[[.visible = false;
+			]]..tag..[[.rate = ]]..playbackRate..[[;
+			]]..tag..[[.volume = ]]..(hasVolume and 1 or 0)..[[;
+			setVar("]]..tag..[[hasVolume", ]]..(hasVolume and 1 or 0)..[[);
 
-        ]]..tag..[[.finishCallback = function()
-        { 
-            game.remove(game.getLuaObject("]]..tag..[[")); 
-            game.callOnLuas("onVideoFinished",["]]..tag..[["]);
-            return;
-        }
-        FlxG.stage.removeEventListener("enterFrame", ]]..tag..[[.update);
-    ]])
-    makeLuaSprite(tag, nil, x, y)
-    setObjectCamera(tag, camera)
-    addLuaSprite(tag, false)
-    table.insert(videoSprites, tag)
+			]]..tag..[[.finishCallback = function()
+			{ 
+				game.remove(game.getLuaObject("]]..tag..[[")); 
+				game.callOnLuas("onVideoFinished",["]]..tag..[["]);
+				return;
+			}
+			FlxG.stage.removeEventListener("enterFrame", ]]..tag..[[.update);
+		]])
+		makeLuaSprite(tag, nil, x, y)
+		setObjectCamera(tag, camera)
+		addLuaSprite(tag, false)
+		table.insert(videoSprites, tag)
+	end
 end
 ---// i dont know the other way to cache this :sob: \\ --
 function cacheFuck()
@@ -91,28 +93,34 @@ function cacheFuck()
     end
 end
 function onUpdatePost()
-    for _, __ in pairs(videoSprites) do
-        runHaxeCode([[
-            if (game.getLuaObject("]]..__..[[") != null)
-            {
-                game.getLuaObject("]]..__..[[").loadGraphic(]]..__..[[.bitmapData);
-                if (getVar("]]..__..[[hasVolume"))
-                    ]]..__..[[.volume = 1;
-            }
-        ]])
-    end
+	if not optimizationMode then
+		for _, __ in pairs(videoSprites) do
+			runHaxeCode([[
+				if (game.getLuaObject("]]..__..[[") != null)
+				{
+					game.getLuaObject("]]..__..[[").loadGraphic(]]..__..[[.bitmapData);
+					if (getVar("]]..__..[[hasVolume"))
+						]]..__..[[.volume = 1;
+				}
+			]])
+		end
+	end
 end
 function onPause()
-    for _, __ in pairs(videoSprites) do
-        runHaxeCode([[
-            ]]..__..[[.pause();
-        ]])
-    end
+	if not optimizationMode then
+		for _, __ in pairs(videoSprites) do
+			runHaxeCode([[
+				]]..__..[[.pause();
+			]])
+		end
+	end
 end
 function onResume()
-    for _, __ in pairs(videoSprites) do
-        runHaxeCode([[
-            ]]..__..[[.resume();
-        ]])
-    end
+	if not optimizationMode then
+		for _, __ in pairs(videoSprites) do
+			runHaxeCode([[
+				]]..__..[[.resume();
+			]])
+		end
+	end
 end

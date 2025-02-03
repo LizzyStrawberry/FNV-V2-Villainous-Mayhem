@@ -1,6 +1,6 @@
 function onCreate()
 	-- background shit
-	if getPropertyFromClass('ClientPrefs', 'optimizationMode') == false then
+	if not optimizationMode then
 		if songName == 'Scrouge' or songName == 'Toxic Mishap Remix' or songName == 'Paycheck V2' then
 			makeLuaSprite('bg', 'bgs/marco/background-new', -240, -100);
 			setScrollFactor('bg', 0.9, 0.9);

@@ -1,6 +1,6 @@
 function onCreate()
 	-- background shit
-	if getPropertyFromClass('ClientPrefs', 'optimizationMode') == false then
+	if not optimizationMode then
 		makeLuaSprite('bg', 'bgs/lillie/background', -20, -70);
 		setScrollFactor('bg', 0.9, 0.9);
 		

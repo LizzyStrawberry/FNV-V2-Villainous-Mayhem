@@ -1,6 +1,6 @@
 function onCreate()
 	-- background shit
-	if getPropertyFromClass('ClientPrefs', 'optimizationMode') == false then	
+	if not optimizationMode then	
 		makeLuaSprite('BGMemes', 'bgs/fangirl/memes', -290, -150)
 		setScrollFactor('BGMemes', 0.9, 0.9)
 		

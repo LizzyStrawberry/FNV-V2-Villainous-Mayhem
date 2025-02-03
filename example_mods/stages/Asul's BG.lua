@@ -1,6 +1,6 @@
 function onCreate()
 	-- background shit
-	if getPropertyFromClass('ClientPrefs', 'optimizationMode') == false then
+	if not optimizationMode then
 		makeLuaSprite('BGP1', 'bgs/asul/BGP1', -1690, -570);
 		setScrollFactor('BGP1', 0.95, 0.95);
 		scaleObject('BGP1', 2.5, 2)

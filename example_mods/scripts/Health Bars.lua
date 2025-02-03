@@ -2,7 +2,7 @@ local iconP1X
 local iconP2X
 
 function onCreatePost()
-	if getPropertyFromClass('ClientPrefs', 'optimizationMode') == false then
+	if not optimizationMode then
 		bfColor = rgbToHex(getProperty('boyfriend.healthColorArray'))
 		dadColor = rgbToHex(getProperty('dad.healthColorArray'))
 
@@ -42,9 +42,6 @@ function onCreatePost()
 			setObjectOrder('iconP1', getObjectOrder('iconPlayer') + 1)
 			setObjectOrder('iconP2', getObjectOrder('iconOpponent') + 1)
 			setObjectOrder('scoreTxt', getObjectOrder('iconP2') + 1)
-			
-			iconP1X = getProperty('coloredPlayerCircle.x') + 50
-			iconP2X = getProperty('coloredOpponentCircle.x') + 50
 		end
 		
 		if songName == 'Paycheck' or songName == 'Paycheck (Legacy)' or songName == 'Tofu' then
@@ -72,14 +69,6 @@ function onCreatePost()
 			scaleObject('iconOpponent', 0.9, 0.9)
 			setObjectCamera('iconOpponent', 'hud')
 			addLuaSprite('iconOpponent', true)
-			
-			setObjectOrder('healthBarBG', getObjectOrder('healthBar') + 1)
-			setObjectOrder('iconP1', getObjectOrder('iconPlayer') + 1)
-			setObjectOrder('iconP2', getObjectOrder('iconOpponent') + 1)
-			setObjectOrder('scoreTxt', getObjectOrder('iconP2') + 1)
-			
-			iconP1X = getProperty('coloredPlayerCircle.x') + 50
-			iconP2X = getProperty('coloredOpponentCircle.x') + 50
 		end
 		
 		if songName == 'Nunconventional' or songName == 'Nunconventional Simp'
@@ -109,14 +98,6 @@ function onCreatePost()
 			scaleObject('iconOpponent', 0.9, 0.9)
 			setObjectCamera('iconOpponent', 'hud')
 			addLuaSprite('iconOpponent', true)
-			
-			setObjectOrder('healthBarBG', getObjectOrder('healthBar') + 1)
-			setObjectOrder('iconP1', getObjectOrder('iconPlayer') + 1)
-			setObjectOrder('iconP2', getObjectOrder('iconOpponent') + 1)
-			setObjectOrder('scoreTxt', getObjectOrder('iconP2') + 1)
-			
-			iconP1X = getProperty('coloredPlayerCircle.x') + 50
-			iconP2X = getProperty('coloredOpponentCircle.x') + 50
 		end
 		if songName == 'Point Blank' then
 			setProperty('healthBar.scale.y', getProperty('healthBar.scale.y') + 1.5)
@@ -144,14 +125,6 @@ function onCreatePost()
 			scaleObject('iconOpponent', 0.9, 0.9)
 			setObjectCamera('iconOpponent', 'hud')
 			addLuaSprite('iconOpponent', true)
-			
-			setObjectOrder('healthBarBG', getObjectOrder('healthBar') + 1)
-			setObjectOrder('iconP1', getObjectOrder('iconPlayer') + 1)
-			setObjectOrder('iconP2', getObjectOrder('iconOpponent') + 1)
-			setObjectOrder('scoreTxt', getObjectOrder('iconP2') + 1)
-			
-			iconP1X = getProperty('coloredPlayerCircle.x') + 50
-			iconP2X = getProperty('coloredOpponentCircle.x') + 50
 		end
 		
 		if songName == 'Forsaken' or songName == 'Forsaken (Picmixed)' or songName == "Partner" then
@@ -179,14 +152,6 @@ function onCreatePost()
 			scaleObject('iconOpponent', 0.9, 0.9)
 			setObjectCamera('iconOpponent', 'hud')
 			addLuaSprite('iconOpponent', true)
-			
-			setObjectOrder('healthBarBG', getObjectOrder('healthBar') + 1)
-			setObjectOrder('iconP1', getObjectOrder('iconPlayer') + 1)
-			setObjectOrder('iconP2', getObjectOrder('iconOpponent') + 1)
-			setObjectOrder('scoreTxt', getObjectOrder('iconP2') + 1)
-			
-			iconP1X = getProperty('coloredPlayerCircle.x') + 50
-			iconP2X = getProperty('coloredOpponentCircle.x') + 50
 		end
 		
 		if songName == 'Toybox' then
@@ -213,14 +178,6 @@ function onCreatePost()
 			makeLuaSprite('iconOpponent', 'healthBars/narrin/iconSlotO', getProperty('coloredOpponentCircle.x') - 4, getProperty('coloredOpponentCircle.y') - 10);
 			setObjectCamera('iconOpponent', 'hud')
 			addLuaSprite('iconOpponent', true)
-			
-			setObjectOrder('healthBarBG', getObjectOrder('healthBar') + 1)
-			setObjectOrder('iconP1', getObjectOrder('iconPlayer') + 1)
-			setObjectOrder('iconP2', getObjectOrder('iconOpponent') + 1)
-			setObjectOrder('scoreTxt', getObjectOrder('iconP2') + 1)
-			
-			iconP1X = getProperty('coloredPlayerCircle.x') + 50
-			iconP2X = getProperty('coloredOpponentCircle.x') + 50
 		end
 		
 		if songName == 'Lustality' or songName == 'Lustality Remix' or songName == 'Lustality V1' then
@@ -248,14 +205,6 @@ function onCreatePost()
 			scaleObject('iconOpponent', 0.9, 0.9)
 			setObjectCamera('iconOpponent', 'hud')
 			addLuaSprite('iconOpponent', true)
-			
-			setObjectOrder('healthBarBG', getObjectOrder('healthBar') + 1)
-			setObjectOrder('iconP1', getObjectOrder('iconPlayer') + 1)
-			setObjectOrder('iconP2', getObjectOrder('iconOpponent') + 1)
-			setObjectOrder('scoreTxt', getObjectOrder('iconP2') + 1)
-			
-			iconP1X = getProperty('coloredPlayerCircle.x') + 50
-			iconP2X = getProperty('coloredOpponentCircle.x') + 50
 		end
 		
 		if songName == 'Libidinousness' then
@@ -288,14 +237,6 @@ function onCreatePost()
 			scaleObject('iconOpponent', 0.9, 0.9)
 			setObjectCamera('iconOpponent', 'hud')
 			addLuaSprite('iconOpponent', true)
-			
-			setObjectOrder('healthBarBG', getObjectOrder('healthBar') + 1)
-			setObjectOrder('iconP1', getObjectOrder('iconPlayer') + 1)
-			setObjectOrder('iconP2', getObjectOrder('iconOpponent') + 1)
-			setObjectOrder('scoreTxt', getObjectOrder('iconP2') + 1)
-			
-			iconP1X = getProperty('coloredPlayerCircle.x') + 50
-			iconP2X = getProperty('coloredOpponentCircle.x') + 50
 		end
 		
 		if songName == "Get Villain'd" or songName == "Get Villain'd (Old)" then
@@ -324,14 +265,6 @@ function onCreatePost()
 			scaleObject('iconOpponent', 0.9, 0.9)
 			setObjectCamera('iconOpponent', 'hud')
 			addLuaSprite('iconOpponent', true)
-			
-			setObjectOrder('healthBarBG', getObjectOrder('healthBar') + 1)
-			setObjectOrder('iconP1', getObjectOrder('iconPlayer') + 1)
-			setObjectOrder('iconP2', getObjectOrder('iconOpponent') + 1)
-			setObjectOrder('scoreTxt', getObjectOrder('iconP2') + 1)
-			
-			iconP1X = getProperty('coloredPlayerCircle.x') + 50
-			iconP2X = getProperty('coloredOpponentCircle.x') + 50
 		end
 		
 		if songName == 'Unpaid Catastrophe' then
@@ -359,14 +292,6 @@ function onCreatePost()
 			scaleObject('iconOpponent', 0.9, 0.9)
 			setObjectCamera('iconOpponent', 'hud')
 			addLuaSprite('iconOpponent', true)
-			
-			setObjectOrder('healthBarBG', getObjectOrder('healthBar') + 1)
-			setObjectOrder('iconP1', getObjectOrder('iconPlayer') + 1)
-			setObjectOrder('iconP2', getObjectOrder('iconOpponent') + 1)
-			setObjectOrder('scoreTxt', getObjectOrder('iconP2') + 1)
-			
-			iconP1X = getProperty('coloredPlayerCircle.x') + 50
-			iconP2X = getProperty('coloredOpponentCircle.x') + 50
 		end
 		
 		if songName == 'Cheque' then
@@ -394,14 +319,6 @@ function onCreatePost()
 			scaleObject('iconOpponent', 0.9, 0.9)
 			setObjectCamera('iconOpponent', 'hud')
 			addLuaSprite('iconOpponent', true)
-			
-			setObjectOrder('healthBarBG', getObjectOrder('healthBar') + 1)
-			setObjectOrder('iconP1', getObjectOrder('iconPlayer') + 1)
-			setObjectOrder('iconP2', getObjectOrder('iconOpponent') + 1)
-			setObjectOrder('scoreTxt', getObjectOrder('iconP2') + 1)
-			
-			iconP1X = getProperty('coloredPlayerCircle.x') + 50
-			iconP2X = getProperty('coloredOpponentCircle.x') + 50
 		end
 		
 		if songName == "Get Pico'd" or songName == "Get Gooned" then
@@ -429,14 +346,6 @@ function onCreatePost()
 			scaleObject('iconOpponent', 0.9, 0.9)
 			setObjectCamera('iconOpponent', 'hud')
 			addLuaSprite('iconOpponent', true)
-			
-			setObjectOrder('healthBarBG', getObjectOrder('healthBar') + 1)
-			setObjectOrder('iconP1', getObjectOrder('iconPlayer') + 1)
-			setObjectOrder('iconP2', getObjectOrder('iconOpponent') + 1)
-			setObjectOrder('scoreTxt', getObjectOrder('iconP2') + 1)
-			
-			iconP1X = getProperty('coloredPlayerCircle.x') + 50
-			iconP2X = getProperty('coloredOpponentCircle.x') + 50
 		end
 		
 		if songName == 'Sussus Marcus' or songName == 'Villain In Board' or songName == 'Excrete' then
@@ -464,14 +373,6 @@ function onCreatePost()
 			scaleObject('iconOpponent', 0.9, 0.9)
 			setObjectCamera('iconOpponent', 'hud')
 			addLuaSprite('iconOpponent', true)
-			
-			setObjectOrder('healthBarBG', getObjectOrder('healthBar') + 1)
-			setObjectOrder('iconP1', getObjectOrder('iconPlayer') + 1)
-			setObjectOrder('iconP2', getObjectOrder('iconOpponent') + 1)
-			setObjectOrder('scoreTxt', getObjectOrder('iconP2') + 1)
-			
-			iconP1X = getProperty('coloredPlayerCircle.x') + 50
-			iconP2X = getProperty('coloredOpponentCircle.x') + 50
 		end
 		
 		-- Bonus Songs		
@@ -500,14 +401,6 @@ function onCreatePost()
 			scaleObject('iconOpponent', 0.9, 0.9)
 			setObjectCamera('iconOpponent', 'hud')
 			addLuaSprite('iconOpponent', true)
-			
-			setObjectOrder('healthBarBG', getObjectOrder('healthBar') + 1)
-			setObjectOrder('iconP1', getObjectOrder('iconPlayer') + 1)
-			setObjectOrder('iconP2', getObjectOrder('iconOpponent') + 1)
-			setObjectOrder('scoreTxt', getObjectOrder('iconP2') + 1)
-			
-			iconP1X = getProperty('coloredPlayerCircle.x') + 50
-			iconP2X = getProperty('coloredOpponentCircle.x') + 50
 		end
 		
 		if songName == 'Marauder' or songName == 'Marauder (Old)' then
@@ -535,14 +428,6 @@ function onCreatePost()
 			scaleObject('iconOpponent', 0.9, 0.9)
 			setObjectCamera('iconOpponent', 'hud')
 			addLuaSprite('iconOpponent', true)
-			
-			setObjectOrder('healthBarBG', getObjectOrder('healthBar') + 1)
-			setObjectOrder('iconP1', getObjectOrder('iconPlayer') + 1)
-			setObjectOrder('iconP2', getObjectOrder('iconOpponent') + 1)
-			setObjectOrder('scoreTxt', getObjectOrder('iconP2') + 1)
-			
-			iconP1X = getProperty('coloredPlayerCircle.x') + 50
-			iconP2X = getProperty('coloredOpponentCircle.x') + 50
 		end
 		
 		if songName == 'Slow.FLP' or songName == 'Slow.FLP (Old)' then
@@ -570,14 +455,6 @@ function onCreatePost()
 			scaleObject('iconOpponent', 0.9, 0.9)
 			setObjectCamera('iconOpponent', 'hud')
 			addLuaSprite('iconOpponent', true)
-			
-			setObjectOrder('healthBarBG', getObjectOrder('healthBar') + 1)
-			setObjectOrder('iconP1', getObjectOrder('iconPlayer') + 1)
-			setObjectOrder('iconP2', getObjectOrder('iconOpponent') + 1)
-			setObjectOrder('scoreTxt', getObjectOrder('iconP2') + 1)
-			
-			iconP1X = getProperty('coloredPlayerCircle.x') + 50
-			iconP2X = getProperty('coloredOpponentCircle.x') + 50
 		end
 		
 		if songName == 'Rainy Daze' then
@@ -605,14 +482,6 @@ function onCreatePost()
 			scaleObject('iconOpponent', 0.9, 0.9)
 			setObjectCamera('iconOpponent', 'hud')
 			addLuaSprite('iconOpponent', true)
-			
-			setObjectOrder('healthBarBG', getObjectOrder('healthBar') + 1)
-			setObjectOrder('iconP1', getObjectOrder('iconPlayer') + 1)
-			setObjectOrder('iconP2', getObjectOrder('iconOpponent') + 1)
-			setObjectOrder('scoreTxt', getObjectOrder('iconP2') + 1)
-			
-			iconP1X = getProperty('coloredPlayerCircle.x') + 50
-			iconP2X = getProperty('coloredOpponentCircle.x') + 50
 		end
 		
 		if songName == 'FNV' then
@@ -640,14 +509,6 @@ function onCreatePost()
 			scaleObject('iconOpponent', 0.9, 0.9)
 			setObjectCamera('iconOpponent', 'hud')
 			addLuaSprite('iconOpponent', true)
-			
-			setObjectOrder('healthBarBG', getObjectOrder('healthBar') + 1)
-			setObjectOrder('iconP1', getObjectOrder('iconPlayer') + 1)
-			setObjectOrder('iconP2', getObjectOrder('iconOpponent') + 1)
-			setObjectOrder('scoreTxt', getObjectOrder('iconP2') + 1)
-			
-			iconP1X = getProperty('coloredPlayerCircle.x') + 50
-			iconP2X = getProperty('coloredOpponentCircle.x') + 50
 		end
 		
 		if songName == 'Instrumentally Deranged' then
@@ -675,14 +536,6 @@ function onCreatePost()
 			scaleObject('iconOpponent', 0.9, 0.9)
 			setObjectCamera('iconOpponent', 'hud')
 			addLuaSprite('iconOpponent', true)
-			
-			setObjectOrder('healthBarBG', getObjectOrder('healthBar') + 1)
-			setObjectOrder('iconP1', getObjectOrder('iconPlayer') + 1)
-			setObjectOrder('iconP2', getObjectOrder('iconOpponent') + 1)
-			setObjectOrder('scoreTxt', getObjectOrder('iconP2') + 1)
-			
-			iconP1X = getProperty('coloredPlayerCircle.x') + 50
-			iconP2X = getProperty('coloredOpponentCircle.x') + 50
 		end
 		
 		if songName == 'Fanfuck Forever' then
@@ -710,14 +563,6 @@ function onCreatePost()
 			scaleObject('iconOpponent', 0.9, 0.9)
 			setObjectCamera('iconOpponent', 'hud')
 			addLuaSprite('iconOpponent', true)
-			
-			setObjectOrder('healthBarBG', getObjectOrder('healthBar') + 1)
-			setObjectOrder('iconP1', getObjectOrder('iconPlayer') + 1)
-			setObjectOrder('iconP2', getObjectOrder('iconOpponent') + 1)
-			setObjectOrder('scoreTxt', getObjectOrder('iconP2') + 1)
-			
-			iconP1X = getProperty('coloredPlayerCircle.x') + 50
-			iconP2X = getProperty('coloredOpponentCircle.x') + 50
 		end
 		
 		if songName == 'Fast Food Therapy' then
@@ -743,14 +588,6 @@ function onCreatePost()
 			makeLuaSprite('iconOpponent', 'healthBars/kyu/iconSlotP', getProperty('coloredOpponentCircle.x') - 10, getProperty('coloredOpponentCircle.y') - 12);
 			setObjectCamera('iconOpponent', 'hud')
 			addLuaSprite('iconOpponent', true)
-			
-			setObjectOrder('healthBarBG', getObjectOrder('healthBar') + 1)
-			setObjectOrder('iconP1', getObjectOrder('iconPlayer') + 1)
-			setObjectOrder('iconP2', getObjectOrder('iconOpponent') + 1)
-			setObjectOrder('scoreTxt', getObjectOrder('iconP2') + 1)
-			
-			iconP1X = getProperty('coloredPlayerCircle.x') + 50
-			iconP2X = getProperty('coloredOpponentCircle.x') + 50
 		end
 		
 		if songName == 'Jerry' then
@@ -778,14 +615,6 @@ function onCreatePost()
 			scaleObject('iconOpponent', 0.9, 0.9)
 			setObjectCamera('iconOpponent', 'hud')
 			addLuaSprite('iconOpponent', true)
-			
-			setObjectOrder('healthBarBG', getObjectOrder('healthBar') + 1)
-			setObjectOrder('iconP1', getObjectOrder('iconPlayer') + 1)
-			setObjectOrder('iconP2', getObjectOrder('iconOpponent') + 1)
-			setObjectOrder('scoreTxt', getObjectOrder('iconP2') + 1)
-			
-			iconP1X = getProperty('coloredPlayerCircle.x') + 50
-			iconP2X = getProperty('coloredOpponentCircle.x') + 50
 		end
 		
 		if songName == 'VGuy' then
@@ -813,14 +642,6 @@ function onCreatePost()
 			scaleObject('iconOpponent', 0.9, 0.9)
 			setObjectCamera('iconOpponent', 'hud')
 			addLuaSprite('iconOpponent', true)
-			
-			setObjectOrder('healthBarBG', getObjectOrder('healthBar') + 1)
-			setObjectOrder('iconP1', getObjectOrder('iconPlayer') + 1)
-			setObjectOrder('iconP2', getObjectOrder('iconOpponent') + 1)
-			setObjectOrder('scoreTxt', getObjectOrder('iconP2') + 1)
-			
-			iconP1X = getProperty('coloredPlayerCircle.x') + 50
-			iconP2X = getProperty('coloredOpponentCircle.x') + 50
 		end
 		
 		if songName == 'Tactical Mishap' then
@@ -848,14 +669,6 @@ function onCreatePost()
 			scaleObject('iconOpponent', 0.9, 0.9)
 			setObjectCamera('iconOpponent', 'hud')
 			addLuaSprite('iconOpponent', true)
-			
-			setObjectOrder('healthBarBG', getObjectOrder('healthBar') + 1)
-			setObjectOrder('iconP1', getObjectOrder('iconPlayer') + 1)
-			setObjectOrder('iconP2', getObjectOrder('iconOpponent') + 1)
-			setObjectOrder('scoreTxt', getObjectOrder('iconP2') + 1)
-			
-			iconP1X = getProperty('coloredPlayerCircle.x') + 50
-			iconP2X = getProperty('coloredOpponentCircle.x') + 50
 		end
 		
 		if songName == 'Breacher' then
@@ -883,14 +696,6 @@ function onCreatePost()
 			scaleObject('iconOpponent', 0.9, 0.9)
 			setObjectCamera('iconOpponent', 'hud')
 			addLuaSprite('iconOpponent', true)
-			
-			setObjectOrder('healthBarBG', getObjectOrder('healthBar') + 1)
-			setObjectOrder('iconP1', getObjectOrder('iconPlayer') + 1)
-			setObjectOrder('iconP2', getObjectOrder('iconOpponent') + 1)
-			setObjectOrder('scoreTxt', getObjectOrder('iconP2') + 1)
-			
-			iconP1X = getProperty('coloredPlayerCircle.x') + 50
-			iconP2X = getProperty('coloredOpponentCircle.x') + 50
 		end
 		
 		if songName == 'Concert Chaos' then
@@ -918,14 +723,6 @@ function onCreatePost()
 			scaleObject('iconOpponent', 0.9, 0.9)
 			setObjectCamera('iconOpponent', 'hud')
 			addLuaSprite('iconOpponent', true)
-			
-			setObjectOrder('healthBarBG', getObjectOrder('healthBar') + 1)
-			setObjectOrder('iconP1', getObjectOrder('iconPlayer') + 1)
-			setObjectOrder('iconP2', getObjectOrder('iconOpponent') + 1)
-			setObjectOrder('scoreTxt', getObjectOrder('iconP2') + 1)
-			
-			iconP1X = getProperty('coloredPlayerCircle.x') + 50
-			iconP2X = getProperty('coloredOpponentCircle.x') + 50
 		end
 		
 		if songName == "It's Kiana" then
@@ -955,15 +752,15 @@ function onCreatePost()
 			scaleObject('iconOpponent', 0.9, 0.9)
 			setObjectCamera('iconOpponent', 'hud')
 			addLuaSprite('iconOpponent', true)
-			
-			setObjectOrder('healthBarBG', getObjectOrder('healthBar') + 1)
-			setObjectOrder('iconP1', getObjectOrder('iconPlayer') + 1)
-			setObjectOrder('iconP2', getObjectOrder('iconOpponent') + 1)
-			setObjectOrder('scoreTxt', getObjectOrder('iconP2') + 1)
-			
-			iconP1X = getProperty('coloredPlayerCircle.x') + 50
-			iconP2X = getProperty('coloredOpponentCircle.x') + 50
 		end
+				
+		setObjectOrder('healthBarBG', getObjectOrder('healthBar') + 1)
+		setObjectOrder('iconP1', getObjectOrder('iconPlayer') + 1)
+		setObjectOrder('iconP2', getObjectOrder('iconOpponent') + 1)
+		setObjectOrder('scoreTxt', getObjectOrder('iconP2') + 1)
+			
+		iconP1X = getProperty('coloredPlayerCircle.x')
+		iconP2X = getProperty('coloredOpponentCircle.x')
 		
 		if downscroll then
 			setProperty('scoreTxt.y', getProperty('scoreTxt.y') - 100)
@@ -972,7 +769,7 @@ function onCreatePost()
 end
 
 function onUpdate()
-	if getPropertyFromClass('ClientPrefs', 'optimizationMode') == false then
+	if not optimizationMode then
 		setProperty('coloredPlayerCircle.color', getColorFromHex(bfColor))
 		setProperty('coloredOpponentCircle.color', getColorFromHex(dadColor))
 		setProperty('coloredPlayerCircle.alpha', getProperty('iconP1.alpha'))
@@ -983,7 +780,7 @@ function onUpdate()
 end
 
 function onUpdatePost()
-	if getPropertyFromClass('ClientPrefs', 'optimizationMode') == false then
+	if not optimizationMode then
 		-- Set up Icons:
 		bfColor = rgbToHex(getProperty('boyfriend.healthColorArray'))
 		dadColor = rgbToHex(getProperty('dad.healthColorArray'))

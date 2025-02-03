@@ -1,6 +1,6 @@
 function onCreate()
 	-- background shit
-	if getPropertyFromClass('ClientPrefs', 'optimizationMode') == false then
+	if not optimizationMode then
 		makeLuaSprite('bg', 'bgs/morky/Background', -270, -100);
 		setScrollFactor('bg', 0.9, 0.9);
 		scaleObject('bg', 1.5, 1.5)

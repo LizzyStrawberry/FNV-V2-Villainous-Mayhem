@@ -63,7 +63,7 @@ local lilyNoteVars = {
 }
 
 function onCreate()	
-	if getPropertyFromClass('ClientPrefs', 'optimizationMode') == false then
+	if not optimizationMode then
 		--Watermark
 		makeLuaText('watermark', "Friday Night Villainy", 1000, 0, 690)
 		if isStoryMode then
@@ -246,7 +246,7 @@ function onCreate()
 end
 
 function onCreatePost()
-	if getPropertyFromClass('ClientPrefs', 'optimizationMode') == false then
+	if not optimizationMode then
 		-- Dad Characters
 		for i = 1, #(marcoNoteVars) do
 			if dadName == marcoNoteVars[i] then

@@ -1,6 +1,8 @@
 local hudThings = {'watermark', 'watermark2', 'healthBar', 'healthBarBG', 'iconP1', 'iconP2', 'scoreTxt'}
 local scrollSpeed = 1.2
 local dur = 1
+local videoPlayed = false
+
 function onCreate()
 	scrollSpeed = 1.2 / playbackRate
 	dur = 1 / playbackRate
@@ -85,7 +87,7 @@ function onUpdate()
 		doTweenAlpha(hudThings[8], hudThings[8], 1, 10 / playbackRate, 'cubeInOut')
 	end
 	if curStep == 704 then
-		cameraFlash('hud', 'FFFFFF', 1.3 / playbackRate, false)
+		cameraFlash('hud', 'FFFFFF', 7.5 / playbackRate, false)
 		triggerEvent('Add Camera Zoom', '0.115', '0.115')
 		runHaxeCode([[
 			game.dad.setColorTransform(1,1,1,1,0,0,0,0);
@@ -134,9 +136,10 @@ function onUpdate()
 		end
 	end
 		
-	if curStep == 2372 then
+	if curStep == 2372 and not videoPlayed then
 		callScript('scripts/VideoSpriteHandler', 'makeVideoSprite', {'goneCrazy', 'Shucks Cutscene', 0, 0, 'camHUD', 0})
 		setProperty('goneCrazy.alpha', 0)
+		videoPlayed = true
 	end
 	if curStep == 2380 then
 		hudThings = {'watermark', 'watermark2', 'healthBar', 'healthBarBG', 'iconP1', 'iconP2', 'scoreTxt', 'timeBar', 'timeBarBG', 'timeTxt'}

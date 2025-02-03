@@ -14,7 +14,7 @@ local num = 0
 
 function onCreate()
 	-- background shit
-	if getPropertyFromClass('ClientPrefs', 'optimizationMode') == false then
+	if not optimizationMode then
 		makeLuaSprite('BG', 'bgs/kyu/background', -100, -400);
 		setScrollFactor('BG', 0.9, 0.9);
 		
@@ -65,7 +65,7 @@ function onCreate()
 end
 
 function onBeatHit()
-	if getPropertyFromClass('ClientPrefs', 'optimizationMode') == false then
+	if not optimizationMode then
 		if curBeat % 2 == 0 then
 			setProperty('backgroundCharacters.scale.y', 0.95)
 			doTweenY('backCharTween', 'backgroundCharacters.scale', 1, 0.6 / playbackRate, 'circOut')
@@ -92,7 +92,7 @@ function onBeatHit()
 end
 
 function onTimerCompleted(tag)
-	if getPropertyFromClass('ClientPrefs', 'optimizationMode') == false then
+	if not optimizationMode then
 		if tag == 'charAppear' then
 			if rightMovement == 1 then
 				doTweenX('charMove', 'walkingChar', 1800, getRandomInt(6, 10) / playbackRate, 'easeIn')
@@ -136,7 +136,7 @@ end
 
 local dead = false
 function onTweenCompleted(tag)
-	if getPropertyFromClass('ClientPrefs', 'optimizationMode') == false then
+	if not optimizationMode then
 		if tag == 'charMove' then
 			math.randomseed(os.time())
 			rightMovement = math.random(0, 1)
