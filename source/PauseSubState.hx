@@ -788,528 +788,456 @@ class PauseSubState extends MusicBeatSubstate
 	}
 
 	function applyOption(wah:Int = 0)
+	{
+		huh += wah;
+		if (huh > 1)
+			huh = 1;
+		if (huh < 0)
+			huh = 0;
+		FlxG.sound.play(Paths.sound('ConfirmMenu'), 0.2);
+
+		if ((PlayState.isStoryMode && !PlayState.isIniquitousMode)
+		|| (!PlayState.isStoryMode && !PlayState.isIniquitousMode && !PlayState.isInjectionMode && !PlayState.isMayhemMode)) //STORY MODE OR FREEPLAY
 		{
-			huh += wah;
-			if (huh > 1)
-				huh = 1;
-			if (huh < 0)
-				huh = 0;
-			FlxG.sound.play(Paths.sound('ConfirmMenu'), 0.2);
-
-			if ((PlayState.isStoryMode && !PlayState.isIniquitousMode)
-				|| (!PlayState.isStoryMode && !PlayState.isIniquitousMode && !PlayState.isInjectionMode && !PlayState.isMayhemMode)) //STORY MODE OR FREEPLAY
+			for (item in grpOpts.members)
 			{
-				for (item in grpOpts.members)
+				if (huh == 0 && !delay)
 				{
-					if (huh == 0 && !delay)
+					switch (curOption)
 					{
-						switch (curOption)
-						{
-							case 0:
-								if (ClientPrefs.optimizationMode == false)
-								{
-									ClientPrefs.mechanics = false;
-									changedSettings = true;
-									trace ("Mechanics: False");
-								}
-							case 1:
-								if (ClientPrefs.optimizationMode == false)
-								{
-									ClientPrefs.shaders = false;
-									trace ("Shaders: False");
-								}
-							case 2:
-								if (ClientPrefs.optimizationMode == false)
-								{
-									ClientPrefs.cinematicBars = false;
-									trace ("Cinematic Bars: False");
-								}
-							case 3:
-								ClientPrefs.downScroll = false;
-								trace ("Downscroll: False");
-							case 4:
-								ClientPrefs.gameplaySettings.set('botplay', false);
-								botplayOn = false;
-								trace ("Botplay: False.");
-						}
-						delay = true;
-						new FlxTimer().start(0.05, function (tmr:FlxTimer) {
-							delay = false;
-						});
+						case 0:
+							if (ClientPrefs.optimizationMode == false)
+							{
+								ClientPrefs.mechanics = false;
+								changedSettings = true;
+								trace ("Mechanics: False");
+							}
+						case 1:
+							if (ClientPrefs.optimizationMode == false)
+							{
+								ClientPrefs.shaders = false;
+								trace ("Shaders: False");
+							}
+						case 2:
+							if (ClientPrefs.optimizationMode == false)
+							{
+								ClientPrefs.cinematicBars = false;
+								trace ("Cinematic Bars: False");
+							}
+						case 3:
+							ClientPrefs.downScroll = false;
+							trace ("Downscroll: False");
+						case 4:
+							ClientPrefs.gameplaySettings.set('botplay', false);
+							botplayOn = false;
+							trace ("Botplay: False.");
 					}
-					else if (huh == 1 && !delay)
+				}
+				else if (huh == 1 && !delay)
+				{
+					switch (curOption)
 					{
-						switch (curOption)
-						{
-							case 0:
-								if (ClientPrefs.optimizationMode == false)
-								{
-									ClientPrefs.mechanics = true;
-									changedSettings = true;
-									trace ("Mechanics: True");
-								}
-							case 1:
-								if (ClientPrefs.optimizationMode == false)
-								{
-									ClientPrefs.shaders = true;
-									trace ("Shaders: True");
-								}
-							case 2:
-								if (ClientPrefs.optimizationMode == false)
-								{
-									ClientPrefs.cinematicBars = true;
-									trace ("Cinematic Bars: True");
-								}
-							case 3:
-								ClientPrefs.downScroll = true;
-								trace ("Downscroll: True");
-							case 4:
-								ClientPrefs.gameplaySettings.set('botplay', true);
-								botplayOn = true;
-								trace ("Botplay: True.");
-						}
-						delay = true;
-						new FlxTimer().start(0.05, function (tmr:FlxTimer) {
-							delay = false;
-						});
+						case 0:
+							if (ClientPrefs.optimizationMode == false)
+							{
+								ClientPrefs.mechanics = true;
+								changedSettings = true;
+								trace ("Mechanics: True");
+							}
+						case 1:
+							if (ClientPrefs.optimizationMode == false)
+							{
+								ClientPrefs.shaders = true;
+								trace ("Shaders: True");
+							}
+						case 2:
+							if (ClientPrefs.optimizationMode == false)
+							{
+								ClientPrefs.cinematicBars = true;
+								trace ("Cinematic Bars: True");
+							}
+						case 3:
+							ClientPrefs.downScroll = true;
+							trace ("Downscroll: True");
+						case 4:
+							ClientPrefs.gameplaySettings.set('botplay', true);
+							botplayOn = true;
+							trace ("Botplay: True.");
 					}
 				}
 			}
-
-			if (PlayState.isInjectionMode || PlayState.isMayhemMode)
-			{
-				for (item in grpOpts.members)
-				{
-					if (huh == 0 && !delay)
-					{
-						switch (curOption)
-						{
-							case 0:
-								if (ClientPrefs.optimizationMode == false)
-								{
-									ClientPrefs.shaders = false;
-									trace ("Shaders: False");
-								}
-							case 1:
-								if (ClientPrefs.optimizationMode == false)
-								{
-									ClientPrefs.cinematicBars = false;
-									trace ("Cinematic Bars: False");
-								}
-							case 2:
-								ClientPrefs.downScroll = false;
-								trace ("Downscroll: False");
-						}
-						delay = true;
-						new FlxTimer().start(0.05, function (tmr:FlxTimer) {
-							delay = false;
-						});
-					}
-					else if (huh == 1 && !delay)
-					{
-						switch (curOption)
-						{
-							case 0:
-								if (ClientPrefs.optimizationMode == false)
-								{
-									ClientPrefs.shaders = true;
-									trace ("Shaders: True");
-								}
-							case 1:
-								if (ClientPrefs.optimizationMode == false)
-								{
-									ClientPrefs.cinematicBars = true;
-									trace ("Cinematic Bars: True");
-								}
-							case 2:
-								ClientPrefs.downScroll = true;
-								trace ("Downscroll: True");
-						}
-						delay = true;
-						new FlxTimer().start(0.05, function (tmr:FlxTimer) {
-							delay = false;
-						});
-					}
-				}
-			}
-
-			if (PlayState.isIniquitousMode)
-			{
-				for (item in grpOpts.members)
-				{
-					if (huh == 0 && !delay)
-					{
-						switch (curOption)
-						{
-							case 0:
-								if (ClientPrefs.optimizationMode == false)
-								{
-									ClientPrefs.shaders = false;
-									trace ("Shaders: False");
-								}
-							case 1:
-								if (ClientPrefs.optimizationMode == false)
-								{
-									ClientPrefs.cinematicBars = false;
-									trace ("Cinematic Bars: False");
-								}
-							case 2:
-								ClientPrefs.downScroll = false;
-								trace ("Downscroll: False");
-							case 3:
-								ClientPrefs.gameplaySettings.set('botplay', false);
-								botplayOn = false;
-								trace ("Botplay: False.");
-						}
-						delay = true;
-						new FlxTimer().start(0.05, function (tmr:FlxTimer) {
-							delay = false;
-						});
-					}
-					else if (huh == 1 && !delay)
-					{
-						switch (curOption)
-						{
-							case 0:
-								if (ClientPrefs.optimizationMode == false)
-								{
-									ClientPrefs.shaders = true;
-									trace ("Shaders: True");
-								}
-							case 1:
-								if (ClientPrefs.optimizationMode == false)
-								{
-									ClientPrefs.cinematicBars = true;
-									trace ("Cinematic Bars: True");
-								}
-							case 2:
-								ClientPrefs.downScroll = true;
-								trace ("Downscroll: True");
-							case 3:
-								ClientPrefs.gameplaySettings.set('botplay', true);
-								botplayOn = true;
-								trace ("Botplay: True.");
-						}
-						delay = true;
-						new FlxTimer().start(0.05, function (tmr:FlxTimer) {
-							delay = false;
-						});
-					}
-				}
-			}
-			changeOption();	
 		}
 
+		if (PlayState.isInjectionMode || PlayState.isMayhemMode)
+		{
+			for (item in grpOpts.members)
+			{
+				if (huh == 0 && !delay)
+				{
+					switch (curOption)
+					{
+						case 0:
+							if (ClientPrefs.optimizationMode == false)
+							{
+								ClientPrefs.shaders = false;
+								trace ("Shaders: False");
+							}
+						case 1:
+							if (ClientPrefs.optimizationMode == false)
+							{
+								ClientPrefs.cinematicBars = false;
+								trace ("Cinematic Bars: False");
+							}
+						case 2:
+							ClientPrefs.downScroll = false;
+							trace ("Downscroll: False");
+					}
+				}
+				else if (huh == 1 && !delay)
+				{
+					switch (curOption)
+					{
+						case 0:
+							if (ClientPrefs.optimizationMode == false)
+							{
+								ClientPrefs.shaders = true;
+								trace ("Shaders: True");
+							}
+						case 1:
+							if (ClientPrefs.optimizationMode == false)
+							{
+								ClientPrefs.cinematicBars = true;
+								trace ("Cinematic Bars: True");
+							}
+						case 2:
+							ClientPrefs.downScroll = true;
+							trace ("Downscroll: True");
+					}
+				}
+			}
+		}
+
+		if (PlayState.isIniquitousMode)
+		{
+			for (item in grpOpts.members)
+			{
+				if (huh == 0 && !delay)
+				{
+					switch (curOption)
+					{
+						case 0:
+							if (ClientPrefs.optimizationMode == false)
+							{
+								ClientPrefs.shaders = false;
+								trace ("Shaders: False");
+							}
+						case 1:
+							if (ClientPrefs.optimizationMode == false)
+							{
+								ClientPrefs.cinematicBars = false;
+								trace ("Cinematic Bars: False");
+							}
+						case 2:
+							ClientPrefs.downScroll = false;
+							trace ("Downscroll: False");
+						case 3:
+							ClientPrefs.gameplaySettings.set('botplay', false);
+							botplayOn = false;
+							trace ("Botplay: False.");
+					}
+				}
+				else if (huh == 1 && !delay)
+				{
+					switch (curOption)
+					{
+						case 0:
+							if (ClientPrefs.optimizationMode == false)
+							{
+								ClientPrefs.shaders = true;
+								trace ("Shaders: True");
+							}
+						case 1:
+							if (ClientPrefs.optimizationMode == false)
+							{
+								ClientPrefs.cinematicBars = true;
+								trace ("Cinematic Bars: True");
+							}
+						case 2:
+							ClientPrefs.downScroll = true;
+							trace ("Downscroll: True");
+						case 3:
+							ClientPrefs.gameplaySettings.set('botplay', true);
+							botplayOn = true;
+							trace ("Botplay: True.");
+					}
+				}
+			}
+		}
+		delay = true;
+		new FlxTimer().start(0.05, function (tmr:FlxTimer) {
+			delay = false;
+		});
+
+		changeOption();	
+	}
+
+	var dur:Float = 0.25;
 	function changeOption(change:Int = 0)
+	{
+		curOption += change;
+
+		if ((PlayState.isStoryMode && !PlayState.isIniquitousMode)
+		|| (!PlayState.isStoryMode && !PlayState.isIniquitousMode && !PlayState.isInjectionMode && !PlayState.isMayhemMode))
 		{
-			curOption += change;
-
-			if ((PlayState.isStoryMode && !PlayState.isIniquitousMode)
-				|| (!PlayState.isStoryMode && !PlayState.isIniquitousMode && !PlayState.isInjectionMode && !PlayState.isMayhemMode))
+			if (curOption < 0)
+				curOption = 5;
+			if (curOption > 5)
+				curOption = 0;
+	
+			for (item in grpOpts.members)
 			{
-				if (curOption < 0)
-					curOption = 5;
-				if (curOption > 5)
-					curOption = 0;
+				if (curOption == item.ID)
+					quickSettingsTweenFadeIn = FlxTween.tween(item, {alpha: 1}, dur, {ease: FlxEase.quartOut});
+				else
+					quickSettingsTweenFadeIn = FlxTween.tween(item, {alpha: 0.6}, dur, {ease: FlxEase.quartOut});
 	
-				for (item in grpOpts.members)
+				switch (curOption)
 				{
-					if (curOption == item.ID)
-						quickSettingsTweenFadeIn = FlxTween.tween(item, {alpha: 1}, 0.4, {ease: FlxEase.quartOut});
-					else
-						quickSettingsTweenFadeIn = FlxTween.tween(item, {alpha: 0.6}, 0.4, {ease: FlxEase.quartOut});
-	
-					switch (curOption)
-					{
-						case 0:
-							optionInfo.y = 285;
-							if (ClientPrefs.optimizationMode == false)
-								optionInfo.text = "Determine whether you want mechanics to be turned on or off.\n\n(Settings are applied once you restart or move to the next song.)";
-							else
-								optionInfo.text = "This is disabled by default since optimization mode is turned on.";
-						case 1:
-							optionInfo.y = 285;
-							if (ClientPrefs.optimizationMode == false)
-								optionInfo.text = "Determine whether you want shaders to be turned on or off.\n\n(Settings are applied once you restart or move to the next song.)";
-							else
-								optionInfo.text = "This is disabled by default since optimization mode is turned on.";
-						case 2:
-							optionInfo.y = 285;
-							if (ClientPrefs.optimizationMode == false)
-								optionInfo.text = "Determine whether you want cinematic bars to be turned on or off.\n\n(Settings are applied once you restart or move to the next song.)";
-							else
-								optionInfo.text = "This is disabled by default since optimization mode is turned on.";
-						case 3:
-							optionInfo.y = 285;
-							optionInfo.text = "Determine whether you want your notes to be scrolled upwards or downwards.\n\n(Settings are applied once you restart or move to the next song.)";
-						case 4:
-							optionInfo.y = 275;
-							optionInfo.text = "Determine whether you want to turn botplay on or off.\n\n<R>WARNING:<R>\nTurning botplay <G>ON<G> will reset your gameplay, aswell as your progress.\nTo disable, press CTRL on the Story Mode / Freeplay Menu.";
-						case 5:
-							optionInfo.y = 320;
-							optionInfo.text = "Press ENTER to access all of FNV's settings.\nNo progress will be lost.";
-					}
-	
-					
-					if (ClientPrefs.mechanics == true)
-					{
-						if (item.ID == 0)
-						{
-							item.text = "Mechanics (Enabled)";
-						}
-					}		
-					else
-					{
-						if (item.ID == 0)
-						{
-							item.text = "Mechanics (Disabled)";
-						}
-					}	
-					if (ClientPrefs.shaders == true)
-					{
-						if (item.ID == 1)
-						{
-							item.text = "Shaders (Enabled)";
-						}
-					}		
-					else
-					{
-						if (item.ID == 1)
-						{
-							item.text = "Shaders (Disabled)";
-						}
-					}
-					if (ClientPrefs.cinematicBars == true)
-					{
-						if (item.ID == 2)
-						{
-							item.text = "Cinematic Bars (Enabled)";
-						}
-					}		
-					else
-					{
-						if (item.ID == 2)
-						{
-							item.text = "Cinematic Bars (Disabled)";
-						}
-					}
-					if (ClientPrefs.downScroll == true)
-					{
-						if (item.ID == 3)
-						{
-							item.text = "Scroll Type (Downwards)";
-						}
-					}		
-					else
-					{
-						if (item.ID == 3)
-						{
-							item.text = "Scroll Type (Upwards)";
-						}
-					}
-					if (!ClientPrefs.getGameplaySetting('botplay', false))
-					{
-						if (item.ID == 4)
-						{
-							item.text = "Botplay (Disabled)";
-						}
-					}		
-					else
-					{
-						if (item.ID == 4)
-						{
-							item.text = "Botplay (Enabled)";
-						}
-					}
-					if (item.ID == 5)
-						item.text = "More Options..";
+					case 0:
+						optionInfo.y = 285;
+						if (ClientPrefs.optimizationMode == false)
+							optionInfo.text = "Determine whether you want mechanics to be turned on or off.\n\n(Settings are applied once you restart or move to the next song.)";
+						else
+							optionInfo.text = "This is disabled by default since optimization mode is turned on.";
+					case 1:
+						optionInfo.y = 285;
+						if (ClientPrefs.optimizationMode == false)
+							optionInfo.text = "Determine whether you want shaders to be turned on or off.\n\n(Settings are applied once you restart or move to the next song.)";
+						else
+							optionInfo.text = "This is disabled by default since optimization mode is turned on.";
+					case 2:
+						optionInfo.y = 285;
+						if (ClientPrefs.optimizationMode == false)
+							optionInfo.text = "Determine whether you want cinematic bars to be turned on or off.\n\n(Settings are applied once you restart or move to the next song.)";
+						else
+							optionInfo.text = "This is disabled by default since optimization mode is turned on.";
+					case 3:
+						optionInfo.y = 285;
+						optionInfo.text = "Determine whether you want your notes to be scrolled upwards or downwards.\n\n(Settings are applied once you restart or move to the next song.)";
+					case 4:
+						optionInfo.y = 275;
+						optionInfo.text = "Determine whether you want to turn botplay on or off.\n\n<R>WARNING:<R>\nTurning botplay <G>ON<G> will reset your gameplay, aswell as your progress.\nTo disable, press CTRL on the Story Mode / Freeplay Menu.";
+					case 5:
+						optionInfo.y = 320;
+						optionInfo.text = "Press ENTER to access all of FNV's settings.\nNo progress will be lost.";
 				}
-			}
-			
-			if (PlayState.isInjectionMode || PlayState.isMayhemMode)
-			{
-				if (curOption < 0)
-					curOption = 3;
-				if (curOption > 3)
-					curOption = 0;
 	
-				for (item in grpOpts.members)
+				if (ClientPrefs.mechanics == true)
 				{
-					if (curOption == item.ID)
-						quickSettingsTweenFadeIn = FlxTween.tween(item, {alpha: 1}, 0.4, {ease: FlxEase.quartOut});
-					else
-						quickSettingsTweenFadeIn = FlxTween.tween(item, {alpha: 0.6}, 0.4, {ease: FlxEase.quartOut});
-	
-					switch (curOption)
-					{
-						case 0:
-							optionInfo.y = 285;
-							if (ClientPrefs.optimizationMode == false)
-								optionInfo.text = "Determine whether you want shaders to be turned on or off.\n\n(Settings are applied once you restart or move to the next song.)";
-							else
-								optionInfo.text = "This is disabled by default since optimization mode is turned on.";
-							optionInfo.y = 285;
-							if (ClientPrefs.optimizationMode == false)
-								optionInfo.text = "Determine whether you want cinematic bars to be turned on or off.\n\n(Settings are applied once you restart or move to the next song.)";
-							else
-								optionInfo.text = "This is disabled by default since optimization mode is turned on.";
-						case 2:
-							optionInfo.y = 285;
-							optionInfo.text = "Determine whether you want your notes to be scrolled upwards or downwards.\n\n(Settings are applied once you move to the next song.)";
-						case 3:
-							optionInfo.y = 320;
-							optionInfo.text = "Press ENTER to access all of FNV's settings.\nNo progress will be lost.";
-					}
-	
-					if (ClientPrefs.shaders == true)
-					{
-						if (item.ID == 0)
-						{
-							item.text = "Shaders (Enabled)";
-						}
-					}		
-					else
-					{
-						if (item.ID == 0)
-						{
-							item.text = "Shaders (Disabled)";
-						}
-					}
-					if (ClientPrefs.cinematicBars == true)
-					{
-						if (item.ID == 1)
-						{
-							item.text = "Cinematic Bars (Enabled)";
-						}
-					}		
-					else
-					{
-						if (item.ID == 1)
-						{
-							item.text = "Cinematic Bars (Disabled)";
-						}
-					}
-					if (ClientPrefs.downScroll == true)
-					{
-						if (item.ID == 2)
-						{
-							item.text = "Scroll Type (Downwards)";
-						}
-					}		
-					else
-					{
-						if (item.ID == 2)
-						{
-							item.text = "Scroll Type (Upwards)";
-						}
-					}
+					if (item.ID == 0)
+						item.text = "Mechanics (Enabled)";
+				}		
+				else
+				{
+					if (item.ID == 0)
+						item.text = "Mechanics (Disabled)";
+				}	
+				if (ClientPrefs.shaders == true)
+				{
+					if (item.ID == 1)
+						item.text = "Shaders (Enabled)";
+				}		
+				else
+				{
+					if (item.ID == 1)
+						item.text = "Shaders (Disabled)";
+				}
+				if (ClientPrefs.cinematicBars == true)
+				{
+					if (item.ID == 2)
+						item.text = "Cinematic Bars (Enabled)";
+				}		
+				else
+				{
+					if (item.ID == 2)
+						item.text = "Cinematic Bars (Disabled)";
+				}
+				if (ClientPrefs.downScroll == true)
+				{
 					if (item.ID == 3)
-						item.text = "More Options..";
-				}
-			}
-
-			if (PlayState.isIniquitousMode)
-			{
-				if (curOption < 0)
-					curOption = 4;
-				if (curOption > 4)
-					curOption = 0;
-	
-				for (item in grpOpts.members)
+						item.text = "Scroll Type (Downwards)";
+				}		
+				else
 				{
-					if (curOption == item.ID)
-						quickSettingsTweenFadeIn = FlxTween.tween(item, {alpha: 1}, 0.4, {ease: FlxEase.quartOut});
-					else
-						quickSettingsTweenFadeIn = FlxTween.tween(item, {alpha: 0.6}, 0.4, {ease: FlxEase.quartOut});
-	
-					switch (curOption)
-					{
-						case 0:
-							optionInfo.y = 285;
-							if (ClientPrefs.optimizationMode == false)
-								optionInfo.text = "Determine whether you want shaders to be turned on or off.\n\n(Settings are applied once you restart or move to the next song.)";
-							else
-								optionInfo.text = "This is disabled by default since optimization mode is turned on.";
-						case 1:
-							optionInfo.y = 285;
-							if (ClientPrefs.optimizationMode == false)
-								optionInfo.text = "Determine whether you want cinematic bars to be turned on or off.\n\n(Settings are applied once you restart or move to the next song.)";
-							else
-								optionInfo.text = "This is disabled by default since optimization mode is turned on.";
-						case 2:
-							optionInfo.y = 285;
-							optionInfo.text = "Determine whether you want your notes to be scrolled upwards or downwards.\n\n(Settings are applied once you restart or move to the next song.)";
-						case 3:
-							optionInfo.y = 275;
-							optionInfo.text = "Determine whether you want to turn botplay on or off.\n\n<R>WARNING:<R>\nTurning botplay <G>ON<G> will reset your gameplay, aswell as your progress.\nTo disable, press CTRL on the Story Mode / Freeplay Menu.";
-						case 4:
-							optionInfo.y = 320;
-							optionInfo.text = "Press ENTER to access all of FNV's settings.\nNo progress will be lost.";
-					}
-	
-					if (ClientPrefs.shaders == true)
-					{
-						if (item.ID == 0)
-						{
-							item.text = "Shaders (Enabled)";
-						}
-					}		
-					else
-					{
-						if (item.ID == 0)
-						{
-							item.text = "Shaders (Disabled)";
-						}
-					}
-					if (ClientPrefs.cinematicBars == true)
-					{
-						if (item.ID == 1)
-						{
-							item.text = "Cinematic Bars (Enabled)";
-						}
-					}		
-					else
-					{
-						if (item.ID == 1)
-						{
-							item.text = "Cinematic Bars (Disabled)";
-						}
-					}
-					if (ClientPrefs.downScroll == true)
-					{
-						if (item.ID == 2)
-						{
-							item.text = "Scroll Type (Downwards)";
-						}
-					}		
-					else
-					{
-						if (item.ID == 2)
-						{
-							item.text = "Scroll Type (Upwards)";
-						}
-					}
-					if (!ClientPrefs.getGameplaySetting('botplay', false))
-					{
-						if (item.ID == 3)
-						{
-							item.text = "Botplay (Disabled)";
-						}
-					}		
-					else
-					{
-						if (item.ID == 3)
-						{
-							item.text = "Botplay (Enabled)";
-						}
-					}
-					if (item.ID == 4)
-						item.text = "More Options..";
+					if (item.ID == 3)
+						item.text = "Scroll Type (Upwards)";
 				}
+				if (!ClientPrefs.getGameplaySetting('botplay', false))
+				{
+					if (item.ID == 4)
+							item.text = "Botplay (Disabled)";
+				}		
+				else
+				{
+					if (item.ID == 4)
+						item.text = "Botplay (Enabled)";
+				}
+				if (item.ID == 5)
+					item.text = "More Options..";
 			}
-
-			CustomFontFormats.addMarkers(optionInfo);
 		}
+			
+		if (PlayState.isInjectionMode || PlayState.isMayhemMode)
+		{
+			if (curOption < 0)
+				curOption = 3;
+			if (curOption > 3)
+				curOption = 0;
+	
+			for (item in grpOpts.members)
+			{
+				if (curOption == item.ID)
+					quickSettingsTweenFadeIn = FlxTween.tween(item, {alpha: 1}, 0.4, {ease: FlxEase.quartOut});
+				else
+					quickSettingsTweenFadeIn = FlxTween.tween(item, {alpha: 0.6}, 0.4, {ease: FlxEase.quartOut});
+	
+				switch (curOption)
+				{
+					case 0:
+						optionInfo.y = 285;
+						if (ClientPrefs.optimizationMode == false)
+							optionInfo.text = "Determine whether you want shaders to be turned on or off.\n\n(Settings are applied once you restart or move to the next song.)";
+						else
+							optionInfo.text = "This is disabled by default since optimization mode is turned on.";
+					case 2:
+						optionInfo.y = 285;
+						optionInfo.text = "Determine whether you want your notes to be scrolled upwards or downwards.\n\n(Settings are applied once you move to the next song.)";
+					case 3:
+						optionInfo.y = 320;
+						optionInfo.text = "Press ENTER to access all of FNV's settings.\nNo progress will be lost.";
+				}
+	
+				if (ClientPrefs.shaders == true)
+				{
+					if (item.ID == 0)
+						item.text = "Shaders (Enabled)";
+				}		
+				else
+				{
+					if (item.ID == 0)
+						item.text = "Shaders (Disabled)";
+				}
+				if (ClientPrefs.cinematicBars == true)
+				{
+					if (item.ID == 1)
+						item.text = "Cinematic Bars (Enabled)";
+				}		
+				else
+				{
+					if (item.ID == 1)
+						item.text = "Cinematic Bars (Disabled)";
+				}
+				if (ClientPrefs.downScroll == true)
+				{
+					if (item.ID == 2)
+						item.text = "Scroll Type (Downwards)";
+				}		
+				else
+				{
+					if (item.ID == 2)
+						item.text = "Scroll Type (Upwards)";
+				}
+				if (item.ID == 3)
+					item.text = "More Options..";
+			}
+		}
+
+		if (PlayState.isIniquitousMode)
+		{
+			if (curOption < 0)
+				curOption = 4;
+			if (curOption > 4)
+				curOption = 0;
+	
+			for (item in grpOpts.members)
+			{
+				if (curOption == item.ID)
+					quickSettingsTweenFadeIn = FlxTween.tween(item, {alpha: 1}, 0.4, {ease: FlxEase.quartOut});
+				else
+					quickSettingsTweenFadeIn = FlxTween.tween(item, {alpha: 0.6}, 0.4, {ease: FlxEase.quartOut});
+
+				switch (curOption)
+				{
+					case 0:
+						optionInfo.y = 285;
+						if (ClientPrefs.optimizationMode == false)
+							optionInfo.text = "Determine whether you want shaders to be turned on or off.\n\n(Settings are applied once you restart or move to the next song.)";
+						else
+							optionInfo.text = "This is disabled by default since optimization mode is turned on.";
+					case 1:
+						optionInfo.y = 285;
+						if (ClientPrefs.optimizationMode == false)
+							optionInfo.text = "Determine whether you want cinematic bars to be turned on or off.\n\n(Settings are applied once you restart or move to the next song.)";
+						else
+							optionInfo.text = "This is disabled by default since optimization mode is turned on.";
+					case 2:
+						optionInfo.y = 285;
+						optionInfo.text = "Determine whether you want your notes to be scrolled upwards or downwards.\n\n(Settings are applied once you restart or move to the next song.)";
+					case 3:
+						optionInfo.y = 275;
+						optionInfo.text = "Determine whether you want to turn botplay on or off.\n\n<R>WARNING:<R>\nTurning botplay <G>ON<G> will reset your gameplay, aswell as your progress.\nTo disable, press CTRL on the Story Mode / Freeplay Menu.";
+					case 4:
+						optionInfo.y = 320;
+						optionInfo.text = "Press ENTER to access all of FNV's settings.\nNo progress will be lost.";
+				}
+	
+				if (ClientPrefs.shaders == true)
+				{
+					if (item.ID == 0)
+						item.text = "Shaders (Enabled)";
+				}		
+				else
+				{
+					if (item.ID == 0)
+						item.text = "Shaders (Disabled)";
+				}
+				if (ClientPrefs.cinematicBars == true)
+				{
+					if (item.ID == 1)
+						item.text = "Cinematic Bars (Enabled)";
+				}		
+				else
+				{
+					if (item.ID == 1)
+						item.text = "Cinematic Bars (Disabled)";
+				}
+				if (ClientPrefs.downScroll == true)
+				{
+					if (item.ID == 2)
+						item.text = "Scroll Type (Downwards)";
+				}		
+				else
+				{
+					if (item.ID == 2)
+						item.text = "Scroll Type (Upwards)";
+				}
+				if (!ClientPrefs.getGameplaySetting('botplay', false))
+				{
+					if (item.ID == 3)
+						item.text = "Botplay (Disabled)";
+				}		
+				else
+				{
+					if (item.ID == 3)
+						item.text = "Botplay (Enabled)";
+				}
+				if (item.ID == 4)
+					item.text = "More Options..";
+			}
+		}
+
+		CustomFontFormats.addMarkers(optionInfo);
+	}
 
 	function openSkipTimeMenu()
 	{
@@ -1535,8 +1463,7 @@ class PauseSubState extends MusicBeatSubstate
 			}
 			if (levelInfo.text != 'Concert Chaos')
 				PlayState.SONG.player1 = playerSelected;
-		}
-		
+		}	
 		
 		// Do not touch lmao
 		PlayState.instance.paused = true; // For lua

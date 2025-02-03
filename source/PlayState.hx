@@ -1518,12 +1518,12 @@ class PlayState extends MusicBeatState
 	}
 
 	var startTheDamnSong:Int = 0;
-	var countdownNumber:Int = 0;
+	var countdownSelected:Int = 0;
 	public function startCountdown():Void
 	{
 		if (!chartingMode)
-			countdownNumber = FlxG.random.int(1, 2);
-		countdownAudio = new FlxSound();
+			countdownSelected = FlxG.random.int(1, 2);
+		countdownAudio = new FlxSound(true); // Custom parameter in for focusability shit
 
 		if(startedCountdown) {
 			callOnLuas('onStartCountdown', []);
@@ -1752,7 +1752,7 @@ class PlayState extends MusicBeatState
 				// generateSong('fresh');
 			}, 5);
 		}
-		else if (countdownNumber == 1)
+		else if (countdownSelected == 1)
 		{
 			var voiceNumber:Int = FlxG.random.int(1, 5);
 
@@ -1868,7 +1868,7 @@ class PlayState extends MusicBeatState
 				startTheDamnSong = 1;
 			});
 		}
-		else if (countdownNumber == 2)
+		else if (countdownSelected == 2)
 		{			
 			var voiceNumber:Int = FlxG.random.int(0, 5);
 
@@ -2633,24 +2633,18 @@ class PlayState extends MusicBeatState
 
 		if (controls.PAUSE && startedCountdown && canPause)
 		{
+
 			if(startTheDamnSong == 0)
-				{
+			{
 					//do Nothing
+			}
+			else
+			{
+				var ret:Dynamic = callOnLuas('onPause', [], false);
+				if(ret != FunkinLua.Function_Stop) {
+					openPauseMenu();
 				}
-				else if(startTheDamnSong == 1)
-				{
-					var ret:Dynamic = callOnLuas('onPause', [], false);
-					if(ret != FunkinLua.Function_Stop) {
-						openPauseMenu();
-					}
-				}
-				else
-				{
-					var ret:Dynamic = callOnLuas('onPause', [], false);
-					if(ret != FunkinLua.Function_Stop) {
-						openPauseMenu();
-					}
-				}
+			}
 		}
 
 		#if DEBUG_ALLOWED

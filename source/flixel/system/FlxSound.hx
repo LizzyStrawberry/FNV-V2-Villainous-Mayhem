@@ -205,10 +205,22 @@ class FlxSound extends FlxBasic
 	/**
 	 * The FlxSound constructor gets all the variables initialized, but NOT ready to play a sound yet.
 	 */
-	public function new()
+	public function new(focusable:Bool = false) // Focus parameter cuz FlxSound doesn't always fix itself apparently
 	{
 		super();
 		reset();
+
+		if (focusable)
+		{
+			FlxG.signals.focusGained.add(function()
+			{
+				resume();
+			});
+			FlxG.signals.focusLost.add(function()
+			{
+				pause();
+			});	
+		}
 	}
 
 	/**
