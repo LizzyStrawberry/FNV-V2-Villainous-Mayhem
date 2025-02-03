@@ -461,8 +461,7 @@ class CharSelector extends MusicBeatState{
 
         icon.screenCenter(X);
         icon.setGraphicSize(-4);
-        icon.x += 50;
-        icon.y = (bar.y - (icon.height / 3)) - 10;
+        icon.y = (bar.y - (icon.height / 3)) - 50;
         getIconY = icon.y;
         add(icon);
     }
