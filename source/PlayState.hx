@@ -581,35 +581,38 @@ class PlayState extends MusicBeatState
 		add(luaDebugGroup);
 		#end
 
-		// "GLOBAL" SCRIPTS
-		#if LUA_ALLOWED
-		var filesPushed:Array<String> = [];
-		var foldersToCheck:Array<String> = [Paths.getPreloadPath('scripts/')];
-
-		#if MODS_ALLOWED
-		foldersToCheck.insert(0, Paths.mods('scripts/'));
-		if(Paths.currentModDirectory != null && Paths.currentModDirectory.length > 0)
-			foldersToCheck.insert(0, Paths.mods(Paths.currentModDirectory + '/scripts/'));
-
-		for(mod in Paths.getGlobalMods())
-			foldersToCheck.insert(0, Paths.mods(mod + '/scripts/'));
-		#end
-
-		for (folder in foldersToCheck)
+		if (!ClientPrefs.optimizationMode)
 		{
-			if(FileSystem.exists(folder))
+			// "GLOBAL" SCRIPTS
+			#if LUA_ALLOWED
+			var filesPushed:Array<String> = [];
+			var foldersToCheck:Array<String> = [Paths.getPreloadPath('scripts/')];
+
+			#if MODS_ALLOWED
+			foldersToCheck.insert(0, Paths.mods('scripts/'));
+			if(Paths.currentModDirectory != null && Paths.currentModDirectory.length > 0)
+				foldersToCheck.insert(0, Paths.mods(Paths.currentModDirectory + '/scripts/'));
+
+			for(mod in Paths.getGlobalMods())
+				foldersToCheck.insert(0, Paths.mods(mod + '/scripts/'));
+			#end
+
+			for (folder in foldersToCheck)
 			{
-				for (file in FileSystem.readDirectory(folder))
+				if(FileSystem.exists(folder))
 				{
-					if(file.endsWith('.lua') && !filesPushed.contains(file))
+					for (file in FileSystem.readDirectory(folder))
 					{
-						luaArray.push(new FunkinLua(folder + file));
-						filesPushed.push(file);
+						if(file.endsWith('.lua') && !filesPushed.contains(file))
+						{
+							luaArray.push(new FunkinLua(folder + file));
+							filesPushed.push(file);
+						}
 					}
 				}
 			}
+			#end
 		}
-		#end
 
 		// STAGE SCRIPTS
 		#if (MODS_ALLOWED && LUA_ALLOWED)
@@ -829,10 +832,7 @@ class PlayState extends MusicBeatState
 		healthBarBG.sprTracker = healthBar;
 
 		iconP1 = new HealthIcon(boyfriend.healthIcon, true);
-		if (ClientPrefs.optimizationMode == false)
-			iconP1.y = healthBar.y - 20;
-		else
-			iconP1.y = healthBar.y - 30;
+		iconP1.y = healthBar.y - 75;
 		iconP1.visible = !ClientPrefs.hideHud;
 		iconP1.alpha = ClientPrefs.healthBarAlpha;
 		if (ClientPrefs.optimizationMode == true)
@@ -842,10 +842,7 @@ class PlayState extends MusicBeatState
 		add(iconP1);
 
 		iconP2 = new HealthIcon(dad.healthIcon, false);
-		if (ClientPrefs.optimizationMode == false)
-			iconP2.y = healthBar.y - 20;
-		else
-			iconP2.y = healthBar.y - 30;
+		iconP2.y = healthBar.y - 75;
 		iconP2.visible = !ClientPrefs.hideHud;
 		iconP2.alpha = ClientPrefs.healthBarAlpha;
 		if (ClientPrefs.optimizationMode == true)
@@ -893,90 +890,96 @@ class PlayState extends MusicBeatState
 		// cameras = [FlxG.cameras.list[1]];
 		startingSong = true;
 		
-		#if LUA_ALLOWED
-		for (notetype in noteTypeMap.keys())
+		if (!ClientPrefs.optimizationMode)
 		{
-			#if MODS_ALLOWED
-			var luaToLoad:String = Paths.modFolders('custom_notetypes/' + notetype + '.lua');
-			if(FileSystem.exists(luaToLoad))
+			#if LUA_ALLOWED
+			for (notetype in noteTypeMap.keys())
 			{
-				luaArray.push(new FunkinLua(luaToLoad));
-			}
-			else
-			{
-				luaToLoad = Paths.getPreloadPath('custom_notetypes/' + notetype + '.lua');
+				#if MODS_ALLOWED
+				var luaToLoad:String = Paths.modFolders('custom_notetypes/' + notetype + '.lua');
 				if(FileSystem.exists(luaToLoad))
 				{
 					luaArray.push(new FunkinLua(luaToLoad));
 				}
+				else
+				{
+					luaToLoad = Paths.getPreloadPath('custom_notetypes/' + notetype + '.lua');
+					if(FileSystem.exists(luaToLoad))
+					{
+						luaArray.push(new FunkinLua(luaToLoad));
+					}
+				}
+				#elseif sys
+				var luaToLoad:String = Paths.getPreloadPath('custom_notetypes/' + notetype + '.lua');
+				if(OpenFlAssets.exists(luaToLoad))
+				{
+					luaArray.push(new FunkinLua(luaToLoad));
+				}
+				#end
 			}
-			#elseif sys
-			var luaToLoad:String = Paths.getPreloadPath('custom_notetypes/' + notetype + '.lua');
-			if(OpenFlAssets.exists(luaToLoad))
+			for (event in eventPushedMap.keys())
 			{
-				luaArray.push(new FunkinLua(luaToLoad));
-			}
-			#end
-		}
-		for (event in eventPushedMap.keys())
-		{
-			#if MODS_ALLOWED
-			var luaToLoad:String = Paths.modFolders('custom_events/' + event + '.lua');
-			if(FileSystem.exists(luaToLoad))
-			{
-				luaArray.push(new FunkinLua(luaToLoad));
-			}
-			else
-			{
-				luaToLoad = Paths.getPreloadPath('custom_events/' + event + '.lua');
+				#if MODS_ALLOWED
+				var luaToLoad:String = Paths.modFolders('custom_events/' + event + '.lua');
 				if(FileSystem.exists(luaToLoad))
 				{
 					luaArray.push(new FunkinLua(luaToLoad));
 				}
-			}
-			#elseif sys
-			var luaToLoad:String = Paths.getPreloadPath('custom_events/' + event + '.lua');
-			if(OpenFlAssets.exists(luaToLoad))
-			{
-				luaArray.push(new FunkinLua(luaToLoad));
+				else
+				{
+					luaToLoad = Paths.getPreloadPath('custom_events/' + event + '.lua');
+					if(FileSystem.exists(luaToLoad))
+					{
+						luaArray.push(new FunkinLua(luaToLoad));
+					}
+				}
+				#elseif sys
+				var luaToLoad:String = Paths.getPreloadPath('custom_events/' + event + '.lua');
+				if(OpenFlAssets.exists(luaToLoad))
+				{
+					luaArray.push(new FunkinLua(luaToLoad));
+				}
+				#end
 			}
 			#end
 		}
-		#end
 		noteTypeMap.clear();
 		noteTypeMap = null;
 		eventPushedMap.clear();
 		eventPushedMap = null;
 
-		// SONG SPECIFIC SCRIPTS
-		#if LUA_ALLOWED
-		var filesPushed:Array<String> = [];
-		var foldersToCheck:Array<String> = [Paths.getPreloadPath('data/' + Paths.formatToSongPath(SONG.song) + '/')];
-
-		#if MODS_ALLOWED
-		foldersToCheck.insert(0, Paths.mods('data/' + Paths.formatToSongPath(SONG.song) + '/'));
-		if(Paths.currentModDirectory != null && Paths.currentModDirectory.length > 0)
-			foldersToCheck.insert(0, Paths.mods(Paths.currentModDirectory + '/data/' + Paths.formatToSongPath(SONG.song) + '/'));
-
-		for(mod in Paths.getGlobalMods())
-			foldersToCheck.insert(0, Paths.mods(mod + '/data/' + Paths.formatToSongPath(SONG.song) + '/' ));// using push instead of insert because these should run after everything else
-		#end
-
-		for (folder in foldersToCheck)
+		if (!ClientPrefs.optimizationMode)
 		{
-			if(FileSystem.exists(folder))
+			// SONG SPECIFIC SCRIPTS
+			#if LUA_ALLOWED
+			var filesPushed:Array<String> = [];
+			var foldersToCheck:Array<String> = [Paths.getPreloadPath('data/' + Paths.formatToSongPath(SONG.song) + '/')];
+
+			#if MODS_ALLOWED
+			foldersToCheck.insert(0, Paths.mods('data/' + Paths.formatToSongPath(SONG.song) + '/'));
+			if(Paths.currentModDirectory != null && Paths.currentModDirectory.length > 0)
+				foldersToCheck.insert(0, Paths.mods(Paths.currentModDirectory + '/data/' + Paths.formatToSongPath(SONG.song) + '/'));
+
+			for(mod in Paths.getGlobalMods())
+				foldersToCheck.insert(0, Paths.mods(mod + '/data/' + Paths.formatToSongPath(SONG.song) + '/' ));// using push instead of insert because these should run after everything else
+			#end
+
+			for (folder in foldersToCheck)
 			{
-				for (file in FileSystem.readDirectory(folder))
+				if(FileSystem.exists(folder))
 				{
-					if(file.endsWith('.lua') && !filesPushed.contains(file))
+					for (file in FileSystem.readDirectory(folder))
 					{
-						luaArray.push(new FunkinLua(folder + file));
-						filesPushed.push(file);
+						if(file.endsWith('.lua') && !filesPushed.contains(file))
+						{
+							luaArray.push(new FunkinLua(folder + file));
+							filesPushed.push(file);
+						}
 					}
 				}
 			}
+			#end
 		}
-		#end
 
 		var daSong:String = Paths.formatToSongPath(curSong);
 		if (isStoryMode && !seenCutscene)
@@ -1064,6 +1067,10 @@ class PlayState extends MusicBeatState
 		Paths.clearUnusedMemory();
 		
 		CustomFadeTransition.nextCamera = camOther;
+
+		// In case of Optimization Mode, disable camGame
+			if (ClientPrefs.optimizationMode)
+				camGame.visible = false;
 	}
 
 	#if (!flash && sys)
@@ -2669,8 +2676,8 @@ class PlayState extends MusicBeatState
 
 		var iconOffset:Int = 26;
 
-		iconP1.x = healthBar.x + (healthBar.width * (FlxMath.remapToRange(healthBar.percent, 0, 100, 100, 0) * 0.01)) + (150 * iconP1.scale.x - 150) / 2 - iconOffset + 60;
-		iconP2.x = healthBar.x + (healthBar.width * (FlxMath.remapToRange(healthBar.percent, 0, 100, 100, 0) * 0.01)) - (150 * iconP2.scale.x) / 2 - iconOffset * 2 + 60;
+		iconP1.x = healthBar.x + (healthBar.width * (FlxMath.remapToRange(healthBar.percent, 0, 100, 100, 0) * 0.01)) + (150 * iconP1.scale.x - 150) / 2 - iconOffset;
+		iconP2.x = healthBar.x + (healthBar.width * (FlxMath.remapToRange(healthBar.percent, 0, 100, 100, 0) * 0.01)) - (150 * iconP2.scale.x) / 2 - iconOffset * 2;
 
 		if (isMayhemMode)
 		{
@@ -2689,29 +2696,49 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (healthBar.percent < 20)
-			iconP1.animation.curAnim.curFrame = 1; // Losing
-		else if (healthBar.percent > 80)
-			iconP1.animation.curAnim.curFrame = 2; // Winning
-		else
-			iconP1.animation.curAnim.curFrame = 0; // Neutral
-
-		if (healthBar.percent > 80)
+		if (iconP1.animation.frames == 3) //No numFrames due to Flixel 4.11.0
 		{
-			if (Paths.formatToSongPath(SONG.song) == 'marauder' || Paths.formatToSongPath(SONG.song) == 'marauder-(old)')
-			{
-				if (curBeat % 2 == 0)
-					iconP2.animation.curAnim.curFrame = 1; // Losing
-				if (curBeat % 2 == 1)
-					iconP2.animation.curAnim.curFrame = 0; // Neutral
-			}	
+			if (healthBar.percent < 20)
+				iconP1.animation.curAnim.curFrame = 1; // Losing
+			else if (healthBar.percent > 80)
+				iconP1.animation.curAnim.curFrame = 2; // Winning
 			else
-				iconP2.animation.curAnim.curFrame = 1; // Losing
+				iconP1.animation.curAnim.curFrame = 0; // Neutral
 		}
-		else if (healthBar.percent < 20)
-			iconP2.animation.curAnim.curFrame = 2; // Winning
 		else
-			iconP2.animation.curAnim.curFrame = 0; // Neutral
+		{
+			if (healthBar.percent < 20)
+				iconP1.animation.curAnim.curFrame = 1; // Losing
+			else
+				iconP1.animation.curAnim.curFrame = 0; // Neutral
+		}
+
+		if (iconP2.animation.frames == 3)
+		{
+			if (healthBar.percent > 80)
+			{
+				if (Paths.formatToSongPath(SONG.song) == 'marauder' || Paths.formatToSongPath(SONG.song) == 'marauder-(old)')
+				{
+					if (curBeat % 2 == 0)
+						iconP2.animation.curAnim.curFrame = 1; // Losing
+					if (curBeat % 2 == 1)
+						iconP2.animation.curAnim.curFrame = 0; // Neutral
+				}	
+				else
+					iconP2.animation.curAnim.curFrame = 1; // Losing
+			}
+			else if (healthBar.percent < 20)
+				iconP2.animation.curAnim.curFrame = 2; // Winning
+			else
+				iconP2.animation.curAnim.curFrame = 0; // Neutral
+		}
+		else
+		{
+			if (healthBar.percent < 20)
+				iconP2.animation.curAnim.curFrame = 1; // Losing
+			else
+				iconP2.animation.curAnim.curFrame = 0; // Neutral
+		}
 
 		if (FlxG.keys.anyJustPressed(debugKeysCharacter) && !endingSong && !inCutscene) {
 			persistentUpdate = false;

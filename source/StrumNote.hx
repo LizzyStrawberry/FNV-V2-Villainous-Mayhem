@@ -72,67 +72,70 @@ class StrumNote extends FlxSprite
 
 		var skin:String = 'NOTE_assets';
 
-		if (player == 0) // For Opponents
+		if (!ClientPrefs.optimizationMode)
 		{
-			for (i in 0...marcoNoteVars.length-1)
+			if (player == 0) // For Opponents
 			{
-				if(PlayState.SONG.player2 == marcoNoteVars[i])
-					skin = 'notes/MarcoNOTE_assets';
+				for (i in 0...marcoNoteVars.length-1)
+				{
+					if(PlayState.SONG.player2 == marcoNoteVars[i])
+						skin = 'notes/MarcoNOTE_assets';
+				}
+				switch(PlayState.SONG.player2)
+				{
+					case 'marcoOurple':
+						skin = 'notes/ourpleNOTE_assets';
+					case 'beatricephase1' | 'beatricephase2' | 'BeatriceLegacyP1' | 'BeatriceLegacyP2':
+						skin = 'notes/BeatriceNOTE_assets';
+					case 'aileen' | 'aileen-old':
+						skin = 'notes/AileenNOTE_assets';
+					case 'kiana' | 'kianaPhase2' | 'kianaPhase3' | 'KianaFinalPhase':
+						skin = 'notes/KianaNOTE_assets';
+					case 'Morky' | 'MorkyMoist' | 'MorkyHypno' | 'MorkyHypnoAgain'
+						| 'MorkyEgg' | 'MorkyHank' | 'Justky':
+						skin = 'notes/MorkyNOTE_assets';
+					case 'NicFLP':
+						skin = 'notes/NicNOTE_assets';
+					case 'DV Phase 0' | 'DV' | 'DVTurn' | 'DV Phase 2':
+						skin = 'notes/dvNOTE_assets';
+					case 'FangirlIntro' | 'FangirlP1' | 'FangirlP2':
+						skin = 'notes/FangirlNOTE_assets';
+					case 'fnv':
+						skin = 'notes/FNVNOTE_assets';
+					case 'iniquitousP1' | 'iniquitousP2' | 'iniquitousP3':
+						skin = 'notes/IniquitousNOTE_assets';
+					case 'AsulP1' | 'AsulP2' | 'AsulP3':
+						skin = 'notes/AsulNOTE_assets';
+					case 'narrin' | 'Narrin Side':
+						skin = 'notes/NarrinNOTE_assets';
+					case 'Yaku':
+						skin = 'notes/YakuNOTE_assets';
+				}
 			}
-			switch(PlayState.SONG.player2)
+			else // For Player
 			{
-				case 'marcoOurple':
-					skin = 'notes/ourpleNOTE_assets';
-				case 'beatricephase1' | 'beatricephase2' | 'BeatriceLegacyP1' | 'BeatriceLegacyP2':
-					skin = 'notes/BeatriceNOTE_assets';
-				case 'aileen' | 'aileen-old':
-					skin = 'notes/AileenNOTE_assets';
-				case 'kiana' | 'kianaPhase2' | 'kianaPhase3' | 'KianaFinalPhase':
-					skin = 'notes/KianaNOTE_assets';
-				case 'Morky' | 'MorkyMoist' | 'MorkyHypno' | 'MorkyHypnoAgain'
-					| 'MorkyEgg' | 'MorkyHank' | 'Justky':
-					skin = 'notes/MorkyNOTE_assets';
-				case 'NicFLP':
-					skin = 'notes/NicNOTE_assets';
-				case 'DV Phase 0' | 'DV' | 'DVTurn' | 'DV Phase 2':
-					skin = 'notes/dvNOTE_assets';
-				case 'FangirlIntro' | 'FangirlP1' | 'FangirlP2':
-					skin = 'notes/FangirlNOTE_assets';
-				case 'fnv':
-					skin = 'notes/FNVNOTE_assets';
-				case 'iniquitousP1' | 'iniquitousP2' | 'iniquitousP3':
-					skin = 'notes/IniquitousNOTE_assets';
-				case 'AsulP1' | 'AsulP2' | 'AsulP3':
-					skin = 'notes/AsulNOTE_assets';
-				case 'narrin' | 'Narrin Side':
-					skin = 'notes/NarrinNOTE_assets';
-				case 'Yaku':
-					skin = 'notes/YakuNOTE_assets';
-			}
-		}
-		else // For Player
-		{
-			for (i in 0...lilyNoteVars.length-1)
-			{
-				if(PlayState.SONG.player1 == lilyNoteVars[i])
-					skin = 'notes/LilyNOTE_assets';
-			}
-			switch(PlayState.SONG.player1)
-			{
-				case 'aileenTofu' | "aileenTofuAlt":
-					skin = 'notes/AileenNOTE_assets';
-				case 'TC' | 'TCAlt':
-					skin = 'notes/TCNOTE_assets';
-				case 'GFwav':
-					skin = 'notes/NicNOTE_assets';
-				case 'ourple':
-					skin = 'notes/ourpleNOTE_assets';
-				case 'Kyu' | 'KyuAlt':
-					skin = 'notes/KyuNOTE_assets';
-				case 'marcoFFFP1' | 'marcoFFFP2':
-					skin = 'notes/MarcoNOTE_assets';
-				case 'gfIniquitousP1' | 'gfIniquitousP2':
-					skin = 'notes/IniquitousMechanicNOTE_assets';
+				for (i in 0...lilyNoteVars.length-1)
+				{
+					if(PlayState.SONG.player1 == lilyNoteVars[i])
+						skin = 'notes/LilyNOTE_assets';
+				}
+				switch(PlayState.SONG.player1)
+				{
+					case 'aileenTofu' | "aileenTofuAlt":
+						skin = 'notes/AileenNOTE_assets';
+					case 'TC' | 'TCAlt':
+						skin = 'notes/TCNOTE_assets';
+					case 'GFwav':
+						skin = 'notes/NicNOTE_assets';
+					case 'ourple':
+						skin = 'notes/ourpleNOTE_assets';
+					case 'Kyu' | 'KyuAlt':
+						skin = 'notes/KyuNOTE_assets';
+					case 'marcoFFFP1' | 'marcoFFFP2':
+						skin = 'notes/MarcoNOTE_assets';
+					case 'gfIniquitousP1' | 'gfIniquitousP2':
+						skin = 'notes/IniquitousMechanicNOTE_assets';
+				}
 			}
 		}
 

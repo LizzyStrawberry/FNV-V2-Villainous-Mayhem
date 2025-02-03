@@ -1,59 +1,59 @@
 {
 	"animations": [
 		{
-			"loop": false,
 			"offsets": [
 				2,
 				14
 			],
-			"anim": "singLEFT",
+			"loop": false,
 			"fps": 24,
-			"name": "aileen left",
-			"indices": []
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "aileen left"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				8,
 				-25
 			],
+			"loop": false,
+			"fps": 24,
 			"anim": "singDOWN",
-			"fps": 24,
-			"name": "aileen down",
-			"indices": []
+			"indices": [],
+			"name": "aileen down"
 		},
 		{
-			"loop": false,
 			"offsets": [
-				9,
-				34
+				8,
+				14
 			],
-			"anim": "singUP",
+			"loop": false,
 			"fps": 24,
-			"name": "aileen up",
-			"indices": []
+			"anim": "singUP",
+			"indices": [],
+			"name": "aileen up"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				11,
 				-1
 			],
-			"anim": "singRIGHT",
+			"loop": false,
 			"fps": 24,
-			"name": "aileen right",
-			"indices": []
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "aileen right"
 		},
 		{
-			"loop": true,
 			"offsets": [
 				0,
 				0
 			],
-			"anim": "idle",
+			"loop": true,
 			"fps": 24,
-			"name": "aileen idle",
-			"indices": []
+			"anim": "idle",
+			"indices": [],
+			"name": "aileen idle"
 		}
 	],
 	"no_antialiasing": false,
