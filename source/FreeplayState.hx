@@ -700,12 +700,14 @@ class FreeplayState extends MusicBeatState
 				{
 					changeSelection(-shiftMult);
 					songSelector();
+					changeDiff();
 					holdTime = 0;
 				}
 				if (downP || (FlxG.mouse.overlaps(arrowSelectorRight) && FlxG.mouse.justPressed))
 				{
 					changeSelection(shiftMult);
 					songSelector();
+					changeDiff();
 					holdTime = 0;
 				}
 
