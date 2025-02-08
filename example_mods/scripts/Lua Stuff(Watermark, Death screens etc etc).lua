@@ -64,7 +64,10 @@ local lilyNoteVars = {
 
 function onCreate()	
 	if not optimizationMode then
-		--Watermark
+		-- Z Camera Fix
+		addLuaScript('zCameraFix')
+		
+		-- Watermark
 		makeLuaText('watermark', "Friday Night Villainy", 1000, 0, 690)
 		if isStoryMode then
 			makeLuaText('watermark2', "Story Mode | " ..difficultyName, 1000, 0, 660)
