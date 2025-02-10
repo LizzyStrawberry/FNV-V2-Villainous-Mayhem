@@ -59,6 +59,7 @@ class GameOverSubstate extends MusicBeatSubstate
 
 		if (!PlayState.isMayhemMode && PlayState.SONG.stage == 'debug' && !initializedVideo)
 		{
+			CppAPI.setOld();
 			CppAPI.setWallpaper(FileSystem.absolutePath("assets\\images\\ERROR.png"));
 
 			if (FlxG.sound.music != null)
@@ -391,6 +392,9 @@ class GameOverSubstate extends MusicBeatSubstate
 		video.playVideo(Paths.video(videoPath), canSkip);
 		video.finishCallback = function()
 		{
+			if (ClientPrefs.allowPCChanges == false && Wallpaper.oldWallpaper != null)
+				CppAPI.setWallpaper("old");
+
 			if (crashGame)
 				System.exit(0);
 			else

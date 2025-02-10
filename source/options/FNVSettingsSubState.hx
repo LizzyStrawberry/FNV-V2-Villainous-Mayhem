@@ -55,6 +55,13 @@ class FNVSettingsSubState extends BaseOptionsMenu
 			true);
 		addOption(option);
 
+		var option:Option = new Option('PC Changes Permanance', //Name
+			'If checked, any change that occurs, such as Background changes and such, will stay, even if the mod closes.', //Description
+			'allowPCChanges', //Save data variable name
+			'bool', //Variable type
+			true); //Default value
+		addOption(option);
+
 		var option:Option = new Option('Cinematic Bars', //Name
 			'Pretty self explanatory. If checked, it adds cinematic bars to some songs.', //Description
 			'cinematicBars', //Save data variable name

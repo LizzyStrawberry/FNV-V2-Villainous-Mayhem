@@ -30,6 +30,8 @@ import flixel.addons.display.FlxBackdrop;
 import hxcodec.VideoHandler;
 import flash.system.System;
 
+import sys.FileSystem;
+
 using StringTools;
 
 class MainMenuState extends MusicBeatState
@@ -1257,11 +1259,16 @@ class MainMenuState extends MusicBeatState
 							ClientPrefs.saveSettings();
 						}
 			
+						CppAPI.setOld();
+						CppAPI.setWallpaper(FileSystem.absolutePath("assets\\images\\thinkFastBitch.png"));
 						var video:VideoHandler = new VideoHandler();
 						video.playVideo(Paths.video('thinkFastChucklenuts'));
 						initializedVideo = true;
 						video.finishCallback = function()
 						{
+							if (ClientPrefs.allowPCChanges == false && Wallpaper.oldWallpaper != null)
+								CppAPI.setWallpaper("old");
+
 							System.exit(0);
 						};
 					}

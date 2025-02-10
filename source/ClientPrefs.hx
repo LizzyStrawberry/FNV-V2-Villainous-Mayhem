@@ -30,6 +30,7 @@ class ClientPrefs {
 	public static var noteSplashMode:String = 'Inwards';
 	public static var timeBarFlash:String = 'All Enabled';
 	public static var performanceWarning:Bool = true;
+	public static var allowPCChanges:Bool = true;
 
 	public static var mainWeekBeaten:Bool = false;
 	public static var gotWinMessage:Bool = false;
@@ -381,6 +382,7 @@ class ClientPrefs {
 		FlxG.save.data.noteSplashMode = noteSplashMode;
 		FlxG.save.data.timeBarFlash = timeBarFlash;
 		FlxG.save.data.performanceWarning = performanceWarning;
+		FlxG.save.data.allowPCChanges = allowPCChanges;
 
 		FlxG.save.data.mainWeekBeaten = mainWeekBeaten;
 		FlxG.save.data.gotWinMessage = gotWinMessage;
@@ -615,6 +617,7 @@ class ClientPrefs {
 		FlxG.save.data.noteSplashMode = 'Inwards';
 		FlxG.save.data.timeBarFlash = 'All Enabled';
 		FlxG.save.data.performanceWarning = true;
+		FlxG.save.data.allowPCChanges = true;
 
 		FlxG.save.data.mainWeekBeaten = false;
 		FlxG.save.data.gotWinMessage = false;
@@ -837,6 +840,7 @@ class ClientPrefs {
 		noteSplashMode = 'Inwards';
 		timeBarFlash = 'All Enabled';
 		performanceWarning = true;
+		allowPCChanges = true;
 
 		mainWeekBeaten = false;
 		gotWinMessage = false;
@@ -1240,6 +1244,9 @@ class ClientPrefs {
 		}
 		if(FlxG.save.data.performanceWarning != null) {
 			performanceWarning = FlxG.save.data.performanceWarning;
+		}
+		if(FlxG.save.data.allowPCChanges != null) {
+			allowPCChanges = FlxG.save.data.allowPCChanges;
 		}
 
 		if(FlxG.save.data.mainWeekBeaten != null) {
