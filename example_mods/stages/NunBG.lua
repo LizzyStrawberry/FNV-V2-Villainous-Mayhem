@@ -3,7 +3,7 @@ function onCreate()
 	if not optimizationMode then
 		makeLuaSprite('nunBG', 'bgs/beatrice/nunBG', -700, -600);
 		setScrollFactor('nunBG', 0.9, 0.9);
-		scaleObject('nunBG', 1.4, 1.3)
+		scaleObject('nunBG', 1.4, 1.35)
 		
 		addLuaSprite('nunBG', false);
 	end
