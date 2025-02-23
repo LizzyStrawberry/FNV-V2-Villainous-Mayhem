@@ -767,6 +767,7 @@ class FreeplayXtraState extends MusicBeatState
 				if(holdTime > 0.5 && checkNewHold - checkLastHold > 0)
 				{
 					changeSelection((checkNewHold - checkLastHold) * (controls.UI_UP ? -shiftMult : shiftMult));
+					songSelector();
 					changeDiff();
 				}
 			}

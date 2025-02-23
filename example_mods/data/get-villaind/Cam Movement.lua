@@ -7,6 +7,10 @@ local followchars = true;
 local del = 0;
 local del2 = 0;
 
+function onCreate()
+	setGlobalFromScript("scripts/Camera Movement", 'allowCameraMove', false)
+end
+
 function onUpdate()
 	if del > 0 then
 		del = del - 1

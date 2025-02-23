@@ -691,6 +691,7 @@ class PauseSubState extends MusicBeatSubstate
 				case "Give up":
 					PlayState.deathCounter = 0;
 					PlayState.seenCutscene = false;
+					PlayState.inPlayState = false;
 					PlayState.checkForPowerUp = false;
 					WeekData.loadTheFirstEnabledMod();
 

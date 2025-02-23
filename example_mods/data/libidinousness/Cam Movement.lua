@@ -6,9 +6,11 @@ local ofs = 35;
 local followchars = true;
 local del = 0;
 local del2 = 0;
+local shifting = false
 
 function onCreate()
 	setProperty('gf.visible', false)
+	setGlobalFromScript("scripts/Camera Movement", 'allowCameraMove', false)
 end
 
 function onUpdate()
@@ -31,6 +33,10 @@ function onUpdate()
 					triggerEvent('Camera Follow Pos',xx,yy+ofs)
 				else
 					triggerEvent('Camera Follow Pos',xx,yy)
+					if shifting then
+						camAngle(-1)
+						shifting = false
+					end
 				end
 				setProperty('defaultCamZoom', 0.4)
 			else
@@ -44,6 +50,10 @@ function onUpdate()
 					triggerEvent('Camera Follow Pos',xx2,yy2+ofs)
 				else
 					triggerEvent('Camera Follow Pos',xx2,yy2)
+					if shifting then
+						camAngle(-1)
+						shifting = false
+					end
 				end
 				setProperty('defaultCamZoom', 0.7)
 			end
@@ -63,5 +73,38 @@ function onUpdate()
 		if curBeat == 287 or curBeat == 465 then
 			followchars = true
 		end
+	end
+end
+
+function goodNoteHit(id, direction, noteType, isSustainNote)
+	if followchars and mustHitSection then	
+		if not isSustainNote then
+			camAngle(direction)
+		end
+	end
+end
+
+function opponentNoteHit(id, direction, noteType, isSustainNote)
+	if followchars and not mustHitSection then	
+		if not isSustainNote then
+			camAngle(direction)
+		end
+	end
+end
+
+function camAngle(direction)
+	shifting = true
+	cancelTween('camAngleTween')
+	if direction == 0 then
+		doTweenAngle('camAngleTween', 'camGame', -0.45 / getProperty("defaultCamZoom"), 0.7 / playbackRate, 'sineOut')
+	elseif direction == 1 then
+		doTweenAngle('camAngleTween', 'camGame', -0.175 / getProperty("defaultCamZoom"), 0.7 / playbackRate, 'sineOut')
+	elseif direction == 2 then
+		doTweenAngle('camAngleTween', 'camGame', 0.175 / getProperty("defaultCamZoom"), 0.7 / playbackRate, 'sineOut')
+	elseif direction == 3 then
+		doTweenAngle('camAngleTween', 'camGame', 0.45 / getProperty("defaultCamZoom"), 0.7 / playbackRate, 'sineOut')
+	else
+		doTweenAngle('camAngleTween', 'camGame', 0, 0.7 / playbackRate, 'sineOut')
+		shifting = false
 	end
 end

@@ -31,8 +31,10 @@ function onEvent(n, v1, v2)
 
 		if icon == 'P1' then
 			setHealthBarColors(RGBToHexConverter(getProperty("dad.healthColorArray")), color)
+			callScript("scripts/Health Bars", "updatePadColors", {nil, color})
 		elseif icon == 'P2' then
 			setHealthBarColors(color, RGBToHexConverter(getProperty("boyfriend.healthColorArray")))
+			callScript("scripts/Health Bars", "updatePadColors", {color, nil})
 		end
     end
 end

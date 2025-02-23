@@ -9,6 +9,11 @@ local followchars = true;
 local del = 0;
 local del2 = 0;
 local gfSings = false;
+local shifting = false;
+
+function onCreate()
+	setGlobalFromScript("scripts/Camera Movement", 'allowCameraMove', false)
+end
 
 function onUpdate()
 	if del > 0 then
@@ -22,16 +27,28 @@ function onUpdate()
 			if gfSection then
 				if getProperty('gf.animation.curAnim.name') == 'idle' then
 					triggerEvent('Camera Follow Pos',xx3,yy3)
+					if shifting then
+						camAngle(-1)
+						shifting = false
+					end
 				end
 				setProperty('defaultCamZoom', 1.4)
 			else
 				if gfSings == true then
 					if getProperty('gf.animation.curAnim.name') == 'idle' then
 						triggerEvent('Camera Follow Pos',xx3,yy3)
+						if shifting then
+							camAngle(-1)
+							shifting = false
+						end
 					end
 				else
 					if getProperty('dad.animation.curAnim.name') == 'idle' then
 						triggerEvent('Camera Follow Pos',xx,yy)
+						if shifting then
+							camAngle(-1)
+							shifting = false
+						end
 					end
 					setProperty('defaultCamZoom', 0.9)
 				end
@@ -39,6 +56,10 @@ function onUpdate()
 		else
 			if getProperty('boyfriend.animation.curAnim.name') == 'idle' or getProperty('boyfriend.animation.curAnim.name') == 'idleass' then
 				triggerEvent('Camera Follow Pos',xx2,yy2)
+				if shifting then
+					camAngle(-1)
+					shifting = false
+				end
 			end
 			setProperty('defaultCamZoom', 1.1)
 		end
@@ -67,6 +88,9 @@ function goodNoteHit(id, direction, noteType, isSustainNote)
 				triggerEvent('Camera Follow Pos',xx2,yy2)
 			end
 			setProperty('defaultCamZoom', 1.1)
+			if not isSustainNote then
+				camAngle(direction)
+			end
 		end
 	end
 end
@@ -134,6 +158,9 @@ function opponentNoteHit(id, direction, noteType, isSustainNote)
 					triggerEvent('Change Icon', 'P2, AmogleenExcrete, a3bb89')
 				end
 			end
+			if not isSustainNote then
+				camAngle(direction)
+			end
 		end
 		
 		-- Icon Change when the camera is on the player
@@ -152,5 +179,22 @@ function opponentNoteHit(id, direction, noteType, isSustainNote)
 	
 	if noteType == '' and gfSings == false then
 		triggerEvent('Screen Shake', '0.4, 0.003', '0.4, 0.003')
+	end
+end
+
+function camAngle(direction)
+	shifting = true
+	cancelTween('camAngleTween')
+	if direction == 0 then
+		doTweenAngle('camAngleTween', 'camGame', -0.45 / getProperty("defaultCamZoom"), 0.7 / playbackRate, 'sineOut')
+	elseif direction == 1 then
+		doTweenAngle('camAngleTween', 'camGame', -0.175 / getProperty("defaultCamZoom"), 0.7 / playbackRate, 'sineOut')
+	elseif direction == 2 then
+		doTweenAngle('camAngleTween', 'camGame', 0.175 / getProperty("defaultCamZoom"), 0.7 / playbackRate, 'sineOut')
+	elseif direction == 3 then
+		doTweenAngle('camAngleTween', 'camGame', 0.45 / getProperty("defaultCamZoom"), 0.7 / playbackRate, 'sineOut')
+	else
+		doTweenAngle('camAngleTween', 'camGame', 0, 0.7 / playbackRate, 'sineOut')
+		shifting = false
 	end
 end

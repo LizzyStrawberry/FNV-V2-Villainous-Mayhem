@@ -9,6 +9,11 @@ local followchars = false;
 local del = 0;
 local del2 = 0;
 local gfSings = false;
+local shifting = false
+
+function onCreate()
+	setGlobalFromScript("scripts/Camera Movement", 'allowCameraMove', false)
+end
 
 function onUpdate()
 	if del > 0 then
@@ -22,6 +27,10 @@ function onUpdate()
 			if gfSings == true then
 				if getProperty('gf.animation.curAnim.name') == 'idle' then
 					triggerEvent('Camera Follow Pos',xx3,yy3)
+					if shifting then
+						camAngle(-1)
+						shifting = false
+					end
 				end
 				setProperty('defaultCamZoom', 1.4)
 			end
@@ -41,6 +50,10 @@ function onUpdate()
 				end
 				if getProperty('boyfriend.animation.curAnim.name') == 'idle' then
 					triggerEvent('Camera Follow Pos',xx2,yy2)
+					if shifting then
+						camAngle(-1)
+						shifting = false
+					end
 				end
 				setProperty('defaultCamZoom', 0.9)	
 			end
@@ -62,6 +75,10 @@ function onUpdate()
 				end
 				if getProperty('dad.animation.curAnim.name') == 'idle' then
 					triggerEvent('Camera Follow Pos',xx,yy)
+					if shifting then
+						camAngle(-1)
+						shifting = false
+					end
 				end
 				setProperty('defaultCamZoom', 1.0)
 			end
@@ -143,6 +160,9 @@ function goodNoteHit(id, direction, noteType, isSustainNote)
 				end
 				setProperty('defaultCamZoom', 0.9)		
 			end
+			if not isSustainNote then
+				camAngle(direction)
+			end
 		end
 	end
 end
@@ -169,6 +189,26 @@ function opponentNoteHit(id, direction, noteType, isSustainNote)
 				end
 				setProperty('defaultCamZoom', 1.0)
 			end
+			if not isSustainNote then
+				camAngle(direction)
+			end
 		end
+	end
+end
+
+function camAngle(direction)
+	shifting = true
+	cancelTween('camAngleTween')
+	if direction == 0 then
+		doTweenAngle('camAngleTween', 'camGame', -0.45 / getProperty("defaultCamZoom"), 0.7 / playbackRate, 'sineOut')
+	elseif direction == 1 then
+		doTweenAngle('camAngleTween', 'camGame', -0.175 / getProperty("defaultCamZoom"), 0.7 / playbackRate, 'sineOut')
+	elseif direction == 2 then
+		doTweenAngle('camAngleTween', 'camGame', 0.175 / getProperty("defaultCamZoom"), 0.7 / playbackRate, 'sineOut')
+	elseif direction == 3 then
+		doTweenAngle('camAngleTween', 'camGame', 0.45 / getProperty("defaultCamZoom"), 0.7 / playbackRate, 'sineOut')
+	else
+		doTweenAngle('camAngleTween', 'camGame', 0, 0.7 / playbackRate, 'sineOut')
+		shifting = false
 	end
 end

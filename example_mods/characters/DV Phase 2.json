@@ -1,59 +1,59 @@
 {
 	"animations": [
 		{
-			"loop": false,
-			"offsets": [
-				0,
-				0
-			],
-			"anim": "idle",
-			"fps": 24,
-			"name": "DV idle",
-			"indices": []
-		},
-		{
-			"loop": false,
 			"offsets": [
 				540,
 				268
 			],
-			"anim": "singLEFT",
+			"loop": false,
 			"fps": 24,
-			"name": "DV left",
-			"indices": []
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "DV left"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				650,
 				300
 			],
-			"anim": "singDOWN",
+			"loop": false,
 			"fps": 24,
-			"name": "DV down",
-			"indices": []
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "DV down"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				270,
 				645
 			],
-			"anim": "singUP",
+			"loop": false,
 			"fps": 24,
-			"name": "DV up",
-			"indices": []
+			"anim": "singUP",
+			"indices": [],
+			"name": "DV up"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				-87,
 				229
 			],
-			"anim": "singRIGHT",
+			"loop": false,
 			"fps": 24,
-			"name": "DV right",
-			"indices": []
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "DV right"
+		},
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "idle",
+			"loop": true,
+			"name": "DV idle"
 		}
 	],
 	"no_antialiasing": false,

@@ -7,6 +7,10 @@ local followchars = true;
 local del = 0;
 local del2 = 0;
 
+function onCreate()
+	setGlobalFromScript("scripts/Camera Movement", 'allowCameraMove', false)
+end
+
 function onSongStart()
 	xx = 380
 	yy = 750

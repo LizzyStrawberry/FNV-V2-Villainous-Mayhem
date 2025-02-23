@@ -1,5 +1,5 @@
 function onCreate()
-	makeAnimatedLuaSprite('speaker', 'characters/Speaker', getProperty('boyfriend.x') - 250, getProperty('boyfriend.y') + 250)
+	makeAnimatedLuaSprite('speaker', 'characters/Speaker', 700, 350)
 	addAnimationByPrefix('speaker', 'idle', 'Speaker0', 24 / playbackRate, false);
 	setScrollFactor('speaker', 0.95, 0.95)
 	setObjectCamera('speaker', 'game')

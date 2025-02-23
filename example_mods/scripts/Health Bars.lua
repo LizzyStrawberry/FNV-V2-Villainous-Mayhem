@@ -765,17 +765,35 @@ function onCreatePost()
 		if downscroll then
 			setProperty('scoreTxt.y', getProperty('scoreTxt.y') - 100)
 		end
+		
+		updatePadColors()
 	end
 end
 
 function onUpdate()
 	if not optimizationMode then
-		setProperty('coloredPlayerCircle.color', getColorFromHex(bfColor))
-		setProperty('coloredOpponentCircle.color', getColorFromHex(dadColor))
 		setProperty('coloredPlayerCircle.alpha', getProperty('iconP1.alpha'))
 		setProperty('iconPlayer.alpha', getProperty('iconP1.alpha'))
 		setProperty('coloredOpponentCircle.alpha', getProperty('iconP2.alpha'))
 		setProperty('iconOpponent.alpha', getProperty('iconP2.alpha'))
+	end
+end
+
+function updatePadColors(colorDad, colorBeef)
+	if not optimizationMode then
+		if colorDad == nil then
+			dadColor = rgbToHex(getProperty('dad.healthColorArray'))
+			setProperty('coloredOpponentCircle.color', getColorFromHex(dadColor))
+		else
+			setProperty('coloredOpponentCircle.color', getColorFromHex(colorDad))
+		end
+		
+		if colorBeef == nil then
+			bfColor = rgbToHex(getProperty('boyfriend.healthColorArray'))
+			setProperty('coloredPlayerCircle.color', getColorFromHex(bfColor))
+		else
+			setProperty('coloredPlayerCircle.color', getColorFromHex(colorBeef))
+		end
 	end
 end
 

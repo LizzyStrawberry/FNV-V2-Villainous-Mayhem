@@ -2,6 +2,8 @@ local numberX = 0
 local numberY = 0
 
 function onCreate()
+	addCharacterToList('kianaPhase2', 'dad')
+	addCharacterToList('kianaPhase3', 'dad')
 	for i = 0, 15 do
 		numberX = getRandomInt(-100, 700)
 		numberY = getRandomInt(-100, 700)

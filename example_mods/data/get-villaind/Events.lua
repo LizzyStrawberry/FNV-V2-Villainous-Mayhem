@@ -25,9 +25,6 @@ function onCreate()
 end
 
 function onCreatePost()
-	removeLuaScript("custom_events/zCameraFix")
-    addLuaScript("custom_events/zCameraFix")
-	
 	for i = 0,7 do
 		x = getPropertyFromGroup('strumLineNotes', i, 'x')
 		table.insert(notePosX, x)

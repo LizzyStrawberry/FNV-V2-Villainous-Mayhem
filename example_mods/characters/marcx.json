@@ -1,57 +1,57 @@
 {
 	"animations": [
 		{
+			"loop": false,
 			"offsets": [
 				0,
 				1
 			],
-			"indices": [],
-			"fps": 24,
 			"anim": "idle",
-			"loop": false,
-			"name": "marcx idle"
+			"fps": 24,
+			"name": "marcx idle",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				212,
 				46
 			],
-			"indices": [],
-			"fps": 24,
 			"anim": "singRIGHT",
-			"loop": false,
-			"name": "marcx left"
+			"fps": 24,
+			"name": "marcx left",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				90,
 				-28
 			],
-			"indices": [],
-			"fps": 24,
 			"anim": "singLEFT",
-			"loop": false,
-			"name": "marcx right"
+			"fps": 24,
+			"name": "marcx right",
+			"indices": []
 		},
 		{
 			"offsets": [
-				115,
+				112,
 				-166
 			],
 			"indices": [],
 			"fps": 24,
-			"anim": "singDOWN",
+			"anim": "singUP",
 			"loop": false,
 			"name": "marcx down"
 		},
 		{
 			"offsets": [
-				32,
-				40
+				34,
+				36
 			],
 			"indices": [],
 			"fps": 24,
-			"anim": "singUP",
+			"anim": "singDOWN",
 			"loop": false,
 			"name": "marcx up"
 		}

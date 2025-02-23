@@ -6,6 +6,7 @@ local ofs = 35;
 local followchars = false;
 local del = 0;
 local del2 = 0;
+local shifting = false
 
 local beatsAllowed = {3, 7, 15, 23, 31, 63}
 local beatSelected
@@ -21,6 +22,8 @@ function onCreate()
 		yy2 = yy2 + 100
 	end
 	setProperty('gf.visible', false)
+	
+	setGlobalFromScript("scripts/Camera Movement", 'allowCameraMove', false)
 	
 	if mechanics then
 		beatSelected = getRandomInt(1, #(beatsAllowed))
@@ -63,6 +66,10 @@ function onUpdate()
                 triggerEvent('Camera Follow Pos',xx,yy+ofs)
 			else
                 triggerEvent('Camera Follow Pos',xx,yy)
+				if shifting then
+					camAngle(-1)
+					shifting = false
+				end
             end
         else
 			setProperty('defaultCamZoom', 0.8)
@@ -76,10 +83,18 @@ function onUpdate()
                 triggerEvent('Camera Follow Pos',xx2,yy2+ofs)
 			else
                 triggerEvent('Camera Follow Pos',xx2,yy2)
+				if shifting then
+					camAngle(-1)
+					shifting = false
+				end
             end
         end
     else
         triggerEvent('Camera Follow Pos','650','40')
+		if shifting then
+			camAngle(-1)
+			shifting = false
+		end
     end
 	
 	-- Dodge Mechanic
@@ -275,6 +290,39 @@ function cancelAttack()
 					
 	followchars = true
 	beatSelected = getRandomInt(1, #(beatsAllowed))
+end
+
+function opponentNoteHit(id, direction, noteType, isSustainNote)
+	if followChars and not mustHitSection then
+		if not isSustainNote and allowAngleShift then
+			camAngle(direction)
+		end
+	end
+end
+
+function goodNoteHit(id, direction, noteType, isSustainNote)
+	if followChars and not mustHitSection then
+		if not isSustainNote and allowAngleShift then
+			camAngle(direction)
+		end
+	end
+end
+
+function camAngle(direction)
+	shifting = true
+	cancelTween('camAngleTween')
+	if direction == 0 then
+		doTweenAngle('camAngleTween', 'camGame', -0.45 / getProperty("defaultCamZoom"), 0.7 / playbackRate, 'sineOut')
+	elseif direction == 1 then
+		doTweenAngle('camAngleTween', 'camGame', -0.175 / getProperty("defaultCamZoom"), 0.7 / playbackRate, 'sineOut')
+	elseif direction == 2 then
+		doTweenAngle('camAngleTween', 'camGame', 0.175 / getProperty("defaultCamZoom"), 0.7 / playbackRate, 'sineOut')
+	elseif direction == 3 then
+		doTweenAngle('camAngleTween', 'camGame', 0.45 / getProperty("defaultCamZoom"), 0.7 / playbackRate, 'sineOut')
+	else
+		doTweenAngle('camAngleTween', 'camGame', 0, 0.7 / playbackRate, 'sineOut')
+		shifting = false
+	end
 end
 
 function onTimerCompleted(tag)
