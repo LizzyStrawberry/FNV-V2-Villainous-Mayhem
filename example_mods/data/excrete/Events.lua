@@ -57,7 +57,7 @@ end
 
 function onBeatHit()
 	objectPlayAnimation('speaker', 'idle', true);
-	if mechanics and curBeat % 2 == 0 and 
+	if curBeat % 2 == 0 and 
 	((curBeat >= 64 and curBeat <= 111) or (curBeat >= 128 and curBeat <= 183) or (curBeat >= 232 and curBeat <= 263)) then
 		doTweenAlpha('sabotage', 'sabotage', 0.8, 0.06, 'circOut')
 	end
