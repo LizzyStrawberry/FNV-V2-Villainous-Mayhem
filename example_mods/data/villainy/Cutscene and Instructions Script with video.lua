@@ -131,15 +131,17 @@ function onTimerCompleted(tag)
 		startDialogue('dialogue', '');
 	end
 	
-	if tag == 'textgohi' then
-		runTimer('textgoBye', 1)
-		doTweenAlpha('warningTXTbye', 'WarningTXT', 0, 0.6 / playbackRate, 'sineOut');
-		doTweenAlpha('bossFightFlashBye', 'bossFight', 0, 0.85 / playbackRate, 'sineOut');
-	end
-	if tag == 'textgoBye' then
-		runTimer('textgohi', 1)
-		doTweenAlpha('warningTXThi', 'WarningTXT', 1, 0.6, 'sineOut');
-		doTweenAlpha('bossFightFlashHello', 'bossFight', 1, 0.85 / playbackRate, 'sineOut');
+	if mechanics then
+		if tag == 'textgohi' then
+			runTimer('textgoBye', 1)
+			doTweenAlpha('warningTXTbye', 'WarningTXT', 0, 0.6 / playbackRate, 'sineOut');
+			doTweenAlpha('bossFightFlashBye', 'bossFight', 0, 0.85 / playbackRate, 'sineOut');
+		end
+		if tag == 'textgoBye' then
+			runTimer('textgohi', 1)
+			doTweenAlpha('warningTXThi', 'WarningTXT', 1, 0.6, 'sineOut');
+			doTweenAlpha('bossFightFlashHello', 'bossFight', 1, 0.85 / playbackRate, 'sineOut');
+		end
 	end
 	if tag == 'removeEverything' then
 		removeLuaSprite('Warning', true)

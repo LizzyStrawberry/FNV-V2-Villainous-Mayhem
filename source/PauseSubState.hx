@@ -1450,7 +1450,7 @@ class PauseSubState extends MusicBeatSubstate
 				case "Toxic Mishap (Legacy)":
 					if (PlayState.storyDifficulty == 1)
 					{
-						if (ClientPrefs.mechanics == true)
+						if (ClientPrefs.mechanics == false)
 						{
 							trace('Its working! No mechanics for Toxic Mishap (Legacy) in Villainous!');
 							PlayState.SONG = Song.loadFromJson('toxic-mishap-(legacy)-villainousMechanicless', 'toxic-mishap-(legacy)');

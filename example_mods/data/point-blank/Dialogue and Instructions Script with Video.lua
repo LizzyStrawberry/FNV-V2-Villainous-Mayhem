@@ -14,9 +14,6 @@ function onStartCountdown() -- for dialogue
 		end
 		return Function_Continue;
 	else
-		if isStoryMode and playDialogue then
-			triggerEvent('Change Character', 'dad', 'Yaku')
-		end
 		allowMechanic = true
 		runTimer('textgohi', 0.01)
 	end
