@@ -243,11 +243,6 @@ class IniquitousMenuState extends MusicBeatState
 		blackOut.alpha = 0;
 		add(blackOut);
 
-		mechanicMessage = new FlxSprite(0, 0).loadGraphic(Paths.image('mainStoryMode/message1'));
-		mechanicMessage.antialiasing = ClientPrefs.globalAntialiasing;
-		mechanicMessage.alpha = 0;
-		add(mechanicMessage);
-
 		if (ClientPrefs.performanceWarning == true)
 		{
 			libidiWarning = new FlxText(700, 100, 1000, "Warning:\nIs your PC strong enough to handle the week?\n(It is recommended to atleast have a graphics card installed)\n----------------------------
@@ -258,23 +253,10 @@ class IniquitousMenuState extends MusicBeatState
 			add(libidiWarning);
 		}
 
-		/*add(bgYellow);
-		add(bgSprite);
-		add(grpWeekCharacters);
-
-		var tracksSprite:FlxSprite = new FlxSprite(FlxG.width * 0.07, bgSprite.y + 425).loadGraphic(Paths.image('Menu_Tracks'));
-		tracksSprite.antialiasing = ClientPrefs.globalAntialiasing;
-		add(tracksSprite);
-
-		txtTracklist = new FlxText(FlxG.width * 0.05, tracksSprite.y + 60, 0, "", 32);
-		txtTracklist.alignment = CENTER;
-		txtTracklist.font = rankText.font;
-		txtTracklist.color = 0xFFe55777;
-		add(txtTracklist);
-		// add(rankText);
-		add(scoreText);
-		add(txtWeekTitle);
-		*/
+		mechanicMessage = new FlxSprite(0, 0).loadGraphic(Paths.image('mainStoryMode/message1'));
+		mechanicMessage.antialiasing = ClientPrefs.globalAntialiasing;
+		mechanicMessage.alpha = 0;
+		add(mechanicMessage);
 
 		messageNumber = FlxG.random.int(1, 4);
 
@@ -292,9 +274,7 @@ class IniquitousMenuState extends MusicBeatState
 		
 		new FlxTimer().start(2, function(tmr:FlxTimer){
 			if (ClientPrefs.storyModeCrashMeasure != '')
-			{
 				selectWeek();
-			};
 		});
 
 		changeWeek();

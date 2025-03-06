@@ -409,24 +409,13 @@ class GalleryState extends MusicBeatState
 
 			if (categorySelected == 1)
 			{
-				if (imageNumber > 26)
+				if (imageNumber > 59)
 					imageNumber = 1;
 				if (imageNumber < 1)
-					imageNumber = 26;
-				numberCounter.text = imageNumber + "/26";
-				currentImage.loadGraphic(Paths.image('Gallery/menuScreens/image_' + imageNumber));
-
-				switch(imageNumber)
-				{
-					case 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26:
-					{
-						if ((imageNumber == 1 || imageNumber == 26) && messageShown == false)
-						{
-							messageShown = true;
-							imageText.text = "Various Main Menu Screens.\nAll are randomized and unlockable.";
-						}
-					}
-				}
+					imageNumber = 59;
+				numberCounter.text = imageNumber + "/59";
+				currentImage.loadGraphic(Paths.image('mainMenuBgs/menu-' + imageNumber));
+				imageText.text = "Various Main Menu Screens.\nAll are randomized and unlockable.";
 			}
 
 			if (categorySelected == 2)
@@ -628,7 +617,7 @@ class GalleryState extends MusicBeatState
 						}
 					case 5:
 						{
-							imageText.text = "DV's In-Game Loading Screen [Done by JustOnlyKinn].";
+							imageText.text = "DV's In-Game Loading Screen [Done by StaturoGuy].";
 							
 						}
 					case 6:
@@ -638,7 +627,7 @@ class GalleryState extends MusicBeatState
 						}
 					case 7:
 						{
-							imageText.text = "Aizeen's In-Game Loading Screen [Done by JustOnlyKinn].";
+							imageText.text = "Aizeen's In-Game Loading Screen [Done by StaturoGuy].";
 							
 						}
 					case 8:
@@ -653,12 +642,12 @@ class GalleryState extends MusicBeatState
 						}
 					case 10:
 						{
-							imageText.text = "Nic's In-Game Loading Screen [Done by JustOnlyKinn].";
+							imageText.text = "Nic's In-Game Loading Screen [Done by StaturoGuy].";
 							
 						}
 					case 11:
 						{
-							imageText.text = "Marcussy's In-Game Loading Screen [Done by JustOnlyKinn].";
+							imageText.text = "Marcussy's In-Game Loading Screen [Done by StaturoGuy].";
 							
 						}
 				}
