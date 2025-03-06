@@ -41,10 +41,7 @@ class IniquitousMenuState extends MusicBeatState
 	var weekName:Alphabet;
 	var weekCategory:Alphabet;
 
-	var message1:FlxSprite;
-	var message2:FlxSprite;
-	var message3:FlxSprite;
-	var message4:FlxSprite;
+	var mechanicMessage:FlxSprite;
 	var blackOut:FlxSprite;
 
 	var libidiWarning:FlxText;
@@ -246,25 +243,10 @@ class IniquitousMenuState extends MusicBeatState
 		blackOut.alpha = 0;
 		add(blackOut);
 
-		message1 = new FlxSprite(0, 0).loadGraphic(Paths.image('mainStoryMode/message1'));
-		message1.antialiasing = ClientPrefs.globalAntialiasing;
-		message1.alpha = 0;
-		add(message1);
-
-		message2 = new FlxSprite(0, 0).loadGraphic(Paths.image('mainStoryMode/message2'));
-		message2.antialiasing = ClientPrefs.globalAntialiasing;
-		message2.alpha = 0;
-		add(message2);
-
-		message3 = new FlxSprite(0, 0).loadGraphic(Paths.image('mainStoryMode/message3'));
-		message3.antialiasing = ClientPrefs.globalAntialiasing;
-		message3.alpha = 0;
-		add(message3);
-
-		message4 = new FlxSprite(0, 0).loadGraphic(Paths.image('mainStoryMode/message4'));
-		message4.antialiasing = ClientPrefs.globalAntialiasing;
-		message4.alpha = 0;
-		add(message4);
+		mechanicMessage = new FlxSprite(0, 0).loadGraphic(Paths.image('mainStoryMode/message1'));
+		mechanicMessage.antialiasing = ClientPrefs.globalAntialiasing;
+		mechanicMessage.alpha = 0;
+		add(mechanicMessage);
 
 		if (ClientPrefs.performanceWarning == true)
 		{
@@ -511,45 +493,14 @@ class IniquitousMenuState extends MusicBeatState
 					selectedWeek = true;
 					FlxTween.tween(blackOut, {alpha: 0.6}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 					ClientPrefs.inMenu = true;
-					switch(messageNumber)
+					
+					mechanicMessage.loadGraphic(Paths.image('mainStoryMode/message' + messageNumber));
+					FlxTween.tween(mechanicMessage, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+					new FlxTimer().start(3, function(tmr:FlxTimer)
 					{
-						case 1:
-						{
-							FlxTween.tween(message1, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-							new FlxTimer().start(3, function(tmr:FlxTimer)
-								{
-									LoadingState.loadAndSwitchState(new options.OptionsState());
-									FreeplayState.destroyFreeplayVocals();
-								});
-						}
-						case 2:
-						{
-							FlxTween.tween(message2, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-							new FlxTimer().start(3, function(tmr:FlxTimer)
-								{
-									LoadingState.loadAndSwitchState(new options.OptionsState());
-									FreeplayState.destroyFreeplayVocals();
-								});
-						}
-						case 3:
-						{
-							FlxTween.tween(message3, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-							new FlxTimer().start(3, function(tmr:FlxTimer)
-								{
-									LoadingState.loadAndSwitchState(new options.OptionsState());
-									FreeplayState.destroyFreeplayVocals();
-								});
-						}
-						case 4:
-						{
-							FlxTween.tween(message4, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-							new FlxTimer().start(3, function(tmr:FlxTimer)
-								{
-									LoadingState.loadAndSwitchState(new options.OptionsState());
-									FreeplayState.destroyFreeplayVocals();
-								});
-						}
-					}
+						LoadingState.loadAndSwitchState(new options.OptionsState());
+						FreeplayState.destroyFreeplayVocals();
+					});
 				}
 			else if (ClientPrefs.storyModeCrashMeasure != '')
 			{
