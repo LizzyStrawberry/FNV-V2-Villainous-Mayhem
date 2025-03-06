@@ -50,11 +50,7 @@ class FreeplayXtraBonusState extends MusicBeatState
 
 	var colorTween:FlxTween;
 
-	var message1:FlxSprite;
-	var message2:FlxSprite;
-	var message3:FlxSprite;
-	var message4:FlxSprite;
-	var message5:FlxSprite;
+	var mechanicMessage:FlxSprite;
 	var blackOut:FlxSprite;
 	var messageNumber:Int = 0;
 	var seizureWarning:FlxText;
@@ -289,25 +285,10 @@ class FreeplayXtraBonusState extends MusicBeatState
 		blackOut.alpha = 0;
 		add(blackOut);
 
-		message1 = new FlxSprite(0, 0).loadGraphic(Paths.image('mainStoryMode/message1'));
-		message1.antialiasing = ClientPrefs.globalAntialiasing;
-		message1.alpha = 0;
-		add(message1);
-
-		message2 = new FlxSprite(0, 0).loadGraphic(Paths.image('mainStoryMode/message2'));
-		message2.antialiasing = ClientPrefs.globalAntialiasing;
-		message2.alpha = 0;
-		add(message2);
-
-		message3 = new FlxSprite(0, 0).loadGraphic(Paths.image('mainStoryMode/message3'));
-		message3.antialiasing = ClientPrefs.globalAntialiasing;
-		message3.alpha = 0;
-		add(message3);
-
-		message4 = new FlxSprite(0, 0).loadGraphic(Paths.image('mainStoryMode/message4'));
-		message4.antialiasing = ClientPrefs.globalAntialiasing;
-		message4.alpha = 0;
-		add(message4);
+		mechanicMessage = new FlxSprite(0, 0).loadGraphic(Paths.image('mainStoryMode/message1'));
+		mechanicMessage.antialiasing = ClientPrefs.globalAntialiasing;
+		mechanicMessage.alpha = 0;
+		add(mechanicMessage);
 
 		seizureWarning = new FlxText(700, selectionText.y + 400, FlxG.width, "WARNING: This song has scripted 'shaders' that can possibly cause mild seizures. It isn't something too crazy, but if you're sensitive to it, make sure you go to options, and disable Shaders.", 16);
 		seizureWarning.setFormat("VCR OSD Mono", 20, FlxColor.RED, CENTER);
@@ -658,51 +639,21 @@ class FreeplayXtraBonusState extends MusicBeatState
 			}*/
 			trace(poop);
 
-			if (ClientPrefs.mechanics == false && curDifficulty == 2 && (songs[curSelected].songName == 'Forsaken (Picmixed)' || songs[curSelected].songName == 'Partner' ))
+			if (!ClientPrefs.mechanics && curDifficulty == 2 && (songs[curSelected].songName == 'Forsaken (Picmixed)' || songs[curSelected].songName == 'Partner' ))
 			{
 				trace('IT WORKS LMAO, Go enable mechanics');
 				FlxTween.tween(blackOut, {alpha: 0.6}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 				ClientPrefs.inMenu = true;
 				ClientPrefs.optionsFreeplay = true;
-				switch(messageNumber)
+
+				mechanicMessage.loadGraphic(Paths.image('mainStoryMode/message' + messageNumber));
+				FlxTween.tween(mechanicMessage, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+				new FlxTimer().start(3, function(tmr:FlxTimer)
 				{
-					case 1:
-					{
-						FlxTween.tween(message1, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						new FlxTimer().start(3, function(tmr:FlxTimer)
-							{
-								LoadingState.loadAndSwitchState(new options.OptionsState());
-								FreeplayState.destroyFreeplayVocals();
-							});
-					}
-					case 2:
-					{
-						FlxTween.tween(message2, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						new FlxTimer().start(3, function(tmr:FlxTimer)
-							{
-								LoadingState.loadAndSwitchState(new options.OptionsState());
-								FreeplayState.destroyFreeplayVocals();
-							});
-					}
-					case 3:
-					{
-						FlxTween.tween(message3, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						new FlxTimer().start(3, function(tmr:FlxTimer)
-							{
-								LoadingState.loadAndSwitchState(new options.OptionsState());
-								FreeplayState.destroyFreeplayVocals();
-							});
-					}
-					case 4:
-					{
-						FlxTween.tween(message4, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						new FlxTimer().start(3, function(tmr:FlxTimer)
-							{
-								LoadingState.loadAndSwitchState(new options.OptionsState());
-								FreeplayState.destroyFreeplayVocals();
-							});
-					}
-				}
+					LoadingState.loadAndSwitchState(new options.OptionsState());
+					FreeplayState.destroyFreeplayVocals();
+				});
+
 				FlxG.sound.music.volume = 1;
 			}
 			else
@@ -737,17 +688,17 @@ class FreeplayXtraBonusState extends MusicBeatState
 					FlxG.sound.music.volume = 0;
 				}
 
-					destroyFreeplayVocals();
+				destroyFreeplayVocals();
 			}
-			}
-			else if(controls.RESET)
-				{
-					persistentUpdate = false;
-					openSubState(new ResetScoreSubState(songs[curSelected].songName, curDifficulty, songs[curSelected].songCharacter));
-					FlxG.sound.play(Paths.sound('scrollMenu'));
-				}			
-				super.update(elapsed);
 		}
+		else if(controls.RESET)
+		{
+			persistentUpdate = false;
+			openSubState(new ResetScoreSubState(songs[curSelected].songName, curDifficulty, songs[curSelected].songCharacter));
+			FlxG.sound.play(Paths.sound('scrollMenu'));
+		}			
+		super.update(elapsed);
+	}
 
 	public static function destroyFreeplayVocals() {
 		if(vocals != null) {
@@ -839,37 +790,11 @@ class FreeplayXtraBonusState extends MusicBeatState
 		if (songs[curSelected].songName == 'Forsaken (Picmixed)' || songs[curSelected].songName == 'Partner')
 		{	
 			CoolUtil.difficulties = CoolUtil.mainWeekDifficulties.copy();
-			/*var diffStr:String = WeekData.getCurrentWeek().difficulties;
-			if(diffStr != null) diffStr = diffStr.trim(); //Fuck you HTML5
-
-			if(diffStr != null && diffStr.length > 0)
-			{
-				var diffs:Array<String> = diffStr.split(',');
-				var i:Int = diffs.length - 1;
-				while (i > 0)
-				{
-					if(diffs[i] != null)
-					{
-						diffs[i] = diffs[i].trim();
-						if(diffs[i].length < 1) diffs.remove(diffs[i]);
-					}
-					--i;
-				}
-
-				if(diffs.length > 0 && diffs[0].length > 0)
-				{
-					CoolUtil.difficulties = diffs;
-				}
-			}*/
 		
 			if(CoolUtil.difficulties.contains(CoolUtil.defaultDifficulty))
-			{
 				curDifficulty = Math.round(Math.max(0, CoolUtil.defaultDifficulties.indexOf(CoolUtil.defaultDifficulty)));
-			}
 			else
-			{
 				curDifficulty = 0;
-			}
 		}
 		else
 			CoolUtil.difficulties = CoolUtil.defaultDifficulties.copy();
@@ -889,9 +814,7 @@ class FreeplayXtraBonusState extends MusicBeatState
 		var newPos:Int = CoolUtil.difficulties.indexOf(lastDifficultyName);
 		//trace('Pos of ' + lastDifficultyName + ' is ' + newPos);
 		if(newPos > -1)
-		{
 			curDifficulty = newPos;
-		}
 	}
 
 	private function positionHighscore() {

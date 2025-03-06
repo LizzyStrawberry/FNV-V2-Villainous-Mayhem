@@ -880,33 +880,38 @@ class FreeplayXtraState extends MusicBeatState
 				colorTween.cancel();
 			}
 
-				if (songs[curSelected].songName == 'Lustality')
+			if (songs[curSelected].songName == 'Lustality')
+			{
+				if (!ClientPrefs.mechanics)
 				{
-					if (ClientPrefs.mechanics == false && curDifficulty == 0)
+					switch(curDifficulty)
 					{
-						trace('I got loaded lol (Lustality), only on Casual No Mechanics');
-						PlayState.SONG = Song.loadFromJson('lustality-casualMechanicless', 'lustality');
-					}
-					if (ClientPrefs.mechanics == false && curDifficulty == 1)
+						case 0:
+							trace('I got loaded lol (Lustality), only on Casual No Mechanics');
+							PlayState.SONG = Song.loadFromJson('lustality-casualMechanicless', 'lustality');
+						
+						case 1:
+							trace('I got loaded lol (Lustality), only on villainous');
+							PlayState.SONG = Song.loadFromJson('lustality-villainousMechanicless', 'lustality');
+					}	
+				}
+			}
+			if (songs[curSelected].songName == 'Lustality V1')
+			{
+				if (!ClientPrefs.mechanics)
+				{
+					switch(curDifficulty)
 					{
-						trace('I got loaded lol (Lustality), only on villainous');
-						PlayState.SONG = Song.loadFromJson('lustality-villainousMechanicless', 'lustality');
+						case 0:
+							trace('I got loaded lol (Lustality V1), only on Casual No Mechanics');
+							PlayState.SONG = Song.loadFromJson('lustality-v1-casualMechanicless', 'lustality-v1');
+						
+						case 1:
+							trace('I got loaded lol (Lustality V1), only on villainous');
+							PlayState.SONG = Song.loadFromJson('lustality-v1-villainousMechanicless', 'lustality-v1');
 					}
 				}
-
-				if (songs[curSelected].songName == 'Lustality V1')
-				{
-					if (ClientPrefs.mechanics == false && curDifficulty == 0)
-					{
-						trace('I got loaded lol (Lustality V1), only on Casual No Mechanics');
-						PlayState.SONG = Song.loadFromJson('lustality-v1-casualMechanicless', 'lustality-v1');
-					}
-					if (ClientPrefs.mechanics == false && curDifficulty == 1)
-					{
-						trace('I got loaded lol (Lustality V1), only on villainous');
-						PlayState.SONG = Song.loadFromJson('lustality-v1-villainousMechanicless', 'lustality-v1');
-					}
-				}
+			}
 			
 			if (FlxG.keys.pressed.SHIFT)
 			{
@@ -928,83 +933,17 @@ class FreeplayXtraState extends MusicBeatState
 				FlxG.sound.music.volume = 0;
 			}	
 
-				//To make songs have their right Icon after they first join it
-				if (songs[curSelected].songName == 'Nunsational' && ClientPrefs.nunsationalViewed == false)
-				{
-					trace('I got loaded lol, Unlocking Nunsational!');
-					ClientPrefs.nunsationalViewed = true;
-					ClientPrefs.saveSettings();
-				}
-				if (songs[curSelected].songName == 'Marcochrome' && ClientPrefs.marcochromeViewed == false)
-				{
-					trace('I got loaded lol, Unlocking Marcochrome!');
-					ClientPrefs.marcochromeViewed = true;
-					ClientPrefs.saveSettings();
-				}
-				if (songs[curSelected].songName == 'Tofu' && ClientPrefs.tofuViewed == false)
-				{
-					trace('I got loaded lol, Unlocking Tofu!');
-					ClientPrefs.tofuViewed = true;
-					ClientPrefs.saveSettings();
-				}
-				if (songs[curSelected].songName == 'Tofu' && ClientPrefs.tofuViewed == false)
-				{
-					trace('I got loaded lol, Unlocking Tofu!');
-					ClientPrefs.tofuViewed = true;
-					ClientPrefs.saveSettings();
-				}
-				if ((songs[curSelected].songName == 'Lustality' || songs[curSelected].songName == 'Lustality V1') && ClientPrefs.lustalityViewed == false)
-				{
-					trace('I got loaded lol, Unlocking Lustality / Lustality V1!');
-					ClientPrefs.lustalityViewed = true;
-					ClientPrefs.saveSettings();
-				}
-				if (songs[curSelected].songName == 'Slow.FLP' && ClientPrefs.nicViewed == false)
-				{
-					trace('I got loaded lol, Unlocking Slow.FLP!');
-					ClientPrefs.nicViewed = true;
-					ClientPrefs.saveSettings();
-				}
-				if (songs[curSelected].songName == 'Marauder' && ClientPrefs.debugViewed == false)
-				{
-					trace('I got loaded lol, Unlocking Marauder!');
-					ClientPrefs.debugViewed = true;
-					ClientPrefs.saveSettings();
-				}
-				if (songs[curSelected].songName == 'FNV' && ClientPrefs.fnvViewed == false)
-				{
-					trace('I got loaded lol, Unlocking FNV!');
-					ClientPrefs.fnvViewed = true;
-					ClientPrefs.saveSettings();
-				}
-				if (songs[curSelected].songName == 'Rainy Daze' && ClientPrefs.rainyDazeViewed == false)
-				{
-					trace('I got loaded lol, Unlocking Rainy Daze!');
-					ClientPrefs.rainyDazeViewed = true;
-					ClientPrefs.saveSettings();
-				}
-				if (songs[curSelected].songName == 'Jerry' && ClientPrefs.shortViewed == false)
-				{
-					trace('I got loaded lol, Unlocking Jerry!');
-					ClientPrefs.shortViewed = true;
-					ClientPrefs.saveSettings();
-				}
-				if (songs[curSelected].songName == 'Fanfuck Forever' && ClientPrefs.infatuationViewed == false)
-				{
-					trace('I got loaded lol, Unlocking Fanfuck Forever!');
-					ClientPrefs.infatuationViewed = true;
-					ClientPrefs.saveSettings();
-				}
-				destroyFreeplayVocals();
-			}
-			else if(controls.RESET)
-			{
-				persistentUpdate = false;
-				openSubState(new ResetScoreSubState(songs[curSelected].songName, curDifficulty, songs[curSelected].songCharacter));
-				FlxG.sound.play(Paths.sound('scrollMenu'));
-			}			
-				super.update(elapsed);
+			unlockSong();
+			destroyFreeplayVocals();
 		}
+		else if(controls.RESET)
+		{
+			persistentUpdate = false;
+			openSubState(new ResetScoreSubState(songs[curSelected].songName, curDifficulty, songs[curSelected].songCharacter));
+			FlxG.sound.play(Paths.sound('scrollMenu'));
+		}			
+			super.update(elapsed);
+	}
 
 	public static function destroyFreeplayVocals() {
 		if(vocals != null) {
@@ -1098,37 +1037,11 @@ class FreeplayXtraState extends MusicBeatState
 			&& songs[curSelected].songName != 'Jerry' && songs[curSelected].songName != 'Fanfuck Forever')
 		{	
 			CoolUtil.difficulties = CoolUtil.defaultDifficulties.copy();
-			/*var diffStr:String = WeekData.getCurrentWeek().difficulties;
-			if(diffStr != null) diffStr = diffStr.trim(); //Fuck you HTML5
-
-			if(diffStr != null && diffStr.length > 0)
-			{
-				var diffs:Array<String> = diffStr.split(',');
-				var i:Int = diffs.length - 1;
-				while (i > 0)
-				{
-					if(diffs[i] != null)
-					{
-						diffs[i] = diffs[i].trim();
-						if(diffs[i].length < 1) diffs.remove(diffs[i]);
-					}
-					--i;
-				}
-
-				if(diffs.length > 0 && diffs[0].length > 0)
-				{
-					CoolUtil.difficulties = diffs;
-				}
-			}*/
 		
 			if(CoolUtil.difficulties.contains(CoolUtil.defaultDifficulty))
-			{
 				curDifficulty = Math.round(Math.max(0, CoolUtil.defaultDifficulties.indexOf(CoolUtil.defaultDifficulty)));
-			}
 			else
-			{
 				curDifficulty = 0;
-			}
 		}
 		else
 			CoolUtil.difficulties = CoolUtil.defaultDifficulties.copy();
@@ -1148,8 +1061,77 @@ class FreeplayXtraState extends MusicBeatState
 		var newPos:Int = CoolUtil.difficulties.indexOf(lastDifficultyName);
 		//trace('Pos of ' + lastDifficultyName + ' is ' + newPos);
 		if(newPos > -1)
-		{
 			curDifficulty = newPos;
+	}
+
+	function unlockSong()
+	{
+		//To make songs have their right Icon after they first join it
+		if (songs[curSelected].songName == 'Nunsational' && ClientPrefs.nunsationalViewed == false)
+		{
+			trace('I got loaded lol, Unlocking Nunsational!');
+			ClientPrefs.nunsationalViewed = true;
+			ClientPrefs.saveSettings();
+		}
+		if (songs[curSelected].songName == 'Marcochrome' && ClientPrefs.marcochromeViewed == false)
+		{
+			trace('I got loaded lol, Unlocking Marcochrome!');
+			ClientPrefs.marcochromeViewed = true;
+			ClientPrefs.saveSettings();
+		}
+		if (songs[curSelected].songName == 'Tofu' && ClientPrefs.tofuViewed == false)
+		{
+			trace('I got loaded lol, Unlocking Tofu!');
+			ClientPrefs.tofuViewed = true;
+			ClientPrefs.saveSettings();
+		}
+		if (songs[curSelected].songName == 'Tofu' && ClientPrefs.tofuViewed == false)
+		{
+			trace('I got loaded lol, Unlocking Tofu!');
+			ClientPrefs.tofuViewed = true;
+			ClientPrefs.saveSettings();
+		}
+		if ((songs[curSelected].songName == 'Lustality' || songs[curSelected].songName == 'Lustality V1') && ClientPrefs.lustalityViewed == false)
+		{
+			trace('I got loaded lol, Unlocking Lustality / Lustality V1!');
+			ClientPrefs.lustalityViewed = true;
+			ClientPrefs.saveSettings();
+		}
+		if (songs[curSelected].songName == 'Slow.FLP' && ClientPrefs.nicViewed == false)
+		{
+			trace('I got loaded lol, Unlocking Slow.FLP!');
+			ClientPrefs.nicViewed = true;
+			ClientPrefs.saveSettings();
+		}
+		if (songs[curSelected].songName == 'Marauder' && ClientPrefs.debugViewed == false)
+		{
+			trace('I got loaded lol, Unlocking Marauder!');
+			ClientPrefs.debugViewed = true;
+			ClientPrefs.saveSettings();
+		}
+		if (songs[curSelected].songName == 'FNV' && ClientPrefs.fnvViewed == false)
+		{
+			trace('I got loaded lol, Unlocking FNV!');
+			ClientPrefs.fnvViewed = true;
+			ClientPrefs.saveSettings();
+		}
+		if (songs[curSelected].songName == 'Rainy Daze' && ClientPrefs.rainyDazeViewed == false)
+		{
+			trace('I got loaded lol, Unlocking Rainy Daze!');
+			ClientPrefs.rainyDazeViewed = true;
+			ClientPrefs.saveSettings();
+		}
+		if (songs[curSelected].songName == 'Jerry' && ClientPrefs.shortViewed == false)
+		{
+			trace('I got loaded lol, Unlocking Jerry!');
+			ClientPrefs.shortViewed = true;
+			ClientPrefs.saveSettings();
+		}
+		if (songs[curSelected].songName == 'Fanfuck Forever' && ClientPrefs.infatuationViewed == false)
+		{
+			trace('I got loaded lol, Unlocking Fanfuck Forever!');
+			ClientPrefs.infatuationViewed = true;
+			ClientPrefs.saveSettings();
 		}
 	}
 

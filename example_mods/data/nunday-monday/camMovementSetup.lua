@@ -21,6 +21,8 @@ function onBeatHit()
 		callScript("scripts/Camera Movement", "setCameraProperty", {"dadCamera", "360, 200"})
 		if boyfriendName == 'amongGF' then
 			callScript("scripts/Camera Movement", "setCameraProperty", {"bfCamera", "1020, 420"})
+		else
+			callScript("scripts/Camera Movement", "setCameraProperty", {"bfCamera", "1020, 320"})
 		end
 	end
 end

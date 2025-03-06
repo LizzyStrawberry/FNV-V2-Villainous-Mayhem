@@ -686,52 +686,17 @@ class FreeplayXtraCrossoverState extends MusicBeatState
 				FlxG.sound.music.volume = 0;
 			}
 
-			if (songs[curSelected].songName == 'Concert Chaos' && ClientPrefs.ccPlayed == false)
-				{
-					trace('I got loaded lol, Unlocking Concert Chaos!');
-					ClientPrefs.ccPlayed = true;
-					ClientPrefs.saveSettings();
-				}
-
-			if (songs[curSelected].songName == 'Tactical Mishap' && ClientPrefs.tacticalMishapPlayed == false)
-				{
-					trace('I got loaded lol, Unlocking Tactical Mishap!');
-					ClientPrefs.tacticalMishapFound = true;
-					ClientPrefs.tacticalMishapPlayed = true;
-					ClientPrefs.saveSettings();
-				}
-
-			if (songs[curSelected].songName == 'Fast Food Therapy' && ClientPrefs.kyuPlayed == false)
-				{
-					trace('I got loaded lol, Unlocking Fast Food Therapy!');
-					ClientPrefs.kyuPlayed = true;
-					ClientPrefs.saveSettings();
-				}
-			
-			if (songs[curSelected].songName == 'Breacher' && ClientPrefs.breacherPlayed == false)
-				{
-					trace('I got loaded lol, Unlocking Breacher!');
-					ClientPrefs.breacherPlayed = true;
-					ClientPrefs.saveSettings();
-				}
-
-			if (songs[curSelected].songName == 'VGuy' && ClientPrefs.ourplePlayed == false)
-				{
-					trace('I got loaded lol, Unlocking VGuy!');
-					ClientPrefs.ourplePlayed = true;
-					ClientPrefs.saveSettings();
-				}
-
-				destroyFreeplayVocals();
-			}
-			else if(controls.RESET)
-				{
-					persistentUpdate = false;
-					openSubState(new ResetScoreSubState(songs[curSelected].songName, curDifficulty, songs[curSelected].songCharacter));
-					FlxG.sound.play(Paths.sound('scrollMenu'));
-				}			
-				super.update(elapsed);
+			unlockSong();
+			destroyFreeplayVocals();
 		}
+		else if(controls.RESET)
+		{
+			persistentUpdate = false;
+			openSubState(new ResetScoreSubState(songs[curSelected].songName, curDifficulty, songs[curSelected].songCharacter));
+			FlxG.sound.play(Paths.sound('scrollMenu'));
+		}			
+		super.update(elapsed);
+	}
 
 	public static function destroyFreeplayVocals() {
 		if(vocals != null) {
@@ -820,44 +785,7 @@ class FreeplayXtraCrossoverState extends MusicBeatState
 		Paths.currentModDirectory = songs[curSelected].folder;
 		PlayState.storyWeek = songs[curSelected].week;
 
-		if (songs[curSelected].songName != 'Concert Chaos' && songs[curSelected].songName != 'VGuy' && songs[curSelected].songName != 'Fast Food Therapy'
-			&& songs[curSelected].songName != 'Tactical Mishap' && songs[curSelected].songName != 'Negotiation' && songs[curSelected].songName != "Breacher")
-		{	
-			CoolUtil.difficulties = CoolUtil.defaultDifficulties.copy();
-			/*var diffStr:String = WeekData.getCurrentWeek().difficulties;
-			if(diffStr != null) diffStr = diffStr.trim(); //Fuck you HTML5
-
-			if(diffStr != null && diffStr.length > 0)
-			{
-				var diffs:Array<String> = diffStr.split(',');
-				var i:Int = diffs.length - 1;
-				while (i > 0)
-				{
-					if(diffs[i] != null)
-					{
-						diffs[i] = diffs[i].trim();
-						if(diffs[i].length < 1) diffs.remove(diffs[i]);
-					}
-					--i;
-				}
-
-				if(diffs.length > 0 && diffs[0].length > 0)
-				{
-					CoolUtil.difficulties = diffs;
-				}
-			}*/
-		
-			if(CoolUtil.difficulties.contains(CoolUtil.defaultDifficulty))
-			{
-				curDifficulty = Math.round(Math.max(0, CoolUtil.defaultDifficulties.indexOf(CoolUtil.defaultDifficulty)));
-			}
-			else
-			{
-				curDifficulty = 0;
-			}
-		}
-		else
-			CoolUtil.difficulties = CoolUtil.defaultDifficulties.copy();
+		CoolUtil.difficulties = CoolUtil.defaultDifficulties.copy();
 
 		if(CoolUtil.difficulties.contains(CoolUtil.defaultDifficulty))
 			curDifficulty = Math.round(Math.max(0, CoolUtil.defaultDifficulties.indexOf(CoolUtil.defaultDifficulty)));
@@ -867,8 +795,41 @@ class FreeplayXtraCrossoverState extends MusicBeatState
 		var newPos:Int = CoolUtil.difficulties.indexOf(lastDifficultyName);
 		//trace('Pos of ' + lastDifficultyName + ' is ' + newPos);
 		if(newPos > -1)
-		{
 			curDifficulty = newPos;
+	}
+
+	function unlockSong()
+	{
+		if (songs[curSelected].songName == 'VGuy' && ClientPrefs.ourplePlayed == false)
+		{
+			trace('I got loaded lol, Unlocking VGuy!');
+			ClientPrefs.ourplePlayed = true;
+			ClientPrefs.saveSettings();
+		}
+		if (songs[curSelected].songName == 'Fast Food Therapy' && ClientPrefs.kyuPlayed == false)
+		{
+			trace('I got loaded lol, Unlocking Fast Food Therapy!');
+			ClientPrefs.kyuPlayed = true;
+			ClientPrefs.saveSettings();
+		}
+		if (songs[curSelected].songName == 'Tactical Mishap' && ClientPrefs.tacticalMishapPlayed == false)
+		{
+			trace('I got loaded lol, Unlocking Tactical Mishap!');
+			ClientPrefs.tacticalMishapFound = true;
+			ClientPrefs.tacticalMishapPlayed = true;
+			ClientPrefs.saveSettings();
+		}		
+		if (songs[curSelected].songName == 'Breacher' && ClientPrefs.breacherPlayed == false)
+		{
+			trace('I got loaded lol, Unlocking Breacher!');
+			ClientPrefs.breacherPlayed = true;
+			ClientPrefs.saveSettings();
+		}
+		if (songs[curSelected].songName == 'Concert Chaos' && ClientPrefs.ccPlayed == false)
+		{
+			trace('I got loaded lol, Unlocking Concert Chaos!');
+			ClientPrefs.ccPlayed = true;
+			ClientPrefs.saveSettings();
 		}
 	}
 

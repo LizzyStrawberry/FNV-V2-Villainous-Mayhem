@@ -899,17 +899,17 @@ class FreeplayBonusState extends MusicBeatState
 
 			if (songs[curSelected].songName == 'Toxic Mishap (Legacy)')
 			{
-				if (ClientPrefs.mechanics == false && curDifficulty == 0)
+				if (!ClientPrefs.mechanics)
 				{
-					trace('omg Toxic Mishap (Legacy) in Casual Mode without mechanics');
-					PlayState.SONG = Song.loadFromJson('toxic-mishap-(legacy)-casualMechanicless', 'toxic-mishap-(legacy)');
-					LoadingState.loadAndSwitchState(new PlayState());
-				}
-				if (ClientPrefs.mechanics == false && curDifficulty == 1)
-				{
-					trace('omg Toxic Mishap (Legacy) in Villainous Mode without mechanics');
-					PlayState.SONG = Song.loadFromJson('toxic-mishap-(legacy)-villainousMechanicless', 'toxic-mishap-(legacy)');
-					LoadingState.loadAndSwitchState(new PlayState());
+					switch(curDifficulty)
+					{
+						case 0:
+							trace('omg Toxic Mishap (Legacy) in Casual Mode without mechanics');
+							PlayState.SONG = Song.loadFromJson('toxic-mishap-(legacy)-casualMechanicless', 'toxic-mishap-(legacy)');
+						case 1:
+							trace('omg Toxic Mishap (Legacy) in Villainous Mode without mechanics');
+							PlayState.SONG = Song.loadFromJson('toxic-mishap-(legacy)-villainousMechanicless', 'toxic-mishap-(legacy)');
+					}
 				}
 			}
 
@@ -933,81 +933,7 @@ class FreeplayBonusState extends MusicBeatState
 				FlxG.sound.music.volume = 0;
 			}
 
-			if (songs[curSelected].songName == 'Spendthrift' && ClientPrefs.morkyWeekPlayed == false)
-				{
-					trace('I got loaded lol, Unlocking Spendthrift!');
-					ClientPrefs.morkyWeekPlayed = true;
-					ClientPrefs.saveSettings();
-				}
-			if (songs[curSelected].songName == 'Get Villaind' && ClientPrefs.morkyWeekPlayed == false)
-				{
-					trace('I got loaded lol, Unlocking Get Villained!');
-					ClientPrefs.morkyWeekPlayed = true;
-					ClientPrefs.saveSettings();
-				}
-
-			if (songs[curSelected].songName == 'Cheap Skate (Legacy)' && ClientPrefs.legacyWeekPlayed == false)
-				{
-					trace('I got loaded lol, Unlocking Cheap Skate (Legacy)!');
-					ClientPrefs.legacyWeekPlayed = true;
-					ClientPrefs.saveSettings();
-				}
-			if (songs[curSelected].songName == 'Toxic Mishap (Legacy)' && ClientPrefs.legacyWeekPlayed == false)
-				{
-					trace('I got loaded lol, Unlocking Toxic Mishap (Legacy)!');
-					ClientPrefs.legacyWeekPlayed = true;
-					ClientPrefs.saveSettings();
-				}
-
-			if (songs[curSelected].songName == 'Paycheck (Legacy)' && ClientPrefs.legacyWeekPlayed == false)
-				{
-					trace('I got loaded lol, Unlocking Paycheck (Legacy)!');
-					ClientPrefs.legacyWeekPlayed = true;
-					ClientPrefs.saveSettings();
-				}
-
-			if (songs[curSelected].songName == 'Sussus Marcus' && ClientPrefs.susWeekPlayed == false)
-				{
-					trace('I got loaded lol, Unlocking Sussus Marcus!');
-					ClientPrefs.susWeekPlayed = true;
-					ClientPrefs.saveSettings();
-				}
-
-			if (songs[curSelected].songName == 'Villain In Board' && ClientPrefs.susWeekPlayed == false)
-				{
-					trace('I got loaded lol, Unlocking Villain In Board!');
-					ClientPrefs.susWeekPlayed = true;
-					ClientPrefs.saveSettings();
-				}
-
-			if (songs[curSelected].songName == 'Excrete' && ClientPrefs.susWeekPlayed == false)
-				{
-					trace('I got loaded lol, Unlocking Excrete!');
-					ClientPrefs.susWeekPlayed = true;
-					ClientPrefs.saveSettings();
-				}
-
-			if (songs[curSelected].songName == 'Unpaid Catastrophe' && ClientPrefs.dsideWeekPlayed == false)
-				{
-					trace('I got loaded lol, Unlocking Unpaid Catastrophe!');
-					ClientPrefs.dsideWeekPlayed = true;
-					ClientPrefs.saveSettings();
-				}
-
-			if (songs[curSelected].songName == 'Cheque' && ClientPrefs.dsideWeekPlayed == false)
-				{
-					trace('I got loaded lol, Unlocking Cheque!');
-					ClientPrefs.dsideWeekPlayed = true;
-					ClientPrefs.saveSettings();
-				}
-
-			if (songs[curSelected].songName == "Get Gooned" && ClientPrefs.dsideWeekPlayed == false)
-				{
-					trace('I got loaded lol, Unlocking Get Gooned!');
-					ClientPrefs.dsideWeekPlayed = true;
-					ClientPrefs.saveSettings();
-				}
-				
+				unlockSong();
 				destroyFreeplayVocals();
 			}
 			else if(controls.RESET)
@@ -1106,51 +1032,10 @@ class FreeplayBonusState extends MusicBeatState
 		Paths.currentModDirectory = songs[curSelected].folder;
 		PlayState.storyWeek = songs[curSelected].week;
 
-		if (songs[curSelected].songName == 'Scrouge' || songs[curSelected].songName == 'Toxic Mishap' || songs[curSelected].songName == 'Paycheck' //Week 1
-			|| songs[curSelected].songName == 'Nunday Monday' //Week 2
-			|| songs[curSelected].songName == 'Forsaken' || songs[curSelected].songName == 'Lustality Remix' //Week 3
-			)
-		{	
-			CoolUtil.difficulties = CoolUtil.defaultDifficulties.copy();
-			/*var diffStr:String = WeekData.getCurrentWeek().difficulties;
-			if(diffStr != null) diffStr = diffStr.trim(); //Fuck you HTML5
-
-			if(diffStr != null && diffStr.length > 0)
-			{
-				var diffs:Array<String> = diffStr.split(',');
-				var i:Int = diffs.length - 1;
-				while (i > 0)
-				{
-					if(diffs[i] != null)
-					{
-						diffs[i] = diffs[i].trim();
-						if(diffs[i].length < 1) diffs.remove(diffs[i]);
-					}
-					--i;
-				}
-
-				if(diffs.length > 0 && diffs[0].length > 0)
-				{
-					CoolUtil.difficulties = diffs;
-				}
-			}*/
-		
-			if(CoolUtil.difficulties.contains(CoolUtil.defaultDifficulty))
-			{
-				curDifficulty = Math.round(Math.max(0, CoolUtil.defaultDifficulties.indexOf(CoolUtil.defaultDifficulty)));
-			}
-			else
-			{
-				curDifficulty = 0;
-			}
-		}
+		if (songs[curSelected].songName == 'Excrete')
+			CoolUtil.difficulties = CoolUtil.tcDifficulties.copy();
 		else
 			CoolUtil.difficulties = CoolUtil.defaultDifficulties.copy();
-
-		if (songs[curSelected].songName == 'Excrete')
-		{
-			CoolUtil.difficulties = CoolUtil.tcDifficulties.copy();
-		}
 			
 
 		if(CoolUtil.difficulties.contains(CoolUtil.bossFightDifficulty))
@@ -1165,11 +1050,84 @@ class FreeplayBonusState extends MusicBeatState
 		var newPos:Int = CoolUtil.difficulties.indexOf(lastDifficultyName);
 		//trace('Pos of ' + lastDifficultyName + ' is ' + newPos);
 		if(newPos > -1)
-		{
 			curDifficulty = newPos;
-		}
 	}
 
+	function unlockSong()
+	{
+		if (songs[curSelected].songName == 'Spendthrift' && ClientPrefs.morkyWeekPlayed == false)
+		{
+			trace('I got loaded lol, Unlocking Spendthrift!');
+			ClientPrefs.morkyWeekPlayed = true;
+			ClientPrefs.saveSettings();
+		}
+		if (songs[curSelected].songName == 'Instrumentally Deranged' && ClientPrefs.morkyWeekPlayed == false)
+		{
+			trace('I got loaded lol, Unlocking Instrumentally Deranged!');
+			ClientPrefs.morkyWeekPlayed = true;
+			ClientPrefs.saveSettings();
+		}
+		if (songs[curSelected].songName == 'Get Villaind' && ClientPrefs.morkyWeekPlayed == false)
+		{
+			trace('I got loaded lol, Unlocking Get Villain\'d!');
+			ClientPrefs.morkyWeekPlayed = true;
+			ClientPrefs.saveSettings();
+		}
+		if (songs[curSelected].songName == 'Cheap Skate (Legacy)' && ClientPrefs.legacyWeekPlayed == false)
+		{
+			trace('I got loaded lol, Unlocking Cheap Skate (Legacy)!');
+			ClientPrefs.legacyWeekPlayed = true;
+			ClientPrefs.saveSettings();
+		}
+		if (songs[curSelected].songName == 'Toxic Mishap (Legacy)' && ClientPrefs.legacyWeekPlayed == false)
+		{
+			trace('I got loaded lol, Unlocking Toxic Mishap (Legacy)!');
+			ClientPrefs.legacyWeekPlayed = true;
+			ClientPrefs.saveSettings();
+		}
+		if (songs[curSelected].songName == 'Paycheck (Legacy)' && ClientPrefs.legacyWeekPlayed == false)
+		{
+			trace('I got loaded lol, Unlocking Paycheck (Legacy)!');
+			ClientPrefs.legacyWeekPlayed = true;
+			ClientPrefs.saveSettings();
+		}
+		if (songs[curSelected].songName == 'Sussus Marcus' && ClientPrefs.susWeekPlayed == false)
+		{
+			trace('I got loaded lol, Unlocking Sussus Marcus!');
+			ClientPrefs.susWeekPlayed = true;
+			ClientPrefs.saveSettings();
+		}
+		if (songs[curSelected].songName == 'Villain In Board' && ClientPrefs.susWeekPlayed == false)
+		{
+			trace('I got loaded lol, Unlocking Villain In Board!');
+			ClientPrefs.susWeekPlayed = true;
+			ClientPrefs.saveSettings();
+		}
+		if (songs[curSelected].songName == 'Excrete' && ClientPrefs.susWeekPlayed == false)
+		{
+			trace('I got loaded lol, Unlocking Excrete!');
+			ClientPrefs.susWeekPlayed = true;
+			ClientPrefs.saveSettings();
+		}
+		if (songs[curSelected].songName == 'Unpaid Catastrophe' && ClientPrefs.dsideWeekPlayed == false)
+		{
+			trace('I got loaded lol, Unlocking Unpaid Catastrophe!');
+			ClientPrefs.dsideWeekPlayed = true;
+			ClientPrefs.saveSettings();
+		}
+		if (songs[curSelected].songName == 'Cheque' && ClientPrefs.dsideWeekPlayed == false)
+		{
+			trace('I got loaded lol, Unlocking Cheque!');
+			ClientPrefs.dsideWeekPlayed = true;
+			ClientPrefs.saveSettings();
+		}
+		if (songs[curSelected].songName == "Get Gooned" && ClientPrefs.dsideWeekPlayed == false)
+		{
+			trace('I got loaded lol, Unlocking Get Gooned!');
+			ClientPrefs.dsideWeekPlayed = true;
+			ClientPrefs.saveSettings();
+		}			
+	}
 	private function positionHighscore() {
 		scoreText.x = FlxG.width - scoreText.width - 406;
 

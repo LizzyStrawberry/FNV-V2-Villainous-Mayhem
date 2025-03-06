@@ -52,10 +52,11 @@ class Cache extends MusicBeatState
 
 		FlxG.worldBounds.set(0,0);
 
+		FlxG.save.bind('funkin', 'ninjamuffin99');
+		
 		PlayerSettings.init();
 		ClientPrefs.loadPrefs();
 		NotificationAlert.loadNotifications();
-		FlxG.save.bind('funkin', 'ninjamuffin99');
 
 		bitmapData = new Map<String,FlxGraphic>();
 		bitmapData2 = new Map<String,FlxGraphic>();

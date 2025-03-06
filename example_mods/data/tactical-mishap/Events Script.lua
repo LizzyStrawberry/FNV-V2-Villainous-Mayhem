@@ -1,13 +1,13 @@
 function onCreate()
 	addCharacterToList('TCAlt', 'boyfriend')
+	addCharacterToList('marcophase2', 'dad')
+		
 	makeLuaSprite('blackBG', '', -300, -300)
 	makeGraphic('blackBG', 2000, 2000, '000000')
 	setScrollFactor('blackBG', 0, 0)
 	setObjectCamera('blackBG', 'game')
 	setProperty('blackBG.alpha', 0)
 	addLuaSprite('blackBG', true)
-	
-	addCharacterToList('marcophase2', 'dad')
 end
 
 function opponentNoteHit() -- health draining mechanic
@@ -111,7 +111,7 @@ function onUpdate()
 end
 
 function noteMiss(id, direction, noteType, isSustainNote) --Kinn's request lmao
-	if curBeat >= 328 and getPropertyFromClass('ClientPrefs', 'buff3Active') == false then
+	if curBeat >= 328 and curBeat < 360 and not getPropertyFromClass('ClientPrefs', 'buff3Active') then
 		setProperty('health', 0)
 	end
 end

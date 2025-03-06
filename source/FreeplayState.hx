@@ -50,11 +50,7 @@ class FreeplayState extends MusicBeatState
 
 	var colorTween:FlxTween;
 
-	var message1:FlxSprite;
-	var message2:FlxSprite;
-	var message3:FlxSprite;
-	var message4:FlxSprite;
-	var message5:FlxSprite;
+	var mechanicMessage:FlxSprite;
 	var blackOut:FlxSprite;
 	var messageNumber:Int = 0;
 
@@ -333,25 +329,10 @@ class FreeplayState extends MusicBeatState
 		blackOut.alpha = 0;
 		add(blackOut);
 
-		message1 = new FlxSprite(0, 0).loadGraphic(Paths.image('mainStoryMode/message1'));
-		message1.antialiasing = ClientPrefs.globalAntialiasing;
-		message1.alpha = 0;
-		add(message1);
-
-		message2 = new FlxSprite(0, 0).loadGraphic(Paths.image('mainStoryMode/message2'));
-		message2.antialiasing = ClientPrefs.globalAntialiasing;
-		message2.alpha = 0;
-		add(message2);
-
-		message3 = new FlxSprite(0, 0).loadGraphic(Paths.image('mainStoryMode/message3'));
-		message3.antialiasing = ClientPrefs.globalAntialiasing;
-		message3.alpha = 0;
-		add(message3);
-
-		message4 = new FlxSprite(0, 0).loadGraphic(Paths.image('mainStoryMode/message4'));
-		message4.antialiasing = ClientPrefs.globalAntialiasing;
-		message4.alpha = 0;
-		add(message4);
+		mechanicMessage = new FlxSprite(0, 0).loadGraphic(Paths.image('mainStoryMode/message1'));
+		mechanicMessage.antialiasing = ClientPrefs.globalAntialiasing;
+		mechanicMessage.alpha = 0;
+		add(mechanicMessage);
 
 		messageNumber = FlxG.random.int(1, 4);
 
@@ -830,45 +811,15 @@ class FreeplayState extends MusicBeatState
 				FlxTween.tween(blackOut, {alpha: 0.6}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 				ClientPrefs.inMenu = true;
 				ClientPrefs.optionsFreeplay = true;
-				switch(messageNumber)
+
+				mechanicMessage.loadGraphic(Paths.image('mainStoryMode/message' + messageNumber));
+				FlxTween.tween(mechanicMessage, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+				new FlxTimer().start(3, function(tmr:FlxTimer)
 				{
-					case 1:
-					{
-						FlxTween.tween(message1, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						new FlxTimer().start(3, function(tmr:FlxTimer)
-							{
-								LoadingState.loadAndSwitchState(new options.OptionsState());
-								FreeplayState.destroyFreeplayVocals();
-							});
-					}
-					case 2:
-					{
-						FlxTween.tween(message2, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						new FlxTimer().start(3, function(tmr:FlxTimer)
-							{
-								LoadingState.loadAndSwitchState(new options.OptionsState());
-								FreeplayState.destroyFreeplayVocals();
-							});
-					}
-					case 3:
-					{
-						FlxTween.tween(message3, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						new FlxTimer().start(3, function(tmr:FlxTimer)
-							{
-								LoadingState.loadAndSwitchState(new options.OptionsState());
-								FreeplayState.destroyFreeplayVocals();
-							});
-					}
-					case 4:
-					{
-						FlxTween.tween(message4, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						new FlxTimer().start(3, function(tmr:FlxTimer)
-							{
-								LoadingState.loadAndSwitchState(new options.OptionsState());
-								FreeplayState.destroyFreeplayVocals();
-							});
-					}
-				}
+					LoadingState.loadAndSwitchState(new options.OptionsState());
+					FreeplayState.destroyFreeplayVocals();
+				});
+				
 				FlxG.sound.music.volume = 1;
 			}
 			else
@@ -969,50 +920,8 @@ class FreeplayState extends MusicBeatState
 					LoadingState.loadAndSwitchState(new PlayState());
 					FlxG.sound.music.volume = 0;
 				}
-
-				//To make songs have their right Icon after the 'mystery' thingy lmaooibwoaivbadv
-				if (songs[curSelected].songName == 'Nunconventional' && ClientPrefs.nunWeekPlayed == false)
-					{
-						trace('I got loaded lol, Unlocking Nunconventional!');
-						ClientPrefs.nunWeekPlayed = true;
-						ClientPrefs.saveSettings();
-					}
-
-				if (songs[curSelected].songName == 'Nunday Monday' && ClientPrefs.nunWeekPlayed == false)
-					{
-						trace('I got loaded lol, Unlocking Nunday Monday!');
-						ClientPrefs.nunWeekPlayed = true;
-						ClientPrefs.saveSettings();
-					}
 				
-				if (songs[curSelected].songName == 'Point Blank' && ClientPrefs.nunWeekPlayed == false)
-					{
-						trace('I got loaded lol, Unlocking Point Blank!');
-						ClientPrefs.nunWeekPlayed = true;
-						ClientPrefs.saveSettings();
-					}
-
-				if (songs[curSelected].songName == 'Forsaken' && ClientPrefs.kianaWeekFound == false)
-				{
-					trace('I got loaded lol, Unlocking Forsaken!');
-					ClientPrefs.kianaWeekFound = true;
-					ClientPrefs.saveSettings();
-				}
-
-				if (songs[curSelected].songName == 'Toybox' && ClientPrefs.kianaWeekFound == false)
-				{
-					trace('I got loaded lol, Unlocking Toybox!');
-					ClientPrefs.kianaWeekFound = true;
-					ClientPrefs.saveSettings();
-				}
-
-				if (songs[curSelected].songName == 'Lustality Remix' && ClientPrefs.kianaWeekFound == false)
-				{
-					trace('I got loaded lol, Unlocking Lustality Remix!');
-					ClientPrefs.kianaWeekFound = true;
-					ClientPrefs.saveSettings();
-				}
-				
+				unlockSong();
 				destroyFreeplayVocals();
 			}
 		}
@@ -1025,7 +934,7 @@ class FreeplayState extends MusicBeatState
 
 		if (warning)
 		{
-			if (FlxG.keys.justPressed.Y)
+			if (FlxG.keys.justPressed.Y || controls.ACCEPT)
 			{
 				FlxG.sound.play(Paths.sound('confirmMenu'));
 				ClientPrefs.lowQuality = false;
@@ -1040,7 +949,7 @@ class FreeplayState extends MusicBeatState
 				LoadingState.loadAndSwitchState(new PlayState());
 				FlxG.sound.music.volume = 0;
 			}
-			else if (FlxG.keys.justPressed.N)
+			else if (FlxG.keys.justPressed.N || controls.BACK || FlxG.mouse.justPressedRight)
 			{
 				FlxG.sound.play(Paths.sound('confirmMenu'));
 				ClientPrefs.lowQuality = true;
@@ -1168,33 +1077,11 @@ class FreeplayState extends MusicBeatState
 
 		//This if is used on songs which have the 'Iniquitous' difficulty on
 		if (songs[curSelected].songName == 'Scrouge' || songs[curSelected].songName == 'Toxic Mishap' || songs[curSelected].songName == 'Paycheck' //Week 1
-			|| songs[curSelected].songName == 'Nunday Monday' || songs[curSelected].songName == 'Nunconventional'//Week 2
-			|| songs[curSelected].songName == 'Forsaken' || songs[curSelected].songName == 'Toybox' || songs[curSelected].songName == 'Lustality Remix' //Week 3
-			)
+		|| songs[curSelected].songName == 'Nunday Monday' || songs[curSelected].songName == 'Nunconventional'//Week 2
+		|| songs[curSelected].songName == 'Forsaken' || songs[curSelected].songName == 'Toybox' || songs[curSelected].songName == 'Lustality Remix' //Week 3
+		)
 		{	
 			CoolUtil.difficulties = CoolUtil.mainWeekDifficulties.copy();
-			/*var diffStr:String = WeekData.getCurrentWeek().difficulties;
-			if(diffStr != null) diffStr = diffStr.trim(); //Fuck you HTML5
-
-			if(diffStr != null && diffStr.length > 0)
-			{
-				var diffs:Array<String> = diffStr.split(',');
-				var i:Int = diffs.length - 1;
-				while (i > 0)
-				{
-					if(diffs[i] != null)
-					{
-						diffs[i] = diffs[i].trim();
-						if(diffs[i].length < 1) diffs.remove(diffs[i]);
-					}
-					--i;
-				}
-
-				if(diffs.length > 0 && diffs[0].length > 0)
-				{
-					CoolUtil.difficulties = diffs;
-				}
-			}*/
 		
 			if(CoolUtil.difficulties.contains(CoolUtil.mainWeekDifficulty))
 			{
@@ -1204,9 +1091,7 @@ class FreeplayState extends MusicBeatState
 					curDifficulty = Math.round(Math.max(0, 1));
 			}
 			else
-			{
 				curDifficulty = 0;
-			}
 		}
 		else
 			CoolUtil.difficulties = CoolUtil.defaultDifficulties.copy();
@@ -1231,9 +1116,7 @@ class FreeplayState extends MusicBeatState
 		var newPos:Int = CoolUtil.difficulties.indexOf(lastDifficultyName);
 		//trace('Pos of ' + lastDifficultyName + ' is ' + newPos);
 		if(newPos > -1)
-		{
 			curDifficulty = newPos;
-		}
 	}
 
 	private function positionHighscore() {
@@ -1243,6 +1126,52 @@ class FreeplayState extends MusicBeatState
 		scoreBG.x = FlxG.width - (scoreBG.scale.x / 2);
 		diffText.x = 640;
 		diffText.x -= diffText.width / 2;
+	}
+
+	function unlockSong()
+	{
+		//To make songs have their right Icon after the 'mystery' thingy lmaooibwoaivbadv
+		if (songs[curSelected].songName == 'Nunconventional' && ClientPrefs.nunWeekPlayed == false)
+		{
+			trace('I got loaded lol, Unlocking Nunconventional!');
+			ClientPrefs.nunWeekPlayed = true;
+			ClientPrefs.saveSettings();
+		}
+
+		if (songs[curSelected].songName == 'Nunday Monday' && ClientPrefs.nunWeekPlayed == false)
+		{
+			trace('I got loaded lol, Unlocking Nunday Monday!');
+			ClientPrefs.nunWeekPlayed = true;
+			ClientPrefs.saveSettings();
+		}
+			
+		if (songs[curSelected].songName == 'Point Blank' && ClientPrefs.nunWeekPlayed == false)
+		{
+			trace('I got loaded lol, Unlocking Point Blank!');
+			ClientPrefs.nunWeekPlayed = true;
+			ClientPrefs.saveSettings();
+		}
+
+		if (songs[curSelected].songName == 'Forsaken' && ClientPrefs.kianaWeekFound == false)
+		{
+			trace('I got loaded lol, Unlocking Forsaken!');
+			ClientPrefs.kianaWeekFound = true;
+			ClientPrefs.saveSettings();
+		}
+
+		if (songs[curSelected].songName == 'Toybox' && ClientPrefs.kianaWeekFound == false)
+		{
+			trace('I got loaded lol, Unlocking Toybox!');
+			ClientPrefs.kianaWeekFound = true;
+			ClientPrefs.saveSettings();
+		}
+
+		if (songs[curSelected].songName == 'Lustality Remix' && ClientPrefs.kianaWeekFound == false)
+		{
+			trace('I got loaded lol, Unlocking Lustality Remix!');
+			ClientPrefs.kianaWeekFound = true;
+			ClientPrefs.saveSettings();
+		}
 	}
 }
 

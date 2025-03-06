@@ -33,9 +33,23 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 {
 	public function new()
 	{
-		title = 'Graphics';
-		rpcTitle = 'Graphics Settings Menu'; //for Discord Rich Presence
+		title = 'Graphics - Visuals & UI';
+		rpcTitle = 'Graphics, Visuals and UI Settings Menu'; //for Discord Rich Presence
 
+		var option:Option = new Option('Shaders', //Name
+			'If unchecked, disables shaders.\nIt\'s used for visual effects, but is CPU intensive for weaker PCs.', //Description
+			'shaders', //Save data variable name
+			'bool', //Variable type
+			true); //Default value
+		addOption(option);
+
+		var option:Option = new Option('GPU Caching', //Name
+			"If checked, allows the GPU to be used for caching textures, decreasing RAM usage.\nDon't turn this on if you have a shitty GPU.", //Description
+			'cacheOnGPU',
+			'bool',
+			true);
+		addOption(option);
+		
 		var option:Option = new Option('Anti-Aliasing',
 			'If unchecked, disables anti-aliasing, increases performance\nat the cost of sharper visuals.',
 			'globalAntialiasing',
@@ -45,30 +59,116 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 		option.onChange = onChangeAntiAliasing; //Changing onChange is only needed if you want to make a special interaction after it changes the value
 		addOption(option);
 
-		var option:Option = new Option('Shaders', //Name
-			'If unchecked, disables shaders.\nIt\'s used for some visual effects, and also CPU intensive for weaker PCs.', //Description
-			'shaders', //Save data variable name
+		var option:Option = new Option('Note Splashes',
+			"If unchecked, hitting \"Sick!\" notes won't show particles.",
+			'noteSplashes',
+			'bool',
+			true);
+		addOption(option);
+
+		var option:Option = new Option('Note Splash Mode:',
+			"How would you like your Note Splashes to be animated?\n[It won't work if you have them disabled.]",
+			'noteSplashMode',
+			'string',
+			'Inwards',
+			['Inwards', 'Outwards', 'Diamonds', 'Sparkles']);
+		addOption(option);
+
+		var option:Option = new Option('Cinematic Bars', //Name
+			'Pretty self explanatory. If checked, it adds cinematic bars to every song.', //Description
+			'cinematicBars', //Save data variable name
 			'bool', //Variable type
 			true); //Default value
 		addOption(option);
+		
+		var option:Option = new Option('Time Bar:',
+			"What should the Time Bar display?",
+			'timeBarType',
+			'string',
+			'Time Left',
+			['Time Left', 'Time Elapsed', 'Song Name', 'Disabled']);
+		addOption(option);
+
+		var option:Option = new Option('Rating Position:',
+			"In what camera do you want your ratings to show up?",
+			'comboPosition',
+			'string',
+			'Hud',
+			['Hud', 'Game']);
+		addOption(option);
+
+		var option:Option = new Option('Combo Stacking',
+			"If unchecked, Ratings and Combo won't stack, saving on System Memory and making them easier to read",
+			'comboStacking',
+			'bool',
+			true);
+		addOption(option);
+
+		var option:Option = new Option('Miss Related Combos',
+			"If checked, Ratings and Combo will have different texture depending on your amount of misses.\nNo Misses = Gold Rating and Combo\n1 - 9 misses = Silver Rating and Combo\n10+ misses = Normal Rating and Combo",
+			'missRelatedCombos',
+			'bool',
+			true);
+		addOption(option);
+
+		var option:Option = new Option('Rating Sprites:',
+			"If set to FNV, it loads the Custom Rating Sprites.\nIf set to FNF, it loads the Vanilla FNF Rating Sprites.\n[Both work with Miss Related Combos Above]",
+			'customRating',
+			'string',
+			'FNV',
+			['FNV', 'FNF']);
+		addOption(option);
+
+		#if !mobile
+		var option:Option = new Option('FPS Counter',
+			'If unchecked, the FPS Counter is hidden.',
+			'showFPS',
+			'bool',
+			true);
+		addOption(option);
+		option.onChange = onChangeFPSCounter;
+
+		var option:Option = new Option('Show Memory Usage',
+			'If unchecked, Memory and Memory Peak will be hidden from the FPS Counter.',
+			'showMemPeak',
+			'bool',
+			true);
+		addOption(option);
+		#end
 
 		#if !html5 //Apparently other framerates isn't correctly supported on Browser? Probably it has some V-Sync shit enabled by default, idk
 		var option:Option = new Option('Framerate',
-			"Pretty self explanatory, isn't it?",
+			"Pretty self explanatory, isn't it?\nMake sure to adjust it to however you prefer it to be.",
 			'framerate',
 			'int',
-			60);
+			120);
 		addOption(option);
 
-		option.minValue = 60;
+		option.minValue = 30;
 		option.maxValue = 240;
 		option.displayFormat = '%v FPS';
 		option.onChange = onChangeFramerate;
 		#end
 
+		var option:Option = new Option('Pause Screen Song:',
+			"What song do you prefer for the Pause Screen?",
+			'pauseMusic',
+			'string',
+			'Interstellar',
+		['None', 'Bounce', 'Interstellar', 'Rest', 'Leisure']);
+		addOption(option);
+		option.onChange = onChangePauseMusic;
 		super();
 	}
 
+	#if !mobile
+	function onChangeFPSCounter()
+	{
+		if(Main.fpsVar != null)
+			Main.fpsVar.visible = ClientPrefs.showFPS;
+	}
+	#end
+	
 	function onChangeAntiAliasing()
 	{
 		for (sprite in members)
@@ -93,5 +193,16 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 			FlxG.drawFramerate = ClientPrefs.framerate;
 			FlxG.updateFramerate = ClientPrefs.framerate;
 		}
+	}
+
+	var changedMusic:Bool = false;
+	function onChangePauseMusic()
+	{
+		if(ClientPrefs.pauseMusic == 'None')
+			FlxG.sound.music.volume = 0;
+		else
+			FlxG.sound.playMusic(Paths.music(Paths.formatToSongPath(ClientPrefs.pauseMusic)));
+
+		changedMusic = true;
 	}
 }

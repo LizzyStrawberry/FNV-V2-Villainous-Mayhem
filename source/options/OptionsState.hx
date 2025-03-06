@@ -31,7 +31,7 @@ using StringTools;
 
 class OptionsState extends MusicBeatState
 {
-	var options:Array<String> = ['Achievements', 'Controls', 'FNV Settings', 'Gameplay', 'Visuals and UI', 'Erase Save Data'];
+	var options:Array<String> = ['Achievements', 'Controls', 'Gameplay', 'Graphics - Visuals & UI', 'Miscellaneous', 'Erase Save Data'];
 	private var grpOptions:FlxTypedGroup<Alphabet>;
 	private static var curSelected:Int = 0;
 	public static var menuBG:FlxSprite;
@@ -50,12 +50,12 @@ class OptionsState extends MusicBeatState
 				MusicBeatState.switchState(new AchievementsMenuState());
 			case 'Controls':
 				openSubState(new options.ControlsSubState());
-			case 'FNV Settings':
-				openSubState(new options.FNVSettingsSubState());
-			case 'Visuals and UI':
-				openSubState(new options.VisualsUISubState());
+			case 'Graphics - Visuals & UI':
+				openSubState(new options.GraphicsSettingsSubState());
 			case 'Gameplay':
 				openSubState(new options.GameplaySettingsSubState());
+			case 'Miscellaneous':
+				openSubState(new options.MiscellaneousSubState());
 			case 'Adjust Delay and Combo':
 				LoadingState.loadAndSwitchState(new options.NoteOffsetState());
 			case 'Erase Save Data':

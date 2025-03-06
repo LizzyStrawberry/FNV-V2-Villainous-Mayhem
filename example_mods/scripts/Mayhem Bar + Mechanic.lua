@@ -10,7 +10,7 @@ local refill = false
 
 function onCreate()
 	if (getPropertyFromClass('ClientPrefs', 'buff1Selected') == false and getPropertyFromClass('ClientPrefs', 'buff2Selected') == false
-	and getPropertyFromClass('ClientPrefs', 'buff3Selected') == false) or mechanics == false or botPlay == true then
+	and getPropertyFromClass('ClientPrefs', 'buff3Selected') == false) or not mechanics or not botPlay then
 		mayhemEnabled = false
 	end
 	
@@ -268,7 +268,7 @@ function onStepHit()
 						setProperty('health', getHealth() + 0.225)
 					elseif bpm > 140 and bpm <= 180 then
 						setProperty('health', getHealth() + 0.175)
-					elseif bpm > 180 and bpm <= 250 then
+					elseif bpm > 180 then
 						setProperty('health', getHealth() + 0.125)
 					end
 				else
@@ -289,7 +289,7 @@ function onStepHit()
 							setProperty('health', getHealth() + 0.0275)
 						elseif bpm > 140 and bpm <= 180 then
 							setProperty('health', getHealth() + 0.0175)
-						elseif bpm > 180 and bpm <= 250 then
+						elseif bpm > 180 then
 							setProperty('health', getHealth() + 0.0125)
 						end
 					end
