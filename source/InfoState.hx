@@ -283,19 +283,135 @@ class InfoState extends MusicBeatState
 			for (charName in sortedChars)
 			{
 				var char:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image("characterInfo/" + charName + "Info"));
+				
 				char.ID = ID;
 				char.screenCenter(XY);
 				char.x = CHAR_DEFAULT_X - 750;
-				char.y = CHAR_DEFAULT_Y;
+				switch (charName.toLowerCase())
+				{
+					case "dv" | "marcussy" | "debug":
+						char.y = CHAR_DEFAULT_Y - 75;
+					default:
+						char.y = CHAR_DEFAULT_Y;
+				}
 				charGroup.push(char);
             	add(char);
-				//trace("Found " + char + ", ID will be " + ID);
+				
+				checkIfLocked(charName.toLowerCase(), char);
+
 				ID++;
 			}
 		} 
 		else
 			trace("Error: Directory not found - " + folder);
 	}
+
+	function checkIfLocked(charName:String, spr:FlxSprite)
+	{
+		// Main Cast
+		switch (charName)
+		{
+			case 'beatrice' | 'evelyn' | 'yaku':
+				if (!ClientPrefs.nunWeekPlayed)
+					spr.color = FlxColor.BLACK;
+			case 'kiana' | 'dv' | 'cgirl' | 'pico' | 'narrin':
+				if (!ClientPrefs.kianaWeekPlayed)
+					spr.color = FlxColor.BLACK;
+
+				//Bonus Cast
+			case 'marcussy' | 'amogleen' | 'morky':
+				if (!ClientPrefs.susWeekPlayed)
+					spr.color = FlxColor.BLACK;
+			case 'aizeen' | 'marcus' | 'cgoon':
+				if (!ClientPrefs.dsideWeekPlayed)
+					spr.color = FlxColor.BLACK;
+			case 'morky' | 'porkchop' | 'dooglas':
+				if (!ClientPrefs.morkyWeekPlayed)
+					spr.color = FlxColor.BLACK;
+				
+			//Shop Cast
+			case 'michael':
+				if (!ClientPrefs.marcochromePlayed)
+					spr.color = FlxColor.BLACK;
+			case 'nicflp' | 'tail':
+				if (!ClientPrefs.nicPlayed)
+					spr.color = FlxColor.BLACK;
+			case 'fnv':
+				if (!ClientPrefs.fnvPlayed)
+					spr.color = FlxColor.BLACK;
+			case 'lillie':
+				if (!ClientPrefs.rainyDazePlayed)
+					spr.color = FlxColor.BLACK;
+			case 'short':
+				if (!ClientPrefs.shortPlayed)
+					spr.color = FlxColor.BLACK;
+			case 'fangirl':
+				if (!ClientPrefs.infatuationPlayed)
+					spr.color = FlxColor.BLACK;
+			case 'debug':
+				if (!ClientPrefs.debugPlayed)
+					spr.color = FlxColor.BLACK;
+			case 'asul':
+				if (!ClientPrefs.itsameDsidesUnlocked)
+					spr.color = FlxColor.BLACK;
+				
+			//Crossover Cast
+			case 'ourple':
+				if (!ClientPrefs.ourplePlayed)
+					spr.color = FlxColor.BLACK;
+			case 'kyu':
+				if (!ClientPrefs.kyuPlayed)
+					spr.color = FlxColor.BLACK;
+			case 'tc':
+				if (!ClientPrefs.tacticalMishapPlayed)
+					spr.color = FlxColor.BLACK;
+			case 'marcx' | 'ai' | 'uzi':
+				if (!ClientPrefs.breacherPlayed)
+				spr.color = FlxColor.BLACK;
+			case 'lily' | 'manager':
+				if (!ClientPrefs.ccPlayed)
+					spr.color = FlxColor.BLACK;
+		}
+	}
+
+	private function updateCharPositions(smoothTransition:Bool = false):Void
+	{
+		var transitionDuration:Float = 0.2;
+		var spacing:Int = 600;
+        for (i in 0...charGroup.length)
+		{
+			var char = charGroup[i];
+            var offset = i - curCharSelected;
+            var targetX = CHAR_DEFAULT_X + offset * spacing;
+            var targetScale = 1.0;
+            var targetAlpha = 1.0;
+
+			if (optionShit[curCharSelected].toLowerCase() == "dv" || optionShit[curCharSelected].toLowerCase() == "marcussy" || optionShit[curCharSelected].toLowerCase() == "debug")
+				targetX -= 150;
+
+			switch(offset)
+			{
+				case 0: // Centered Image
+					targetScale = 1.0;
+                	targetAlpha = 1.0;
+				case 1 | -1: //Left / Right
+					targetScale = Math.max(0.5, 1 - Math.abs(offset) * 0.2);
+                	targetAlpha = Math.max(0.5, 1 - Math.abs(offset) * 0.3);
+				default: // Offset
+					targetScale = Math.max(0.25, 0.5 - Math.abs(offset) * 0.2);
+                	targetAlpha = Math.max(0, 0.5 - Math.abs(offset) * 0.3);
+			}
+
+            if (smoothTransition)
+                FlxTween.tween(char, {x: targetX, alpha: targetAlpha, "scale.x": targetScale, "scale.y": targetScale}, transitionDuration, {ease: FlxEase.circOut});
+			else
+			{
+                char.x = targetX;
+                char.alpha = targetAlpha;
+                char.scale.set(targetScale, targetScale);
+            }
+        }
+    }
 
 	var sidePressed:String = '';
 	var showingLore:Bool = false;
@@ -575,44 +691,6 @@ class InfoState extends MusicBeatState
 		trace('Showing Lore');
 	}
 
-	private function updateCharPositions(smoothTransition:Bool = false, disableAlpha:Bool = false):Void {
-		var transitionDuration:Float = 0.2;
-		var spacing:Int = 400;
-        for (i in 0...charGroup.length)
-		{
-			var char = charGroup[i];
-            var offset = i - curCharSelected;
-            var targetX = CHAR_DEFAULT_X + offset * spacing;
-            var targetScale = 1.0;
-            var targetAlpha = 1.0;
-
-			switch(offset)
-			{
-				case 0: // Centered Image
-					targetScale = 1.0;
-                	targetAlpha = 1.0;
-				case 1 | -1: //Left / Right
-					targetScale = Math.max(0.75, 1 - Math.abs(offset) * 0.2);
-                	targetAlpha = Math.max(0.5, 1 - Math.abs(offset) * 0.3);
-				default: // Offset
-					targetScale = Math.max(0.5, 0.75 - Math.abs(offset) * 0.2);
-                	targetAlpha = Math.max(0, 0.5 - Math.abs(offset) * 0.3);
-			}
-
-			if (disableAlpha)
-				targetAlpha = 0;
-
-            if (smoothTransition)
-                FlxTween.tween(char, {x: targetX, alpha: targetAlpha, "scale.x": targetScale, "scale.y": targetScale}, transitionDuration, {ease: FlxEase.circOut});
-			else
-			{
-                char.x = targetX;
-                char.alpha = targetAlpha;
-                char.scale.set(targetScale, targetScale);
-            }
-        }
-    }
-
 	function changeItem(huh:Int = 0)
 	{
 		var lockAlpha:Bool = false;
@@ -681,7 +759,6 @@ class InfoState extends MusicBeatState
 				}
 				else
 				{
-					lockAlpha = false;
 					titleText.text = "?????";
 					desc.text = "Unlock Week 2 First!";
 				}
@@ -701,7 +778,6 @@ class InfoState extends MusicBeatState
 				}
 				else
 				{
-					lockAlpha = false;
 					titleText.text = "?????";		
 					desc.text = "Unlock Week 2 First!";
 				}
@@ -721,7 +797,6 @@ class InfoState extends MusicBeatState
 				}
 				else
 				{
-					lockAlpha = false;
 					titleText.text = "????";
 					desc.text = "Unlock Week 2 First!";
 				}
@@ -740,7 +815,6 @@ class InfoState extends MusicBeatState
 				}
 				else
 				{
-					lockAlpha = false;
 					titleText.text = "?????";
 					desc.text = "Unlock Week 3 First!";
 				}
@@ -759,7 +833,6 @@ class InfoState extends MusicBeatState
 				}
 				else
 				{
-					lockAlpha = false;
 					titleText.text = "??";
 					desc.text = "Unlock Week 3 First!";
 				}
@@ -779,7 +852,6 @@ class InfoState extends MusicBeatState
 				}
 				else
 				{
-					lockAlpha = false;
 					titleText.text = "?????? ?.?.";
 					desc.text = "Unlock Week 3 First!";
 				}
@@ -795,7 +867,6 @@ class InfoState extends MusicBeatState
 				}
 				else
 				{
-					lockAlpha = false;
 					titleText.text = "????";						
 					desc.text = "Unlock Week 3 First!";
 				}
@@ -811,7 +882,6 @@ class InfoState extends MusicBeatState
 				}
 				else
 				{
-					lockAlpha = false;
 					titleText.text = "??????";	
 					desc.text = "Unlock Week 3 First!";
 				}
@@ -832,7 +902,6 @@ class InfoState extends MusicBeatState
 				}
 				else
 				{
-					lockAlpha = false;
 					titleText.text = "?????";
 					desc.text = "Unlock Week Sus First!";
 				}	
@@ -847,7 +916,6 @@ class InfoState extends MusicBeatState
 				}
 				else
 				{
-					lockAlpha = false;
 					titleText.text = "?????";
 					desc.text = "Unlock Week Sus First!";
 				}
@@ -863,7 +931,6 @@ class InfoState extends MusicBeatState
 				}
 				else
 				{
-					lockAlpha = false;
 					titleText.text = "?????";	
 					desc.text = "Unlock the Joke Week First!";
 				}
@@ -883,7 +950,6 @@ class InfoState extends MusicBeatState
 				}
 				else
 				{
-					lockAlpha = false;
 					titleText.text = "?????";
 					desc.text = "Unlock Week D-sides First!";	
 				}
@@ -899,7 +965,6 @@ class InfoState extends MusicBeatState
 				}
 				else
 				{
-					lockAlpha = false;
 					titleText.text = "??????";
 					desc.text = "Unlock Week D-sides First!";	
 				}
@@ -914,7 +979,6 @@ class InfoState extends MusicBeatState
 				}
 				else
 				{
-					lockAlpha = false;
 					titleText.text = "???????? ????";
 					desc.text = "Unlock Week D-sides First!";
 				}
@@ -932,7 +996,6 @@ class InfoState extends MusicBeatState
 				}
 			else
 				{
-					lockAlpha = false;
 					titleText.text = "?????";	
 					desc.text = "Unlock Marcochrome First!";
 				}
@@ -948,7 +1011,6 @@ class InfoState extends MusicBeatState
 				}
 				else
 				{
-					lockAlpha = false;
 					titleText.text = "?????";	
 					desc.text = "Unlock Slow.FLP First!";
 				}
@@ -964,7 +1026,6 @@ class InfoState extends MusicBeatState
 				}
 				else
 				{
-					lockAlpha = false;
 					titleText.text = "?????";
 					desc.text = "Unlock Slow.FLP First!";
 				}
@@ -980,7 +1041,6 @@ class InfoState extends MusicBeatState
 				}
 				else
 				{
-					lockAlpha = false;
 					titleText.text = "???";	
 					desc.text = "Unlock FNV First!";
 				}
@@ -995,7 +1055,6 @@ class InfoState extends MusicBeatState
 				}
 				else
 				{
-					lockAlpha = false;
 					titleText.text = "??????";
 					desc.text = "Unlock Rainy Daze First!";
 				}
@@ -1011,7 +1070,6 @@ class InfoState extends MusicBeatState
 				}
 				else
 				{
-					lockAlpha = false;
 					titleText.text = "?????";
 					desc.text = "Unlock Instrumentally Deranged First!";
 				}
@@ -1028,7 +1086,6 @@ class InfoState extends MusicBeatState
 				}
 				else
 				{
-					lockAlpha = false;
 					titleText.text = "???????";	
 					desc.text = "Unlock Instrumentally Deranged First!";
 				}
@@ -1046,7 +1103,6 @@ class InfoState extends MusicBeatState
 				}
 				else
 				{
-					lockAlpha = false;
 					titleText.text = "???????";	
 					desc.text = "Unlock 0.0015 First!";
 				}
@@ -1062,7 +1118,6 @@ class InfoState extends MusicBeatState
 				}
 				else
 				{
-					lockAlpha = false;
 					titleText.text = "???????";	
 					desc.text = "Unlock Fanfuck Forever First!";
 				}
@@ -1078,7 +1133,6 @@ class InfoState extends MusicBeatState
 				}
 				else
 				{
-					lockAlpha = false;
 					titleText.text = "?????";	
 					desc.text = "Unlock Marauder First!";
 				}
@@ -1088,7 +1142,7 @@ class InfoState extends MusicBeatState
 				else
 					loreScrollButton.loadGraphic(Paths.image('characterInfo/loreButtonLocked'));
 			case 'asul':
-				if (ClientPrefs.infatuationPlayed)
+				if (ClientPrefs.itsameDsidesUnlocked)
 				{	
 					titleText.text = "Asul";
 
@@ -1098,7 +1152,6 @@ class InfoState extends MusicBeatState
 				}
 				else
 				{
-					lockAlpha = false;
 					titleText.text = "???????";
 					desc.text = "Unlock Fanfuck Forever First!";
 				}
@@ -1116,7 +1169,6 @@ class InfoState extends MusicBeatState
 				}
 				else
 				{
-					lockAlpha = false;
 					titleText.text = "??????";
 					desc.text = "Unlock Vguy First!";	
 				}
@@ -1132,7 +1184,6 @@ class InfoState extends MusicBeatState
 				}
 				else
 				{
-					lockAlpha = false;
 					titleText.text = "???";	
 					desc.text = "Unlock Fast Food Therapy First!";	
 				}
@@ -1148,7 +1199,6 @@ class InfoState extends MusicBeatState
 				}
 				else
 				{
-					lockAlpha = false;
 					titleText.text = "??";
 					desc.text = "Unlock Tactical Mishap First!";	
 				}
@@ -1164,7 +1214,6 @@ class InfoState extends MusicBeatState
 				}
 				else
 				{
-					lockAlpha = false;
 					titleText.text = "?????";	
 					desc.text = "Unlock Breacher First!";	
 				}
@@ -1180,7 +1229,6 @@ class InfoState extends MusicBeatState
 				}
 				else
 				{
-					lockAlpha = false;
 					titleText.text = "?.?.";
 					desc.text = "Unlock Breacher First!";	
 				}
@@ -1196,7 +1244,6 @@ class InfoState extends MusicBeatState
 				}
 				else
 				{
-					lockAlpha = false;
 					titleText.text = "???";
 					desc.text = "Unlock Breacher First!";	
 				}
@@ -1212,7 +1259,6 @@ class InfoState extends MusicBeatState
 				}
 				else
 				{
-					lockAlpha = false;
 					titleText.text = "????";
 					desc.text = "Unlock Concert Chaos First!";	
 				}
@@ -1227,13 +1273,12 @@ class InfoState extends MusicBeatState
 				}
 				else
 				{
-					lockAlpha = false;
 					titleText.text = "???????";
 					desc.text = "Unlock Concert Chaos First!";	
 				}
 				allowLore = false;
 		}
 
-		updateCharPositions(true, lockAlpha);
+		updateCharPositions(true);
 	}
 }
