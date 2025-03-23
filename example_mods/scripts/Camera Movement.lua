@@ -3,15 +3,19 @@
 	------------------------------------------------
 	This script allows all songs to have camera movement on note hits
 	along with a few enhancements!
-	It gives x and y camera values on BF, DAD and GF, for cool movement lmao
-	
-	It is recommended to add this in any data script of the song you want to use this on:
-	callScript("scripts/Camera Movement", "setCameraMovement", {cameraOffsets:String, newOffsetValue:String, noMovementValues:String, camZoomValues:String})
-	Use this on "onCreate()". It will adjust the positions properly before the song actually starts.
+	It gives x and y camera values on BF, DAD and GF, for cool movement,
+	Angle rotation, no-move camera values and zoom shifting!
 	
 	TO USE IN OTHER SCRIPTS:
+	Use callScript("scripts/Camera Movement", "setCameraMovement", {cameraOffsets:String, newOffsetValue:String, noMovementValues:String, camZoomValues:String})
+	to set up the camera movement properties.
+	Use this on "onCreate()". It will adjust the positions properly before the song actually starts.
+	
+	To change any camera variables mid-song, use callScript("scripts/Camera Movement", "setCameraProperty", {property:String, value:String})	
+	To understand what you can change with that, please refer to the function on this script.
+	
 	If you want to change any global variables from here in any other script,
-	use setGlobalFromScript("scripts/Camera Movement", globalvariable, value)
+	use setGlobalFromScript("scripts/Camera Movement", globalvariable:String, value:Dynamic)
 	based on what the function takes as arguments (mostly strings)
 	
 	The global variables consist of:
@@ -19,14 +23,11 @@
 	followChars: Checks if you want to follow the character's movements or not 
 	allowAngleShift: Allows angle shifting on note press
 	allowZoomShifts: Allows dynamic zooming (each character has their own defaultCamZoom value)
+	Idles: What animations should be checked as idles (so the screen goes back to normal after moving is completed) 
+	specialAnims: What animations should be checked as specials
 ]]
 
-allowCameraMove = true
-followChars = false
-allowAngleShift = true
-allowZoomShifts = false
-
-local marcoChars = {
+local marcoChars = { -- To flip the camera movements lmao, he's a weird guy
 	'marco',
 	'marco-old',
 	'marcophase2',
@@ -44,10 +45,22 @@ local marcoChars = {
 	'marcoFFFP1',
 	'marcoFFFP2'
 }
+
+-- Global Camera checks (modify-able)
+allowCameraMove = true
+followChars = false
+allowAngleShift = true
+allowZoomShifts = false
+
+-- Fliping cam movement shit
 flipEnemyMovement = false
 flipPlayerMovement = false
 
-local camMovementOn = false
+-- Global Anims to check (so you can modify em on any other data file)
+bfIdles = {'idle', 'danceLeft', 'danceRight'}
+dadIdles = {'idle', 'danceLeft', 'danceRight'}
+gfIdles = {'idle', 'danceLeft', 'danceRight'}
+specialAnims = {'scream', 'entrance', 'invisible'}
 
 -- Character Offsets
 local charOffsets = {
@@ -62,15 +75,15 @@ local offset = 0 -- Amount of Movement
 local noMovement = {0, 0}
 local camZooms = {0, 0, 0}
 
+local camMovementOn = false
 local isSinging = false
+
+local allowFollowBoth = false -- Broken rn for some reason, too lazy to fix
+local followBoth = false
 local followGF = false
 local gfSide = nil
-local shifting = false
 
-local bfIdles = {'idle', 'danceLeft', 'danceRight'}
-local dadIdles = {'idle', 'danceLeft', 'danceRight'}
-local gfIdles = {'idle', 'danceLeft', 'danceRight'}
-local specialAnims = {"tail attack", "jumpscare"}
+local shifting = false
 
 function onCreate()
 	addLuaScript('zCameraFix')
@@ -82,6 +95,7 @@ function onCreate()
 			flipPlayerMovement = true
 		end
 	end
+	
 	if allowCameraMove then
 		setCameraMovement() -- Always call this at the start, to set up camera offsets
 	end
@@ -96,6 +110,25 @@ end
 function onSongStart()
 	followChars = true
 	camMovementOn = true
+	onSectionHit()
+end
+
+function onSectionHit()
+	if allowZoomShifts and not isSinging then
+		if mustHitSection then
+			if followGF then
+				setZoom(3) 
+			else 
+				setZoom(2)
+			end
+		else
+			if followGF then
+				setZoom(3)
+			else
+				setZoom(1)
+			end
+		end
+	end
 end
 
 -- Idling Mechanic
@@ -105,54 +138,27 @@ function onUpdate()
 			if not camMovementOn then
 				camMovementOn = true
 			end
-			
-			if isSinging then
-				-- Check for idle being complete
-				if mustHitSection then
-					if followGF and gfSide == "player" then
-						if not isIdleAnimation('gf') and animationFinished('gf') then
-							isSinging = false
-						end
-					else
-						if not isIdleAnimation('bf') and animationFinished('boyfriend') then
-							isSinging = false
-						end
-					end
-				else
-					if followGF and gfSide == "opponent" then
-						if not isIdleAnimation('gf') and animationFinished('gf') then
-							isSinging = false
-						end
-					else
-						if not isIdleAnimation('dad') and animationFinished('dad') then
-							isSinging = false
-						end
-					end
+				
+			if mustHitSection then
+				if followBoth then
+					lookForIdle('boyfriend', true)
+				elseif followGF and gfSide == "player" then
+					lookForIdle('gf', false)
+				else 
+					lookForIdle('boyfriend', true)
 				end
-			end
-			
-			-- Return to idle
-			if not isSinging then		
-				if mustHitSection then
-					if followGF and gfSide == "player" then
-						lookForIdle('gf', false)
-					else 
-						lookForIdle('boyfriend', true)
-					end
-				else
-					if followGF and gfSide == "opponent" then
-						lookForIdle('gf', false)
-					else 
-						lookForIdle('dad', true)
-					end
+			else
+				if followBoth then
+					lookForIdle('dad', true)
+				elseif followGF and gfSide == "opponent" then
+					lookForIdle('gf', false)
+				else 
+					lookForIdle('dad', true)
 				end
 			end
 		else
 			if camMovementOn then
 				triggerEvent("Camera Follow Pos", noMovement[1], noMovement[2])
-				if allowZoomShifts and songName == "Libidinousness" then
-					setProperty('defaultCamZoom', camZooms[1])
-				end
 				
 				if shifting then
 					camAngle(-1)
@@ -167,6 +173,7 @@ end
 
 function lookForIdle(character, hasSpecial)
 	if isIdleAnimation(character) then
+		isSinging = false
 		if character == 'boyfriend' then
 			triggerEvent("Camera Follow Pos", charOffsets.bfX, charOffsets.bfY)
 		else
@@ -179,6 +186,7 @@ function lookForIdle(character, hasSpecial)
 		end	
 	end
 	if hasSpecial and isSpecialAnimation(character) then
+		isSinging = false
 		playSpecialAnimation(character)
 		
 		if allowAngleShift and shifting then
@@ -224,19 +232,21 @@ end
 function playSpecialAnimation(character)
 	for anim = 1, #(specialAnims) do
 		if getProperty(character..'.animation.curAnim.name') == specialAnims[anim] then
-			if specialAnims[anim] == 'tail attack' then
-				triggerEvent("Camera Follow Pos", charOffsets[character.."X"], charOffsets[character.."Y"] + (offset*3))
-			else
-				triggerEvent("Camera Follow Pos", charOffsets[character.."X"], charOffsets[character.."Y"])
-			end	
+			triggerEvent("Camera Follow Pos", charOffsets[character.."X"], charOffsets[character.."Y"])
 
 			break
 		end
 	end
 end
 
-function animationFinished(character)
-	return getProperty(character..'.animation.finished')
+function setZoom(charNum)
+	if charNum == 5 then -- Dad / GF
+		setProperty('defaultCamZoom', (camZooms[1] + camZooms[3]) / 2)
+	elseif charNum == 4 then -- BF / GF
+		setProperty('defaultCamZoom', (camZooms[2] + camZooms[3]) / 2)
+	else
+		setProperty('defaultCamZoom', camZooms[charNum])
+	end
 end
 
 -- Note Hit functions
@@ -249,24 +259,38 @@ function opponentNoteHit(id, direction, noteType, isSustainNote)
 				camAngle(direction)
 			end
 			
-			if noteType == 'GF Sing' or gfSection then
+			if allowFollowBoth and not isIdleAnimation('gf') and not isIdleAnimation('dad') and gfSide == "opponent" then
+				followBoth = true
+
+				followGF = false
+				gfSide = 'opponent'
+			elseif noteType == 'GF Sing' or gfSection then
+				followBoth = false
+				
 				followGF = true
 				gfSide = "opponent"
 			else
+				followBoth = false
 				followGF = false
 			end
 		
-			if followGF and gfSide == "opponent" then
+			if followBoth and gfSide == 'opponent' then
+				camMove("bothEnemies", direction)
+				
+				if allowZoomShifts then
+					setZoom(5)
+				end
+			elseif followGF and gfSide == "opponent" then
 				camMove("gf", direction, false)
 
 				if allowZoomShifts then
-					setProperty('defaultCamZoom', camZooms[3])
+					setZoom(3)
 				end
 			else
 				camMove("dad", direction, false)
 				
 				if allowZoomShifts then
-					setProperty('defaultCamZoom', camZooms[1])
+					setZoom(1)
 				end
 			end
 		end
@@ -282,24 +306,38 @@ function goodNoteHit(id, direction, noteType, isSustainNote)
 				camAngle(direction)
 			end
 			
-			if noteType == 'GF Sing' or gfSection then
+			if allowFollowBoth and not isIdleAnimation('gf') and not isIdleAnimation('boyfriend') and gfSide == "player" then
+				followBoth = true
+				
+				followGF = false
+				gfSide = 'player'
+			elseif noteType == 'GF Sing' or gfSection then
+				followBoth = false
+				
 				followGF = true
 				gfSide = "player"
 			else
+				followBoth = false
 				followGF = false
 			end
 			
-			if followGF and gfSide == "player" then
+			if followBoth and gfSide == 'player' then
+				camMove("bothPlayers", direction)
+				
+				if allowZoomShifts then
+					setZoom(4)
+				end
+			elseif followGF and gfSide == "player" then
 				camMove("gf", direction, true)
 				
 				if allowZoomShifts then
-					setProperty('defaultCamZoom', camZooms[3])
+					setZoom(3)
 				end
 			else		
 				camMove("bf", direction, true)
 				
 				if allowZoomShifts then
-					setProperty('defaultCamZoom', camZooms[2])
+					setZoom(2)
 				end
 			end
 		end
