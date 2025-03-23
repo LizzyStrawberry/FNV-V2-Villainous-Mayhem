@@ -40,9 +40,12 @@ local marcoChars = {
 	'MarcussyExcrete',
 	'Spendthrift Marco',
 	'marcx',
-	'marcoshucks'
+	'marcoshucks',
+	'marcoFFFP1',
+	'marcoFFFP2'
 }
 flipEnemyMovement = false
+flipPlayerMovement = false
 
 local camMovementOn = false
 
@@ -61,41 +64,22 @@ local camZooms = {0, 0, 0}
 
 local isSinging = false
 local followGF = false
+local gfSide = nil
 local shifting = false
 
-local dadIdles = {
-	'idle',
-	'danceLeft',
-	'danceRight'
-}
-local gfIdles = {
-	'idle',
-	'danceLeft',
-	'danceRight'
-}
-local specialAnims = {
-	"tail attack",
-	'jumpscare'
-}
+local bfIdles = {'idle', 'danceLeft', 'danceRight'}
+local dadIdles = {'idle', 'danceLeft', 'danceRight'}
+local gfIdles = {'idle', 'danceLeft', 'danceRight'}
+local specialAnims = {"tail attack", "jumpscare"}
 
-local nonZCameraFixSongs = {"Slow.FLP", "Slow.FLP (Old)"}
-local allowZcam = true
 function onCreate()
-	for song = 1, #(nonZCameraFixSongs) do
-		if songName == nonZCameraFixSongs[song] then
-			allowZcam = false
-		end
-	end
-	
-	if allowZcam then
-		addLuaScript('zCameraFix')
-	else
-		removeLuaScript('zCameraFix')
-	end
+	addLuaScript('zCameraFix')
 	
 	for pee = 1, #(marcoChars) do
 		if dadName == marcoChars[pee] then
 			flipEnemyMovement = true
+		elseif boyfriendName == marcoChars[pee] then
+			flipPlayerMovement = true
 		end
 	end
 	if allowCameraMove then
@@ -111,190 +95,179 @@ end
 
 function onSongStart()
 	followChars = true
-	moveCameraSection()
-	onSectionHit()
+	camMovementOn = true
 end
 
--- Mechanism
+-- Idling Mechanic
 function onUpdate()
 	if allowCameraMove then
 		if followChars then
-			camMovementOn = true
+			if not camMovementOn then
+				camMovementOn = true
+			end
+			
 			if isSinging then
+				-- Check for idle being complete
 				if mustHitSection then
-					if followGF then
-						for anim = 1, #(gfIdles) do
-							if getProperty('gf.animation.curAnim.name') ~= gfIdles[anim] and getProperty('gfGroup.animation.curAnim.finished') then
-								followGF = false
-								isSinging = false
-							end
+					if followGF and gfSide == "player" then
+						if not isIdleAnimation('gf') and animationFinished('gf') then
+							isSinging = false
 						end
 					else
-						if getProperty('boyfriend.animation.curAnim.name') ~= 'idle' and getProperty('boyfriendGroup.animation.curAnim.finished') then
+						if not isIdleAnimation('bf') and animationFinished('boyfriend') then
 							isSinging = false
 						end
 					end
 				else
-					if followGF then
-						for anim = 1, #(gfIdles) do
-							if getProperty('gf.animation.curAnim.name') ~= gfIdles[anim] and getProperty('gfGroup.animation.curAnim.finished') then
-								followGF = false
-								isSinging = false
-							end
+					if followGF and gfSide == "opponent" then
+						if not isIdleAnimation('gf') and animationFinished('gf') then
+							isSinging = false
 						end
 					else
-						for anim = 1, #(dadIdles) do
-							if getProperty('dad.animation.curAnim.name') ~= dadIdles[anim] and getProperty('dadGroup.animation.curAnim.finished') then
-								isSinging = false
-							end
+						if not isIdleAnimation('dad') and animationFinished('dad') then
+							isSinging = false
 						end
 					end
 				end
 			end
 			
+			-- Return to idle
 			if not isSinging then		
 				if mustHitSection then
-					if followGF or gfSection then
-						for anim = 1, #(gfIdles) do
-							if getProperty('gf.animation.curAnim.name') == gfIdles[anim] then
-								triggerEvent("Camera Follow Pos", charOffsets.gfX, charOffsets.gfY)
-								if allowAngleShift and shifting then
-									camAngle(-1)
-									shifting = false
-								end
-							end
-						end
-					elseif not followGF then
-						if getProperty('boyfriend.animation.curAnim.name') == 'idle' then
-							triggerEvent("Camera Follow Pos", charOffsets.bfX, charOffsets.bfY)
-							if allowAngleShift and shifting then
-								camAngle(-1)
-								shifting = false
-							end
-						end
-						for anim = 1, #(specialAnims) do
-							if getProperty('boyfriend.animation.curAnim.name') == specialAnims[anim] then
-								if specialAnims[anim] == 'tail attack' then
-									triggerEvent("Camera Follow Pos", charOffsets.bfX, charOffsets.bfY + (offset*3))
-								else
-									triggerEvent("Camera Follow Pos", charOffsets.bfX, charOffsets.bfY)
-								end
-								if allowAngleShift and shifting then
-									camAngle(-1)
-								end
-							end
-						end
+					if followGF and gfSide == "player" then
+						lookForIdle('gf', false)
+					else 
+						lookForIdle('boyfriend', true)
 					end
 				else
-					if followGF or gfSection then
-						for anim = 1, #(gfIdles) do
-							if getProperty('gf.animation.curAnim.name') == gfIdles[anim] then
-								triggerEvent("Camera Follow Pos", charOffsets.gfX, charOffsets.gfY)
-								if allowAngleShift and shifting then
-									camAngle(-1)
-									shifting = false
-								end
-							end
-						end
-					elseif not followGF then
-						for anim = 1, #(dadIdles) do
-							if getProperty('dad.animation.curAnim.name') == dadIdles[anim] then
-								triggerEvent("Camera Follow Pos", charOffsets.dadX, charOffsets.dadY)
-								if allowAngleShift and shifting then
-									camAngle(-1)
-								end
-							end
-						end
-						for anim = 1, #(specialAnims) do
-							if getProperty('dad.animation.curAnim.name') == specialAnims[anim] then
-								if specialAnims[anim] == 'tail attack' then
-									triggerEvent("Camera Follow Pos", charOffsets.dadX, charOffsets.dadY + (offset*3))
-								else
-									triggerEvent("Camera Follow Pos", charOffsets.dadX, charOffsets.dadY)
-								end
-								if allowAngleShift and shifting then
-									camAngle(-1)
-								end
-							end
-						end
+					if followGF and gfSide == "opponent" then
+						lookForIdle('gf', false)
+					else 
+						lookForIdle('dad', true)
 					end
 				end
 			end
 		else
 			if camMovementOn then
 				triggerEvent("Camera Follow Pos", noMovement[1], noMovement[2])
+				if allowZoomShifts and songName == "Libidinousness" then
+					setProperty('defaultCamZoom', camZooms[1])
+				end
+				
 				if shifting then
 					camAngle(-1)
 					shifting = false
 				end
+				
 				camMovementOn = false
 			end
 		end
 	end
 end
 
-function onSectionHit()
-	if allowCameraMove then
-		if allowZoomShifts then
-			if not mustHitSection then
-				if gfSection then
-					setProperty('defaultCamZoom', camZooms[3])
-				else
-					setProperty('defaultCamZoom', camZooms[1])
-				end
-			else
-				if gfSection then
-					setProperty('defaultCamZoom', camZooms[3])
-				else
-					setProperty('defaultCamZoom', camZooms[2])
-				end
+function lookForIdle(character, hasSpecial)
+	if isIdleAnimation(character) then
+		if character == 'boyfriend' then
+			triggerEvent("Camera Follow Pos", charOffsets.bfX, charOffsets.bfY)
+		else
+			triggerEvent("Camera Follow Pos", charOffsets[character..'X'], charOffsets[character..'Y'])
+		end
+		
+		if allowAngleShift and shifting then
+			camAngle(-1)
+			shifting = false
+		end	
+	end
+	if hasSpecial and isSpecialAnimation(character) then
+		playSpecialAnimation(character)
+		
+		if allowAngleShift and shifting then
+			camAngle(-1)
+			shifting = false
+		end	
+	end
+end
+
+function isIdleAnimation(character)
+	local foundAnim = false
+	if character == "gf" then
+		for i = 1, #(gfIdles) do
+			if getProperty('gf.animation.curAnim.name') == gfIdles[i] then
+				foundAnim = true
 			end
+		end
+	elseif character == "dad" then
+		for i = 1, #(dadIdles) do
+			if getProperty('dad.animation.curAnim.name') == dadIdles[i] then
+				foundAnim = true
+			end
+		end
+	elseif character == "boyfriend" then
+		for i = 1, #(bfIdles) do
+			if getProperty('boyfriend.animation.curAnim.name') == bfIdles[i] then
+				foundAnim = true
+			end
+		end
+	end
+	
+	return foundAnim
+end
+
+function isSpecialAnimation(character)
+	for i = 1, #(specialAnims) do
+		if getProperty(character..'.animation.curAnim.name') == specialAnims[i] then return true end
+	end
+	
+	return false
+end
+
+function playSpecialAnimation(character)
+	for anim = 1, #(specialAnims) do
+		if getProperty(character..'.animation.curAnim.name') == specialAnims[anim] then
+			if specialAnims[anim] == 'tail attack' then
+				triggerEvent("Camera Follow Pos", charOffsets[character.."X"], charOffsets[character.."Y"] + (offset*3))
+			else
+				triggerEvent("Camera Follow Pos", charOffsets[character.."X"], charOffsets[character.."Y"])
+			end	
+
+			break
 		end
 	end
 end
 
+function animationFinished(character)
+	return getProperty(character..'.animation.finished')
+end
+
+-- Note Hit functions
 function opponentNoteHit(id, direction, noteType, isSustainNote)
 	if allowCameraMove then
 		if followChars and not mustHitSection then
 			isSinging = true
-			if gfSection then
+			
+			if allowAngleShift and not isSustainNote then
+				camAngle(direction)
+			end
+			
+			if noteType == 'GF Sing' or gfSection then
 				followGF = true
-				if direction == 0 then
-					triggerEvent("Camera Follow Pos", charOffsets.gfX - offset, charOffsets.gfY)
-				elseif direction == 1 then
-					triggerEvent("Camera Follow Pos", charOffsets.gfX, charOffsets.gfY + offset)
-				elseif direction == 2 then
-					triggerEvent("Camera Follow Pos", charOffsets.gfX, charOffsets.gfY - offset)
-				elseif direction == 3 then
-					triggerEvent("Camera Follow Pos", charOffsets.gfX + offset, charOffsets.gfY)
-				end
+				gfSide = "opponent"
 			else
 				followGF = false
-				if flipEnemyMovement then
-					if direction == 0 then
-						triggerEvent("Camera Follow Pos", charOffsets.dadX + offset, charOffsets.dadY)
-					elseif direction == 1 then
-						triggerEvent("Camera Follow Pos", charOffsets.dadX, charOffsets.dadY - offset)
-					elseif direction == 2 then
-						triggerEvent("Camera Follow Pos", charOffsets.dadX, charOffsets.dadY + offset)
-					elseif direction == 3 then
-						triggerEvent("Camera Follow Pos", charOffsets.dadX - offset, charOffsets.dadY)
-					end
-				else
-					if direction == 0 then
-						triggerEvent("Camera Follow Pos", charOffsets.dadX - offset, charOffsets.dadY)
-					elseif direction == 1 then
-						triggerEvent("Camera Follow Pos", charOffsets.dadX, charOffsets.dadY + offset)
-					elseif direction == 2 then
-						triggerEvent("Camera Follow Pos", charOffsets.dadX, charOffsets.dadY - offset)
-					elseif direction == 3 then
-						triggerEvent("Camera Follow Pos", charOffsets.dadX + offset, charOffsets.dadY)
-					end
-				end
 			end
+		
+			if followGF and gfSide == "opponent" then
+				camMove("gf", direction, false)
+
+				if allowZoomShifts then
+					setProperty('defaultCamZoom', camZooms[3])
+				end
+			else
+				camMove("dad", direction, false)
 				
-			if not isSustainNote and allowAngleShift then
-				camAngle(direction)
+				if allowZoomShifts then
+					setProperty('defaultCamZoom', camZooms[1])
+				end
 			end
 		end
 	end
@@ -304,42 +277,72 @@ function goodNoteHit(id, direction, noteType, isSustainNote)
 	if allowCameraMove then
 		if followChars and mustHitSection then
 			isSinging = true
-			if gfSection then
+			
+			if allowAngleShift and not isSustainNote then
+				camAngle(direction)
+			end
+			
+			if noteType == 'GF Sing' or gfSection then
 				followGF = true
-				if direction == 0 then
-					triggerEvent("Camera Follow Pos", charOffsets.gfX - offset, charOffsets.gfY)
-				elseif direction == 1 then
-					triggerEvent("Camera Follow Pos", charOffsets.gfX, charOffsets.gfY + offset)
-				elseif direction == 2 then
-					triggerEvent("Camera Follow Pos", charOffsets.gfX, charOffsets.gfY - offset)
-				elseif direction == 3 then
-					triggerEvent("Camera Follow Pos", charOffsets.gfX + offset, charOffsets.gfY)
+				gfSide = "player"
+			else
+				followGF = false
+			end
+			
+			if followGF and gfSide == "player" then
+				camMove("gf", direction, true)
+				
+				if allowZoomShifts then
+					setProperty('defaultCamZoom', camZooms[3])
 				end
 			else		
-				followGF = false
-				if direction == 0 then
-					triggerEvent("Camera Follow Pos", charOffsets.bfX - offset, charOffsets.bfY)
-				elseif direction == 1 then
-					triggerEvent("Camera Follow Pos", charOffsets.bfX, charOffsets.bfY + offset)
-				elseif direction == 2 then
-					triggerEvent("Camera Follow Pos", charOffsets.bfX, charOffsets.bfY - offset)
-				elseif direction == 3 then
-					triggerEvent("Camera Follow Pos", charOffsets.bfX + offset, charOffsets.bfY)
-				end
-			end
+				camMove("bf", direction, true)
 				
-			if not isSustainNote and allowAngleShift then
-				camAngle(direction)
+				if allowZoomShifts then
+					setProperty('defaultCamZoom', camZooms[2])
+				end
 			end
 		end
 	end
+end
+
+function camMove(character, direction, isPlayer)
+	local x, y = charOffsets[character.."X"], charOffsets[character.."Y"]
+	
+	if isPlayer then
+		if flipPlayerMovement and not followGF then
+			if direction == 0 then x = x + offset
+			elseif direction == 1 then y = y - offset
+			elseif direction == 2 then y = y + offset
+			elseif direction == 3 then x = x - offset end
+		else
+			if direction == 0 then x = x - offset
+			elseif direction == 1 then y = y + offset
+			elseif direction == 2 then y = y - offset
+			elseif direction == 3 then x = x + offset end
+		end
+	else
+		if flipEnemyMovement and not followGF then
+			if direction == 0 then x = x + offset
+			elseif direction == 1 then y = y - offset
+			elseif direction == 2 then y = y + offset
+			elseif direction == 3 then x = x - offset end
+		else
+			if direction == 0 then x = x - offset
+			elseif direction == 1 then y = y + offset
+			elseif direction == 2 then y = y - offset
+			elseif direction == 3 then x = x + offset end
+		end
+	end
+	
+	triggerEvent("Camera Follow Pos", x, y)
 end
 
 function noteMiss(id, direction, noteType, isSustainNote)
 	if allowCameraMove then
 		if not isSustainNote then
 			if followChars and mustHitSection then
-				if gfSection then
+				if followGF and gfSide == "player" then
 					triggerEvent("Camera Follow Pos", charOffsets.gfX, charOffsets.gfY)
 				else
 					triggerEvent("Camera Follow Pos", charOffsets.bfX, charOffsets.bfY)
@@ -412,7 +415,6 @@ function setCameraProperty(property, value)
 		camZooms[1] = tonumber(contents[1])
 		camZooms[2] = tonumber(contents[2])
 		camZooms[3] = tonumber(contents[3])
-		onSectionHit()
 	end
 end
 
@@ -439,7 +441,7 @@ function tableSplit(input, Contrix)
     end
     local cs={}
 		for str in string.gmatch(input,"([^"..Contrix.."]+)") do
-			table.insert(cs,str)
+			table.insert(cs,str:match("^%s*(.-)%s*$"))
 		end
     return cs
 end

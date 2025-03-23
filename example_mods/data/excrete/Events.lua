@@ -38,7 +38,7 @@ end
 function onUpdate()
 	if curBeat == 0 then
 		-- In case someone loads the song on optimization mode
-		if getPropertyFromClass('ClientPrefs', 'optimizationMode') == true then 
+		if getPropertyFromClass('ClientPrefs', 'optimizationMode') then 
 			triggerEvent('Change Icon', 'P2, marcussyExcrete, 393939')
 		end
 	end

@@ -2083,15 +2083,8 @@ class PlayState extends MusicBeatState
 		FlxTween.tween(timeBar, {alpha: 1}, 0.5, {ease: FlxEase.circOut});
 		FlxTween.tween(timeTxt, {alpha: 1}, 0.5, {ease: FlxEase.circOut});
 
-		switch(curStage)
-		{
-			case 'tank':
-				if(!ClientPrefs.lowQuality) tankWatchtower.dance();
-				foregroundSprites.forEach(function(spr:BGSprite)
-				{
-					spr.dance();
-				});
-		}
+		moveCameraSection();
+		setOnLuas('mustHitSection', SONG.notes[curSection].mustHitSection);
 
 		#if desktop
 			// Updating Discord Rich Presence (with Time Left)

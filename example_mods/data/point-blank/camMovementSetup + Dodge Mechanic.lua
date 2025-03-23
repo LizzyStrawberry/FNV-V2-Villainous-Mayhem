@@ -1,12 +1,9 @@
-local xx = 360;
-local yy = -70;
-local xx2 = 1020;
-local yy2 = 220;
-local ofs = 35;
-local followchars = false;
-local del = 0;
-local del2 = 0;
-local shifting = false
+local camVariables = {
+	camOffsets = "1020, 220, 360, -70, 0, 0",
+	ofs = 35,
+	noMove = "650, 40",
+	camZooms = "0.6, 0.8, 0.9"
+}
 
 local beatsAllowed = {3, 7, 15, 23, 31, 63}
 local beatSelected
@@ -19,11 +16,12 @@ local botPlayOn = false
 
 function onCreate()
 	if boyfriendName == 'amongGF' then
-		yy2 = yy2 + 100
+		camVariables.camOffsets = "1020, 320, 360, -70, 0, 0"
+		camVariables.noMove = "650, 140"
 	end
 	setProperty('gf.visible', false)
-	
-	setGlobalFromScript("scripts/Camera Movement", 'allowCameraMove', false)
+	setGlobalFromScript("scripts/Camera Movement", "allowZoomShifts", true)
+	callScript("scripts/Camera Movement", "setCameraMovement", {camVariables.camOffsets, camVariables.ofs, camVariables.noMove, camVariables.camZooms})
 	
 	if mechanics then
 		beatSelected = getRandomInt(1, #(beatsAllowed))
@@ -46,57 +44,6 @@ function onCreate()
 end
 
 function onUpdate()
-	-- Camera Movement
-	if del > 0 then
-		del = del - 1
-	end
-	if del2 > 0 then
-		del2 = del2 - 1
-	end
-    if followchars == true then
-        if mustHitSection == false then
-			setProperty('defaultCamZoom', 0.6)
-            if getProperty('dad.animation.curAnim.name') == 'singLEFT' then
-                triggerEvent('Camera Follow Pos',xx-ofs,yy)
-            elseif getProperty('dad.animation.curAnim.name') == 'singRIGHT' then
-                triggerEvent('Camera Follow Pos',xx+ofs,yy)
-            elseif getProperty('dad.animation.curAnim.name') == 'singUP' then
-                triggerEvent('Camera Follow Pos',xx,yy-ofs)
-            elseif getProperty('dad.animation.curAnim.name') == 'singDOWN' then
-                triggerEvent('Camera Follow Pos',xx,yy+ofs)
-			else
-                triggerEvent('Camera Follow Pos',xx,yy)
-				if shifting then
-					camAngle(-1)
-					shifting = false
-				end
-            end
-        else
-			setProperty('defaultCamZoom', 0.8)
-            if getProperty('boyfriend.animation.curAnim.name') == 'singLEFT'  or getProperty('boyfriend.animation.curAnim.name') == 'singLEFTass' then
-                triggerEvent('Camera Follow Pos',xx2-ofs,yy2)
-            elseif getProperty('boyfriend.animation.curAnim.name') == 'singRIGHT' or getProperty('boyfriend.animation.curAnim.name') == 'singRIGHTass' then
-                triggerEvent('Camera Follow Pos',xx2+ofs,yy2)
-            elseif getProperty('boyfriend.animation.curAnim.name') == 'singUP' or getProperty('boyfriend.animation.curAnim.name') == 'singUPass' then
-                triggerEvent('Camera Follow Pos',xx2,yy2-ofs)
-            elseif getProperty('boyfriend.animation.curAnim.name') == 'singDOWN' or getProperty('boyfriend.animation.curAnim.name') == 'singDOWNass' then
-                triggerEvent('Camera Follow Pos',xx2,yy2+ofs)
-			else
-                triggerEvent('Camera Follow Pos',xx2,yy2)
-				if shifting then
-					camAngle(-1)
-					shifting = false
-				end
-            end
-        end
-    else
-        triggerEvent('Camera Follow Pos','650','40')
-		if shifting then
-			camAngle(-1)
-			shifting = false
-		end
-    end
-	
 	-- Dodge Mechanic
 	if mechanics then
 		if botPlay or getPropertyFromClass('ClientPrefs', 'autoCharm') == 1 then
@@ -119,10 +66,10 @@ function onUpdate()
 	
 	-- Events to Camera
 	if curBeat == 16 or curBeat == 64 then
-		followchars = true
+		setGlobalFromScript("scripts/Camera Movement", "followChars", true)
 	end
 	if curStep == 240 then
-		followchars = false
+		setGlobalFromScript("scripts/Camera Movement", "followChars", false)
 	end
 end
 
@@ -133,7 +80,7 @@ function onBeatHit()
 			if curBeat % 8 == 0 or curBeat % 8 == 4 then
 				setProperty('defaultCamZoom', 0.9)
 				
-				followchars = false
+				setGlobalFromScript("scripts/Camera Movement", "followChars", false)
 				
 				playSound('tick')
 				
@@ -221,7 +168,7 @@ function onBeatHit()
 					allowDodge = false
 					dodged = false
 					
-					followchars = true
+					setGlobalFromScript("scripts/Camera Movement", "followChars", true)
 					beatSelected = getRandomInt(1, #(beatsAllowed))
 				end
 			end
@@ -288,41 +235,8 @@ function cancelAttack()
 	allowDodge = false
 	dodged = false
 					
-	followchars = true
+	setGlobalFromScript("scripts/Camera Movement", "followChars", true)
 	beatSelected = getRandomInt(1, #(beatsAllowed))
-end
-
-function opponentNoteHit(id, direction, noteType, isSustainNote)
-	if followChars and not mustHitSection then
-		if not isSustainNote and allowAngleShift then
-			camAngle(direction)
-		end
-	end
-end
-
-function goodNoteHit(id, direction, noteType, isSustainNote)
-	if followChars and not mustHitSection then
-		if not isSustainNote and allowAngleShift then
-			camAngle(direction)
-		end
-	end
-end
-
-function camAngle(direction)
-	shifting = true
-	cancelTween('camAngleTween')
-	if direction == 0 then
-		doTweenAngle('camAngleTween', 'camGame', -0.45 / getProperty("defaultCamZoom"), 0.7 / playbackRate, 'sineOut')
-	elseif direction == 1 then
-		doTweenAngle('camAngleTween', 'camGame', -0.175 / getProperty("defaultCamZoom"), 0.7 / playbackRate, 'sineOut')
-	elseif direction == 2 then
-		doTweenAngle('camAngleTween', 'camGame', 0.175 / getProperty("defaultCamZoom"), 0.7 / playbackRate, 'sineOut')
-	elseif direction == 3 then
-		doTweenAngle('camAngleTween', 'camGame', 0.45 / getProperty("defaultCamZoom"), 0.7 / playbackRate, 'sineOut')
-	else
-		doTweenAngle('camAngleTween', 'camGame', 0, 0.7 / playbackRate, 'sineOut')
-		shifting = false
-	end
 end
 
 function onTimerCompleted(tag)

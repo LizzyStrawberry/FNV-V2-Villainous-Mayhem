@@ -9,8 +9,8 @@ local charmed = 1
 local refill = false
 
 function onCreate()
-	if (getPropertyFromClass('ClientPrefs', 'buff1Selected') == false and getPropertyFromClass('ClientPrefs', 'buff2Selected') == false
-	and getPropertyFromClass('ClientPrefs', 'buff3Selected') == false) or not mechanics or not botPlay then
+	if (not getPropertyFromClass('ClientPrefs', 'buff1Selected') and not getPropertyFromClass('ClientPrefs', 'buff2Selected')
+	and not getPropertyFromClass('ClientPrefs', 'buff3Selected')) or (not mechanics) or botPlay then
 		mayhemEnabled = false
 	end
 	
