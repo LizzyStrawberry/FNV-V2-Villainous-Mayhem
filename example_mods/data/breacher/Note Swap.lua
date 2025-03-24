@@ -15,14 +15,4 @@ function onUpdatePost()
 	setPropertyFromGroup('opponentStrums', 1, 'x', 844)
 	setPropertyFromGroup('opponentStrums', 2, 'x', 956)
 	setPropertyFromGroup('opponentStrums', 3, 'x', 1068)
-	
-	-- HealthBar Flip
-	x1 = getProperty('iconP1.x')
-	x2 = getProperty('iconP2.x')
-	setProperty('iconP1.x', x2)
-	setProperty('iconP2.x', x1)
-	setProperty('coloredPlayerCircle.x', x2)
-	setProperty('coloredOpponentCircle.x', x1)
-	setProperty('iconPlayer.x', x2)
-	setProperty('iconOpponent.x', x1)
 end

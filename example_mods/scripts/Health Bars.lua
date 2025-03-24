@@ -1,728 +1,234 @@
-local iconP1X
-local iconP2X
+local marcoSongs = {"Scrouge", "Cheap Skate (Legacy)", "Spendthrift", "Toxic Mishap", "Toxic Mishap (Legacy)",
+"Villainy", "Iniquitous", "Couple Clash", "Shucks V2"} 
+
+local hasDiffSlots = false
+local pathToAssets = ""
+local properties = {
+	circleOffsX = 0, circleOffsY = 0, scale = 0.9, flipIcons = false
+}
+local iconP1X, iconP2X
 
 function onCreatePost()
 	if not optimizationMode then
 		bfColor = rgbToHex(getProperty('boyfriend.healthColorArray'))
 		dadColor = rgbToHex(getProperty('dad.healthColorArray'))
 
-		if songName == 'Scrouge' or songName == 'Cheap Skate (Legacy)' or songName == 'Spendthrift'
-		or songName == 'Toxic Mishap' or songName == 'Toxic Mishap (Legacy)' or songName == 'Villainy' or songName == 'Iniquitous'
-		or songName == 'Couple Clash' or songName == 'Shucks V2' then
-			if songName == 'Spendthrift' then
-				setProperty('healthBar.scale.y', getProperty('healthBar.scale.y') + 1.6)
-				setProperty('healthBar.scale.x', getProperty('healthBar.scale.x') - 0.52)
-			else
-				setProperty('healthBar.scale.y', getProperty('healthBar.scale.y') + 1.5)
-				setProperty('healthBar.scale.x', getProperty('healthBar.scale.x') - 0.43)
+		for i = 1, #(marcoSongs) do
+			if songName == marcoSongs[i] then
+				if songName == 'Spendthrift' then
+					setProperty('healthBar.scale.y', getProperty('healthBar.scale.y') + 1.6)
+					setProperty('healthBar.scale.x', getProperty('healthBar.scale.x') - 0.52)
+				else
+					setProperty('healthBar.scale.y', getProperty('healthBar.scale.y') + 1.5)
+					setProperty('healthBar.scale.x', getProperty('healthBar.scale.x') - 0.43)
+				end
+				
+				pathToAssets = "marco/iconSlot"
+				hasDiffSlots = false
 			end
-			makeLuaSprite('coloredPlayerCircle', 'healthBars/colorChangingSlot', 850, getProperty('healthBar.y') - 70);
-			scaleObject('coloredPlayerCircle', 0.9, 0.9)
-			setObjectCamera('coloredPlayerCircle', 'hud')
-			setProperty('coloredPlayerCircle.color', getColorFromHex(bfColor))
-			addLuaSprite('coloredPlayerCircle', true)
-
-			makeLuaSprite('coloredOpponentCircle', 'healthBars/colorChangingSlot', 280, getProperty('healthBar.y') - 70);
-			scaleObject('coloredOpponentCircle', 0.9, 0.9)
-			setObjectCamera('coloredOpponentCircle', 'hud')
-			setProperty('coloredOpponentCircle.color', getColorFromHex(dadColor))
-			addLuaSprite('coloredOpponentCircle', true)
-			
-			makeLuaSprite('iconPlayer', 'healthBars/marco/iconSlot', getProperty('coloredPlayerCircle.x'), getProperty('coloredPlayerCircle.y'));
-			scaleObject('iconPlayer', 0.9, 0.9)
-			setObjectCamera('iconPlayer', 'hud')
-			addLuaSprite('iconPlayer', true)
-			
-			makeLuaSprite('iconOpponent', 'healthBars/marco/iconSlot', getProperty('coloredOpponentCircle.x'), getProperty('coloredOpponentCircle.y'));
-			scaleObject('iconOpponent', 0.9, 0.9)
-			setObjectCamera('iconOpponent', 'hud')
-			addLuaSprite('iconOpponent', true)
-			
-			setObjectOrder('healthBarBG', getObjectOrder('healthBar') + 1)
-			setObjectOrder('iconP1', getObjectOrder('iconPlayer') + 1)
-			setObjectOrder('iconP2', getObjectOrder('iconOpponent') + 1)
-			setObjectOrder('scoreTxt', getObjectOrder('iconP2') + 1)
 		end
 		
 		if songName == 'Paycheck' or songName == 'Paycheck (Legacy)' or songName == 'Tofu' then
 			setProperty('healthBar.scale.y', getProperty('healthBar.scale.y') + 1.5)
 			setProperty('healthBar.scale.x', getProperty('healthBar.scale.x') - 0.44)
-			
-			makeLuaSprite('coloredPlayerCircle', 'healthBars/colorChangingSlot', 850, getProperty('healthBar.y') - 70);
-			scaleObject('coloredPlayerCircle', 0.9, 0.9)
-			setObjectCamera('coloredPlayerCircle', 'hud')
-			setProperty('coloredPlayerCircle.color', getColorFromHex(bfColor))
-			addLuaSprite('coloredPlayerCircle', true)
-
-			makeLuaSprite('coloredOpponentCircle', 'healthBars/colorChangingSlot', 280, getProperty('healthBar.y') - 70);
-			scaleObject('coloredOpponentCircle', 0.9, 0.9)
-			setObjectCamera('coloredOpponentCircle', 'hud')
-			setProperty('coloredOpponentCircle.color', getColorFromHex(dadColor))
-			addLuaSprite('coloredOpponentCircle', true)
-			
-			makeLuaSprite('iconPlayer', 'healthBars/aileen/iconSlot', getProperty('coloredPlayerCircle.x'), getProperty('coloredPlayerCircle.y'));
-			scaleObject('iconPlayer', 0.9, 0.9)
-			setObjectCamera('iconPlayer', 'hud')
-			addLuaSprite('iconPlayer', true)
-			
-			makeLuaSprite('iconOpponent', 'healthBars/aileen/iconSlot', getProperty('coloredOpponentCircle.x'), getProperty('coloredOpponentCircle.y'));
-			scaleObject('iconOpponent', 0.9, 0.9)
-			setObjectCamera('iconOpponent', 'hud')
-			addLuaSprite('iconOpponent', true)
+		
+			pathToAssets = "aileen/iconSlot"
+			hasDiffSlots = false
 		end
 		
-		if songName == 'Nunconventional' or songName == 'Nunconventional Simp'
-		or songName == 'Nunday Monday'
-		or songName == 'Nunsational' or songName == 'Nunsational Simp' then
+		if songName == 'Nunconventional' or songName == 'Nunday Monday' or songName == 'Nunsational' then
 			setProperty('healthBar.scale.y', getProperty('healthBar.scale.y') + 1.5)
 			setProperty('healthBar.scale.x', getProperty('healthBar.scale.x') - 0.49)
-			
-			makeLuaSprite('coloredPlayerCircle', 'healthBars/colorChangingSlot', 850, getProperty('healthBar.y') - 70);
-			scaleObject('coloredPlayerCircle', 0.9, 0.9)
-			setObjectCamera('coloredPlayerCircle', 'hud')
-			setProperty('coloredPlayerCircle.color', getColorFromHex(bfColor))
-			addLuaSprite('coloredPlayerCircle', true)
 
-			makeLuaSprite('coloredOpponentCircle', 'healthBars/colorChangingSlot', 280, getProperty('healthBar.y') - 70);
-			scaleObject('coloredOpponentCircle', 0.9, 0.9)
-			setObjectCamera('coloredOpponentCircle', 'hud')
-			setProperty('coloredOpponentCircle.color', getColorFromHex(dadColor))
-			addLuaSprite('coloredOpponentCircle', true)
-			
-			makeLuaSprite('iconPlayer', 'healthBars/aileen/iconSlot', getProperty('coloredPlayerCircle.x'), getProperty('coloredPlayerCircle.y'));
-			scaleObject('iconPlayer', 0.9, 0.9)
-			setObjectCamera('iconPlayer', 'hud')
-			addLuaSprite('iconPlayer', true)
-			
-			makeLuaSprite('iconOpponent', 'healthBars/aileen/iconSlot', getProperty('coloredOpponentCircle.x'), getProperty('coloredOpponentCircle.y'));
-			scaleObject('iconOpponent', 0.9, 0.9)
-			setObjectCamera('iconOpponent', 'hud')
-			addLuaSprite('iconOpponent', true)
+			pathToAssets = "aileen/iconSlot"
+			hasDiffSlots = false
 		end
 		if songName == 'Point Blank' then
 			setProperty('healthBar.scale.y', getProperty('healthBar.scale.y') + 1.5)
 			setProperty('healthBar.scale.x', getProperty('healthBar.scale.x') - 0.53)
-			
-			makeLuaSprite('coloredPlayerCircle', 'healthBars/colorChangingSlot', 850, getProperty('healthBar.y') - 70);
-			scaleObject('coloredPlayerCircle', 0.9, 0.9)
-			setObjectCamera('coloredPlayerCircle', 'hud')
-			setProperty('coloredPlayerCircle.color', getColorFromHex(bfColor))
-			addLuaSprite('coloredPlayerCircle', true)
 
-			makeLuaSprite('coloredOpponentCircle', 'healthBars/colorChangingSlot', 280, getProperty('healthBar.y') - 70);
-			scaleObject('coloredOpponentCircle', 0.9, 0.9)
-			setObjectCamera('coloredOpponentCircle', 'hud')
-			setProperty('coloredOpponentCircle.color', getColorFromHex(dadColor))
-			addLuaSprite('coloredOpponentCircle', true)
-			
-			makeLuaSprite('iconPlayer', 'healthBars/yaku/iconSlot', getProperty('coloredPlayerCircle.x'), getProperty('coloredPlayerCircle.y'));
-			scaleObject('iconPlayer', 0.9, 0.9)
-			setProperty('iconPlayer.flipX', true)
-			setObjectCamera('iconPlayer', 'hud')
-			addLuaSprite('iconPlayer', true)
-			
-			makeLuaSprite('iconOpponent', 'healthBars/yaku/iconSlot', getProperty('coloredOpponentCircle.x'), getProperty('coloredOpponentCircle.y'));
-			scaleObject('iconOpponent', 0.9, 0.9)
-			setObjectCamera('iconOpponent', 'hud')
-			addLuaSprite('iconOpponent', true)
+			pathToAssets = "yaku/iconSlot"
+			hasDiffSlots = false
 		end
 		
 		if songName == 'Forsaken' or songName == 'Forsaken (Picmixed)' or songName == "Partner" then
 			setProperty('healthBar.scale.y', getProperty('healthBar.scale.y') + 1.5)
 			setProperty('healthBar.scale.x', getProperty('healthBar.scale.x') - 0.45)
 			
-			makeLuaSprite('coloredPlayerCircle', 'healthBars/colorChangingSlot', 850, getProperty('healthBar.y') - 70);
-			scaleObject('coloredPlayerCircle', 0.9, 0.9)
-			setObjectCamera('coloredPlayerCircle', 'hud')
-			setProperty('coloredPlayerCircle.color', getColorFromHex(bfColor))
-			addLuaSprite('coloredPlayerCircle', true)
-
-			makeLuaSprite('coloredOpponentCircle', 'healthBars/colorChangingSlot', 280, getProperty('healthBar.y') - 70);
-			scaleObject('coloredOpponentCircle', 0.9, 0.9)
-			setObjectCamera('coloredOpponentCircle', 'hud')
-			setProperty('coloredOpponentCircle.color', getColorFromHex(dadColor))
-			addLuaSprite('coloredOpponentCircle', true)
-			
-			makeLuaSprite('iconPlayer', 'healthBars/dv/iconSlot', getProperty('coloredPlayerCircle.x'), getProperty('coloredPlayerCircle.y'));
-			scaleObject('iconPlayer', 0.9, 0.9)
-			setObjectCamera('iconPlayer', 'hud')
-			addLuaSprite('iconPlayer', true)
-			
-			makeLuaSprite('iconOpponent', 'healthBars/dv/iconSlot', getProperty('coloredOpponentCircle.x'), getProperty('coloredOpponentCircle.y'));
-			scaleObject('iconOpponent', 0.9, 0.9)
-			setObjectCamera('iconOpponent', 'hud')
-			addLuaSprite('iconOpponent', true)
+			pathToAssets = "dv/iconSlot"
+			hasDiffSlots = false
 		end
 		
 		if songName == 'Toybox' then
 			setProperty('healthBar.scale.y', getProperty('healthBar.scale.y') + 2)
 			setProperty('healthBar.scale.x', getProperty('healthBar.scale.x') - 0.45)
 			setProperty('healthBar.x', getProperty('healthBar.x') - 3)
-			
-			makeLuaSprite('coloredPlayerCircle', 'healthBars/colorChangingSlot', 850, getProperty('healthBar.y') - 70);
-			scaleObject('coloredPlayerCircle', 0.9, 0.9)
-			setObjectCamera('coloredPlayerCircle', 'hud')
-			setProperty('coloredPlayerCircle.color', getColorFromHex(bfColor))
-			addLuaSprite('coloredPlayerCircle', true)
 
-			makeLuaSprite('coloredOpponentCircle', 'healthBars/colorChangingSlot', 280, getProperty('healthBar.y') - 70);
-			scaleObject('coloredOpponentCircle', 0.9, 0.9)
-			setObjectCamera('coloredOpponentCircle', 'hud')
-			setProperty('coloredOpponentCircle.color', getColorFromHex(dadColor))
-			addLuaSprite('coloredOpponentCircle', true)
-			
-			makeLuaSprite('iconPlayer', 'healthBars/narrin/iconSlotP', getProperty('coloredPlayerCircle.x') - 4, getProperty('coloredPlayerCircle.y') - 10);
-			setObjectCamera('iconPlayer', 'hud')
-			addLuaSprite('iconPlayer', true)
-			
-			makeLuaSprite('iconOpponent', 'healthBars/narrin/iconSlotO', getProperty('coloredOpponentCircle.x') - 4, getProperty('coloredOpponentCircle.y') - 10);
-			setObjectCamera('iconOpponent', 'hud')
-			addLuaSprite('iconOpponent', true)
+			pathToAssets = "narrin/iconSlot"
+			hasDiffSlots = true
+			properties.circleOffsX = -4;
+			properties.circleOffsY = -10;
+			properties.scale = 1;
 		end
 		
-		if songName == 'Lustality' or songName == 'Lustality Remix' or songName == 'Lustality V1' then
+		if songName == 'Lustality' or songName == 'Lustality Remix' or songName == 'Lustality V1'
+		or songName == "Libidinousness" then
 			setProperty('healthBar.scale.y', getProperty('healthBar.scale.y') + 1.5)
 			setProperty('healthBar.scale.x', getProperty('healthBar.scale.x') - 0.45)
-			
-			makeLuaSprite('coloredPlayerCircle', 'healthBars/colorChangingSlot', 850, getProperty('healthBar.y') - 70);
-			scaleObject('coloredPlayerCircle', 0.9, 0.9)
-			setObjectCamera('coloredPlayerCircle', 'hud')
-			setProperty('coloredPlayerCircle.color', getColorFromHex(bfColor))
-			addLuaSprite('coloredPlayerCircle', true)
 
-			makeLuaSprite('coloredOpponentCircle', 'healthBars/colorChangingSlot', 280, getProperty('healthBar.y') - 70);
-			scaleObject('coloredOpponentCircle', 0.9, 0.9)
-			setObjectCamera('coloredOpponentCircle', 'hud')
-			setProperty('coloredOpponentCircle.color', getColorFromHex(dadColor))
-			addLuaSprite('coloredOpponentCircle', true)
-			
-			makeLuaSprite('iconPlayer', 'healthBars/kiana/iconSlot', getProperty('coloredPlayerCircle.x'), getProperty('coloredPlayerCircle.y'));
-			scaleObject('iconPlayer', 0.9, 0.9)
-			setObjectCamera('iconPlayer', 'hud')
-			addLuaSprite('iconPlayer', true)
-			
-			makeLuaSprite('iconOpponent', 'healthBars/kiana/iconSlot', getProperty('coloredOpponentCircle.x'), getProperty('coloredOpponentCircle.y'));
-			scaleObject('iconOpponent', 0.9, 0.9)
-			setObjectCamera('iconOpponent', 'hud')
-			addLuaSprite('iconOpponent', true)
-		end
-		
-		if songName == 'Libidinousness' then
-			setProperty('healthBar.scale.y', getProperty('healthBar.scale.y') + 1.5)
-			setProperty('healthBar.scale.x', getProperty('healthBar.scale.x') - 0.45)
-			
-			makeLuaSprite('coloredPlayerCircle', 'healthBars/colorChangingSlot', 850, getProperty('healthBar.y') + 220);
-			scaleObject('coloredPlayerCircle', 0.9, 0.9)
-			setObjectCamera('coloredPlayerCircle', 'hud')
-			setProperty('coloredPlayerCircle.color', getColorFromHex(bfColor))
-			addLuaSprite('coloredPlayerCircle', true)
-
-			makeLuaSprite('coloredOpponentCircle', 'healthBars/colorChangingSlot', 280, getProperty('healthBar.y') + 220);
-			scaleObject('coloredOpponentCircle', 0.9, 0.9)
-			setObjectCamera('coloredOpponentCircle', 'hud')
-			setProperty('coloredOpponentCircle.color', getColorFromHex(dadColor))
-			addLuaSprite('coloredOpponentCircle', true)
-			
-			if downscroll then
-				setProperty('coloredPlayerCircle.y', 20)
-				setProperty('coloredOpponentCircle.y', 20)
-			end
-			
-			makeLuaSprite('iconPlayer', 'healthBars/kiana/iconSlot', getProperty('coloredPlayerCircle.x'), getProperty('coloredPlayerCircle.y'));
-			scaleObject('iconPlayer', 0.9, 0.9)
-			setObjectCamera('iconPlayer', 'hud')
-			addLuaSprite('iconPlayer', true)
-			
-			makeLuaSprite('iconOpponent', 'healthBars/kiana/iconSlot', getProperty('coloredOpponentCircle.x'), getProperty('coloredOpponentCircle.y'));
-			scaleObject('iconOpponent', 0.9, 0.9)
-			setObjectCamera('iconOpponent', 'hud')
-			addLuaSprite('iconOpponent', true)
+			pathToAssets = "kiana/iconSlot"
+			hasDiffSlots = false
 		end
 		
 		if songName == "Get Villain'd" or songName == "Get Villain'd (Old)" then
 			setProperty('healthBar.scale.y', getProperty('healthBar.scale.y') + 1.5)
 			setProperty('healthBar.scale.x', getProperty('healthBar.scale.x') - 0.475)
 			setProperty('healthBar.x', getProperty('healthBar.x') - 4)
-			
-			makeLuaSprite('coloredPlayerCircle', 'healthBars/colorChangingSlot', 850, getProperty('healthBar.y') - 70);
-			scaleObject('coloredPlayerCircle', 0.9, 0.9)
-			setObjectCamera('coloredPlayerCircle', 'hud')
-			setProperty('coloredPlayerCircle.color', getColorFromHex(bfColor))
-			addLuaSprite('coloredPlayerCircle', true)
 
-			makeLuaSprite('coloredOpponentCircle', 'healthBars/colorChangingSlot', 280, getProperty('healthBar.y') - 70);
-			scaleObject('coloredOpponentCircle', 0.9, 0.9)
-			setObjectCamera('coloredOpponentCircle', 'hud')
-			setProperty('coloredOpponentCircle.color', getColorFromHex(dadColor))
-			addLuaSprite('coloredOpponentCircle', true)
-			
-			makeLuaSprite('iconPlayer', 'healthBars/morky/iconSlot', getProperty('coloredPlayerCircle.x'), getProperty('coloredPlayerCircle.y'));
-			scaleObject('iconPlayer', 0.9, 0.9)
-			setObjectCamera('iconPlayer', 'hud')
-			addLuaSprite('iconPlayer', true)
-			
-			makeLuaSprite('iconOpponent', 'healthBars/morky/iconSlot', getProperty('coloredOpponentCircle.x'), getProperty('coloredOpponentCircle.y'));
-			scaleObject('iconOpponent', 0.9, 0.9)
-			setObjectCamera('iconOpponent', 'hud')
-			addLuaSprite('iconOpponent', true)
+			pathToAssets = "morky/iconSlot"
+			hasDiffSlots = false
 		end
 		
 		if songName == 'Unpaid Catastrophe' then
 			setProperty('healthBar.scale.y', getProperty('healthBar.scale.y') + 1.5)
 			setProperty('healthBar.scale.x', getProperty('healthBar.scale.x') - 0.445)
-			
-			makeLuaSprite('coloredPlayerCircle', 'healthBars/colorChangingSlot', 850, getProperty('healthBar.y') - 70);
-			scaleObject('coloredPlayerCircle', 0.9, 0.9)
-			setObjectCamera('coloredPlayerCircle', 'hud')
-			setProperty('coloredPlayerCircle.color', getColorFromHex(bfColor))
-			addLuaSprite('coloredPlayerCircle', true)
 
-			makeLuaSprite('coloredOpponentCircle', 'healthBars/colorChangingSlot', 280, getProperty('healthBar.y') - 70);
-			scaleObject('coloredOpponentCircle', 0.9, 0.9)
-			setObjectCamera('coloredOpponentCircle', 'hud')
-			setProperty('coloredOpponentCircle.color', getColorFromHex(dadColor))
-			addLuaSprite('coloredOpponentCircle', true)
-			
-			makeLuaSprite('iconPlayer', 'healthBars/aizeen/iconSlot', getProperty('coloredPlayerCircle.x'), getProperty('coloredPlayerCircle.y'));
-			scaleObject('iconPlayer', 0.9, 0.9)
-			setObjectCamera('iconPlayer', 'hud')
-			addLuaSprite('iconPlayer', true)
-			
-			makeLuaSprite('iconOpponent', 'healthBars/aizeen/iconSlot', getProperty('coloredOpponentCircle.x'), getProperty('coloredOpponentCircle.y'));
-			scaleObject('iconOpponent', 0.9, 0.9)
-			setObjectCamera('iconOpponent', 'hud')
-			addLuaSprite('iconOpponent', true)
+			pathToAssets = "aizeen/iconSlot"
+			hasDiffSlots = false
 		end
 		
 		if songName == 'Cheque' then
 			setProperty('healthBar.scale.y', getProperty('healthBar.scale.y') + 1.5)
 			setProperty('healthBar.scale.x', getProperty('healthBar.scale.x') - 0.44)
-			
-			makeLuaSprite('coloredPlayerCircle', 'healthBars/colorChangingSlot', 850, getProperty('healthBar.y') - 70);
-			scaleObject('coloredPlayerCircle', 0.9, 0.9)
-			setObjectCamera('coloredPlayerCircle', 'hud')
-			setProperty('coloredPlayerCircle.color', getColorFromHex(bfColor))
-			addLuaSprite('coloredPlayerCircle', true)
 
-			makeLuaSprite('coloredOpponentCircle', 'healthBars/colorChangingSlot', 280, getProperty('healthBar.y') - 70);
-			scaleObject('coloredOpponentCircle', 0.9, 0.9)
-			setObjectCamera('coloredOpponentCircle', 'hud')
-			setProperty('coloredOpponentCircle.color', getColorFromHex(dadColor))
-			addLuaSprite('coloredOpponentCircle', true)
-			
-			makeLuaSprite('iconPlayer', 'healthBars/marcus/iconSlot', getProperty('coloredPlayerCircle.x'), getProperty('coloredPlayerCircle.y'));
-			scaleObject('iconPlayer', 0.9, 0.9)
-			setObjectCamera('iconPlayer', 'hud')
-			addLuaSprite('iconPlayer', true)
-			
-			makeLuaSprite('iconOpponent', 'healthBars/marcus/iconSlot', getProperty('coloredOpponentCircle.x'), getProperty('coloredOpponentCircle.y'));
-			scaleObject('iconOpponent', 0.9, 0.9)
-			setObjectCamera('iconOpponent', 'hud')
-			addLuaSprite('iconOpponent', true)
+			pathToAssets = "marcus/iconSlot"
+			hasDiffSlots = false
 		end
 		
 		if songName == "Get Pico'd" or songName == "Get Gooned" then
 			setProperty('healthBar.scale.y', getProperty('healthBar.scale.y') + 1.52)
 			setProperty('healthBar.scale.x', getProperty('healthBar.scale.x') - 0.478)
-			
-			makeLuaSprite('coloredPlayerCircle', 'healthBars/colorChangingSlot', 850, getProperty('healthBar.y') - 70);
-			scaleObject('coloredPlayerCircle', 0.9, 0.9)
-			setObjectCamera('coloredPlayerCircle', 'hud')
-			setProperty('coloredPlayerCircle.color', getColorFromHex(bfColor))
-			addLuaSprite('coloredPlayerCircle', true)
 
-			makeLuaSprite('coloredOpponentCircle', 'healthBars/colorChangingSlot', 280, getProperty('healthBar.y') - 70);
-			scaleObject('coloredOpponentCircle', 0.9, 0.9)
-			setObjectCamera('coloredOpponentCircle', 'hud')
-			setProperty('coloredOpponentCircle.color', getColorFromHex(dadColor))
-			addLuaSprite('coloredOpponentCircle', true)
-			
-			makeLuaSprite('iconPlayer', 'healthBars/aizi/iconSlotP', getProperty('coloredPlayerCircle.x'), getProperty('coloredPlayerCircle.y'));
-			scaleObject('iconPlayer', 0.9, 0.9)
-			setObjectCamera('iconPlayer', 'hud')
-			addLuaSprite('iconPlayer', true)
-			
-			makeLuaSprite('iconOpponent', 'healthBars/aizi/iconSlotO', getProperty('coloredOpponentCircle.x'), getProperty('coloredOpponentCircle.y'));
-			scaleObject('iconOpponent', 0.9, 0.9)
-			setObjectCamera('iconOpponent', 'hud')
-			addLuaSprite('iconOpponent', true)
+			pathToAssets = "aizi/iconSlot"
+			hasDiffSlots = true
 		end
 		
 		if songName == 'Sussus Marcus' or songName == 'Villain In Board' or songName == 'Excrete' then
 			setProperty('healthBar.scale.y', getProperty('healthBar.scale.y') + 1.52)
 			setProperty('healthBar.scale.x', getProperty('healthBar.scale.x') - 0.442)
-			
-			makeLuaSprite('coloredPlayerCircle', 'healthBars/colorChangingSlot', 850, getProperty('healthBar.y') - 70);
-			scaleObject('coloredPlayerCircle', 0.9, 0.9)
-			setObjectCamera('coloredPlayerCircle', 'hud')
-			setProperty('coloredPlayerCircle.color', getColorFromHex(bfColor))
-			addLuaSprite('coloredPlayerCircle', true)
-
-			makeLuaSprite('coloredOpponentCircle', 'healthBars/colorChangingSlot', 280, getProperty('healthBar.y') - 70);
-			scaleObject('coloredOpponentCircle', 0.9, 0.9)
-			setObjectCamera('coloredOpponentCircle', 'hud')
-			setProperty('coloredOpponentCircle.color', getColorFromHex(dadColor))
-			addLuaSprite('coloredOpponentCircle', true)
-			
-			makeLuaSprite('iconPlayer', 'healthBars/marcussy/iconSlot', getProperty('coloredPlayerCircle.x'), getProperty('coloredPlayerCircle.y'));
-			scaleObject('iconPlayer', 0.9, 0.9)
-			setObjectCamera('iconPlayer', 'hud')
-			addLuaSprite('iconPlayer', true)
-			
-			makeLuaSprite('iconOpponent', 'healthBars/marcussy/iconSlot', getProperty('coloredOpponentCircle.x'), getProperty('coloredOpponentCircle.y'));
-			scaleObject('iconOpponent', 0.9, 0.9)
-			setObjectCamera('iconOpponent', 'hud')
-			addLuaSprite('iconOpponent', true)
+	
+			pathToAssets = "marcussy/iconSlot"
+			hasDiffSlots = false
 		end
 		
 		-- Bonus Songs		
 		if songName == 'Marcochrome' then
 			setProperty('healthBar.scale.y', getProperty('healthBar.scale.y') + 1.5)
 			setProperty('healthBar.scale.x', getProperty('healthBar.scale.x') - 0.445)
-			
-			makeLuaSprite('coloredPlayerCircle', 'healthBars/colorChangingSlot', 850, getProperty('healthBar.y') - 70);
-			scaleObject('coloredPlayerCircle', 0.9, 0.9)
-			setObjectCamera('coloredPlayerCircle', 'hud')
-			setProperty('coloredPlayerCircle.color', getColorFromHex(bfColor))
-			addLuaSprite('coloredPlayerCircle', true)
 
-			makeLuaSprite('coloredOpponentCircle', 'healthBars/colorChangingSlot', 280, getProperty('healthBar.y') - 70);
-			scaleObject('coloredOpponentCircle', 0.9, 0.9)
-			setObjectCamera('coloredOpponentCircle', 'hud')
-			setProperty('coloredOpponentCircle.color', getColorFromHex(dadColor))
-			addLuaSprite('coloredOpponentCircle', true)
-			
-			makeLuaSprite('iconPlayer', 'healthBars/michael/iconSlotP', getProperty('coloredPlayerCircle.x'), getProperty('coloredPlayerCircle.y'));
-			scaleObject('iconPlayer', 0.9, 0.9)
-			setObjectCamera('iconPlayer', 'hud')
-			addLuaSprite('iconPlayer', true)
-			
-			makeLuaSprite('iconOpponent', 'healthBars/michael/iconSlotO', getProperty('coloredOpponentCircle.x'), getProperty('coloredOpponentCircle.y'));
-			scaleObject('iconOpponent', 0.9, 0.9)
-			setObjectCamera('iconOpponent', 'hud')
-			addLuaSprite('iconOpponent', true)
+			pathToAssets = "michael/iconSlot"
+			hasDiffSlots = true
 		end
 		
 		if songName == 'Marauder' or songName == 'Marauder (Old)' then
 			setProperty('healthBar.scale.y', getProperty('healthBar.scale.y') + 1.52)
 			setProperty('healthBar.scale.x', getProperty('healthBar.scale.x') - 0.565)
-			
-			makeLuaSprite('coloredPlayerCircle', 'healthBars/colorChangingSlot', 850, getProperty('healthBar.y') - 70);
-			scaleObject('coloredPlayerCircle', 0.9, 0.9)
-			setObjectCamera('coloredPlayerCircle', 'hud')
-			setProperty('coloredPlayerCircle.color', getColorFromHex(bfColor))
-			addLuaSprite('coloredPlayerCircle', true)
 
-			makeLuaSprite('coloredOpponentCircle', 'healthBars/colorChangingSlot', 280, getProperty('healthBar.y') - 70);
-			scaleObject('coloredOpponentCircle', 0.9, 0.9)
-			setObjectCamera('coloredOpponentCircle', 'hud')
-			setProperty('coloredOpponentCircle.color', getColorFromHex(dadColor))
-			addLuaSprite('coloredOpponentCircle', true)
-			
-			makeLuaSprite('iconPlayer', 'healthBars/debug/iconSlotP', getProperty('coloredPlayerCircle.x'), getProperty('coloredPlayerCircle.y'));
-			scaleObject('iconPlayer', 0.9, 0.9)
-			setObjectCamera('iconPlayer', 'hud')
-			addLuaSprite('iconPlayer', true)
-			
-			makeLuaSprite('iconOpponent', 'healthBars/debug/iconSlotO', getProperty('coloredOpponentCircle.x'), getProperty('coloredOpponentCircle.y'));
-			scaleObject('iconOpponent', 0.9, 0.9)
-			setObjectCamera('iconOpponent', 'hud')
-			addLuaSprite('iconOpponent', true)
+			pathToAssets = "debug/iconSlot"
+			hasDiffSlots = true
 		end
 		
 		if songName == 'Slow.FLP' or songName == 'Slow.FLP (Old)' then
 			setProperty('healthBar.scale.y', getProperty('healthBar.scale.y') + 1.5)
 			setProperty('healthBar.scale.x', getProperty('healthBar.scale.x') - 0.45)
-			
-			makeLuaSprite('coloredPlayerCircle', 'healthBars/colorChangingSlot', 850, getProperty('healthBar.y') - 70);
-			scaleObject('coloredPlayerCircle', 0.9, 0.9)
-			setObjectCamera('coloredPlayerCircle', 'hud')
-			setProperty('coloredPlayerCircle.color', getColorFromHex(bfColor))
-			addLuaSprite('coloredPlayerCircle', true)
 
-			makeLuaSprite('coloredOpponentCircle', 'healthBars/colorChangingSlot', 280, getProperty('healthBar.y') - 70);
-			scaleObject('coloredOpponentCircle', 0.9, 0.9)
-			setObjectCamera('coloredOpponentCircle', 'hud')
-			setProperty('coloredOpponentCircle.color', getColorFromHex(dadColor))
-			addLuaSprite('coloredOpponentCircle', true)
-			
-			makeLuaSprite('iconPlayer', 'healthBars/nic/iconSlot', getProperty('coloredPlayerCircle.x'), getProperty('coloredPlayerCircle.y'));
-			scaleObject('iconPlayer', 0.9, 0.9)
-			setObjectCamera('iconPlayer', 'hud')
-			addLuaSprite('iconPlayer', true)
-			
-			makeLuaSprite('iconOpponent', 'healthBars/nic/iconSlot', getProperty('coloredOpponentCircle.x'), getProperty('coloredOpponentCircle.y'));
-			scaleObject('iconOpponent', 0.9, 0.9)
-			setObjectCamera('iconOpponent', 'hud')
-			addLuaSprite('iconOpponent', true)
+			pathToAssets = "nic/iconSlot"
+			hasDiffSlots = false
 		end
 		
 		if songName == 'Rainy Daze' then
 			setProperty('healthBar.scale.y', getProperty('healthBar.scale.y') + 1.5)
 			setProperty('healthBar.scale.x', getProperty('healthBar.scale.x') - 0.5)
-			
-			makeLuaSprite('coloredPlayerCircle', 'healthBars/colorChangingSlot', 850, getProperty('healthBar.y') - 70);
-			scaleObject('coloredPlayerCircle', 0.9, 0.9)
-			setObjectCamera('coloredPlayerCircle', 'hud')
-			setProperty('coloredPlayerCircle.color', getColorFromHex(bfColor))
-			addLuaSprite('coloredPlayerCircle', true)
 
-			makeLuaSprite('coloredOpponentCircle', 'healthBars/colorChangingSlot', 280, getProperty('healthBar.y') - 70);
-			scaleObject('coloredOpponentCircle', 0.9, 0.9)
-			setObjectCamera('coloredOpponentCircle', 'hud')
-			setProperty('coloredOpponentCircle.color', getColorFromHex(dadColor))
-			addLuaSprite('coloredOpponentCircle', true)
-			
-			makeLuaSprite('iconPlayer', 'healthBars/lillie/iconSlotP', getProperty('coloredPlayerCircle.x'), getProperty('coloredPlayerCircle.y'));
-			scaleObject('iconPlayer', 0.9, 0.9)
-			setObjectCamera('iconPlayer', 'hud')
-			addLuaSprite('iconPlayer', true)
-			
-			makeLuaSprite('iconOpponent', 'healthBars/lillie/iconSlotO', getProperty('coloredOpponentCircle.x'), getProperty('coloredOpponentCircle.y'));
-			scaleObject('iconOpponent', 0.9, 0.9)
-			setObjectCamera('iconOpponent', 'hud')
-			addLuaSprite('iconOpponent', true)
+			pathToAssets = "lillie/iconSlot"
+			hasDiffSlots = true
 		end
 		
 		if songName == 'FNV' then
 			setProperty('healthBar.scale.y', getProperty('healthBar.scale.y') + 1.5)
 			setProperty('healthBar.scale.x', getProperty('healthBar.scale.x') - 0.45)
 			
-			makeLuaSprite('coloredPlayerCircle', 'healthBars/colorChangingSlot', 850, getProperty('healthBar.y') - 70);
-			scaleObject('coloredPlayerCircle', 0.9, 0.9)
-			setObjectCamera('coloredPlayerCircle', 'hud')
-			setProperty('coloredPlayerCircle.color', getColorFromHex(bfColor))
-			addLuaSprite('coloredPlayerCircle', true)
-
-			makeLuaSprite('coloredOpponentCircle', 'healthBars/colorChangingSlot', 280, getProperty('healthBar.y') - 70);
-			scaleObject('coloredOpponentCircle', 0.9, 0.9)
-			setObjectCamera('coloredOpponentCircle', 'hud')
-			setProperty('coloredOpponentCircle.color', getColorFromHex(dadColor))
-			addLuaSprite('coloredOpponentCircle', true)
-			
-			makeLuaSprite('iconPlayer', 'healthBars/fnv/iconSlotP', getProperty('coloredPlayerCircle.x'), getProperty('coloredPlayerCircle.y'));
-			scaleObject('iconPlayer', 0.9, 0.9)
-			setObjectCamera('iconPlayer', 'hud')
-			addLuaSprite('iconPlayer', true)
-			
-			makeLuaSprite('iconOpponent', 'healthBars/fnv/iconSlotO', getProperty('coloredOpponentCircle.x'), getProperty('coloredOpponentCircle.y'));
-			scaleObject('iconOpponent', 0.9, 0.9)
-			setObjectCamera('iconOpponent', 'hud')
-			addLuaSprite('iconOpponent', true)
+			pathToAssets = "fnv/iconSlot"
+			hasDiffSlots = true
 		end
 		
 		if songName == 'Instrumentally Deranged' then
 			setProperty('healthBar.scale.y', getProperty('healthBar.scale.y') + 1.5)
 			setProperty('healthBar.scale.x', getProperty('healthBar.scale.x') - 0.45)
-			
-			makeLuaSprite('coloredPlayerCircle', 'healthBars/colorChangingSlot', 850, getProperty('healthBar.y') - 70);
-			scaleObject('coloredPlayerCircle', 0.9, 0.9)
-			setObjectCamera('coloredPlayerCircle', 'hud')
-			setProperty('coloredPlayerCircle.color', getColorFromHex(bfColor))
-			addLuaSprite('coloredPlayerCircle', true)
 
-			makeLuaSprite('coloredOpponentCircle', 'healthBars/colorChangingSlot', 280, getProperty('healthBar.y') - 70);
-			scaleObject('coloredOpponentCircle', 0.9, 0.9)
-			setObjectCamera('coloredOpponentCircle', 'hud')
-			setProperty('coloredOpponentCircle.color', getColorFromHex(dadColor))
-			addLuaSprite('coloredOpponentCircle', true)
-			
-			makeLuaSprite('iconPlayer', 'healthBars/instDeranged/iconSlotP', getProperty('coloredPlayerCircle.x'), getProperty('coloredPlayerCircle.y'));
-			scaleObject('iconPlayer', 0.9, 0.9)
-			setObjectCamera('iconPlayer', 'hud')
-			addLuaSprite('iconPlayer', true)
-			
-			makeLuaSprite('iconOpponent', 'healthBars/instDeranged/iconSlotO', getProperty('coloredOpponentCircle.x'), getProperty('coloredOpponentCircle.y'));
-			scaleObject('iconOpponent', 0.9, 0.9)
-			setObjectCamera('iconOpponent', 'hud')
-			addLuaSprite('iconOpponent', true)
+			pathToAssets = "instDeranged/iconSlot"
+			hasDiffSlots = true
 		end
 		
 		if songName == 'Fanfuck Forever' then
 			setProperty('healthBar.scale.y', getProperty('healthBar.scale.y') + 1.53)
 			setProperty('healthBar.scale.x', getProperty('healthBar.scale.x') - 0.545)
-			
-			makeLuaSprite('coloredPlayerCircle', 'healthBars/colorChangingSlot', 850, getProperty('healthBar.y') - 70);
-			scaleObject('coloredPlayerCircle', 0.9, 0.9)
-			setObjectCamera('coloredPlayerCircle', 'hud')
-			setProperty('coloredPlayerCircle.color', getColorFromHex(bfColor))
-			addLuaSprite('coloredPlayerCircle', true)
 
-			makeLuaSprite('coloredOpponentCircle', 'healthBars/colorChangingSlot', 280, getProperty('healthBar.y') - 70);
-			scaleObject('coloredOpponentCircle', 0.9, 0.9)
-			setObjectCamera('coloredOpponentCircle', 'hud')
-			setProperty('coloredOpponentCircle.color', getColorFromHex(dadColor))
-			addLuaSprite('coloredOpponentCircle', true)
-			
-			makeLuaSprite('iconPlayer', 'healthBars/fangirl/iconSlotP', getProperty('coloredPlayerCircle.x'), getProperty('coloredPlayerCircle.y'));
-			scaleObject('iconPlayer', 0.9, 0.9)
-			setObjectCamera('iconPlayer', 'hud')
-			addLuaSprite('iconPlayer', true)
-			
-			makeLuaSprite('iconOpponent', 'healthBars/fangirl/iconSlotO', getProperty('coloredOpponentCircle.x'), getProperty('coloredOpponentCircle.y'));
-			scaleObject('iconOpponent', 0.9, 0.9)
-			setObjectCamera('iconOpponent', 'hud')
-			addLuaSprite('iconOpponent', true)
+			pathToAssets = "fangirl/iconSlot"
+			hasDiffSlots = true
 		end
 		
 		if songName == 'Fast Food Therapy' then
 			setProperty('healthBar.scale.y', getProperty('healthBar.scale.y') + 1.5)
 			setProperty('healthBar.scale.x', getProperty('healthBar.scale.x') - 0.56)
-			
-			makeLuaSprite('coloredPlayerCircle', 'healthBars/colorChangingSlot', 280, getProperty('healthBar.y') - 70);
-			scaleObject('coloredPlayerCircle', 0.9, 0.9)
-			setObjectCamera('coloredPlayerCircle', 'hud')
-			setProperty('coloredPlayerCircle.color', getColorFromHex(bfColor))
-			addLuaSprite('coloredPlayerCircle', true)
 
-			makeLuaSprite('coloredOpponentCircle', 'healthBars/colorChangingSlot', 850, getProperty('healthBar.y') - 70);
-			scaleObject('coloredOpponentCircle', 0.9, 0.9)
-			setObjectCamera('coloredOpponentCircle', 'hud')
-			setProperty('coloredOpponentCircle.color', getColorFromHex(dadColor))
-			addLuaSprite('coloredOpponentCircle', true)
-			
-			makeLuaSprite('iconPlayer', 'healthBars/kyu/iconSlotO', getProperty('coloredPlayerCircle.x') - 10, getProperty('coloredPlayerCircle.y') - 12);
-			setObjectCamera('iconPlayer', 'hud')
-			addLuaSprite('iconPlayer', true)
-			
-			makeLuaSprite('iconOpponent', 'healthBars/kyu/iconSlotP', getProperty('coloredOpponentCircle.x') - 10, getProperty('coloredOpponentCircle.y') - 12);
-			setObjectCamera('iconOpponent', 'hud')
-			addLuaSprite('iconOpponent', true)
+			pathToAssets = "kyu/iconSlot"
+			hasDiffSlots = true
+			properties.circleOffsX = -10
+			properties.circleOffsY = -12
+			properties.scale = 1
+			properties.flipIcons = true
 		end
 		
 		if songName == 'Jerry' then
 			setProperty('healthBar.scale.y', getProperty('healthBar.scale.y') + 1.5)
 			setProperty('healthBar.scale.x', getProperty('healthBar.scale.x') - 0.40)
-			
-			makeLuaSprite('coloredPlayerCircle', 'healthBars/colorChangingSlot', 850, getProperty('healthBar.y') - 70);
-			scaleObject('coloredPlayerCircle', 0.9, 0.9)
-			setObjectCamera('coloredPlayerCircle', 'hud')
-			setProperty('coloredPlayerCircle.color', getColorFromHex('FFFFFF'))
-			addLuaSprite('coloredPlayerCircle', true)
 
-			makeLuaSprite('coloredOpponentCircle', 'healthBars/colorChangingSlot', 280, getProperty('healthBar.y') - 70);
-			scaleObject('coloredOpponentCircle', 0.9, 0.9)
-			setObjectCamera('coloredOpponentCircle', 'hud')
-			setProperty('coloredOpponentCircle.color', getColorFromHex(dadColor))
-			addLuaSprite('coloredOpponentCircle', true)
-			
-			makeLuaSprite('iconPlayer', 'healthBars/00015/iconSlot', getProperty('coloredPlayerCircle.x'), getProperty('coloredPlayerCircle.y'));
-			scaleObject('iconPlayer', 0.9, 0.9)
-			setObjectCamera('iconPlayer', 'hud')
-			addLuaSprite('iconPlayer', true)
-			
-			makeLuaSprite('iconOpponent', 'healthBars/00015/iconSlot', getProperty('coloredOpponentCircle.x'), getProperty('coloredOpponentCircle.y'));
-			scaleObject('iconOpponent', 0.9, 0.9)
-			setObjectCamera('iconOpponent', 'hud')
-			addLuaSprite('iconOpponent', true)
+			pathToAssets = "00015/iconSlot"
+			hasDiffSlots = false
 		end
 		
 		if songName == 'VGuy' then
 			setProperty('healthBar.scale.y', getProperty('healthBar.scale.y') + 1.5)
 			setProperty('healthBar.scale.x', getProperty('healthBar.scale.x') - 0.51)
-			
-			makeLuaSprite('coloredPlayerCircle', 'healthBars/colorChangingSlot', 850, getProperty('healthBar.y') - 70);
-			scaleObject('coloredPlayerCircle', 0.9, 0.9)
-			setObjectCamera('coloredPlayerCircle', 'hud')
-			setProperty('coloredPlayerCircle.color', getColorFromHex(bfcolor))
-			addLuaSprite('coloredPlayerCircle', true)
 
-			makeLuaSprite('coloredOpponentCircle', 'healthBars/colorChangingSlot', 280, getProperty('healthBar.y') - 70);
-			scaleObject('coloredOpponentCircle', 0.9, 0.9)
-			setObjectCamera('coloredOpponentCircle', 'hud')
-			setProperty('coloredOpponentCircle.color', getColorFromHex(dadColor))
-			addLuaSprite('coloredOpponentCircle', true)
-			
-			makeLuaSprite('iconPlayer', 'healthBars/vguy/iconSlotP', getProperty('coloredPlayerCircle.x'), getProperty('coloredPlayerCircle.y'));
-			scaleObject('iconPlayer', 0.9, 0.9)
-			setObjectCamera('iconPlayer', 'hud')
-			addLuaSprite('iconPlayer', true)
-			
-			makeLuaSprite('iconOpponent', 'healthBars/vguy/iconSlotO', getProperty('coloredOpponentCircle.x'), getProperty('coloredOpponentCircle.y'));
-			scaleObject('iconOpponent', 0.9, 0.9)
-			setObjectCamera('iconOpponent', 'hud')
-			addLuaSprite('iconOpponent', true)
+			pathToAssets = "vguy/iconSlot"
+			hasDiffSlots = true
 		end
 		
 		if songName == 'Tactical Mishap' then
 			setProperty('healthBar.scale.y', getProperty('healthBar.scale.y') + 1.52)
 			setProperty('healthBar.scale.x', getProperty('healthBar.scale.x') - 0.47)
-			
-			makeLuaSprite('coloredPlayerCircle', 'healthBars/colorChangingSlot', 850, getProperty('healthBar.y') - 70);
-			scaleObject('coloredPlayerCircle', 0.9, 0.9)
-			setObjectCamera('coloredPlayerCircle', 'hud')
-			setProperty('coloredPlayerCircle.color', getColorFromHex(bfcolor))
-			addLuaSprite('coloredPlayerCircle', true)
 
-			makeLuaSprite('coloredOpponentCircle', 'healthBars/colorChangingSlot', 280, getProperty('healthBar.y') - 70);
-			scaleObject('coloredOpponentCircle', 0.9, 0.9)
-			setObjectCamera('coloredOpponentCircle', 'hud')
-			setProperty('coloredOpponentCircle.color', getColorFromHex(dadColor))
-			addLuaSprite('coloredOpponentCircle', true)
-			
-			makeLuaSprite('iconPlayer', 'healthBars/tc/iconSlotP', getProperty('coloredPlayerCircle.x'), getProperty('coloredPlayerCircle.y'));
-			scaleObject('iconPlayer', 0.9, 0.9)
-			setObjectCamera('iconPlayer', 'hud')
-			addLuaSprite('iconPlayer', true)
-			
-			makeLuaSprite('iconOpponent', 'healthBars/tc/iconSlotO', getProperty('coloredOpponentCircle.x'), getProperty('coloredOpponentCircle.y'));
-			scaleObject('iconOpponent', 0.9, 0.9)
-			setObjectCamera('iconOpponent', 'hud')
-			addLuaSprite('iconOpponent', true)
+			pathToAssets = "tc/iconSlot"
+			hasDiffSlots = true
 		end
 		
 		if songName == 'Breacher' then
 			setProperty('healthBar.scale.y', getProperty('healthBar.scale.y') + 1.5)
 			setProperty('healthBar.scale.x', getProperty('healthBar.scale.x') - 0.55)
-			
-			makeLuaSprite('coloredPlayerCircle', 'healthBars/colorChangingSlot', 850, getProperty('healthBar.y') - 70);
-			scaleObject('coloredPlayerCircle', 0.9, 0.9)
-			setObjectCamera('coloredPlayerCircle', 'hud')
-			setProperty('coloredPlayerCircle.color', getColorFromHex(bfcolor))
-			addLuaSprite('coloredPlayerCircle', true)
 
-			makeLuaSprite('coloredOpponentCircle', 'healthBars/colorChangingSlot', 280, getProperty('healthBar.y') - 70);
-			scaleObject('coloredOpponentCircle', 0.9, 0.9)
-			setObjectCamera('coloredOpponentCircle', 'hud')
-			setProperty('coloredOpponentCircle.color', getColorFromHex(dadColor))
-			addLuaSprite('coloredOpponentCircle', true)
-			
-			makeLuaSprite('iconPlayer', 'healthBars/uzi/iconSlotP', getProperty('coloredPlayerCircle.x'), getProperty('coloredPlayerCircle.y'));
-			scaleObject('iconPlayer', 0.9, 0.9)
-			setObjectCamera('iconPlayer', 'hud')
-			addLuaSprite('iconPlayer', true)
-			
-			makeLuaSprite('iconOpponent', 'healthBars/uzi/iconSlotO', getProperty('coloredOpponentCircle.x'), getProperty('coloredOpponentCircle.y'));
-			scaleObject('iconOpponent', 0.9, 0.9)
-			setObjectCamera('iconOpponent', 'hud')
-			addLuaSprite('iconOpponent', true)
+			pathToAssets = "uzi/iconSlot"
+			hasDiffSlots = true
+			properties.flipIcons = true
 		end
 		
 		if songName == 'Concert Chaos' then
 			setProperty('healthBar.scale.y', getProperty('healthBar.scale.y') + 1.5)
 			setProperty('healthBar.scale.x', getProperty('healthBar.scale.x') - 0.535)
-			
-			makeLuaSprite('coloredPlayerCircle', 'healthBars/colorChangingSlot', 850, getProperty('healthBar.y') - 70);
-			scaleObject('coloredPlayerCircle', 0.9, 0.9)
-			setObjectCamera('coloredPlayerCircle', 'hud')
-			setProperty('coloredPlayerCircle.color', getColorFromHex(bfcolor))
-			addLuaSprite('coloredPlayerCircle', true)
 
-			makeLuaSprite('coloredOpponentCircle', 'healthBars/colorChangingSlot', 280, getProperty('healthBar.y') - 70);
-			scaleObject('coloredOpponentCircle', 0.9, 0.9)
-			setObjectCamera('coloredOpponentCircle', 'hud')
-			setProperty('coloredOpponentCircle.color', getColorFromHex(dadColor))
-			addLuaSprite('coloredOpponentCircle', true)
-			
-			makeLuaSprite('iconPlayer', 'healthBars/lily/iconSlotP', getProperty('coloredPlayerCircle.x'), getProperty('coloredPlayerCircle.y'));
-			scaleObject('iconPlayer', 0.9, 0.9)
-			setObjectCamera('iconPlayer', 'hud')
-			addLuaSprite('iconPlayer', true)
-			
-			makeLuaSprite('iconOpponent', 'healthBars/lily/iconSlotO', getProperty('coloredOpponentCircle.x'), getProperty('coloredOpponentCircle.y'));
-			scaleObject('iconOpponent', 0.9, 0.9)
-			setObjectCamera('iconOpponent', 'hud')
-			addLuaSprite('iconOpponent', true)
+			pathToAssets = "lily/iconSlot"
+			hasDiffSlots = true
 		end
 		
 		if songName == "It's Kiana" then
@@ -730,30 +236,55 @@ function onCreatePost()
 			setProperty('healthBar.scale.x', getProperty('healthBar.scale.x') - 0.445)
 			setProperty('healthBarBG.scale.y', getProperty('healthBarBG.scale.x') - 0.15)
 			setProperty('healthBarBG.scale.x', getProperty('healthBarBG.scale.x') + 0.15)
-			
-			makeLuaSprite('coloredPlayerCircle', 'healthBars/colorChangingSlot', 850, getProperty('healthBar.y') - 70);
-			scaleObject('coloredPlayerCircle', 0.9, 0.9)
-			setObjectCamera('coloredPlayerCircle', 'hud')
-			setProperty('coloredPlayerCircle.color', getColorFromHex(bfColor))
-			addLuaSprite('coloredPlayerCircle', true)
 
-			makeLuaSprite('coloredOpponentCircle', 'healthBars/colorChangingSlot', 280, getProperty('healthBar.y') - 70);
-			scaleObject('coloredOpponentCircle', 0.9, 0.9)
-			setObjectCamera('coloredOpponentCircle', 'hud')
-			setProperty('coloredOpponentCircle.color', getColorFromHex(dadColor))
-			addLuaSprite('coloredOpponentCircle', true)
-			
-			makeLuaSprite('iconPlayer', 'healthBars/asul/iconSlot', getProperty('coloredPlayerCircle.x'), getProperty('coloredPlayerCircle.y'));
-			scaleObject('iconPlayer', 0.9, 0.9)
-			setObjectCamera('iconPlayer', 'hud')
-			addLuaSprite('iconPlayer', true)
-			
-			makeLuaSprite('iconOpponent', 'healthBars/asul/iconSlot', getProperty('coloredOpponentCircle.x'), getProperty('coloredOpponentCircle.y'));
-			scaleObject('iconOpponent', 0.9, 0.9)
-			setObjectCamera('iconOpponent', 'hud')
-			addLuaSprite('iconOpponent', true)
+			pathToAssets = "asul/iconSlot"
+			hasDiffSlots = false
 		end
-				
+
+		makeLuaSprite('coloredPlayerCircle', 'healthBars/colorChangingSlot', 850, getProperty('healthBar.y') - 70);
+		scaleObject('coloredPlayerCircle', 0.9, 0.9)
+		setObjectCamera('coloredPlayerCircle', 'hud')
+		addLuaSprite('coloredPlayerCircle', true)
+		
+		makeLuaSprite('coloredOpponentCircle', 'healthBars/colorChangingSlot', 280, getProperty('healthBar.y') - 70);
+		scaleObject('coloredOpponentCircle', 0.9, 0.9)
+		setObjectCamera('coloredOpponentCircle', 'hud')
+		addLuaSprite('coloredOpponentCircle', true)
+		
+		-- Song specific
+		if downscroll and songName == "Libidinousness" then
+			setProperty('coloredPlayerCircle.y', 20)
+			setProperty('coloredOpponentCircle.y', 20)
+		end
+		
+		if hasDiffSlots then
+			makeLuaSprite('iconPlayer', 'healthBars/'..pathToAssets..'P', getProperty('coloredPlayerCircle.x') + properties.circleOffsX, getProperty('coloredPlayerCircle.y') + properties.circleOffsY);
+		else
+			makeLuaSprite('iconPlayer', 'healthBars/'..pathToAssets, getProperty('coloredPlayerCircle.x') + properties.circleOffsX, getProperty('coloredPlayerCircle.y') + properties.circleOffsY);
+		end
+		scaleObject('iconPlayer', properties.scale, properties.scale)
+		setObjectCamera('iconPlayer', 'hud')
+		addLuaSprite('iconPlayer', true)
+		
+		if hasDiffSlots then
+			makeLuaSprite('iconOpponent', 'healthBars/'..pathToAssets.."O", getProperty('coloredOpponentCircle.x') + properties.circleOffsX, getProperty('coloredOpponentCircle.y') + properties.circleOffsY);
+		else
+			makeLuaSprite('iconOpponent', 'healthBars/'..pathToAssets, getProperty('coloredOpponentCircle.x') + properties.circleOffsX, getProperty('coloredOpponentCircle.y') + properties.circleOffsY);
+		end
+		scaleObject('iconOpponent', properties.scale, properties.scale)
+		setObjectCamera('iconOpponent', 'hud')
+		addLuaSprite('iconOpponent', true)
+		
+		if properties.flipIcons then
+			local circX = {getProperty("iconPlayer.x"), getProperty("coloredPlayerCircle.x"), getProperty("iconOpponent.x"), getProperty("coloredOpponentCircle.x")}
+			setProperty("iconPlayer.x", circX[3])
+			setProperty("coloredPlayerCircle.x", circX[4])
+			setProperty("iconOpponent.x", circX[1])
+			setProperty("coloredOpponentCircle.x", circX[2])
+			
+			debugPrint("bitch")
+		end
+		
 		setObjectOrder('healthBarBG', getObjectOrder('healthBar') + 1)
 		setObjectOrder('iconP1', getObjectOrder('iconPlayer') + 1)
 		setObjectOrder('iconP2', getObjectOrder('iconOpponent') + 1)
@@ -797,6 +328,12 @@ function updatePadColors(colorDad, colorBeef)
 	end
 end
 
+function onEvent(name, v1, v2)
+	if name == "Change Character" then
+		updatePadColors()
+	end
+end
+
 function onUpdatePost()
 	if not optimizationMode then
 		-- Set up Icons:
@@ -815,17 +352,17 @@ function onUpdatePost()
 		end
 		
 		-- More HealthBar Shit lmao
-		if songName == 'Scrouge' or songName == 'Cheap Skate (Legacy)' or songName == 'Spendthrift'
-		or songName == 'Toxic Mishap' or songName == 'Toxic Mishap (Legacy)' or songName == 'Villainy' or songName == 'Iniquitous'
-		or songName == 'Couple Clash' or songName == 'Shucks V2' then
-			if songName == 'Spendthrift' then
-				loadGraphic('healthBarBG', 'healthBars/marco/marcoSpendthriftBar')
-				setProperty('healthBarBG.y', getProperty('healthBar.y') - 69)
-				setProperty('healthBarBG.x', getProperty('healthBar.x') + 108)
-			else
-				loadGraphic('healthBarBG', 'healthBars/marco/marcoBar')
-				setProperty('healthBarBG.y', getProperty('healthBar.y') - 69)
-				setProperty('healthBarBG.x', getProperty('healthBar.x') + 106)
+		for i = 1, #(marcoSongs) do
+			if songName == marcoSongs[i] then
+				if songName == 'Spendthrift' then
+					loadGraphic('healthBarBG', 'healthBars/marco/marcoSpendthriftBar')
+					setProperty('healthBarBG.y', getProperty('healthBar.y') - 69)
+					setProperty('healthBarBG.x', getProperty('healthBar.x') + 108)
+				else
+					loadGraphic('healthBarBG', 'healthBars/marco/marcoBar')
+					setProperty('healthBarBG.y', getProperty('healthBar.y') - 69)
+					setProperty('healthBarBG.x', getProperty('healthBar.x') + 106)
+				end
 			end
 		end
 		
@@ -835,9 +372,7 @@ function onUpdatePost()
 			setProperty('healthBarBG.x', getProperty('healthBar.x') + 107)
 		end
 		
-		if songName == 'Nunconventional' or songName == 'Nunconventional Simp'
-		or songName == 'Nunday Monday'
-		or songName == 'Nunsational' or songName == 'Nunsational Simp' then
+		if songName == 'Nunconventional' or songName == 'Nunday Monday' or songName == 'Nunsational' then
 			loadGraphic('healthBarBG', 'healthBars/beatrice/beatriceBar')
 			setProperty('healthBarBG.y', getProperty('healthBar.y') - 69)
 			setProperty('healthBarBG.x', getProperty('healthBar.x') + 107)

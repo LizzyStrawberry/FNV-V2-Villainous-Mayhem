@@ -78,7 +78,7 @@ local camZooms = {0, 0, 0}
 local camMovementOn = false
 local isSinging = false
 
-local allowFollowBoth = false -- Broken rn for some reason, too lazy to fix
+local allowFollowBoth = true -- Broken rn for some reason, too lazy to fix
 local followBoth = false
 local followGF = false
 local gfSide = nil
@@ -240,13 +240,7 @@ function playSpecialAnimation(character)
 end
 
 function setZoom(charNum)
-	if charNum == 5 then -- Dad / GF
-		setProperty('defaultCamZoom', (camZooms[1] + camZooms[3]) / 2)
-	elseif charNum == 4 then -- BF / GF
-		setProperty('defaultCamZoom', (camZooms[2] + camZooms[3]) / 2)
-	else
-		setProperty('defaultCamZoom', camZooms[charNum])
-	end
+	setProperty('defaultCamZoom', camZooms[charNum])
 end
 
 -- Note Hit functions
@@ -259,39 +253,32 @@ function opponentNoteHit(id, direction, noteType, isSustainNote)
 				camAngle(direction)
 			end
 			
-			if allowFollowBoth and not isIdleAnimation('gf') and not isIdleAnimation('dad') and gfSide == "opponent" then
-				followBoth = true
-
-				followGF = false
-				gfSide = 'opponent'
-			elseif noteType == 'GF Sing' or gfSection then
-				followBoth = false
-				
+			if noteType == 'GF Sing' or gfSection then
+				followBoth = false -- Reset
 				followGF = true
 				gfSide = "opponent"
 			else
-				followBoth = false
-				followGF = false
+				if allowFollowBoth and not isIdleAnimation('gf') and not isIdleAnimation('dad') and gfSide == "opponent" then
+					followBoth = true
+					followGF = false
+				else
+					followBoth = false
+					followGF = false
+				end
 			end
 		
 			if followBoth and gfSide == 'opponent' then
 				camMove("bothEnemies", direction)
 				
-				if allowZoomShifts then
-					setZoom(5)
-				end
+				if allowZoomShifts then	setZoom(1) end
 			elseif followGF and gfSide == "opponent" then
 				camMove("gf", direction, false)
 
-				if allowZoomShifts then
-					setZoom(3)
-				end
+				if allowZoomShifts then	setZoom(3) end
 			else
 				camMove("dad", direction, false)
 				
-				if allowZoomShifts then
-					setZoom(1)
-				end
+				if allowZoomShifts then	setZoom(1) end
 			end
 		end
 	end
@@ -306,49 +293,49 @@ function goodNoteHit(id, direction, noteType, isSustainNote)
 				camAngle(direction)
 			end
 			
-			if allowFollowBoth and not isIdleAnimation('gf') and not isIdleAnimation('boyfriend') and gfSide == "player" then
-				followBoth = true
-				
-				followGF = false
-				gfSide = 'player'
-			elseif noteType == 'GF Sing' or gfSection then
-				followBoth = false
-				
+			if noteType == 'GF Sing' or gfSection then
+				followBoth = false -- Reset
 				followGF = true
 				gfSide = "player"
 			else
-				followBoth = false
-				followGF = false
+				if allowFollowBoth and not isIdleAnimation('gf') and not isIdleAnimation('boyfriend') and gfSide == "player" then
+					followBoth = true
+					followGF = false
+				else
+					followBoth = false
+					followGF = false
+				end
 			end
 			
 			if followBoth and gfSide == 'player' then
 				camMove("bothPlayers", direction)
 				
-				if allowZoomShifts then
-					setZoom(4)
-				end
+				if allowZoomShifts then setZoom(2) end
 			elseif followGF and gfSide == "player" then
 				camMove("gf", direction, true)
 				
-				if allowZoomShifts then
-					setZoom(3)
-				end
+				if allowZoomShifts then setZoom(3) end
 			else		
 				camMove("bf", direction, true)
 				
-				if allowZoomShifts then
-					setZoom(2)
-				end
+				if allowZoomShifts then setZoom(2) end
 			end
 		end
 	end
 end
 
 function camMove(character, direction, isPlayer)
-	local x, y = charOffsets[character.."X"], charOffsets[character.."Y"]
+	local x, y = 0, 0
+	if character == 'bothEnemies' then
+		x, y = (charOffsets.dadX + charOffsets.gfX) / 2, (charOffsets.dadY + charOffsets.gfY) / 2
+	elseif character == 'bothPlayers' then
+		x, y = (charOffsets.bfX + charOffsets.gfX) / 2, (charOffsets.bfY + charOffsets.gfY) / 2
+	else
+		x, y = charOffsets[character.."X"], charOffsets[character.."Y"]
+	end
 	
 	if isPlayer then
-		if flipPlayerMovement and not followGF then
+		if flipPlayerMovement and not followGF and not followBoth then
 			if direction == 0 then x = x + offset
 			elseif direction == 1 then y = y - offset
 			elseif direction == 2 then y = y + offset
@@ -360,7 +347,7 @@ function camMove(character, direction, isPlayer)
 			elseif direction == 3 then x = x + offset end
 		end
 	else
-		if flipEnemyMovement and not followGF then
+		if flipEnemyMovement and not followGF and not followBoth then
 			if direction == 0 then x = x + offset
 			elseif direction == 1 then y = y - offset
 			elseif direction == 2 then y = y + offset
