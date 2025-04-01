@@ -1110,11 +1110,11 @@ class InfoState extends MusicBeatState
 			case 'fangirl':
 				if (ClientPrefs.infatuationPlayed)
 				{
-					titleText.text = "Fangirl";
+					titleText.text = "Lefty";
 
-					desc.text = "Real Name: Fangirl\nAge: 
-					\nPlaceholder description.
-					\n...";
+					desc.text = "Real Name: Layla Linder\nAge: 34\nAlias: Lefty (Her other personality's name) Villain stalker, The Collector\nSpecies: Human 
+					\nLayla Linder was once a smart engineer, but ever since the incident that gave her a very unstable split personality, she is struggling to take back the wheel that is once hers .
+					\n'Lefty don't like when Layla gets hurt!'";
 				}
 				else
 				{
