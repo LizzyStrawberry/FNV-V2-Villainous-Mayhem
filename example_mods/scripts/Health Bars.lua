@@ -252,9 +252,14 @@ function onCreatePost()
 		addLuaSprite('coloredOpponentCircle', true)
 		
 		-- Song specific
-		if downscroll and songName == "Libidinousness" then
-			setProperty('coloredPlayerCircle.y', 20)
-			setProperty('coloredOpponentCircle.y', 20)
+		if songName == "Libidinousness" then
+			if downscroll then
+				setProperty('coloredPlayerCircle.y', 20)
+				setProperty('coloredOpponentCircle.y', 20)
+			else
+				setProperty('coloredPlayerCircle.y', 575)
+				setProperty('coloredOpponentCircle.y', 575)
+			end
 		end
 		
 		if hasDiffSlots then

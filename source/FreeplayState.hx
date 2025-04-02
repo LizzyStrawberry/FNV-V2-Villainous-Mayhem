@@ -802,7 +802,7 @@ class FreeplayState extends MusicBeatState
 				trace('Couldnt find file');
 			}*/
 			trace(poop);
-			if (ClientPrefs.mechanics == false && ((curDifficulty == 2 && (songs[curSelected].songName == 'Scrouge' || songs[curSelected].songName == 'Toxic Mishap' || songs[curSelected].songName == 'Paycheck'
+			if (!ClientPrefs.mechanics && ((curDifficulty == 2 && (songs[curSelected].songName == 'Scrouge' || songs[curSelected].songName == 'Toxic Mishap' || songs[curSelected].songName == 'Paycheck'
 				|| songs[curSelected].songName == 'Nunday Monday' || songs[curSelected].songName == 'Nunconventional' || songs[curSelected].songName == 'Forsaken'  || songs[curSelected].songName == 'Toybox'
 				|| songs[curSelected].songName == 'Lustality Remix')) //NORMAL SONGS
 				|| (curDifficulty == 1 && (songs[curSelected].songName == 'Villainy' || songs[curSelected].songName == 'Point Blank' || songs[curSelected].songName == 'Libidinousness'))))//BOSS SONGS
@@ -838,7 +838,7 @@ class FreeplayState extends MusicBeatState
 
 				if (songs[curSelected].songName == 'Toxic Mishap')
 				{
-					if (ClientPrefs.mechanics == false && curDifficulty == 1)
+					if (!ClientPrefs.mechanics && curDifficulty == 1)
 					{
 						trace('I got loaded lol [Toxic Mishap], on villainous with no mechanics');
 						PlayState.SONG = Song.loadFromJson('toxic-mishap-villainousMechanicless', 'toxic-mishap');
@@ -847,7 +847,7 @@ class FreeplayState extends MusicBeatState
 
 				if (songs[curSelected].songName == 'Villainy')
 				{
-					if (ClientPrefs.mechanics == false && curDifficulty == 0)
+					if (!ClientPrefs.mechanics && curDifficulty == 0)
 					{
 						trace('I got loaded lol [Villainy], on villainous with no mechanics');
 						PlayState.SONG = Song.loadFromJson('villainy-villainousMechanicless', 'villainy');
@@ -856,12 +856,12 @@ class FreeplayState extends MusicBeatState
 
 				if (songs[curSelected].songName == 'Toybox')
 				{
-					if (ClientPrefs.mechanics == false && curDifficulty == 0)
+					if (!ClientPrefs.mechanics && curDifficulty == 0)
 					{
 						trace('I got loaded lol [Toybox], on casual with no mechanics');
 						PlayState.SONG = Song.loadFromJson('toybox-casualMechanicless', 'toybox');
 					}
-					if (ClientPrefs.mechanics == false && curDifficulty == 1)
+					if (!ClientPrefs.mechanics && curDifficulty == 1)
 					{
 						trace('I got loaded lol [Toybox], on villainous with no mechanics');
 						PlayState.SONG = Song.loadFromJson('toybox-villainousMechanicless', 'toybox');
@@ -870,28 +870,19 @@ class FreeplayState extends MusicBeatState
 				
 				if (songs[curSelected].songName == 'Lustality Remix')
 				{
-					if (ClientPrefs.mechanics == false && curDifficulty == 0)
+					if (!ClientPrefs.mechanics && curDifficulty == 0)
 					{
 						trace('I got loaded lol [Lustality Remix], on casual with no mechanics');
 						PlayState.SONG = Song.loadFromJson('lustality-remix-casualMechanicless', 'lustality-remix');
 					}
-					if (ClientPrefs.mechanics == false && curDifficulty == 1)
+					if (!ClientPrefs.mechanics && curDifficulty == 1)
 					{
 						trace('I got loaded lol [Lustality Remix], on villainous with no mechanics');
 						PlayState.SONG = Song.loadFromJson('lustality-remix-villainousMechanicless', 'lustality-remix');
 					}
 				}
 
-				if (songs[curSelected].songName == 'Libidinousness' && ClientPrefs.optimizationMode == true)
-				{
-					trace('Loading Optimization Mode!');
-					if (curDifficulty == 0)
-						PlayState.SONG = Song.loadFromJson('libidinousness-villainousoptimized', 'libidinousness');
-					else if (curDifficulty == 1)
-						PlayState.SONG = Song.loadFromJson('libidinousness-iniquitousoptimized', 'libidinousness');
-				}
-
-				if (songs[curSelected].songName == 'Libidinousness' && ClientPrefs.optimizationMode == false && ClientPrefs.performanceWarning == true)
+				if (songs[curSelected].songName == 'Libidinousness' && !ClientPrefs.optimizationMode && ClientPrefs.performanceWarning)
 				{
 					warning = true;
 					FlxG.sound.play(Paths.sound('scrollMenu'));
@@ -934,7 +925,7 @@ class FreeplayState extends MusicBeatState
 
 		if (warning)
 		{
-			if (FlxG.keys.justPressed.Y || controls.ACCEPT)
+			if (FlxG.keys.justPressed.Y)
 			{
 				FlxG.sound.play(Paths.sound('confirmMenu'));
 				ClientPrefs.lowQuality = false;
@@ -944,12 +935,8 @@ class FreeplayState extends MusicBeatState
 					PlayState.SONG = Song.loadFromJson('libidinousness-villainous', 'libidinousness');
 				else if (curDifficulty == 1)
 					PlayState.SONG = Song.loadFromJson('libidinousness-iniquitous', 'libidinousness');
-
-				FlxG.mouse.visible = false;
-				LoadingState.loadAndSwitchState(new PlayState());
-				FlxG.sound.music.volume = 0;
 			}
-			else if (FlxG.keys.justPressed.N || controls.BACK || FlxG.mouse.justPressedRight)
+			else if (FlxG.keys.justPressed.N)
 			{
 				FlxG.sound.play(Paths.sound('confirmMenu'));
 				ClientPrefs.lowQuality = true;
@@ -959,11 +946,10 @@ class FreeplayState extends MusicBeatState
 					PlayState.SONG = Song.loadFromJson('libidinousness-villainousoptimized', 'libidinousness');
 				else if (curDifficulty == 1)
 					PlayState.SONG = Song.loadFromJson('libidinousness-iniquitousoptimized', 'libidinousness');
-
-				FlxG.mouse.visible = false;
-				LoadingState.loadAndSwitchState(new PlayState());
-				FlxG.sound.music.volume = 0;
 			}	
+			FlxG.mouse.visible = false;
+			LoadingState.loadAndSwitchState(new PlayState());
+			FlxG.sound.music.volume = 0;
 		}
 		super.update(elapsed);
 	}

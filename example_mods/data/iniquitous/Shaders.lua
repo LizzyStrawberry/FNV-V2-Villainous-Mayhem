@@ -28,6 +28,7 @@ function onStepHit()
 			setSpriteShader("iconP1", "glitch")
 			setSpriteShader("timeTxt", "glitch")
 			setSpriteShader("timeBar", "glitch")
+			setSpriteShader("dad", "glitch")
 			runHaxeCode('for (strum in game.playerStrums) strum.shader = game.iconP1.shader;')
 			if redShaderOn == false then
 				setSpriteShader('camShader', "redOverlay")
