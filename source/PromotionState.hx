@@ -160,55 +160,7 @@ class PromotionState extends MusicBeatState
         FlxTween.tween(scaleObjectHatesMe, {y: scaleObjectHatesMe.y + 30}, 3.6, {ease: FlxEase.quadInOut, type: PINGPONG});
         FlxTween.tween(titleText, {y: titleText.y + 10}, 3.6, {ease: FlxEase.quadInOut, type: PINGPONG});
 
-        switch(modSelected[curModSelected])
-            {
-                case 'pop':
-                    titleText.text = "Price of Progress";
-                case 'cross':
-                    titleText.text = "Head Honcho Havoc";
-                case 'groovin':
-                    titleText.text = "Graffiti Groovin'";
-                case 'secretGarden':
-                    titleText.text = "Secret Garden";
-                case 'mutedMelodies':
-                    titleText.text = "Muted Melodies Remastered";
-                case 'virus':
-                    titleText.text = "VS Virus R";
-                case 'goon':
-                    titleText.text = "Vs Cassette Goon";
-                case 'ss':
-                    titleText.text = "Singe and Sear";
-                case 'kofi':
-                    titleText.text = "Vs Kofi";
-                case 'lily':
-                    titleText.text = "Lily in Grave";
-                case 'tsah':
-                    titleText.text = "The Stakes are High";
-                case 'rayna':
-                    titleText.text = "Vs Rayna";
-                case 'berrie':
-                    titleText.text = "Vs Berrie";
-                case 'km':
-                    titleText.text = "Vs Kratos Messi";
-                case 'spacey':
-                    titleText.text = "Vs Spacey";
-                case 'giraffe':
-                    titleText.text = "Vs Girrafe";
-                case 'fnt':
-                    titleText.text = "Friday Night Troubleshooting";
-                case 'gt':
-                    titleText.text = "Vs Ghost Twins";
-                case 'fr':
-                    titleText.text = "Flavor Rave";
-                case 'galaxy':
-                    titleText.text = "Vs Galaxy";
-                case 'mad':
-                    titleText.text = "VS Mime and Dash";
-                case 'danke':
-                    titleText.text = "Vs Danke";
-                case 'alice':
-                    titleText.text = "Alice Mad & Hopeless";
-            }
+        changeMod();
 
         arrowSelectorLeft = new FlxSprite(80, 240).loadGraphic(Paths.image('freeplayStuff/arrowSelectorLeft'));
 		arrowSelectorLeft.antialiasing = ClientPrefs.globalAntialiasing;
