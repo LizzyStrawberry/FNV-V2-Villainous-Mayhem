@@ -920,24 +920,24 @@ class MinigameState extends MusicBeatState
 	}
 
 	private function shuffleArray<T>(array:Array<T>):Array<T>
+	{
+		var currentIndex = array.length;
+		var temporaryValue:T;
+		var randomIndex:Int;
+	
+		// While there remain elements to shuffle...
+		while (currentIndex != 0)
 		{
-			var currentIndex = array.length;
-			var temporaryValue:T;
-			var randomIndex:Int;
+			// Pick a remaining element...
+			randomIndex = Math.floor(Math.random() * currentIndex);
+			currentIndex--;
 	
-			// While there remain elements to shuffle...
-			while (currentIndex != 0)
-			{
-				// Pick a remaining element...
-				randomIndex = Math.floor(Math.random() * currentIndex);
-				currentIndex--;
-	
-				// And swap it with the current element.
-				temporaryValue = array[currentIndex];
-				array[currentIndex] = array[randomIndex];
-				array[randomIndex] = temporaryValue;
-			}
-	
-			return array;
+			// And swap it with the current element.
+			temporaryValue = array[currentIndex];
+			array[currentIndex] = array[randomIndex];
+			array[randomIndex] = temporaryValue;
 		}
+	
+		return array;
+	}
 }

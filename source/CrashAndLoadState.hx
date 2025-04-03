@@ -104,7 +104,7 @@ class CrashAndLoadState extends MusicBeatState
                 songText = new Alphabet(585, 375, "Get Gooned", true);
 
             default: //Testing Value
-                songText = new Alphabet(540, 375, "Toxic Mishap", true); 
+                songText = new Alphabet(540, 375, "Test Song", true); 
         }
 		songText.setAlignmentFromString('center');
         songText.scaleX = 0.8;
@@ -149,173 +149,173 @@ class CrashAndLoadState extends MusicBeatState
     var mechanicless:String = '';
     override function update(elapsed:Float)
     {
-        if ((controls.BACK || FlxG.mouse.justPressedRight) && selectedSomething == false)
+        if ((controls.BACK || FlxG.mouse.justPressedRight) && !selectedSomething)
         {
             MusicBeatState.switchState(new StoryMenuState());
             FlxG.sound.play(Paths.sound('cancelMenu'));
         }
         
-        if ((FlxG.keys.justPressed.LEFT || FlxG.keys.justPressed.A) && selectedSomething == false)
+        if (controls.UI_LEFT_P && !selectedSomething)
             changeSelection(-1);
-        if ((FlxG.keys.justPressed.RIGHT || FlxG.keys.justPressed.D) && selectedSomething == false)
+        if (controls.UI_RIGHT_P && !selectedSomething)
             changeSelection(1);
 
-        if (FlxG.mouse.overlaps(yes) && selectedSomething == false && overlapping == false && curSelected != 0)
+        if (FlxG.mouse.overlaps(yes) && !selectedSomething && !overlapping && curSelected != 0)
         {
             curSelected = 0;
             changeSelection();
             overlapping = true;
         }
-        if (FlxG.mouse.overlaps(no) && selectedSomething == false && overlapping == false && curSelected != 1)
+        if (FlxG.mouse.overlaps(no) && !selectedSomething && !overlapping && curSelected != 1)
         {
             curSelected = 1;
             changeSelection();
             overlapping = true;
         }
         
-        if (!(FlxG.mouse.overlaps(no) || FlxG.mouse.overlaps(yes)) && selectedSomething == false && overlapping == true)
-                overlapping = false;
+        if (!(FlxG.mouse.overlaps(no) || FlxG.mouse.overlaps(yes)) && !selectedSomething && overlapping)
+            overlapping = false;
 
-        if (((curSelected == 0 && controls.ACCEPT) || (FlxG.mouse.overlaps(yes) && FlxG.mouse.justPressed)) && selectedSomething == false)
+        if (((curSelected == 0 && controls.ACCEPT) || (FlxG.mouse.overlaps(yes) && FlxG.mouse.justPressed)) && !selectedSomething)
+        {
+            selectedSomething = true;
+            FlxG.sound.play(Paths.sound('confirmMenu'), 0.4);
+
+            switch(ClientPrefs.storyModeCrashMeasure)
             {
-                selectedSomething = true;
-                FlxG.sound.play(Paths.sound('confirmMenu'), 0.4);
+                //Main Week:
+                case 'Toxic Mishap':
+                    if (!ClientPrefs.mechanics && ClientPrefs.storyModeCrashDifficultyNum == 1)
+                        mechanicless = "Mechanicless";
+                    if (ClientPrefs.storyModeCrashDifficultyNum >= 1)
+                        PlayState.storyPlaylist = ['Toxic Mishap', 'Paycheck', 'Villainy'];
+                    else
+                        PlayState.storyPlaylist = ['Toxic Mishap', 'Paycheck'];
+                case 'Paycheck':
+                    if (ClientPrefs.storyModeCrashDifficultyNum >= 1)
+                        PlayState.storyPlaylist = ['Paycheck', 'Villainy'];
+                    else
+                        PlayState.storyPlaylist = ['Paycheck'];
+                case 'Villainy':
+                    PlayState.storyPlaylist = ['Villainy'];
 
-                switch(ClientPrefs.storyModeCrashMeasure)
-                {
-                    //Main Week:
-                    case 'Toxic Mishap':
-                        if (ClientPrefs.mechanics == false && ClientPrefs.storyModeCrashDifficultyNum == 1)
-                            mechanicless = "Mechanicless";
-                        if (ClientPrefs.storyModeCrashDifficultyNum >= 1)
-                            PlayState.storyPlaylist = ['Toxic Mishap', 'Paycheck', 'Villainy'];
-                        else
-                            PlayState.storyPlaylist = ['Toxic Mishap', 'Paycheck'];
-                    case 'Paycheck':
-                        if (ClientPrefs.storyModeCrashDifficultyNum >= 1)
-                            PlayState.storyPlaylist = ['Paycheck', 'Villainy'];
-                        else
-                            PlayState.storyPlaylist = ['Paycheck'];
-                    case 'Villainy':
-                        PlayState.storyPlaylist = ['Villainy'];
-
-                    //Week 2
-                    case 'Nunconventional':
-                        if (ClientPrefs.storyModeCrashDifficultyNum >= 1)
-                        {
-                            PlayState.storyPlaylist = ['Nunconventional', 'Point Blank'];
-                            if (ClientPrefs.storyModeCrashDifficultyNum == 2)
-                                ClientPrefs.ghostTapping = false;
-                        } 
-                        else
-                            PlayState.storyPlaylist = ['Nunconventional'];
+                //Week 2
+                case 'Nunconventional':
+                    if (ClientPrefs.storyModeCrashDifficultyNum >= 1)
+                    {
+                        PlayState.storyPlaylist = ['Nunconventional', 'Point Blank'];
+                        if (ClientPrefs.storyModeCrashDifficultyNum == 2)
+                            ClientPrefs.ghostTapping = false;
+                    } 
+                    else
+                        PlayState.storyPlaylist = ['Nunconventional'];
                     case 'Point Blank':
                         PlayState.storyPlaylist = ['Point Blank'];
 
-                    //Week 3
-                    case 'Toybox':
-                        if (ClientPrefs.mechanics == false && ClientPrefs.storyModeCrashDifficultyNum <= 1)
-                            mechanicless = "Mechanicless";
-                        if (ClientPrefs.storyModeCrashDifficultyNum >= 1)
-                            PlayState.storyPlaylist = ['Toybox', 'Lustality Remix', 'Libidinousness'];
-                        else
-                            PlayState.storyPlaylist = ['Toybox', 'Lustality Remix'];
-                    case 'Lustality Remix':
-                        if (ClientPrefs.mechanics == false)
-                            mechanicless = "Mechanicless";
-                        if (ClientPrefs.storyModeCrashDifficultyNum >= 1)
-                            PlayState.storyPlaylist = ['Lustality Remix', 'Libidinousness'];
-                        else
-                            PlayState.storyPlaylist = ['Lustality Remix'];
-                    case 'Libidinousness':
-                        if (ClientPrefs.optimizationMode == true || ClientPrefs.lowQuality == true)
-                            mechanicless = "optimized";
-                        PlayState.storyPlaylist = ['Libidinousness'];
+                //Week 3
+                case 'Toybox':
+                    if (!ClientPrefs.mechanics && ClientPrefs.storyModeCrashDifficultyNum <= 1)
+                        mechanicless = "Mechanicless";
+                    if (ClientPrefs.storyModeCrashDifficultyNum >= 1)
+                        PlayState.storyPlaylist = ['Toybox', 'Lustality Remix', 'Libidinousness'];
+                    else
+                        PlayState.storyPlaylist = ['Toybox', 'Lustality Remix'];
+                case 'Lustality Remix':
+                    if (!ClientPrefs.mechanics)
+                        mechanicless = "Mechanicless";
+                    if (ClientPrefs.storyModeCrashDifficultyNum >= 1)
+                        PlayState.storyPlaylist = ['Lustality Remix', 'Libidinousness'];
+                    else
+                        PlayState.storyPlaylist = ['Lustality Remix'];
+                case 'Libidinousness':
+                    if (ClientPrefs.optimizationMode || ClientPrefs.lowQuality)
+                        mechanicless = "optimized";
+                    PlayState.storyPlaylist = ['Libidinousness'];
 
-                    //Legacy Week
-                    case 'Toxic Mishap (Legacy)':
-                        if (ClientPrefs.mechanics == false)
-                            mechanicless = "Mechanicless";
-                        PlayState.storyPlaylist = ['Toxic Mishap (Legacy)', 'Paycheck (Legacy)'];
-                    case 'Paycheck (Legacy)':
-                        PlayState.storyPlaylist = ['Paycheck (Legacy)'];
-
-                    //Week Morky
-                    case "Instrumentally Deranged":
-                        PlayState.storyPlaylist = ["Instrumentally Deranged", "Get Villain'd"];
-                    case "Get Villain'd" | 'get villaind':
-                        PlayState.storyPlaylist = ["Get Villain'd"];
-
-                    //Week Sus
-                    case 'Villain In Board':
-                        if (ClientPrefs.storyModeCrashDifficultyNum == 1)
-                            PlayState.storyPlaylist = ['Villain In Board', 'Excrete'];
-                        else
-                            PlayState.storyPlaylist = ['Villain In Board'];   
-                    case 'Excrete':
-                        PlayState.storyPlaylist = ['Excrete'];
-
-                    //Week D-sides
-                    case 'Cheque':
-                        PlayState.storyPlaylist = ['Cheque', "Get Gooned"];
-                    case "Get Gooned":
-                        PlayState.storyPlaylist = ["Get Gooned"];
-                }
-
-                CoolUtil.difficulties = CoolUtil.defaultDifficulties.copy();
+                //Legacy Week
+                case 'Toxic Mishap (Legacy)':
+                    if (!ClientPrefs.mechanics)
+                        mechanicless = "Mechanicless";
+                    PlayState.storyPlaylist = ['Toxic Mishap (Legacy)', 'Paycheck (Legacy)'];
+                case 'Paycheck (Legacy)':
+                    PlayState.storyPlaylist = ['Paycheck (Legacy)'];
                 
-                FlxFlicker.flicker(yes, 1, 0.04, false);
-                PlayState.storyDifficulty = ClientPrefs.storyModeCrashDifficultyNum;
-                PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0].toLowerCase() + ClientPrefs.storyModeCrashDifficulty + mechanicless, PlayState.storyPlaylist[0].toLowerCase());
-				PlayState.campaignScore += ClientPrefs.storyModeCrashScore;
-				PlayState.campaignMisses += ClientPrefs.storyModeCrashMisses;
+                //Week Morky
+                case "Instrumentally Deranged":
+                    PlayState.storyPlaylist = ["Instrumentally Deranged", "Get Villain'd"];
+                case "Get Villain'd" | 'get villaind':
+                    PlayState.storyPlaylist = ["Get Villain'd"];
 
-                PlayState.storyWeek = ClientPrefs.storyModeCrashWeek;
+                //Week Sus
+                case 'Villain In Board':
+                    if (ClientPrefs.storyModeCrashDifficultyNum == 1)
+                        PlayState.storyPlaylist = ['Villain In Board', 'Excrete'];
+                    else
+                        PlayState.storyPlaylist = ['Villain In Board'];   
+                case 'Excrete':
+                    PlayState.storyPlaylist = ['Excrete'];
 
-                trace('Saved Score :' + ClientPrefs.storyModeCrashScore);
-				trace('Saved Misses: ' + ClientPrefs.storyModeCrashMisses);
-				trace('Saved Week: ' + ClientPrefs.storyModeCrashWeek);
-				trace('Saved Week Name: ' + ClientPrefs.storyModeCrashWeekName);
-				trace('Saved Song: ' + ClientPrefs.storyModeCrashMeasure);
-				trace('Saved Difficulty: ' + ClientPrefs.storyModeCrashDifficulty);
-                trace('Saved Difficulty Number: ' + ClientPrefs.storyModeCrashDifficultyNum);
-				trace('Saved High Score for Week: ' + ClientPrefs.campaignHighScore);
-				trace('Saved Total Rating for the Week: ' + ClientPrefs.campaignRating);
-				trace('Saved Best Combo for the Week so far: ' + ClientPrefs.campaignBestCombo);
-				trace('Saved Songs Played For Week: ' + ClientPrefs.campaignSongsPlayed);
-                trace('CURRENT WEEK: ' + WeekData.getWeekFileName() + ' - ' + ClientPrefs.storyModeCrashWeek);
+                //Week D-sides
+                case 'Cheque':
+                    PlayState.storyPlaylist = ['Cheque', "Get Gooned"];
+                case "Get Gooned":
+                    PlayState.storyPlaylist = ["Get Gooned"];
+            }
 
-                if (ClientPrefs.storyModeCrashWeekName == 'weeklegacy') //checking if it is the legacy week
-                {   
-                    PlayState.SONG.player1 = 'playablegf-old'; //change the player to the old version
-                    if (ClientPrefs.storyModeCrashMeasure != 'Paycheck (Legacy)')
+            CoolUtil.difficulties = CoolUtil.defaultDifficulties.copy();
+                
+            FlxFlicker.flicker(yes, 1, 0.04, false);
+            PlayState.storyDifficulty = ClientPrefs.storyModeCrashDifficultyNum;
+            PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0].toLowerCase() + ClientPrefs.storyModeCrashDifficulty + mechanicless, PlayState.storyPlaylist[0].toLowerCase());
+			PlayState.campaignScore += ClientPrefs.storyModeCrashScore;
+			PlayState.campaignMisses += ClientPrefs.storyModeCrashMisses;
+
+            PlayState.storyWeek = ClientPrefs.storyModeCrashWeek;
+
+            trace('Saved Score :' + ClientPrefs.storyModeCrashScore);
+			trace('Saved Misses: ' + ClientPrefs.storyModeCrashMisses);
+			trace('Saved Week: ' + ClientPrefs.storyModeCrashWeek);
+			trace('Saved Week Name: ' + ClientPrefs.storyModeCrashWeekName);
+			trace('Saved Song: ' + ClientPrefs.storyModeCrashMeasure);
+			trace('Saved Difficulty: ' + ClientPrefs.storyModeCrashDifficulty);
+            trace('Saved Difficulty Number: ' + ClientPrefs.storyModeCrashDifficultyNum);
+			trace('Saved High Score for Week: ' + ClientPrefs.campaignHighScore);
+			trace('Saved Total Rating for the Week: ' + ClientPrefs.campaignRating);
+			trace('Saved Best Combo for the Week so far: ' + ClientPrefs.campaignBestCombo);
+			trace('Saved Songs Played For Week: ' + ClientPrefs.campaignSongsPlayed);
+            trace('CURRENT WEEK: ' + WeekData.getWeekFileName() + ' - ' + ClientPrefs.storyModeCrashWeek);
+
+            if (ClientPrefs.storyModeCrashWeekName == 'weeklegacy') //checking if it is the legacy week
+            {   
+                PlayState.SONG.player1 = 'playablegf-old'; //change the player to the old version
+                if (ClientPrefs.storyModeCrashMeasure != 'Paycheck (Legacy)')
                     PlayState.SONG.player2 = 'marco-old'; //change the opponent to the old version
-                }
-
-                FlxG.camera.flash(FlxColor.WHITE, 1);
-				new FlxTimer().start(1, function(tmr:FlxTimer)
-				{
-                    FlxG.mouse.visible = false;
-					LoadingState.loadAndSwitchState(new PlayState(), true);
-					FreeplayState.destroyFreeplayVocals();
-				});
             }
+
+            FlxG.camera.flash(FlxColor.WHITE, 1);
+			new FlxTimer().start(1, function(tmr:FlxTimer)
+			{
+                FlxG.mouse.visible = false;
+				LoadingState.loadAndSwitchState(new PlayState(), true);
+				FreeplayState.destroyFreeplayVocals();
+			});
+        }
     
-         if (((curSelected == 1 && controls.ACCEPT) || (FlxG.mouse.overlaps(no) && FlxG.mouse.justPressed)) && selectedSomething == false)
-            {
-                FlxG.sound.play(Paths.sound('confirmMenu'), 0.4);
-                selectedSomething = true;
+        if (((curSelected == 1 && controls.ACCEPT) || (FlxG.mouse.overlaps(no) && FlxG.mouse.justPressed)) && !selectedSomething)
+        {
+            FlxG.sound.play(Paths.sound('confirmMenu'), 0.4);
+            selectedSomething = true;
 
-                ClientPrefs.resetStoryModeProgress(true);
+            ClientPrefs.resetStoryModeProgress(true);
 
-                ClientPrefs.campaignBestCombo = 0;
-                ClientPrefs.campaignRating = 0;
-                ClientPrefs.campaignHighScore = 0;
-                ClientPrefs.campaignSongsPlayed = 0;
-				ClientPrefs.saveSettings();
+            ClientPrefs.campaignBestCombo = 0;
+            ClientPrefs.campaignRating = 0;
+            ClientPrefs.campaignHighScore = 0;
+            ClientPrefs.campaignSongsPlayed = 0;
+		    ClientPrefs.saveSettings();
 
-                MusicBeatState.switchState(new StoryMenuState());
-            }
+            MusicBeatState.switchState(new StoryMenuState());
+        }
 
         super.update(elapsed);
     }
