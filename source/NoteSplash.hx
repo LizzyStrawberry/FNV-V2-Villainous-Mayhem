@@ -74,36 +74,39 @@ class NoteSplash extends FlxSprite
 		if(animation.curAnim != null)animation.curAnim.frameRate = 24 + FlxG.random.int(-2, 2);
 	}
 
+	var noteColors:Array<String> = ["purple", "blue", "green", "red"];
 	function loadAnims(skin:String) {
 		frames = Paths.getSparrowAtlas(skin);
-		if (ClientPrefs.noteSplashMode == 'Outwards')
-			for (i in 1...3) {
-				animation.addByPrefix("note1-" + i, "note splash blue " + i, 24, false);
-				animation.addByPrefix("note2-" + i, "note splash green " + i, 24, false);
-				animation.addByPrefix("note0-" + i, "note splash purple " + i, 24, false);
-				animation.addByPrefix("note3-" + i, "note splash red " + i, 24, false);
-			}
-		else if (ClientPrefs.noteSplashMode == 'Inwards')
-			for (i in 1...3) {
-				animation.addByPrefix("note1-" + i, "note splash blue 1", 24, false);
-				animation.addByPrefix("note2-" + i, "note splash green 1", 24, false);
-				animation.addByPrefix("note0-" + i, "note splash purple 1", 24, false);
-				animation.addByPrefix("note3-" + i, "note splash red 1", 24, false);
-			}
-		else if (ClientPrefs.noteSplashMode == 'Diamonds')
-			for (i in 1...3) {
-				animation.addByPrefix("note1-" + i, "note splash diamond blue " + i, 24, false);
-				animation.addByPrefix("note2-" + i, "note splash diamond green " + i, 24, false);
-				animation.addByPrefix("note0-" + i, "note splash diamond purple " + i, 24, false);
-				animation.addByPrefix("note3-" + i, "note splash diamond red " + i, 24, false);
-			}
-		else if (ClientPrefs.noteSplashMode == 'Sparkles')
-			for (i in 1...3) {
-				animation.addByPrefix("note1-" + i, "note splash sparkle blue 1", 24, false);
-				animation.addByPrefix("note2-" + i, "note splash sparkle green 1", 24, false);
-				animation.addByPrefix("note0-" + i, "note splash sparkle purple 1", 24, false);
-				animation.addByPrefix("note3-" + i, "note splash sparkle red 1", 24, false);
-			}
+		switch(ClientPrefs.noteSplashMode)
+		{
+			case "Outwards":
+				for (i in 1...3)
+				{
+					for (noteID in 0...4)
+						animation.addByPrefix("note" + noteID + "-" + i, "note splash " + noteColors[noteID] + " " + i, 24, false);
+				}
+					
+			case "Inwards":
+				for (i in 1...3)
+				{
+					for (noteID in 0...4)
+						animation.addByPrefix("note" + noteID + "-" + i, "note splash " + noteColors[noteID] + " 1", 24, false);
+				}
+
+			case "Diamonds":
+				for (i in 1...3)
+				{
+					for (noteID in 0...4)
+						animation.addByPrefix("note" + noteID + "-" + i, "note splash diamond " + noteColors[noteID] + " " + i, 24, false);
+				}
+
+			case "Sparkles":
+				for (i in 1...3)
+				{
+					for (noteID in 0...4)
+						animation.addByPrefix("note" + noteID + "-" + i, "note splash sparkle " + noteColors[noteID] + " 1", 24, false);
+				}
+		}
 	}
 
 	override function update(elapsed:Float) {

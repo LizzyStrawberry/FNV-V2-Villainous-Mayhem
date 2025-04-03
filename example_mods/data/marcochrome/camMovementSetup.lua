@@ -7,6 +7,7 @@ local camVariables = {
 
 function onCreate()
 	callScript("scripts/Camera Movement", "setCameraMovement", {camVariables.camOffsets, camVariables.ofs, camVariables.noMove, camVariables.camZooms})
+	setGlobalFromScript("scripts/Camera Movement", "allowGF", false)
 end
 
 function onStepHit()

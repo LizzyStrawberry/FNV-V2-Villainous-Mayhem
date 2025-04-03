@@ -200,7 +200,7 @@ function onUpdate(elapsed)
 					FlxG.game.setFilters([]);
 				]])
 			end
-			triggerEvent('Play Animation', 'idle', 'bf')
+			triggerEvent('Play Animation', 'danceLeft', 'bf')
 			setProperty('camGame.zoom', 0.9)	
 		end
 		if curStep == 262 then
@@ -221,7 +221,7 @@ function onUpdate(elapsed)
 					FlxG.game.setFilters([]);
 				]])
 			end
-			triggerEvent('Play Animation', 'idle', 'bf')
+			triggerEvent('Play Animation', 'danceLeft', 'bf')
 			setProperty('camGame.zoom', 0.9)	
 		end
 		if curStep == 263 then
@@ -242,7 +242,7 @@ function onUpdate(elapsed)
 					FlxG.game.setFilters([]);
 				]])
 			end
-			triggerEvent('Play Animation', 'idle', 'bf')
+			triggerEvent('Play Animation', 'danceLeft', 'bf')
 			setProperty('camGame.zoom', 0.9)	
 		end
 		if curStep == 265 then
@@ -263,7 +263,7 @@ function onUpdate(elapsed)
 					FlxG.game.setFilters([]);
 				]])
 			end
-			triggerEvent('Play Animation', 'idle', 'bf')
+			triggerEvent('Play Animation', 'danceLeft', 'bf')
 			setProperty('camGame.zoom', 0.9)	
 		end
 		if curStep == 267 then
@@ -339,7 +339,7 @@ function onTimerCompleted(tag)
 				FlxG.game.setFilters([]);
 			]])
 		end
-		triggerEvent('Play Animation', 'idle', 'bf')
+		triggerEvent('Play Animation', 'danceLeft', 'bf')
 		setProperty('camGame.zoom', 0.9)
 		runTimer('hello', 0.04)
 	end

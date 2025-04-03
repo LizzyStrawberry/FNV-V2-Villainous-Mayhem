@@ -1,136 +1,165 @@
 {
 	"animations": [
 		{
-			"offsets": [
-				0,
-				0
-			],
 			"loop": false,
-			"fps": 24,
-			"anim": "idle",
-			"indices": [],
-			"name": "ourple idle"
-		},
-		{
 			"offsets": [
 				147,
 				-8
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "singLEFT",
-			"indices": [],
-			"name": "ourple left0"
+			"fps": 24,
+			"name": "ourple left0",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				50,
 				-143
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "singDOWN",
-			"indices": [],
-			"name": "ourple down0"
+			"fps": 24,
+			"name": "ourple down0",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				-13,
 				94
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "singUP",
-			"indices": [],
-			"name": "ourple up0"
+			"fps": 24,
+			"name": "ourple up0",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				144,
 				2
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "singLEFTmiss",
-			"indices": [],
-			"name": "ourple left miss"
+			"fps": 24,
+			"name": "ourple left miss",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				68,
 				-126
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "singDOWNmiss",
-			"indices": [],
-			"name": "ourple down miss"
+			"fps": 24,
+			"name": "ourple down miss",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				-20,
 				110
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "singUPmiss",
-			"indices": [],
-			"name": "ourple up miss"
+			"fps": 24,
+			"name": "ourple up miss",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				29,
 				38
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "singRIGHTmiss",
-			"indices": [],
-			"name": "ourple right miss"
+			"fps": 24,
+			"name": "ourple right miss",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				22,
 				3
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "singRIGHT",
-			"indices": [],
-			"name": "ourple right0"
+			"fps": 24,
+			"name": "ourple right0",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				112,
 				-2
 			],
-			"loop": false,
-			"fps": 32,
 			"anim": "call",
-			"indices": [],
-			"name": "ourple call"
+			"fps": 32,
+			"name": "ourple call",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				431,
 				135
 			],
-			"loop": false,
-			"fps": 16,
 			"anim": "jumpscare",
-			"indices": [],
-			"name": "ourple jumpscare"
+			"fps": 16,
+			"name": "ourple jumpscare",
+			"indices": []
 		},
 		{
-			"loop": false,
 			"offsets": [
 				118,
 				146
 			],
-			"anim": "hey",
+			"loop": false,
 			"fps": 24,
-			"name": "ourple vpose",
-			"indices": []
+			"anim": "hey",
+			"indices": [],
+			"name": "ourple vpose"
+		},
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"indices": [
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7
+			],
+			"fps": 24,
+			"anim": "danceLeft",
+			"loop": false,
+			"name": "ourple idle"
+		},
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"indices": [
+				8,
+				9,
+				10,
+				11,
+				12,
+				13,
+				14,
+				15
+			],
+			"fps": 24,
+			"anim": "danceRight",
+			"loop": false,
+			"name": "ourple idle"
 		}
 	],
 	"no_antialiasing": false,
@@ -150,6 +179,6 @@
 		80,
 		0
 	],
-	"sing_duration": 6.1,
+	"sing_duration": 4.00000000000001,
 	"scale": 1
 }

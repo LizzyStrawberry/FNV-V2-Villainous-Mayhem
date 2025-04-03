@@ -43,7 +43,8 @@ local marcoChars = { -- To flip the camera movements lmao, he's a weird guy
 	'marcx',
 	'marcoshucks',
 	'marcoFFFP1',
-	'marcoFFFP2'
+	'marcoFFFP2',
+	'marcoOurple'
 }
 
 -- Global Camera checks (modify-able)
@@ -61,7 +62,7 @@ flipPlayerMovement = false
 bfIdles = {'idle', 'danceLeft', 'danceRight'}
 dadIdles = {'idle', 'danceLeft', 'danceRight'}
 gfIdles = {'idle', 'danceLeft', 'danceRight'}
-specialAnims = {'scream', 'entrance', 'invisible'}
+specialAnims = {'tail attack', 'jumpscare'}
 
 -- Character Offsets
 local charOffsets = {
@@ -96,11 +97,7 @@ function onCreate()
 			flipPlayerMovement = true
 		end
 	end
-	
-	if songName == "Marcochrome" then
-		allowGF = false
-	end
-	
+
 	if allowCameraMove then
 		setCameraMovement() -- Always call this at the start, to set up camera offsets
 	end
@@ -177,22 +174,21 @@ function onUpdate()
 end
 
 function lookForIdle(character, hasSpecial)
-	if isIdleAnimation(character) then
+	if hasSpecial and isSpecialAnimation(character) then
+		isSinging = false
+		playSpecialAnimation(character)
+		
+		if allowAngleShift and shifting then
+			camAngle(-1)
+			shifting = false
+		end	
+	elseif isIdleAnimation(character) then
 		isSinging = false
 		if character == 'boyfriend' then
 			triggerEvent("Camera Follow Pos", charOffsets.bfX, charOffsets.bfY)
 		else
 			triggerEvent("Camera Follow Pos", charOffsets[character..'X'], charOffsets[character..'Y'])
 		end
-		
-		if allowAngleShift and shifting then
-			camAngle(-1)
-			shifting = false
-		end	
-	end
-	if hasSpecial and isSpecialAnimation(character) then
-		isSinging = false
-		playSpecialAnimation(character)
 		
 		if allowAngleShift and shifting then
 			camAngle(-1)
@@ -228,17 +224,30 @@ end
 
 function isSpecialAnimation(character)
 	for i = 1, #(specialAnims) do
-		if getProperty(character..'.animation.curAnim.name') == specialAnims[i] then return true end
+		if character == "bf" then
+			if getProperty('boyfriend.animation.curAnim.name') == specialAnims[i] then return true end
+		else
+			if getProperty(character..'.animation.curAnim.name') == specialAnims[i] then return true end
+		end
 	end
 	
 	return false
 end
 
 function playSpecialAnimation(character)
+	if character == "bf" then
+		charName = "boyfriend"
+	else
+		charName = character
+	end
+	
 	for anim = 1, #(specialAnims) do
-		if getProperty(character..'.animation.curAnim.name') == specialAnims[anim] then
-			triggerEvent("Camera Follow Pos", charOffsets[character.."X"], charOffsets[character.."Y"])
-
+		if getProperty(charName..'.animation.curAnim.name') == specialAnims[anim] then
+			if specialAnims[anim] == 'tail attack' then
+				triggerEvent("Camera Follow Pos", charOffsets[character.."X"], charOffsets[character.."Y"] + (offset*3))
+			else
+				triggerEvent("Camera Follow Pos", charOffsets[character.."X"], charOffsets[character.."Y"])
+			end
 			break
 		end
 	end
@@ -462,6 +471,12 @@ function camAngle(direction)
 	else
 		doTweenAngle('camAngleTween', 'camGame', 0, 0.7 / playbackRate, 'sineOut')
 		shifting = false
+	end
+end
+
+function onEvent(name, v1, v2)
+	if name == 'Play Animation' then
+		lookForIdle(v2, true) -- Check for any special animation
 	end
 end
 
