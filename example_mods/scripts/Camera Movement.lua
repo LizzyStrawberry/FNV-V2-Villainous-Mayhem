@@ -51,6 +51,7 @@ allowCameraMove = true
 followChars = false
 allowAngleShift = true
 allowZoomShifts = false
+allowGF = true
 
 -- Fliping cam movement shit
 flipEnemyMovement = false
@@ -94,6 +95,10 @@ function onCreate()
 		elseif boyfriendName == marcoChars[pee] then
 			flipPlayerMovement = true
 		end
+	end
+	
+	if songName == "Marcochrome" then
+		allowGF = false
 	end
 	
 	if allowCameraMove then
@@ -253,7 +258,7 @@ function opponentNoteHit(id, direction, noteType, isSustainNote)
 				camAngle(direction)
 			end
 			
-			if noteType == 'GF Sing' or gfSection then
+			if allowGF and (noteType == 'GF Sing' or gfSection) then
 				followBoth = false -- Reset
 				followGF = true
 				gfSide = "opponent"
@@ -293,7 +298,7 @@ function goodNoteHit(id, direction, noteType, isSustainNote)
 				camAngle(direction)
 			end
 			
-			if noteType == 'GF Sing' or gfSection then
+			if allowGF and (noteType == 'GF Sing' or gfSection) then
 				followBoth = false -- Reset
 				followGF = true
 				gfSide = "player"

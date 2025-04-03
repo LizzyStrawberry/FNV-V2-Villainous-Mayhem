@@ -251,16 +251,7 @@ function onCreatePost()
 		setObjectCamera('coloredOpponentCircle', 'hud')
 		addLuaSprite('coloredOpponentCircle', true)
 		
-		-- Song specific
-		if songName == "Libidinousness" then
-			if downscroll then
-				setProperty('coloredPlayerCircle.y', 20)
-				setProperty('coloredOpponentCircle.y', 20)
-			else
-				setProperty('coloredPlayerCircle.y', 575)
-				setProperty('coloredOpponentCircle.y', 575)
-			end
-		end
+		checkSongSpecifications()
 		
 		if hasDiffSlots then
 			makeLuaSprite('iconPlayer', 'healthBars/'..pathToAssets..'P', getProperty('coloredPlayerCircle.x') + properties.circleOffsX, getProperty('coloredPlayerCircle.y') + properties.circleOffsY);
@@ -286,8 +277,6 @@ function onCreatePost()
 			setProperty("coloredPlayerCircle.x", circX[4])
 			setProperty("iconOpponent.x", circX[1])
 			setProperty("coloredOpponentCircle.x", circX[2])
-			
-			debugPrint("bitch")
 		end
 		
 		setObjectOrder('healthBarBG', getObjectOrder('healthBar') + 1)
@@ -303,6 +292,19 @@ function onCreatePost()
 		end
 		
 		updatePadColors()
+	end
+end
+
+function checkSongSpecifications()
+	-- Song specific
+	if songName == "Libidinousness" then
+		if downscroll then
+			setProperty('coloredPlayerCircle.y', 20)
+			setProperty('coloredOpponentCircle.y', 20)
+		else
+			setProperty('coloredPlayerCircle.y', 575)
+			setProperty('coloredOpponentCircle.y', 575)
+		end
 	end
 end
 
