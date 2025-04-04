@@ -321,7 +321,7 @@ class GameOverSubstate extends MusicBeatSubstate
 	}
 
 	var isEnding:Bool = false;
-
+	var endingDur:Float = 0.7;
 	function coolStartDeath(?volume:Float = 1):Void
 	{
 		FlxG.sound.playMusic(Paths.music(loopSoundName), volume);
@@ -334,49 +334,29 @@ class GameOverSubstate extends MusicBeatSubstate
 			checkForMechanics();
 			
 			isEnding = true;
-			if (Paths.formatToSongPath(PlayState.SONG.song) == 'shucks-v2') //Avoid playing the deathConfirm Animation
-			{
-				FlxG.sound.music.fadeOut(1.7);
-			}
-			else
+			if (Paths.formatToSongPath(PlayState.SONG.song) != 'shucks-v2') //Avoid playing the deathConfirm Animation
 				boyfriend.playAnim('deathConfirm', true);
 
-			if (PlayState.SONG.stage == 'TheFinale')
-			{
+			if (PlayState.SONG.stage == 'TheFinale' || Paths.formatToSongPath(PlayState.SONG.song) == 'shucks-v2')
 				FlxG.sound.music.fadeOut(1.7);
-			}
 			else
 			{
-				if (Paths.formatToSongPath(PlayState.SONG.song) != 'shucks-v2')
-				{
-					FlxG.sound.music.stop();
-					FlxG.sound.play(Paths.music(endSoundName));
-				}
+				FlxG.sound.music.stop();
+				FlxG.sound.play(Paths.music(endSoundName));
 			}
+
 			if (Paths.formatToSongPath(PlayState.SONG.song) == 'tactical-mishap')
-				new FlxTimer().start(1.9, function(tmr:FlxTimer)
-					{
-						FlxG.camera.fade(FlxColor.BLACK, 2, false, function()
-						{
-							MusicBeatState.resetState();
-						});
-					});
+				endingDur = 1.9;
 			else if (PlayState.SONG.stage == 'FABG')
-				new FlxTimer().start(1.4, function(tmr:FlxTimer)
-					{
-						FlxG.camera.fade(FlxColor.BLACK, 2, false, function()
-						{
-							MusicBeatState.resetState();
-						});
-					});
-			else
-				new FlxTimer().start(0.7, function(tmr:FlxTimer)
+				endingDur = 1.4;
+
+			new FlxTimer().start(endingDur, function(tmr:FlxTimer)
+			{
+				FlxG.camera.fade(FlxColor.BLACK, 2, false, function()
 				{
-					FlxG.camera.fade(FlxColor.BLACK, 2, false, function()
-					{
-						MusicBeatState.resetState();
-					});
+					MusicBeatState.resetState();
 				});
+			});
 			PlayState.instance.callOnLuas('onGameOverConfirm', [true]);
 		}
 	}
@@ -392,7 +372,7 @@ class GameOverSubstate extends MusicBeatSubstate
 		video.playVideo(Paths.video(videoPath), canSkip);
 		video.finishCallback = function()
 		{
-			if (ClientPrefs.allowPCChanges == false && Wallpaper.oldWallpaper != null)
+			if (!ClientPrefs.allowPCChanges && Wallpaper.oldWallpaper != null)
 				CppAPI.setWallpaper("old");
 
 			if (crashGame)
