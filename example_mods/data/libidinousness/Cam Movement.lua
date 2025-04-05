@@ -22,6 +22,7 @@ function onUpdate()
 		end
 		if curBeat == 92 or curBeat == 272 or curBeat == 448 or curStep == 3016 then
 			setGlobalFromScript("scripts/Camera Movement", 'followChars', false)
+			setProperty("defaultCamZoom", 0.4)
 		end
 		if curBeat == 287 or curBeat == 465 then
 			setGlobalFromScript("scripts/Camera Movement", 'followChars', true)

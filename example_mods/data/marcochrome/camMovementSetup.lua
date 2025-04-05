@@ -12,7 +12,7 @@ end
 
 function onStepHit()
 	if curStep == 1024 then
-		callScript("scripts/Camera Movement", "setCameraProperty", {"dadCamera", "200, 385"})
-		callScript("scripts/Camera Movement", "setCameraProperty", {"bfCamera", "200, 385"})
+		callScript("scripts/Camera Movement", "setCameraProperty", {"dadCamera", "225, 385"})
+		callScript("scripts/Camera Movement", "setCameraProperty", {"bfCamera", "225, 385"})
 	end
 end

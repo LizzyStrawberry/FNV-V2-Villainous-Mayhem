@@ -115,10 +115,10 @@
 				994,
 				111
 			],
-			"indices": [],
+			"loop": false,
 			"fps": 24,
 			"anim": "firstDeath",
-			"loop": false,
+			"indices": [],
 			"name": "lillie first death"
 		},
 		{
@@ -126,10 +126,10 @@
 				-50,
 				39
 			],
-			"indices": [],
+			"loop": true,
 			"fps": 24,
 			"anim": "deathLoop",
-			"loop": true,
+			"indices": [],
 			"name": "lillie death loop"
 		},
 		{
@@ -137,10 +137,10 @@
 				-50,
 				39
 			],
-			"indices": [],
+			"loop": false,
 			"fps": 24,
 			"anim": "deathConfirm",
-			"loop": false,
+			"indices": [],
 			"name": "lillie death loop"
 		}
 	],
@@ -158,8 +158,8 @@
 		178
 	],
 	"camera_position": [
-		-10,
-		0
+		890,
+		-200
 	],
 	"sing_duration": 4,
 	"scale": 1

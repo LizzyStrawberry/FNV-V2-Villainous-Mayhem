@@ -2,7 +2,7 @@ local notePos = {}
 
 function onCreatePost()
 	setProperty('gf.visible', false)
-	setProperty('dad.x', getProperty('boyfriend.x') - 200)
+
 	for i = 0,7 do 
 		x = getPropertyFromGroup('strumLineNotes', i, 'x')
 		table.insert(notePos, x)

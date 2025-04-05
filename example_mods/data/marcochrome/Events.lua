@@ -27,6 +27,13 @@ function onCreatePost()
 	setProperty('blackBG.alpha', 1)
 	addLuaSprite('blackBG', true)
 	
+	makeLuaSprite('lineEffect', 'effects/lineEffect', 75, -200)
+	setScrollFactor('lineEffect', 0, 0)
+	setObjectCamera('lineEffect', 'game')
+	setProperty('lineEffect.alpha', 0)
+	scaleObject("lineEffect", 0.9, 0.9)
+	addLuaSprite('lineEffect', true)
+	
 	makeLuaSprite('green', '', -300, -300)
 	makeGraphic('green', 2000, 2000, '769469')
 	setScrollFactor('green', 0, 0)
@@ -52,12 +59,15 @@ function onSongStart()
 	setPropertyFromGroup('opponentStrums', 3, 'x', 1000)
 end
 
+local heightCheck
 function onUpdatePost()
 	if curBeat == 0 then
 		for i = 0, 3 do
 			setPropertyFromGroup('opponentStrums',i,'alpha',0)
 		end
 	end
+	
+	setProperty('lineEffect.angle', getProperty("lineEffect.angle") + (7.5 * playbackRate))
 	
 	for i = 0, 3 do
 		setPropertyFromGroup('opponentStrums', i, 'texture', 'notes/MarcoNOTE_assets');
@@ -69,7 +79,8 @@ function onUpdatePost()
 		if getPropertyFromGroup('notes', i, 'noteType') == 'GF Sing' then
 			setPropertyFromGroup('notes', i, 'scale.x', 2);
 			setPropertyFromGroup('notes', i, 'scale.y', 2);
-			setPropertyFromGroup('notes', i, 'texture', 'notes/MarcoNOTE_assets');
+			--setPropertyFromGroup('notes', i, 'texture', 'notes/MarcoNOTE_assets');
+			setPropertyFromGroup('notes', i, 'visible', false);
 		end
 	end
 	
@@ -92,14 +103,18 @@ function onUpdatePost()
 	if curStep >= 896 and curStep <= 1024 then
 		if curStep % 16 == 0 then
 			doTweenAlpha('MichealFadeIn', 'gf', 0.5, 1 / playbackRate, 'linear')
+			doTweenAlpha('lineThingFadeIn', 'lineEffect', 0.8, 1 / playbackRate, 'cubeInOut')
 		end
 		if curStep % 16 == 8 then
 			doTweenAlpha('MichealFadeIn', 'gf', 0.1, 1 / playbackRate, 'linear')
+			doTweenAlpha('lineThingFadeIn', 'lineEffect', 0.3, 1 / playbackRate, 'cubeInOut')
 		end
 	end
 	if curStep == 1024 then
+		cancelTween('lineThingFadeIn')
 		cancelTween('MichealFadeIn')
 		doTweenAlpha('MichealFadeOut', 'gf', 0, 1 / playbackRate, 'linear')
+		doTweenAlpha('lineThingFadeOut', 'lineEffect', 0, 1 / playbackRate, 'easeInOut')
 	end
 	if curStep > 1024 then
 		if curStep % 64 == 0 then
