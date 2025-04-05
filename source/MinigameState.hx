@@ -100,7 +100,7 @@ class MinigameState extends MusicBeatState
 		#end
 		
 		minigame = FlxG.random.int(1, 3);
-
+		
 		FlxG.sound.playMusic(Paths.music('shopTheme'), 0);
 		FlxG.sound.music.fadeIn(7, 0, 0.6);
 
@@ -157,9 +157,6 @@ class MinigameState extends MusicBeatState
 			minigameTitle.alpha = 0;
 			add(minigameTitle);
 	
-			FlxTween.tween(minigameTitle, {alpha: 0.6}, 1.7, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(minigameTitle, {y: minigameTitle.y + 10}, 3.2, {ease: FlxEase.cubeInOut, type: PINGPONG});
-	
 			changeSelection();
 		}
 		else if (minigame == 2)
@@ -205,10 +202,7 @@ class MinigameState extends MusicBeatState
 			minigameTitle = new Alphabet(320, 10, "Find the Token!", true);
 			minigameTitle.alpha = 0;
 			add(minigameTitle);
-
-			FlxTween.tween(minigameTitle, {alpha: 0.6}, 1.7, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(minigameTitle, {y: minigameTitle.y + 10}, 3.2, {ease: FlxEase.cubeInOut, type: PINGPONG});
-
+			
 			setUpFTT();
 		}
 		else if (minigame == 3)
@@ -239,17 +233,21 @@ class MinigameState extends MusicBeatState
 
 			for (i in 0...12)
 			{
-				var card = new FlxSprite(0, 0).loadGraphic(Paths.image('minigames/' + shuffledCards[i]));	
+				var card = new FlxSprite(0, 0).loadGraphic(Paths.imageWithOldMethod('minigames/' + shuffledCards[i]));	
 				card.screenCenter();
 				card.ID = i;
 				card.y += 15;
 				card.x -= 110;
-				if (card.ID == 0 || card.ID == 4 || card.ID == 8)
-					card.x -= 220;
-				else if (card.ID == 2 || card.ID == 6 || card.ID == 10)
-					card.x += 220;
-				else if (card.ID == 3 || card.ID == 7 || card.ID == 11)
-					card.x += 440;
+				
+				switch (card.ID)
+				{
+					case 0 | 4 | 8:
+						card.x -= 220;
+					case 2 | 6 | 10:
+						card.x += 220;
+					case 3 | 7 | 11:
+						card.x += 440;
+				}
 
 				if (card.ID >= 0 && card.ID <= 3)
 					card.y -= 210;
@@ -274,12 +272,16 @@ class MinigameState extends MusicBeatState
 				card.ID = i;
 				card.y += 15;
 				card.x -= 110;
-				if (card.ID == 0 || card.ID == 4 || card.ID == 8)
-					card.x -= 220;
-				else if (card.ID == 2 || card.ID == 6 || card.ID == 10)
-					card.x += 220;
-				else if (card.ID == 3 || card.ID == 7 || card.ID == 11)
-					card.x += 440;
+
+				switch (card.ID)
+				{
+					case 0 | 4 | 8:
+						card.x -= 220;
+					case 2 | 6 | 10:
+						card.x += 220;
+					case 3 | 7 | 11:
+						card.x += 440;
+				}
 
 				if (card.ID >= 0 && card.ID <= 3)
 					card.y -= 210;
@@ -346,28 +348,28 @@ class MinigameState extends MusicBeatState
 			countdown.updateHitbox();
 			countdown.screenCenter(XY);
 
-			new FlxTimer().start(3, function (tmr:FlxTimer) {
+			new FlxTimer().start(1, function (tmr:FlxTimer) {
 				FlxG.sound.play(Paths.sound('minigames/normalintros/' + sound + '/intro2'), 0.6);
 				add(countdown);
 				FlxTween.tween(countdown, {alpha: 0}, 0.7, {ease: FlxEase.cubeInOut, type: PERSIST});
 			});
-			new FlxTimer().start(4, function (tmr:FlxTimer) {
+			new FlxTimer().start(2, function (tmr:FlxTimer) {
 				FlxG.sound.play(Paths.sound('minigames/normalintros/' + sound + '/intro1'), 0.6);
 				countdown.loadGraphic(Paths.image('intros/normal/set'));
 				countdown.alpha = 1;
 				FlxTween.tween(countdown, {alpha: 0}, 0.7, {ease: FlxEase.cubeInOut, type: PERSIST});
 			});
-			new FlxTimer().start(5, function (tmr:FlxTimer) {
+			new FlxTimer().start(3, function (tmr:FlxTimer) {
 				FlxG.sound.play(Paths.sound('minigames/normalintros/' + sound + '/introGo'), 0.6);
 				countdown.loadGraphic(Paths.image('intros/normal/go'));
 				countdown.alpha = 1;
 				FlxTween.tween(countdown, {alpha: 0}, 0.7, {ease: FlxEase.cubeInOut, type: PERSIST});
 				timer = new FlxTimer().start(0.7, fix);
 			});
-
-			FlxTween.tween(minigameTitle, {alpha: 0.6}, 1.7, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(minigameTitle, {y: minigameTitle.y + 10}, 3.2, {ease: FlxEase.cubeInOut, type: PINGPONG});
 		}
+
+		FlxTween.tween(minigameTitle, {alpha: 0.6}, 1.7, {ease: FlxEase.cubeInOut, type: PERSIST});
+		FlxTween.tween(minigameTitle, {y: minigameTitle.y + 10}, 3.2, {ease: FlxEase.cubeInOut, type: PINGPONG});
 
 		super.create();
 	}
@@ -393,71 +395,6 @@ class MinigameState extends MusicBeatState
 		});
 	}
 
-	var switchPos:FlxTimer;
-	var switchPosAgain:FlxTimer;
-	function setUpFTT()
-	{
-		cups.forEach(function(spr:FlxSprite)
-		{
-			FlxTween.tween(spr, {y: spr.y - 150}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
-		});
-
-		FlxTween.tween(tipText, {alpha: 1}, 1.7, {ease: FlxEase.cubeInOut, type: PERSIST});
-
-		new FlxTimer().start(5.5, function (tmr:FlxTimer) {
-			cups.forEach(function(spr:FlxSprite)
-			{
-				FlxTween.tween(spr, {y: spr.y + 150}, 0.7, {ease: FlxEase.circOut, type: PERSIST, onComplete: function(twn:FlxTween)
-					{
-						switchPos = new FlxTimer().start(0.45, switchCups);
-						new FlxTimer().start(FlxG.random.int(3, 6), function (tmr:FlxTimer) {
-							token.alpha = 0;
-							timer = new FlxTimer().start(1, fix);
-						});
-					}
-				});
-			});
-		});
-	}
-
-	function switchCups(timer:FlxTimer)
-	{	
-		if (allowedToPlay == false)
-		{
-			// Shuffle the cupX array to determine the new X positions for the cups to tween
-			cupX = shuffleArray(cupX);
-
-			cups.forEach(function(spr:FlxSprite)
-			{
-				var newX = cupX[spr.ID];
-				
-				// Tween the cup to the new X position
-				FlxTween.tween(spr, {x: newX}, 0.3, {ease: FlxEase.cubeInOut, type: PERSIST});
-			});
-			FlxTween.tween(token, {x: cupX[tokenFollow] + 100}, 0.3, {ease: FlxEase.cubeInOut, type: PERSIST});
-			switchPosAgain = new FlxTimer().start(0.4, switchCupsRepeat);
-		}
-	}
-
-	function switchCupsRepeat(timer:FlxTimer)
-		{
-			if (allowedToPlay == false)
-			{
-				// Shuffle the cupX array to determine the new X positions for the cups to tween
-				cupX = shuffleArray(cupX);
-					
-				cups.forEach(function(spr:FlxSprite)
-				{	
-					var newX = cupX[spr.ID];
-				
-					// Tween the cup to the new X position
-					FlxTween.tween(spr, {x: newX}, 0.3, {ease: FlxEase.cubeInOut, type: PERSIST});
-				});
-				FlxTween.tween(token, {x: cupX[tokenFollow] + 50}, 0.3, {ease: FlxEase.cubeInOut, type: PERSIST});
-				switchPos = new FlxTimer().start(0.4, switchCups);
-			}
-		}
-
 	var flipped:Bool = false;
 	var selectedSomethin:Bool = false;
 	var selection:Int = 0;
@@ -465,14 +402,14 @@ class MinigameState extends MusicBeatState
 	{
 		if (minigame == 1)
 		{
-			if (allowedToPlay == true)
+			if (allowedToPlay)
 			{
 					if (controls.UI_LEFT_P)
 						changeSelection(-1);
 					if (controls.UI_RIGHT_P)
 						changeSelection(1);
 			
-					if (controls.ACCEPT && flipped == false)
+					if (controls.ACCEPT && !flipped)
 					{
 						flipped = true;
 						coin.animation.play('flip');
@@ -498,25 +435,16 @@ class MinigameState extends MusicBeatState
 		}
 		else if (minigame == 2)
 		{
-			if (allowedToPlay == true)
+			if (allowedToPlay)
 			{
-				if (selectedSomethin == false)
+				if (!selectedSomethin)
 					cups.forEach(function(spr:FlxSprite)
 					{
 						if (FlxG.mouse.overlaps(spr))
-							switch(spr.ID)
-							{
-								case 0:
-									changeSelection(0);
-								case 1:
-									changeSelection(1);
-								case 2:
-									changeSelection(2);
-							}
-						
+							changeSelection(spr.ID);	
 					});
 			
-					if (FlxG.mouse.justPressed && selectedSomethin == false)
+					if (FlxG.mouse.justPressed)
 					{
 						selectedSomethin = true;
 						token.alpha = 1;
@@ -530,11 +458,9 @@ class MinigameState extends MusicBeatState
 							if (spr.ID == selection)
 								FlxTween.tween(spr, {y: spr.y - 150}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
 							else
-							{
 								new FlxTimer().start(1, function (tmr:FlxTimer) {
 									FlxTween.tween(spr, {y: spr.y - 150}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
 								});
-							}
 						});
 			
 						if (tokenFollow == selection)
@@ -542,7 +468,7 @@ class MinigameState extends MusicBeatState
 							tipText.text = "Congratulations! You found the token! Your prize has been added in!";
 							FlxG.sound.play(Paths.sound('hooray'), 0.5);
 
-							if (PlayState.isStoryMode == true)
+							if (PlayState.isStoryMode)
 							{
 								ClientPrefs.tokens += 1;
 								ClientPrefs.tokensAchieved += 1;
@@ -568,44 +494,19 @@ class MinigameState extends MusicBeatState
 		}
 		else if (minigame == 3)
 		{
-			if (allowedToPlay == true)
+			if (allowedToPlay)
 			{
 				timerTextLeft.text = "Time: " + Math.ceil(gameTimer.timeLeft);
 				timerTextRight.text = "Time: " + Math.ceil(gameTimer.timeLeft);
-				if (selectedSomethin == false)
+				if (!selectedSomethin)
+				{
 					cardsHidden.forEach(function(spr:FlxSprite)
 					{
 						if (FlxG.mouse.overlaps(spr))
-							switch(spr.ID)
-							{
-								case 0:
-									changeSelection(0);
-								case 1:
-									changeSelection(1);
-								case 2:
-									changeSelection(2);
-								case 3:
-									changeSelection(3);
-								case 4:
-									changeSelection(4);
-								case 5:
-									changeSelection(5);
-								case 6:
-									changeSelection(6);
-								case 7:
-									changeSelection(7);
-								case 8:
-									changeSelection(8);
-								case 9:
-									changeSelection(9);
-								case 10:
-									changeSelection(10);
-								case 11:
-									changeSelection(11);
-							}
+							changeSelection(spr.ID);
 					});
-				
-					if (FlxG.mouse.justPressed && selectedSomethin == false)
+					
+					if (FlxG.mouse.justPressed)
 					{
 						selectedSomethin = true;
 						FlxG.sound.play(Paths.sound('minigames/flipCard'));
@@ -621,33 +522,94 @@ class MinigameState extends MusicBeatState
 								onCardSelected(spr);
 						});
 					}
+				}
 			}
 		}
 		super.update(elapsed);
 	}
 
-	function onTimerComplete(timer:FlxTimer):Void
+	// Token Flip Minigame
+	function setCoinLand()
 	{
-		allowedToPlay = false;
-		FlxG.sound.play(Paths.sound('awh'), 0.5);
+		coin.animation.play((flipnum == 0) ? 'heads' : 'tails');
 
-		timerTextLeft.text = "Time: 0";
-		timerTextRight.text = "Time: 0";
-		timerTextLeft.color = FlxColor.RED;
-		timerTextRight.color = FlxColor.RED;
+		if ((flipnum == 0 && selection == 0) || (flipnum == 1 && selection == 1))
+		{
+			trace("It's a win!");
+			FlxG.sound.play(Paths.sound('hooray'), 0.5);
 
-		tipText.text = "Uh oh! The timer ran out!\nBetter Luck Next Time!";
+			ClientPrefs.tokensAchieved += 1;
+
+			if (flipnum == 0)
+				tipText.text = "You guessed HEADS correctly! Your Prize has been added in!";
+			else
+				tipText.text = "You guessed TAILS correctly! Your Prize has been added in!";
+		}	
+		else if ((flipnum == 0 && selection == 1) || (flipnum == 1 && selection == 0))
+		{
+			trace('NOT A MATCH!');
+			FlxG.sound.play(Paths.sound('awh'), 0.5);
+			tipText.text = "Incorrect Answer! Better Luck Next Time!";
+		}	
+
 		FlxTween.tween(tipText, {alpha: 1}, 1, {ease: FlxEase.cubeInOut, type: PERSIST});
-		
+
 		new FlxTimer().start(3, function (tmr:FlxTimer) {
 			FlxG.mouse.visible = false;
 			FlxG.sound.music.fadeOut(1);
 			LoadingState.loadAndSwitchState(new PlayState());
 		});
-
-		trace("Time's up!");
 	}
 
+	// Cups Minigame
+	var switchPos:FlxTimer;
+	function setUpFTT()
+	{
+		cups.forEach(function(spr:FlxSprite)
+		{
+			FlxTween.tween(spr, {y: spr.y - 150}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
+		});
+
+		FlxTween.tween(tipText, {alpha: 1}, 1.7, {ease: FlxEase.cubeInOut, type: PERSIST});
+
+		new FlxTimer().start(5.5, function (tmr:FlxTimer) {
+			cups.forEach(function(spr:FlxSprite)
+			{
+				FlxTween.tween(spr, {y: spr.y + 150}, 0.7, {ease: FlxEase.circOut, type: PERSIST, onComplete: function(twn:FlxTween)
+					{
+						switchPos = new FlxTimer().start(0.45, switchCups);
+						new FlxTimer().start(FlxG.random.int(3, 6), function (tmr:FlxTimer) {
+							if (switchPos != null)
+								switchPos.cancel();
+							token.alpha = 0;
+							timer = new FlxTimer().start(1, fix);
+						});
+					}
+				});
+			});
+		});
+	}
+
+	function switchCups(timer:FlxTimer)
+	{	
+		if (!allowedToPlay)
+		{
+			// Shuffle the cupX array to determine the new X positions for the cups to tween
+			cupX = shuffleArray(cupX);
+
+			cups.forEach(function(spr:FlxSprite)
+			{
+				var newX = cupX[spr.ID];
+				
+				// Tween the cup to the new X position
+				FlxTween.tween(spr, {x: newX}, 0.3, {ease: FlxEase.cubeInOut, type: PERSIST});
+			});
+			FlxTween.tween(token, {x: cupX[tokenFollow] + 100}, 0.3, {ease: FlxEase.cubeInOut, type: PERSIST});
+			switchPos = new FlxTimer().start(0.4, switchCups);
+		}
+	}
+
+	// Cup Minigame
 	var isCancelled:Bool = false;
 	function flippedCardFix(card:FlxSprite)
 	{
@@ -669,32 +631,29 @@ class MinigameState extends MusicBeatState
 		if (isCancelled)
 		{
 			trace("Cancelling Function!");
-			isCancelled = false;
-			selectedSomethin = false;
+			isCancelled = selectedSomethin = false;
 			return;
 		}
 		// Add the card to the selectedCards array
 		selectedCards.push(card);
 
 		 // Check if two or three cards have been selected
-		 if (selectedCards.length == 1)
-			selectedSomethin = false;
-		 else if (selectedCards.length == 2) {
-			// If two cards are selected, check for a match
-			checkForMatch();
-		} else if (selectedCards.length == 3) {
-			// If three cards are selected, check for a match and update the game stats
-			checkForMatch();
-			//updateGameState();
-		}
+		 switch (selectedCards.length)
+		 {
+			case 1:
+				new FlxTimer().start(0.075, function(timer:FlxTimer) { // Add a bit of delay
+					selectedSomethin = false;
+				});
+			case 2 | 3:
+				checkForMatch();
+		 }
 	}
 
 	function checkForMatch()
 	{
 		// Ensure there are exactly two or three cards selected
-		if (selectedCards.length != 2 && selectedCards.length != 3) {
+		if (selectedCards.length != 2 && selectedCards.length != 3)
 			return;
-		}
 	
 		/// Get the sprites for the selected cards
 		var sprite1:String = getImageKey(selectedCards[0]);
@@ -745,7 +704,7 @@ class MinigameState extends MusicBeatState
 		trace('You suck lmao');
 	
 		// Reset selected cards after a delay
-		new FlxTimer().start(1, function(timer:FlxTimer) {
+		new FlxTimer().start(0.7, function(timer:FlxTimer) {
 			cardsHidden.forEach(function(spr:FlxSprite)
 			{
 				fixCards(spr);
@@ -754,34 +713,21 @@ class MinigameState extends MusicBeatState
 		
 	}
 
-	function fixCards(card:FlxSprite)
-	{
-		for (card in selectedBlankCards) {
-			FlxTween.tween(card.scale, {x: 1}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
-		}
-		selectedBlankCards = [];
-		selectedCards = [];
-		new FlxTimer().start(0.8, function(timer:FlxTimer) {
-			selectedSomethin = false;
-		});
-	}
-
 	function handleSuccessfulMatch(numOfCards:Int)
 	{
-		if (numOfCards == 2)
-			trace('You Matched 2 cards!');
-		else
-			trace('You Matched 3 cards!');
+		trace('You Matched ' + numOfCards + ' cards!');
 	
 		// Reset selected cards
 		if (selectedCards.length == 3 && numOfCards == 3)
 		{
 			FlxG.sound.play(Paths.sound('confirmMenu'));
 			matchedPairs++;
+			
 			selectedBlankCards = [];
 			selectedCards = [];
-			trace('resetting!');
-			trace("Matched Pairs:", matchedPairs, "Total Pairs:", shuffledCards.length / 3);
+
+			trace('Resetting!');
+			trace("Matched Pairs: " + matchedPairs  + " | Total Pairs: " + shuffledCards.length / 3);
 		}
 	
 		if (matchedPairs == shuffledCards.length / 3) 
@@ -793,10 +739,9 @@ class MinigameState extends MusicBeatState
 
 			gameTimer.active = false;
 
-			timerTextLeft.color = FlxColor.GREEN;
-			timerTextRight.color = FlxColor.GREEN;
+			timerTextLeft.color = timerTextRight.color = FlxColor.GREEN;
 
-			if (PlayState.isStoryMode == true)
+			if (PlayState.isStoryMode)
 			{
 				ClientPrefs.tokens += 1;
 				ClientPrefs.tokensAchieved += 1;
@@ -811,7 +756,44 @@ class MinigameState extends MusicBeatState
 			});
 		}
 		else
+			new FlxTimer().start(0.075, function(timer:FlxTimer) {
+				selectedSomethin = false;
+			});
+	}
+	
+	function fixCards(card:FlxSprite)
+	{
+		for (card in selectedBlankCards)
+			FlxTween.tween(card.scale, {x: 1}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
+
+		selectedBlankCards = [];
+		selectedCards = [];
+
+		new FlxTimer().start(0.8, function(timer:FlxTimer) {
 			selectedSomethin = false;
+		});
+	}
+	
+	function onTimerComplete(timer:FlxTimer):Void
+	{
+		allowedToPlay = false;
+		FlxG.sound.play(Paths.sound('awh'), 0.5);
+
+		timerTextLeft.text = "Time: 0";
+		timerTextRight.text = "Time: 0";
+		timerTextLeft.color = FlxColor.RED;
+		timerTextRight.color = FlxColor.RED;
+
+		tipText.text = "Uh oh! The timer ran out!\nBetter Luck Next Time!";
+		FlxTween.tween(tipText, {alpha: 1}, 1, {ease: FlxEase.cubeInOut, type: PERSIST});
+		
+		new FlxTimer().start(3, function (tmr:FlxTimer) {
+			FlxG.mouse.visible = false;
+			FlxG.sound.music.fadeOut(1);
+			LoadingState.loadAndSwitchState(new PlayState());
+		});
+
+		trace("Time's up!");
 	}
 
 	private function getImageKey(sprite:FlxSprite):String {
@@ -819,6 +801,7 @@ class MinigameState extends MusicBeatState
 		return sprite.graphic.assetsKey;
 	}
 
+	// General Stuff
 	function changeSelection(huh:Int = 0)
 	{
 		if (minigame == 1)
@@ -830,10 +813,7 @@ class MinigameState extends MusicBeatState
 			if (selection < 0)
 				selection = 1;
 	
-			if (selection == 0)
-				answer.text = 'Heads';
-			if (selection == 1)
-				answer.text = 'Tails';
+			answer.text = (selection == 0) ? 'Heads' : 'Tails';
 		}
 		else if (minigame == 2)
 		{
@@ -871,64 +851,16 @@ class MinigameState extends MusicBeatState
 		}
 	}
 
-	function setCoinLand()
-	{
-		if (flipnum == 0)
-			coin.animation.play('heads');
-		else if (flipnum == 1)
-			coin.animation.play('tails');
-
-		if (flipnum == 0 && selection == 0)
-		{
-			trace('Heads!');
-			FlxG.sound.play(Paths.sound('hooray'), 0.5);
-
-			ClientPrefs.tokensAchieved += 1;
-
-			tipText.text = "You guessed HEADS correctly! Your Prize has been added in!";
-		}	
-		else if (flipnum == 1 && selection == 1)
-		{
-			trace('Tails!');
-			FlxG.sound.play(Paths.sound('hooray'), 0.5);
-			
-			ClientPrefs.tokensAchieved += 1;
-
-			tipText.text = "You guessed TAILS correctly! Your Prize has been added in!";
-
-		}
-		else if (flipnum == 0 && selection == 1)
-		{
-			trace('NOT A MATCH!');
-			FlxG.sound.play(Paths.sound('awh'), 0.5);
-			tipText.text = "Incorrect Answer! Better Luck Next Time!";
-		}	
-		else if (flipnum == 1 && selection == 0)
-		{
-			trace('NOT A MATCH!');
-			FlxG.sound.play(Paths.sound('awh'), 0.5);
-			tipText.text = "Incorrect Answer! Better Luck Next Time!";
-		}
-
-		FlxTween.tween(tipText, {alpha: 1}, 1, {ease: FlxEase.cubeInOut, type: PERSIST});
-
-		new FlxTimer().start(3, function (tmr:FlxTimer) {
-			FlxG.mouse.visible = false;
-			FlxG.sound.music.fadeOut(1);
-			LoadingState.loadAndSwitchState(new PlayState());
-		});
-	}
-
 	private function shuffleArray<T>(array:Array<T>):Array<T>
 	{
 		var currentIndex = array.length;
 		var temporaryValue:T;
 		var randomIndex:Int;
 	
-		// While there remain elements to shuffle...
+		// While there remain elements to shuffle.
 		while (currentIndex != 0)
 		{
-			// Pick a remaining element...
+			// Pick a remaining element.
 			randomIndex = Math.floor(Math.random() * currentIndex);
 			currentIndex--;
 	

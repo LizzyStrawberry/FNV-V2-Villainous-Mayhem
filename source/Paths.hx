@@ -235,55 +235,62 @@ class Paths
 	}
 
 	public static var currentTrackedAssets:Map<String, FlxGraphic> = [];
+	inline static public function imageWithOldMethod(key:String, ?library:String):FlxGraphic // I need the assetsKey lowkey
+	{
+		// streamlined the assets process more
+		var returnAsset:FlxGraphic = returnGraphic(key, library);
+		return returnAsset;
+	}
+
 	static public function image(key:String, ?library:String = null, ?allowGPU:Bool = true):FlxGraphic
-		{
-			var bitmap:BitmapData = null;
-			var file:String = null;
+	{
+		var bitmap:BitmapData = null;
+		var file:String = null;
 	
-			#if MODS_ALLOWED
-			file = modsImages(key);
+		#if MODS_ALLOWED
+		file = modsImages(key);
+		if (currentTrackedAssets.exists(file))
+		{
+			localTrackedAssets.push(file);
+			return currentTrackedAssets.get(file);
+		}
+		else if (FileSystem.exists(file))
+			bitmap = BitmapData.fromFile(file);
+		else
+		#end
+		{
+			file = getPath('images/$key.png', IMAGE, library);
 			if (currentTrackedAssets.exists(file))
 			{
 				localTrackedAssets.push(file);
 				return currentTrackedAssets.get(file);
 			}
-			else if (FileSystem.exists(file))
-				bitmap = BitmapData.fromFile(file);
-			else
-			#end
-			{
-				file = getPath('images/$key.png', IMAGE, library);
-				if (currentTrackedAssets.exists(file))
-				{
-					localTrackedAssets.push(file);
-					return currentTrackedAssets.get(file);
-				}
-				else if (OpenFlAssets.exists(file, IMAGE))
-					bitmap = OpenFlAssets.getBitmapData(file);
-			}
-	
-			if (bitmap != null)
-			{
-				localTrackedAssets.push(file);
-				if (allowGPU && ClientPrefs.cacheOnGPU)
-				{
-					var texture:RectangleTexture = FlxG.stage.context3D.createRectangleTexture(bitmap.width, bitmap.height, BGRA, true);
-					texture.uploadFromBitmapData(bitmap);
-					bitmap.image.data = null;
-					bitmap.dispose();
-					bitmap.disposeImage();
-					bitmap = BitmapData.fromTexture(texture);
-				}
-				var newGraphic:FlxGraphic = FlxGraphic.fromBitmapData(bitmap, false, file);
-				newGraphic.persist = true;
-				newGraphic.destroyOnNoUse = false;
-				currentTrackedAssets.set(file, newGraphic);
-				//trace('$file has been cached to GPU.');
-				return newGraphic;
-			}
-	
-			return null;
+			else if (OpenFlAssets.exists(file, IMAGE))
+				bitmap = OpenFlAssets.getBitmapData(file);
 		}
+	
+		if (bitmap != null)
+		{
+			localTrackedAssets.push(file);
+			if (allowGPU && ClientPrefs.cacheOnGPU)
+			{
+				var texture:RectangleTexture = FlxG.stage.context3D.createRectangleTexture(bitmap.width, bitmap.height, BGRA, true);
+				texture.uploadFromBitmapData(bitmap);
+				bitmap.image.data = null;
+				bitmap.dispose();
+				bitmap.disposeImage();
+				bitmap = BitmapData.fromTexture(texture);
+			}
+			var newGraphic:FlxGraphic = FlxGraphic.fromBitmapData(bitmap, false, file);
+			newGraphic.persist = true;
+			newGraphic.destroyOnNoUse = false;
+			currentTrackedAssets.set(file, newGraphic);
+			//trace('$file has been cached to GPU.');
+			return newGraphic;
+		}
+	
+		return null;
+	}
 
 	static public function getTextFromFile(key:String, ?ignoreMods:Bool = false):String
 	{
