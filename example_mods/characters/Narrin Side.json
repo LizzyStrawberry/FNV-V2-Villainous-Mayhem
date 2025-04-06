@@ -1,81 +1,81 @@
 {
 	"animations": [
 		{
-			"loop": false,
 			"offsets": [
 				150,
 				100
 			],
-			"anim": "idle",
+			"loop": false,
 			"fps": 24,
-			"name": "narrin idle",
-			"indices": []
+			"anim": "idle",
+			"indices": [],
+			"name": "narrin idle"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				140,
-				55
+				83
 			],
-			"anim": "singLEFT",
+			"loop": false,
 			"fps": 24,
-			"name": "narrin left",
-			"indices": []
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "narrin left"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				-15,
-				93
+				123
 			],
-			"anim": "singRIGHT",
+			"loop": false,
 			"fps": 24,
-			"name": "narrin right",
-			"indices": []
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "narrin right"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				747,
-				91
+				121
 			],
-			"anim": "singDOWN",
+			"loop": false,
 			"fps": 24,
-			"name": "narrin down",
-			"indices": []
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "narrin down"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				81,
-				222
+				250
 			],
-			"anim": "singUP",
+			"loop": false,
 			"fps": 24,
-			"name": "narrin up",
+			"anim": "singUP",
+			"indices": [],
+			"name": "narrin up"
+		},
+		{
+			"loop": false,
+			"offsets": [
+				530,
+				67
+			],
+			"anim": "dead",
+			"fps": 24,
+			"name": "narrin dead",
 			"indices": []
 		},
 		{
-			"offsets": [
-				530,
-				47
-			],
 			"loop": false,
-			"fps": 24,
-			"anim": "dead",
-			"indices": [],
-			"name": "narrin dead"
-		},
-		{
 			"offsets": [
 				90,
-				66
+				96
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "dodge",
-			"indices": [],
-			"name": "narrin dodge"
+			"fps": 24,
+			"name": "narrin dodge",
+			"indices": []
 		}
 	],
 	"no_antialiasing": false,

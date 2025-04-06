@@ -98,6 +98,8 @@ class MainMenuState extends MusicBeatState
 		"cheap-skate-(legacy)",
 		"toxic-mishap-(legacy)",
 		"paycheck-(legacy)",
+
+		"iniquitous"
 	];
 
 	private static var lastDifficultyName:String = '';
@@ -1409,7 +1411,7 @@ class MainMenuState extends MusicBeatState
 								for (i in 0...injectionSongs.length) {
 									var injection:String = injectionSongs[i];
 							
-									if (curDifficulty == 0 && (injection != "villainy" && injection != "point-blank" && injection != "libidinousness" && injection != "excrete"))
+									if (curDifficulty == 0 && (injection != "villainy" && injection != "point-blank" && injection != "libidinousness" && injection != "excrete" && injection != "iniquitous))
 										songArray.push(injection);
 								}
 								PlayState.injectionPlaylist = songArray;
