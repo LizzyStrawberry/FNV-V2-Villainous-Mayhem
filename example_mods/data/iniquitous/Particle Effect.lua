@@ -20,7 +20,7 @@ local options = {
 }
 
 function onEvent(name)
-	if getPropertyFromClass('ClientPrefs', 'shaders') == true then
+	if shadersEnabled then
 		if name == 'particles' then
 			options.generateParticles = not options.generateParticles
 		end
@@ -28,13 +28,13 @@ function onEvent(name)
 end
 
 function onUpdate()
-	if curBeat == 64 then
+	if curBeat == 64 or curBeat == 128 then
 		options.generateParticles = true
 	end
 	if curBeat == 744 then
 		options.generateParticles = false
 	end
-	if getPropertyFromClass('ClientPrefs', 'shaders') == true then
+	if shadersEnabled then
 		if options.generateParticles and getRandomInt(1, options.Particle.commonity) == 1 then
 			options.ParticleNum = options.ParticleNum + 1
 			(options.Particle.animated and makeAnimatedLuaSprite or makeLuaSprite)(options.Particle.name .. options.ParticleNum, options.Particle.imagePath, getRandomInt(options.Particle.minimumX, options.Particle.maximumX), options.Particle.startY)

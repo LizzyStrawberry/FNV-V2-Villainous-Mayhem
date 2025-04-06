@@ -100,6 +100,9 @@ function onUpdate()
 		runTimer('soundOn', 0.01)
 		soundPlayed = true
 	end
+	if curBeat == 112 then
+		setProperty("defaultCamZoom", 0.6)
+	end
 	if curBeat == 114 then
 		doTweenZoom('gamegoWOOO', 'camGame', 1.1, 7 / playbackRate, 'cubeIn')
 		triggerEvent('Play Animation', 'transform', 'dad')
@@ -137,6 +140,7 @@ function onUpdate()
 		cameraFlash('game', 'FFFFFF', 0.8, false)
 	end
 	if curBeat == 272 then
+		setProperty("defaultCamZoom", 0.6)
 		doTweenZoom('gamegoWOOO', 'camGame', 1.2, 20 / playbackRate, 'cubeIn')
 	end
 	if curStep == 1216 then

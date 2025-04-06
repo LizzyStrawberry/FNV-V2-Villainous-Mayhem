@@ -11,7 +11,7 @@ function onCreate()
 end
 
 local redShaderOn = false
-function onStepHit()
+function onUpdatePost()
 	if shadersEnabled then
 		if curStep == 1344 then
 			setSpriteShader("iconP2", "glitch")
@@ -23,18 +23,16 @@ function onStepHit()
 			setSpriteShader("dad", "glitch")
 		end
 		if curStep == 2432 then
-			setSpriteShader("coloredPlayerCircle", "glitch")
-			setSpriteShader("iconPlayer", "glitch")
-			setSpriteShader("iconP1", "glitch")
-			setSpriteShader("timeTxt", "glitch")
-			setSpriteShader("timeBar", "glitch")
+			removeSpriteShader("dad")
+			
 			setSpriteShader("dad", "glitch")
-			runHaxeCode('for (strum in game.playerStrums) strum.shader = game.iconP1.shader;')
+			setSpriteShader("boyfriend", "glitch")
 			if redShaderOn == false then
 				setSpriteShader('camShader', "redOverlay")
 				runHaxeCode([[
 					trace(game.getLuaObject('camShader').shader + ' Has Been Loaded!');                      
 					FlxG.game.setFilters([new ShaderFilter(game.getLuaObject('camShader').shader)]);
+					game.camHUD.setFilters([new ShaderFilter(game.iconP2.shader)]);
 				]])
 				redShaderOn = true;
 			end
@@ -42,16 +40,13 @@ function onStepHit()
 		if curBeat == 744 then
 			runHaxeCode([[
 				FlxG.game.setFilters([]);
+				game.camHUD.setFilters([]);
 			]])
-			removeSpriteShader("coloredPlayerCircle")
-			removeSpriteShader("iconPlayer")
-			removeSpriteShader("iconP1")
+			removeSpriteShader("boyfriend")
 			removeSpriteShader("dad")
 			removeSpriteShader("iconOpponent")
 			removeSpriteShader("coloredOpponentCircle")
 			removeSpriteShader("iconP2")
-			removeSpriteShader("timeTxt")
-			removeSpriteShader("timeBar")
 		end
 	end
 end
@@ -59,14 +54,11 @@ end
 function onUpdate(elapsed)
 	if shadersEnabled then
 		setShaderFloat("iconP2", "iTime", os.clock())
-		setShaderFloat("iconP1", "iTime", os.clock())
 		setShaderFloat("coloredPlayerCircle", "iTime", os.clock())
 		setShaderFloat("dad", "iTime", os.clock())
+		setShaderFloat("boyfriend", "iTime", os.clock())
 		setShaderFloat("coloredOpponentCircle", "iTime", os.clock())
 		setShaderFloat("iconOpponent", "iTime", os.clock())
-		setShaderFloat("iconPlayer", "iTime", os.clock())
-		setShaderFloat("timeTxt", "iTime", os.clock())
-		setShaderFloat("timeBar", "iTime", os.clock())
 	end
 end
 

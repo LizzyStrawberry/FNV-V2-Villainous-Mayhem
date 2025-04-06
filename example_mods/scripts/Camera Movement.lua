@@ -62,7 +62,7 @@ flipPlayerMovement = false
 bfIdles = {'idle', 'danceLeft', 'danceRight'}
 dadIdles = {'idle', 'danceLeft', 'danceRight'}
 gfIdles = {'idle', 'danceLeft', 'danceRight'}
-specialAnims = {'tail attack', 'jumpscare'}
+specialAnims = {'tail attack', 'jumpscare', 'chuckletits'}
 
 -- Character Offsets
 local charOffsets = {

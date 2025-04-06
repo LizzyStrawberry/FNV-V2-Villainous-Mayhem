@@ -37,49 +37,49 @@ local cameras = { -- use triggerEvent('','camera',[dad,gf,bf]) to toggle each on
 -- you can disregard everything below because theres nothing you gotta touch below :)
 
 local function midpoint(character)
-if not isStoryMode and getPropertyFromClass('ClientPrefs', 'trampolineMode') == true then
-    local x = getProperty(character .. ".x") + (getProperty(character .. ".width") * 0.5)
-    local y = getProperty(character .. ".y") + (getProperty(character .. ".height") * 0.5)
+	if not isStoryMode and getPropertyFromClass('ClientPrefs', 'trampolineMode') == true then
+		local x = getProperty(character .. ".x") + (getProperty(character .. ".width") * 0.5)
+		local y = getProperty(character .. ".y") + (getProperty(character .. ".height") * 0.5)
 
-    if character == 'boyfriend' then
-        x = x - 100
-        y = y - 100
-    else
-        x = x + 150
-        y = y - 100
-    end
-    local retur = { x, y }
-    return retur
-end
+		if character == 'boyfriend' then
+			x = x - 100
+			y = y - 100
+		else
+			x = x + 150
+			y = y - 100
+		end
+		local retur = { x, y }
+		return retur
+	end
 end
 
 local function altCharacterNames(character) -- just in case someone wants to trigger the cameras using an alt name
-if not isStoryMode and getPropertyFromClass('ClientPrefs', 'trampolineMode') == true then
-    character = string.lower(character)
-    if character == 'bf' or character == 'player' then
-        character = 'boyfriend'
-    end
-    if character == 'opponent' or character == 'opp' then
-        character = 'dad'
-    end
-    if character == 'girlfriend' or character == 'woman' then
-        character = 'gf'
-    end
-    return character
-end
+	if not isStoryMode and getPropertyFromClass('ClientPrefs', 'trampolineMode') == true then
+		character = string.lower(character)
+		if character == 'bf' or character == 'player' then
+			character = 'boyfriend'
+		end
+		if character == 'opponent' or character == 'opp' then
+			character = 'dad'
+		end
+		if character == 'girlfriend' or character == 'woman' then
+			character = 'gf'
+		end
+		return character
+	end
 end
 
 local function getOffsets(character)
-if not isStoryMode and getPropertyFromClass('ClientPrefs', 'trampolineMode') == true then
-    character = altCharacterNames(character)
-    local offsets = { midpoint(character)[1] + getProperty(character .. '.cameraPosition[0]'),
-        midpoint(character)[2] + getProperty(character .. '.cameraPosition[1]') }
-    if character == 'boyfriend' then -- because its reversed for bf
-        offsets = { midpoint(character)[1] - getProperty(character .. '.cameraPosition[0]'),
-            midpoint(character)[2] + getProperty(character .. '.cameraPosition[1]') }
-    end
-    return offsets
-end
+	if not isStoryMode and getPropertyFromClass('ClientPrefs', 'trampolineMode') == true then
+		character = altCharacterNames(character)
+		local offsets = { midpoint(character)[1] + getProperty(character .. '.cameraPosition[0]'),
+			midpoint(character)[2] + getProperty(character .. '.cameraPosition[1]') }
+		if character == 'boyfriend' then -- because its reversed for bf
+			offsets = { midpoint(character)[1] - getProperty(character .. '.cameraPosition[0]'),
+				midpoint(character)[2] + getProperty(character .. '.cameraPosition[1]') }
+		end
+		return offsets
+	end
 end
 
 local function doDebugStuffs()
@@ -87,96 +87,96 @@ local function doDebugStuffs()
 end
 
 local function moveCamera(character, pose) -- this is essentially what handles the entire thing
-if not isStoryMode and getPropertyFromClass('ClientPrefs', 'trampolineMode') == true then
-    character = altCharacterNames(character)
-    local characterOffsets = getOffsets(character)
+	if not isStoryMode and getPropertyFromClass('ClientPrefs', 'trampolineMode') == true then
+		character = altCharacterNames(character)
+		local characterOffsets = getOffsets(character)
 
-    if not camMoves[pose] then
-        pose = 'idle'
-    end
+		if not camMoves[pose] then
+			pose = 'idle'
+		end
 
-    local offset = { characterOffsets[1], characterOffsets[2] }
-    if cameras[character] then
-        offset[1] = offset[1] + camMoves[pose][1]
-        offset[2] = offset[2] + camMoves[pose][2]
-    end
+		local offset = { characterOffsets[1], characterOffsets[2] }
+		if cameras[character] then
+			offset[1] = offset[1] + camMoves[pose][1]
+			offset[2] = offset[2] + camMoves[pose][2]
+		end
 
-    triggerEvent('Camera Follow Pos', offset[1], offset[2])
+		triggerEvent('Camera Follow Pos', offset[1], offset[2])
 
-    if debug_mode then
-        setProperty('cameraPositionOffset.x',offset[1] - 10)
-        setProperty('cameraPositionOffset.y',offset[2] - 10)
+		if debug_mode then
+			setProperty('cameraPositionOffset.x',offset[1] - 10)
+			setProperty('cameraPositionOffset.y',offset[2] - 10)
 
-        setProperty('cameraPositionCurrent.x',getProperty('camFollowPos.x')- 5)
-        setProperty('cameraPositionCurrent.y',getProperty('camFollowPos.y')- 5)
+			setProperty('cameraPositionCurrent.x',getProperty('camFollowPos.x')- 5)
+			setProperty('cameraPositionCurrent.y',getProperty('camFollowPos.y')- 5)
 
-        setProperty('cameraPositionMarker.x',characterOffsets[1] - 10)
-        setProperty('cameraPositionMarker.y',characterOffsets[2]- 10)
-    end
-end
+			setProperty('cameraPositionMarker.x',characterOffsets[1] - 10)
+			setProperty('cameraPositionMarker.y',characterOffsets[2]- 10)
+		end
+	end
 end
 
 -- this function used to be hella fucking messy but its seperated into functions and it's also far more efficient!!! woo!!
 function onUpdate(elapsed)
-if not isStoryMode and getPropertyFromClass('ClientPrefs', 'trampolineMode') == true then
-    -- ITS SO FUCKING SMALL NOW WHAT!!!
-    -- Context: the first few iterations of this script had like 50 lines here (and it barely worked too!!)
+	if not isStoryMode and getPropertyFromClass('ClientPrefs', 'trampolineMode') == true then
+		-- ITS SO FUCKING SMALL NOW WHAT!!!
+		-- Context: the first few iterations of this script had like 50 lines here (and it barely worked too!!)
 
-    if enabled then
-    if gfSection then -- handle gfs camera because it's special!!
-        moveCamera('gf', getProperty('gf.animation.curAnim.name'))
-    else
-        if mustHitSection then
-            moveCamera('boyfriend', getProperty('boyfriend.animation.curAnim.name'))
-        else
-            moveCamera('dad', getProperty('dad.animation.curAnim.name'))
-        end
-    end
-end
-    if inGameOver then
-        close() -- don't want this fucking up the camera
-    end
+		if enabled then
+			if gfSection then -- handle gfs camera because it's special!!
+				moveCamera('gf', getProperty('gf.animation.curAnim.name'))
+			else
+				if mustHitSection then
+					moveCamera('boyfriend', getProperty('boyfriend.animation.curAnim.name'))
+				else
+					moveCamera('dad', getProperty('dad.animation.curAnim.name'))
+				end
+			end
+		end
+		if inGameOver then
+			close() -- don't want this fucking up the camera
+		end
+	end
 end
 
 function onEvent(name, value1, value2)
-if not isStoryMode and getPropertyFromClass('ClientPrefs', 'trampolineMode') == true then
-    if name == '' then
-        if value1 == 'camera' then
-            if value2 == 'dad' or value2 == 'boyfriend' or value2 == 'gf' then
-                cameras[value2] = not cameras[value2]
-            end
-        end
-    end
-end
-end
+	if not isStoryMode and getPropertyFromClass('ClientPrefs', 'trampolineMode') == true then
+		if name == '' then
+			if value1 == 'camera' then
+				if value2 == 'dad' or value2 == 'boyfriend' or value2 == 'gf' then
+					cameras[value2] = not cameras[value2]
+				end
+			end
+		end
+	end
 end
 
 function onSongStart()
-if not isStoryMode and getPropertyFromClass('ClientPrefs', 'trampolineMode') == true then
-    enabled = true
-end
+	if not isStoryMode and getPropertyFromClass('ClientPrefs', 'trampolineMode') == true then
+		enabled = true
+	end
 end
 
 function onCreatePost()
-if not isStoryMode and getPropertyFromClass('ClientPrefs', 'trampolineMode') == true then
-    if debug_mode then
-        luaDebugMode = true
-        makeLuaSprite('cameraPositionMarker','',0,0)
-        makeGraphic('cameraPositionMarker',20,20,'2659ff')
-        --setBlendMode('cameraPositionMarker','subtract')
+	if not isStoryMode and getPropertyFromClass('ClientPrefs', 'trampolineMode') == true then
+		if debug_mode then
+			luaDebugMode = true
+			makeLuaSprite('cameraPositionMarker','',0,0)
+			makeGraphic('cameraPositionMarker',20,20,'2659ff')
+			--setBlendMode('cameraPositionMarker','subtract')
 
-        makeLuaSprite('cameraPositionCurrent','',0,0)
-        makeGraphic('cameraPositionCurrent',10,10,'ee0dff')
+			makeLuaSprite('cameraPositionCurrent','',0,0)
+			makeGraphic('cameraPositionCurrent',10,10,'ee0dff')
 
-        makeLuaSprite('cameraPositionOffset','',0,0)
-        makeGraphic('cameraPositionOffset',20,20,'ff0000')
-       --setBlendMode('cameraPositionOffset','invert')
+			makeLuaSprite('cameraPositionOffset','',0,0)
+			makeGraphic('cameraPositionOffset',20,20,'ff0000')
+		   --setBlendMode('cameraPositionOffset','invert')
 
-        addLuaSprite('cameraPositionMarker',true)
-        addLuaSprite('cameraPositionCurrent',true)
-        addLuaSprite('cameraPositionOffset',true)
-    end
-end
+			addLuaSprite('cameraPositionMarker',true)
+			addLuaSprite('cameraPositionCurrent',true)
+			addLuaSprite('cameraPositionOffset',true)
+		end
+	end
 end
 
 -- SCRIPT BY AFLAC --
