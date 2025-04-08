@@ -294,7 +294,7 @@ class TitleState extends MusicBeatState
 					vidSpr.visible = false;
 					FlxTween.tween(blackOverlay, {alpha: 0}, 1);
 				};
-				video.playVideo(Paths.video('IntroVideo'));
+				video.playVideo(Paths.video('StoryIntro'), (!ClientPrefs.firstTime) ? false : true);
 			}
 				
 			if (initializedVideo)
