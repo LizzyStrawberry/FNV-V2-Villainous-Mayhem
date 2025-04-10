@@ -5,8 +5,9 @@ function onCreate()
 				setPropertyFromGroup('unspawnNotes', i, 'texture', 'notes/LilyNOTE_assets');
 			end
 			setPropertyFromGroup('unspawnNotes', i, 'noAnimation', true);
+			setPropertyFromGroup('unspawnNotes', i, 'noMissAnimation', true);
+			
 			if getPropertyFromGroup('unspawnNotes', i, 'mustPress') then
-
 				setPropertyFromGroup('unspawnNotes', i, 'ignoreNote', false);
 			end
 		end

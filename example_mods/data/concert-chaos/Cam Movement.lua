@@ -10,6 +10,10 @@ local managerSings = false;
 local aileenSings = false;
 local shifting = false
 
+function onCreate()
+	setGlobalFromScript("scripts/Camera Movement", "allowCameraMove", false)
+end
+
 function onUpdate()
 	if del > 0 then
 		del = del - 1
@@ -242,15 +246,15 @@ end
 
 function opponentNoteHit(id, direction, noteType, isSustainNote)
 	if followChars and not mustHitSection then
-		if not isSustainNote and allowAngleShift then
+		if not isSustainNote then
 			camAngle(direction)
 		end
 	end
 end
 
 function goodNoteHit(id, direction, noteType, isSustainNote)
-	if followChars and not mustHitSection then
-		if not isSustainNote and allowAngleShift then
+	if followChars and mustHitSection then
+		if not isSustainNote then
 			camAngle(direction)
 		end
 	end

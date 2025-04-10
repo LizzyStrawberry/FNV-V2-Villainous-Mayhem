@@ -3,7 +3,7 @@ local clonesOriginScaleY
 local addShaders = false
 
 function onCreate()
-	if getPropertyFromClass('ClientPrefs', 'optimizationMode') == false then
+	if not getPropertyFromClass('ClientPrefs', 'optimizationMode') then
 		addCharacterToList('lilyIntroP2', 'boyfriend')
 		addCharacterToList('lilyP1', 'boyfriend')
 		addCharacterToList('lilyP2', 'boyfriend')
@@ -86,7 +86,7 @@ function onCreate()
 	clonesOriginScaleY = getProperty('clones.scale.y')
 end
 
-function onUpdatePost()
+function onUpdate()
 	if curBeat == 4 then
 		setProperty('floorLight.alpha', 1)
 		setProperty('light1.alpha', 1)
@@ -373,7 +373,6 @@ function onUpdatePost()
 
 		doTweenAlpha('managerChan', 'managerChanP2', 1, 0.001, 'linear');
 		doTweenAlpha('Aileen', 'aileenCCP2', 1, 0.001, 'linear');
-		
 			
 		clearEffects('game');
 		clearEffects('hud');

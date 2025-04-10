@@ -213,8 +213,6 @@ class MainMenuState extends MusicBeatState
 	var charmSelected:FlxSprite;
 
 	var allowMayhemGameMode:Bool = false;
-
-	var libidiPerformWarn:Bool = false;
 	override function create()
 	{
 		#if MODS_ALLOWED
@@ -228,12 +226,10 @@ class MainMenuState extends MusicBeatState
 		#end
 		debugKeys = ClientPrefs.copyKey(ClientPrefs.keyBinds.get('debug_1'));
 
-		if (ClientPrefs.galleryUnlocked == false && Achievements.isAchievementUnlocked('WeekMarco_Beaten') && Achievements.isAchievementUnlocked('WeekNun_Beaten') && Achievements.isAchievementUnlocked('WeekKiana_Beaten'))
-		{
+		if (!ClientPrefs.galleryUnlocked && Achievements.isAchievementUnlocked('WeekMarco_Beaten') && Achievements.isAchievementUnlocked('WeekNun_Beaten') && Achievements.isAchievementUnlocked('WeekKiana_Beaten'))
 			ClientPrefs.galleryUnlocked = true;
-		}
 		
-		//resetting this rq
+		// Resetting this rq
 		ClientPrefs.ghostTapping = true;
 		ClientPrefs.codeRegistered = '';
 		ClientPrefs.onCrossSection = false;
@@ -263,13 +259,7 @@ class MainMenuState extends MusicBeatState
 		var yScroll:Float = Math.max(0.25 - (0.05 * (optionShit.length - 4)), 0.1);
 		number30 = FlxG.random.int(1, 59);
 
-		if (ClientPrefs.performanceWarning == true)
-		{
-			libidiPerformWarn = true;
-		}
-
-		if (number30 == 30 && Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed == true
-			&& ClientPrefs.kianaWeekPlayed == true)
+		if (number30 == 30 && Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed && ClientPrefs.kianaWeekPlayed)
 		{
 			bg = new FlxSprite(-80).loadGraphic(Paths.image('mainMenuBgs/menu-mork'));
 			bg.frames = Paths.getSparrowAtlas('mainMenuBgs/menu-mork');//here put the name of the xml
@@ -279,33 +269,31 @@ class MainMenuState extends MusicBeatState
 			bg.scrollFactor.set();
 			trace('MORK');	
 		}
-		else if (number30 == 2 && Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed == true
-			&& ClientPrefs.kianaWeekPlayed == true)
+		else if (number30 == 2 && Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed && ClientPrefs.kianaWeekPlayed)
 		{
 			isShown = true;
 			bg = new FlxSprite(-80).loadGraphic(Paths.image('mainMenuBgs/menu-rare'));
 			FlxG.sound.music.fadeOut(1.0);
 			new FlxTimer().start(1, function(tmr:FlxTimer)
-				{
-					FlxG.sound.playMusic(Paths.music('malumIctum'), 0);
-					FlxG.sound.music.fadeIn(4, 0, 1);
-					trace('Song changed to the rare one! + fadeout!');	
-					giveAnotherAchievement();
+			{
+				FlxG.sound.playMusic(Paths.music('malumIctum'), 0);
+				FlxG.sound.music.fadeIn(4, 0, 1);
+				trace('Song changed to the rare one! + fadeout!');	
+				giveAnotherAchievement();
 				ClientPrefs.saveSettings();				
-				});
+			});
 		}
 		else
 		{
 			trace('No fadeout needed bitch');
 			trace('the number is: ' + number30);
 			
-			if (Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed == true
-				&& ClientPrefs.kianaWeekPlayed == true)
+			if (Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed && ClientPrefs.kianaWeekPlayed)
 			{
 				bg = new FlxSprite(-80).loadGraphic(Paths.image('mainMenuBgs/menu-' + FlxG.random.int(1, 59)));
 				trace('good job lmao, You beat Week 3, you can now have all the menu images!');
 			}
-			else if (Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed == true)
+			else if (Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed)
 			{
 				bg = new FlxSprite(-80).loadGraphic(Paths.image('mainMenuBgs/menu-' + FlxG.random.int(1, 13)));
 				trace('good job lmao, You beat Week 2');
@@ -328,10 +316,10 @@ class MainMenuState extends MusicBeatState
 		bg.antialiasing = ClientPrefs.globalAntialiasing;
 		add(bg);
 
-		//making a secondary sprite so we can change each background after a few seconds or something lmao
-		if(isShown == false)
+		// Making a secondary sprite so we can change each background after a few seconds or something lmao
+		if(!isShown)
 		{	
-			if (Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed == true && ClientPrefs.kianaWeekPlayed == true)
+			if (Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed && ClientPrefs.kianaWeekPlayed )
 				bgChange = new FlxSprite(-80).loadGraphic(Paths.image('mainMenuBgs/menu-' + FlxG.random.int(1, 59)));
 			else if (Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed == true)
 				bgChange = new FlxSprite(-80).loadGraphic(Paths.image('mainMenuBgs/menu-' + FlxG.random.int(1, 13)));
@@ -381,19 +369,8 @@ class MainMenuState extends MusicBeatState
 			menuItem.frames = Paths.getSparrowAtlas('mainmenu/menu_' + optionShit[i]);
 			menuItem.animation.addByPrefix('idle', optionShit[i] + " basic", 24);
 			menuItem.animation.addByPrefix('selected', optionShit[i] + " white0", 24);
-			if (optionShit[i] == 'freeplay' && ClientPrefs.mainWeekBeaten == false)
+			if ((optionShit[i] == 'freeplay' && !ClientPrefs.mainWeekBeaten) || (optionShit[i] == 'gallery' && !ClientPrefs.galleryUnlocked) || (optionShit[i] == 'info' && !ClientPrefs.mainWeekBeaten))
 			{
-				menuItem.animation.addByPrefix('locked', optionShit[i] + " white locked", 24);
-				menuItem.animation.play('locked');
-			}
-			else if (optionShit[i] == 'gallery' && ClientPrefs.galleryUnlocked == false)
-			{
-				menuItem.animation.addByPrefix('locked', optionShit[i] + " white locked", 24);
-				menuItem.animation.play('locked');
-			}
-			else if (optionShit[i] == 'info' && ClientPrefs.mainWeekBeaten == false)
-			{
-				
 				menuItem.animation.addByPrefix('locked', optionShit[i] + " white locked", 24);
 				menuItem.animation.play('locked');
 			}
@@ -405,25 +382,19 @@ class MainMenuState extends MusicBeatState
 			menuItem.screenCenter(Y);
 			menuItem.y = 510;
 			menuItems.add(menuItem);
+
 			var scr:Float = (optionShit.length - 4) * 0.135;
 			if(optionShit.length < 6) scr = 0;
 			menuItem.scrollFactor.set(0, scr);
 			menuItem.antialiasing = ClientPrefs.globalAntialiasing;
 			//menuItem.setGraphicSize(Std.int(menuItem.width * 0.58));
 			menuItem.updateHitbox();
-		}
 
-		menuItems.forEach(function(spr:FlxSprite)
-			{
-			if (curSelected != spr.ID)
-				{
-					spr.alpha = 0;
-				} 
+			if (curSelected != menuItem.ID)
+				menuItem.alpha = 0;
 			else
-				{
-					spr.alpha = 1;
-				}
-			});
+				menuItem.alpha = 1;
+		}
 
 		transparentButton = new FlxSprite(0, 0);
 		transparentButton.makeGraphic(480, 80, FlxColor.WHITE);
@@ -432,8 +403,6 @@ class MainMenuState extends MusicBeatState
 		transparentButton.alpha = 0;
 		transparentButton.y += 230;
 		add(transparentButton);
-
-		//FlxG.camera.follow(camFollowPos, null, 1);
 
 		var versionShit:FlxText = new FlxText(12, FlxG.height - 64, 0, "Friday Night Villainy v" + FNVVersion, 12);
 		versionShit.scrollFactor.set();
@@ -447,8 +416,6 @@ class MainMenuState extends MusicBeatState
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
-
-		// NG.core.calls.event.logEvent('swag').send();
 
 		menuSelectors = new FlxGroup();
 		add(menuSelectors);
@@ -494,7 +461,7 @@ class MainMenuState extends MusicBeatState
 		exclamationMark.scale.set(0.5, 0.5);
 		exclamationMark.updateHitbox();
 		add(exclamationMark);
-		if (ClientPrefs.firstTime == false)
+		if (!ClientPrefs.firstTime)
 		{
 			NotificationAlert.showMessage(this, 'Tutorial');
 			NotificationAlert.sendTutorialNotification = true;
@@ -503,7 +470,7 @@ class MainMenuState extends MusicBeatState
 			ClientPrefs.firstTime = true;
 			ClientPrefs.saveSettings();
 		}
-		if (NotificationAlert.sendTutorialNotification == true)
+		if (NotificationAlert.sendTutorialNotification)
 		{
 			NotificationAlert.addNotification(this, exclamationMark, -10, 85);
 
@@ -516,7 +483,7 @@ class MainMenuState extends MusicBeatState
 		optionsButton.alpha = 0.5;
 		optionsButton.updateHitbox();
 		add(optionsButton);
-		if (NotificationAlert.sendOptionsNotification == true)
+		if (NotificationAlert.sendOptionsNotification)
 		{
 			NotificationAlert.addNotification(this, optionsButton, -10, 85);
 
@@ -529,7 +496,7 @@ class MainMenuState extends MusicBeatState
 		inventoryButton.alpha = 0.5;
 		inventoryButton.updateHitbox();
 		add(inventoryButton);
-		if (NotificationAlert.sendInventoryNotification == true)
+		if (NotificationAlert.sendInventoryNotification)
 		{
 			NotificationAlert.addNotification(this, inventoryButton, -10, 85);
 
@@ -542,7 +509,7 @@ class MainMenuState extends MusicBeatState
 		shopButton.alpha = 0.5;
 		shopButton.updateHitbox();
 		add(shopButton);
-		if (NotificationAlert.sendShopNotification == true)
+		if (NotificationAlert.sendShopNotification)
 		{
 			NotificationAlert.addNotification(this, shopButton, 115, 100);
 
@@ -553,15 +520,15 @@ class MainMenuState extends MusicBeatState
 		var tokenShow:FlxText = new FlxText(780, 330, FlxG.width,
 			"Tokens: <GR>" + ClientPrefs.tokens + "<GR>",
 			32);
-			if (ClientPrefs.tokens == 0)
-				tokenShow.text = "Tokens: <R>" + ClientPrefs.tokens + "<R>";
-			tokenShow.setFormat("VCR OSD Mono", 28, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, 0xFF000000);
-			tokenShow.screenCenter(XY);
-			tokenShow.x = shopButton.x;
-			tokenShow.y = shopButton.y + 130;
-			tokenShow.borderSize = 1;
+		if (ClientPrefs.tokens == 0)
+			tokenShow.text = "Tokens: <R>" + ClientPrefs.tokens + "<R>";
+		tokenShow.setFormat("VCR OSD Mono", 28, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, 0xFF000000);
+		tokenShow.screenCenter(XY);
+		tokenShow.x = shopButton.x;
+		tokenShow.y = shopButton.y + 130;
+		tokenShow.borderSize = 1;
 
-			CustomFontFormats.addMarkers(tokenShow);
+		CustomFontFormats.addMarkers(tokenShow);
 		add(tokenShow);
 
 		FlxG.mouse.visible = true;
@@ -626,9 +593,8 @@ class MainMenuState extends MusicBeatState
 
 		CoolUtil.difficulties = CoolUtil.defaultDifficulties.copy();
 		if(lastDifficultyName == '')
-		{
 			lastDifficultyName = CoolUtil.defaultDifficulty;
-		}
+
 		curDifficulty = Math.round(Math.max(0, CoolUtil.defaultDifficulties.indexOf(lastDifficultyName)));
 
 		rightDiffArrow = new FlxSprite(leftDiffArrow.x + 376, leftDiffArrow.y);
@@ -647,7 +613,7 @@ class MainMenuState extends MusicBeatState
 		blackOut2.alpha = 0;
 		add(blackOut2);
 
-		if (libidiPerformWarn == true)
+		if (ClientPrefs.performanceWarning)
 		{
 			libidiWarning = new FlxText(700, 100, 1000, "<R>Warning:<R>\n<DP>'Libidinousness'<DP> takes a lot of juice off of your PC.\nCan it handle it?\n<R>(It is recommended to atleast have a graphics card installed)<R>\n----------------------------
 			\n<G>Y:<G> <G>Yes<G> | <r>N:<r> <r>No<r>", 32);
@@ -734,13 +700,13 @@ class MainMenuState extends MusicBeatState
 			switch(buff.ID)
 			{
 				case 1:
-					if (ClientPrefs.buff1Unlocked == false)
+					if (!ClientPrefs.buff1Unlocked)
 						buff.loadGraphic(Paths.image('inventory/buffLocked'));
 				case 2:
-					if (ClientPrefs.buff2Unlocked == false)
+					if (!ClientPrefs.buff2Unlocked)
 						buff.loadGraphic(Paths.image('inventory/buffLocked'));
 				case 3:
-					if (ClientPrefs.buff3Unlocked == false)
+					if (!ClientPrefs.buff3Unlocked)
 						buff.loadGraphic(Paths.image('inventory/buffLocked'));
 			}
 
@@ -825,20 +791,20 @@ class MainMenuState extends MusicBeatState
 		charmText.alpha = 0;
 		add(charmText);
 
-		if (ClientPrefs.buff1Selected == true)
+		if (ClientPrefs.buff1Selected)
 			curBuffSelected = 1;
-		else if (ClientPrefs.buff2Selected == true)
+		else if (ClientPrefs.buff2Selected)
 			curBuffSelected = 2;
-		else if (ClientPrefs.buff3Selected == true)
+		else if (ClientPrefs.buff3Selected)
 			curBuffSelected = 3;
 		else
 			curBuffSelected = 0;
 
 		buffSelected.x = buffItems.members[curBuffSelected].x;
 
-		if (ClientPrefs.inShop == true)
+		if (ClientPrefs.inShop)
 		{
-			if (ClientPrefs.iniquitousWeekUnlocked == true && ClientPrefs.iniquitousWeekBeaten == false)
+			if (ClientPrefs.iniquitousWeekUnlocked && ClientPrefs.iniquitousWeekBeaten)
 				FlxG.sound.playMusic(Paths.music('malumIctum'));
 			else if (FlxG.random.int(1, 10) == 2)
 				FlxG.sound.playMusic(Paths.music('AJDidThat'));
@@ -889,15 +855,14 @@ class MainMenuState extends MusicBeatState
 
 		//Notification alert
 		//check if everything is unlocked for the crossover section, all weeks, all shop songs are beaten
-		if (ClientPrefs.roadMapUnlocked == false && Achievements.isAchievementUnlocked('WeekMarco_Beaten')&& Achievements.isAchievementUnlocked('WeekNun_Beaten')
+		if (!ClientPrefs.roadMapUnlocked && Achievements.isAchievementUnlocked('WeekMarco_Beaten')&& Achievements.isAchievementUnlocked('WeekNun_Beaten')
 			&& Achievements.isAchievementUnlocked('WeekKiana_Beaten')&& Achievements.isAchievementUnlocked('WeekMorky_Beaten')
 			&& Achievements.isAchievementUnlocked('WeekSus_Beaten')&& Achievements.isAchievementUnlocked('WeekLegacy_Beaten')
 			&& Achievements.isAchievementUnlocked('WeekDside_Beaten')
 			// Shop Songs
-			&& ClientPrefs.tofuPlayed == true && ClientPrefs.lustalityPlayed == true && ClientPrefs.nunsationalPlayed == true && ClientPrefs.marcochromePlayed == true
-			&& ClientPrefs.nicPlayed == true && Achievements.isAchievementUnlocked('short_Beaten') && ClientPrefs.debugPlayed == true && ClientPrefs.fnvPlayed == true
-			&& ClientPrefs.infatuationPlayed == true && ClientPrefs.rainyDazePlayed == true
-			&& ClientPrefs.crossoverUnlocked == false)
+			&& ClientPrefs.tofuPlayed && ClientPrefs.lustalityPlayed && ClientPrefs.nunsationalPlayed && ClientPrefs.marcochromePlayed
+			&& ClientPrefs.nicPlayede && Achievements.isAchievementUnlocked('short_Beaten') && ClientPrefs.debugPlayed && ClientPrefs.fnvPlayed
+			&& ClientPrefs.infatuationPlayed && ClientPrefs.rainyDazePlayed && !ClientPrefs.crossoverUnlocked)
 		{
 			NotificationAlert.showMessage(this, 'Normal');
 			NotificationAlert.sendCategoryNotification = true;
@@ -912,15 +877,13 @@ class MainMenuState extends MusicBeatState
 			&& Achievements.isAchievementUnlocked('WeekMorky_Beaten') && Achievements.isAchievementUnlocked('WeekSus_Beaten') && Achievements.isAchievementUnlocked('WeekLegacy_Beaten')
 			&& Achievements.isAchievementUnlocked('WeekDside_Beaten')
 			// Shop Songs
-			&& ClientPrefs.tofuPlayed == true && ClientPrefs.lustalityPlayed == true
-			&& ClientPrefs.nunsationalPlayed == true && ClientPrefs.marcochromePlayed == true
-			&& ClientPrefs.nicPlayed == true && Achievements.isAchievementUnlocked('short_Beaten')
-			&& ClientPrefs.debugPlayed == true && ClientPrefs.fnvPlayed == true
-			&& ClientPrefs.infatuationPlayed == true && ClientPrefs.rainyDazePlayed == true
+			&& ClientPrefs.tofuPlayed && ClientPrefs.lustalityPlayed && ClientPrefs.nunsationalPlayed && ClientPrefs.marcochromePlayed 
+			&& ClientPrefs.nicPlayed && Achievements.isAchievementUnlocked('short_Beaten') && ClientPrefs.debugPlayed && ClientPrefs.fnvPlayed
+			&& ClientPrefs.infatuationPlayed && ClientPrefs.rainyDazePlayed
 			// Crossover Section
 			&& Achievements.isAchievementUnlocked('crossover_Beaten'))
 		{
-			if (ClientPrefs.mayhemNotif == false)
+			if (!ClientPrefs.mayhemNotif)
 			{
 				ClientPrefs.mayhemNotif = true;
 				NotificationAlert.showMessage(this, 'Mayhem');
@@ -930,7 +893,7 @@ class MainMenuState extends MusicBeatState
 		}
 
 		// FOR INJECTION MODE
-		if (ClientPrefs.weeksUnlocked >= 7 && ClientPrefs.injectionNotif == false)
+		if (ClientPrefs.weeksUnlocked >= 7 && !ClientPrefs.injectionNotif)
 		{
 			ClientPrefs.injectionNotif = true;
 			NotificationAlert.showMessage(this, 'Injection');
@@ -954,46 +917,46 @@ class MainMenuState extends MusicBeatState
 	}
 
 	function changeBg(timer:FlxTimer)
+	{
+		if(!isShown)
 		{
-			if(isShown == false)
-			{
-				trace("Changing the Background");
-				FlxTween.tween(bg, { alpha: 0 }, 3, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(bgChange, { alpha: 1 }, 3, {ease: FlxEase.cubeInOut, type: PERSIST});
-				var bgTimerAgain:FlxTimer = new FlxTimer().start(10, changeBgAgain);
-				new FlxTimer().start(4, function (tmr:FlxTimer) {
-					if (Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed == true && ClientPrefs.kianaWeekPlayed == true)
-						bg.loadGraphic(Paths.image('mainMenuBgs/menu-' + FlxG.random.int(1, 59)));
-					else if (Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed == true)
-						bg.loadGraphic(Paths.image('mainMenuBgs/menu-' + FlxG.random.int(1, 13)));
-					else if (Achievements.isAchievementUnlocked('WeekMarco_Beaten'))
-						bg.loadGraphic(Paths.image('mainMenuBgs/menu-' + FlxG.random.int(1, 59)));
-					else
-						bg.loadGraphic(Paths.image('mainMenuBgs/menu-' + FlxG.random.int(1, 5)));
-				});
-			}
+			trace("Changing the Background");
+			FlxTween.tween(bg, { alpha: 0 }, 3, {ease: FlxEase.cubeInOut, type: PERSIST});
+			FlxTween.tween(bgChange, { alpha: 1 }, 3, {ease: FlxEase.cubeInOut, type: PERSIST});
+			var bgTimerAgain:FlxTimer = new FlxTimer().start(10, changeBgAgain);
+			new FlxTimer().start(4, function (tmr:FlxTimer) {
+				if (Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed && ClientPrefs.kianaWeekPlayed)
+					bg.loadGraphic(Paths.image('mainMenuBgs/menu-' + FlxG.random.int(1, 59)));
+				else if (Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed)
+					bg.loadGraphic(Paths.image('mainMenuBgs/menu-' + FlxG.random.int(1, 13)));
+				else if (Achievements.isAchievementUnlocked('WeekMarco_Beaten'))
+					bg.loadGraphic(Paths.image('mainMenuBgs/menu-' + FlxG.random.int(1, 59)));
+				else
+					bg.loadGraphic(Paths.image('mainMenuBgs/menu-' + FlxG.random.int(1, 5)));
+			});
 		}
+	}
 
 	function changeBgAgain(timer:FlxTimer)
+	{
+		if(!isShown)
 		{
-			if(isShown == false)
-			{
-				trace("Changing the Background Again");
-				FlxTween.tween(bg, { alpha: 1 }, 3, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(bgChange, { alpha: 0 }, 3, {ease: FlxEase.cubeInOut, type: PERSIST});
-				var bgTimer:FlxTimer = new FlxTimer().start(10, changeBg);
-				new FlxTimer().start(4, function (tmr:FlxTimer) {
-					if (Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed == true && ClientPrefs.kianaWeekPlayed == true)
-						bgChange.loadGraphic(Paths.image('mainMenuBgs/menu-' + FlxG.random.int(1, 59)));
-					else if (Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed == true)
-						bgChange.loadGraphic(Paths.image('mainMenuBgs/menu-' + FlxG.random.int(1, 13)));
-					else if (Achievements.isAchievementUnlocked('WeekMarco_Beaten'))
-						bgChange.loadGraphic(Paths.image('mainMenuBgs/menu-' + FlxG.random.int(1, 11)));
-					else
-						bgChange.loadGraphic(Paths.image('mainMenuBgs/menu-' + FlxG.random.int(1, 5)));
-				});
-			}
+			trace("Changing the Background Again");
+			FlxTween.tween(bg, { alpha: 1 }, 3, {ease: FlxEase.cubeInOut, type: PERSIST});
+			FlxTween.tween(bgChange, { alpha: 0 }, 3, {ease: FlxEase.cubeInOut, type: PERSIST});
+			var bgTimer:FlxTimer = new FlxTimer().start(10, changeBg);
+			new FlxTimer().start(4, function (tmr:FlxTimer) {
+				if (Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed && ClientPrefs.kianaWeekPlayed)
+					bgChange.loadGraphic(Paths.image('mainMenuBgs/menu-' + FlxG.random.int(1, 59)));
+				else if (Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed)
+					bgChange.loadGraphic(Paths.image('mainMenuBgs/menu-' + FlxG.random.int(1, 13)));
+				else if (Achievements.isAchievementUnlocked('WeekMarco_Beaten'))
+					bgChange.loadGraphic(Paths.image('mainMenuBgs/menu-' + FlxG.random.int(1, 11)));
+				else
+					bgChange.loadGraphic(Paths.image('mainMenuBgs/menu-' + FlxG.random.int(1, 5)));
+			});
 		}
+	}
 
 	#if ACHIEVEMENTS_ALLOWED
 	// Unlocks "Freaky on a Friday Night" achievement
@@ -1039,7 +1002,7 @@ class MainMenuState extends MusicBeatState
 		else
 			extraFinalScore.text = "RECORD: " + ClientPrefs.mayhemEndScore + " Songs / Score: " + lerpMayhemedScore;
 
-	if (ClientPrefs.firstTime == true)
+	if (ClientPrefs.firstTime)
 	{
 		if(FlxG.mouse.overlaps(exclamationMark) && FlxG.mouse.justPressed)
 		{
@@ -1364,7 +1327,7 @@ class MainMenuState extends MusicBeatState
 
 				if ((controls.ACCEPT || (FlxG.mouse.overlaps(storySelection) && FlxG.mouse.justPressed)) && !warning && ((storyShit[curStorySelected] == 'injection' && curDifficulty == 1) || storyShit[curStorySelected] == 'mayhem'))
 				{
-					if (libidiPerformWarn == true)
+					if (ClientPrefs.performanceWarning)
 					{
 						warning = true;
 						FlxG.sound.play(Paths.sound('scrollMenu'));
@@ -1632,7 +1595,7 @@ class MainMenuState extends MusicBeatState
 			MusicBeatState.switchState(new ShopState());
 		}
 
-		}
+	}
 		super.update(elapsed);
 	}
 
@@ -1671,7 +1634,7 @@ class MainMenuState extends MusicBeatState
 			ClientPrefs.saveSettings();
 
 			FlxTween.tween(blackOut2, {alpha: 0}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
-			if (libidiPerformWarn == true)
+			if (ClientPrefs.performanceWarning)
 				FlxTween.tween(libidiWarning, {alpha: 0}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
 
 			if (storyShit[curStorySelected] == 'injection')
