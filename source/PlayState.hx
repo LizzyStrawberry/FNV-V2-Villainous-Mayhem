@@ -4166,62 +4166,61 @@ class PlayState extends MusicBeatState
 				trace(Paths.formatToSongPath(PlayState.mayhemPlaylist[songSelected]) + difficulty);
 
 				if (!ClientPrefs.getGameplaySetting('practice', false) && !ClientPrefs.getGameplaySetting('botplay', false))
-					{
-						var tokenMult:Bool = true;
-						var tokenScore:Int = songScore;
-						do{
-							if (tokenScore >= 150000)
-							{
-								ClientPrefs.tokensAchieved += 1;
-								tokenScore -= 150000;
-								tokenMult = true;
-							}
-							else
-							{
-								tokenMult = false;
-							}
+				{
+					var tokenMult:Bool = true;
+					var tokenScore:Int = songScore;
+					do{
+						if (tokenScore >= 150000)
+						{
+							ClientPrefs.tokensAchieved += 1;
+							tokenScore -= 150000;
+							tokenMult = true;
 						}
-						while(tokenMult == true);
-
-						if (songMisses < 1)
-							{
-								ClientPrefs.tokensAchieved += 2;
-							}
 						else
-							{
-								ClientPrefs.tokensAchieved += 1;
-							}
-						ClientPrefs.saveSettings();
-						trace('TOKEN NUMBER SAVED SO FAR: ' + ClientPrefs.tokensAchieved);
+							tokenMult = false;
 					}
+					while(tokenMult);
 
-					FlxTransitionableState.skipNextTransIn = true;
-					FlxTransitionableState.skipNextTransOut = true;
-
-					prevCamFollow = camFollow;
-					prevCamFollowPos = camFollowPos;
-					
-					if (PlayState.mayhemPlaylist[songSelected] == "libidinousness" && ClientPrefs.lowQuality == true)
-						PlayState.SONG = Song.loadFromJson('libidinousness-villainousoptimized', 'libidinousness');
+					if (songMisses < 1)
+						ClientPrefs.tokensAchieved += 2;
 					else
-						PlayState.SONG = Song.loadFromJson(PlayState.mayhemPlaylist[songSelected] + difficulty, PlayState.mayhemPlaylist[songSelected]);
-					
-					if (PlayState.mayhemPlaylist[songSelected] == 'cheap-skate-(legacy)' || PlayState.mayhemPlaylist[songSelected] == 'toxic-mishap-(legacy)' || PlayState.mayhemPlaylist[songSelected] == 'paycheck-(legacy)') //Week Legacy
-						PlayState.SONG.player1 = 'playablegf-old';
-					if (PlayState.mayhemPlaylist[songSelected] == 'spendthrift') //Week Morky
-						PlayState.SONG.player1 = 'Spendthrift GF';
-					if (PlayState.mayhemPlaylist[songSelected] == 'its-kiana') //Week
-						PlayState.SONG.player1 = 'd-side gf';
-					
-					FlxG.sound.music.stop();
+						ClientPrefs.tokensAchieved += 1;
 
-					if (FlxG.random.int(1, 8) == 4)
-						MusicBeatState.switchState(new MinigameState());
-					else
-					{
-						cancelMusicFadeTween();
-						LoadingState.loadAndSwitchState(new PlayState());
-					}
+					ClientPrefs.saveSettings();
+					trace('TOKEN NUMBER SAVED SO FAR: ' + ClientPrefs.tokensAchieved);
+				}
+
+				FlxTransitionableState.skipNextTransIn = true;
+				FlxTransitionableState.skipNextTransOut = true;
+
+				prevCamFollow = camFollow;
+				prevCamFollowPos = camFollowPos;
+					
+				if (PlayState.mayhemPlaylist[songSelected] == "libidinousness" && ClientPrefs.lowQuality == true)
+					PlayState.SONG = Song.loadFromJson('libidinousness-villainousoptimized', 'libidinousness');
+				else
+					PlayState.SONG = Song.loadFromJson(PlayState.mayhemPlaylist[songSelected] + difficulty, PlayState.mayhemPlaylist[songSelected]);
+					
+				if (PlayState.mayhemPlaylist[songSelected] == 'cheap-skate-(legacy)' || PlayState.mayhemPlaylist[songSelected] == 'toxic-mishap-(legacy)' || PlayState.mayhemPlaylist[songSelected] == 'paycheck-(legacy)') //Week Legacy
+					PlayState.SONG.player1 = 'playablegf-old';
+				if (PlayState.mayhemPlaylist[songSelected] == 'spendthrift') //Week Morky
+					PlayState.SONG.player1 = 'Spendthrift GF';
+				if (PlayState.mayhemPlaylist[songSelected] == 'its-kiana') // Bonus song
+					PlayState.SONG.player1 = 'd-side gf';
+
+				// Unlock Secret Song
+				if (!ClientPrefs.shucksUnlocked && PlayState.mayhemPlaylist[songSelected] == "shucks-v2")
+					ClientPrefs.shucksUnlocked = true;
+					
+				FlxG.sound.music.stop();
+
+				if (FlxG.random.int(1, 8) == 4)
+					MusicBeatState.switchState(new MinigameState());
+				else
+				{
+					cancelMusicFadeTween();
+					LoadingState.loadAndSwitchState(new PlayState());
+				}
 			}
 			else
 			{

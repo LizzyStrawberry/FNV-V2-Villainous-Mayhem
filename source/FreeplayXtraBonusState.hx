@@ -137,7 +137,8 @@ class FreeplayXtraBonusState extends MusicBeatState
 
 		addSong('Partner', 3, 'dv', FlxColor.fromRGB(39, 0, 87));
 
-		addSong('Shucks V2', 3, 'marco', FlxColor.fromRGB(0 ,0, 0));
+		if (ClientPrefs.shucksUnlocked)
+			addSong('Shucks V2', 3, 'marco', FlxColor.fromRGB(0 ,0, 0));
 
 
 		/*		//KIND OF BROKEN NOW AND ALSO PRETTY USELESS//

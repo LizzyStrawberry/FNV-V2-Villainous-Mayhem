@@ -861,7 +861,7 @@ class MainMenuState extends MusicBeatState
 			&& Achievements.isAchievementUnlocked('WeekDside_Beaten')
 			// Shop Songs
 			&& ClientPrefs.tofuPlayed && ClientPrefs.lustalityPlayed && ClientPrefs.nunsationalPlayed && ClientPrefs.marcochromePlayed
-			&& ClientPrefs.nicPlayede && Achievements.isAchievementUnlocked('short_Beaten') && ClientPrefs.debugPlayed && ClientPrefs.fnvPlayed
+			&& ClientPrefs.nicPlayed && Achievements.isAchievementUnlocked('short_Beaten') && ClientPrefs.debugPlayed && ClientPrefs.fnvPlayed
 			&& ClientPrefs.infatuationPlayed && ClientPrefs.rainyDazePlayed && !ClientPrefs.crossoverUnlocked)
 		{
 			NotificationAlert.showMessage(this, 'Normal');
@@ -1735,7 +1735,10 @@ class MainMenuState extends MusicBeatState
 						if (PlayState.mayhemPlaylist[songSelected] == 'its-kiana')
 							PlayState.SONG.player1 = 'd-side gf';
 							
-
+						// Unlock Secret Song
+						if (!ClientPrefs.shucksUnlocked && PlayState.mayhemPlaylist[songSelected] == "shucks-v2")
+							ClientPrefs.shucksUnlocked = true;
+						
 						trace(Paths.formatToSongPath(PlayState.mayhemPlaylist[songSelected]) + diffic);
 
 						LoadingState.loadAndSwitchState(new PlayState(), true);

@@ -185,6 +185,9 @@ class ClientPrefs {
 	public static var ccFound:Bool = true;
 	public static var ccPlayed:Bool = false;
 
+	// Unlock Shucks Cover (Interesting)
+	public static var shucksUnlocked:Bool = false;
+
 	//Fuck LoadSong() sometimes lmao
 	public static var codeRegistered:String = '';
 
@@ -508,6 +511,8 @@ class ClientPrefs {
 		FlxG.save.data.ccFound = ccFound;
 		FlxG.save.data.ccPlayed = ccPlayed;
 
+		FlxG.save.data.shucksUnlocked = shucksUnlocked;
+
 		FlxG.save.data.codeRegistered = codeRegistered;
 
 		FlxG.save.data.zeelNakedPics = zeelNakedPics;
@@ -743,6 +748,8 @@ class ClientPrefs {
 		FlxG.save.data.ccFound = true;
 		FlxG.save.data.ccPlayed = false;
 
+		FlxG.save.data.shucksUnlocked = false;
+
 		FlxG.save.data.codeRegistered = '';
 
 		FlxG.save.data.zeelNakedPics = false;
@@ -965,6 +972,8 @@ class ClientPrefs {
 		ccFound = true;
 		ccPlayed = false;
 
+		shucksUnlocked = false;
+
 		codeRegistered = '';
 
 		zeelNakedPics = false;
@@ -1133,6 +1142,8 @@ class ClientPrefs {
 		breacherPlayed = true;
 		ccFound = true;
 		ccPlayed = true;
+
+		shucksUnlocked = true;
 
 		codeRegistered = '';
 
@@ -1590,6 +1601,11 @@ class ClientPrefs {
 		if(FlxG.save.data.ccPlayed != null) {
 			ccPlayed = FlxG.save.data.ccPlayed;
 		}
+
+		if(FlxG.save.data.shucksUnlocked != null) {
+			shucksUnlocked = FlxG.save.data.shucksUnlocked;
+		}
+
 
 		if(FlxG.save.data.codeRegistered != null) {
 			codeRegistered = FlxG.save.data.codeRegistered;
