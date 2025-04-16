@@ -74,6 +74,14 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 			['Inwards', 'Outwards', 'Diamonds', 'Sparkles']);
 		addOption(option);
 
+		var option:Option = new Option('Sustain Position:',
+			"Where would you like your Sustains to be positioned?\n[It will always be in front if Optimization Mode is enabled.]",
+			'noteTailLayer',
+			'string',
+			'Behind',
+			['Behind', 'Front']);
+		addOption(option);
+
 		var option:Option = new Option('Cinematic Bars', //Name
 			'Pretty self explanatory. If checked, it adds cinematic bars to every song.', //Description
 			'cinematicBars', //Save data variable name

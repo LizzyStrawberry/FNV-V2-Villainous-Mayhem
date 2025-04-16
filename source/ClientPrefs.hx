@@ -15,6 +15,7 @@ class ClientPrefs {
 	public static var flashing:Bool = true;
 	public static var globalAntialiasing:Bool = true;
 	public static var noteSplashes:Bool = true;
+	public static var noteTailLayer:String = "Behind";
 	public static var lowQuality:Bool = false;
 
 	public static var shaders:Bool = true;
@@ -352,6 +353,7 @@ class ClientPrefs {
 		FlxG.save.data.flashing = flashing;
 		FlxG.save.data.globalAntialiasing = globalAntialiasing;
 		FlxG.save.data.noteSplashes = noteSplashes;
+		FlxG.save.data.noteTailLayer = noteTailLayer;
 		FlxG.save.data.lowQuality = lowQuality;
 		FlxG.save.data.framerate = framerate;
 		//FlxG.save.data.cursing = cursing;
@@ -591,6 +593,7 @@ class ClientPrefs {
 		FlxG.save.data.flashing = null;
 		FlxG.save.data.globalAntialiasing = true;
 		FlxG.save.data.noteSplashes = true;
+		FlxG.save.data.noteTailLayer = "Behind";
 		FlxG.save.data.lowQuality = false;
 		FlxG.save.data.framerate = 120;
 		FlxG.save.data.camZooms = true;
@@ -817,6 +820,7 @@ class ClientPrefs {
 		flashing = true;
 		globalAntialiasing = true;
 		noteSplashes = true;
+		noteTailLayer = "Behind";
 		lowQuality = false;
 		framerate = 120;
 		camZooms = true;
@@ -1205,6 +1209,9 @@ class ClientPrefs {
 		}
 		if(FlxG.save.data.noteSplashes != null) {
 			noteSplashes = FlxG.save.data.noteSplashes;
+		}
+		if(FlxG.save.data.noteTailLayer != null) {
+			noteTailLayer = FlxG.save.data.noteTailLayer;
 		}
 		if(FlxG.save.data.lowQuality != null) {
 			lowQuality = FlxG.save.data.lowQuality;
