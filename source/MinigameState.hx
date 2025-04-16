@@ -438,6 +438,7 @@ class MinigameState extends MusicBeatState
 			if (allowedToPlay)
 			{
 				if (!selectedSomethin)
+				{
 					cups.forEach(function(spr:FlxSprite)
 					{
 						if (FlxG.mouse.overlaps(spr))
@@ -490,6 +491,7 @@ class MinigameState extends MusicBeatState
 							LoadingState.loadAndSwitchState(new PlayState());
 						});
 					}
+				}
 			}
 		}
 		else if (minigame == 3)
