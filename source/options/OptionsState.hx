@@ -184,14 +184,14 @@ class OptionsState extends MusicBeatState
 				FlxTween.tween(yes, {alpha: 0}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
 				FlxTween.tween(no, {alpha: 0}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
 			}
-			else if (PauseSubState.pauseOptions == true)
+			else if (PauseSubState.pauseOptions)
 			{
 				PauseSubState.pauseOptions = false;
 				StageData.loadDirectory(PlayState.SONG);
 				LoadingState.loadAndSwitchState(new PlayState());
 				FlxG.sound.music.volume = 0;
 			} 
-			else if (ClientPrefs.optionsFreeplay == true)
+			else if (ClientPrefs.optionsFreeplay)
 			{
 				if (FreeplayCategoryState.freeplayName == 'MAIN') //go to Main Freeplay
 					MusicBeatState.switchState(new FreeplayState());

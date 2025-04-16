@@ -137,27 +137,22 @@ class BaseOptionsMenu extends MusicBeatSubstate
 	override function update(elapsed:Float)
 	{
 		if(FlxG.mouse.wheel != 0)
-			{
-				changeSelection(-shiftMult * FlxG.mouse.wheel);
-			}
+			changeSelection(-shiftMult * FlxG.mouse.wheel);
 		if (controls.UI_UP_P)
-		{
 			changeSelection(-1);
-		}
 		if (controls.UI_DOWN_P)
-		{
 			changeSelection(1);
-		}
-
+		
 		if (controls.BACK || FlxG.mouse.justPressedRight) {
 			close();
-			if(ClientPrefs.optimizationMode == true)
+			if(ClientPrefs.optimizationMode)
 			{
 				ClientPrefs.shaders = false;
 				ClientPrefs.cacheOnGPU = false;
 				ClientPrefs.mechanics = false;
 				ClientPrefs.missRelatedCombos = false;
 				ClientPrefs.comboPosition = 'Hud';
+				ClientPrefs.noteTailLayer = 'Front';
 				ClientPrefs.comboStacking = false;
 				ClientPrefs.trampolineMode = false;
 				ClientPrefs.cinematicBars = false;

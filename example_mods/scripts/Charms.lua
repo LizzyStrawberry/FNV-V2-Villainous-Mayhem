@@ -1,5 +1,5 @@
 --[[
-	Do not ask why I'm making this feature between lua and haxeflixel, when I could just do everything through source code.
+	Do not ask why I'm making this feature between lua and Source, when I could just do everything through source code.
 	I feel more comfortable working with both languages for this.
 	With Source, I'm better at making main core changes, and with Lua, I'm better at making main core gameplay changes, so yea
 	Enjoy it lmao
@@ -67,7 +67,7 @@ function onUpdate()
 			if getPropertyFromClass('ClientPrefs', 'tokens') > 0 then
 				-- Resistant Charm
 				if keyJustPressed('charm1') and getPropertyFromClass('ClientPrefs', 'resistanceCharm') == 2
-					and charmUsed == false then
+					and not charmUsed then
 					-- tokens
 					setPropertyFromClass('ClientPrefs', 'tokens', getPropertyFromClass('ClientPrefs', 'tokens') - 1)
 					saveSettings();
@@ -96,7 +96,7 @@ function onUpdate()
 				
 				-- Auto Dodge Charm
 				if keyJustPressed('charm2') and getPropertyFromClass('ClientPrefs', 'autoCharm') == 2 
-					and charmUsed == false then
+					and not charmUsed then
 					-- tokens + Bonus
 					setPropertyFromClass('PlayState', 'checkForPowerUp', true)
 					setPropertyFromClass('ClientPrefs', 'tokens', getPropertyFromClass('ClientPrefs', 'tokens') - 1)
@@ -125,7 +125,7 @@ function onUpdate()
 				
 				-- Healing Charm
 				if keyJustPressed('charm3') and getPropertyFromClass('ClientPrefs', 'healingCharm') == 10 
-					and charmUsed == false and heal == false then
+					and not charmUsed and not heal then
 					-- tokens + bonus
 					setPropertyFromClass('PlayState', 'checkForPowerUp', true)
 					setPropertyFromClass('ClientPrefs', 'tokens', getPropertyFromClass('ClientPrefs', 'tokens') - 1)
@@ -140,7 +140,7 @@ function onUpdate()
 							cancelTween('backBarfill')
 							cancelTimer('drainDelay')
 							
-							setUpTime()
+							callScript("data/toybox/Narrin Mechanic", "setUpTime", {})
 						else
 							setProperty('health', curHealth + 0.50)
 						end
@@ -170,7 +170,7 @@ function onUpdate()
 					charmUsed = true
 				end
 				if keyJustPressed('charm3') and getPropertyFromClass('ClientPrefs', 'healingCharm') <= 9 
-					and getPropertyFromClass('ClientPrefs', 'healingCharm') > 0 and charmUsed == true and heal == true then
+					and getPropertyFromClass('ClientPrefs', 'healingCharm') > 0 and charmUsed and heal then
 					-- Setting the Charm up
 					if isMayhemMode then
 						setProperty('health', curHealth + 3)
@@ -180,7 +180,7 @@ function onUpdate()
 							cancelTween('backBarfill')
 							cancelTimer('drainDelay')
 							
-							setUpTime()
+							callScript("data/toybox/Narrin Mechanic", "setUpTime", {})
 						else
 							setProperty('health', curHealth + 0.50)
 						end
@@ -207,7 +207,7 @@ function onUpdate()
 			-- In Case you only have 1 token left
 			if keyJustPressed('charm3') and getPropertyFromClass('ClientPrefs', 'tokens') == 0
 			and getPropertyFromClass('ClientPrefs', 'healingCharm') <= 9 
-			and getPropertyFromClass('ClientPrefs', 'healingCharm') > 0 and charmUsed == true and heal == true then
+			and getPropertyFromClass('ClientPrefs', 'healingCharm') > 0 and charmUsed and heal then
 				-- Setting the Charm up
 				if isMayhemMode then
 					setProperty('health', curHealth + 3)
@@ -217,7 +217,7 @@ function onUpdate()
 						cancelTween('backBarfill')
 						cancelTimer('drainDelay')
 						
-						setUpTime()
+						callScript("data/toybox/Narrin Mechanic", "setUpTime", {})
 					else
 						setProperty('health', curHealth + 0.50)
 					end
@@ -240,7 +240,7 @@ function onUpdate()
 				cameraFlash('game', '00FF00', 0.5, false)
 				playSound('confirmMenu')
 			end
-			if getPropertyFromClass('ClientPrefs', 'tokens') == 0 and charmUsed == false then
+			if getPropertyFromClass('ClientPrefs', 'tokens') == 0 and not charmUsed then
 				-- Text Configuration
 				setProperty('charmSocket.alpha', 0.5)
 					
@@ -263,27 +263,5 @@ function onTimerCompleted(tag)
 	end
 	if tag == 'heal' then
 		heal = true
-	end
-end
-
-function setUpTime()
-	if difficulty == 0 then
-		secondsToKill = 45
-	end
-	if difficulty == 1 then
-		secondsToKill = 35
-	end
-	if difficulty == 2 then
-		secondsToKill = 25
-	end
-				
-	if resCharmOn then
-		secondsToKill = (secondsToKill + 15) * (getHealth() / 2)
-	else
-		secondsToKill = secondsToKill * (getHealth() / 2)
-	end
-	
-	if not isMayhemMode and not buff3On then
-		runTimer('drainDelay', 0.6 / playbackRate)
 	end
 end

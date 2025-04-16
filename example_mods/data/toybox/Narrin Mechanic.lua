@@ -56,19 +56,19 @@ function onCreatePost()
 		
 		if difficulty == 0 then
 			bulletsToKill = getRandomInt(2, 4)
-			toUnjam = getRandomInt(1,2)
+			toUnjam = getRandomInt(1, 2)
 		end
 		if difficulty == 1 then
 			bulletsToKill = getRandomInt(3, 6)
-			toUnjam = getRandomInt(2,3)
+			toUnjam = getRandomInt(2, 3)
 		end
 		if difficulty == 2 then
 			bulletsToKill = getRandomInt(4, 6)
-			toUnjam = getRandomInt(3,5)
+			toUnjam = getRandomInt(3, 5)
 		end
 		if isMayhemMode then
 			bulletsToKill = getRandomInt(2, 15)
-			toUnjam = getRandomInt(3,7)
+			toUnjam = getRandomInt(3, 7)
 		end
 	end
 end
@@ -153,7 +153,7 @@ function onUpdate()
 						elseif selectedDoll == 3 then
 							doTweenX('dollMove3', 'Doll N3', dollOriginalPos[2][1], 2.6 / playbackRate, 'easeIn')
 						end
-					setUp = true
+						setUp = true
 					end
 				end
 				if getProperty('Doll N2.x') >= 850.00 and getProperty('Doll N2.x') <= 910.00 then
@@ -172,7 +172,7 @@ function onUpdate()
 						
 						if buff3On then
 							setProperty('health', health - 0)
-						elseif resCharmOn == true then
+						elseif resCharmOn then
 							if isMayhemMode then
 								setProperty('health', health - 7.5)
 							else
@@ -190,8 +190,6 @@ function onUpdate()
 						cancelTimer('drainDelay')
 						setUpTime()
 						
-						gotHit = true
-					else
 						gotHit = true
 					end
 				end
@@ -230,8 +228,6 @@ function onUpdate()
 						setUpTime()
 						
 						gotHit = true
-					else
-						gotHit = true
 					end
 				end
 			end
@@ -254,23 +250,21 @@ function onUpdate()
 						
 					playSound('reload')
 					triggerEvent('Play Animation', 'unjammed', 'boyfriend')
-						
-					jammedGun = false
 							
 					setPropertyFromClass('PlayState', 'reloadingGun', true)
 					runTimer('reloadFix', 0.3 / playbackRate)
 					
 					if difficulty == 0 then
-						toUnjam = getRandomInt(1,2)
+						toUnjam = getRandomInt(1, 2)
 					end
 					if difficulty == 1 then
-						toUnjam = getRandomInt(2,3)
+						toUnjam = getRandomInt(2, 3)
 					end
 					if difficulty == 2 then
-						toUnjam = getRandomInt(3,5)
+						toUnjam = getRandomInt(3, 5)
 					end
 					if isMayhemMode then
-						toUnjam = getRandomInt(3,7)
+						toUnjam = getRandomInt(3, 7)
 					end
 				end	
 			end
@@ -347,11 +341,9 @@ end
 function setUpTime()
 	if difficulty == 0 then
 		secondsToKill = 45
-	end
-	if difficulty == 1 then
+	elseif difficulty == 1 then
 		secondsToKill = 35
-	end
-	if difficulty == 2 then
+	elseif difficulty == 2 then
 		secondsToKill = 25
 	end
 				
@@ -364,6 +356,8 @@ function setUpTime()
 	if not isMayhemMode and not buff3On then
 		runTimer('drainDelay', 0.3 / playbackRate)
 	end
+	
+	setVar("secondsToKill", secondsToKill)
 end
 
 function onTweenCompleted(tag)

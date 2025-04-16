@@ -8,6 +8,11 @@ local charmed = 1
 
 local refill = false
 
+-- Health Calculations
+local stepsPerSecond
+local totalHealthGain = 0.75 -- Normally without Mayhem Mode
+local healthGainPerStep
+
 function onCreate()
 	if (not getPropertyFromClass('ClientPrefs', 'buff1Selected') and not getPropertyFromClass('ClientPrefs', 'buff2Selected')
 	and not getPropertyFromClass('ClientPrefs', 'buff3Selected')) or (not mechanics) or botPlay then
@@ -15,13 +20,13 @@ function onCreate()
 	end
 	
 	--Resetting
-	if getPropertyFromClass('ClientPrefs', 'buff1Selected') == true then
+	if getPropertyFromClass('ClientPrefs', 'buff1Selected') then
 		setPropertyFromClass('ClientPrefs', 'buff1Active', false)
 	end
-	if getPropertyFromClass('ClientPrefs', 'buff2Selected') == true then
+	if getPropertyFromClass('ClientPrefs', 'buff2Selected') then
 		setPropertyFromClass('ClientPrefs', 'buff2Active', false)
 	end
-	if getPropertyFromClass('ClientPrefs', 'buff3Selected') == true then
+	if getPropertyFromClass('ClientPrefs', 'buff3Selected') then
 		setPropertyFromClass('ClientPrefs', 'buff3Active', false)
 	end
 	
@@ -32,7 +37,14 @@ function onCreate()
 end
 
 function onCreatePost()	
-	if mayhemEnabled == true then
+	if mayhemEnabled then
+		-- Calculate Health Gain for buff 1
+		stepsPerSecond = (bpm / 60) * 4
+		if isMayhemMode then
+			totalHealthGain = 10 -- Gain 10 Health in Mayhem Mode
+		end
+		healthGainPerStep = ((totalHealthGain / 7) / stepsPerSecond) * 2 -- per 2 steps
+		
 		padColor = rgbToHex(getProperty('dad.healthColorArray'))
 		
 		for i = 1, #(marcoMainSongs) do
@@ -149,16 +161,17 @@ end
 
 local mayhemAlphaLower = false
 function onUpdatePost()
-	if mayhemEnabled == true then
+	if mayhemEnabled then
 		healthLeft = getHealth();
 		
+		-- Set Bar Position
 		if not isMayhemMode and songName == 'Forsaken' or songName == 'Forsaken (Picmixed)' or songName == 'Partner' then
 			setProperty('reloadBar.alpha', getProperty('mayhembackBar.alpha'))
 			setProperty('mayhemPads.alpha', getProperty('mayhembackBar.alpha'))
 			setProperty('mayhemBar.alpha', getProperty('mayhembackBar.alpha'))
 			setProperty('mayhemText.alpha', getProperty('mayhembackBar.alpha'))
 		elseif songName == 'Libidinousness' then
-			if not mustHitSection and mayhemAlphaLower == false then
+			if not mustHitSection and not mayhemAlphaLower then
 				doTweenAlpha('mayhembackBar', 'mayhembackBar', 0.3, 0.5, 'sineOut')
 				doTweenAlpha('reloadBar', 'reloadBar', 0.3, 0.5, 'sineOut')
 				doTweenAlpha('mayhemPads', 'mayhemPads', 0.3, 0.5, 'sineOut')
@@ -166,7 +179,7 @@ function onUpdatePost()
 				doTweenAlpha('mayhemText', 'mayhemText', 0.3, 0.5, 'sineOut')
 				mayhemAlphaLower = true
 			end
-			if mustHitSection and mayhemAlphaLower == true then
+			if mustHitSection and mayhemAlphaLower then
 				doTweenAlpha('mayhembackBar', 'mayhembackBar', 1, 0.5, 'sineOut')
 				doTweenAlpha('reloadBar', 'reloadBar', 1, 0.5, 'sineOut')
 				doTweenAlpha('mayhemPads', 'mayhemPads', 1, 0.5, 'sineOut')
@@ -192,18 +205,19 @@ function onUpdatePost()
 		-- 1) Health Increase on Step (Unlocked on Marco's main week)
 		-- 2) Second Chance (Unlocked on Beatrice's main week)
 		-- 3) Immunity (Unlocked on Kiana's main week / IT'S SHOWN ON HEALTH DRAINING SCRIPTS)
-		if getPropertyFromClass('ClientPrefs', 'buff1Unlocked') == true and getPropertyFromClass('ClientPrefs', 'buff1Selected') == true then
-			if keyJustPressed('mayhem') and maxedOut and activated == false and refill == false then
+		if getPropertyFromClass('ClientPrefs', 'buff1Unlocked') and getPropertyFromClass('ClientPrefs', 'buff1Selected') then
+			if keyJustPressed('mayhem') and maxedOut and not activated and not refill then
 				activated = true
 				doTweenX('mayhemBackBarScale', 'mayhembackBar.scale', 0, 7, 'linear')
 				
-				if not isMayhemMode and (songName == 'Forsaken' or songName == 'Forsaken (Picmixed)' or songName == 'Partner') and mechanics then
-					cancelTween('backBarfill')
-				end
-				if not isMayhemMode and songName == 'Toybox' and mechanics then
-					if (curBeat >= 136 and curBeat < 456) then
+				if not isMayhemMode then
+					if (songName == 'Forsaken' or songName == 'Forsaken (Picmixed)' or songName == 'Partner') and mechanics then
 						cancelTween('backBarfill')
-						cancelTimer('drainDelay')
+					elseif songName == 'Toybox' and mechanics then
+						if curBeat >= 136 and curBeat < 456 then
+							cancelTween('backBarfill')
+							cancelTimer('drainDelay')
+						end
 					end
 				end
 				
@@ -211,87 +225,82 @@ function onUpdatePost()
 			end
 		end
 		
-		if getPropertyFromClass('ClientPrefs', 'buff2Unlocked') == true and getPropertyFromClass('ClientPrefs', 'buff2Selected') == true then
-			if keyJustPressed('mayhem') and maxedOut and activated == false and secondChanceAllowed == false and refill == false then
+		if getPropertyFromClass('ClientPrefs', 'buff2Unlocked') and getPropertyFromClass('ClientPrefs', 'buff2Selected') then
+			if keyJustPressed('mayhem') and maxedOut and not activated and not secondChanceAllowed and not refill then
 				activated = true
-				doTweenX('mayhemBackBarScaleBuff2', 'mayhembackBar.scale', 0, 7, 'circOut')
 				secondChanceAllowed = true
+				doTweenX('mayhemBackBarScaleBuff2', 'mayhembackBar.scale', 0, 7, 'circOut')
 				
 				if isMayhemMode then
 					setPropertyFromClass('ClientPrefs', 'buff2Active', true)
 				end
 			end
-			if secondChanceGiven == false and healthLeft <= 0 and activated then
-				cameraFlash('hud', 'FFFFFF', 0.6, false)
+			if not secondChanceGiven and healthLeft <= 0 and activated then
+				cameraFlash('hud', 'FFFFFF', 0.6 / playbackRate, false)
 				if isMayhemMode then
-					setProperty('health', 30)
+					setProperty('health', 50)
 				else
-					setProperty('health', 2)
+					if songName == "Toybox" and mechanics then
+						if curBeat >= 136 and curBeat < 456 then
+							setProperty('health', 1.5)
+							setProperty("barBack.scale.x", getHealth() / 2)
+							callScript("data/toybox/Narrin Mechanic", "setUpTime", {})
+						else
+							setProperty('health', 2)
+						end
+					else
+						setProperty('health', 2)
+					end
 				end
 				secondChanceGiven = true
 			end
 		end
 		
-		if getPropertyFromClass('ClientPrefs', 'buff3Unlocked') == true and getPropertyFromClass('ClientPrefs', 'buff3Selected') == true then
-			if keyJustPressed('mayhem') and maxedOut and activated == false and refill == false then
+		if getPropertyFromClass('ClientPrefs', 'buff3Unlocked') and getPropertyFromClass('ClientPrefs', 'buff3Selected') then
+			if keyJustPressed('mayhem') and maxedOut and not activated and not refill then
 				activated = true
 				doTweenX('mayhemBackBarScaleBuff3', 'mayhembackBar.scale', 0, 7, 'linear')
 				setPropertyFromClass('ClientPrefs', 'buff3Active', true)
 				
 				-- Song Specifications
-				if not isMayhemMode and (songName == 'Forsaken' or songName == 'Forsaken (Picmixed)' or songName == 'Partner') and mechanics then
-					pauseTween('backBarfill')
-				end
-				if not isMayhemMode and songName == 'Toybox' and mechanics then
-					if (curBeat >= 136 and curBeat < 456) and mechanics and not isMayhemMode then
+				if not isMayhemMode then
+					if (songName == 'Forsaken' or songName == 'Forsaken (Picmixed)' or songName == 'Partner') and mechanics then
 						pauseTween('backBarfill')
+					elseif songName == 'Toybox' and mechanics then
+						if curBeat >= 136 and curBeat < 456 then
+							pauseTween('backBarfill')
+						end
 					end
 				end
 			end
 		end
 		
-		--disable bonus
-		if activated and getPropertyFromClass('PlayState', 'checkForPowerUp') == false then
+		-- Disable bonus
+		if activated and not getPropertyFromClass('PlayState', 'checkForPowerUp') then
 			setPropertyFromClass('PlayState', 'checkForPowerUp', true)
 		end
 	end
 end
 
 function onStepHit()
-	if mayhemEnabled == true then
-		if activated and getPropertyFromClass('ClientPrefs', 'buff1Unlocked') == true and getPropertyFromClass('ClientPrefs', 'buff1Selected') == true then
+	if mayhemEnabled then
+		if activated and getPropertyFromClass('ClientPrefs', 'buff1Unlocked') and getPropertyFromClass('ClientPrefs', 'buff1Selected') then
 			if curStep % 2 == 0 then
 				if isMayhemMode then
-					if bpm >= 60 and bpm <= 100 then
-						setProperty('health', getHealth() + 0.275)
-					elseif bpm > 100 and bpm <= 140 then
-						setProperty('health', getHealth() + 0.225)
-					elseif bpm > 140 and bpm <= 180 then
-						setProperty('health', getHealth() + 0.175)
-					elseif bpm > 180 then
-						setProperty('health', getHealth() + 0.125)
-					end
+					setProperty('health', getHealth() + healthGainPerStep)
 				else
 					-- Song Specifications
 					if (songName == 'Forsaken' or songName == 'Forsaken (Picmixed)' or songName == 'Partner') and mechanics
 						and getProperty('barBack.scale.y') < 1 then
 						setProperty('barBack.scale.y', getProperty('barBack.scale.y') + 0.005)
 					elseif songName == 'Toybox' and mechanics then
-						if (curBeat >= 136 and curBeat < 456) and mechanics and not isMayhemMode then
+						if curBeat >= 136 and curBeat < 456 then
 							setProperty('barBack.scale.y', getProperty('barBack.scale.y') + 0.005)
 						else
-							setProperty('health', getHealth() + 0.035)
+							setProperty('health', getHealth() + healthGainPerStep)
 						end
 					else
-						if bpm >= 60 and bpm <= 100 then
-							setProperty('health', getHealth() + 0.0375)
-						elseif bpm > 100 and bpm <= 140 then
-							setProperty('health', getHealth() + 0.0275)
-						elseif bpm > 140 and bpm <= 180 then
-							setProperty('health', getHealth() + 0.0175)
-						elseif bpm > 180 then
-							setProperty('health', getHealth() + 0.0125)
-						end
+						setProperty('health', getHealth() + healthGainPerStep)
 					end
 				end
 			end
@@ -300,18 +309,19 @@ function onStepHit()
 end
 
 function goodNoteHit(id, direction, noteType, isSustainNote)
-	if mayhemEnabled == true then
-		if secondChanceAllowed == false then
-			if not maxedOut and (not isSustainNote) then
-				setProperty('mayhembackBar.scale.x', getProperty('mayhembackBar.scale.x') + 0.012)
-			end
-			if maxedOut == false and getProperty('mayhembackBar.scale.x') >= 1 then
-				setProperty('mayhembackBar.scale.x', 1)
-				setProperty('reloadBar.scale.x', 0)
-				maxedOut = true
-			end
-			if not maxedOut and isSustainNote then
-				setProperty('mayhembackBar.scale.x', getProperty('mayhembackBar.scale.x') + 0.00115)
+	if mayhemEnabled then
+		if not secondChanceAllowed then
+			if not maxedOut then
+				if not isSustainNote then
+					setProperty('mayhembackBar.scale.x', getProperty('mayhembackBar.scale.x') + 0.012)
+				else
+					setProperty('mayhembackBar.scale.x', getProperty('mayhembackBar.scale.x') + 0.00115)
+				end
+				if getProperty('mayhembackBar.scale.x') >= 1 then
+					setProperty('mayhembackBar.scale.x', 1)
+					setProperty('reloadBar.scale.x', 0)
+					maxedOut = true
+				end
 			end
 		end
 		
@@ -332,28 +342,6 @@ function goodNoteHit(id, direction, noteType, isSustainNote)
 				else
 					setProperty('leftBGEffect.color', getColorFromHex('9700FF'))
 				end
-				
-				setProperty('leftBGEffect.alpha', 1)
-				cancelTween('leftBGEffect')
-				doTweenAlpha('leftBGEffect', 'leftBGEffect', 0, 0.4 / playbackRate, 'easeOut')
-				
-				if boyfriendName == 'TC' or boyfriendName == 'TCAlt' then
-					setProperty('rightBGEffect.color', getColorFromHex('f65215'))
-				elseif boyfriendName == 'ourple' then
-					setProperty('rightBGEffect.color', getColorFromHex('fff31d'))
-				elseif boyfriendName == 'Kyu' or boyfriendName == 'KyuAlt' then
-					setProperty('rightBGEffect.color', getColorFromHex('d2fffb'))
-				elseif boyfriendName == 'aileenTofu' or boyfriendName == 'aileenTofuAlt' then
-					setProperty('rightBGEffect.color', getColorFromHex('dcdcdc'))
-				elseif boyfriendName == 'marcoFFFP1' or boyfriendName == 'marcoFFFP2' then
-					setProperty('rightBGEffect.color', getColorFromHex('4c9e64'))
-				else
-					setProperty('rightBGEffect.color', getColorFromHex('9700FF'))
-				end
-				
-				setProperty('rightBGEffect.alpha', 1)
-				cancelTween('rightBGEffect')
-				doTweenAlpha('rightBGEffect', 'rightBGEffect', 0, 0.4 / playbackRate, 'easeOut')
 			end
 			if direction == 1 then
 				if boyfriendName == 'TC' or boyfriendName == 'TCAlt' then
@@ -369,28 +357,6 @@ function goodNoteHit(id, direction, noteType, isSustainNote)
 				else
 					setProperty('leftBGEffect.color', getColorFromHex('00FFFF'))
 				end
-				
-				setProperty('leftBGEffect.alpha', 1)
-				cancelTween('leftBGEffect')
-				doTweenAlpha('leftBGEffect', 'leftBGEffect', 0, 0.4 / playbackRate, 'easeOut')
-				
-				if boyfriendName == 'TC' or boyfriendName == 'TCAlt' then
-					setProperty('rightBGEffect.color', getColorFromHex('f4cabb'))
-				elseif boyfriendName == 'ourple' then
-					setProperty('rightBGEffect.color', getColorFromHex('327dff'))
-				elseif boyfriendName == 'Kyu' or boyfriendName == 'KyuAlt' then
-					setProperty('rightBGEffect.color', getColorFromHex('3bc2b2'))
-				elseif boyfriendName == 'aileenTofu' or boyfriendName == 'aileenTofuAlt' then
-					setProperty('rightBGEffect.color', getColorFromHex('729576'))
-				elseif boyfriendName == 'marcoFFFP1' or boyfriendName == 'marcoFFFP2' then
-					setProperty('rightBGEffect.color', getColorFromHex('288543'))
-				else
-					setProperty('rightBGEffect.color', getColorFromHex('00FFFF'))
-				end
-				
-				setProperty('rightBGEffect.alpha', 1)
-				cancelTween('rightBGEffect')
-				doTweenAlpha('rightBGEffect', 'rightBGEffect', 0, 0.4 / playbackRate, 'easeOut')
 			end
 			if direction == 2 then
 				if boyfriendName == 'TC' or boyfriendName == 'TCAlt' then
@@ -406,28 +372,6 @@ function goodNoteHit(id, direction, noteType, isSustainNote)
 				else
 					setProperty('leftBGEffect.color', getColorFromHex('00FF00'))
 				end
-				
-				setProperty('leftBGEffect.alpha', 1)
-				cancelTween('leftBGEffect')
-				doTweenAlpha('leftBGEffect', 'leftBGEffect', 0, 0.4 / playbackRate, 'easeOut')
-				
-				if boyfriendName == 'TC' or boyfriendName == 'TCAlt' then
-					setProperty('rightBGEffect.color', getColorFromHex('edbeec'))
-				elseif boyfriendName == 'ourple' then
-					setProperty('rightBGEffect.color', getColorFromHex('32ffab'))
-				elseif boyfriendName == 'Kyu' or boyfriendName == 'KyuAlt' then
-					setProperty('rightBGEffect.color', getColorFromHex('d2fffb'))
-				elseif boyfriendName == 'aileenTofu' or boyfriendName == 'aileenTofuAlt' then
-					setProperty('rightBGEffect.color', getColorFromHex('729576'))
-				elseif boyfriendName == 'marcoFFFP1' or boyfriendName == 'marcoFFFP2' then
-					setProperty('rightBGEffect.color', getColorFromHex('8bbd99'))
-				else
-					setProperty('rightBGEffect.color', getColorFromHex('00FF00'))
-				end
-				
-				setProperty('rightBGEffect.alpha', 1)
-				cancelTween('rightBGEffect')
-				doTweenAlpha('rightBGEffect', 'rightBGEffect', 0, 0.4 / playbackRate, 'easeOut')
 			end
 			if direction == 3 then
 				if boyfriendName == 'TC' or boyfriendName == 'TCAlt' then
@@ -443,33 +387,23 @@ function goodNoteHit(id, direction, noteType, isSustainNote)
 				else
 					setProperty('leftBGEffect.color', getColorFromHex('FF0000'))
 				end
-				setProperty('leftBGEffect.alpha', 1)
-				cancelTween('leftBGEffect')
-				doTweenAlpha('leftBGEffect', 'leftBGEffect', 0, 0.4 / playbackRate, 'easeOut')
-				
-				if boyfriendName == 'TC' or boyfriendName == 'TCAlt' then
-					setProperty('rightBGEffect.color', getColorFromHex('ee25e8'))
-				elseif boyfriendName == 'ourple' then
-					setProperty('rightBGEffect.color', getColorFromHex('ff1dc0'))
-				elseif boyfriendName == 'Kyu' or boyfriendName == 'KyuAlt' then
-					setProperty('rightBGEffect.color', getColorFromHex('3bc2b2'))
-				elseif boyfriendName == 'aileenTofu' or boyfriendName == 'aileenTofuAlt' then
-					setProperty('rightBGEffect.color', getColorFromHex('565656'))
-				elseif boyfriendName == 'marcoFFFP1' or boyfriendName == 'marcoFFFP2' then
-					setProperty('rightBGEffect.color', getColorFromHex('23743a'))
-				else
-					setProperty('rightBGEffect.color', getColorFromHex('FF0000'))
-				end
-				setProperty('rightBGEffect.alpha', 1)
-				cancelTween('rightBGEffect')
-				doTweenAlpha('rightBGEffect', 'rightBGEffect', 0, 0.4 / playbackRate, 'easeOut')
 			end
+			
+			setProperty('rightBGEffect.color', getProperty("leftBGEffect.color")) -- Same as left
+			
+			setProperty('leftBGEffect.alpha', 1)
+			cancelTween('leftBGEffect')
+			doTweenAlpha('leftBGEffect', 'leftBGEffect', 0, 0.4 / playbackRate, 'easeOut')
+				
+			setProperty('rightBGEffect.alpha', 1)
+			cancelTween('rightBGEffect')
+			doTweenAlpha('rightBGEffect', 'rightBGEffect', 0, 0.4 / playbackRate, 'easeOut')
 		end
 	end
 end
 
 function noteMiss(id, direction, noteType, isSustainNote)
-	if mayhemEnabled == true then
+	if mayhemEnabled then
 		if not maxedOut and getProperty('mayhembackBar.scale.x') > 0 then
 			setProperty('mayhembackBar.scale.x', getProperty('mayhembackBar.scale.x') - 0.015)
 		end
@@ -477,7 +411,7 @@ function noteMiss(id, direction, noteType, isSustainNote)
 end
 
 function noteMissPress(direction)
-	if mayhemEnabled == true and getPropertyFromClass('ClientPrefs', 'ghostTapping') == false then
+	if mayhemEnabled and not getPropertyFromClass('ClientPrefs', 'ghostTapping') then
 		if not maxedOut and getProperty('mayhembackBar.scale.x') > 0 then
 			setProperty('mayhembackBar.scale.x', getProperty('mayhembackBar.scale.x') - 0.015)
 		end
@@ -485,7 +419,7 @@ function noteMissPress(direction)
 end
 
 function onBeatHit()
-	if mayhemEnabled == true then
+	if mayhemEnabled then
 		if maxedOut then
 			if curBeat % 1 == 0 then
 				setProperty('mayhembackBar.color', getColorFromHex('FFFFFF'))
@@ -496,87 +430,72 @@ function onBeatHit()
 end
 
 function onTweenCompleted(tag)
-	if mayhemEnabled == true then
-		if tag == 'mayhemBackBarScale' then
+	if mayhemEnabled then
+		if tag == 'mayhemBackBarScale' then -- Buff 1
 			doTweenX('reloading', 'reloadBar.scale', 1, 10, 'linear')
 			setProperty('mayhembackBar.color', getColorFromHex(backColor))
 			setPropertyFromClass('ClientPrefs', 'buff1Active', false)
 			
 			activated = false
 			
-			if not isMayhemMode and (songName == 'Forsaken' or songName == 'Forsaken (Picmixed)' or songName == 'Partner') and mechanics then
-				daSongLength = (getProperty('songLength') + 91000) / 1000 / playbackRate
-				doTweenY('backBarfill', 'barBack.scale', 0, daSongLength + 20, 'linear')
-				
-				if getPropertyFromClass('ClientPrefs', 'resistanceCharm') == 1 then
-					charmed = 0.2
-				end
-				
-				if difficulty == 0 and getProperty('songMisses') > 45 then
-					cancelTween('backBarfill')
-					doTweenY('backBarfill', 'barBack.scale', 0, 4 / charmed, 'linear')
-					setTextColor('scoreTxt', 'FF0000')
-				end
-				
-				if difficulty == 1 and getProperty('songMisses') > 25 then
-					cancelTween('backBarfill')
-					doTweenY('backBarfill', 'barBack.scale', 0, 4 / charmed, 'linear')
-					setTextColor('scoreTxt', 'FF0000')
-				end
-				
-				if difficulty == 2 and getProperty('songMisses') > 12 then
-					cancelTween('backBarfill')
-					doTweenY('backBarfill', 'barBack.scale', 0, 4 / charmed, 'linear')
-					setTextColor('scoreTxt', 'FF0000')
-				end
-			end
-			
-			if not isMayhemMode and songName == 'Toybox' and mechanics then
-				if (curBeat >= 136 and curBeat < 456) and mechanics and not isMayhemMode then
-					if getPropertyFromClass('ClientPrefs', 'buff2Selected') == true then
+			if not isMayhemMode then
+				if (songName == 'Forsaken' or songName == 'Forsaken (Picmixed)' or songName == 'Partner') and mechanics then
+					daSongLength = (getProperty('songLength') + 91000) / 1000 / playbackRate
+					doTweenY('backBarfill', 'barBack.scale', 0, daSongLength + 20, 'linear')
+					
+					if getPropertyFromClass('ClientPrefs', 'resistanceCharm') == 1 then
+						charmed = 0.2
+					end
+					
+					if difficulty == 0 and getProperty('songMisses') > 45 then
 						cancelTween('backBarfill')
-						if difficulty == 0 then
-							secondsToKill = 45
-						end
-						if difficulty == 1 then
-							secondsToKill = 35
-						end
-						if difficulty == 2 then
-							secondsToKill = 25
-						end
-						if getPropertyFromClass('ClientPrefs', 'resistanceCharm') == 1 then
-							secondsToKill = (secondsToKill + 15) * (getHealth() / 2)
-						else
-							secondsToKill = secondsToKill * (getHealth() / 2)
-						end
-						doTweenY('backBarfill', 'barBack.scale', 0, secondsToKill / playbackRate, 'easeIn')
-					else
-						setUpTime()
+						doTweenY('backBarfill', 'barBack.scale', 0, 4 / charmed, 'linear')
+						setTextColor('scoreTxt', 'FF0000')
+					elseif difficulty == 1 and getProperty('songMisses') > 25 then
+						cancelTween('backBarfill')
+						doTweenY('backBarfill', 'barBack.scale', 0, 4 / charmed, 'linear')
+						setTextColor('scoreTxt', 'FF0000')
+					elseif difficulty == 2 and getProperty('songMisses') > 12 then
+						cancelTween('backBarfill')
+						doTweenY('backBarfill', 'barBack.scale', 0, 4 / charmed, 'linear')
+						setTextColor('scoreTxt', 'FF0000')
+					end
+				end
+			
+				if songName == 'Toybox' and mechanics then
+					if curBeat >= 136 and curBeat < 456 then
+						callScript("data/toybox/Narrin Mechanic", "setUpTime", {})
 					end
 				end
 			end
 		end
 		
-		if tag == 'mayhemBackBarScaleBuff2' and secondChanceGiven == false then
-			doTweenX('reloading', 'reloadBar.scale', 1, 10, 'linear')
-			activated = false
-			secondChanceAllowed = false
-			setProperty('mayhembackBar.color', getColorFromHex(backColor))
-		end
-		if tag == 'mayhemBackBarScaleBuff2' and secondChanceGiven == true then
-			activated = false
+		if tag == 'mayhemBackBarScaleBuff2' then -- Buff 2
+			if not secondChanceGiven then
+				activated = false
+				secondChanceAllowed = false -- You didn't die yet, reset this
+				doTweenX('reloading', 'reloadBar.scale', 1, 10, 'linear')
+				setProperty('mayhembackBar.color', getColorFromHex(backColor))
+			else
+				activated = false
+			end
 		end
 		
-		if tag == 'mayhemBackBarScaleBuff3' then
+		if tag == 'mayhemBackBarScaleBuff3' then -- Buff 3
 			doTweenX('reloading', 'reloadBar.scale', 1, 10, 'linear')
 			activated = false
 			setProperty('mayhembackBar.color', getColorFromHex(backColor))
 			setPropertyFromClass('ClientPrefs', 'buff3Active', false)
 						
-			if not isMayhemMode and (songName == 'Forsaken' or songName == 'Forsaken (Picmixed)' or songName == 'Partner') and mechanics then
-				resumeTween('backBarfill')
-			elseif songName == 'Toybox' and mechanics then
-				setUpTime()
+			if not isMayhemMode then
+				if (songName == 'Forsaken' or songName == 'Forsaken (Picmixed)' or songName == 'Partner') and mechanics then
+					resumeTween('backBarfill')
+				elseif songName == 'Toybox' and mechanics then
+					if curBeat >= 136 and curBeat < 456 then
+						callScript("data/toybox/Narrin Mechanic", "setUpTime", {})
+						runTimer('drainDelay', 0.3 / playbackRate)
+					end
+				end
 			end
 		end
 		
@@ -588,39 +507,17 @@ function onTweenCompleted(tag)
 end
 
 function onDestroy()
-	if getPropertyFromClass('ClientPrefs', 'buff1Selected') == true then
+	if getPropertyFromClass('ClientPrefs', 'buff1Selected') then
 		setPropertyFromClass('ClientPrefs', 'buff1Active', false)
 	end
-	if getPropertyFromClass('ClientPrefs', 'buff2Selected') == true then
+	if getPropertyFromClass('ClientPrefs', 'buff2Selected') then
 		setPropertyFromClass('ClientPrefs', 'buff2Active', false)
 	end
-	if getPropertyFromClass('ClientPrefs', 'buff3Selected') == true then
+	if getPropertyFromClass('ClientPrefs', 'buff3Selected') then
 		setPropertyFromClass('ClientPrefs', 'buff3Active', false)
 	end
 end
 
 function rgbToHex(rgb) -- https://www.codegrepper.com/code-examples/lua/rgb+to+hex+lua
     return string.format('%02x%02x%02x', math.floor(rgb[1]), math.floor(rgb[2]), math.floor(rgb[3]))
-end
-
-function setUpTime()
-	if difficulty == 0 then
-		secondsToKill = 45
-	end
-	if difficulty == 1 then
-		secondsToKill = 35
-	end
-	if difficulty == 2 then
-		secondsToKill = 25
-	end
-				
-	if resCharmOn then
-		secondsToKill = (secondsToKill + 15) * (getHealth() / 2)
-	else
-		secondsToKill = secondsToKill * (getHealth() / 2)
-	end
-	
-	if not isMayhemMode and not buff3On then
-		runTimer('drainDelay', 0.3 / playbackRate)
-	end
 end
