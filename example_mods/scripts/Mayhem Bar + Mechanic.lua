@@ -2,9 +2,8 @@ local marcoMainSongs = {'Scrouge', 'Toxic Mishap Remix', 'Villainy', 'Cheap Skat
 local mayhemEnabled = true
 local maxedOut = false
 local activated = false
-local secondChanceGiven = false
+secondChanceGiven = false
 local secondChanceAllowed = false
-local charmed = 1
 
 local refill = false
 
@@ -230,13 +229,12 @@ function onUpdatePost()
 				activated = true
 				secondChanceAllowed = true
 				doTweenX('mayhemBackBarScaleBuff2', 'mayhembackBar.scale', 0, 7, 'circOut')
-				
-				if isMayhemMode then
-					setPropertyFromClass('ClientPrefs', 'buff2Active', true)
-				end
+
+				setPropertyFromClass('ClientPrefs', 'buff2Active', true)
 			end
 			if not secondChanceGiven and healthLeft <= 0 and activated then
 				cameraFlash('hud', 'FFFFFF', 0.6 / playbackRate, false)
+				secondChanceGiven = true
 				if isMayhemMode then
 					setProperty('health', 50)
 				else
@@ -252,7 +250,8 @@ function onUpdatePost()
 						setProperty('health', 2)
 					end
 				end
-				secondChanceGiven = true
+				
+				setPropertyFromClass('ClientPrefs', 'buff2Active', false)
 			end
 		end
 		
@@ -440,25 +439,14 @@ function onTweenCompleted(tag)
 			
 			if not isMayhemMode then
 				if (songName == 'Forsaken' or songName == 'Forsaken (Picmixed)' or songName == 'Partner') and mechanics then
-					daSongLength = (getProperty('songLength') + 91000) / 1000 / playbackRate
-					doTweenY('backBarfill', 'barBack.scale', 0, daSongLength + 20, 'linear')
-					
-					if getPropertyFromClass('ClientPrefs', 'resistanceCharm') == 1 then
-						charmed = 0.2
-					end
-					
 					if difficulty == 0 and getProperty('songMisses') > 45 then
-						cancelTween('backBarfill')
-						doTweenY('backBarfill', 'barBack.scale', 0, 4 / charmed, 'linear')
-						setTextColor('scoreTxt', 'FF0000')
+						callScript("data/"..songPath.."/Faith Bar Mechanic", "setDrainBar", {true})
 					elseif difficulty == 1 and getProperty('songMisses') > 25 then
-						cancelTween('backBarfill')
-						doTweenY('backBarfill', 'barBack.scale', 0, 4 / charmed, 'linear')
-						setTextColor('scoreTxt', 'FF0000')
+						callScript("data/"..songPath.."/Faith Bar Mechanic", "setDrainBar", {true})
 					elseif difficulty == 2 and getProperty('songMisses') > 12 then
-						cancelTween('backBarfill')
-						doTweenY('backBarfill', 'barBack.scale', 0, 4 / charmed, 'linear')
-						setTextColor('scoreTxt', 'FF0000')
+						callScript("data/"..songPath.."/Faith Bar Mechanic", "setDrainBar", {true})
+					else
+						callScript("data/"..songPath.."/Faith Bar Mechanic", "setDrainBar", {false})
 					end
 				end
 			
@@ -476,6 +464,8 @@ function onTweenCompleted(tag)
 				secondChanceAllowed = false -- You didn't die yet, reset this
 				doTweenX('reloading', 'reloadBar.scale', 1, 10, 'linear')
 				setProperty('mayhembackBar.color', getColorFromHex(backColor))
+				
+				setPropertyFromClass('ClientPrefs', 'buff2Active', false)
 			else
 				activated = false
 			end

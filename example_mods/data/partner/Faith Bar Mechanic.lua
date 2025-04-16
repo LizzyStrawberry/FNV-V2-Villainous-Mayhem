@@ -24,7 +24,7 @@ function onSongStart()
 	if mechanics then
 		if not isMayhemMode then
 			daSongLength = (getProperty('songLength') + 91000) / 1000 / playbackRate
-			doTweenY('backBarfill', 'barBack.scale', 0, daSongLength + 20, 'linear')
+			setDrainBar(false)
 		end
 	end
 end
@@ -34,10 +34,10 @@ function onUpdatePost()
 		setPropertyFromGroup('opponentStrums', i, 'alpha', 0)
 	end
 
-		setPropertyFromGroup('strumLineNotes', 4, 'x', 290)
-		setPropertyFromGroup('strumLineNotes', 5, 'x', 410)
-		setPropertyFromGroup('strumLineNotes', 6, 'x', 760)
-		setPropertyFromGroup('strumLineNotes', 7, 'x', 890)
+	setPropertyFromGroup('strumLineNotes', 4, 'x', 290)
+	setPropertyFromGroup('strumLineNotes', 5, 'x', 410)
+	setPropertyFromGroup('strumLineNotes', 6, 'x', 760)
+	setPropertyFromGroup('strumLineNotes', 7, 'x', 890)
 end
 
 function noteMiss(id, direction, noteType, isSustainNote)
@@ -64,33 +64,35 @@ function onUpdate()
 	if mechanics then
 		if not isMayhemMode then
 			setProperty('health', getProperty('barBack.scale.y') * 2)
+			if getProperty('barBack.scale.y') < 0 then
+				setProperty('barBack.scale.y', 0)
+			end
 			
-			if getPropertyFromClass('ClientPrefs', 'resistanceCharm') == 1 then
+			if getPropertyFromClass('ClientPrefs', 'resistanceCharm') == 1 and charmed ~= 0.2 then
 				charmed = 0.2
+				if kill then
+					setDrainBar(true)
+				else
+					setDrainBar(false)
+				end
 			end
 			
 			if difficulty == 0 and getProperty('songMisses') > 45 and not kill then
-				cancelTween('backBarfill')
-				doTweenY('backBarfill', 'barBack.scale', 0, 4, 'linear')
-				setTextColor('scoreTxt', 'FF0000')
+				setDrainBar(true)
 				kill = true
 			end
 			
 			if difficulty == 1 and getProperty('songMisses') > 25 and not kill then
-				cancelTween('backBarfill')
-				doTweenY('backBarfill', 'barBack.scale', 0, 4, 'linear')
-				setTextColor('scoreTxt', 'FF0000')
+				setDrainBar(true)
 				kill = true
 			end
 			
 			if difficulty == 2 and getProperty('songMisses') > 12 and not kill then
-				cancelTween('backBarfill')
-				doTweenY('backBarfill', 'barBack.scale', 0, 4 / charmed, 'linear')
-				setTextColor('scoreTxt', 'FF0000')
+				setDrainBar(true)
 				kill = true
 			end
 			
-			if drain == true then
+			if drain then
 				setProperty('health', 0)
 			end
 		end
@@ -102,10 +104,26 @@ function onUpdate()
 	end
 end
 
+function setDrainBar(terminate)
+	local curScale = getProperty('barBack.scale.y')
+	local drainTime = 0
+
+	if terminate then
+		drainTime = (4 * curScale) / charmed
+		setTextColor('scoreTxt', 'FF0000')
+	else
+		local remainingTime = (daSongLength - (getSongPosition() / 1000))
+		drainTime = (remainingTime * curScale) / charmed
+	end
+	
+	--debugPrint("Current Drain Time: "..drainTime)
+	doTweenY('backBarfill', 'barBack.scale', 0, drainTime / playbackRate, 'linear')
+end
+
 function onBeatHit()
 	if mechanics and curBeat >= 16 then
 		if isMayhemMode then
-			if getProperty('barBack.scale.y') > 0 and getPropertyFromClass('ClientPrefs', 'buff3Active') == false then
+			if getProperty('barBack.scale.y') > 0 and not getPropertyFromClass('ClientPrefs', 'buff3Active') then
 				setProperty('barBack.scale.y', getProperty('barBack.scale.y') - (0.005 / charmed))
 			end
 		end
@@ -113,7 +131,7 @@ function onBeatHit()
 end
 
 function onStepHit()
-	if mechanics and curBeat >= 16 and getPropertyFromClass('ClientPrefs', 'buff3Active') == false then
+	if mechanics and curBeat >= 16 and not getPropertyFromClass('ClientPrefs', 'buff3Active') then
 		if isMayhemMode then
 			if curStep % 2 == 0 then
 				if getProperty('barBack.scale.y') <= 0.75 and getProperty('barBack.scale.y') >= 0.501 then
@@ -136,12 +154,41 @@ function onStepHit()
 	end
 end
 
+function onPause()
+	if not isMayhemMode then
+		cancelTween("backBarfill")
+	end
+end
+
+function onResume()
+	if not isMayhemMode then
+		if kill then setDrainBar(true) else setDrainBar(false) end
+	end
+end
+
 function onTweenCompleted(tag)
 	if mechanics then
 		if not isMayhemMode then
 			if tag == 'backBarfill' then
-				drain = true
+				if getPropertyFromClass("ClientPrefs", "buff2Active") then
+					cancelTween("backBarfill")
+					setProperty("barBack.scale.y", 1)
+					
+					cameraFlash('hud', 'FFFFFF', 0.6 / playbackRate, false)
+					setGlobalFromScript("scripts/Mayhem Bar + Mechanic", "secondChanceGiven", true)
+					setPropertyFromClass('ClientPrefs', 'buff2Active', false)
+					
+					runTimer("rechargeCooldown", 0.5)
+				else
+					drain = true
+				end
 			end
 		end
+	end
+end
+
+function onTimerCompleted(tag)
+	if tag == "rechargeCooldown" then
+		if kill then setDrainBar(true) else setDrainBar(false) end
 	end
 end
