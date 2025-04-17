@@ -4,12 +4,20 @@ function onCreate()
 	setScrollFactor('blackBG', 0, 0)
 	setObjectCamera('blackBG', 'game')
 	addLuaSprite('blackBG', true)
+	
+	makeLuaSprite('cutBG', 'bgs/DV/cutBG', 1305, 350)
+	setScrollFactor('cutBG', 0, 0)
+	setObjectCamera('cutBG', 'hud')
+	scaleObject("cutBG", 0.5, 0.5)
+	addLuaSprite('cutBG', true)
 		
 	precacheSound('cracking')	
 	addCharacterToList('DVTurn', 'dad')
 	addCharacterToList('DV', 'dad')
 	addCharacterToList('DV Phase 2', 'dad')
+	
 	addCharacterToList('PicoFNVP2', 'boyfriend')
+	addCharacterToList('PicoFNVP3', 'boyfriend')
 end
 
 function onCreatePost()
@@ -34,6 +42,8 @@ function onCreatePost()
 	setProperty('scoreTxt.alpha', 0)
 	setProperty('watermark.alpha', 0)
 	setProperty('watermark2.alpha', 0)
+	
+	setObjectOrder("cutBG", getObjectOrder("iconP1") + 1)
 end
 
 function onSongStart() --set your time stuff ig
@@ -133,6 +143,10 @@ function onUpdate()
 	if curBeat == 384 then
 		removeLuaSprite('bg', false)
 		triggerEvent('Change Character', 'dad', 'DV Phase 2')
+		triggerEvent('Change Character', 'bf', 'PicoFNVP3')
+		setObjectCamera("boyfriend", 'hud')
+		setProperty("boyfriend.x", 1280)
+		setObjectOrder("boyfriend", getObjectOrder("cutBG") + 1)
 		
 		cameraFlash('game', 'FFFFFF', 0.8, false)
 		removeLuaSprite('blackBG', false)
@@ -153,7 +167,16 @@ function onUpdate()
 			doTweenAlpha('iconP1', 'iconP1', 1, 0.2, 'linear')
 			doTweenAlpha('iconP2', 'iconP2', 1, 0.2, 'linear')
 		end
-		setProperty('boyfriend.visible', false)
+	end
+	if curBeat >= 384 and curBeat < 464 then -- Stop before duet
+		if curBeat % 32 == 13 then
+			doTweenX("boyfriendOnScreen", "boyfriend", 800, 0.75 / playbackRate, "cubeInOut")
+			doTweenX("bgOnScreen", "cutBG", 825, 0.75 / playbackRate, "cubeInOut")
+		end
+		if curBeat % 32 == 31 then
+			doTweenX("boyfriendOffScreen", "boyfriend", 1280, 1.25 / playbackRate, "cubeInOut")
+			doTweenX("bgOnScreen", "cutBG", 1305, 1.25 / playbackRate, "cubeInOut")
+		end
 	end
 	if curBeat == 512 then
 		cameraFlash('game', 'FFFFFF', 0.8, false)
@@ -163,7 +186,12 @@ function onUpdate()
 		setProperty('blackBG.alpha', 0)
 		
 		triggerEvent('Change Character', 'dad', 'DV')
-		setProperty('boyfriend.visible', true)
+		triggerEvent('Change Character', 'bf', 'PicoFNVP2')
+		setObjectCamera("boyfriend", 'game')
+		setProperty("boyfriend.x", 890)
+		setObjectOrder("boyfriend", -1)
+		
+		removeLuaSprite("cutBG", true)
 	end
 	if curBeat == 720 then
 		cameraFlash('game', 'FFFFFF', 0.8, false)

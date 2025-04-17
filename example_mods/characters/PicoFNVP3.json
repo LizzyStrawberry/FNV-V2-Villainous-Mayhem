@@ -1,0 +1,78 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				36,
+				8
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "pico left alt",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				14,
+				-67
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "pico down alt",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-6,
+				63
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "pico up alt",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-39,
+				-5
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "pico right alt",
+			"indices": []
+		},
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"indices": [],
+			"fps": 18,
+			"anim": "idle",
+			"loop": false,
+			"name": "pico idle alt"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/pico p2",
+	"position": [
+		70,
+		70
+	],
+	"healthicon": "picofnv",
+	"flip_x": true,
+	"healthbar_colors": [
+		183,
+		216,
+		85
+	],
+	"camera_position": [
+		-70,
+		-40
+	],
+	"sing_duration": 6.1,
+	"scale": 1
+}
