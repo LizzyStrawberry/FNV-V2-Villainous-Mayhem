@@ -1,6 +1,7 @@
 local drain = false
 local kill = false
 local charmed = 1
+local daSongLength = 0
 
 function onCreate()
 	if mechanics then
@@ -23,7 +24,7 @@ end
 function onSongStart()
 	if mechanics then
 		if not isMayhemMode then
-			daSongLength = (getProperty('songLength') + 91000) / 1000 / playbackRate
+			daSongLength = getProperty('songLength') / 1000
 			setDrainBar(false)
 		end
 	end
@@ -54,7 +55,7 @@ function goodNoteHit(id, direction, noteType, isSustainNote)
 	if mechanics then
 		if isMayhemMode then
 			if getProperty('barBack.scale.y') < 1 then
-				setProperty('barBack.scale.y', getProperty('barBack.scale.y') + (0.008 * charmed))
+				setProperty('barBack.scale.y', getProperty('barBack.scale.y') + (0.005 * charmed))
 			end
 		end
 	end
@@ -68,8 +69,8 @@ function onUpdate()
 				setProperty('barBack.scale.y', 0)
 			end
 			
-			if getPropertyFromClass('ClientPrefs', 'resistanceCharm') == 1 and charmed ~= 0.2 then
-				charmed = 0.2
+			if getPropertyFromClass('ClientPrefs', 'resistanceCharm') == 1 and charmed ~= 0.5 then
+				charmed = 0.5
 				if kill then
 					setDrainBar(true)
 				else
@@ -107,16 +108,16 @@ end
 function setDrainBar(terminate)
 	local curScale = getProperty('barBack.scale.y')
 	local drainTime = 0
-
+	
 	if terminate then
 		drainTime = (4 * curScale) / charmed
 		setTextColor('scoreTxt', 'FF0000')
 	else
-		local remainingTime = (daSongLength - (getSongPosition() / 1000))
-		drainTime = (remainingTime * curScale) / charmed
+		drainTime = ((daSongLength + 5) * curScale) / charmed
+		--debugPrint("Full Song Length with 5 second increase: "..(daSongLength + 5) / playbackRate)
 	end
 	
-	--debugPrint("Current Drain Time: "..drainTime)
+	--debugPrint("Drain time: "..drainTime / playbackRate.." (curScale: "..curScale..")")
 	doTweenY('backBarfill', 'barBack.scale', 0, drainTime / playbackRate, 'linear')
 end
 

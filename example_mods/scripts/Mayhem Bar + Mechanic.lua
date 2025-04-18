@@ -291,7 +291,7 @@ function onStepHit()
 					-- Song Specifications
 					if (songName == 'Forsaken' or songName == 'Forsaken (Picmixed)' or songName == 'Partner') and mechanics
 						and getProperty('barBack.scale.y') < 1 then
-						setProperty('barBack.scale.y', getProperty('barBack.scale.y') + 0.005)
+						setProperty('barBack.scale.y', getProperty('barBack.scale.y') + 0.0025)
 					elseif songName == 'Toybox' and mechanics then
 						if curBeat >= 136 and curBeat < 456 then
 							setProperty('barBack.scale.y', getProperty('barBack.scale.y') + 0.005)

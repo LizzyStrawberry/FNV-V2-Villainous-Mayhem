@@ -179,7 +179,7 @@ function onUpdate()
 		end
 	end
 	if curBeat == 512 then
-		cameraFlash('game', 'FFFFFF', 0.8, false)
+		cameraFlash('game', 'FFFFFF', 0.8 / playbackRate, false)
 		addLuaSprite('bg')
 		
 		addLuaSprite('blackBG')
@@ -193,9 +193,16 @@ function onUpdate()
 		
 		removeLuaSprite("cutBG", true)
 	end
+	if curBeat == 640 then
+		cameraFlash('game', 'FFFFFF', 0.8 / playbackRate, false)
+		triggerEvent('Change Character', 'bf', 'PicoFNVP3')
+		setObjectCamera("boyfriend", 'game')
+		setProperty("boyfriend.x", 850)
+		setObjectOrder("boyfriend", -1)
+	end
 	if curBeat == 720 then
-		cameraFlash('game', 'FFFFFF', 0.8, false)
-		cameraFade('hud', '000000', 3, false)
+		cameraFlash('game', 'FFFFFF', 0.8 / playbackRate, false)
+		cameraFade('hud', '000000', 3 / playbackRate, false)
 	end
 end
 

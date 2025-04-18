@@ -35,12 +35,6 @@ function onCreatePost()
 	setProperty('watermark2.alpha', 0)
 end
 
-function onSongStart() --set your time stuff ig
-    runHaxeCode([[
-        game.songLength = (188 * 1000);
-    ]])
-end
-
 function onUpdatePost()
 	if curStep == 0 then
 		for i = 0, 3 do
