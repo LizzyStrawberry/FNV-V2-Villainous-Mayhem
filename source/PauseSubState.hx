@@ -1302,9 +1302,7 @@ class PauseSubState extends MusicBeatSubstate
 							PlayState.SONG = Song.loadFromJson('toxic-mishap-villainousMechanicless', 'toxic-mishap');
 						}
 						else
-						{
 							PlayState.SONG = Song.loadFromJson('toxic-mishap-villainous', 'toxic-mishap');
-						}
 					}
 
 				case "Villainy":

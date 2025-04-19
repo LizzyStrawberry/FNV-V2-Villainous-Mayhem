@@ -1517,12 +1517,11 @@ class PlayState extends MusicBeatState
 		Paths.sound('introGo' + introSoundsSuffix);
 	}
 
-	var startTheDamnSong:Int = 0;
 	public var countdownSelected:Int = 0;
 	public function startCountdown():Void
 	{
 		if (!chartingMode)
-			countdownSelected = FlxG.random.int(1, 2);
+			countdownSelected = FlxG.random.int(1, 2); // Change to custom countdowns | 1: "Normal" - 2: Cuphead Style
 		countdownAudio = new FlxSound(true); // Custom parameter in for focusability shit
 
 		if(startedCountdown) {
@@ -1547,11 +1546,22 @@ class PlayState extends MusicBeatState
 				//if(ClientPrefs.middleScroll) opponentStrums.members[i].visible = false;
 			}
 
-			if (chartingMode || Paths.formatToSongPath(SONG.song) == 'lustality' || Paths.formatToSongPath(SONG.song) == 'lustality-v1' || Paths.formatToSongPath(SONG.song) == 'lustality-remix'
-				|| Paths.formatToSongPath(SONG.song) == 'nunday-monday' || Paths.formatToSongPath(SONG.song) == 'nunconventional' || Paths.formatToSongPath(SONG.song) == 'nunsational') // Songs that use the default countdown
+			var typeOfCountdown:String = null;
+			switch (Paths.formatToSongPath(SONG.song))
+			{
+				case "lustality" | "lustality-v1" | "lustality-remix":
+					typeOfCountdown = "kiana";
+				case "nunday-monday" | "nunconventional" | "nunsational":
+					typeOfCountdown = "beatrice";
+				default:
+					typeOfCountdown = null;
+			}
+
+			if (chartingMode || typeOfCountdown != null) // Either you are on charting mode or you play a song that uses the default countdown
 				startedCountdown = true;
 			else
 				startedCountdown = false;
+
 			Conductor.songPosition = -Conductor.crochet * 5;
 			setOnLuas('startedCountdown', false);
 			callOnLuas('onCountdownStarted', []);
@@ -1572,21 +1582,15 @@ class PlayState extends MusicBeatState
 			}
 
 			if (startedCountdown)
-			{
+			{	
 				startTimer = new FlxTimer().start(Conductor.crochet / 1000 / playbackRate, function(tmr:FlxTimer)
 				{
 					if (gf != null && tmr.loopsLeft % Math.round(gfSpeed * gf.danceEveryNumBeats) == 0 && gf.animation.curAnim != null && !gf.animation.curAnim.name.startsWith("sing") && !gf.stunned)
-					{
 						gf.dance();
-					}
 					if (tmr.loopsLeft % boyfriend.danceEveryNumBeats == 0 && boyfriend.animation.curAnim != null && !boyfriend.animation.curAnim.name.startsWith('sing') && !boyfriend.stunned)
-					{
 						boyfriend.dance();
-					}
 					if (tmr.loopsLeft % dad.danceEveryNumBeats == 0 && dad.animation.curAnim != null && !dad.animation.curAnim.name.startsWith('sing') && !dad.stunned)
-					{
 						dad.dance();
-					}
 
 					var introAssets:Map<String, Array<String>> = new Map<String, Array<String>>();
 					introAssets.set('default', ['ready', 'set', 'go']);
@@ -1602,7 +1606,7 @@ class PlayState extends MusicBeatState
 					switch (swagCounter)
 					{
 						case 0:
-							if(Paths.formatToSongPath(SONG.song) == 'lustality' || Paths.formatToSongPath(SONG.song) == 'lustality-v1' || Paths.formatToSongPath(SONG.song) == 'lustality-remix')
+							if(typeOfCountdown == "kiana")
 							{
 								countdownAudio.loadEmbedded(Paths.sound('intro3Kiana' + introSoundsSuffix), false, true);
 								countdownAudio.volume = 0.6;
@@ -1611,14 +1615,11 @@ class PlayState extends MusicBeatState
 							}	
 						case 1:
 							countdownReady = new FlxSprite().loadGraphic(Paths.image(introAlts[0]));
+							if(typeOfCountdown != null)
+								countdownReady.loadGraphic(Paths.image('intros/' + typeOfCountdown + '/two'));
 							countdownReady.cameras = [camHUD];
 							countdownReady.scrollFactor.set();
 							countdownReady.updateHitbox();
-
-							if(Paths.formatToSongPath(SONG.song) == 'lustality' || Paths.formatToSongPath(SONG.song) == 'lustality-v1' || Paths.formatToSongPath(SONG.song) == 'lustality-remix')
-								countdownReady.loadGraphic(Paths.image('intros/kiana/two'));
-							if(Paths.formatToSongPath(SONG.song) == 'nunday-monday' || Paths.formatToSongPath(SONG.song) == 'nunconventional' || Paths.formatToSongPath(SONG.song) == 'nunsational')
-								countdownReady.loadGraphic(Paths.image('intros/beatrice/two'));
 
 							if (PlayState.isPixelStage)
 								countdownReady.setGraphicSize(Std.int(countdownReady.width * daPixelZoom));
@@ -1634,29 +1635,20 @@ class PlayState extends MusicBeatState
 									countdownReady.destroy();
 								}
 							});
-							if(Paths.formatToSongPath(SONG.song) == 'lustality' || Paths.formatToSongPath(SONG.song) == 'lustality-v1' || Paths.formatToSongPath(SONG.song) == 'lustality-remix')
-							{
+
+							if(typeOfCountdown == "kiana")
 								countdownAudio.loadEmbedded(Paths.sound('intro2Kiana' + introSoundsSuffix), false, true);
-								countdownAudio.volume = 0.6;
-								countdownAudio.pitch = playbackRate;
-								countdownAudio.play(false);
-							}
 							else
-							{
 								countdownAudio.loadEmbedded(Paths.sound('intro2' + introSoundsSuffix), false, true);
-								countdownAudio.volume = 0.6;
-								countdownAudio.pitch = playbackRate;
-								countdownAudio.play(false);
-							}
+							countdownAudio.volume = 0.6;
+							countdownAudio.pitch = playbackRate;
+							countdownAudio.play(false);
 						case 2:
 							countdownSet = new FlxSprite().loadGraphic(Paths.image(introAlts[1]));
+							if(typeOfCountdown != null)
+								countdownSet.loadGraphic(Paths.image('intros/' + typeOfCountdown + '/one'));
 							countdownSet.cameras = [camHUD];
 							countdownSet.scrollFactor.set();
-						
-							if(Paths.formatToSongPath(SONG.song) == 'lustality' || Paths.formatToSongPath(SONG.song) == 'lustality-v1' || Paths.formatToSongPath(SONG.song) == 'lustality-remix')
-								countdownSet.loadGraphic(Paths.image('intros/kiana/one'));
-							else if(Paths.formatToSongPath(SONG.song) == 'nunday-monday' || Paths.formatToSongPath(SONG.song) == 'nunconventional' || Paths.formatToSongPath(SONG.song) == 'nunsational')
-								countdownSet.loadGraphic(Paths.image('intros/beatrice/one'));
 
 							if (PlayState.isPixelStage)
 								countdownSet.setGraphicSize(Std.int(countdownSet.width * daPixelZoom));
@@ -1672,34 +1664,26 @@ class PlayState extends MusicBeatState
 									countdownSet.destroy();
 								}
 							});
-							if(Paths.formatToSongPath(SONG.song) == 'lustality' || Paths.formatToSongPath(SONG.song) == 'lustality-v1' || Paths.formatToSongPath(SONG.song) == 'lustality-remix')
-							{
+
+							if(typeOfCountdown == "kiana")
 								countdownAudio.loadEmbedded(Paths.sound('intro1Kiana' + introSoundsSuffix), false, true);
-								countdownAudio.volume = 0.6;
-								countdownAudio.pitch = playbackRate;
-								countdownAudio.play(false);
-							}
 							else
-							{
 								countdownAudio.loadEmbedded(Paths.sound('intro1' + introSoundsSuffix), false, true);
-								countdownAudio.volume = 0.6;
-								countdownAudio.pitch = playbackRate;
-								countdownAudio.play(false);
-							}
+							countdownAudio.volume = 0.6;
+							countdownAudio.pitch = playbackRate;
+							countdownAudio.play(false);
 						case 3:
-							countdownGo = new FlxSprite().loadGraphic(Paths.image(introAlts[2]));
-							countdownGo.cameras = [camHUD];
-							countdownGo.scrollFactor.set();
-							if (boyfriend.animOffsets.exists('hey') == true)
+							canPause = true;
+							if (boyfriend.animOffsets.exists('hey'))
 								boyfriend.playAnim('hey', true);
-							if (dad.animOffsets.exists('hey') == true)
+							if (dad.animOffsets.exists('hey'))
 								dad.playAnim('hey', true);
 
-							if(Paths.formatToSongPath(SONG.song) == 'lustality' || Paths.formatToSongPath(SONG.song) == 'lustality-v1' || Paths.formatToSongPath(SONG.song) == 'lustality-remix')
-								countdownGo.loadGraphic(Paths.image('intros/kiana/go'));
-					
-							if(Paths.formatToSongPath(SONG.song) == 'nunday-monday' || Paths.formatToSongPath(SONG.song) == 'nunconventional' || Paths.formatToSongPath(SONG.song) == 'nunsational')
-								countdownGo.loadGraphic(Paths.image('intros/beatrice/go'));
+							countdownGo = new FlxSprite().loadGraphic(Paths.image(introAlts[2]));
+							if(typeOfCountdown != null)
+								countdownGo.loadGraphic(Paths.image('intros/' + typeOfCountdown + '/go'));
+							countdownGo.cameras = [camHUD];
+							countdownGo.scrollFactor.set();
 
 							if (PlayState.isPixelStage)
 								countdownGo.setGraphicSize(Std.int(countdownGo.width * daPixelZoom));
@@ -1718,244 +1702,237 @@ class PlayState extends MusicBeatState
 								}
 							});
 
-							startTheDamnSong = 2;
-							if(Paths.formatToSongPath(SONG.song) == 'lustality' || Paths.formatToSongPath(SONG.song) == 'lustality-v1' || Paths.formatToSongPath(SONG.song) == 'lustality-remix')
-							{
+							if(typeOfCountdown == "kiana")
 								countdownAudio.loadEmbedded(Paths.sound('introGoKiana' + introSoundsSuffix), false, true);
-								countdownAudio.volume = 0.6;
-								countdownAudio.pitch = playbackRate;
-								countdownAudio.play(false);
-							}
 							else
-							{
 								countdownAudio.loadEmbedded(Paths.sound('introGo' + introSoundsSuffix), false, true);
-								countdownAudio.volume = 0.6;
-								countdownAudio.pitch = playbackRate;
-								countdownAudio.play(false);
-							}
+							countdownAudio.volume = 0.6;
+							countdownAudio.pitch = playbackRate;
+							countdownAudio.play(false);
 						case 4:
 					}
 
-				notes.forEachAlive(function(note:Note) {
-					if(ClientPrefs.opponentStrums || note.mustPress)
-					{
-						note.copyAlpha = false;
-						note.alpha = note.multAlpha;
-						if(ClientPrefs.middleScroll && !note.mustPress) {
-							note.alpha *= 0.35;
-						}
-					}
-				});
-				callOnLuas('onCountdownTick', [swagCounter]);
-
-				swagCounter += 1;
-				// generateSong('fresh');
-			}, 5);
-		}
-		else if (countdownSelected == 1)
-		{
-			var voiceNumber:Int = FlxG.random.int(1, 5);
-
-			if (voiceNumber == 4 || voiceNumber == 5)
-				new FlxTimer().start(0.1 / playbackRate, function (tmr:FlxTimer) {
-					countdownAudio.loadEmbedded(Paths.sound('normalintros/' + voiceNumber + '/intro3' + introSoundsSuffix), false, true);
-					countdownAudio.volume = 0.6;
-					countdownAudio.pitch = playbackRate;
-					countdownAudio.play(false);
-				});
-
-			var introAssets:Map<String, Array<String>> = new Map<String, Array<String>>();
-				introAssets.set('default', ['ready', 'set', 'go']);
-				introAssets.set('pixel', ['pixelUI/ready-pixel', 'pixelUI/set-pixel', 'pixelUI/date-pixel']);
-
-				var introAlts:Array<String> = introAssets.get('default');
-				var antialias:Bool = ClientPrefs.globalAntialiasing;
-
-			new FlxTimer().start(0.80 / playbackRate, function (tmr:FlxTimer) {
-				countdownReady = new FlxSprite().loadGraphic(Paths.image("intros/normal/ready"));
-				countdownReady.cameras = [camHUD];
-				countdownReady.scrollFactor.set();
-				countdownReady.updateHitbox();
-				countdownReady.screenCenter();
-				countdownReady.antialiasing = antialias;
-
-					insert(members.indexOf(notes), countdownReady);
-					FlxTween.tween(countdownReady, {/*y: countdownSet.y + 100,*/ alpha: 0}, Conductor.crochet / 1000, {
-						ease: FlxEase.cubeInOut,
-						onComplete: function(twn:FlxTween)
+					notes.forEachAlive(function(note:Note) {
+						if(ClientPrefs.opponentStrums || note.mustPress)
 						{
-							remove(countdownReady);
-							countdownReady.destroy();
+							note.copyAlpha = false;
+							note.alpha = note.multAlpha;
+							if(ClientPrefs.middleScroll && !note.mustPress) {
+								note.alpha *= 0.35;
+							}
 						}
 					});
-					countdownAudio.loadEmbedded(Paths.sound('normalintros/' + voiceNumber + '/intro2' + introSoundsSuffix), false, true);
-					countdownAudio.volume = 0.6;
-					countdownAudio.pitch = playbackRate;
-					countdownAudio.play(false);
-				
-				if ((Paths.formatToSongPath(SONG.song) == 'point-blank'))
-					dad.playAnim('intro1', true);
-
-				callOnLuas('onCountdownTick', [swagCounter]);
-				swagCounter++;
-			});
-			if (Paths.formatToSongPath(SONG.song) == 'cheap-skate-(legacy)')
-				new FlxTimer().start(0.01 / playbackRate, function (tmr:FlxTimer) {
-					startedCountdown = true;
-				});
-			else if(Paths.formatToSongPath(SONG.song) == 'forsaken' || Paths.formatToSongPath(SONG.song) == 'paycheck')
-				new FlxTimer().start(0.05 / playbackRate, function (tmr:FlxTimer) {
-					startedCountdown = true;
-				});
-			else
-				new FlxTimer().start(1.3 / playbackRate, function (tmr:FlxTimer) {
-					startedCountdown = true;
-				});
-			new FlxTimer().start(1.60 / playbackRate, function (tmr:FlxTimer) {
-				countdownSet = new FlxSprite().loadGraphic(Paths.image("intros/normal/set"));
-				countdownSet.cameras = [camHUD];
-				countdownSet.scrollFactor.set();
-				countdownSet.updateHitbox();
-				countdownSet.screenCenter();
-				countdownSet.antialiasing = antialias;
-
-					insert(members.indexOf(notes), countdownSet);
-					FlxTween.tween(countdownSet, {/*y: countdownSet.y + 100,*/ alpha: 0}, Conductor.crochet / 1000, {
-						ease: FlxEase.cubeInOut,
-						onComplete: function(twn:FlxTween)
-						{
-							remove(countdownSet);
-							countdownSet.destroy();
-						}
-					});
-					countdownAudio.loadEmbedded(Paths.sound('normalintros/' + voiceNumber + '/intro1' + introSoundsSuffix), false, true);
-					countdownAudio.volume = 0.6;
-					countdownAudio.pitch = playbackRate;
-					countdownAudio.play(false);
-				
-				if ((Paths.formatToSongPath(SONG.song) == 'point-blank'))
-					dad.playAnim('intro2', true);
-
-				callOnLuas('onCountdownTick', [swagCounter]);
-				swagCounter++;
-			});
-			new FlxTimer().start(2.40 / playbackRate, function (tmr:FlxTimer) {
-				countdownGo = new FlxSprite().loadGraphic(Paths.image("intros/normal/go"));
-				countdownGo.cameras = [camHUD];
-				countdownGo.scrollFactor.set();
-				countdownGo.updateHitbox();
-				countdownGo.screenCenter();
-				countdownGo.antialiasing = antialias;
-
-				if (boyfriend.animOffsets.exists('hey') == true)
-					boyfriend.playAnim('hey', true);
-
-				if ((Paths.formatToSongPath(SONG.song) == 'point-blank'))
-					dad.playAnim('intro3', true);
-				else if (dad.animOffsets.exists('hey') == true)
-					dad.playAnim('hey', true);
-				
-					insert(members.indexOf(notes), countdownGo);
-					FlxTween.tween(countdownGo, {/*y: countdownGo.y + 100,*/ alpha: 0}, Conductor.crochet / 1000, {
-						ease: FlxEase.cubeInOut,
-						onComplete: function(twn:FlxTween)
-						{
-							remove(countdownGo);
-							countdownGo.destroy();
-						}
-					});
-
-					countdownAudio.loadEmbedded(Paths.sound('normalintros/' + voiceNumber + '/introGo' + introSoundsSuffix), false, true);
-					countdownAudio.volume = 0.6;
-					countdownAudio.pitch = playbackRate;
-					countdownAudio.play(false);
 
 					callOnLuas('onCountdownTick', [swagCounter]);
 					swagCounter++;
-			});
-			new FlxTimer().start(2.60 / playbackRate, function (tmr:FlxTimer) {
-				startTheDamnSong = 1;
-				callOnLuas('onCountdownTick', [swagCounter]);
-				swagCounter++;
-			});
-		}
-		else if (countdownSelected == 2)
-		{			
-			var voiceNumber:Int = FlxG.random.int(0, 5);
-
-			var introAssets:Map<String, Array<String>> = new Map<String, Array<String>>();
-			introAssets.set('default', ['ready', 'set', 'go']);
-			introAssets.set('pixel', ['pixelUI/ready-pixel', 'pixelUI/set-pixel', 'pixelUI/date-pixel']);
-
-			var introAlts:Array<String> = introAssets.get('default');
-			var antialias:Bool = ClientPrefs.globalAntialiasing;
-			new FlxTimer().start(0.1 / playbackRate, function (tmr:FlxTimer) {
-				countdownAudio.loadEmbedded(Paths.sound('cupintros/' + voiceNumber), false, true);
-				countdownAudio.volume = 0.6;
-				countdownAudio.pitch = playbackRate;
-				countdownAudio.play(false);
-
-				countdownReady = new FlxSprite().loadGraphic(Paths.image("intros/cupheadStyle/CountDown"));
-				countdownReady.frames = Paths.getSparrowAtlas('intros/cupheadStyle/CountDown');
-				countdownReady.animation.addByPrefix('ready', 'countdown start0', 24, true);
-				countdownReady.animation.addByPrefix('go', 'countdown end0', 24, true);
-				countdownReady.animation.play('ready');
-				countdownReady.cameras = [camHUD];
-				countdownReady.scrollFactor.set();
-				countdownReady.updateHitbox();
-				countdownReady.screenCenter();
-				countdownReady.antialiasing = antialias;
-				countdownReady.alpha = 0;
-				countdownReady.scale.set(0.8, 0.8);
-
-				FlxTween.tween(countdownReady, {alpha: 1}, 0.4, {ease: FlxEase.cubeInOut});
-
-				insert(members.indexOf(notes), countdownReady);
-
-				callOnLuas('onCountdownTick', [swagCounter]);
-				swagCounter++;
-			});
-			if (Paths.formatToSongPath(SONG.song) == 'cheap-skate-(legacy)')
-				new FlxTimer().start(0.01 / playbackRate, function (tmr:FlxTimer) {
-					startedCountdown = true;
-				});
-			else if(Paths.formatToSongPath(SONG.song) == 'forsaken' || Paths.formatToSongPath(SONG.song) == 'paycheck')
-				new FlxTimer().start(0.05 / playbackRate, function (tmr:FlxTimer) {
-					startedCountdown = true;
-				});
+				}, 5); // 5 Total Loops -> SwagCounter goes 0, 1, 2, 3, 4
+			}
 			else
-				new FlxTimer().start(1.3 / playbackRate, function (tmr:FlxTimer) {
-					startedCountdown = true;
-				});
-			new FlxTimer().start(2 / playbackRate, function (tmr:FlxTimer) {
-				countdownReady.animation.play('go');
-				if (boyfriend.animOffsets.exists('hey') == true)
-					boyfriend.playAnim('hey', true);
-				if (dad.animOffsets.exists('hey') == true)
-					dad.playAnim('hey', true);
-				callOnLuas('onCountdownTick', [swagCounter]);
-				swagCounter++;
-			});
-			new FlxTimer().start(2.40 / playbackRate, function (tmr:FlxTimer) {
-				FlxTween.tween(countdownReady, {/*y: countdownSet.y + 100,*/ alpha: 0}, Conductor.crochet / 1000, {
-					ease: FlxEase.cubeInOut,
-					onComplete: function(twn:FlxTween)
-					{
-						remove(countdownReady);
-						countdownReady.destroy();
-					}
-				});
-			});
-			new FlxTimer().start(2.60 / playbackRate, function (tmr:FlxTimer) {
-				startTheDamnSong = 1;
-				callOnLuas('onCountdownTick', [swagCounter]);
-				swagCounter++;
-			});
+				switch (countdownSelected)
+				{
+					case 1:
+						var voiceNumber:Int = FlxG.random.int(1, 5);
 
-			callOnLuas('onCountdownTick', [swagCounter]);
+						if (voiceNumber == 4 || voiceNumber == 5)
+							new FlxTimer().start(0.1 / playbackRate, function (tmr:FlxTimer) {
+								countdownAudio.loadEmbedded(Paths.sound('normalintros/' + voiceNumber + '/intro3' + introSoundsSuffix), false, true);
+								countdownAudio.volume = 0.6;
+								countdownAudio.pitch = playbackRate;
+								countdownAudio.play(false);
+							});
 
-			swagCounter += 1;
-		}
+						var introAssets:Map<String, Array<String>> = new Map<String, Array<String>>();
+						introAssets.set('default', ['ready', 'set', 'go']);
+						introAssets.set('pixel', ['pixelUI/ready-pixel', 'pixelUI/set-pixel', 'pixelUI/date-pixel']);
+
+						var introAlts:Array<String> = introAssets.get('default');
+						var antialias:Bool = ClientPrefs.globalAntialiasing;
+
+						startTimer = new FlxTimer().start(0.8 / playbackRate, function (tmr:FlxTimer)
+						{
+							switch (swagCounter)
+							{
+								case 0:
+									countdownReady = new FlxSprite().loadGraphic(Paths.image("intros/normal/ready"));
+									countdownReady.cameras = [camHUD];
+									countdownReady.scrollFactor.set();
+									countdownReady.updateHitbox();
+									countdownReady.screenCenter();
+									countdownReady.antialiasing = antialias;
+			
+									insert(members.indexOf(notes), countdownReady);
+									FlxTween.tween(countdownReady, {/*y: countdownSet.y + 100,*/ alpha: 0}, Conductor.crochet / 1000, {
+										ease: FlxEase.cubeInOut,
+										onComplete: function(twn:FlxTween)
+										{
+											remove(countdownReady);
+											countdownReady.destroy();
+										}
+									});
+									countdownAudio.loadEmbedded(Paths.sound('normalintros/' + voiceNumber + '/intro2' + introSoundsSuffix), false, true);
+									countdownAudio.volume = 0.6;
+									countdownAudio.pitch = playbackRate;
+									countdownAudio.play(false);
+									
+									if ((Paths.formatToSongPath(SONG.song) == 'point-blank'))
+										dad.playAnim('intro1', true);
+								//-----------------------------------------
+								case 1:
+									countdownSet = new FlxSprite().loadGraphic(Paths.image("intros/normal/set"));
+									countdownSet.cameras = [camHUD];
+									countdownSet.scrollFactor.set();
+									countdownSet.updateHitbox();
+									countdownSet.screenCenter();
+									countdownSet.antialiasing = antialias;
+			
+										insert(members.indexOf(notes), countdownSet);
+										FlxTween.tween(countdownSet, {/*y: countdownSet.y + 100,*/ alpha: 0}, Conductor.crochet / 1000, {
+											ease: FlxEase.cubeInOut,
+											onComplete: function(twn:FlxTween)
+											{
+												remove(countdownSet);
+												countdownSet.destroy();
+											}
+										});
+										countdownAudio.loadEmbedded(Paths.sound('normalintros/' + voiceNumber + '/intro1' + introSoundsSuffix), false, true);
+										countdownAudio.volume = 0.6;
+										countdownAudio.pitch = playbackRate;
+										countdownAudio.play(false);
+									
+									if ((Paths.formatToSongPath(SONG.song) == 'point-blank'))
+										dad.playAnim('intro2', true);
+								//-----------------------------------------
+								case 2:
+									countdownGo = new FlxSprite().loadGraphic(Paths.image("intros/normal/go"));
+									countdownGo.cameras = [camHUD];
+									countdownGo.scrollFactor.set();
+									countdownGo.updateHitbox();
+									countdownGo.screenCenter();
+									countdownGo.antialiasing = antialias;
+									
+									insert(members.indexOf(notes), countdownGo);
+									FlxTween.tween(countdownGo, {/*y: countdownGo.y + 100,*/ alpha: 0}, Conductor.crochet / 1000, {
+										ease: FlxEase.cubeInOut,
+										onComplete: function(twn:FlxTween)
+										{
+											remove(countdownGo);
+											countdownGo.destroy();
+										}
+									});
+			
+									countdownAudio.loadEmbedded(Paths.sound('normalintros/' + voiceNumber + '/introGo' + introSoundsSuffix), false, true);
+									countdownAudio.volume = 0.6;
+									countdownAudio.pitch = playbackRate;
+									countdownAudio.play(false);
+
+									if (boyfriend.animOffsets.exists('hey'))
+										boyfriend.playAnim('hey', true);
+			
+									if ((Paths.formatToSongPath(SONG.song) == 'point-blank'))
+										dad.playAnim('intro3', true);
+									else if (dad.animOffsets.exists('hey'))
+										dad.playAnim('hey', true);
+								//-----------------------------------------
+								case 3:
+									new FlxTimer().start(0.2 / playbackRate, function (tmr:FlxTimer) {
+										canPause = true; // Allow Pausing
+									});
+							}
+
+							callOnLuas('onCountdownTick', [swagCounter]);
+							swagCounter++;
+						}, 4); // 4 Total Loops -> SwagCounter goes 0, 1, 2, 3
+
+						// Start showing arrows
+						var dur:Float = 0;
+						if (Paths.formatToSongPath(SONG.song) == 'cheap-skate-(legacy)')
+							dur = 0.01;
+						else if(Paths.formatToSongPath(SONG.song) == 'forsaken' || Paths.formatToSongPath(SONG.song) == 'paycheck')
+							dur = 0.05;
+						else
+							dur = 1.3;
+						
+						new FlxTimer().start(dur / playbackRate, function (tmr:FlxTimer) {
+							startedCountdown = true;
+						});
+	
+					case 2:
+						var voiceNumber:Int = FlxG.random.int(0, 5);
+
+						var introAssets:Map<String, Array<String>> = new Map<String, Array<String>>();
+						introAssets.set('default', ['ready', 'set', 'go']);
+						introAssets.set('pixel', ['pixelUI/ready-pixel', 'pixelUI/set-pixel', 'pixelUI/date-pixel']);
+
+						var introAlts:Array<String> = introAssets.get('default');
+						var antialias:Bool = ClientPrefs.globalAntialiasing;
+
+						new FlxTimer().start(0.1 / playbackRate, function (tmr:FlxTimer) {
+							countdownAudio.loadEmbedded(Paths.sound('cupintros/' + voiceNumber), false, true);
+							countdownAudio.volume = 0.6;
+							countdownAudio.pitch = playbackRate;
+							countdownAudio.play(false);
+
+							countdownReady = new FlxSprite().loadGraphic(Paths.image("intros/cupheadStyle/CountDown"));
+							countdownReady.frames = Paths.getSparrowAtlas('intros/cupheadStyle/CountDown');
+							countdownReady.animation.addByPrefix('ready', 'countdown start0', 24, true);
+							countdownReady.animation.addByPrefix('go', 'countdown end0', 24, true);
+							countdownReady.animation.play('ready');
+							countdownReady.cameras = [camHUD];
+							countdownReady.scrollFactor.set();
+							countdownReady.updateHitbox();
+							countdownReady.screenCenter();
+							countdownReady.antialiasing = antialias;
+							countdownReady.alpha = 0;
+							countdownReady.scale.set(0.8, 0.8);
+
+							FlxTween.tween(countdownReady, {alpha: 1}, 0.4, {ease: FlxEase.cubeInOut});
+
+							insert(members.indexOf(notes), countdownReady);
+
+							callOnLuas('onCountdownTick', [swagCounter]);
+							swagCounter++;
+						});
+						
+						startTimer = new FlxTimer().start(2 / playbackRate, function (tmr:FlxTimer) {
+							countdownReady.animation.play('go');
+							if (boyfriend.animOffsets.exists('hey') == true)
+								boyfriend.playAnim('hey', true);
+							if (dad.animOffsets.exists('hey') == true)
+								dad.playAnim('hey', true);
+							
+							callOnLuas('onCountdownTick', [swagCounter]);
+							swagCounter++;
+
+							new FlxTimer().start(0.4 / playbackRate, function (tmr:FlxTimer) {
+								FlxTween.tween(countdownReady, {/*y: countdownSet.y + 100,*/ alpha: 0}, Conductor.crochet / 1000, {
+									ease: FlxEase.cubeInOut,
+									onComplete: function(twn:FlxTween)
+									{
+										remove(countdownReady);
+										countdownReady.destroy();
+									}
+								});
+								new FlxTimer().start(0.2 / playbackRate, function (tmr:FlxTimer) {
+									canPause = true;
+								});
+							});
+						});
+						
+						// Call onCountdownTick just 2 times for this.
+
+						// Start showing arrows
+						var dur:Float = 0;
+						if (Paths.formatToSongPath(SONG.song) == 'cheap-skate-(legacy)')
+							dur = 0.01;
+						else if(Paths.formatToSongPath(SONG.song) == 'forsaken' || Paths.formatToSongPath(SONG.song) == 'paycheck')
+							dur = 0.05;
+						else
+							dur = 1.3;
+						
+						new FlxTimer().start(dur / playbackRate, function (tmr:FlxTimer) {
+							startedCountdown = true;
+						});
+				}
 		}
 	}
 
@@ -2491,9 +2468,7 @@ class PlayState extends MusicBeatState
 		if (paused)
 		{
 			if (FlxG.sound.music != null && !startingSong)
-			{
 				resyncVocals();
-			}
 
 			if (startTimer != null && !startTimer.finished)
 				startTimer.active = true;
@@ -2518,6 +2493,9 @@ class PlayState extends MusicBeatState
 				timer.active = true;
 			}
 			paused = false;
+			if (chartingMode)
+				startedCountdown = canPause = true; // In case you are on charting mode and need to skip
+
 			callOnLuas('onResume', []);
 
 			#if desktop
@@ -2606,7 +2584,7 @@ class PlayState extends MusicBeatState
 	public var paused:Bool = false;
 	public var canReset:Bool = true;
 	var startedCountdown:Bool = false;
-	var canPause:Bool = true;
+	var canPause:Bool = false; // Make sure you can't pause while on countdown
 	var limoSpeed:Float = 0;
 
 	override public function update(elapsed:Float)
@@ -2648,25 +2626,15 @@ class PlayState extends MusicBeatState
 
 		if (controls.PAUSE && startedCountdown && canPause)
 		{
-
-			if(startTheDamnSong == 0)
-			{
-					//do Nothing
-			}
-			else
-			{
-				var ret:Dynamic = callOnLuas('onPause', [], false);
-				if(ret != FunkinLua.Function_Stop) {
-					openPauseMenu();
-				}
+			var ret:Dynamic = callOnLuas('onPause', [], false);
+			if(ret != FunkinLua.Function_Stop) {
+				openPauseMenu();
 			}
 		}
 
 		#if DEBUG_ALLOWED
 			if (FlxG.keys.anyJustPressed(debugKeysChart) && !endingSong && !inCutscene)
-			{
 				openChartEditor();
-			}
 		#end
 
 		// FlxG.watch.addQuick('VOL', vocals.amplitudeLeft);
