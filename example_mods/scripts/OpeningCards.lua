@@ -141,8 +141,8 @@ function onCreatePost()
 	if songName == 'FNV' then
 		setUpCardDetails(false, 1, 32, "Composed By: Zuyu")
 	end
-	if songName == 'Tactical Mishap' then
-		setUpCardDetails(true, 1.50, 28, "Remixed By: Lillie | OG By: Araz / Zuyu")
+	if songName == 'Fanfuck Forever' then
+		setUpCardDetails(false, 1, 32, "Composed By: Shiloh")
 	end
 	if songName == 'VGuy' then
 		setUpCardDetails(true, 1.50, 32, "Composed by: Ricey / Shiloh")
@@ -150,14 +150,17 @@ function onCreatePost()
 	if songName == 'Fast Food Therapy' then
 		setUpCardDetails(false, 1, 32, "Composed By: Lillie")
 	end
-	if songName == 'Fanfuck Forever' then
-		setUpCardDetails(false, 1, 32, "Composed By: Shiloh")
-	end
-	if songName == 'Concert Chaos' then
-		setUpCardDetails(false, 1, 32, "Composed By: Lillie")
+	if songName == 'Tactical Mishap' then
+		setUpCardDetails(true, 1.50, 28, "Remixed By: Lillie | OG By: Araz / Zuyu")
 	end
 	if songName == 'Breacher' then
 		setUpCardDetails(false, 1, 32, "Composed By: D3MON1X")
+	end
+	if songName == 'Negotiation' then
+		setUpCardDetails(true, 1.05, 28, "Composed By: TheRealOscamon")
+	end
+	if songName == 'Concert Chaos' then
+		setUpCardDetails(false, 1, 32, "Composed By: Lillie")
 	end
 	
 	if songName == 'Slow.FLP (Old)' then

@@ -42,11 +42,7 @@ class CrossoverState extends MusicBeatState
 	var teleporter:FlxSprite;
 	var effects:FlxSprite;
 	var selectors:FlxSprite;
-	var selection1:FlxSprite;
-	var selection2:FlxSprite;
-	var selection3:FlxSprite;
-	var selection4:FlxSprite;
-	var selection5:FlxSprite;
+	var selections:FlxTypedGroup<FlxSprite>;
 	var blackOut:FlxSprite;
 	var whiteOut:FlxSprite;
 	var tipText:FlxText;
@@ -79,25 +75,41 @@ class CrossoverState extends MusicBeatState
 		teleporter.antialiasing = ClientPrefs.globalAntialiasing;
 		add(teleporter);
 
-		selection1 = new FlxSprite(170, 400).loadGraphic(Paths.image('crossRoadMap/selection'));
-		selection1.antialiasing = ClientPrefs.globalAntialiasing;
-		add(selection1);
+		selections = new FlxTypedGroup<FlxSprite>();
+		add(selections);
 
-		selection2 = new FlxSprite(370, 150).loadGraphic(Paths.image('crossRoadMap/selection'));
-		selection2.antialiasing = ClientPrefs.globalAntialiasing;
-		add(selection2);
+		for (i in 0...6)
+		{
+			var selection:FlxSprite = new FlxSprite().loadGraphic(Paths.image('crossRoadMap/selection'));
+			selection.antialiasing = ClientPrefs.globalAntialiasing;
+			selection.ID = i;
+			selections.add(selection);
 
-		selection3 = new FlxSprite(570, 400).loadGraphic(Paths.image('crossRoadMap/selection'));
-		selection3.antialiasing = ClientPrefs.globalAntialiasing;
-		add(selection3);
-
-		selection4 = new FlxSprite(770, 150).loadGraphic(Paths.image('crossRoadMap/selection'));
-		selection4.antialiasing = ClientPrefs.globalAntialiasing;
-		add(selection4);
-
-		selection5 = new FlxSprite(970, 400).loadGraphic(Paths.image('crossRoadMap/selection'));
-		selection5.antialiasing = ClientPrefs.globalAntialiasing;
-		add(selection5);
+			switch(i)
+			{
+				case 0:
+					selection.x = 50;
+					selection.y = 400;
+				case 1:
+					selection.x = 250;
+					selection.y = 150;
+				case 2:
+					selection.x = 450;
+					selection.y = 400;
+				case 3:
+					selection.x = 650;
+					selection.y = 150;
+				case 4:
+					selection.x = 850;
+					selection.y = 400;
+				case 5:
+					selection.x = 1050;
+					selection.y = 150;
+				case 6:
+					selection.x = 1250;
+					selection.y = 400;
+			}
+		}
 
 		tipText = new FlxText(700, 960, FlxG.width, "The teleporter has gone unstable.\nYou can only press ENTER to dive in.\nEach Crystal will be unlocked and completed as you move on.\nIf you wish to go back, press BACKSPACE.", 24);
 		tipText.setFormat("VCR OSD Mono", 24, FlxColor.WHITE, CENTER);
@@ -106,7 +118,7 @@ class CrossoverState extends MusicBeatState
 		tipText.alpha = 0;
 		add(tipText);
 
-		selectors = new FlxSprite(selection1.x - 20, selection1.y + 44).loadGraphic(Paths.image('crossRoadMap/selectors'));
+		selectors = new FlxSprite().loadGraphic(Paths.image('crossRoadMap/selectors'));
 		selectors.antialiasing = ClientPrefs.globalAntialiasing;
 		add(selectors);
 
@@ -120,7 +132,7 @@ class CrossoverState extends MusicBeatState
 
 		changeSelection();
 		
-		if (endSequence == false)
+		if (!endSequence)
 		{
 			FlxTween.tween(blackOut, {alpha: 0}, 4.7, {ease: FlxEase.cubeInOut, type: PERSIST});
 			new FlxTimer().start(4, function(tmr:FlxTimer)
@@ -132,10 +144,8 @@ class CrossoverState extends MusicBeatState
 				});
 			});
 		}
-		else if (endSequence == true)
-		{
+		else
 			FlxTween.tween(blackOut, {alpha: 0}, 2.7, {ease: FlxEase.cubeInOut, type: PERSIST});
-		}
 
 		super.create();
 	}
@@ -151,8 +161,10 @@ class CrossoverState extends MusicBeatState
 				selectedSomething = true;
 				FlxG.sound.music.fadeOut(3.0);
 				FlxTween.tween(blackOut, {alpha: 1}, 3, {ease: FlxEase.cubeInOut, type: PERSIST});
+
 				ClientPrefs.onCrossSection = false;
 				ClientPrefs.saveSettings();
+
 				FlxG.sound.play(Paths.sound('cancelMenu'));
 				new FlxTimer().start(3, function(tmr:FlxTimer)
 				{
@@ -168,7 +180,7 @@ class CrossoverState extends MusicBeatState
 				selectSong();
 			}
 
-			if (endSequence == true)
+			if (endSequence)
 			{
 				selectedSomething = true;
 				new FlxTimer().start(1, function(tmr:FlxTimer)
@@ -217,37 +229,35 @@ class CrossoverState extends MusicBeatState
 					PlayState.SONG = Song.loadFromJson('vguy', 'vguy');
 				else if (ClientPrefs.storyModeCrashDifficultyNum == 1)
 					PlayState.SONG = Song.loadFromJson('vguy-villainous', 'vguy');
-				PlayState.storyDifficulty = ClientPrefs.storyModeCrashDifficultyNum;
-				FlxFlicker.flicker(selection1, 1, 0.04, false);
 			case 1:
 				if (ClientPrefs.storyModeCrashDifficultyNum == 0)
 					PlayState.SONG = Song.loadFromJson('fast-food-therapy', 'fast-food-therapy');
 				else if (ClientPrefs.storyModeCrashDifficultyNum == 1)
 					PlayState.SONG = Song.loadFromJson('fast-food-therapy-villainous', 'fast-food-therapy');
-				PlayState.storyDifficulty = ClientPrefs.storyModeCrashDifficultyNum;
-				FlxFlicker.flicker(selection2, 1, 0.04, false);
 			case 2:
 				if (ClientPrefs.storyModeCrashDifficultyNum == 0)
 					PlayState.SONG = Song.loadFromJson('tactical-mishap', 'tactical-mishap');
 				else if (ClientPrefs.storyModeCrashDifficultyNum == 1)
 					PlayState.SONG = Song.loadFromJson('tactical-mishap-villainous', 'tactical-mishap');
-				PlayState.storyDifficulty = ClientPrefs.storyModeCrashDifficultyNum;
-				FlxFlicker.flicker(selection3, 1, 0.04, false);
 			case 3:
 				if (ClientPrefs.storyModeCrashDifficultyNum == 0)
 					PlayState.SONG = Song.loadFromJson('breacher', 'breacher');
 				else if (ClientPrefs.storyModeCrashDifficultyNum == 1)
 					PlayState.SONG = Song.loadFromJson('breacher-villainous', 'breacher');
-				PlayState.storyDifficulty = ClientPrefs.storyModeCrashDifficultyNum;
-				FlxFlicker.flicker(selection4, 1, 0.04, false);
 			case 4:
+				if (ClientPrefs.storyModeCrashDifficultyNum == 0)
+					PlayState.SONG = Song.loadFromJson('negotiation', 'negotiation');
+				else if (ClientPrefs.storyModeCrashDifficultyNum == 1)
+					PlayState.SONG = Song.loadFromJson('negotiation-villainous', 'negotiation');
+			case 5:
 				if (ClientPrefs.storyModeCrashDifficultyNum == 0)
 					PlayState.SONG = Song.loadFromJson('concert-chaos', 'concert-chaos');
 				else if (ClientPrefs.storyModeCrashDifficultyNum == 1)
 					PlayState.SONG = Song.loadFromJson('concert-chaos-villainous', 'concert-chaos');
-				PlayState.storyDifficulty = ClientPrefs.storyModeCrashDifficultyNum;
-				FlxFlicker.flicker(selection5, 1, 0.04, false);
 		}
+		PlayState.storyDifficulty = ClientPrefs.storyModeCrashDifficultyNum;
+		FlxFlicker.flicker(selections.members[curSelected], 1, 0.04, false);
+
 		FlxG.camera.flash(FlxColor.WHITE, 1);
 		FlxG.sound.music.volume = 0;
 		ClientPrefs.inMenu = false;
@@ -261,87 +271,73 @@ class CrossoverState extends MusicBeatState
 	{
 		if (ClientPrefs.storyModeCrashDifficultyNum == 1) //FOR VILLAINOUS MODE
 		{
-			if (ClientPrefs.ourpleFound == true) //	FIRST SONG
+			if (ClientPrefs.ourpleFound) //	FIRST SONG
 				curSelected = 0;
-			if (ClientPrefs.ourplePlayed == true && Achievements.isAchievementUnlocked('vGuy_Beaten')) //SECOND SONG
+			if (ClientPrefs.ourplePlayed && Achievements.isAchievementUnlocked('vGuy_Beaten')) //SECOND SONG
 				curSelected = 1;
-			if (ClientPrefs.kyuPlayed == true && Achievements.isAchievementUnlocked('fastFoodTherapy_Beaten')) //THIRD SONG
+			if (ClientPrefs.kyuPlayed && Achievements.isAchievementUnlocked('fastFoodTherapy_Beaten')) //THIRD SONG
 				curSelected = 2;
-			if (ClientPrefs.tacticalMishapPlayed == true && Achievements.isAchievementUnlocked('tacticalMishap_Beaten')) // FOURTH SONG
+			if (ClientPrefs.tacticalMishapPlayed && Achievements.isAchievementUnlocked('tacticalMishap_Beaten')) // FOURTH SONG
 				curSelected = 3;
-			if (ClientPrefs.breacherPlayed == true && Achievements.isAchievementUnlocked('breacher_Beaten')) //FIFTH SONG
+			if (ClientPrefs.breacherPlayed && Achievements.isAchievementUnlocked('breacher_Beaten')) //FIFTH SONG
 				curSelected = 4;
-			if (ClientPrefs.ccPlayed == true && Achievements.isAchievementUnlocked('concertChaos_Beaten')) //END
+			if (ClientPrefs.negotiationPlayed && Achievements.isAchievementUnlocked('negotiation_Beaten')) //END
 				curSelected = 5;
+			if (ClientPrefs.ccPlayed && Achievements.isAchievementUnlocked('concertChaos_Beaten')) //END
+				curSelected = 6;
 		}
 		else
 		{
-			if (ClientPrefs.ourpleFound == true)
+			if (ClientPrefs.ourpleFound)
 				curSelected = 0;
-			if (ClientPrefs.ourplePlayed == true)
+			if (ClientPrefs.ourplePlayed)
 				curSelected = 1;
-			if (ClientPrefs.kyuPlayed == true)
+			if (ClientPrefs.kyuPlayed)
 				curSelected = 2;
-			if (ClientPrefs.tacticalMishapPlayed == true)
+			if (ClientPrefs.tacticalMishapPlayed)
 				curSelected = 3;
-			if (ClientPrefs.breacherPlayed == true)
+			if (ClientPrefs.breacherPlayed)
 				curSelected = 4;
-			if (ClientPrefs.ccPlayed == true)
+			if (ClientPrefs.negotiationPlayed)
 				curSelected = 5;
+			if (ClientPrefs.ccPlayed)
+				curSelected = 6;
 		}
 
-		if (curSelected == 5)
+		if (curSelected == 6)
 			endSequence = true;
+		else
+		{
+			selectors.x = selections.members[curSelected].x - 20;
+			selectors.y = selections.members[curSelected].y + 44;
+		}
 
 		switch(curSelected)
 		{
 			case 0:
-				selectors.x = selection1.x - 20;
-				selectors.y = selection1.y + 44;
-				selection1.loadGraphic(Paths.image('crossRoadMap/selectionSelected'));
-				selection2.loadGraphic(Paths.image('crossRoadMap/selection'));
-				selection3.loadGraphic(Paths.image('crossRoadMap/selection'));
-				selection4.loadGraphic(Paths.image('crossRoadMap/selection'));
-				selection5.loadGraphic(Paths.image('crossRoadMap/selection'));
-			case 1:
-				selectors.x = selection2.x - 20;
-				selectors.y = selection2.y + 44;
-				selection1.loadGraphic(Paths.image('crossRoadMap/selectionCompleted'));
-				selection2.loadGraphic(Paths.image('crossRoadMap/selectionSelected'));
-				selection3.loadGraphic(Paths.image('crossRoadMap/selection'));
-				selection4.loadGraphic(Paths.image('crossRoadMap/selection'));
-				selection5.loadGraphic(Paths.image('crossRoadMap/selection'));
-			case 2:
-				selectors.x = selection3.x - 20;
-				selectors.y = selection3.y + 44;
-				selection1.loadGraphic(Paths.image('crossRoadMap/selectionCompleted'));
-				selection2.loadGraphic(Paths.image('crossRoadMap/selectionCompleted'));
-				selection3.loadGraphic(Paths.image('crossRoadMap/selectionSelected'));
-				selection4.loadGraphic(Paths.image('crossRoadMap/selection'));
-				selection5.loadGraphic(Paths.image('crossRoadMap/selection'));
-			case 3:
-				selectors.x = selection4.x - 20;
-				selectors.y = selection4.y + 44;
-				selection1.loadGraphic(Paths.image('crossRoadMap/selectionCompleted'));
-				selection2.loadGraphic(Paths.image('crossRoadMap/selectionCompleted'));
-				selection3.loadGraphic(Paths.image('crossRoadMap/selectionCompleted'));
-				selection4.loadGraphic(Paths.image('crossRoadMap/selectionSelected'));
-				selection5.loadGraphic(Paths.image('crossRoadMap/selection'));
-			case 4:
-				selectors.x = selection5.x - 20;
-				selectors.y = selection5.y + 44;
-				selection1.loadGraphic(Paths.image('crossRoadMap/selectionCompleted'));
-				selection2.loadGraphic(Paths.image('crossRoadMap/selectionCompleted'));
-				selection3.loadGraphic(Paths.image('crossRoadMap/selectionCompleted'));
-				selection4.loadGraphic(Paths.image('crossRoadMap/selectionCompleted'));
-				selection5.loadGraphic(Paths.image('crossRoadMap/selectionSelected'));
-			case 5:
+				selections.forEach(function (spr:FlxSprite)
+				{
+					if (spr.ID == curSelected)
+						spr.loadGraphic(Paths.image('crossRoadMap/selectionSelected'));
+					else
+						spr.loadGraphic(Paths.image('crossRoadMap/selection'));
+				});
+			case 1 | 2 | 3 | 4 | 5:
+				selections.forEach(function (spr:FlxSprite)
+				{
+					if (spr.ID == curSelected)
+						spr.loadGraphic(Paths.image('crossRoadMap/selectionCompleted'));
+					else if (spr.ID < curSelected)
+						spr.loadGraphic(Paths.image('crossRoadMap/selectionSelected'));
+					else
+						spr.loadGraphic(Paths.image('crossRoadMap/selection'));
+				});
+			case 6:
 				selectors.alpha = 0;
-				selection1.loadGraphic(Paths.image('crossRoadMap/selectionCompleted'));
-				selection2.loadGraphic(Paths.image('crossRoadMap/selectionCompleted'));
-				selection3.loadGraphic(Paths.image('crossRoadMap/selectionCompleted'));
-				selection4.loadGraphic(Paths.image('crossRoadMap/selectionCompleted'));
-				selection5.loadGraphic(Paths.image('crossRoadMap/selectionCompleted'));
+				selections.forEach(function (spr:FlxSprite)
+				{
+					spr.loadGraphic(Paths.image('crossRoadMap/selectionSelected'));
+				});
 		}
 	}
 }

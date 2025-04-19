@@ -1,0 +1,78 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				62,
+				13
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "seer left0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				13,
+				-8
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "seer down0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-14,
+				105
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "seer up0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-31,
+				-39
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "seer right0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				0
+			],
+			"anim": "idle",
+			"fps": 24,
+			"name": "seer idle0",
+			"indices": []
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/negotiation seer",
+	"position": [
+		0,
+		0
+	],
+	"healthicon": "negotiationseer",
+	"flip_x": false,
+	"healthbar_colors": [
+		69,
+		255,
+		211
+	],
+	"camera_position": [
+		0,
+		0
+	],
+	"sing_duration": 6.1,
+	"scale": 1
+}

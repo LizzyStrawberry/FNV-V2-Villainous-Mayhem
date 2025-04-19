@@ -4273,6 +4273,8 @@ class PlayState extends MusicBeatState
 					ClientPrefs.tacticalMishapPlayed = true;
 				if (ClientPrefs.breacherPlayed == false && Paths.formatToSongPath(SONG.song) == 'breacher')
 					ClientPrefs.breacherPlayed = true;
+				if (ClientPrefs.negotiationPlayed == false && Paths.formatToSongPath(SONG.song) == 'negotiation')
+					ClientPrefs.negotiationPlayed = true;
 				if (ClientPrefs.ccPlayed == false && Paths.formatToSongPath(SONG.song) == 'concert-chaos')
 					ClientPrefs.ccPlayed = true;
 
@@ -6089,6 +6091,13 @@ class PlayState extends MusicBeatState
 							
 							ClientPrefs.saveSettings();
 						}
+					case 'negotiation_Beaten':
+						if(Paths.formatToSongPath(SONG.song) == 'negotiation' && !changedDifficulty && !usedPractice && CoolUtil.difficultyString() == 'VILLAINOUS') {
+							unlock = true;
+							ClientPrefs.eggs += 1;
+							
+							ClientPrefs.saveSettings();
+						}
 					case 'concertChaos_Beaten':
 						if(Paths.formatToSongPath(SONG.song) == 'concert-chaos' && !changedDifficulty && !usedPractice && CoolUtil.difficultyString() == 'VILLAINOUS') {
 							unlock = true;
@@ -6119,8 +6128,8 @@ class PlayState extends MusicBeatState
 							&& Achievements.isAchievementUnlocked('rainyDaze_Beaten') && Achievements.isAchievementUnlocked('marauder_Beaten')
 							// Crossover Songs
 							&& Achievements.isAchievementUnlocked('vGuy_Beaten') && Achievements.isAchievementUnlocked('fastFoodTherapy_Beaten')
-							&& Achievements.isAchievementUnlocked('tacticalMishap_Beaten')
-							&& Achievements.isAchievementUnlocked('breacher_Beaten') && Achievements.isAchievementUnlocked('concertChaos_Beaten')
+							&& Achievements.isAchievementUnlocked('tacticalMishap_Beaten') && Achievements.isAchievementUnlocked('breacher_Beaten')
+							&& Achievements.isAchievementUnlocked('negotiation_beaten') && Achievements.isAchievementUnlocked('concertChaos_Beaten')
 							// Crossover Section
 							&& Achievements.isAchievementUnlocked('crossover_Beaten')
 							//Extras

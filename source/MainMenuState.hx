@@ -150,6 +150,7 @@ class MainMenuState extends MusicBeatState
 		'tactical-mishap',
 		'fast-food-therapy',
 		'breacher',
+		'negotiation',
 		'concert-chaos',
 		'nunsational',
 		"its-kiana",
@@ -833,8 +834,8 @@ class MainMenuState extends MusicBeatState
 			&& Achievements.isAchievementUnlocked('rainyDaze_Beaten') && Achievements.isAchievementUnlocked('marauder_Beaten')
 			// Crossover Songs
 			&& Achievements.isAchievementUnlocked('vGuy_Beaten') && Achievements.isAchievementUnlocked('fastFoodTherapy_Beaten')
-			&& Achievements.isAchievementUnlocked('tacticalMishap_Beaten')
-			&& Achievements.isAchievementUnlocked('breacher_Beaten') && Achievements.isAchievementUnlocked('concertChaos_Beaten')
+			&& Achievements.isAchievementUnlocked('tacticalMishap_Beaten') && Achievements.isAchievementUnlocked('breacher_Beaten')
+			&& Achievements.isAchievementUnlocked('negotiation_beaten') && Achievements.isAchievementUnlocked('concertChaos_Beaten')
 			// Crossover Section
 			&& Achievements.isAchievementUnlocked('crossover_Beaten')
 			//Extras

@@ -143,6 +143,11 @@ class FreeplayXtraCrossoverState extends MusicBeatState
 		if (ClientPrefs.breacherFound == true && ClientPrefs.breacherPlayed == true)
 			addSong('Breacher', 3, 'uzi', FlxColor.fromRGB(122, 49, 137));
 
+		if (ClientPrefs.negotiationFound == true && ClientPrefs.negotiationPlayed == false)
+			addSong('Negotiation', 3, 'cross', FlxColor.fromRGB(239, 0, 31));
+		if (ClientPrefs.negotiationFound == true && ClientPrefs.negotiationPlayed == true)
+			addSong('Negotiation', 3, 'cross', FlxColor.fromRGB(239, 0, 31));
+
 		if (ClientPrefs.ccFound == true && ClientPrefs.ccPlayed == false)
 			addSong('Concert Chaos', 3, 'mystery', FlxColor.fromRGB(155,0,206));
 		if (ClientPrefs.ccFound == true && ClientPrefs.ccPlayed == true)
@@ -198,6 +203,9 @@ class FreeplayXtraCrossoverState extends MusicBeatState
 
 			if (songText.text == 'Breacher' && ClientPrefs.breacherPlayed == false)
 				songText.text = '????????';
+
+			if (songText.text == 'Negotiation' && ClientPrefs.negotiationPlayed == false)
+				songText.text = '???????????';
 
 			if (songText.text == 'Concert Chaos' && ClientPrefs.ccPlayed == false)
 				songText.text = '??????? ?????';
@@ -467,6 +475,25 @@ class FreeplayXtraCrossoverState extends MusicBeatState
 				if (ClientPrefs.breacherPlayed == false)
 				{
 					selectionText.text = "????????";
+					lockedSelection.alpha = 1;
+				}
+					
+			}
+			case 'Negotiation' | "???????????":
+			{
+				unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_Negotiation'));
+				unlockedSelection.screenCenter();
+				unlockedSelection.y -= 65;
+				unlockedSelection.scale.set(1, 1);
+				lockedSelection.alpha = 0;
+	
+				placeholderSelection.alpha = 0;
+	
+				selectionText.text = "Negotiation";
+
+				if (ClientPrefs.negotiationPlayed == false)
+				{
+					selectionText.text = "???????????";
 					lockedSelection.alpha = 1;
 				}
 					
@@ -823,6 +850,12 @@ class FreeplayXtraCrossoverState extends MusicBeatState
 		{
 			trace('I got loaded lol, Unlocking Breacher!');
 			ClientPrefs.breacherPlayed = true;
+			ClientPrefs.saveSettings();
+		}
+		if (songs[curSelected].songName == 'Negotiation' && ClientPrefs.negotiationPlayed == false)
+		{
+			trace('I got loaded lol, Unlocking Negotiation!');
+			ClientPrefs.negotiationPlayed = true;
 			ClientPrefs.saveSettings();
 		}
 		if (songs[curSelected].songName == 'Concert Chaos' && ClientPrefs.ccPlayed == false)

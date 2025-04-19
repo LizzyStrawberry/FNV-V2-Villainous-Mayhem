@@ -209,7 +209,7 @@ class StoryMenuState extends MusicBeatState
 		categoryNum3.antialiasing = ClientPrefs.globalAntialiasing;
 		categoryNum3.updateHitbox();
 
-		if (ClientPrefs.crossoverUnlocked == false)
+		if (!ClientPrefs.crossoverUnlocked)
 		{
 			categoryNum4 = new FlxSprite(categoryNum1.x + 270, 20).loadGraphic(Paths.image('mainStoryMode/categoryNum_4'));
 			categoryNum4.antialiasing = ClientPrefs.globalAntialiasing;
@@ -232,7 +232,7 @@ class StoryMenuState extends MusicBeatState
 		add(categoryNum1);
 		add(categoryNum2);
 		add(categoryNum3);
-		if (ClientPrefs.crossoverUnlocked == false)
+		if (!ClientPrefs.crossoverUnlocked)
 			add(categoryNum4);
 
 		//Notifications on categories
@@ -431,7 +431,7 @@ class StoryMenuState extends MusicBeatState
 				ClientPrefs.saveSettings();
 			}
 		}
-		if (ClientPrefs.crossoverUnlocked == true)
+		if (ClientPrefs.crossoverUnlocked)
 		{
 			var achieveID:Int = Achievements.getAchievementIndex('crossover_Beaten');
 			if(!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveID][2])) {
@@ -497,7 +497,7 @@ class StoryMenuState extends MusicBeatState
 			categoryNum3.alpha = 1;
 		else
 			categoryNum3.alpha = 0.5;
-		if (ClientPrefs.crossoverUnlocked == false)
+		if (!ClientPrefs.crossoverUnlocked)
 			if (FlxG.mouse.overlaps(categoryNum4) || categorySelected == 3)
 				categoryNum4.alpha = 1;
 			else

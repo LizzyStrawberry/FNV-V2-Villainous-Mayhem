@@ -431,7 +431,7 @@ function onCreatePost()
 			end
 		end
 		
-		if boyfriendName == 'marcoFFFP1' or boyfriendName == 'marcoFFFP2' then
+		if boyfriendName == 'marcoFFFP1' or boyfriendName == 'marcoFFFP2' or boyfriendName == "Negotiation Marco" then
 			for note = 0, getProperty('unspawnNotes.length')-1 do
 				if getPropertyFromGroup('unspawnNotes', note, 'mustPress') then
 					if getPropertyFromGroup('unspawnNotes', note, 'noteType') == 'GF Sing' then
@@ -600,7 +600,7 @@ function goodNoteHit(id, direction, noteType, isSustainNote, noteData)
 			end
 		end
 		
-		if boyfriendName == 'marcoFFFP1' or boyfriendName == 'marcoFFFP2' then
+		if boyfriendName == 'marcoFFFP1' or boyfriendName == 'marcoFFFP2' or boyfriendName == "Negotiation Marco" then
 			if direction == 0 then
 				setTimeBarColors('4c9e64', ' ')
 			end

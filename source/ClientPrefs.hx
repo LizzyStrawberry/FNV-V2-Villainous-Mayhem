@@ -183,6 +183,8 @@ class ClientPrefs {
 	public static var tacticalMishapPlayed:Bool = false;
 	public static var breacherFound:Bool = true;
 	public static var breacherPlayed:Bool = false;
+	public static var negotiationFound:Bool = true;
+	public static var negotiationPlayed:Bool = false;
 	public static var ccFound:Bool = true;
 	public static var ccPlayed:Bool = false;
 
@@ -510,6 +512,8 @@ class ClientPrefs {
 		FlxG.save.data.kyuPlayed = kyuPlayed;
 		FlxG.save.data.breacherFound = breacherFound;
 		FlxG.save.data.breacherPlayed = breacherPlayed;
+		FlxG.save.data.negotiationFound = negotiationFound;
+		FlxG.save.data.negotiationPlayed = negotiationPlayed;
 		FlxG.save.data.ccFound = ccFound;
 		FlxG.save.data.ccPlayed = ccPlayed;
 
@@ -585,232 +589,6 @@ class ClientPrefs {
 		Highscore.resetAllWeeks();
 		Highscore.resetAllSongs();
 		Highscore.load();
-		FlxG.save.data.downScroll = false;
-		FlxG.save.data.middleScroll = false;
-		FlxG.save.data.opponentStrums = true;
-		FlxG.save.data.showFPS = true;
-		FlxG.save.data.showMemPeak = true;
-		FlxG.save.data.flashing = null;
-		FlxG.save.data.globalAntialiasing = true;
-		FlxG.save.data.noteSplashes = true;
-		FlxG.save.data.noteTailLayer = "Behind";
-		FlxG.save.data.lowQuality = false;
-		FlxG.save.data.framerate = 120;
-		FlxG.save.data.camZooms = true;
-		FlxG.save.data.noteOffset = 0;
-		FlxG.save.data.hideHud = false;
-		FlxG.save.data.arrowHSV = [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]];
-		FlxG.save.data.ghostTapping = true;
-		FlxG.save.data.timeBarType = 'Time Left';
-		FlxG.save.data.scoreZoom = true;
-		FlxG.save.data.noReset = false;
-		FlxG.save.data.healthBarAlpha = 1;
-		FlxG.save.data.comboOffset = [621, -339, 754, -272];
-		FlxG.save.data.achievementsMap = Achievements.achievementsMapBackUp;
-		FlxG.save.data.henchmenDeath = 0;
-
-		FlxG.save.data.tokens = 0;
-		FlxG.save.data.tokensAchieved = 0;
-
-		FlxG.save.data.optimizationMode = false;
-		FlxG.save.data.comboPosition = 'Hud';
-		FlxG.save.data.gore = true;
-		FlxG.save.data.shaders = true;
-		FlxG.save.data.cacheOnGPU = #if !switch false #else true #end;
-		FlxG.save.data.mechanics = true;
-		FlxG.save.data.missRelatedCombos = true;
-		FlxG.save.data.trampolineMode = false;
-		FlxG.save.data.cinematicBars = true;
-		FlxG.save.data.customRating = 'FNV';
-		FlxG.save.data.noteSplashMode = 'Inwards';
-		FlxG.save.data.timeBarFlash = 'All Enabled';
-		FlxG.save.data.performanceWarning = true;
-		FlxG.save.data.allowPCChanges = true;
-
-		FlxG.save.data.mainWeekBeaten = false;
-		FlxG.save.data.gotWinMessage = false;
-
-		FlxG.save.data.coreMechTutUnlocked = false;
-		FlxG.save.data.shopTutUnlocked = false;
-
-		FlxG.save.data.oldLoadScreensUnlocked = false;
-		FlxG.save.data.adMechanicScreensUnlocked = false;
-		FlxG.save.data.fanartScreensUnlocked = false;
-		FlxG.save.data.randomArtScreensUnlocked = false;
-
-		FlxG.save.data.galleryUnlocked = false;
-
-		FlxG.save.data.campaignHighScore = 0;
-		FlxG.save.data.campaignBestCombo = 0;
-		FlxG.save.data.campaignRating = 0;
-		FlxG.save.data.campaignSongsPlayed = 0;
-
-		FlxG.save.data.iniquitousUnlocked = false;
-
-		FlxG.save.data.storyModeCrashMeasure = '';
-		FlxG.save.data.storyModeCrashWeek = -1;
-		FlxG.save.data.storyModeCrashWeekName = '';
-		FlxG.save.data.storyModeCrashDifficulty = '';
-		FlxG.save.data.storyModeCrashDifficultyNum = -1;
-		FlxG.save.data.storyModeCrashScore = 0;
-		FlxG.save.data.storyModeCrashMisses = 0;
-
-		FlxG.save.data.optionsFreeplay = false;
-		FlxG.save.data.inMenu = false;
-		FlxG.save.data.firstTime = false;
-
-		FlxG.save.data.shopUnlocked = false;
-		FlxG.save.data.secretShopShowcased = false;
-		FlxG.save.data.shopShowcased = false;
-		FlxG.save.data.inShop = false;
-		FlxG.save.data.itemInfo = false;
-		FlxG.save.data.luckSelected = false;
-		FlxG.save.data.sellSelected = false;
-		FlxG.save.data.choiceSelected = false;
-		FlxG.save.data.charmsSelected = false;
-		FlxG.save.data.talkedToZeel = false;
-		FlxG.save.data.talkedToHermit = false;
-		FlxG.save.data.eggs = 0;
-
-		FlxG.save.data.bonusUnlocked = false;
-		FlxG.save.data.xtraUnlocked = false;
-		FlxG.save.data.crossoverUnlocked = false;
-		FlxG.save.data.xtraBonusUnlocked = false;
-
-		FlxG.save.data.resistanceCharm = 0;
-		FlxG.save.data.autoCharm = 0;
-		FlxG.save.data.healingCharm = 0;
-
-		FlxG.save.data.resCharmCollected = false;
-		FlxG.save.data.autoCharmCollected = false;
-		FlxG.save.data.healCharmCollected = false;
-		FlxG.save.data.charmsCollected = 0;
-
-		FlxG.save.data.weeksUnlocked = 0;
-
-		FlxG.save.data.mainWeekFound = false;
-		FlxG.save.data.mainWeekPlayed = false;
-		FlxG.save.data.villainyBeaten = false;
-		FlxG.save.data.pointBlankBeaten = false;
-		FlxG.save.data.libidinousnessBeaten = false;
-		FlxG.save.data.excreteBeaten = false;
-		FlxG.save.data.nunWeekFound = false;
-		FlxG.save.data.nunWeekPlayed = false;
-		FlxG.save.data.dsideWeekFound = false;
-		FlxG.save.data.dsideWeekPlayed = false;
-		FlxG.save.data.susWeekFound = false;
-		FlxG.save.data.susWeekPlayed = false;
-		FlxG.save.data.kianaWeekFound = false;
-		FlxG.save.data.kianaWeekPlayed = false;
-		FlxG.save.data.legacyWeekFound = false;
-		FlxG.save.data.legacyWeekPlayed = false;
-		FlxG.save.data.morkyWeekPlayed = false;
-		FlxG.save.data.morkyWeekFound = false;
-		FlxG.save.data.iniquitousWeekUnlocked = false;
-		FlxG.save.data.iniquitousWeekBeaten = false;
-
-		FlxG.save.data.tofuFound = false;
-		FlxG.save.data.tofuViewed = false;
-		FlxG.save.data.tofuPlayed = false;
-		FlxG.save.data.lustalityPlayed = false;
-		FlxG.save.data.lustalityViewed = false;
-		FlxG.save.data.lustalityFound = false;
-		FlxG.save.data.marcochromePlayed = false;
-		FlxG.save.data.marcochromeViewed = false;
-		FlxG.save.data.marcochromeFound = false;
-		FlxG.save.data.nunsationalPlayed = false;
-		FlxG.save.data.nunsationalViewed = false;
-		FlxG.save.data.nunsationalFound = false;
-		FlxG.save.data.nicFound = false;
-		FlxG.save.data.nicViewed = false;
-		FlxG.save.data.nicPlayed = false;
-		FlxG.save.data.debugFound = false;
-		FlxG.save.data.debugViewed = false;
-		FlxG.save.data.debugPlayed = false;
-		FlxG.save.data.fnvFound = false;
-		FlxG.save.data.fnvViewed = false;
-		FlxG.save.data.fnvPlayed = false;
-		FlxG.save.data.shortFound = false;
-		FlxG.save.data.shortViewed = false;
-		FlxG.save.data.shortPlayed = false;
-		FlxG.save.data.infatuationFound = false;
-		FlxG.save.data.infatuationViewed = false;
-		FlxG.save.data.infatuationPlayed = false;
-		FlxG.save.data.rainyDazeFound = false;
-		FlxG.save.data.rainyDazeViewed = false;
-		FlxG.save.data.rainyDazePlayed = false;
-
-		FlxG.save.data.ourpleFound = true;
-		FlxG.save.data.ourplePlayed = false;
-		FlxG.save.data.tacticalMishapFound = true;
-		FlxG.save.data.tacticalMishapPlayed = false;
-		FlxG.save.data.kyuFound = true;
-		FlxG.save.data.kyuPlayed = false;
-		FlxG.save.data.breacherFound = true;
-		FlxG.save.data.breacherPlayed = false;
-		FlxG.save.data.ccFound = true;
-		FlxG.save.data.ccPlayed = false;
-
-		FlxG.save.data.shucksUnlocked = false;
-
-		FlxG.save.data.codeRegistered = '';
-
-		FlxG.save.data.zeelNakedPics = false;
-		FlxG.save.data.trampolineUnlocked = false;
-
-		FlxG.save.data.songsUnlocked = 0;
-
-		FlxG.save.data.crossSongsAllowed = 0;
-		FlxG.save.data.onCrossSection = false;
-		FlxG.save.data.roadMapUnlocked = false;
-		FlxG.save.data.itsameDsidesUnlocked = false;
-
-		FlxG.save.data.injectionEndScore = 0;
-		FlxG.save.data.injectionVilEndScore = 0;
-		FlxG.save.data.mayhemEndScore = 0;
-		FlxG.save.data.mayhemEndTotalScore = 0;
-
-		FlxG.save.data.mayhemNotif = false;
-		FlxG.save.data.injectionNotif = false;
-
-		FlxG.save.data.buff1Unlocked = false;
-		FlxG.save.data.buff1Selected = false;
-		FlxG.save.data.buff2Unlocked = false;
-		FlxG.save.data.buff2Selected = false;
-		FlxG.save.data.buff3Unlocked = false;
-		FlxG.save.data.buff3Selected = false;
-		FlxG.save.data.buff1Active = false;
-		FlxG.save.data.buff2Active = false;
-		FlxG.save.data.buff3Active = false;
-		FlxG.save.data.charInventory = 'playablegf';
-
-		FlxG.save.data.numberOfScrolls = 0;
-		FlxG.save.data.marcoScroll = false;
-		FlxG.save.data.aileenScroll = false;
-		FlxG.save.data.beatriceScroll = false;
-		FlxG.save.data.evelynScroll = false;
-		FlxG.save.data.yakuScroll = false;
-		FlxG.save.data.dvScroll = false;
-		FlxG.save.data.kianaScroll = false;
-		FlxG.save.data.narrinScroll = false;
-		FlxG.save.data.morkyScroll = false;
-		FlxG.save.data.kaizokuScroll = false;
-
-		FlxG.save.data.ratingOffset = 0;
-		FlxG.save.data.sickWindow = 45;
-		FlxG.save.data.goodWindow = 90;
-		FlxG.save.data.badWindow = 135;
-		FlxG.save.data.safeFrames = 10;
-		var savedMap:Map<String, Dynamic> = ClientPrefs.gameplaySettingsBackUp;
-		for (name => value in savedMap)
-		{
-			gameplaySettings.set(name, value);
-		}
-		FlxG.save.data.controllerMode = false;
-		FlxG.save.data.hitsoundVolume = 0;
-		FlxG.save.data.pauseMusic = 'Interstellar';
-		FlxG.save.data.checkForUpdates = true;
-		FlxG.save.data.comboStacking = true;
 
 		downScroll = false;
 		middleScroll = false;
@@ -973,6 +751,8 @@ class ClientPrefs {
 		kyuPlayed = false;
 		breacherFound = true;
 		breacherPlayed = false;
+		negotiationFound = true;
+		negotiationPlayed = false;
 		ccFound = true;
 		ccPlayed = false;
 
@@ -1032,6 +812,7 @@ class ClientPrefs {
 		checkForUpdates = true;
 		comboStacking = true;
 
+		ClientPrefs.saveSettings();
 		Achievements.loadAchievements();
 	
 		FlxG.save.flush();
@@ -1144,6 +925,8 @@ class ClientPrefs {
 		kyuPlayed = true;
 		breacherFound = true;
 		breacherPlayed = true;
+		negotiationFound = true;
+		negotiationPlayed = true;
 		ccFound = true;
 		ccPlayed = true;
 
@@ -1601,6 +1384,12 @@ class ClientPrefs {
 		}
 		if(FlxG.save.data.breacherPlayed != null) {
 			breacherPlayed = FlxG.save.data.breacherPlayed;
+		}
+		if(FlxG.save.data.negotiationFound != null) {
+			negotiationFound = FlxG.save.data.negotiationFound;
+		}
+		if(FlxG.save.data.negotiationPlayed != null) {
+			negotiationPlayed = FlxG.save.data.negotiationPlayed;
 		}
 		if(FlxG.save.data.ccFound != null) {
 			ccFound = FlxG.save.data.ccFound;

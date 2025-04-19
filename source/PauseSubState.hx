@@ -127,26 +127,14 @@ class PauseSubState extends MusicBeatSubstate
 				pauseCard.color = 0xFF52a5eb;
 
 			//Main Week Songs
-			case 'Scrouge' | 'Cheap Skate (Legacy)':
-				bgGradient.color = 0xFF00a800;
-				pauseCard.color = 0xFF00a800;
-			case 'Toxic Mishap':
+			case 'Scrouge' | 'Cheap Skate (Legacy)' | 'Toxic Mishap' | 'Villainy':
 				bgGradient.color = 0xFF00a800;
 				pauseCard.color = 0xFF00a800;
 			case 'Paycheck':
 				bgGradient.color = 0xFF72cd6e;
 				pauseCard.color = 0xFF72cd6e;
-			case 'Villainy':
-				bgGradient.color = 0xFF00a800;
-				pauseCard.color = 0xFF00a800;
 
-			case 'Nunday Monday':
-				bgGradient.color = 0xFFfb000f;
-				pauseCard.color = 0xFFfb000f;
-			case 'Nunconventional' | 'Nunconventional Simp':
-				bgGradient.color = 0xFFfb000f;
-				pauseCard.color = 0xFFfb000f;
-			case 'Point Blank':
+			case 'Nunday Monday' | 'Nunconventional' | 'Nunconventional Simp' | 'Point Blank':
 				bgGradient.color = 0xFFfb000f;
 				pauseCard.color = 0xFFfb000f;
 
@@ -168,10 +156,7 @@ class PauseSubState extends MusicBeatSubstate
 				bgGradient.color = 0xFFff0000;
 				pauseCard.color = 0xFFff0000;
 
-			case 'Sussus Marcus' | 'Villain In Board':
-				bgGradient.color = 0xFF00a800;
-				pauseCard.color = 0xFF00a800;
-			case 'Excrete':
+			case 'Sussus Marcus' | 'Villain In Board' | 'Excrete':
 				bgGradient.color = 0xFF00a800;
 				pauseCard.color = 0xFF00a800;
 
@@ -247,6 +232,9 @@ class PauseSubState extends MusicBeatSubstate
 			case 'Breacher':
 				bgGradient.color = 0xFF7a3189;
 				pauseCard.color = 0xFF7a3189;
+			case 'Negotiation':
+				bgGradient.color = 0xFFfb000f;
+				pauseCard.color = 0xFFfb000f;
 			case 'Concert Chaos':
 				bgGradient.color = 0xFF9b00ce;
 				pauseCard.color = 0xFF9b00ce;

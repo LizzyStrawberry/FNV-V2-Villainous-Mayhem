@@ -1,5 +1,5 @@
 local marcoSongs = {"Scrouge", "Cheap Skate (Legacy)", "Spendthrift", "Toxic Mishap", "Toxic Mishap (Legacy)",
-"Villainy", "Iniquitous", "Couple Clash", "Shucks V2"} 
+"Villainy", "Iniquitous", "Couple Clash", "Shucks V2", "Negotiation"} 
 
 local hasDiffSlots = false
 local pathToAssets = ""

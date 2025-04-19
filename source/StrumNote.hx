@@ -131,7 +131,7 @@ class StrumNote extends FlxSprite
 						skin = 'notes/ourpleNOTE_assets';
 					case 'Kyu' | 'KyuAlt':
 						skin = 'notes/KyuNOTE_assets';
-					case 'marcoFFFP1' | 'marcoFFFP2':
+					case 'marcoFFFP1' | 'marcoFFFP2' | "Negotiation Marco":
 						skin = 'notes/MarcoNOTE_assets';
 					case 'gfIniquitousP1' | 'gfIniquitousP2':
 						skin = 'notes/IniquitousMechanicNOTE_assets';

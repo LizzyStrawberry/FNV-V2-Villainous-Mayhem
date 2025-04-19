@@ -1,0 +1,122 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				0
+			],
+			"anim": "idle",
+			"fps": 24,
+			"name": "marco idle",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-50,
+				4
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "marco right0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-61,
+				78
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "marco up0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-20,
+				-27
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "marco down0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				304,
+				75
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "marco left0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-61,
+				16
+			],
+			"anim": "singLEFTmiss",
+			"fps": 24,
+			"name": "marco right miss",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-77,
+				88
+			],
+			"anim": "singDOWNmiss",
+			"fps": 24,
+			"name": "marco up miss",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-21,
+				-85
+			],
+			"anim": "singUPmiss",
+			"fps": 24,
+			"name": "marco down miss",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				188,
+				65
+			],
+			"anim": "singRIGHTmiss",
+			"fps": 24,
+			"name": "marco left miss",
+			"indices": []
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/negotiation marco",
+	"position": [
+		0,
+		0
+	],
+	"healthicon": "negotiationmarco",
+	"flip_x": true,
+	"healthbar_colors": [
+		34,
+		34,
+		34
+	],
+	"camera_position": [
+		200,
+		-40
+	],
+	"sing_duration": 6.1,
+	"scale": 1.7
+}

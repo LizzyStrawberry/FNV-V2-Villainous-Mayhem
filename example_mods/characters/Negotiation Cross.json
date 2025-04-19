@@ -1,0 +1,89 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				0
+			],
+			"anim": "idle",
+			"fps": 24,
+			"name": "cross idle",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				111,
+				-28
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "cross left",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				33,
+				-6
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "cross down",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				45,
+				44
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "cross up",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-19,
+				-34
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "cross right",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				-27
+			],
+			"anim": "hey",
+			"fps": 24,
+			"name": "cross vpose",
+			"indices": []
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/negotiation cross",
+	"position": [
+		0,
+		0
+	],
+	"healthicon": "negotiationcross",
+	"flip_x": false,
+	"healthbar_colors": [
+		239,
+		0,
+		31
+	],
+	"camera_position": [
+		0,
+		0
+	],
+	"sing_duration": 6.1,
+	"scale": 1
+}

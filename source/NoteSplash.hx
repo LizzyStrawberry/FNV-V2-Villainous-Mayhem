@@ -44,7 +44,7 @@ class NoteSplash extends FlxSprite
 					texture = 'noteSplashes/' + whatSplashType + '/ourpleNoteSplashes' + whatSplashType;
 				case 'Kyu' | 'KyuAlt':
 					texture = 'noteSplashes/' + whatSplashType + '/KyuNoteSplashes' + whatSplashType;
-				case 'marcoFFFP1' | 'marcoFFFP2':
+				case 'marcoFFFP1' | 'marcoFFFP2' | "Negotiation Marco":
 					texture = 'noteSplashes/' + whatSplashType + '/MarcoNoteSplashes' + whatSplashType;
 
 				default:
