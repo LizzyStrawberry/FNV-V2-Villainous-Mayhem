@@ -23,6 +23,28 @@ function onCreate()
 	setGlobalFromScript('scripts/OpeningCards', 'allowIntroCard', false)
 end
 
+function onCountdownTick(counter)
+	if getProperty("countdownSelected") == 0 then -- Default Psych Engine
+		if counter == 1 then
+			setObjectCamera("countdownReady", "other")
+		elseif counter == 2 then
+			setObjectCamera("countdownSet", "other")
+		elseif counter == 3 then
+			setObjectCamera("countdownGo", "other")
+		end
+	elseif getProperty("countdownSelected") == 1 then -- Custom "Normal"
+		if counter == 0 then
+			setObjectCamera("countdownReady", "other")
+		elseif counter == 1 then
+			setObjectCamera("countdownSet", "other")
+		elseif counter == 2 then
+			setObjectCamera("countdownGo", "other")
+		end
+	elseif getProperty("countdownSelected") == 2 then -- Custom Cuphead Style
+		setObjectCamera("countdownReady", "other")
+	end
+end
+
 function opponentNoteHit() -- health draining mechanic
 	health = getProperty('health')
 		if not isMayhemMode and difficulty >= 1 and mechanics and getPropertyFromClass('ClientPrefs', 'buff3Active') == false then

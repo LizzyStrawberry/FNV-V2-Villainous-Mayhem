@@ -1518,7 +1518,7 @@ class PlayState extends MusicBeatState
 	}
 
 	var startTheDamnSong:Int = 0;
-	var countdownSelected:Int = 0;
+	public var countdownSelected:Int = 0;
 	public function startCountdown():Void
 	{
 		if (!chartingMode)
@@ -1571,7 +1571,7 @@ class PlayState extends MusicBeatState
 				return;
 			}
 
-			if (startedCountdown == true)
+			if (startedCountdown)
 			{
 				startTimer = new FlxTimer().start(Conductor.crochet / 1000 / playbackRate, function(tmr:FlxTimer)
 				{
@@ -1795,6 +1795,9 @@ class PlayState extends MusicBeatState
 				
 				if ((Paths.formatToSongPath(SONG.song) == 'point-blank'))
 					dad.playAnim('intro1', true);
+
+				callOnLuas('onCountdownTick', [swagCounter]);
+				swagCounter++;
 			});
 			if (Paths.formatToSongPath(SONG.song) == 'cheap-skate-(legacy)')
 				new FlxTimer().start(0.01 / playbackRate, function (tmr:FlxTimer) {
@@ -1832,6 +1835,9 @@ class PlayState extends MusicBeatState
 				
 				if ((Paths.formatToSongPath(SONG.song) == 'point-blank'))
 					dad.playAnim('intro2', true);
+
+				callOnLuas('onCountdownTick', [swagCounter]);
+				swagCounter++;
 			});
 			new FlxTimer().start(2.40 / playbackRate, function (tmr:FlxTimer) {
 				countdownGo = new FlxSprite().loadGraphic(Paths.image("intros/normal/go"));
@@ -1863,9 +1869,14 @@ class PlayState extends MusicBeatState
 					countdownAudio.volume = 0.6;
 					countdownAudio.pitch = playbackRate;
 					countdownAudio.play(false);
+
+					callOnLuas('onCountdownTick', [swagCounter]);
+					swagCounter++;
 			});
 			new FlxTimer().start(2.60 / playbackRate, function (tmr:FlxTimer) {
 				startTheDamnSong = 1;
+				callOnLuas('onCountdownTick', [swagCounter]);
+				swagCounter++;
 			});
 		}
 		else if (countdownSelected == 2)
@@ -1899,7 +1910,10 @@ class PlayState extends MusicBeatState
 
 				FlxTween.tween(countdownReady, {alpha: 1}, 0.4, {ease: FlxEase.cubeInOut});
 
-					insert(members.indexOf(notes), countdownReady);
+				insert(members.indexOf(notes), countdownReady);
+
+				callOnLuas('onCountdownTick', [swagCounter]);
+				swagCounter++;
 			});
 			if (Paths.formatToSongPath(SONG.song) == 'cheap-skate-(legacy)')
 				new FlxTimer().start(0.01 / playbackRate, function (tmr:FlxTimer) {
@@ -1919,6 +1933,8 @@ class PlayState extends MusicBeatState
 					boyfriend.playAnim('hey', true);
 				if (dad.animOffsets.exists('hey') == true)
 					dad.playAnim('hey', true);
+				callOnLuas('onCountdownTick', [swagCounter]);
+				swagCounter++;
 			});
 			new FlxTimer().start(2.40 / playbackRate, function (tmr:FlxTimer) {
 				FlxTween.tween(countdownReady, {/*y: countdownSet.y + 100,*/ alpha: 0}, Conductor.crochet / 1000, {
@@ -1932,7 +1948,13 @@ class PlayState extends MusicBeatState
 			});
 			new FlxTimer().start(2.60 / playbackRate, function (tmr:FlxTimer) {
 				startTheDamnSong = 1;
+				callOnLuas('onCountdownTick', [swagCounter]);
+				swagCounter++;
 			});
+
+			callOnLuas('onCountdownTick', [swagCounter]);
+
+			swagCounter += 1;
 		}
 		}
 	}
