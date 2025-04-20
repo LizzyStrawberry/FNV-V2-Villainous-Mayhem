@@ -3,7 +3,7 @@ function onCreate()
 	if not optimizationMode then
 		makeLuaSprite('bg', 'bgs/cross/crossBG', -400, -200);
 		setScrollFactor('bg', 0.9, 0.9);
-		scaleObject("bg", 1.25, 1.25)
+		scaleObject("bg", 1.1, 1.1)
 
 		addLuaSprite('bg', false);
 	end
