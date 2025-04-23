@@ -381,7 +381,12 @@ class PlayState extends MusicBeatState
 	public static var revivingNarrin:Bool = false;
 
 	// Countdown Audio
-	public var countdownAudio:FlxSound;
+	public var countdownAudio:FlxSound; // Mainly for everything else
+	// For Default Countdown (Psych Engine Countdown) - I want to be able to control the pitch too
+	public var defaultCountDownOne:FlxSound;
+	public var defaultCountDownTwo:FlxSound;
+	public var defaultCountDownThree:FlxSound;
+	public var defaultCountDownGo:FlxSound;
 
 	// Rotation Fix
 	public var allowRotationFix:Bool = true;
@@ -1166,6 +1171,10 @@ class PlayState extends MusicBeatState
 			FlxG.sound.music.pitch = value;
 
 			if(countdownAudio != null) countdownAudio.pitch = value;
+			if(defaultCountDownGo != null) defaultCountDownGo.pitch = value;
+			if(defaultCountDownOne != null) defaultCountDownOne.pitch = value;
+			if(defaultCountDownTwo != null) defaultCountDownTwo.pitch = value;
+			if(defaultCountDownThree != null) defaultCountDownThree.pitch = value;
 		}
 		playbackRate = value;
 		if (value != 1)
@@ -1522,7 +1531,12 @@ class PlayState extends MusicBeatState
 	{
 		if (!chartingMode)
 			countdownSelected = FlxG.random.int(1, 2); // Change to custom countdowns | 1: "Normal" - 2: Cuphead Style
+
 		countdownAudio = new FlxSound(true); // Custom parameter in for focusability shit
+		defaultCountDownGo = new FlxSound(true); // Custom parameter in for focusability shit
+		defaultCountDownOne = new FlxSound(true); // Custom parameter in for focusability shit
+		defaultCountDownTwo = new FlxSound(true); // Custom parameter in for focusability shit
+		defaultCountDownThree = new FlxSound(true); // Custom parameter in for focusability shit
 
 		if(startedCountdown) {
 			callOnLuas('onStartCountdown', []);
@@ -1608,10 +1622,10 @@ class PlayState extends MusicBeatState
 						case 0:
 							if(typeOfCountdown == "kiana")
 							{
-								countdownAudio.loadEmbedded(Paths.sound('intro3Kiana' + introSoundsSuffix), false, true);
-								countdownAudio.volume = 0.6;
-								countdownAudio.pitch = playbackRate;
-								countdownAudio.play(false);
+								defaultCountDownThree.loadEmbedded(Paths.sound('intro3Kiana' + introSoundsSuffix), false, true);
+								defaultCountDownThree.volume = 0.6;
+								defaultCountDownThree.pitch = playbackRate;
+								defaultCountDownThree.play(false);
 							}	
 						case 1:
 							countdownReady = new FlxSprite().loadGraphic(Paths.image(introAlts[0]));
@@ -1637,12 +1651,12 @@ class PlayState extends MusicBeatState
 							});
 
 							if(typeOfCountdown == "kiana")
-								countdownAudio.loadEmbedded(Paths.sound('intro2Kiana' + introSoundsSuffix), false, true);
+								defaultCountDownTwo.loadEmbedded(Paths.sound('intro2Kiana' + introSoundsSuffix), false, true);
 							else
-								countdownAudio.loadEmbedded(Paths.sound('intro2' + introSoundsSuffix), false, true);
-							countdownAudio.volume = 0.6;
-							countdownAudio.pitch = playbackRate;
-							countdownAudio.play(false);
+								defaultCountDownTwo.loadEmbedded(Paths.sound('intro2' + introSoundsSuffix), false, true);
+							defaultCountDownTwo.volume = 0.6;
+							defaultCountDownTwo.pitch = playbackRate;
+							defaultCountDownTwo.play(false);
 						case 2:
 							countdownSet = new FlxSprite().loadGraphic(Paths.image(introAlts[1]));
 							if(typeOfCountdown != null)
@@ -1666,12 +1680,12 @@ class PlayState extends MusicBeatState
 							});
 
 							if(typeOfCountdown == "kiana")
-								countdownAudio.loadEmbedded(Paths.sound('intro1Kiana' + introSoundsSuffix), false, true);
+								defaultCountDownOne.loadEmbedded(Paths.sound('intro1Kiana' + introSoundsSuffix), false, true);
 							else
-								countdownAudio.loadEmbedded(Paths.sound('intro1' + introSoundsSuffix), false, true);
-							countdownAudio.volume = 0.6;
-							countdownAudio.pitch = playbackRate;
-							countdownAudio.play(false);
+								defaultCountDownOne.loadEmbedded(Paths.sound('intro1' + introSoundsSuffix), false, true);
+							defaultCountDownOne.volume = 0.6;
+							defaultCountDownOne.pitch = playbackRate;
+							defaultCountDownOne.play(false);
 						case 3:
 							canPause = true;
 							if (boyfriend.animOffsets.exists('hey'))
@@ -1703,12 +1717,12 @@ class PlayState extends MusicBeatState
 							});
 
 							if(typeOfCountdown == "kiana")
-								countdownAudio.loadEmbedded(Paths.sound('introGoKiana' + introSoundsSuffix), false, true);
+								defaultCountDownGo.loadEmbedded(Paths.sound('introGoKiana' + introSoundsSuffix), false, true);
 							else
-								countdownAudio.loadEmbedded(Paths.sound('introGo' + introSoundsSuffix), false, true);
-							countdownAudio.volume = 0.6;
-							countdownAudio.pitch = playbackRate;
-							countdownAudio.play(false);
+								defaultCountDownGo.loadEmbedded(Paths.sound('introGo' + introSoundsSuffix), false, true);
+							defaultCountDownGo.volume = 0.6;
+							defaultCountDownGo.pitch = playbackRate;
+							defaultCountDownGo.play(false);
 						case 4:
 					}
 
