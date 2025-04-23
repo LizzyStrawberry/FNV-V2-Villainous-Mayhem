@@ -1,103 +1,103 @@
 {
 	"animations": [
 		{
+			"loop": false,
 			"offsets": [
 				0,
 				0
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "idle",
-			"indices": [],
-			"name": "Aileen Idle0"
+			"fps": 24,
+			"name": "Aileen Idle0",
+			"indices": []
 		},
 		{
-			"offsets": [
-				89,
-				-17
-			],
 			"loop": false,
-			"fps": 24,
+			"offsets": [
+				140,
+				-22
+			],
 			"anim": "singLEFT",
-			"indices": [],
-			"name": "Aileen Left0"
-		},
-		{
-			"offsets": [
-				-22,
-				-36
-			],
-			"loop": false,
 			"fps": 24,
-			"anim": "singDOWN",
-			"indices": [],
-			"name": "Aileen Down0"
+			"name": "Aileen Left0",
+			"indices": []
 		},
 		{
-			"offsets": [
-				32,
-				10
-			],
 			"loop": false,
-			"fps": 24,
-			"anim": "singUP",
-			"indices": [],
-			"name": "Aileen Up0"
-		},
-		{
 			"offsets": [
-				-74,
-				-5
-			],
-			"loop": false,
-			"fps": 24,
-			"anim": "singRIGHT",
-			"indices": [],
-			"name": "Aileen Right0"
-		},
-		{
-			"offsets": [
-				80,
-				-1
-			],
-			"loop": false,
-			"fps": 24,
-			"anim": "singLEFTmiss",
-			"indices": [],
-			"name": "Aileen Miss Left"
-		},
-		{
-			"offsets": [
-				0,
+				-43,
 				-44
 			],
-			"loop": false,
+			"anim": "singDOWN",
 			"fps": 24,
+			"name": "Aileen Down0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				58,
+				15
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "Aileen Up0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-135,
+				2
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "Aileen Right0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				25,
+				29
+			],
+			"anim": "singLEFTmiss",
+			"fps": 24,
+			"name": "Aileen Miss Left",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-68,
+				-30
+			],
 			"anim": "singDOWNmiss",
-			"indices": [],
-			"name": "Aileen Miss Down0"
+			"fps": 24,
+			"name": "Aileen Miss Down0",
+			"indices": []
 		},
 		{
-			"offsets": [
-				0,
-				73
-			],
 			"loop": false,
-			"fps": 24,
+			"offsets": [
+				-66,
+				132
+			],
 			"anim": "singUPmiss",
-			"indices": [],
-			"name": "Aileen Miss Up0"
+			"fps": 24,
+			"name": "Aileen Miss Up0",
+			"indices": []
 		},
 		{
-			"offsets": [
-				-36,
-				-1
-			],
 			"loop": false,
-			"fps": 24,
+			"offsets": [
+				-113,
+				28
+			],
 			"anim": "singRIGHTmiss",
-			"indices": [],
-			"name": "Aileen Miss Right0"
+			"fps": 24,
+			"name": "Aileen Miss Right0",
+			"indices": []
 		}
 	],
 	"no_antialiasing": false,
@@ -114,9 +114,9 @@
 		147
 	],
 	"camera_position": [
-		0,
-		0
+		50,
+		50
 	],
 	"sing_duration": 6.1,
-	"scale": 1
+	"scale": 1.4
 }

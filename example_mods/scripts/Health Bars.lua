@@ -1,5 +1,5 @@
 local marcoSongs = {"Scrouge", "Cheap Skate (Legacy)", "Spendthrift", "Toxic Mishap", "Toxic Mishap (Legacy)",
-"Villainy", "Iniquitous", "Couple Clash", "Shucks V2", "Negotiation"} 
+"Villainy", "Iniquitous", "Couple Clash", "Shucks V2"} 
 
 local hasDiffSlots = false
 local pathToAssets = ""
@@ -221,6 +221,17 @@ function onCreatePost()
 			pathToAssets = "uzi/iconSlot"
 			hasDiffSlots = true
 			properties.flipIcons = true
+		end
+		
+		if songName == 'Negotiation' then
+			setProperty('healthBar.scale.y', getProperty('healthBar.scale.y') + 1.52)
+			setProperty('healthBar.scale.x', getProperty('healthBar.scale.x') - 0.55)
+
+			pathToAssets = "cross/iconSlot"
+			hasDiffSlots = true
+			properties.scale = 1
+			properties.circleOffsX = -10
+			properties.circleOffsY = -12
 		end
 		
 		if songName == 'Concert Chaos' then
@@ -516,6 +527,16 @@ function onUpdatePost()
 			loadGraphic('healthBarBG', 'healthBars/uzi/uziBar')
 			setProperty('healthBarBG.y', getProperty('healthBar.y') - 69)
 			setProperty('healthBarBG.x', getProperty('healthBar.x') + 115)
+		end
+		
+		if songName == 'Negotiation' then
+			if getVar("changeHud") then
+				loadGraphic('healthBarBG', 'healthBars/cross/seerBar')
+			else
+				loadGraphic('healthBarBG', 'healthBars/cross/crossBar')
+			end
+			setProperty('healthBarBG.y', getProperty('healthBar.y') - 68)
+			setProperty('healthBarBG.x', getProperty('healthBar.x') + 106)
 		end
 		
 		if songName == 'Concert Chaos' then

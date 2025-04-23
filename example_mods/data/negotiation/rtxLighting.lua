@@ -23,7 +23,7 @@ local sliders =
     {'innerDistance', 20, 800, 100, 200, 10,  0,   50,   false, "0xFFCCCCCC"}
 }
 
-local spritesToCheck = {'boyfriend', 'dad', 'gf', 'bg'}
+local spritesToCheck = {'boyfriend', 'dad', 'gf', 'crossBG', 'seerBG'}
 function onCreatePost()
     if shadedSong then
 		initLuaShader('RTXLighting')

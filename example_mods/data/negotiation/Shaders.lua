@@ -27,7 +27,7 @@ function onUpdate(elapsed)
 	if shadersEnabled then
 		if start then
 			if pxSize > 0 then
-				pxSize = pxSize - (1.75 * elapsed)
+				pxSize = pxSize - (1.75 * elapsed) * playbackRate
 			else
 				pxSize = 0
 				start = false

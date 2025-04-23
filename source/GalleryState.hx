@@ -470,11 +470,11 @@ class GalleryState extends MusicBeatState
 
 			if (categorySelected == 3)
 			{
-				if (imageNumber > 23)
+				if (imageNumber > 24)
 					imageNumber = 1;
 				if (imageNumber < 1)
-					imageNumber = 23;
-				numberCounter.text = imageNumber + "/23";
+					imageNumber = 24;
+				numberCounter.text = imageNumber + "/24";
 				currentImage.loadGraphic(Paths.image('Gallery/newLoadingScreens/image_' + imageNumber));
 
 				messageShown = false;

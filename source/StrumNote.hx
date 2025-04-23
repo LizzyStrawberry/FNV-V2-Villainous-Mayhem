@@ -108,6 +108,8 @@ class StrumNote extends FlxSprite
 						skin = 'notes/AsulNOTE_assets';
 					case 'narrin' | 'Narrin Side':
 						skin = 'notes/NarrinNOTE_assets';
+					case 'Negotiation Cross':
+						skin = 'notes/CrossNOTE_assets';
 					case 'Yaku':
 						skin = 'notes/YakuNOTE_assets';
 				}

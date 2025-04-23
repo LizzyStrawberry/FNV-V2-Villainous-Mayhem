@@ -34,7 +34,7 @@ class GameOverSubstate extends MusicBeatSubstate
 
 	public static var characterName:String = 'playablegf';
 	public static var deathSoundName:String = 'fnf_loss_sfx';
-	public static var loopSoundName:String = 'gameOver';
+	public static var loopSoundName:String = 'haha you died';
 	public static var endSoundName:String = 'gameOverEnd';
 
 	public static var injected:Bool = false;
@@ -57,34 +57,33 @@ class GameOverSubstate extends MusicBeatSubstate
 
 		playerSelected = PlayState.SONG.player1;
 
-		if (!PlayState.isMayhemMode && PlayState.SONG.stage == 'debug' && !initializedVideo)
+		if (!initializedVideo)
 		{
-			CppAPI.setOld();
-			CppAPI.setWallpaper(FileSystem.absolutePath("assets\\images\\ERROR.png"));
+			switch(Paths.formatToSongPath(PlayState.SONG.song))
+			{
+				case "marauder" | "marauder-(old)":
+					CppAPI.setOld();
+					CppAPI.setWallpaper(FileSystem.absolutePath("assets\\images\\ERROR.png"));
+					createDeathVideo('thereIsAProblem', true, true);
 
-			if (FlxG.sound.music != null)
-			FlxG.sound.music.stop();
-		
-			createDeathVideo('thereIsAProblem', true, true);
-		}
+				case "jerry":
+					lime.app.Application.current.window.title = "run.";
+					createDeathVideo('run', false, true);
 
-		if (PlayState.SONG.stage == '00015' && !initializedVideo)
-		{
-			FlxG.sound.music.stop();
-			lime.app.Application.current.window.title = "run.";
-			createDeathVideo('run', false, true);
-		}
+				case "negotiation":
+					createDeathVideo('CrossSlap', false, false);
 
-		if (!PlayState.isMayhemMode && PlayState.SONG.stage == 'Nic' && !initializedVideo)
-			createDeathVideo('NicDeathScreen', false, false);
-		
-		if (!PlayState.isMayhemMode && PlayState.SONG.stage == 'M o r k y' && !initializedVideo)
-		{
-			lime.app.Application.current.window.title = "HAHA, I aM MorKy, and I wiLL nOw CloSe uR gAem!! YoU cAn't Do ShIt nOW HAHAAAAAAAAAAAAAAAAAAAAAAAAAAA";
-			if (Paths.formatToSongPath(PlayState.SONG.song) == 'get-villaind') // New
-				createDeathVideo('oh my god you died NEW!', false, true);
-			else
-				createDeathVideo('oh my god you died!', false, true);
+				case "slowflp" | "slowflp-(old)":
+					createDeathVideo('NicDeathScreen', false, false);
+
+				case "get-villaind":
+					lime.app.Application.current.window.title = "HAHA, I aM MorKy, and I wiLL nOw CloSe uR gAem!! YoU cAn't Do ShIt nOW HAHAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+					createDeathVideo('oh my god you died NEW!', false, true);
+
+				case "get-villaind-(old)":
+					lime.app.Application.current.window.title = "HAHA, I aM MorKy, and I wiLL nOw CloSe uR gAem!! YoU cAn't Do ShIt nOW HAHAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+					createDeathVideo('oh my god you died!', false, true);
+			}
 		}
 
 		if (PlayState.isInjectionMode)
@@ -157,7 +156,6 @@ class GameOverSubstate extends MusicBeatSubstate
 			blackOut.alpha = 0;
 			add(blackOut);
 		}
-
 	}
 
 	var isFollowingAlready:Bool = false;
@@ -174,22 +172,12 @@ class GameOverSubstate extends MusicBeatSubstate
 
 		if (controls.ACCEPT)
 		{
-			if ((PlayState.SONG.stage == "DV's BG" && initializedVideo))
+			if (initializedVideo || PlayState.isInjectionMode || PlayState.isMayhemMode)
 			{
 				//do nothing
 			}
 			else if (PlayState.SONG.stage == 'debug')
-			{
 				System.exit(0);
-			}
-			else if (initializedVideo == true)
-			{
-				//do nothing, imma do this to prevent people from going back to the menu on Songs
-			}
-			else if (PlayState.isInjectionMode || PlayState.isMayhemMode)
-			{
-				//Do Nothing Please
-			}
 			else
 				endBullshit();
 		}
@@ -203,13 +191,9 @@ class GameOverSubstate extends MusicBeatSubstate
 				else
 					createDeathVideo("DVCrashPico", false, true);
 			}
-			else if (initializedVideo == true)
+			else if (initializedVideo || PlayState.isInjectionMode || PlayState.isMayhemMode)
 			{
 				//do nothing, imma do this to prevent people from going back to the menu on Songs
-			}
-			else if (PlayState.isInjectionMode || PlayState.isMayhemMode)
-			{
-				//Do Nothing Please
 			}
 			else
 			{
@@ -235,10 +219,8 @@ class GameOverSubstate extends MusicBeatSubstate
 					ClientPrefs.storyModeCrashDifficulty = '';
 					ClientPrefs.saveSettings();
 
-					if (PlayState.isIniquitousMode == true)
-					{
+					if (PlayState.isIniquitousMode)
 						MusicBeatState.switchState(new IniquitousMenuState());
-					}
 					else
 						MusicBeatState.switchState(new StoryMenuState());
 				}else if(PlayState.isInjectionMode) {
@@ -283,33 +265,14 @@ class GameOverSubstate extends MusicBeatSubstate
 
 			if (boyfriend.animation.curAnim.finished && !playingDeathSound)
 			{
-				if (PlayState.SONG.stage == 'tank')
-				{
-					playingDeathSound = true;
-					coolStartDeath(0.2);
-					
-					var exclude:Array<Int> = [];
-					//if(!ClientPrefs.cursing) exclude = [1, 3, 8, 13, 17, 21];
-
-					FlxG.sound.play(Paths.sound('jeffGameover/jeffGameover-' + FlxG.random.int(1, 25, exclude)), 1, false, null, true, function() {
-						if(!isEnding)
-						{
-							FlxG.sound.music.fadeIn(0.2, 1, 4);
-						}
-					});
-				}
-				else
-				{
-					coolStartDeath();
-				}
+				coolStartDeath();
 				boyfriend.startedDeath = true;
 			}
 		}
 
 		if (FlxG.sound.music.playing)
-		{
 			Conductor.songPosition = FlxG.sound.music.time;
-		}
+
 		PlayState.instance.callOnLuas('onUpdatePost', [elapsed]);
 	}
 
@@ -363,10 +326,12 @@ class GameOverSubstate extends MusicBeatSubstate
 
 	function createDeathVideo(videoPath:String = '', canSkip:Bool = true, crashGame:Bool = false)
 	{
+		initializedVideo = true;
+	
+		boyfriend.visible = false;
+
 		if (FlxG.sound.music != null)
 			FlxG.sound.music.stop();
-
-		initializedVideo = true;
 
 		var video:VideoHandler = new VideoHandler();
 		video.playVideo(Paths.video(videoPath), canSkip);
@@ -377,7 +342,7 @@ class GameOverSubstate extends MusicBeatSubstate
 
 			if (crashGame)
 				System.exit(0);
-			else
+			else if (!PlayState.isMayhemMode || !PlayState.isInjectionMode)
 				MusicBeatState.resetState();
 		};
 	}

@@ -65,29 +65,23 @@ local lilyNoteVars = {
 function onCreate()	
 	if not optimizationMode then
 		-- Watermark
-		makeLuaText('watermark', "Friday Night Villainy", 1000, 0, 690)
+		local text = ""
 		if isStoryMode then
-			makeLuaText('watermark2', "Story Mode | " ..difficultyName, 1000, 0, 660)
+			text = "Story Mode | " ..difficultyName
 		elseif isInjectionMode then
-			makeLuaText('watermark2', "Injection Mode | " ..difficultyName, 1000, 0, 660)
+			text = "Injection Mode | " ..difficultyName
 		elseif isMayhemMode then
-			makeLuaText('watermark2', "Mayhem Mode", 1000, 0, 660)
+			text = "Mayhem Mode"
 		elseif isCrossoverSection then
-			makeLuaText('watermark2', "Crossover Mode | " ..difficultyName, 1000, 0, 660)
+			text = "Crossover Mode | " ..difficultyName
 		else
-			makeLuaText('watermark2', "Freeplay | " ..difficultyName, 1000, 0, 660)
+			text = "Freeplay | " ..difficultyName
 		end
+		makeLuaText('watermark', text.."\n\nFriday Night Villainy", 1000, 0, 660)
 		setTextSize('watermark', 17)
-		setTextSize('watermark2', 17)
-		
 		setTextAlignment('watermark', 'LEFT')
-		setTextAlignment('watermark2', 'LEFT')
-		
 		setScrollFactor('watermark', 0, 0)
-		setScrollFactor('watermark2', 0, 0)
-		
 		addLuaText('watermark')
-		addLuaText('watermark2')
 	
 		--Death Screens
 		if boyfriendName == 'GFwav' then
@@ -104,10 +98,7 @@ function onCreate()
 		elseif boyfriendName == 'debugGF' then
 			setPropertyFromClass('GameOverSubstate', 'characterName', 'debugGF')
 		end
-		
-		-- Setting the default death music
-		setPropertyFromClass('GameOverSubstate', 'loopSoundName', 'haha you died');
-		
+
 		-- Specified Death Screens + Music
 		if songName == 'Iniquitous' then
 			addCharacterToList('gfIniquitousDeath', 'boyfriend')
@@ -385,6 +376,14 @@ function onCreatePost()
 			for note = 0, getProperty('unspawnNotes.length')-1 do
 				if not getPropertyFromGroup('unspawnNotes', note, 'mustPress') then
 					setPropertyFromGroup('unspawnNotes', note, 'texture', 'notes/YakuNOTE_assets');
+				end
+			end
+		end
+		
+		if dadName == 'Negotiation Cross' then
+			for note = 0, getProperty('unspawnNotes.length')-1 do
+				if not getPropertyFromGroup('unspawnNotes', note, 'mustPress') then
+					setPropertyFromGroup('unspawnNotes', note, 'texture', 'notes/CrossNOTE_assets');
 				end
 			end
 		end
@@ -758,6 +757,21 @@ function opponentNoteHit(id, direction, noteType, isSustainNote, noteData)
 			end
 			if direction == 3 then
 				setTimeBarColors('000000', ' ')
+			end
+		end
+		
+		if dadName == 'Negotiation Cross' then
+			if direction == 0 then
+				setTimeBarColors('ff283c', ' ')
+			end
+			if direction == 1 then
+				setTimeBarColors('c71d29', ' ')
+			end
+			if direction == 2 then
+				setTimeBarColors('af161f', ' ')
+			end
+			if direction == 3 then
+				setTimeBarColors('930404', ' ')
 			end
 		end
 		

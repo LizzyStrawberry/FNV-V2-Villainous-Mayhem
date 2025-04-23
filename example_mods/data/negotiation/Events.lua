@@ -1,4 +1,7 @@
 function onCreate()
+	addCharacterToList("Negotiation Aileen", "boyfriend")
+	addCharacterToList("Negotiation Marco", "boyfriend")
+	
 	setGlobalFromScript('scripts/OpeningCards', 'allowIntroCard', false)
 	
 	makeLuaSprite('blackBG', '', -500, -500)
@@ -9,6 +12,11 @@ function onCreate()
 	addLuaSprite('blackBG', true)
 	
 	setProperty("camHUD.alpha", 0)
+end
+
+function onCreatePost()
+	setProperty("gf.x", getProperty("dad.x") + 275)
+	setProperty("gf.y", getProperty("dad.y"))
 end
 
 function onCountdownTick(counter)
@@ -33,6 +41,19 @@ function onCountdownTick(counter)
 	end
 end
 
+function opponentNoteHit() -- health draining mechanic
+	health = getProperty('health')
+	if not isMayhemMode and difficulty == 1 and mechanics and not getPropertyFromClass('ClientPrefs', 'buff3Active') then
+		if getProperty('health') > 0.2 then
+			if getPropertyFromClass('ClientPrefs', 'resistanceCharm') == 1 then
+				setProperty('health', health- 0.006);
+			else
+				setProperty('health', health- 0.012);
+			end
+		end
+	end
+end
+
 function onSongStart()
 	doTweenAlpha("blackBGRemove", "blackBG", 0, 10 / playbackRate, "quirtInOut")
 	doTweenAlpha("hudFadeIn", "camHUD", 1, 5 / playbackRate, "quirtInOut")
@@ -43,5 +64,14 @@ function onBeatHit()
 		cameraFlash("game", "FFFFFF", 0.7 / playbackRate, false)
 		callScript("scripts/OpeningCards", "setUpCard", false)
 		setGlobalFromScript('scripts/OpeningCards', 'allowIntroCard', true)
+	end
+	
+	if curBeat == 160 then
+		cameraFlash("game", "FFFFFF", 0.7 / playbackRate, false)
+		callScript("stages/Office", "setScene", {"Seer"})
+	end
+	if curBeat == 259 then
+		cameraFlash("game", "FFFFFF", 0.7 / playbackRate, false)
+		callScript("stages/Office", "setScene", {"Cross"})
 	end
 end
