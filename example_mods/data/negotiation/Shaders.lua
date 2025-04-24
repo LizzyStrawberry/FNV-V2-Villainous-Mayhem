@@ -1,5 +1,5 @@
 local start = false
-local pxSize = 20
+local pxSize = 10
 
 function onCreatePost()
 	if shadersEnabled then
@@ -25,16 +25,26 @@ end
 
 function onUpdate(elapsed)
 	if shadersEnabled then
+		if curBeat == 368 then
+			start = true
+		end
+			
 		if start then
-			if pxSize > 0 then
-				pxSize = pxSize - (1.75 * elapsed) * playbackRate
-			else
-				pxSize = 0
-				start = false
-				runHaxeCode([[
-					game.camGame.setFilters([]);
-					game.camHUD.setFilters([]);
-				]])
+			if curBeat <= 32 then
+				if pxSize > 0 then
+					pxSize = pxSize - (0.75 * elapsed) * playbackRate
+				else
+					pxSize = 0.01
+					start = false
+				end
+			end
+			if curBeat >= 368 then
+				if pxSize < 10 then
+					pxSize = pxSize + (0.75 * elapsed) * playbackRate
+				else
+					pxSize = 10
+					start = false
+				end
 			end
 			
 			runHaxeCode([[

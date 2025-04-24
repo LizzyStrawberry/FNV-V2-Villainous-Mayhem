@@ -4,6 +4,14 @@ function onCreate()
 	
 	setGlobalFromScript('scripts/OpeningCards', 'allowIntroCard', false)
 	
+	makeLuaSprite('screamMeme', 'effects/babyScream', 0, 1000)
+	setObjectCamera('screamMeme', 'hud')
+	setScrollFactor('screamMeme', 0, 0)
+	scaleObject("screamMeme", 0.5, 0.5)
+	screenCenter("screamMeme", "X")
+	setProperty("screamMeme.angle", -75)
+	addLuaSprite('screamMeme', false)
+	
 	makeLuaSprite('blackBG', '', -500, -500)
 	makeGraphic('blackBG', 1280, 720, '000000')
 	setScrollFactor('blackBG', 0, 0)
@@ -17,6 +25,14 @@ end
 function onCreatePost()
 	setProperty("gf.x", getProperty("dad.x") + 275)
 	setProperty("gf.y", getProperty("dad.y"))
+	
+	if not optimizationMode then
+		for note = 0, getProperty('unspawnNotes.length')-1 do
+			if getPropertyFromGroup('unspawnNotes', note, 'mustPress') and getPropertyFromGroup('unspawnNotes', note, 'strumTime') >= 64000 and getPropertyFromGroup('unspawnNotes', note, 'strumTime') <= 115000 then
+				setPropertyFromGroup('unspawnNotes', note, 'texture', 'notes/AileenNOTE_assets');
+			end
+		end
+	end
 end
 
 function onCountdownTick(counter)
@@ -65,13 +81,48 @@ function onBeatHit()
 		callScript("scripts/OpeningCards", "setUpCard", false)
 		setGlobalFromScript('scripts/OpeningCards', 'allowIntroCard', true)
 	end
-	
+	if curBeat == 159 then
+		doTweenY("babyAppear", "screamMeme", 200, 0.3 / playbackRate, "circOut")
+		doTweenAngle("babySpin", "screamMeme", 0, 0.4 / playbackRate, "circOut")
+	end
 	if curBeat == 160 then
-		cameraFlash("game", "FFFFFF", 0.7 / playbackRate, false)
+		doTweenX("babyResizeX", "screamMeme.scale", 5, 0.5 / playbackRate, "circOut")
+		doTweenY("babyResizeY", "screamMeme.scale", 5, 0.5 / playbackRate, "circOut")
+		doTweenAlpha("babyGoBye", "screamMeme", 0, 1.5 / playbackRate, "sineOut")
+		
 		callScript("stages/Office", "setScene", {"Seer"})
 	end
-	if curBeat == 259 then
+	if curBeat == 288 then
 		cameraFlash("game", "FFFFFF", 0.7 / playbackRate, false)
 		callScript("stages/Office", "setScene", {"Cross"})
+	end
+	if curBeat == 368 then
+		doTweenAlpha("blackBGAdd", "blackBG", 1, 6 / playbackRate, "quirtInOut")
+	end
+	if curBeat == 384 then
+		doTweenAlpha("hudFadeOut", "camHUD", 0, 1.5 / playbackRate, "circOut")
+	end
+	
+	if (curBeat >= 32 and curBeat < 96) or (curBeat >= 192 and curBeat < 224)
+	or (curBeat >= 288 and curBeat <= 352) then
+		if curBeat % 2 == 0 then
+			triggerEvent("Add Camera Zoom", "0.045", "0.047")
+		end
+		if curBeat % 4 == 2 then
+			for i = 0, 7 do
+				noteTweenAngle("NoteAngle"..i, i, 360, (0.5 + (i * 0.04)) / playbackRate, "circOut")
+			end
+		end
+	end
+	if (curBeat >= 96 and curBeat < 160) or (curBeat >= 224 and curBeat < 288) then
+		triggerEvent("Add Camera Zoom", "0.04", "0.042")
+	end
+end
+
+function onTweenCompleted(tag)
+	for i = 0, 7 do
+		if tag == "NoteAngle"..i then
+			setPropertyFromGroup("strumLineNotes", i, "angle", 0)
+		end
 	end
 end

@@ -222,6 +222,11 @@ function onCreate()
 			setPropertyFromClass('GameOverSubstate', 'deathSoundName', 'pop')
 		end
 		
+		if songName == 'Negotiation' then
+			setPropertyFromClass('GameOverSubstate', 'deathSoundName', '')
+			setPropertyFromClass('GameOverSubstate', 'loopSoundName', '')
+		end
+		
 		if songName == 'Concert Chaos' then
 			addCharacterToList('lilyDeath', 'boyfriend')
 			setPropertyFromClass('GameOverSubstate', 'characterName', 'lilyDeath')
@@ -383,7 +388,11 @@ function onCreatePost()
 		if dadName == 'Negotiation Cross' then
 			for note = 0, getProperty('unspawnNotes.length')-1 do
 				if not getPropertyFromGroup('unspawnNotes', note, 'mustPress') then
-					setPropertyFromGroup('unspawnNotes', note, 'texture', 'notes/CrossNOTE_assets');
+					if getPropertyFromGroup("unspawnNotes", note, "noteType") == "GF Sing" then
+						setPropertyFromGroup('unspawnNotes', note, 'texture', 'notes/AsulNOTE_assets');
+					else
+						setPropertyFromGroup('unspawnNotes', note, 'texture', 'notes/CrossNOTE_assets');
+					end
 				end
 			end
 		end
@@ -490,7 +499,8 @@ end
 
 function goodNoteHit(id, direction, noteType, isSustainNote, noteData)
 	if getPropertyFromClass('ClientPrefs', 'timeBarFlash') == 'All Enabled' or getPropertyFromClass('ClientPrefs', 'timeBarFlash') == 'Player Only' then
-		if boyfriendName == 'aileenTofu' or boyfriendName == 'aileenTofuAlt' then
+		if boyfriendName == 'aileenTofu' or boyfriendName == 'aileenTofuAlt'
+		or boyfriendName == "Negotiation Aileen" then
 			if direction == 0 then
 				setTimeBarColors('dcdcdc', ' ')
 			end
@@ -761,17 +771,32 @@ function opponentNoteHit(id, direction, noteType, isSustainNote, noteData)
 		end
 		
 		if dadName == 'Negotiation Cross' then
-			if direction == 0 then
-				setTimeBarColors('ff283c', ' ')
-			end
-			if direction == 1 then
-				setTimeBarColors('c71d29', ' ')
-			end
-			if direction == 2 then
-				setTimeBarColors('af161f', ' ')
-			end
-			if direction == 3 then
-				setTimeBarColors('930404', ' ')
+			if noteType == "GF Sing" then
+				if direction == 0 then
+					setTimeBarColors('00b4ff', ' ')
+				end
+				if direction == 1 then
+					setTimeBarColors('7e97aa', ' ')
+				end
+				if direction == 2 then
+					setTimeBarColors('83dbff', ' ')
+				end
+				if direction == 3 then
+					setTimeBarColors('485e6f', ' ')
+				end
+			else
+				if direction == 0 then
+					setTimeBarColors('ff283c', ' ')
+				end
+				if direction == 1 then
+					setTimeBarColors('c71d29', ' ')
+				end
+				if direction == 2 then
+					setTimeBarColors('af161f', ' ')
+				end
+				if direction == 3 then
+					setTimeBarColors('930404', ' ')
+				end
 			end
 		end
 		

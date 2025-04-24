@@ -38,6 +38,11 @@ function setScene(char)
 		setProperty("dad.visible", false)
 		setProperty("gf.visible", true)
 		
+		for i = 0, 3 do
+			setPropertyFromGroup('opponentStrums', i, 'texture', 'notes/AsulNOTE_assets');
+			setPropertyFromGroup('playerStrums', i, 'texture', 'notes/AileenNOTE_assets');
+		end
+		
 		setProperty("crossBG.visible", false)
 		setProperty("seerBG.visible", true)
 		
@@ -56,6 +61,11 @@ function setScene(char)
 		
 		setProperty("dad.visible", true)
 		setProperty("gf.visible", false)
+		
+		for i = 0, 3 do
+			setPropertyFromGroup('opponentStrums', i, 'texture', 'notes/CrossNOTE_assets');
+			setPropertyFromGroup('playerStrums', i, 'texture', 'notes/MarcoNOTE_assets');
+		end
 		
 		setProperty("crossBG.visible", true)
 		setProperty("seerBG.visible", false)
