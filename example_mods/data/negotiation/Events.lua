@@ -110,7 +110,7 @@ function onBeatHit()
 		end
 		if curBeat % 4 == 2 then
 			for i = 0, 7 do
-				noteTweenAngle("NoteAngle"..i, i, 360, (0.5 + (i * 0.04)) / playbackRate, "circOut")
+				noteTweenAngle("NoteAngle"..i, i, 360, (0.75 + (i * 0.04)) / playbackRate, "circOut")
 			end
 		end
 	end

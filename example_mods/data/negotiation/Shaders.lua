@@ -32,7 +32,7 @@ function onUpdate(elapsed)
 		if start then
 			if curBeat <= 32 then
 				if pxSize > 0 then
-					pxSize = pxSize - (0.75 * elapsed) * playbackRate
+					pxSize = pxSize - (1.25 * elapsed) * playbackRate
 				else
 					pxSize = 0.01
 					start = false
