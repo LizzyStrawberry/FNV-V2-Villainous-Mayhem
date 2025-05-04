@@ -81,6 +81,8 @@ class InfoState extends MusicBeatState
 		'Marcx',
 		'Ai',
 		'Uzi',
+		'Cross',
+		'Seer',
 		'Lily',
 		'Manager'
 	];
@@ -124,6 +126,8 @@ class InfoState extends MusicBeatState
 		[137, 191, 82],//Marcx
 		[168, 145, 1],//AI
 		[121, 55, 161],//Uzi
+		[140, 3, 3], // Cross
+		[19, 220, 235], // Seer
 		[244, 161, 42], //Lily
 		[205, 205, 253]//Manager	
 	];
@@ -367,6 +371,9 @@ class InfoState extends MusicBeatState
 					spr.color = FlxColor.BLACK;
 			case 'marcx' | 'ai' | 'uzi':
 				if (!ClientPrefs.breacherPlayed)
+				spr.color = FlxColor.BLACK;
+			case 'cross' | 'seer':
+				if (!ClientPrefs.negotiationPlayed)
 				spr.color = FlxColor.BLACK;
 			case 'lily' | 'manager':
 				if (!ClientPrefs.ccPlayed)
@@ -1246,6 +1253,36 @@ class InfoState extends MusicBeatState
 				{
 					titleText.text = "???";
 					desc.text = "Unlock Breacher First!";	
+				}
+				allowLore = false;
+			case 'cross':
+				if (ClientPrefs.negotiationPlayed)
+				{	
+					titleText.text = "Cross";
+
+					desc.text = "Age: Unknown\nAlias: Bob, Boss\nSpecies: Demon
+					\nI went to you thinking that you can help getting my assistant back from that squidward looking BITCH!\nAll you did is talked about money which I genuinely listen!\nCan't wait to make our first investment!!
+					\n'The lord is my shepherd, I lack nothing. He makes me lie DOWN in pastures, he leads me beside white waters he refreshes my soul.'";
+				}
+				else
+				{
+					titleText.text = "?????";
+					desc.text = "Unlock Negotiation First!";	
+				}
+				allowLore = false;
+			case 'seer':
+				if (ClientPrefs.negotiationPlayed)
+				{	
+					titleText.text = "Seer";
+
+					desc.text = "Age: Unknown\nSpecies: Android
+					\nI saw your hand with 5 kings- Fucking 5 kings???\nI already have 2 in my hands!! There's only 4 in one deck!!!!\nThat's why I'm so confident to bet my own assistant!!!\nWHERE THE FUCK DID THE OTHER KINGS COME FROM??\nAll i want is your Goddamn mini fridge and you still pull an illegal move on ME!!
+					\n'IT WAS A TELEVISION'";
+				}
+				else
+				{
+					titleText.text = "?????";
+					desc.text = "Unlock Negotiation First!";	
 				}
 				allowLore = false;
 			case 'lily':
