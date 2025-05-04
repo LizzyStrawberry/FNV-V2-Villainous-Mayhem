@@ -1,3 +1,5 @@
+local context = "During the Cassette Girl Banning, the team decided to scrap CG from this song, and Pico took her place instead. It was bound to happen until the ban ended up being lifted, meaning CG could return back, though the coder didn't want to let any stuff the team made go to waste, so he placed this song in this category. You're free to skip this honestly."
+
 function onCreate()
 	makeLuaSprite('blackBG', '', -800, -600)
 	makeGraphic('blackBG', 5000, 5000, '000000')
@@ -10,6 +12,12 @@ function onCreate()
 	addCharacterToList('DV', 'dad')
 	addCharacterToList('DV Phase 2', 'dad')
 	addCharacterToList('PicoFNVP2', 'boyfriend')
+	
+	makeLuaText('contextText', 'Context:\n'..context, 900, 185, 480)
+	setTextAlignment('contextText', 'Center')
+	setProperty('contextText.alpha', 0)
+	setTextSize('contextText', 20)
+	addLuaText('contextText')
 end
 
 function onCreatePost()
@@ -36,6 +44,10 @@ function onCreatePost()
 	setProperty('scoreTxt.alpha', 0)
 	setProperty('watermark.alpha', 0)
 	setProperty('watermark2.alpha', 0)
+end
+
+function onSongStart()
+	doTweenAlpha('contextAppear', 'contextText', 1, 1 / playbackRate, 'cubeInOut')
 end
 
 function onUpdatePost()
@@ -215,5 +227,14 @@ end
 function onTimerCompleted(tag)
 	if tag == 'soundOn' then
 		playSound('cracking')
+	end
+	if tag == "showContext" then
+		doTweenAlpha('contextBye', 'contextText', 0, 1 / playbackRate, 'cubeInOut')
+	end
+end
+
+function onTweenCompleted(tag)
+	if tag == "contextAppear" then
+		runTimer("showContext", 7 / playbackRate)
 	end
 end

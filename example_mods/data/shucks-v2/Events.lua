@@ -3,6 +3,8 @@ local scrollSpeed = 1.2
 local dur = 1
 local videoPlayed = false
 
+local context = "After GF humiliated Marco in the 4th rap battle, Marco went coo coo crazy, and straight up murdered GF. He wasn't satisfied enough though, as he enhanced the teleporter to practically bond with GF more and revive her so he can murder her again and again. Not only that, but he brought a special someone for her \"hanging\" there."
+
 function onCreate()
 	scrollSpeed = 1.2 / playbackRate
 	dur = 1 / playbackRate
@@ -40,6 +42,12 @@ function onCreate()
 	setProperty('Lyrics.alpha', 0)
 	setTextSize('Lyrics', 28)
 	addLuaText('Lyrics')
+	
+	makeLuaText('contextText', 'Context:\n'..context, 900, 185, 480)
+	setTextAlignment('contextText', 'Center')
+	setProperty('contextText.alpha', 0)
+	setTextSize('contextText', 20)
+	addLuaText('contextText')
 end
 
 function onCreatePost()
@@ -59,6 +67,8 @@ function onSongStart()
 	doTweenZoom('camGame', 'camGame', 1.4, 9.5 / playbackRate, 'easeOut')
 	doTweenAlpha('blackBG', 'blackBG', 0, 7.2 / playbackRate, 'cubeInOut')
 	doTweenAlpha(hudThings[5], hudThings[5], 1, 14 / playbackRate, 'cubeInOut')
+	
+	doTweenAlpha('contextAppear', 'contextText', 1, 1 / playbackRate, 'cubeInOut')
 end
 
 function onUpdatePost(elapsed)
@@ -403,9 +413,15 @@ function onTimerCompleted(tag)
 	if tag == 'swingFix' then
 		doTweenAngle('bfhi', 'bf', 90, getRandomFloat(1.4, 2) / playbackRate, 'cubeInOut')
 	end
+	if tag == "showContext" then
+		doTweenAlpha('contextBye', 'contextText', 0, 1 / playbackRate, 'cubeInOut')
+	end
 end
 
 function onTweenCompleted(tag)
+	if tag == "contextAppear" then
+		runTimer("showContext", 7 / playbackRate)
+	end
 	if tag == 'bfnormal1' then
 		doTweenAngle('bfnormal2', 'bf', -20, 1.4 / playbackRate, 'cubeInOut')
 	end

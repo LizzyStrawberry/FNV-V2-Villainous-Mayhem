@@ -2,6 +2,7 @@ local shake = 8.5;
 local ripMorkyY
 local MorkyY
 
+local context = "Just like Forsaken, this song got the same treatment, replacing Cassette Goon with D-Side Pico.\nFor more information, check out Forsaken (Picmixed)."
 function onCreate()
 	addCharacterToList('aizi', 'dad')
 	addCharacterToList('d-sidePico-opposite', 'boyfriend')
@@ -36,6 +37,16 @@ function onCreate()
 	setProperty('sabotage.alpha', 0)
 	setObjectCamera('sabotage', 'game')
 	addLuaSprite('sabotage', true)
+	
+	makeLuaText('contextText', 'Context:\n'..context, 900, 185, 480)
+	setTextAlignment('contextText', 'Center')
+	setProperty('contextText.alpha', 0)
+	setTextSize('contextText', 20)
+	addLuaText('contextText')
+end
+
+function onSongStart()
+	doTweenAlpha('contextAppear', 'contextText', 1, 1 / playbackRate, 'cubeInOut')
 end
 
 function opponentNoteHit() -- health draining mechanic
@@ -156,6 +167,9 @@ function onTweenCompleted(tag)
 	if tag == 'sabotage' then
 		doTweenAlpha('sabotageEnd', 'sabotage', 0, 0.7, 'easeOut')
 	end
+	if tag == "contextAppear" then
+		runTimer("showContext", 7 / playbackRate)
+	end
 end
 
 function onTimerCompleted(tag)
@@ -166,5 +180,8 @@ function onTimerCompleted(tag)
 		triggerEvent('Change Character', 'bf', 'd-sidePico-opposite')
 		setProperty('boyfriend.x', 950)
 		setProperty('boyfriend.y', 260)
+	end
+	if tag == "showContext" then
+		doTweenAlpha('contextBye', 'contextText', 0, 1 / playbackRate, 'cubeInOut')
 	end
 end

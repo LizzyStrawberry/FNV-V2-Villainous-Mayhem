@@ -1,3 +1,5 @@
+local context = "Our coder wanted to make a cover of this song with this Pico chromatic cuz he found the chromatic to be really good. That's all lmfao\n(There are minor differences worth checking out here tho!)"
+
 function onCreate()
 	makeLuaSprite('blackBG', '', -800, -600)
 	makeGraphic('blackBG', 5000, 5000, '000000')
@@ -10,6 +12,12 @@ function onCreate()
 	setObjectCamera('cutBG', 'hud')
 	scaleObject("cutBG", 0.5, 0.5)
 	addLuaSprite('cutBG', true)
+	
+	makeLuaText('contextText', 'Context:\n'..context, 900, 185, 480)
+	setTextAlignment('contextText', 'Center')
+	setProperty('contextText.alpha', 0)
+	setTextSize('contextText', 20)
+	addLuaText('contextText')
 		
 	precacheSound('cracking')	
 	addCharacterToList('DVTurn', 'dad')
@@ -46,10 +54,8 @@ function onCreatePost()
 	setObjectOrder("cutBG", getObjectOrder("iconP1") + 1)
 end
 
-function onSongStart() --set your time stuff ig
-    runHaxeCode([[
-        game.songLength = (245 * 1000);
-    ]])
+function onSongStart()
+	doTweenAlpha('contextAppear', 'contextText', 1, 1 / playbackRate, 'cubeInOut')
 end
 
 function onUpdatePost()
@@ -209,5 +215,14 @@ end
 function onTimerCompleted(tag)
 	if tag == 'soundOn' then
 		playSound('cracking')
+	end
+	if tag == "showContext" then
+		doTweenAlpha('contextBye', 'contextText', 0, 1 / playbackRate, 'cubeInOut')
+	end
+end
+
+function onTweenCompleted(tag)
+	if tag == "contextAppear" then
+		runTimer("showContext", 7 / playbackRate)
 	end
 end
