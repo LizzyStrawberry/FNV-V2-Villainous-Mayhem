@@ -57,9 +57,7 @@ class ShopState extends MusicBeatState
 	var pressedEnter:Int = 0;
 	var blackOut:FlxSprite;
 
-	var luckOptionSlot1:FlxSprite;
-	var luckOptionSlot2:FlxSprite;
-	var luckOptionSlot3:FlxSprite;
+	var luckOptionSlots:FlxTypedGroup<FlxSprite>;
 
 	//Dialogue
 	var dialogueNumber:Int = 0;
@@ -69,20 +67,31 @@ class ShopState extends MusicBeatState
 	var assistNum:Int = 0;
 
 	//Items
-	var prize1:FlxSprite;
-	var prize2:FlxSprite;
-	var prize3:FlxSprite;
-	var prize4:FlxSprite;
-	var prize5:FlxSprite;
-	var prize6:FlxSprite;
-	var prize7:FlxSprite;
-	var prize8:FlxSprite;
-	var prize9:FlxSprite;
-	var prize10:FlxSprite;
-	var prize11:FlxSprite;
-	var prize12:FlxSprite;
-	var prize13:FlxSprite;
-	var prize14:FlxSprite;
+	var prizeSelected:Int = -1;
+	var prizeSlots:FlxTypedGroup<FlxSprite>;
+	var prizeBoard:Array<Dynamic> = // X, Y, Name
+	[
+		[50, 160, "prize_1"], // Prize 1 (Legacy Week)
+		[250, 160, "prize_2"], // Prize 2 (Nunsational)
+		[450, 160, "prize_3"], // Prize 3 (Lustalities)
+		[650, 160, "prize_4"], // Prize 4 (Tofu)
+		[850, 160, "prize_5"], // Prize 5 (Marcochrome)
+		[1050, 160, "prize_8"], // Prize 6 (Joke Week)
+		[50, 160, "prize_9"], // Prize 7 (FNV)
+		[250, 160, "prize_10"], // Prize 8 (Jerry)
+		[450, 160, "prize_11"], // Prize 9 (Slow.FLP)
+		[650, 160, "prize_14"], // Prize 10 (FanFuck Forever)
+		[850, 160, "prize_15"], // Prize 11 (Rainy Daze)
+		[50, 260, "prize_16"], // Prize 12 (Marauder)
+		[250, 260, "prize_17"], // Prize 13 (Sus Week)
+		[450, 260, "prize_18"], // Prize 14 (D-sides Week)
+		[650, 260, "prize_Zeel"], // Prize 15 (Zeel)
+		[850, 260, "prize_Trampoline"], // Prize 16 (Trampoline)
+		[1050, 260, "prize_Egg"], // Prize 17 (Egg)
+		[50, 315, "prize_7"], // Prize 18 (R.Charm) -> Number 7
+		[1050, 160, "prize_12"], // Prize 19 (A.Charm) -> Number 12
+		[1050, 160, "prize_19"], // Prize 20 (H.Charm) -> Number 19
+	];
 
 	//Pool Section Assets
 	var infoText:FlxText;
@@ -102,9 +111,7 @@ class ShopState extends MusicBeatState
 	//SECRET SHOP ASSETS
 	//Initial things
 	var backgroundSecret:FlxSprite;
-	var sellOption1:FlxSprite;
-	var sellOption2:FlxSprite;
-	var sellOption3:FlxSprite;
+	var sellSlots:FlxTypedGroup<FlxSprite>;
 	var booba:FlxSprite;
 	var assistantSecret:FlxSprite;
 
@@ -117,25 +124,10 @@ class ShopState extends MusicBeatState
 	var buyItemsBG:FlxSprite;
 	var buy:FlxSprite;
 	var equipped:FlxSprite;
-	var prizeZeel:FlxSprite;
-	var prizeTrampoline:FlxSprite;
-	var prizeEgg:FlxSprite;
 
 	//Video Sprites
 	var videoDone:Bool = false;
 	var initializedVideo:Bool = false;
-
-	//Charm Items
-	var charmsBG:FlxSprite;
-	var charmPrize1:FlxSprite;
-	var charmPrize2:FlxSprite;
-	var charmPrize3:FlxSprite;
-	var charmPrize1X:Int = 0;
-	var charmPrize1Y:Int = 0;
-	var charmPrize2X:Int = 0;
-	var charmPrize2Y:Int = 0;
-	var charmPrize3X:Int = 0;
-	var charmPrize3Y:Int = 0;
 
 	override function create()
 	{
@@ -201,7 +193,7 @@ class ShopState extends MusicBeatState
 		FlxG.sound.playMusic(Paths.music('shopTheme'), 0);
 		FlxG.sound.music.fadeIn(3.0); 
 
-		if(ClientPrefs.shopUnlocked == false)
+		if(!ClientPrefs.shopUnlocked)
 		{
 			closedShop = new FlxSprite(0, 0).loadGraphic(Paths.image('shop/shopClosed'));
 			closedShop.antialiasing = ClientPrefs.globalAntialiasing;
@@ -226,59 +218,55 @@ class ShopState extends MusicBeatState
 			background.antialiasing = ClientPrefs.globalAntialiasing;
 			add(background);
 
-			luckOptionSlot1 = new FlxSprite(0, 0).loadGraphic(Paths.image('shop/Buttons'));
-			luckOptionSlot1.frames = Paths.getSparrowAtlas('shop/Buttons');//here put the name of the xml
-			luckOptionSlot1.antialiasing = ClientPrefs.globalAntialiasing;
-			luckOptionSlot1.animation.addByPrefix('shine', 'slot 1', 24, true);//on 'idle normal' change it to your xml one
-			luckOptionSlot1.animation.play('shine');
-			luckOptionSlot1.screenCenter();
-			luckOptionSlot1.x += 350;
-			luckOptionSlot1.y -= 200;
-			luckOptionSlot1.updateHitbox();
-			add(luckOptionSlot1);
+			luckOptionSlots = new FlxTypedGroup<FlxSprite>();
+			add(luckOptionSlots);
 
-			luckOptionSlot2 = new FlxSprite(0, 0).loadGraphic(Paths.image('shop/Buttons'));
-			luckOptionSlot2.frames = Paths.getSparrowAtlas('shop/Buttons');//here put the name of the xml
-			luckOptionSlot2.antialiasing = ClientPrefs.globalAntialiasing;
-			luckOptionSlot2.animation.addByPrefix('shine', 'slot 2', 24, true);//on 'idle normal' change it to your xml one
-			luckOptionSlot2.animation.addByPrefix('locked', 'locked slot 2', 24, true);
-			luckOptionSlot2.screenCenter();
-			if (ClientPrefs.nunWeekPlayed == true)
+			for (i in 0...3)
+			{
+				var button:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image('shop/Buttons'));
+				button.frames = Paths.getSparrowAtlas('shop/Buttons');
+				button.antialiasing = ClientPrefs.globalAntialiasing;
+				button.ID = i;
+				button.animation.addByPrefix('shine', 'slot ' + (i + 1), 24, true);
+				if (i > 0)
+					button.animation.addByPrefix('locked', 'locked slot ' + (i + 1), 24, true);
+				
+				button.screenCenter();
+				button.updateHitbox();
+				luckOptionSlots.add(button);
+				switch(i)
 				{
+					case 0:
+						button.animation.play('shine');
+						button.x += 350;
+						button.y -= 200;
+					case 1:
+						if (ClientPrefs.nunWeekPlayed)
+						{	
+							button.animation.play('shine');
+							button.x += 350;
+						}
+						else
+						{
+							button.animation.play('locked');
+							button.x += 355;
+						}	
+						button.y -= 10;	
 					
-					luckOptionSlot2.animation.play('shine');
-					luckOptionSlot2.x += 350;
-					luckOptionSlot2.y -= 10;
+					case 2:
+						if (ClientPrefs.kianaWeekPlayed)
+						{
+							button.animation.play('shine');
+							button.x += 350;
+						}
+						else
+						{
+							button.animation.play('locked');
+							button.x += 355;
+						}
+						button.y += 180;		
 				}
-			else
-				{
-					luckOptionSlot2.animation.play('locked');
-					luckOptionSlot2.x += 355;
-					luckOptionSlot2.y -= 10;
-				}			
-			luckOptionSlot2.updateHitbox();
-			add(luckOptionSlot2);
-
-			luckOptionSlot3 = new FlxSprite(0, 0).loadGraphic(Paths.image('shop/Buttons'));
-			luckOptionSlot3.frames = Paths.getSparrowAtlas('shop/Buttons');//here put the name of the xml
-			luckOptionSlot3.antialiasing = ClientPrefs.globalAntialiasing;
-			luckOptionSlot3.animation.addByPrefix('shine', 'slot 3', 24, true);//on 'idle normal' change it to your xml one
-			luckOptionSlot3.animation.addByPrefix('locked', 'locked slot 3', 24, true);
-			luckOptionSlot3.screenCenter();
-			if (ClientPrefs.kianaWeekPlayed == true)
-				{
-					luckOptionSlot3.animation.play('shine');
-					luckOptionSlot3.x += 350;
-					luckOptionSlot3.y += 180;
-				}
-			else
-				{
-					luckOptionSlot3.animation.play('locked');
-					luckOptionSlot3.x += 355;
-					luckOptionSlot3.y += 180;
-				}			
-			luckOptionSlot3.updateHitbox();
-			add(luckOptionSlot3);
+			}
 
 			assistNum = FlxG.random.int(1, 3);
 			assistant = new FlxSprite(0, 110).loadGraphic(Paths.image('shop/Mimiko Merchant'));//put your cords and image here
@@ -321,86 +309,16 @@ class ShopState extends MusicBeatState
 			merchantDialogue.sounds = [FlxG.sound.load(Paths.sound('shopDialogue'), 0.6)];
 			add(merchantDialogue);
 
-			//Normal Prizes
-			prize1 = new FlxSprite(50, 100).loadGraphic(Paths.image('shop/prizes/prize_1')); //Legacy Week
-			prize1.antialiasing = ClientPrefs.globalAntialiasing;
-			prize1.y += 1010;
+			//All Prizes
+			prizeSlots = new FlxTypedGroup<FlxSprite>();
 
-			prize2 = new FlxSprite(250, 100).loadGraphic(Paths.image('shop/prizes/prize_2')); //Nunsational
-			prize2.antialiasing = ClientPrefs.globalAntialiasing;
-			prize2.y += 1010;
-
-			prize3 = new FlxSprite(450, 100).loadGraphic(Paths.image('shop/prizes/prize_3')); //Lustality
-			prize3.antialiasing = ClientPrefs.globalAntialiasing;
-			prize3.y += 1010;
-
-			prize4 = new FlxSprite(650, 100).loadGraphic(Paths.image('shop/prizes/prize_4')); //Tofu
-			prize4.antialiasing = ClientPrefs.globalAntialiasing;
-			prize4.y += 1010;
-
-			prize5 = new FlxSprite(850, 100).loadGraphic(Paths.image('shop/prizes/prize_5')); //Marcochrome
-			prize5.antialiasing = ClientPrefs.globalAntialiasing;
-			prize5.y += 1010;
-
-			prize6 = new FlxSprite(1050, 100).loadGraphic(Paths.image('shop/prizes/prize_8')); //Joke Week
-			prize6.antialiasing = ClientPrefs.globalAntialiasing;
-			prize6.y += 1010;
-
-			prize7 = new FlxSprite(50, 180).loadGraphic(Paths.image('shop/prizes/prize_9')); //FNV
-			prize7.antialiasing = ClientPrefs.globalAntialiasing;
-			prize7.y += 1010;
-
-			prize8 = new FlxSprite(250, 180).loadGraphic(Paths.image('shop/prizes/prize_10')); //0.0015
-			prize8.antialiasing = ClientPrefs.globalAntialiasing;
-			prize8.y += 1010;
-
-			prize9 = new FlxSprite(450, 180).loadGraphic(Paths.image('shop/prizes/prize_11')); //Slow.FLP
-			prize9.antialiasing = ClientPrefs.globalAntialiasing;
-			prize9.y += 1010;
-
-			prize10 = new FlxSprite(650, 180).loadGraphic(Paths.image('shop/prizes/prize_14')); //FanFuck Forever
-			prize10.antialiasing = ClientPrefs.globalAntialiasing;
-			prize10.y += 1010;
-
-			prize11 = new FlxSprite(850, 180).loadGraphic(Paths.image('shop/prizes/prize_15')); //Rainy Daze
-			prize11.antialiasing = ClientPrefs.globalAntialiasing;
-			prize11.y += 1010;
-
-			prize12 = new FlxSprite(50, 260).loadGraphic(Paths.image('shop/prizes/prize_16')); //Marauder
-			prize12.antialiasing = ClientPrefs.globalAntialiasing;
-			prize12.y += 1010;
-
-			prize13 = new FlxSprite(250, 260).loadGraphic(Paths.image('shop/prizes/prize_17')); //Sus Week
-			prize13.antialiasing = ClientPrefs.globalAntialiasing;
-			prize13.y += 1010;
-
-			prize14 = new FlxSprite(450, 260).loadGraphic(Paths.image('shop/prizes/prize_18')); //D-sides Week
-			prize14.antialiasing = ClientPrefs.globalAntialiasing;
-			prize14.y += 1010;
-
-			prizeZeel = new FlxSprite(650, 260).loadGraphic(Paths.image('shop/prizes/prize_Zeel'));
-			prizeZeel.antialiasing = ClientPrefs.globalAntialiasing;
-			prizeZeel.y += 1010;
-
-			prizeTrampoline = new FlxSprite(850, 260).loadGraphic(Paths.image('shop/prizes/prize_Trampoline'));
-			prizeTrampoline.antialiasing = ClientPrefs.globalAntialiasing;
-			prizeTrampoline.y += 1010;
-
-			prizeEgg = new FlxSprite(1050, 260).loadGraphic(Paths.image('shop/prizes/prize_Egg'));
-			prizeEgg.antialiasing = ClientPrefs.globalAntialiasing;
-			prizeEgg.y += 1010;
-
-			charmPrize1 = new FlxSprite(50, 260).loadGraphic(Paths.image('shop/prizes/prize_7')); //Resistance Charm
-			charmPrize1.antialiasing = ClientPrefs.globalAntialiasing;
-			charmPrize1.y += 1010;
-
-			charmPrize2 = new FlxSprite(1050, 180).loadGraphic(Paths.image('shop/prizes/prize_12')); //Auto Dodge Charm
-			charmPrize2.antialiasing = ClientPrefs.globalAntialiasing;
-			charmPrize2.y += 1010;
-
-			charmPrize3 = new FlxSprite(1050, 180).loadGraphic(Paths.image('shop/prizes/prize_19')); //Healing Charm
-			charmPrize3.antialiasing = ClientPrefs.globalAntialiasing;
-			charmPrize3.y += 1010;
+			for (i in 0...20)
+			{
+				var prize:FlxSprite = new FlxSprite(prizeBoard[i][0], prizeBoard[i][1] + 1010).loadGraphic(Paths.image('shop/prizes/' + prizeBoard[i][2]));
+				prize.antialiasing = ClientPrefs.globalAntialiasing;
+				prize.ID = i;
+				prizeSlots.add(prize);	
+			}
 
 			infoTitle = new FlxText(-10, 130, FlxG.width,
 				"A",
@@ -498,38 +416,34 @@ class ShopState extends MusicBeatState
 		booba.updateHitbox();
 		add(booba);
 
-		sellOption1 = new FlxSprite(0, 0).loadGraphic(Paths.image('shop/sellOption1'));
-		sellOption1.antialiasing = ClientPrefs.globalAntialiasing;
-		sellOption1.screenCenter();
-		sellOption1.x -= 2620;
-		sellOption1.y -= 80;
-		sellOption1.scale.set(0.6, 0.6);
-		sellOption1.updateHitbox();
-		add(sellOption1);
+		sellSlots = new FlxTypedGroup<FlxSprite>();
+		add(sellSlots);
 
-		if (ClientPrefs.nunWeekPlayed == true)
-			sellOption2 = new FlxSprite(0, 0).loadGraphic(Paths.image('shop/sellOption2'));
-		else
-			sellOption2 = new FlxSprite(0, 0).loadGraphic(Paths.image('shop/sellOption2locked'));
-		sellOption2.antialiasing = ClientPrefs.globalAntialiasing;
-		sellOption2.screenCenter();
-		sellOption2.x -= 2620;
-		sellOption2.y += 80;
-		sellOption2.scale.set(0.6, 0.6);
-		sellOption2.updateHitbox();
-		add(sellOption2);
+		for (i in 0...3)
+		{
+			var locked:Bool = false;
+			if ((i == 1 && !ClientPrefs.nunWeekPlayed) || (i == 2 && !ClientPrefs.kianaWeekPlayed))
+				locked = true;
 
-		if (ClientPrefs.kianaWeekPlayed == true)
-			sellOption3 = new FlxSprite(0, 0).loadGraphic(Paths.image('shop/sellOption3'));
-		else
-			sellOption3 = new FlxSprite(0, 0).loadGraphic(Paths.image('shop/sellOption3locked'));
-		sellOption3.antialiasing = ClientPrefs.globalAntialiasing;
-		sellOption3.screenCenter();
-		sellOption3.x -= 2620;
-		sellOption3.y += 250;
-		sellOption3.scale.set(0.6, 0.6);
-		sellOption3.updateHitbox();
-		add(sellOption3);
+			var button:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image('shop/sellOption' + (i + 1) + ((locked) ? "locked" : "")));
+			button.antialiasing = ClientPrefs.globalAntialiasing;
+			button.ID = i;
+			button.scale.set(0.6, 0.6);
+			button.screenCenter();
+			button.updateHitbox();
+			sellSlots.add(button);
+			button.x -= 2620;
+
+			switch(i)
+			{
+				case 0:
+					button.y -= 80;
+				case 1:
+					button.y += 80;
+				case 2:
+					button.y += 250;		
+			}
+		}
 
 		//dialogue
 		dialogueTextSecret = new FlxText(0, 0, FlxG.width, "", 32);
@@ -583,30 +497,8 @@ class ShopState extends MusicBeatState
 		equipped.y += 820;
 		equipped.scale.set(1.3, 1.3);
 		equipped.updateHitbox();
-		
-		add(prize1);
-		add(prize2);
-		add(prize3);
-		add(prize4);
-		add(prize5);
-		add(prize6);
-		add(prize7);
-		add(prize8);
-		add(prize9);
-		add(prize10);
-		add(prize11);
-		add(prize12);
-		add(prize13);
-		add(prize14);
-		
-		add(prizeZeel);
-		add(prizeTrampoline);
-		add(prizeEgg);
 
-		add(charmPrize1);
-		add(charmPrize2);
-		add(charmPrize3);
-
+		add(prizeSlots);
 		add(infoTitle);	
 		add(infoText);
 		add(equipped);
@@ -616,7 +508,7 @@ class ShopState extends MusicBeatState
 		FlxTween.tween(equipped, {y: 820}, 0.1, {ease: FlxEase.cubeInOut, type: PERSIST});
 
 		//ONLY FOR WHEN YOU ACCESS THE SHOP FOR THE FIRST TIME!
-		if (ClientPrefs.shopShowcased == false && firstTime == false)
+		if (!ClientPrefs.shopShowcased && !firstTime)
 		{
 			showcaseDialogue = new FlxTypeText(0, 0, 600, "OH! ANOTHER CUSTOMER!\n[Press Enter To Continue]", 32, true);
 			showcaseDialogue.font = 'VCR OSD Mono';
@@ -643,9 +535,7 @@ class ShopState extends MusicBeatState
 			firstTime = true;
 		}
 		else
-		{
 			merchantDialogue.start(0.04, true, ending);
-		}
 		}
 
 		Achievements.loadAchievements();
@@ -661,9 +551,7 @@ class ShopState extends MusicBeatState
 	var done:Bool = true;
 	var gtfo:Bool = false;
 
-	var shelfOneON:Bool = false;
-	var shelfTwoON:Bool = false;
-	var shelfThreeON:Bool = false;
+	var shelfSelected:Int = 0;
 
 	//SECRET SHOP VARIABLES FOR UPDATE
 	var changedShop:Bool = false;
@@ -684,24 +572,24 @@ class ShopState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
-		if (ClientPrefs.shopUnlocked == false)
+		if (!ClientPrefs.shopUnlocked)
+		{
+			if (FlxG.keys.justPressed.BACKSPACE)
 			{
-				if (FlxG.keys.justPressed.BACKSPACE)
-				{
-					FlxG.sound.play(Paths.sound('cancelMenu'));
-					FlxG.sound.music.fadeOut(0.4);
-					MusicBeatState.switchState(new MainMenuState());
-				}
-					
-				//run a timer in case said person does not press backspace.
-				new FlxTimer().start(5, function (tmr:FlxTimer) {
-					FlxG.sound.play(Paths.sound('cancelMenu'));
-					FlxG.sound.music.fadeOut(0.4);
-					MusicBeatState.switchState(new MainMenuState());
-				});
+				FlxG.sound.play(Paths.sound('cancelMenu'));
+				FlxG.sound.music.fadeOut(0.4);
+				MusicBeatState.switchState(new MainMenuState());
 			}
-		else if (ClientPrefs.shopShowcased == false)
-			{
+					
+			//run a timer in case said person does not press backspace.
+			new FlxTimer().start(5, function (tmr:FlxTimer) {
+				FlxG.sound.play(Paths.sound('cancelMenu'));
+				FlxG.sound.music.fadeOut(0.4);
+				MusicBeatState.switchState(new MainMenuState());
+			});
+		}
+		else if (!ClientPrefs.shopShowcased)
+		{
 			if (FlxG.keys.justPressed.ENTER)
 			{
 				trace ("Pressed Enter : " + pressedEnter);
@@ -784,7 +672,7 @@ class ShopState extends MusicBeatState
 					}
 				}
 			}
-			}
+		}
 		else
 		{
 		{
@@ -797,15 +685,14 @@ class ShopState extends MusicBeatState
 		CustomFontFormats.addMarkers(tokenShow);
 
 		//GIVE SHOP ACHIEVEMENT AT ANY TIME
-		if (ClientPrefs.nunsationalFound == true && ClientPrefs.lustalityFound == true && ClientPrefs.tofuFound == true && ClientPrefs.marcochromeFound == true 
-			&& ClientPrefs.fnvFound == true && ClientPrefs.shortFound == true && ClientPrefs.nicFound == true && ClientPrefs.infatuationFound == true
-			&& ClientPrefs.rainyDazeFound == true && ClientPrefs.debugFound == true 
-			&& ClientPrefs.morkyWeekFound == true && ClientPrefs.susWeekFound == true && ClientPrefs.morkyWeekFound == true && ClientPrefs.dsideWeekFound == true)
+		if (ClientPrefs.nunsationalFound && ClientPrefs.lustalityFound && ClientPrefs.tofuFound && ClientPrefs.marcochromeFound
+			&& ClientPrefs.fnvFound && ClientPrefs.shortFound && ClientPrefs.nicFound && ClientPrefs.infatuationFound && ClientPrefs.rainyDazeFound && ClientPrefs.debugFound 
+			&& ClientPrefs.morkyWeekFound && ClientPrefs.susWeekFound && ClientPrefs.morkyWeekFound && ClientPrefs.dsideWeekFound)
 		{
 			var achieveID:Int = Achievements.getAchievementIndex('shop_completed');
 			if(!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveID][2])) {
 				Achievements.achievementsMap.set(Achievements.achievementsStuff[achieveID][2], true);
-				giveShopAchievement();
+				giveAchievement("shop_completed");
 				ClientPrefs.saveSettings();
 			}
 		}
@@ -825,198 +712,83 @@ class ShopState extends MusicBeatState
 		if (controls.BACK || FlxG.mouse.justPressedRight)
 			{
 				//Prize Pool Section
-				if (ClientPrefs.itemInfo == true && pressedBack == false)
+				if (ClientPrefs.itemInfo && !pressedBack)
 				{
 					pressedBack = true;
 
 					FlxG.sound.play(Paths.sound('cancelMenu'));
-					if(infoTitle.text == "Legacy Week Pass" || infoTitle.text == "?????? ????")
-						FlxTween.tween(prize1.scale, {x: 1, y: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					if(infoTitle.text == "Nunsational Pass" || infoTitle.text == "???????????")
+					prizeSlots.forEach(function(prize:FlxSprite)
 					{
-						FlxTween.tween(prize2.scale, {x: 1, y: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						FlxTween.tween(prize2, {x: 250}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					}
-					if(infoTitle.text == "Lustality Pass" || infoTitle.text == "?????????")
-					{
-						FlxTween.tween(prize3.scale, {x: 1, y: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						FlxTween.tween(prize3, {x: 450}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					}
-					if(infoTitle.text == "Tofu Pass" || infoTitle.text == "????")
-					{
-						FlxTween.tween(prize4.scale, {x: 1, y: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						FlxTween.tween(prize4, {x: 650}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					}
-					if(infoTitle.text == "Marcochrome Pass" || infoTitle.text == "?????-??????")
-					{
-						FlxTween.tween(prize5.scale, {x: 1, y: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						FlxTween.tween(prize5, {x: 850}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					}
-					if(infoTitle.text == "Joke Week Pass" || infoTitle.text == "???? ????")
-					{
-						FlxTween.tween(prize6.scale, {x: 1, y: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						FlxTween.tween(prize6, {x: 1050}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					}
-					if(infoTitle.text == "FNV Pass" || infoTitle.text == "???")
-					{
-						FlxTween.tween(prize7.scale, {x: 1, y: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						FlxTween.tween(prize7, {x: 50}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						FlxTween.tween(prize7, {y: 160}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					}
-					if(infoTitle.text == "0.0015 Pass" || infoTitle.text == "?.????")
-					{
-						FlxTween.tween(prize8.scale, {x: 1, y: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						FlxTween.tween(prize8, {x: 250}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						FlxTween.tween(prize8, {y: 160}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					}
-					if(infoTitle.text == "Slow.FLP Pass" || infoTitle.text == "????.???")
-					{
-						FlxTween.tween(prize9.scale, {x: 1, y: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						FlxTween.tween(prize9, {x: 450}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						FlxTween.tween(prize9, {y: 160}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					}
-					if(infoTitle.text == "Fanfuck Forever Pass" || infoTitle.text == "????????????")
-					{
-						FlxTween.tween(prize10.scale, {x: 1, y: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						FlxTween.tween(prize10, {x: 650}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						FlxTween.tween(prize10, {y: 160}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					}
-					if(infoTitle.text == "Rainy Daze Pass" || infoTitle.text == "????? ????")
-					{
-						FlxTween.tween(prize11.scale, {x: 1, y: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						FlxTween.tween(prize11, {x: 850}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						FlxTween.tween(prize11, {y: 160}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					}
-					if(infoTitle.text == "Marauder Pass" || infoTitle.text == "????????")
-					{
-						FlxTween.tween(prize12.scale, {x: 1, y: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						FlxTween.tween(prize12, {x: 50}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						FlxTween.tween(prize12, {y: 160}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					}
-					if(infoTitle.text == "Sus Week Pass" || infoTitle.text == "??? ????")
-					{
-						FlxTween.tween(prize13.scale, {x: 1, y: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						FlxTween.tween(prize13, {x: 250}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						FlxTween.tween(prize13, {y: 160}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					}
-					if(infoTitle.text == "D-sides Week Pass" || infoTitle.text == "?-????? ????")
-					{
-						FlxTween.tween(prize14.scale, {x: 1, y: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						FlxTween.tween(prize14, {x: 450}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						FlxTween.tween(prize14, {y: 160}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					}
-					if(infoTitle.text == "Zeel's Naked Pics")
-					{
-						FlxTween.tween(prizeZeel.scale, {x: 1, y: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						if (shelfOneON == true)
+						var x:Float = 0;
+						var y:Float = 0;
+
+						switch (prize.ID)
 						{
-							FlxTween.tween(prizeZeel, {x: 250}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-							FlxTween.tween(prizeZeel, {y: 315}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						}
-						else if (shelfTwoON == true)
-						{
-							FlxTween.tween(prizeZeel, {x: 50}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-							FlxTween.tween(prizeZeel, {y: 315}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						}
-						else if (shelfThreeON == true)
-						{
-							FlxTween.tween(prizeZeel, {x: 650}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-							FlxTween.tween(prizeZeel, {y: 160}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						}
-					}
-					if(infoTitle.text == "Trampoline Mode")
-					{
-						FlxTween.tween(prizeTrampoline.scale, {x: 1, y: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						if (shelfOneON == true)
-						{
-							FlxTween.tween(prizeTrampoline, {x: 450}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-							FlxTween.tween(prizeTrampoline, {y: 315}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						}
-						else if (shelfTwoON == true)
-						{
-							FlxTween.tween(prizeTrampoline, {x: 250}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-							FlxTween.tween(prizeTrampoline, {y: 315}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						}
-						else if (shelfThreeON == true)
-						{
-							FlxTween.tween(prizeTrampoline, {x: 850}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-							FlxTween.tween(prizeTrampoline, {y: 160}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						}
-					}
-					if(infoTitle.text == "Egg")
-						{
-							FlxTween.tween(prizeEgg.scale, {x: 1, y: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-							if (shelfOneON == true)
-							{
-								FlxTween.tween(prizeEgg, {x: 650}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-								FlxTween.tween(prizeEgg, {y: 315}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-							}
-							if (shelfTwoON == true)
-							{
-								FlxTween.tween(prizeEgg, {x: 450}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-								FlxTween.tween(prizeEgg, {y: 315}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-							}
-							else if (shelfThreeON == true)
-							{
-								FlxTween.tween(prizeEgg, {x: 50}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-								FlxTween.tween(prizeEgg, {y: 315}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-							}
+							case 14:
+								switch(shelfSelected)
+								{
+									case 1:
+										x = 250; y = 315;
+									case 2:
+										x = 50; y = 315;
+									case 3:
+										x = 650; y = 160;
+								}
+							case 15:
+								switch(shelfSelected)
+								{
+									case 1:
+										x = 450; y = 315;
+									case 2:
+										x = 250; y = 315;
+									case 3:
+										x = 850; y = 160;
+								}
+							case 16:
+								switch(shelfSelected)
+								{
+									case 1:
+										x = 650; y = 315;
+									case 2:
+										x = 450; y = 315;
+									case 3:
+										x = 50; y = 315;
+								}
+
+							default:
+								x = prizeBoard[prize.ID][0];
+								switch(shelfSelected)
+								{
+									case 1:
+										if ((prize.ID >= 0 && prize.ID <= 5) || prize.ID == 17)
+											y = prizeBoard[prize.ID][1];
+										else
+											y = 1010;
+									case 2:
+										if ((prize.ID >= 6 && prize.ID <= 10) || prize.ID == 18)
+											y = prizeBoard[prize.ID][1];
+										else
+											y = 1010;
+									case 3:
+										if ((prize.ID >= 11 && prize.ID <= 13) || prize.ID == 19)
+											y = prizeBoard[prize.ID][1];
+										else
+											y = 1010;
+								}
 						}
 
-					if(infoTitle.text == "Resistance Charm")
-					{
-						FlxTween.tween(charmPrize1.scale, {x: 1, y: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						FlxTween.tween(charmPrize1, {x: 50}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						FlxTween.tween(charmPrize1, {y: 315}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					}
-
-					if(infoTitle.text == "Auto Dodge Charm")
-					{
-						FlxTween.tween(charmPrize2.scale, {x: 1, y: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						FlxTween.tween(charmPrize2, {x: 1050}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						FlxTween.tween(charmPrize2, {y: 160}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					}
-
-					if(infoTitle.text == "Healing Charm")
-					{
-						FlxTween.tween(charmPrize3.scale, {x: 1, y: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						FlxTween.tween(charmPrize3, {x: 1050}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						FlxTween.tween(charmPrize3, {y: 160}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					}
+						FlxTween.tween(prize, {x: x, y: y, "scale.x": 1, "scale.y": 1, alpha: 0.3}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+					});
 					
 					FlxTween.tween(blackOut, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 					FlxTween.tween(infoTitle, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 					FlxTween.tween(infoText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 
-					FlxTween.tween(prize1, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(prize2, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(prize3, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(prize4, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(prize5, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(prize6, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(prize7, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(prize8, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(prize9, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(prize10, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(prize11, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(prize12, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(prize13, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(prize14, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-
-					FlxTween.tween(prizeZeel, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(prizeTrampoline, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(prizeEgg, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-
-					FlxTween.tween(charmPrize1, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(charmPrize2, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(charmPrize3, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-
 					//sell normal items and charms shit
-					if (ClientPrefs.sellSelected == true)
+					if (ClientPrefs.sellSelected)
 					{
 						FlxTween.tween(buy, {y: 820}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 						FlxTween.tween(equipped, {y: 820}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						FlxTween.tween(buy, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 					}
 					
 					new FlxTimer().start(0.6, function (tmr:FlxTimer) {
@@ -1025,12 +797,10 @@ class ShopState extends MusicBeatState
 					});
 				}
 				//Test your Luck Section
-				else if (ClientPrefs.luckSelected == true && ClientPrefs.choiceSelected == false && pressedBack == false)
+				else if (ClientPrefs.luckSelected && !ClientPrefs.choiceSelected && !pressedBack)
 				{
 					pressedBack = true;
-					shelfOneON = false;
-					shelfTwoON = false;
-					shelfThreeON = false;
+					shelfSelected = 0;
 					FlxG.sound.play(Paths.sound('cancelMenu'));
 					FlxTween.tween(testYourLuckBG, {x: 1400}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 					FlxTween.tween(tokenShow, {x: 2480}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
@@ -1046,51 +816,27 @@ class ShopState extends MusicBeatState
 					});
 				}
 				//Sell Selection
-				else if (ClientPrefs.sellSelected == true && ClientPrefs.itemInfo == false && pressedBack == false)
+				else if (ClientPrefs.sellSelected && !ClientPrefs.itemInfo && !pressedBack)
 				{
 					pressedBack = true;
 					FlxG.sound.play(Paths.sound('cancelMenu'));
 					FlxTween.tween(buyItemsBG, {y: 800}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(prize1, {y: 1020}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(prize2, {y: 1020}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(prize3, {y: 1020}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(prize4, {y: 1020}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(prize5, {y: 1020}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(prize6, {y: 1020}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(prize7, {y: 1020}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(prize8, {y: 1020}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(prize9, {y: 1070}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(prize10, {y: 1070}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(prize11, {y: 1070}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(prize12, {y: 1070}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(prize13, {y: 1070}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(prize14, {y: 1070}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(charmPrize1, {y: 1070}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(charmPrize2, {y: 1070}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(charmPrize3, {y: 1070}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					
-					FlxTween.tween(prizeZeel, {y: 1070}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(prizeTrampoline, {y: 1070}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(prizeEgg, {y: 1070}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+					prizeSlots.forEach(function(prize:FlxSprite)
+					{
+						FlxTween.tween(prize, {y: (prize.ID > 13) ? 1070 : 1020}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+					});
 
-					shelfOneON = false;
-					shelfTwoON = false;
-					shelfThreeON = false;
+					shelfSelected = 0;
 					new FlxTimer().start(0.6, function (tmr:FlxTimer) {
 						pressedBack = false;
 						ClientPrefs.sellSelected = false;
 					});
 				}
-				//Sell Selection
-				else if (ClientPrefs.choiceSelected == true) //DON'T GO BACK IF YOU'RE USING THE LUCK SECTION
+				else if (ClientPrefs.choiceSelected || choiceNumber == 4)  //DON'T GO BACK IF YOU'RE USING THE LUCK SECTION
 				{
 					//Do nothing lmao
 				}
-				else if (choiceNumber == 4) //ONLY IF YOU WIN ANY OF THESE SONGS
-				{
-					//Do nothing lmao
-				}
-				else if (ClientPrefs.sellSelected == false && ClientPrefs.luckSelected == false && ClientPrefs.choiceSelected == false && ClientPrefs.itemInfo == false)
+				else if (!ClientPrefs.sellSelected && !ClientPrefs.luckSelected && !ClientPrefs.choiceSelected && !ClientPrefs.itemInfo)
 				{
 					FlxG.sound.music.fadeOut(0.4);
 					FlxG.sound.play(Paths.sound('cancelMenu'));
@@ -1098,35 +844,13 @@ class ShopState extends MusicBeatState
 				}
 			}
 			
-			//button thingies lmao
-			if(FlxG.mouse.overlaps(luckOptionSlot1) && (ClientPrefs.sellSelected == false && ClientPrefs.luckSelected == false && ClientPrefs.choiceSelected == false && ClientPrefs.itemInfo == false))
-            {
-                luckOptionSlot1.alpha = 1;
-            }
-            else
-            {
-                luckOptionSlot1.alpha = 0.6;
-            }
-			if(FlxG.mouse.overlaps(luckOptionSlot2) && (ClientPrefs.sellSelected == false && ClientPrefs.luckSelected == false && ClientPrefs.choiceSelected == false && ClientPrefs.itemInfo == false))
-			{
-				luckOptionSlot2.alpha = 1;
-			}
-			else
-			{
-				luckOptionSlot2.alpha = 0.6;
-			}
-			if(FlxG.mouse.overlaps(luckOptionSlot3) && (ClientPrefs.sellSelected == false && ClientPrefs.luckSelected == false && ClientPrefs.choiceSelected == false && ClientPrefs.itemInfo == false))
-            {
-                luckOptionSlot3.alpha = 1;
-            }
-            else
-            {
-                luckOptionSlot3.alpha = 0.6;
-            }
+			// Buttom Checks
+			if (!ClientPrefs.sellSelected && !ClientPrefs.luckSelected && !ClientPrefs.choiceSelected && !ClientPrefs.itemInfo)
+				checkButtons((changedShop) ? "Zeel" : "Main");
+
 			//Dialogue
-		if(FlxG.mouse.overlaps(assistant) && FlxG.mouse.justPressed && ClientPrefs.luckSelected == false && changedShop == false
-			&& cellarShopActive == false
-			&& (!FlxG.mouse.overlaps(luckOptionSlot1) && !FlxG.mouse.overlaps(luckOptionSlot2) && !FlxG.mouse.overlaps(luckOptionSlot3)))
+			if(FlxG.mouse.overlaps(assistant) && FlxG.mouse.justPressed && !ClientPrefs.luckSelected && !changedShop && !cellarShopActive
+			&& (!FlxG.mouse.overlaps(luckOptionSlots.members[0]) && !FlxG.mouse.overlaps(luckOptionSlots.members[1]) && !FlxG.mouse.overlaps(luckOptionSlots.members[2])))
 			{
 					dialogueNumber = FlxG.random.int(1, 29);
 					switch (assistNum)
@@ -1159,7 +883,7 @@ class ShopState extends MusicBeatState
 						case 9:
 							dialogueText.text = "N E V E R USE THE DOOR TO YOUR LEFT.";
 						case 10:
-							dialogueText.text = "Go test you luck now!";
+							dialogueText.text = "Go test your luck now!";
 						case 11:
 							dialogueText.text = "I love tokens.";
 						case 12:
@@ -1205,100 +929,23 @@ class ShopState extends MusicBeatState
 					assistant.animation.play('talkMain');
 			}
 
-			//Test your Luck Functtionality
-			if (cellarShopActive == false)
-			{
-				if(FlxG.mouse.overlaps(luckOptionSlot1) && FlxG.mouse.justPressed && ClientPrefs.luckSelected == false)
-				{
-					merchantDialogue.skip();
-					shelfOneON = true;
-					choiceNumber = FlxG.random.int(1, 7);
-					choice.loadGraphic(Paths.image('shop/prizes/prize_' + choiceNumber));
-					ClientPrefs.luckSelected = true;
-					lights.animation.play('redlightsFlash');
-					testYourLuckBG.loadGraphic(Paths.image('shop/testYourLuckBG1'));
-					FlxTween.tween(testYourLuckBG, {x: -130}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(tokenShow, {x: 780}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-
-					FlxTween.tween(lights, {x: 90}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					
-					FlxTween.tween(choice, {x: 250}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(testLuckButton, {x: 330}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					
-					FlxTween.tween(spaceText, {x: 330}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(notEnoughTokensText, {x: 330}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxG.sound.play(Paths.sound('shop/shopOpenShelf'));
-					FlxG.sound.play(Paths.sound('shop/mouseClick'));
-				}
-				if(FlxG.mouse.overlaps(luckOptionSlot2) && FlxG.mouse.justPressed && ClientPrefs.luckSelected == false && ClientPrefs.nunWeekPlayed == true)
-				{
-					merchantDialogue.skip();
-					shelfTwoON = true;
-					choiceNumber = FlxG.random.int(8, 14);
-					choice.loadGraphic(Paths.image('shop/prizes/prize_' + choiceNumber));
-					ClientPrefs.luckSelected = true;
-					lights.animation.play('bluelightsFlash');
-					testYourLuckBG.loadGraphic(Paths.image('shop/testYourLuckBG2'));
-					FlxTween.tween(testYourLuckBG, {x: -130}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(tokenShow, {x: 780}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-
-					FlxTween.tween(lights, {x: 90}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					
-					FlxTween.tween(choice, {x: 250}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(testLuckButton, {x: 330}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					
-					FlxTween.tween(spaceText, {x: 330}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(notEnoughTokensText, {x: 330}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxG.sound.play(Paths.sound('shop/shopOpenShelf'));
-					FlxG.sound.play(Paths.sound('shop/mouseClick'));
-				}
-				else if (FlxG.mouse.overlaps(luckOptionSlot2) && FlxG.mouse.justPressed && ClientPrefs.luckSelected == false && ClientPrefs.nunWeekPlayed == false)
-				{
-					FlxG.sound.play(Paths.sound('accessDenied'));
-					FlxG.camera.shake(0.01, 0.2, null, true, FlxAxes.XY);
-				}
-				if(FlxG.mouse.overlaps(luckOptionSlot3) && FlxG.mouse.justPressed && ClientPrefs.luckSelected == false && ClientPrefs.kianaWeekPlayed == true)
-				{
-					merchantDialogue.skip();
-					shelfThreeON = true;
-					choiceNumber = FlxG.random.int(15, 20);
-					choice.loadGraphic(Paths.image('shop/prizes/prize_' + choiceNumber));
-					ClientPrefs.luckSelected = true;
-					lights.animation.play('greenlightsFlash');
-					testYourLuckBG.loadGraphic(Paths.image('shop/testYourLuckBG3'));
-					FlxTween.tween(testYourLuckBG, {x: -130}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(tokenShow, {x: 780}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-
-					FlxTween.tween(lights, {x: 90}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					
-					FlxTween.tween(choice, {x: 250}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(testLuckButton, {x: 330}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					
-					FlxTween.tween(spaceText, {x: 330}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(notEnoughTokensText, {x: 330}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxG.sound.play(Paths.sound('shop/shopOpenShelf'));
-					FlxG.sound.play(Paths.sound('shop/mouseClick'));
-				}
-				else if (FlxG.mouse.overlaps(luckOptionSlot3) && FlxG.mouse.justPressed && ClientPrefs.luckSelected == false && ClientPrefs.kianaWeekPlayed == false)
-				{
-					FlxG.sound.play(Paths.sound('accessDenied'));
-					FlxG.camera.shake(0.01, 0.2, null, true, FlxAxes.XY);
-				}
-			}
+			// Shop Button Triggers (Both Shops)
+			buttonTrigger((changedShop) ? "Zeel" : "Main");
 			
-			if (ClientPrefs.tokens == 0 && tokensRunOut == false && ClientPrefs.choiceSelected == false)
+			// Luck Mechanism
+			if (ClientPrefs.tokens == 0 && !tokensRunOut && !ClientPrefs.choiceSelected)
 			{
 				FlxTween.tween(testLuckButton, {y: testLuckButton.y + 550}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 				FlxTween.tween(notEnoughTokensText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 				tokensRunOut = true;
 			}
-			if (ClientPrefs.tokens > 0 && tokensRunOut == true)
+			if (ClientPrefs.tokens > 0 && tokensRunOut)
 			{
 				FlxTween.tween(testLuckButton, {y: 550}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 				FlxTween.tween(notEnoughTokensText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 				tokensRunOut = false;
 			}
-			if(FlxG.mouse.overlaps(testLuckButton) && FlxG.mouse.justPressed && ClientPrefs.luckSelected == true && ended == true && ClientPrefs.tokens > 0)
+			if(FlxG.mouse.overlaps(testLuckButton) && FlxG.mouse.justPressed && ClientPrefs.luckSelected && ended && ClientPrefs.tokens > 0)
 			{
 				ClientPrefs.choiceSelected = true;
 				ClientPrefs.tokens -= 1;
@@ -1309,7 +956,7 @@ class ShopState extends MusicBeatState
 				FlxTween.tween(testLuckButton, {y: testLuckButton.y + 550}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 				FlxTween.tween(spaceText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 			}
-			if (controls.ACCEPT && pressedSpace == false && ClientPrefs.choiceSelected == true && done == false)
+			if (controls.ACCEPT && !pressedSpace && ClientPrefs.choiceSelected && !done)
 			{
 				FlxG.sound.play(Paths.sound('confirmMenu'));
 				pressedSpace = true;
@@ -1323,72 +970,35 @@ class ShopState extends MusicBeatState
 						case 1:
 						{
 							trace('YAY, LEGACY WEEK [OPTION 1] IS SELECTED');
-							if (ClientPrefs.legacyWeekFound == false)
-								{	
-									ClientPrefs.legacyWeekFound = true;
-									ClientPrefs.choiceSelected = false;
-									ClientPrefs.songsUnlocked += 1;
-									ClientPrefs.bonusUnlocked = true;
+							if (!ClientPrefs.legacyWeekFound)
+							{	
+								ClientPrefs.legacyWeekFound = true;
+								ClientPrefs.choiceSelected = false;
+								ClientPrefs.songsUnlocked += 1;
+								ClientPrefs.bonusUnlocked = true;
 
-									NotificationAlert.sendCategoryNotification = true;
-									NotificationAlert.showMessage(this, 'Normal', true);
+								NotificationAlert.sendCategoryNotification = true;
+								NotificationAlert.showMessage(this, 'Normal', true);
 							
-									NotificationAlert.saveNotifications();
-									ClientPrefs.saveSettings();
-									new FlxTimer().start(0.5, function (tmr:FlxTimer) {
-										FlxG.sound.play(Paths.sound('hooray'), 0.5);
-									});
-									if (ClientPrefs.tokens != 0)
-									{
-										new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-											FlxTween.tween(testLuckButton, {y: 550}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											ClientPrefs.choiceSelected = false;
-											flickerTween.cancel();
-											ClientPrefs.saveSettings();
-										});
-									}
-									else
-									{
-										new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-											FlxTween.tween(notEnoughTokensText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											ClientPrefs.choiceSelected = false;
-											flickerTween.cancel();
-											ClientPrefs.saveSettings();
-										});
-									}
+								NotificationAlert.saveNotifications();
+								ClientPrefs.saveSettings();
+								new FlxTimer().start(0.5, function (tmr:FlxTimer) {
+									FlxG.sound.play(Paths.sound('hooray'), 0.5);
+								});
 								flickerTween = 	FlxTween.tween(spaceText, {alpha: 0}, 0.05, {ease: FlxEase.cubeInOut, type: PINGPONG});
-								}
-								else
-								{
-									new FlxTimer().start(0.5, function (tmr:FlxTimer) {
-										FlxG.sound.play(Paths.sound('boo'), 0.5);
-									});
-									if (ClientPrefs.tokens != 0)
-									{
-										new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-											FlxTween.tween(testLuckButton, {y: 550}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											ClientPrefs.choiceSelected = false;
-											ClientPrefs.saveSettings();
-										});
-									}
-									else
-									{
-										new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-											FlxTween.tween(notEnoughTokensText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											ClientPrefs.choiceSelected = false;
-											ClientPrefs.saveSettings();
-										});
-									}
-								}
+							}
+							else
+							{
+								new FlxTimer().start(0.5, function (tmr:FlxTimer) {
+									FlxG.sound.play(Paths.sound('boo'), 0.5);
+								});
+							}
+							revertLuck();
 						}
 						case 2:
 						{
 							trace('YAY, NUNSATIONAL [OPTION 2] IS SELECTED');
-							if (ClientPrefs.nunsationalFound == false)
+							if (!ClientPrefs.nunsationalFound)
 							{
 								ClientPrefs.nunsationalFound = true;
 								ClientPrefs.choiceSelected = false;
@@ -1401,57 +1011,20 @@ class ShopState extends MusicBeatState
 								new FlxTimer().start(0.5, function (tmr:FlxTimer) {
 									FlxG.sound.play(Paths.sound('hooray'), 0.5);
 								});
-								if (ClientPrefs.tokens != 0)
-								{
-									new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-										FlxTween.tween(testLuckButton, {y: 550}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-										FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-										ClientPrefs.choiceSelected = false;
-										flickerTween.cancel();
-										ClientPrefs.saveSettings();
-									});
-								}
-								else
-								{
-									new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-										FlxTween.tween(notEnoughTokensText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-										FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-										ClientPrefs.choiceSelected = false;
-										flickerTween.cancel();
-										ClientPrefs.saveSettings();
-									});
-								}
-							flickerTween = 	FlxTween.tween(spaceText, {alpha: 0}, 0.05, {ease: FlxEase.cubeInOut, type: PINGPONG});
+								flickerTween = 	FlxTween.tween(spaceText, {alpha: 0}, 0.05, {ease: FlxEase.cubeInOut, type: PINGPONG});
 							}
 							else
 							{
 								new FlxTimer().start(0.5, function (tmr:FlxTimer) {
 									FlxG.sound.play(Paths.sound('boo'), 0.5);
 								});
-								if (ClientPrefs.tokens != 0)
-								{
-									new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-										FlxTween.tween(testLuckButton, {y: 550}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-										FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-										ClientPrefs.choiceSelected = false;
-										ClientPrefs.saveSettings();
-									});
-								}
-								else
-								{
-									new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-										FlxTween.tween(notEnoughTokensText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-										FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-										ClientPrefs.choiceSelected = false;
-										ClientPrefs.saveSettings();
-									});
-								}
 							}
+							revertLuck();
 						}
 						case 3:
 						{
 							trace('YAY, LUSTALITY [OPTION 3] IS SELECTED');
-							if (ClientPrefs.lustalityFound == false)
+							if (!ClientPrefs.lustalityFound)
 							{
 								ClientPrefs.lustalityFound = true;
 								ClientPrefs.choiceSelected = false;
@@ -1464,57 +1037,20 @@ class ShopState extends MusicBeatState
 								new FlxTimer().start(0.5, function (tmr:FlxTimer) {
 									FlxG.sound.play(Paths.sound('hooray'), 0.5);
 								});
-								if (ClientPrefs.tokens != 0)
-								{
-									new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-										FlxTween.tween(testLuckButton, {y: 550}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-										FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-										ClientPrefs.choiceSelected = false;
-										flickerTween.cancel();
-										ClientPrefs.saveSettings();
-									});
-								}
-								else
-								{
-									new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-										FlxTween.tween(notEnoughTokensText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-										FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-										ClientPrefs.choiceSelected = false;
-										flickerTween.cancel();
-										ClientPrefs.saveSettings();
-									});
-								}
-							flickerTween = 	FlxTween.tween(spaceText, {alpha: 0}, 0.05, {ease: FlxEase.cubeInOut, type: PINGPONG});
+								flickerTween = 	FlxTween.tween(spaceText, {alpha: 0}, 0.05, {ease: FlxEase.cubeInOut, type: PINGPONG});
 							}
 							else
 							{
 								new FlxTimer().start(0.5, function (tmr:FlxTimer) {
 									FlxG.sound.play(Paths.sound('boo'), 0.5);
 								});
-								if (ClientPrefs.tokens != 0)
-								{
-									new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-										FlxTween.tween(testLuckButton, {y: 550}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-										FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-										ClientPrefs.choiceSelected = false;
-										ClientPrefs.saveSettings();
-									});
-								}
-								else
-								{
-									new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-										FlxTween.tween(notEnoughTokensText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-										FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-										ClientPrefs.choiceSelected = false;
-										ClientPrefs.saveSettings();
-									});
-								}
 							}
+							revertLuck();
 						}
 						case 4:
 						{
 							trace('YAY, TOFU [OPTION 4] IS SELECTED');
-							if (ClientPrefs.tofuFound == false)
+							if (!ClientPrefs.tofuFound)
 							{
 									ClientPrefs.tofuFound = true;
 									ClientPrefs.choiceSelected = false;
@@ -1527,89 +1063,32 @@ class ShopState extends MusicBeatState
 									new FlxTimer().start(0.5, function (tmr:FlxTimer) {
 										FlxG.sound.play(Paths.sound('hooray'), 0.5);
 									});
-									if (ClientPrefs.tokens != 0)
-									{
-										new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-											FlxTween.tween(testLuckButton, {y: 550}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											ClientPrefs.choiceSelected = false;
-											flickerTween.cancel();
-											ClientPrefs.saveSettings();
-										});
-									}
-									else
-									{
-										new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-											FlxTween.tween(notEnoughTokensText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											ClientPrefs.choiceSelected = false;
-											flickerTween.cancel();
-											ClientPrefs.saveSettings();
-										});
-									}
-								flickerTween = 	FlxTween.tween(spaceText, {alpha: 0}, 0.05, {ease: FlxEase.cubeInOut, type: PINGPONG});
+									flickerTween = 	FlxTween.tween(spaceText, {alpha: 0}, 0.05, {ease: FlxEase.cubeInOut, type: PINGPONG});
 							}
 							else
 							{
 								new FlxTimer().start(0.5, function (tmr:FlxTimer) {
 									FlxG.sound.play(Paths.sound('boo'), 0.5);
 								});
-								if (ClientPrefs.tokens != 0)
-									{
-										new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-											FlxTween.tween(testLuckButton, {y: 550}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											ClientPrefs.choiceSelected = false;
-											ClientPrefs.saveSettings();
-										});
-									}
-								else
-								{
-									new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-										FlxTween.tween(notEnoughTokensText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-										FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-										ClientPrefs.choiceSelected = false;
-										ClientPrefs.saveSettings();
-									});
-								}
 							}
+							revertLuck();
 						}
 						case 5:
 						{
 							trace('YAY, MARCOCHROME [OPTION 5] IS SELECTED');
-							if (ClientPrefs.marcochromeFound == false)
+							if (!ClientPrefs.marcochromeFound)
 							{
-									ClientPrefs.marcochromeFound = true;
-									ClientPrefs.choiceSelected = false;
-									ClientPrefs.songsUnlocked += 1;
-									ClientPrefs.xtraUnlocked = true;
+								ClientPrefs.marcochromeFound = true;
+								ClientPrefs.choiceSelected = false;
+								ClientPrefs.songsUnlocked += 1;
+								ClientPrefs.xtraUnlocked = true;
 
-									NotificationAlert.showMessage(this, 'Freeplay', true);
+								NotificationAlert.showMessage(this, 'Freeplay', true);
 
-									ClientPrefs.saveSettings();
-									new FlxTimer().start(0.5, function (tmr:FlxTimer) {
-										FlxG.sound.play(Paths.sound('hooray'), 0.5);
-									});
-									if (ClientPrefs.tokens != 0)
-									{
-										new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-											FlxTween.tween(testLuckButton, {y: 550}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											ClientPrefs.choiceSelected = false;
-											flickerTween.cancel();
-											ClientPrefs.saveSettings();
-										});
-									}
-									else
-									{
-										new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-											FlxTween.tween(notEnoughTokensText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											ClientPrefs.choiceSelected = false;
-											flickerTween.cancel();
-											ClientPrefs.saveSettings();
-										});
-									}
+								ClientPrefs.saveSettings();
+								new FlxTimer().start(0.5, function (tmr:FlxTimer) {
+									FlxG.sound.play(Paths.sound('hooray'), 0.5);
+								});
 								flickerTween = 	FlxTween.tween(spaceText, {alpha: 0}, 0.05, {ease: FlxEase.cubeInOut, type: PINGPONG});
 							}
 							else
@@ -1617,25 +1096,8 @@ class ShopState extends MusicBeatState
 								new FlxTimer().start(0.5, function (tmr:FlxTimer) {
 									FlxG.sound.play(Paths.sound('boo'), 0.5);
 								});
-								if (ClientPrefs.tokens != 0)
-									{
-										new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-											FlxTween.tween(testLuckButton, {y: 550}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											ClientPrefs.choiceSelected = false;
-											ClientPrefs.saveSettings();
-										});
-									}
-								else
-								{
-									new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-										FlxTween.tween(notEnoughTokensText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-										FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-										ClientPrefs.choiceSelected = false;
-										ClientPrefs.saveSettings();
-									});
-								}
 							}
+							revertLuck();
 						}
 						case 6: //THIS GIVES YOU 3 TOKENS
 						{
@@ -1643,62 +1105,25 @@ class ShopState extends MusicBeatState
 							new FlxTimer().start(0.5, function (tmr:FlxTimer) {
 								FlxG.sound.play(Paths.sound('hooray'), 0.5);
 							});
-							if (ClientPrefs.tokens != 0)
-							{
-								new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-									FlxTween.tween(testLuckButton, {y: 550}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-									FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-									ClientPrefs.choiceSelected = false;
-									ClientPrefs.saveSettings();
-								});
-							}
-							else
-							{
-								new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-									FlxTween.tween(notEnoughTokensText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-									FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-									ClientPrefs.choiceSelected = false;
-									ClientPrefs.saveSettings();
-								});
-							}
+							revertLuck();
 						}
 						case 7:
 						{
 							trace('YAY, RESISTANCE CHARM [OPTION 7] IS SELECTED');
-							if (ClientPrefs.resCharmCollected == false)
+							if (!ClientPrefs.resCharmCollected)
 							{
-									ClientPrefs.resCharmCollected = true;
-									ClientPrefs.choiceSelected = false;
-									ClientPrefs.songsUnlocked += 1;
+								ClientPrefs.resCharmCollected = true;
+								ClientPrefs.choiceSelected = false;
+								ClientPrefs.songsUnlocked += 1;
 
-									NotificationAlert.showMessage(this, 'Normal', true);
-									NotificationAlert.sendInventoryNotification = true;
-									NotificationAlert.saveNotifications();
+								NotificationAlert.showMessage(this, 'Normal', true);
+								NotificationAlert.sendInventoryNotification = true;
+								NotificationAlert.saveNotifications();
 
-									ClientPrefs.saveSettings();
-									new FlxTimer().start(0.5, function (tmr:FlxTimer) {
-										FlxG.sound.play(Paths.sound('hooray'), 0.5);
-									});
-									if (ClientPrefs.tokens != 0)
-									{
-										new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-											FlxTween.tween(testLuckButton, {y: 550}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											ClientPrefs.choiceSelected = false;
-											flickerTween.cancel();
-											ClientPrefs.saveSettings();
-										});
-									}
-									else
-									{
-										new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-											FlxTween.tween(notEnoughTokensText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											ClientPrefs.choiceSelected = false;
-											flickerTween.cancel();
-											ClientPrefs.saveSettings();
-										});
-									}
+								ClientPrefs.saveSettings();
+								new FlxTimer().start(0.5, function (tmr:FlxTimer) {
+									FlxG.sound.play(Paths.sound('hooray'), 0.5);
+								});
 								flickerTween = 	FlxTween.tween(spaceText, {alpha: 0}, 0.05, {ease: FlxEase.cubeInOut, type: PINGPONG});
 							}
 							else
@@ -1706,30 +1131,13 @@ class ShopState extends MusicBeatState
 								new FlxTimer().start(0.5, function (tmr:FlxTimer) {
 									FlxG.sound.play(Paths.sound('boo'), 0.5);
 								});
-								if (ClientPrefs.tokens != 0)
-									{
-										new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-											FlxTween.tween(testLuckButton, {y: 550}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											ClientPrefs.choiceSelected = false;
-											ClientPrefs.saveSettings();
-										});
-									}
-								else
-								{
-									new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-										FlxTween.tween(notEnoughTokensText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-										FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-										ClientPrefs.choiceSelected = false;
-										ClientPrefs.saveSettings();
-									});
-								}
 							}
+							revertLuck();
 						}
 					case 8:
 						{
 							trace('YAY, JOKE WEEK [OPTION 8] IS SELECTED');
-							if (ClientPrefs.morkyWeekFound == false)
+							if (!ClientPrefs.morkyWeekFound)
 							{
 									ClientPrefs.morkyWeekFound = true;
 									ClientPrefs.choiceSelected = false;
@@ -1744,26 +1152,6 @@ class ShopState extends MusicBeatState
 									new FlxTimer().start(0.5, function (tmr:FlxTimer) {
 										FlxG.sound.play(Paths.sound('hooray'), 0.5);
 									});
-									if (ClientPrefs.tokens != 0)
-									{
-										new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-											FlxTween.tween(testLuckButton, {y: 550}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											ClientPrefs.choiceSelected = false;
-											flickerTween.cancel();
-											ClientPrefs.saveSettings();
-										});
-									}
-									else
-									{
-										new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-											FlxTween.tween(notEnoughTokensText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											ClientPrefs.choiceSelected = false;
-											flickerTween.cancel();
-											ClientPrefs.saveSettings();
-										});
-									}
 								flickerTween = 	FlxTween.tween(spaceText, {alpha: 0}, 0.05, {ease: FlxEase.cubeInOut, type: PINGPONG});
 							}
 							else
@@ -1771,62 +1159,25 @@ class ShopState extends MusicBeatState
 								new FlxTimer().start(0.5, function (tmr:FlxTimer) {
 									FlxG.sound.play(Paths.sound('boo'), 0.5);
 								});
-								if (ClientPrefs.tokens != 0)
-									{
-										new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-											FlxTween.tween(testLuckButton, {y: 550}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											ClientPrefs.choiceSelected = false;
-											ClientPrefs.saveSettings();
-										});
-									}
-								else
-								{
-									new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-										FlxTween.tween(notEnoughTokensText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-										FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-										ClientPrefs.choiceSelected = false;
-										ClientPrefs.saveSettings();
-									});
-								}
 							}
+							revertLuck();
 						}
 						case 9:
 						{
 							trace('YAY, FNV [OPTION 10] IS SELECTED');
-							if (ClientPrefs.fnvFound == false)
+							if (!ClientPrefs.fnvFound)
 							{
-									ClientPrefs.fnvFound = true;
-									ClientPrefs.choiceSelected = false;
-									ClientPrefs.songsUnlocked += 1;
-									ClientPrefs.xtraUnlocked = true;
+								ClientPrefs.fnvFound = true;
+								ClientPrefs.choiceSelected = false;
+								ClientPrefs.songsUnlocked += 1;
+								ClientPrefs.xtraUnlocked = true;
 
-									NotificationAlert.showMessage(this, 'Freeplay', true);
+								NotificationAlert.showMessage(this, 'Freeplay', true);
 
-									ClientPrefs.saveSettings();
-									new FlxTimer().start(0.5, function (tmr:FlxTimer) {
-										FlxG.sound.play(Paths.sound('hooray'), 0.5);
-									});
-									if (ClientPrefs.tokens != 0)
-									{
-										new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-											FlxTween.tween(testLuckButton, {y: 550}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											ClientPrefs.choiceSelected = false;
-											flickerTween.cancel();
-											ClientPrefs.saveSettings();
-										});
-									}
-									else
-									{
-										new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-											FlxTween.tween(notEnoughTokensText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											ClientPrefs.choiceSelected = false;
-											flickerTween.cancel();
-											ClientPrefs.saveSettings();
-										});
-									}
+								ClientPrefs.saveSettings();
+								new FlxTimer().start(0.5, function (tmr:FlxTimer) {
+									FlxG.sound.play(Paths.sound('hooray'), 0.5);
+								});
 								flickerTween = 	FlxTween.tween(spaceText, {alpha: 0}, 0.05, {ease: FlxEase.cubeInOut, type: PINGPONG});
 							}
 							else
@@ -1834,62 +1185,25 @@ class ShopState extends MusicBeatState
 								new FlxTimer().start(0.5, function (tmr:FlxTimer) {
 									FlxG.sound.play(Paths.sound('boo'), 0.5);
 								});
-								if (ClientPrefs.tokens != 0)
-									{
-										new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-											FlxTween.tween(testLuckButton, {y: 550}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											ClientPrefs.choiceSelected = false;
-											ClientPrefs.saveSettings();
-										});
-									}
-								else
-								{
-									new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-										FlxTween.tween(notEnoughTokensText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-										FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-										ClientPrefs.choiceSelected = false;
-										ClientPrefs.saveSettings();
-									});
-								}
 							}
+							revertLuck();
 						}
 						case 10:
 						{
 							trace('YAY, 0.0015 [OPTION 11] IS SELECTED');
-							if (ClientPrefs.shortFound == false)
+							if (!ClientPrefs.shortFound)
 							{
-									ClientPrefs.shortFound = true;
-									ClientPrefs.choiceSelected = false;
-									ClientPrefs.songsUnlocked += 1;
-									ClientPrefs.xtraUnlocked = true;
+								ClientPrefs.shortFound = true;
+								ClientPrefs.choiceSelected = false;
+								ClientPrefs.songsUnlocked += 1;
+								ClientPrefs.xtraUnlocked = true;
 
-									NotificationAlert.showMessage(this, 'Freeplay', true);
+								NotificationAlert.showMessage(this, 'Freeplay', true);
 
-									ClientPrefs.saveSettings();
-									new FlxTimer().start(0.5, function (tmr:FlxTimer) {
-										FlxG.sound.play(Paths.sound('hooray'), 0.5);
-									});
-									if (ClientPrefs.tokens != 0)
-									{
-										new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-											FlxTween.tween(testLuckButton, {y: 550}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											ClientPrefs.choiceSelected = false;
-											flickerTween.cancel();
-											ClientPrefs.saveSettings();
-										});
-									}
-									else
-									{
-										new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-											FlxTween.tween(notEnoughTokensText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											ClientPrefs.choiceSelected = false;
-											flickerTween.cancel();
-											ClientPrefs.saveSettings();
-										});
-									}
+								ClientPrefs.saveSettings();
+								new FlxTimer().start(0.5, function (tmr:FlxTimer) {
+									FlxG.sound.play(Paths.sound('hooray'), 0.5);
+								});
 								flickerTween =	FlxTween.tween(spaceText, {alpha: 0}, 0.05, {ease: FlxEase.cubeInOut, type: PINGPONG});
 							}
 							else
@@ -1897,152 +1211,61 @@ class ShopState extends MusicBeatState
 								new FlxTimer().start(0.5, function (tmr:FlxTimer) {
 									FlxG.sound.play(Paths.sound('boo'), 0.5);
 								});
-								if (ClientPrefs.tokens != 0)
-									{
-										new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-											FlxTween.tween(testLuckButton, {y: 550}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											ClientPrefs.choiceSelected = false;
-											ClientPrefs.saveSettings();
-										});
-									}
-								else
-								{
-									new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-										FlxTween.tween(notEnoughTokensText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-										FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-										ClientPrefs.choiceSelected = false;
-										ClientPrefs.saveSettings();
-									});
-								}
 							}
+							revertLuck();
 						}
 						case 11:
 						{
 							trace('YAY, SLOW.FLP [OPTION 12] IS SELECTED');
-							if (ClientPrefs.nicFound == false)
+							if (!ClientPrefs.nicFound)
 							{
-									ClientPrefs.nicFound = true;
-									ClientPrefs.choiceSelected = false;
-									ClientPrefs.songsUnlocked += 1;
-									ClientPrefs.xtraUnlocked = true;
+								ClientPrefs.nicFound = true;
+								ClientPrefs.choiceSelected = false;
+								ClientPrefs.songsUnlocked += 1;
+								ClientPrefs.xtraUnlocked = true;
 
-									NotificationAlert.showMessage(this, 'Freeplay', true);
+								NotificationAlert.showMessage(this, 'Freeplay', true);
 
-									ClientPrefs.saveSettings();
-									new FlxTimer().start(0.5, function (tmr:FlxTimer) {
-										FlxG.sound.play(Paths.sound('hooray'), 0.5);
-									});
-									if (ClientPrefs.tokens != 0)
-									{
-										new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-											FlxTween.tween(testLuckButton, {y: 550}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											ClientPrefs.choiceSelected = false;
-											flickerTween.cancel();
-											ClientPrefs.saveSettings();
-										});
-									}
-									else
-									{
-										new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-											FlxTween.tween(notEnoughTokensText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											ClientPrefs.choiceSelected = false;
-											flickerTween.cancel();
-											ClientPrefs.saveSettings();
-										});
-									}
-									flickerTween = FlxTween.tween(spaceText, {alpha: 0}, 0.05, {ease: FlxEase.cubeInOut, type: PINGPONG});
+								ClientPrefs.saveSettings();
+								new FlxTimer().start(0.5, function (tmr:FlxTimer) {
+									FlxG.sound.play(Paths.sound('hooray'), 0.5);
+								});
+								flickerTween = FlxTween.tween(spaceText, {alpha: 0}, 0.05, {ease: FlxEase.cubeInOut, type: PINGPONG});
 							}
 							else
 							{
 								new FlxTimer().start(0.5, function (tmr:FlxTimer) {
 									FlxG.sound.play(Paths.sound('boo'), 0.5);
 								});
-								if (ClientPrefs.tokens != 0)
-									{
-										new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-											FlxTween.tween(testLuckButton, {y: 550}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											ClientPrefs.choiceSelected = false;
-											ClientPrefs.saveSettings();
-										});
-									}
-								else
-								{
-									new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-										FlxTween.tween(notEnoughTokensText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-										FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-										ClientPrefs.choiceSelected = false;
-										ClientPrefs.saveSettings();
-									});
-								}
 							}
+							revertLuck();
 						}
 						case 12:
 						{
 							trace('YAY, AUTO DODGE CHARM [OPTION 13] IS SELECTED');
-							if (ClientPrefs.autoCharmCollected == false)
+							if (!ClientPrefs.autoCharmCollected)
 							{
-									ClientPrefs.autoCharmCollected = true;
-									ClientPrefs.choiceSelected = false;
-									ClientPrefs.songsUnlocked += 1;
+								ClientPrefs.autoCharmCollected = true;
+								ClientPrefs.choiceSelected = false;
+								ClientPrefs.songsUnlocked += 1;
 
-									NotificationAlert.showMessage(this, 'Normal', true);
-									NotificationAlert.sendInventoryNotification = true;
-									NotificationAlert.saveNotifications();
+								NotificationAlert.showMessage(this, 'Normal', true);
+								NotificationAlert.sendInventoryNotification = true;
+								NotificationAlert.saveNotifications();
 
-									ClientPrefs.saveSettings();
-									new FlxTimer().start(0.5, function (tmr:FlxTimer) {
-										FlxG.sound.play(Paths.sound('hooray'), 0.5);
-									});
-									if (ClientPrefs.tokens != 0)
-									{
-										new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-											FlxTween.tween(testLuckButton, {y: 550}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											ClientPrefs.choiceSelected = false;
-											flickerTween.cancel();
-											ClientPrefs.saveSettings();
-										});
-									}
-									else
-									{
-										new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-											FlxTween.tween(notEnoughTokensText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											ClientPrefs.choiceSelected = false;
-											flickerTween.cancel();
-											ClientPrefs.saveSettings();
-										});
-									}
-									flickerTween = FlxTween.tween(spaceText, {alpha: 0}, 0.05, {ease: FlxEase.cubeInOut, type: PINGPONG});
+								ClientPrefs.saveSettings();
+								new FlxTimer().start(0.5, function (tmr:FlxTimer) {
+									FlxG.sound.play(Paths.sound('hooray'), 0.5);
+								});
+								flickerTween = FlxTween.tween(spaceText, {alpha: 0}, 0.05, {ease: FlxEase.cubeInOut, type: PINGPONG});
 							}
 							else
 							{
 								new FlxTimer().start(0.5, function (tmr:FlxTimer) {
 									FlxG.sound.play(Paths.sound('boo'), 0.5);
 								});
-								if (ClientPrefs.tokens != 0)
-									{
-										new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-											FlxTween.tween(testLuckButton, {y: 550}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											ClientPrefs.choiceSelected = false;
-											ClientPrefs.saveSettings();
-										});
-									}
-								else
-								{
-									new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-										FlxTween.tween(notEnoughTokensText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-										FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-										ClientPrefs.choiceSelected = false;
-										ClientPrefs.saveSettings();
-									});
-								}
 							}
+							revertLuck();
 						}
 						case 13: //THIS GIVES OFF 5 TOKENS
 						{
@@ -2050,511 +1273,255 @@ class ShopState extends MusicBeatState
 							new FlxTimer().start(0.5, function (tmr:FlxTimer) {
 								FlxG.sound.play(Paths.sound('hooray'), 0.5);
 							});
-							if (ClientPrefs.tokens != 0)
-							{
-								new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-									FlxTween.tween(testLuckButton, {y: 550}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-									FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-									ClientPrefs.choiceSelected = false;
-									ClientPrefs.saveSettings();
-								});
-							}
-							else
-							{
-								new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-									FlxTween.tween(notEnoughTokensText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-									FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-									ClientPrefs.choiceSelected = false;
-									ClientPrefs.saveSettings();
-								});
-							}
+							revertLuck();
 						}
 						case 14:
 						{
 							trace('YAY, FANFUCK FOREVER [OPTION 15] IS SELECTED');
-							if (ClientPrefs.infatuationFound == false)
+							if (!ClientPrefs.infatuationFound)
 							{
-									ClientPrefs.infatuationFound = true;
-									ClientPrefs.choiceSelected = false;
-									ClientPrefs.songsUnlocked += 1;
-									ClientPrefs.xtraUnlocked = true;
+								ClientPrefs.infatuationFound = true;
+								ClientPrefs.choiceSelected = false;
+								ClientPrefs.songsUnlocked += 1;
+								ClientPrefs.xtraUnlocked = true;
 
-									NotificationAlert.showMessage(this, 'Freeplay', true);
+								NotificationAlert.showMessage(this, 'Freeplay', true);
 
-									ClientPrefs.saveSettings();
-									new FlxTimer().start(0.5, function (tmr:FlxTimer) {
-										FlxG.sound.play(Paths.sound('hooray'), 0.5);
-									});
-									if (ClientPrefs.tokens != 0)
-									{
-										new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-											FlxTween.tween(testLuckButton, {y: 550}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											ClientPrefs.choiceSelected = false;
-											flickerTween.cancel();
-											ClientPrefs.saveSettings();
-										});
-									}
-									else
-									{
-										new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-											FlxTween.tween(notEnoughTokensText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											ClientPrefs.choiceSelected = false;
-											flickerTween.cancel();
-											ClientPrefs.saveSettings();
-										});
-									}
-									flickerTween = FlxTween.tween(spaceText, {alpha: 0}, 0.05, {ease: FlxEase.cubeInOut, type: PINGPONG});
+								ClientPrefs.saveSettings();
+								new FlxTimer().start(0.5, function (tmr:FlxTimer) {
+									FlxG.sound.play(Paths.sound('hooray'), 0.5);
+								});
+								flickerTween = FlxTween.tween(spaceText, {alpha: 0}, 0.05, {ease: FlxEase.cubeInOut, type: PINGPONG});
 							}
 							else
 							{
 								new FlxTimer().start(0.5, function (tmr:FlxTimer) {
 									FlxG.sound.play(Paths.sound('boo'), 0.5);
 								});
-								if (ClientPrefs.tokens != 0)
-									{
-										new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-											FlxTween.tween(testLuckButton, {y: 550}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											ClientPrefs.choiceSelected = false;
-											ClientPrefs.saveSettings();
-										});
-									}
-								else
-								{
-									new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-										FlxTween.tween(notEnoughTokensText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-										FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-										ClientPrefs.choiceSelected = false;
-										ClientPrefs.saveSettings();
-									});
-								}
 							}
+							revertLuck();
 						}
 						case 15:
 						{
 							trace('YAY, RAINY DAZE [OPTION 16] IS SELECTED');
-							if (ClientPrefs.rainyDazeFound == false)
+							if (!ClientPrefs.rainyDazeFound)
 							{
-									ClientPrefs.rainyDazeFound = true;
-									ClientPrefs.choiceSelected = false;
-									ClientPrefs.songsUnlocked += 1;
-									ClientPrefs.xtraUnlocked = true;
+								ClientPrefs.rainyDazeFound = true;
+								ClientPrefs.choiceSelected = false;
+								ClientPrefs.songsUnlocked += 1;
+								ClientPrefs.xtraUnlocked = true;
 
-									NotificationAlert.showMessage(this, 'Freeplay', true);
+								NotificationAlert.showMessage(this, 'Freeplay', true);
 
-									ClientPrefs.saveSettings();
-									new FlxTimer().start(0.5, function (tmr:FlxTimer) {
-										FlxG.sound.play(Paths.sound('hooray'), 0.5);
-									});
-									if (ClientPrefs.tokens != 0)
-									{
-										new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-											FlxTween.tween(testLuckButton, {y: 550}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											ClientPrefs.choiceSelected = false;
-											flickerTween.cancel();
-											ClientPrefs.saveSettings();
-										});
-									}
-									else
-									{
-										new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-											FlxTween.tween(notEnoughTokensText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											ClientPrefs.choiceSelected = false;
-											flickerTween.cancel();
-											ClientPrefs.saveSettings();
-										});
-									}
-									flickerTween = FlxTween.tween(spaceText, {alpha: 0}, 0.05, {ease: FlxEase.cubeInOut, type: PINGPONG});
+								ClientPrefs.saveSettings();
+								new FlxTimer().start(0.5, function (tmr:FlxTimer) {
+									FlxG.sound.play(Paths.sound('hooray'), 0.5);
+								});
+								flickerTween = FlxTween.tween(spaceText, {alpha: 0}, 0.05, {ease: FlxEase.cubeInOut, type: PINGPONG});
 							}
 							else
 							{
 								new FlxTimer().start(0.5, function (tmr:FlxTimer) {
 									FlxG.sound.play(Paths.sound('boo'), 0.5);
 								});
-								if (ClientPrefs.tokens != 0)
-									{
-										new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-											FlxTween.tween(testLuckButton, {y: 550}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											ClientPrefs.choiceSelected = false;
-											ClientPrefs.saveSettings();
-										});
-									}
-								else
-								{
-									new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-										FlxTween.tween(notEnoughTokensText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-										FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-										ClientPrefs.choiceSelected = false;
-										ClientPrefs.saveSettings();
-									});
-								}
 							}
+							revertLuck();
 						}
 						case 16:
 						{
 							trace('YAY, MARAUDER [OPTION 17] IS SELECTED');
-							if (ClientPrefs.debugFound == false)
+							if (!ClientPrefs.debugFound)
 							{
-									ClientPrefs.debugFound = true;
-									ClientPrefs.choiceSelected = false;
-									ClientPrefs.songsUnlocked += 1;
-									ClientPrefs.xtraUnlocked = true;
+								ClientPrefs.debugFound = true;
+								ClientPrefs.choiceSelected = false;
+								ClientPrefs.songsUnlocked += 1;
+								ClientPrefs.xtraUnlocked = true;
 
-									NotificationAlert.showMessage(this, 'Freeplay', true);
+								NotificationAlert.showMessage(this, 'Freeplay', true);
 									
-									ClientPrefs.saveSettings();
-									new FlxTimer().start(0.5, function (tmr:FlxTimer) {
-										FlxG.sound.play(Paths.sound('hooray'), 0.5);
-									});
-									if (ClientPrefs.tokens != 0)
-									{
-										new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-											FlxTween.tween(testLuckButton, {y: 550}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											ClientPrefs.choiceSelected = false;
-											flickerTween.cancel();
-											ClientPrefs.saveSettings();
-										});
-									}
-									else
-									{
-										new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-											FlxTween.tween(notEnoughTokensText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											ClientPrefs.choiceSelected = false;
-											flickerTween.cancel();
-											ClientPrefs.saveSettings();
-										});
-									}
-									flickerTween = FlxTween.tween(spaceText, {alpha: 0}, 0.05, {ease: FlxEase.cubeInOut, type: PINGPONG});
+								ClientPrefs.saveSettings();
+								new FlxTimer().start(0.5, function (tmr:FlxTimer) {
+									FlxG.sound.play(Paths.sound('hooray'), 0.5);
+								});
+								flickerTween = FlxTween.tween(spaceText, {alpha: 0}, 0.05, {ease: FlxEase.cubeInOut, type: PINGPONG});
 							}
 							else
 							{
 								new FlxTimer().start(0.5, function (tmr:FlxTimer) {
 									FlxG.sound.play(Paths.sound('boo'), 0.5);
 								});
-								if (ClientPrefs.tokens != 0)
-									{
-										new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-											FlxTween.tween(testLuckButton, {y: 550}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											ClientPrefs.choiceSelected = false;
-											ClientPrefs.saveSettings();
-										});
-									}
-								else
-								{
-									new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-										FlxTween.tween(notEnoughTokensText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-										FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-										ClientPrefs.choiceSelected = false;
-										ClientPrefs.saveSettings();
-									});
-								}
 							}
+							revertLuck();
 						}
 						case 17:
 						{
 							trace('YAY, SUS WEEK [OPTION 18] IS SELECTED');
-							if (ClientPrefs.susWeekFound == false)
+							if (!ClientPrefs.susWeekFound)
 							{
-									ClientPrefs.susWeekFound = true;
-									ClientPrefs.choiceSelected = false;
-									ClientPrefs.songsUnlocked += 1;
-									ClientPrefs.bonusUnlocked = true;
+								ClientPrefs.susWeekFound = true;
+								ClientPrefs.choiceSelected = false;
+								ClientPrefs.songsUnlocked += 1;
+								ClientPrefs.bonusUnlocked = true;
 
-									NotificationAlert.sendCategoryNotification = true;
-									NotificationAlert.showMessage(this, 'Normal', true);
+								NotificationAlert.sendCategoryNotification = true;
+								NotificationAlert.showMessage(this, 'Normal', true);
 							
-									NotificationAlert.saveNotifications();
-									ClientPrefs.saveSettings();
-									new FlxTimer().start(0.5, function (tmr:FlxTimer) {
-										FlxG.sound.play(Paths.sound('hooray'), 0.5);
-									});
-									if (ClientPrefs.tokens != 0)
-									{
-										new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-											FlxTween.tween(testLuckButton, {y: 550}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											ClientPrefs.choiceSelected = false;
-											flickerTween.cancel();
-											ClientPrefs.saveSettings();
-										});
-									}
-									else
-									{
-										new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-											FlxTween.tween(notEnoughTokensText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											ClientPrefs.choiceSelected = false;
-											flickerTween.cancel();
-											ClientPrefs.saveSettings();
-										});
-									}
-									flickerTween = FlxTween.tween(spaceText, {alpha: 0}, 0.05, {ease: FlxEase.cubeInOut, type: PINGPONG});
+								NotificationAlert.saveNotifications();
+								ClientPrefs.saveSettings();
+								new FlxTimer().start(0.5, function (tmr:FlxTimer) {
+									FlxG.sound.play(Paths.sound('hooray'), 0.5);
+								});
+								flickerTween = FlxTween.tween(spaceText, {alpha: 0}, 0.05, {ease: FlxEase.cubeInOut, type: PINGPONG});
 							}
 							else
 							{
 								new FlxTimer().start(0.5, function (tmr:FlxTimer) {
 									FlxG.sound.play(Paths.sound('boo'), 0.5);
 								});
-								if (ClientPrefs.tokens != 0)
-									{
-										new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-											FlxTween.tween(testLuckButton, {y: 550}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											ClientPrefs.choiceSelected = false;
-											ClientPrefs.saveSettings();
-										});
-									}
-								else
-								{
-									new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-										FlxTween.tween(notEnoughTokensText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-										FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-										ClientPrefs.choiceSelected = false;
-										ClientPrefs.saveSettings();
-									});
-								}
 							}
+							revertLuck();
 						}
 						case 18:
 						{
 							trace('YAY, D-SIDES WEEK [OPTION 19] IS SELECTED');
-							if (ClientPrefs.dsideWeekFound == false)
+							if (!ClientPrefs.dsideWeekFound)
 							{
-									ClientPrefs.dsideWeekFound = true;
-									ClientPrefs.choiceSelected = false;
-									ClientPrefs.songsUnlocked += 1;
-									ClientPrefs.bonusUnlocked = true;
+								ClientPrefs.dsideWeekFound = true;
+								ClientPrefs.choiceSelected = false;
+								ClientPrefs.songsUnlocked += 1;
+								ClientPrefs.bonusUnlocked = true;
 
-									NotificationAlert.sendCategoryNotification = true;
-									NotificationAlert.showMessage(this, 'Normal', true);
+								NotificationAlert.sendCategoryNotification = true;
+								NotificationAlert.showMessage(this, 'Normal', true);
 							
-									NotificationAlert.saveNotifications();
-									ClientPrefs.saveSettings();
-									new FlxTimer().start(0.5, function (tmr:FlxTimer) {
-										FlxG.sound.play(Paths.sound('hooray'), 0.5);
-									});
-									if (ClientPrefs.tokens != 0)
-									{
-										new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-											FlxTween.tween(testLuckButton, {y: 550}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											ClientPrefs.choiceSelected = false;
-											flickerTween.cancel();
-											ClientPrefs.saveSettings();
-										});
-									}
-									else
-									{
-										new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-											FlxTween.tween(notEnoughTokensText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											ClientPrefs.choiceSelected = false;
-											flickerTween.cancel();
-											ClientPrefs.saveSettings();
-										});
-									}
-									flickerTween = FlxTween.tween(spaceText, {alpha: 0}, 0.05, {ease: FlxEase.cubeInOut, type: PINGPONG});
+								NotificationAlert.saveNotifications();
+								ClientPrefs.saveSettings();
+								new FlxTimer().start(0.5, function (tmr:FlxTimer) {
+									FlxG.sound.play(Paths.sound('hooray'), 0.5);
+								});
+								flickerTween = FlxTween.tween(spaceText, {alpha: 0}, 0.05, {ease: FlxEase.cubeInOut, type: PINGPONG});
 							}
 							else
 							{
 								new FlxTimer().start(0.5, function (tmr:FlxTimer) {
 									FlxG.sound.play(Paths.sound('boo'), 0.5);
 								});
-								if (ClientPrefs.tokens != 0)
-									{
-										new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-											FlxTween.tween(testLuckButton, {y: 550}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											ClientPrefs.choiceSelected = false;
-											ClientPrefs.saveSettings();
-										});
-									}
-								else
-								{
-									new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-										FlxTween.tween(notEnoughTokensText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-										FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-										ClientPrefs.choiceSelected = false;
-										ClientPrefs.saveSettings();
-									});
-								}
 							}
+							revertLuck();
 						}
 						case 19:
 						{
 							trace('YAY, HEALING CHARM [OPTION 20] IS SELECTED');
-							if (ClientPrefs.healCharmCollected == false)
+							if (!ClientPrefs.healCharmCollected)
 							{
-									ClientPrefs.healCharmCollected = true;
-									ClientPrefs.choiceSelected = false;
+								ClientPrefs.healCharmCollected = true;
+								ClientPrefs.choiceSelected = false;
 
-									NotificationAlert.sendInventoryNotification = true;
-									NotificationAlert.showMessage(this, 'Normal', true);
+								NotificationAlert.sendInventoryNotification = true;
+								NotificationAlert.showMessage(this, 'Normal', true);
 							
-									NotificationAlert.saveNotifications();
-									ClientPrefs.saveSettings();
-									new FlxTimer().start(0.5, function (tmr:FlxTimer) {
-										FlxG.sound.play(Paths.sound('hooray'), 0.5);
-									});
-									if (ClientPrefs.tokens != 0)
-									{
-										new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-											FlxTween.tween(testLuckButton, {y: 550}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											ClientPrefs.choiceSelected = false;
-											flickerTween.cancel();
-											ClientPrefs.saveSettings();
-										});
-									}
-									else
-									{
-										new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-											FlxTween.tween(notEnoughTokensText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											ClientPrefs.choiceSelected = false;
-											flickerTween.cancel();
-											ClientPrefs.saveSettings();
-										});
-									}
-									flickerTween = FlxTween.tween(spaceText, {alpha: 0}, 0.05, {ease: FlxEase.cubeInOut, type: PINGPONG});
+								NotificationAlert.saveNotifications();
+								ClientPrefs.saveSettings();
+								new FlxTimer().start(0.5, function (tmr:FlxTimer) {
+									FlxG.sound.play(Paths.sound('hooray'), 0.5);
+								});
+								flickerTween = FlxTween.tween(spaceText, {alpha: 0}, 0.05, {ease: FlxEase.cubeInOut, type: PINGPONG});
 							}
 							else
 							{
 								new FlxTimer().start(0.5, function (tmr:FlxTimer) {
 									FlxG.sound.play(Paths.sound('boo'), 0.5);
 								});
-								if (ClientPrefs.tokens != 0)
-									{
-										new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-											FlxTween.tween(testLuckButton, {y: 550}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-											ClientPrefs.choiceSelected = false;
-											ClientPrefs.saveSettings();
-										});
-									}
-								else
-								{
-									new FlxTimer().start(1.5, function (tmr:FlxTimer) {
-										FlxTween.tween(notEnoughTokensText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-										FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-										ClientPrefs.choiceSelected = false;
-										ClientPrefs.saveSettings();
-									});
-								}
 							}
+							revertLuck();
 						}
 					}
 				pressedSpace = false;
 			}
 
 		//FROM BELOW HERE UNTIL super.update(elapsed), THIS IS WHERE THE SECRET SHOP CODE WILL SHOW UP
-		if (FlxG.keys.justPressed.LEFT && changedShop == false)
+		if (FlxG.keys.justPressed.LEFT && !changedShop)
 		{
 			merchantDialogue.skip();
 			ending();
-			
 			changedShop = true;
+
 			FlxG.sound.play(Paths.sound('confirmMenu'));
-			if (ClientPrefs.secretShopShowcased == false)
+			FlxTween.tween(background, {x: 2000}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+			luckOptionSlots.forEach(function(button:FlxSprite)
 			{
-				FlxG.sound.play(Paths.sound('confirmMenu'));
-				FlxTween.tween(background, {x: 2000}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(luckOptionSlot1, {x: 2620}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(luckOptionSlot2, {x: 2620}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(luckOptionSlot3, {x: 2620}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(assistant, {x: 2070}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(merchantDialogue, {x: 2000}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(lights, {x: 2070}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(transitionOoooOo, {x: 1370}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			
-				FlxTween.tween(bulb, {x: 1600}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			
-				new FlxTimer().start(2, function (tmr:FlxTimer) {
-					FlxTween.tween(backgroundSecret, {x: 0}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(sellOption1, {x: 200}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(sellOption2, {x: 200}, 1.84, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(sellOption3, {x: 200}, 1.88, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(booba, {x: 780}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(assistantSecret, {x: 740}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(secretMerchantDialogue, {x: 130}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					secretMerchantDialogue.alpha = 0;
-					FlxTween.tween(showcaseSecretDialogue, {x: 130}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+				FlxTween.tween(button, {x: 2670}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+			});
+			FlxTween.tween(assistant, {x: 2070}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+			FlxTween.tween(merchantDialogue, {x: 2000}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+			FlxTween.tween(lights, {x: 2070}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+			FlxTween.tween(transitionOoooOo, {x: 1370}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+	
+			FlxTween.tween(bulb, {x: 1600}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+	
+			new FlxTimer().start(2, function (tmr:FlxTimer) {
+				FlxTween.tween(backgroundSecret, {x: 0}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+				sellSlots.forEach(function(butt:FlxSprite)
+				{
+					FlxTween.tween(butt, {x: 200}, 1.8 + (butt.ID * 0.04), {ease: FlxEase.cubeInOut, type: PERSIST});
 				});
-				new FlxTimer().start(3.7, function (tmr:FlxTimer) {
+				FlxTween.tween(booba, {x: 780}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+				FlxTween.tween(assistantSecret, {x: 740}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+				FlxTween.tween(secretMerchantDialogue, {x: 130}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+			});
+			new FlxTimer().start(3.7, function (tmr:FlxTimer) {
+				if (!ClientPrefs.secretShopShowcased)
+				{
+					showcaseSecretDialogue.x = 130;
 					FlxTween.tween(showcaseSecretDialogue, {alpha: 1}, 0.01, {ease: FlxEase.cubeInOut, type: PERSIST});
 					showcaseSecretDialogue.start(0.04, true, endingSecret);
-					assistantSecret.offset.set(110, 36);
-					assistantSecret.animation.play('talking');
-					secretShopAccessed = true;
-					#if desktop
-						// Updating Discord Rich Presence
-						DiscordClient.changePresence("In Zeel's Secret Shop", null);
-					#end
-				});
-			}
-			else
-			{
-				FlxTween.tween(background, {x: 2000}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(luckOptionSlot1, {x: 2670}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(luckOptionSlot2, {x: 2670}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(luckOptionSlot3, {x: 2670}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(assistant, {x: 2070}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(merchantDialogue, {x: 2000}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(lights, {x: 2070}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(transitionOoooOo, {x: 1370}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-	
-				FlxTween.tween(bulb, {x: 1600}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-	
-				new FlxTimer().start(2, function (tmr:FlxTimer) {
-					FlxTween.tween(backgroundSecret, {x: 0}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(sellOption1, {x: 200}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(sellOption2, {x: 200}, 1.84, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(sellOption3, {x: 200}, 1.88, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(booba, {x: 780}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(assistantSecret, {x: 740}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(secretMerchantDialogue, {x: 130}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				});
-				new FlxTimer().start(3.7, function (tmr:FlxTimer) {
+				}
+				else
 					secretMerchantDialogue.start(0.04, true, endingSecret);
 					assistantSecret.offset.set(110, 36);
-					assistantSecret.animation.play('talking');
-					secretShopAccessed = true;
-				});
-			}
+
+				assistantSecret.animation.play('talking');
+				secretShopAccessed = true;
+
+				#if desktop
+					// Updating Discord Rich Presence
+					DiscordClient.changePresence("In Zeel's Secret Shop", null);
+				#end
+			});
 		}
-		if (FlxG.keys.justPressed.RIGHT && secretShopAccessed == true && ClientPrefs.sellSelected == false && ClientPrefs.luckSelected == false && ClientPrefs.secretShopShowcased == true)
+		if (FlxG.keys.justPressed.RIGHT && secretShopAccessed && !ClientPrefs.sellSelected && !ClientPrefs.luckSelected && ClientPrefs.secretShopShowcased)
 		{
 			secretMerchantDialogue.skip();
 			endingSecret();
+			changedShop = false;
 
 			FlxG.sound.play(Paths.sound('confirmMenu'));
 			FlxTween.tween(backgroundSecret, {x: -2000}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(sellOption1, {x: -2900}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(sellOption2, {x: -2900}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(sellOption3, {x: -2900}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+			sellSlots.forEach(function(butt:FlxSprite)
+			{
+				FlxTween.tween(butt, {x: -2900}, 1.8 + (butt.ID * 0.04), {ease: FlxEase.cubeInOut, type: PERSIST});
+			});
 			FlxTween.tween(booba, {x: -2630}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 			FlxTween.tween(assistantSecret, {x: -2670}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 			FlxTween.tween(secretMerchantDialogue, {x: -2400}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 
 			new FlxTimer().start(2, function (tmr:FlxTimer) {
 				FlxTween.tween(background, {x: 0}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(luckOptionSlot1, {x: 780}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				if (ClientPrefs.nunWeekPlayed == true)
-					FlxTween.tween(luckOptionSlot2, {x: 780}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				else
-					FlxTween.tween(luckOptionSlot2, {x: 785}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				if (ClientPrefs.kianaWeekPlayed == true)
-					FlxTween.tween(luckOptionSlot3, {x: 780}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				else
-					FlxTween.tween(luckOptionSlot3, {x: 785}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+				luckOptionSlots.forEach(function(button:FlxSprite)
+				{
+					var offset:Int = 0;
+					switch(button.ID)
+					{
+						case 1:
+							if (!ClientPrefs.nunWeekPlayed)
+								offset = 5;
+						case 2:
+							if (!ClientPrefs.kianaWeekPlayed)
+								offset = 5;
+					}	
+					FlxTween.tween(button, {x: 780 + offset},  1.8 + (button.ID * 0.04), {ease: FlxEase.cubeInOut, type: PERSIST});
+					
+				});
 				FlxTween.tween(assistant, {x: -10}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 				FlxTween.tween(lights, {x: 1470}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 				FlxTween.tween(bulb, {x: -400}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
@@ -2563,7 +1530,7 @@ class ShopState extends MusicBeatState
 				FlxTween.tween(transitionOoooOo, {x: -1370}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 			});
 			new FlxTimer().start(3.7, function (tmr:FlxTimer) {
-				if (ClientPrefs.talkedToZeel == false)
+				if (!ClientPrefs.talkedToZeel)
 				{
 					ClientPrefs.talkedToZeel = true;
 					ClientPrefs.saveSettings();
@@ -2581,27 +1548,26 @@ class ShopState extends MusicBeatState
 				assistant.animation.play('talkMain');
 				secretShopAccessed = false;
 			});
-			changedShop = false;
 		}
 
 		//Dialogue
-		if (ClientPrefs.secretShopShowcased == false && secretFirstTime == false && changedShop == true)
+		if (!ClientPrefs.secretShopShowcased && !secretFirstTime && changedShop)
 		{
 			secretFirstTime = true;
 			pressedEnter = 0;
 			new FlxTimer().start(1.8, function (tmr:FlxTimer) {
-			var achieveZeelID:Int = Achievements.getAchievementIndex('zeel_found');
+				var achieveZeelID:Int = Achievements.getAchievementIndex('zeel_found');
 				if(!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveZeelID][2])) {
 					Achievements.achievementsMap.set(Achievements.achievementsStuff[achieveZeelID][2], true);
-					giveZeelAchievement();
+					giveAchievement("zeel_found");
 					ClientPrefs.saveSettings();
 				}
 			});
 		}
 
-		if (ClientPrefs.secretShopShowcased == false && changedShop == true && gtfo == false)
+		if (!ClientPrefs.secretShopShowcased && changedShop && !gtfo)
 		{
-			if (FlxG.keys.justPressed.ENTER && questionShow == false && gtfo == false)
+			if (FlxG.keys.justPressed.ENTER && !questionShow)
 			{
 				trace ("Pressed Enter : " + pressedEnter);
 				switch (pressedEnter)
@@ -2638,7 +1604,7 @@ class ShopState extends MusicBeatState
 		}
 		else
 		{
-			if(FlxG.mouse.overlaps(assistantSecret) && FlxG.mouse.justPressed && ClientPrefs.sellSelected == false)
+			if(FlxG.mouse.overlaps(assistantSecret) && FlxG.mouse.justPressed && !ClientPrefs.sellSelected)
 			{
 				if (FlxG.mouse.overlaps(booba))
 				{
@@ -2692,14 +1658,14 @@ class ShopState extends MusicBeatState
 					var achieveZeelBoobaID:Int = Achievements.getAchievementIndex('pervert');
 					if((!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveZeelBoobaID][2])) && touchedBoobies == 1) {
 						Achievements.achievementsMap.set(Achievements.achievementsStuff[achieveZeelBoobaID][2], true);
-						giveZeelBoobaAchievement();
+						giveAchievement("pervert");
 						ClientPrefs.saveSettings();
 					}
 
 					var achieveZeelBoobaX25ID:Int = Achievements.getAchievementIndex('pervertX25');
 					if((!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveZeelBoobaX25ID][2])) && touchedBoobies == 25) {
 						Achievements.achievementsMap.set(Achievements.achievementsStuff[achieveZeelBoobaX25ID][2], true);
-						giveZeelBoobaX25Achievement();
+						giveAchievement("pervertX25");
 						ClientPrefs.saveSettings();
 					}
 				}
@@ -2762,1593 +1728,67 @@ class ShopState extends MusicBeatState
 					assistantSecret.offset.set(110, 36);
 				}
 			}
-			//button shit
-			if(FlxG.mouse.overlaps(sellOption1) && (ClientPrefs.sellSelected == false && ClientPrefs.luckSelected == false && ClientPrefs.choiceSelected == false && ClientPrefs.itemInfo == false))
-				sellOption1.alpha = 1;
-			else
-				sellOption1.alpha = 0.6;
-			if(FlxG.mouse.overlaps(sellOption2) && (ClientPrefs.sellSelected == false && ClientPrefs.luckSelected == false && ClientPrefs.choiceSelected == false && ClientPrefs.itemInfo == false))
-				sellOption2.alpha = 1;
-			else
-				sellOption2.alpha = 0.6;
-			if(FlxG.mouse.overlaps(sellOption3) && (ClientPrefs.sellSelected == false && ClientPrefs.luckSelected == false && ClientPrefs.choiceSelected == false && ClientPrefs.itemInfo == false))
-				sellOption3.alpha = 1;
-			else
-				sellOption3.alpha = 0.6;
+		
+		if (!ClientPrefs.itemInfo)
+		{
+			// Prize Ocacity Check
+			checkPrizeOverlap();
 
-			if(FlxG.mouse.overlaps(sellOption1) && FlxG.mouse.justPressed && ClientPrefs.sellSelected == false && gtfo == false)
+			//Selling Section Bundled with Buying Process
+			prizeSlots.forEach(function (prize:FlxSprite)
+			{
+				if (FlxG.mouse.overlaps(prize) && FlxG.mouse.justPressed && ClientPrefs.sellSelected)
 				{
-					secretMerchantDialogue.skip();
-
-					ClientPrefs.sellSelected = true;
-					shelfOneON = true;
-					FlxTween.tween(buyItemsBG, {y: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(prize1, {y: 160}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(prize2, {y: 160}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(prize3, {y: 160}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(prize4, {y: 160}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(prize5, {y: 160}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(prize6, {y: 160}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(charmPrize1, {y: 315}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					
-					prizeZeel.x = 250;
-					prizeTrampoline.x = 450;
-					prizeEgg.x = 650;
-					FlxTween.tween(prizeZeel, {y: 315}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(prizeTrampoline, {y: 315}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(prizeEgg, {y: 315}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxG.sound.play(Paths.sound('shop/shopOpenShelf'));
-					FlxG.sound.play(Paths.sound('shop/mouseClick'));
-				}
-
-				if(FlxG.mouse.overlaps(sellOption2) && FlxG.mouse.justPressed && ClientPrefs.sellSelected == false && gtfo == false && ClientPrefs.nunWeekPlayed == true)
-				{
-					secretMerchantDialogue.skip();
-
-					ClientPrefs.sellSelected = true;
-					shelfTwoON = true;
-					FlxTween.tween(buyItemsBG, {y: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(prize7, {y: 160}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(prize8, {y: 160}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(prize9, {y: 160}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(prize10, {y: 160}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(prize11, {y: 160}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(charmPrize2, {y: 160}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					
-					prizeZeel.x = 50;
-					prizeTrampoline.x = 250;
-					prizeEgg.x = 450;
-					FlxTween.tween(prizeZeel, {y: 315}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(prizeTrampoline, {y: 315}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(prizeEgg, {y: 315}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxG.sound.play(Paths.sound('shop/shopOpenShelf'));
-					FlxG.sound.play(Paths.sound('shop/mouseClick'));
-				}
-				else if (FlxG.mouse.overlaps(sellOption2) && FlxG.mouse.justPressed && ClientPrefs.sellSelected == false && gtfo == false && ClientPrefs.nunWeekPlayed == false)
-				{
-					FlxG.sound.play(Paths.sound('accessDenied'));
-					FlxG.camera.shake(0.02, 0.2, null, true, FlxAxes.XY);
-				}
-
-				if(FlxG.mouse.overlaps(sellOption3) && FlxG.mouse.justPressed && ClientPrefs.sellSelected == false && gtfo == false && ClientPrefs.kianaWeekPlayed == true)
-				{
-					secretMerchantDialogue.skip();
-
-					ClientPrefs.sellSelected = true;
-					shelfThreeON = true;
-					FlxTween.tween(buyItemsBG, {y: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(prize12, {y: 160}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(prize13, {y: 160}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(prize14, {y: 160}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(charmPrize3, {y: 160}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						
-					prizeZeel.x = 650;
-					prizeTrampoline.x = 850;
-					prizeEgg.x = 50;
-					FlxTween.tween(prizeZeel, {y: 160}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(prizeTrampoline, {y: 160}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(prizeEgg, {y: 315}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxG.sound.play(Paths.sound('shop/shopOpenShelf'));
-					FlxG.sound.play(Paths.sound('shop/mouseClick'));
-				}
-				else if (FlxG.mouse.overlaps(sellOption3) && FlxG.mouse.justPressed && ClientPrefs.sellSelected == false && gtfo == false && ClientPrefs.kianaWeekPlayed == false)
-				{
-					FlxG.sound.play(Paths.sound('accessDenied'));
-					FlxG.camera.shake(0.02, 0.2, null, true, FlxAxes.XY);
-				}
-
-		
-		//Selling Section Bundled with Buying Process
-		if (FlxG.mouse.overlaps(prize1) && FlxG.mouse.justPressed && ClientPrefs.sellSelected == true && ClientPrefs.itemInfo == false)
-		{
-			FlxG.sound.play(Paths.sound('scrollMenu'));
-			FlxG.sound.play(Paths.sound('shop/mouseClick'));
-			FlxTween.tween(prize1.scale, {x: 1.4, y: 1.4}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(blackOut, {alpha: 0.85}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(infoTitle, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(infoText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(buy, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(equipped, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-
-			if (ClientPrefs.legacyWeekFound == false)
-				{
-					infoTitle.text = "?????? ????";
-					infoText.text = "Let's take a trip down to the memory lane!\n-----------------------------------------
-					\nItem Cost: 20 Tokens | Your Tokens: " + ClientPrefs.tokens;
-				}
-			else
-				{
-					infoTitle.text = "Legacy Week Pass";
-					infoText.text = "Let's take a trip down to the memory lane!\n-----------------------------------------
-					\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
-				}
-
-			FlxTween.tween(prize2, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize3, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize4, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize5, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize6, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(charmPrize1, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-
-			FlxTween.tween(prizeZeel, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prizeTrampoline, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prizeEgg, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			ClientPrefs.itemInfo = true;
-		}
-		if (FlxG.mouse.overlaps(buy) && FlxG.mouse.justPressed && (infoTitle.text == "Legacy Week Pass" || infoTitle.text == "?????? ????") && ClientPrefs.tokens >= 20 && ClientPrefs.legacyWeekFound == false)
-		{
-			ClientPrefs.tokens -= 20;
-			ClientPrefs.legacyWeekFound = true;
-			ClientPrefs.songsUnlocked += 1;
-			ClientPrefs.bonusUnlocked = true;
-
-			NotificationAlert.sendCategoryNotification = true;
-			NotificationAlert.showMessage(this, 'Normal', true);
-							
-			NotificationAlert.saveNotifications();
-			ClientPrefs.saveSettings();
-			equipped.y = 600;
-
-			infoTitle.text = "Legacy Week Pass";
-			infoText.text = "Let's take a trip down to the memory lane!\n-----------------------------------------
-			\nItem Cost: 20 Tokens | Your Tokens: " + ClientPrefs.tokens;
-
-			FlxG.sound.play(Paths.sound('confirmMenu'));
-			FlxG.sound.play(Paths.sound('shop/mouseClick'));
-	
-			FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			buy.alpha = 0;
-			equipped.alpha = 1;
-		}
-		else if (ClientPrefs.legacyWeekFound == true && (infoTitle.text == "Legacy Week Pass" || infoTitle.text == "?????? ????"))
-		{
-			FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			buy.alpha = 0;
-			equipped.alpha = 1;
-		}
-		else if (FlxG.mouse.overlaps(buy) && FlxG.mouse.justPressed && infoTitle.text == "?????? ????" && ClientPrefs.tokens < 20 && ClientPrefs.legacyWeekFound == false)
-		{
-			FlxG.sound.play(Paths.sound('accessDenied'));
-			FlxG.camera.shake(0.02, 0.2, null, true, FlxAxes.XY);
-		}
-
-		if (FlxG.mouse.overlaps(prize2) && FlxG.mouse.justPressed && ClientPrefs.sellSelected == true && ClientPrefs.itemInfo == false)
-		{
-			FlxG.sound.play(Paths.sound('scrollMenu'));
-			FlxG.sound.play(Paths.sound('shop/mouseClick'));
-			FlxTween.tween(prize2.scale, {x: 1.4, y: 1.4}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize2, {x: prize1.x}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize2, {y: prize1.y}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(blackOut, {alpha: 0.85}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(infoTitle, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(infoText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(buy, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(equipped, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-	
-			if (ClientPrefs.nunsationalFound == false)
-			{
-				infoTitle.text = "???????????";
-				infoText.text = "The Nuns have 1 more surprise for you!\n-----------------------------------------
-				\nItem Cost: 15 Tokens | Your Tokens: " + ClientPrefs.tokens;
-			}
-			else
-			{
-				infoTitle.text = "Nunsational Pass";
-				infoText.text = "The Nuns have 1 more surprise for you!\n-----------------------------------------
-				\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
-			}
-
-			FlxTween.tween(prize1, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize3, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize4, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize5, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize6, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(charmPrize1, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-	
-			FlxTween.tween(prizeZeel, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prizeTrampoline, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prizeEgg, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			ClientPrefs.itemInfo = true;
-		}
-		if (FlxG.mouse.overlaps(buy) && FlxG.mouse.justPressed && (infoTitle.text == "Nunsational Pass" || infoTitle.text == "???????????") && ClientPrefs.tokens >= 15 && ClientPrefs.nunsationalFound == false)
-		{
-			ClientPrefs.tokens -= 15;
-			ClientPrefs.nunsationalFound = true;
-			ClientPrefs.songsUnlocked += 1;
-			ClientPrefs.xtraUnlocked = true;
-
-			NotificationAlert.showMessage(this, 'Freeplay', true);
-
-			ClientPrefs.saveSettings();
-			equipped.y = 600;
-	
-			infoTitle.text = "Nunsational Pass";
-			infoText.text = "The Nuns have 1 more surprise for you!\n-----------------------------------------
-			\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
-	
-			FlxG.sound.play(Paths.sound('confirmMenu'));
-			FlxG.sound.play(Paths.sound('shop/mouseClick'));
-		
-			FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			buy.alpha = 0;
-			equipped.alpha = 1;
-		}
-		else if (ClientPrefs.nunsationalFound == true && (infoTitle.text == "Nunsational Pass" || infoTitle.text == "???????????"))
-		{
-			FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			buy.alpha = 0;
-			equipped.alpha = 1;
-		}
-		else if (FlxG.mouse.overlaps(buy) && FlxG.mouse.justPressed && infoTitle.text == "???????????" && ClientPrefs.tokens < 15 && ClientPrefs.nunsationalFound == false)
-		{
-			FlxG.sound.play(Paths.sound('accessDenied'));
-			FlxG.camera.shake(0.02, 0.2, null, true, FlxAxes.XY);
-		}
-
-		if (FlxG.mouse.overlaps(prize3) && FlxG.mouse.justPressed && ClientPrefs.sellSelected == true && ClientPrefs.itemInfo == false)
-		{
-			FlxG.sound.play(Paths.sound('scrollMenu'));
-			FlxG.sound.play(Paths.sound('shop/mouseClick'));
-			FlxTween.tween(prize3.scale, {x: 1.4, y: 1.4}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize3, {x: prize1.x}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize3, {y: prize1.y}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(blackOut, {alpha: 0.85}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(infoTitle, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(infoText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(buy, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(equipped, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-	
-			if (ClientPrefs.lustalityFound == false)
-			{
-				infoTitle.text = "?????????";
-				infoText.text = "Kiana lusts to destroy you!\nWill you accept her old challenge?\n-----------------------------------------
-				\nItem Cost: 20 Tokens | Your Tokens: " + ClientPrefs.tokens;
-			}
-			else
-			{
-				infoTitle.text = "Lustality Pass";
-				infoText.text = "Kiana lusts to destroy you!\nWill you accept her old challenge?\n-----------------------------------------
-				\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
-			}
-
-			FlxTween.tween(prize1, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize2, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize4, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize5, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize6, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(charmPrize1, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-	
-			FlxTween.tween(prizeZeel, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prizeTrampoline, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prizeEgg, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			ClientPrefs.itemInfo = true;
-		}
-		if (FlxG.mouse.overlaps(buy) && FlxG.mouse.justPressed && (infoTitle.text == "Lustality Pass" || infoTitle.text == "?????????") && ClientPrefs.tokens >= 15 && ClientPrefs.lustalityFound == false)
-		{
-			ClientPrefs.tokens -= 20;
-			ClientPrefs.lustalityFound = true;
-			ClientPrefs.songsUnlocked += 1;
-			ClientPrefs.xtraUnlocked = true;
-
-			NotificationAlert.showMessage(this, 'Freeplay', true);
-
-			ClientPrefs.saveSettings();
-			equipped.y = 600;
-	
-			infoTitle.text = "Lustality Pass";
-			infoText.text = "Kiana lusts to destroy you!\nWill you accept her old challenge?\n-----------------------------------------
-			\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
-	
-			FlxG.sound.play(Paths.sound('confirmMenu'));
-			FlxG.sound.play(Paths.sound('shop/mouseClick'));
-		
-			FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			buy.alpha = 0;
-			equipped.alpha = 1;
-		}
-		else if (ClientPrefs.lustalityFound == true && (infoTitle.text == "Lustality Pass" || infoTitle.text == "?????????"))
-		{
-			FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			buy.alpha = 0;
-			equipped.alpha = 1;
-		}
-		else if (FlxG.mouse.overlaps(buy) && FlxG.mouse.justPressed && infoTitle.text == "?????????" && ClientPrefs.tokens < 20 && ClientPrefs.lustalityFound == false)
-		{
-			FlxG.sound.play(Paths.sound('accessDenied'));
-			FlxG.camera.shake(0.02, 0.2, null, true, FlxAxes.XY);
-		}
-
-		if (FlxG.mouse.overlaps(prize4) && FlxG.mouse.justPressed && ClientPrefs.sellSelected == true && ClientPrefs.itemInfo == false)
-		{
-			FlxG.sound.play(Paths.sound('scrollMenu'));
-			FlxG.sound.play(Paths.sound('shop/mouseClick'));
-			FlxTween.tween(prize4.scale, {x: 1.4, y: 1.4}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize4, {x: prize1.x}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize4, {y: prize1.y}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(blackOut, {alpha: 0.85}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(infoTitle, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(infoText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(buy, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(equipped, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-	
-			if (ClientPrefs.tofuFound == false)
-			{
-				infoTitle.text = "????";
-				infoText.text = "This is the result of TOO MUCH CONFIDENCE\nin a game of checkers.\n-----------------------------------------
-				\nItem Cost: 12 Tokens | Your Tokens: " + ClientPrefs.tokens;
-			}
-			else
-			{
-				infoTitle.text = "Tofu Pass";
-				infoText.text = "This is the result of TOO MUCH CONFIDENCE\nin a game of checkers.\n-----------------------------------------
-				\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
-			}
-
-			FlxTween.tween(prize1, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize2, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize3, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize5, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize6, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(charmPrize1, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-	
-			FlxTween.tween(prizeZeel, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prizeTrampoline, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prizeEgg, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			ClientPrefs.itemInfo = true;
-		}
-		if (FlxG.mouse.overlaps(buy) && FlxG.mouse.justPressed && (infoTitle.text == "Tofu Pass" || infoTitle.text == "????") && ClientPrefs.tokens >= 12 && ClientPrefs.tofuFound == false)
-		{
-			ClientPrefs.tokens -= 12;
-			ClientPrefs.tofuFound = true;
-			ClientPrefs.songsUnlocked += 1;
-			ClientPrefs.xtraUnlocked = true;
-
-			NotificationAlert.showMessage(this, 'Freeplay', true);
-
-			ClientPrefs.saveSettings();
-			equipped.y = 600;
-	
-			infoTitle.text = "Tofu Pass";
-			infoText.text = "This is the result of TOO MUCH CONFIDENCE\nin a game of checkers.\n-----------------------------------------
-			\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
-	
-			FlxG.sound.play(Paths.sound('confirmMenu'));
-			FlxG.sound.play(Paths.sound('shop/mouseClick'));
-		
-			FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			buy.alpha = 0;
-			equipped.alpha = 1;
-		}
-		else if (ClientPrefs.tofuFound == true && (infoTitle.text == "Tofu Pass" || infoTitle.text == "????"))
-		{
-			FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			buy.alpha = 0;
-			equipped.alpha = 1;
-		}
-		else if (FlxG.mouse.overlaps(buy) && FlxG.mouse.justPressed && infoTitle.text == "????" && ClientPrefs.tokens < 12 && ClientPrefs.tofuFound == false)
-		{
-			FlxG.sound.play(Paths.sound('accessDenied'));
-			FlxG.camera.shake(0.02, 0.2, null, true, FlxAxes.XY);
-		}
-
-		if (FlxG.mouse.overlaps(prize5) && FlxG.mouse.justPressed && ClientPrefs.sellSelected == true && ClientPrefs.itemInfo == false)
-		{
-			FlxG.sound.play(Paths.sound('scrollMenu'));
-			FlxG.sound.play(Paths.sound('shop/mouseClick'));
-			FlxTween.tween(prize5.scale, {x: 1.4, y: 1.4}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize5, {x: prize1.x}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize5, {y: prize1.y}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(blackOut, {alpha: 0.85}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(infoTitle, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(infoText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(buy, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(equipped, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-	
-			if (ClientPrefs.marcochromeFound == false)
-			{
-				infoTitle.text = "?????-??????";
-				infoText.text = "He seems different from what he used to be...\nWhat do you think happened to him?\n-----------------------------------------
-				\nItem Cost: 15 Tokens | Your Tokens: " + ClientPrefs.tokens;
-			}
-			else
-			{
-				infoTitle.text = "Marcochrome Pass";
-				infoText.text = "He seems different from what he used to be...\nWhat do you think happened to him?\n-----------------------------------------
-				\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
-			}
-
-			FlxTween.tween(prize1, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize2, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize3, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize4, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize6, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(charmPrize1, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-	
-			FlxTween.tween(prizeZeel, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prizeTrampoline, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prizeEgg, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			ClientPrefs.itemInfo = true;
-		}
-		if (FlxG.mouse.overlaps(buy) && FlxG.mouse.justPressed && (infoTitle.text == "Marcochrome Pass" || infoTitle.text == "?????-??????") && ClientPrefs.tokens >= 15 && ClientPrefs.marcochromeFound == false)
-		{
-			ClientPrefs.tokens -= 15;
-			ClientPrefs.marcochromeFound = true;
-			ClientPrefs.songsUnlocked += 1;
-			ClientPrefs.xtraUnlocked = true;
-			
-			NotificationAlert.showMessage(this, 'Freeplay', true);
-
-			ClientPrefs.saveSettings();
-			equipped.y = 600;
-	
-			infoTitle.text = "Marcochrome Pass";
-			infoText.text = "He seems different from what he used to be...\nWhat do you think happened to him?\n-----------------------------------------
-			\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
-	
-			FlxG.sound.play(Paths.sound('confirmMenu'));
-			FlxG.sound.play(Paths.sound('shop/mouseClick'));
-		
-			FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			buy.alpha = 0;
-			equipped.alpha = 1;
-		}
-		else if (ClientPrefs.marcochromeFound == true && (infoTitle.text == "Marcochrome Pass" || infoTitle.text == "?????-??????"))
-		{
-			FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			buy.alpha = 0;
-			equipped.alpha = 1;
-		}
-		else if (FlxG.mouse.overlaps(buy) && FlxG.mouse.justPressed && infoTitle.text == "?????-??????" && ClientPrefs.tokens < 15 && ClientPrefs.marcochromeFound == false)
-		{
-			FlxG.sound.play(Paths.sound('accessDenied'));
-			FlxG.camera.shake(0.02, 0.2, null, true, FlxAxes.XY);
-		}
-
-		if (FlxG.mouse.overlaps(prize6) && FlxG.mouse.justPressed && ClientPrefs.sellSelected == true && ClientPrefs.itemInfo == false)
-		{
-			FlxG.sound.play(Paths.sound('scrollMenu'));
-			FlxG.sound.play(Paths.sound('shop/mouseClick'));
-			FlxTween.tween(prize6.scale, {x: 1.4, y: 1.4}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize6, {x: prize1.x}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize6, {y: prize1.y}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(blackOut, {alpha: 0.85}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(infoTitle, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(infoText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(buy, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(equipped, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-	
-			if (ClientPrefs.morkyWeekFound == false)
-			{
-				infoTitle.text = "???? ????";
-				infoText.text = "ALL HAIL MORKY! ALL HAIL MORKY!\n-----------------------------------------
-				\nItem Cost: 15 Tokens | Your Tokens: " + ClientPrefs.tokens;
-			}
-			else
-			{
-				infoTitle.text = "Joke Week Pass";
-				infoText.text = "ALL HAIL MORKY! ALL HAIL MORKY!\n-----------------------------------------
-				\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
-			}
-
-			FlxTween.tween(prize1, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize2, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize3, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize4, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize5, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(charmPrize1, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-	
-			FlxTween.tween(prizeZeel, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prizeTrampoline, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prizeEgg, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			ClientPrefs.itemInfo = true;
-		}
-		if (FlxG.mouse.overlaps(buy) && FlxG.mouse.justPressed && (infoTitle.text == "Joke Week Pass" || infoTitle.text == "???? ????") && ClientPrefs.tokens >= 15 && ClientPrefs.morkyWeekFound == false)
-		{
-			ClientPrefs.tokens -= 15;
-			ClientPrefs.morkyWeekFound = true;
-			ClientPrefs.songsUnlocked += 1;
-			ClientPrefs.bonusUnlocked = true;
-
-			NotificationAlert.sendCategoryNotification = true;
-			NotificationAlert.showMessage(this, 'Normal', true);
-							
-			NotificationAlert.saveNotifications();
-			ClientPrefs.saveSettings();
-			equipped.y = 600;
-	
-			infoTitle.text = "Joke Week Pass";
-			infoText.text = "ALL HAIL MORKY! ALL HAIL MORKY!\n-----------------------------------------
-			\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
-	
-			FlxG.sound.play(Paths.sound('confirmMenu'));
-			FlxG.sound.play(Paths.sound('shop/mouseClick'));
-		
-			FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			buy.alpha = 0;
-			equipped.alpha = 1;
-		}
-		else if (ClientPrefs.morkyWeekFound == true && (infoTitle.text == "Joke Week Pass" || infoTitle.text == "???? ????"))
-		{
-			FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			buy.alpha = 0;
-			equipped.alpha = 1;
-		}
-		else if (FlxG.mouse.overlaps(buy) && FlxG.mouse.justPressed && infoTitle.text == "???? ????" && ClientPrefs.tokens < 15 && ClientPrefs.morkyWeekFound == false)
-		{
-			FlxG.sound.play(Paths.sound('accessDenied'));
-			FlxG.camera.shake(0.02, 0.2, null, true, FlxAxes.XY);
-		}
-
-		if (FlxG.mouse.overlaps(prize7) && FlxG.mouse.justPressed && ClientPrefs.sellSelected == true && ClientPrefs.itemInfo == false)
-		{
-			FlxG.sound.play(Paths.sound('scrollMenu'));
-			FlxG.sound.play(Paths.sound('shop/mouseClick'));
-			FlxTween.tween(prize7.scale, {x: 1.4, y: 1.4}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize7, {x: prize7.x}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize7, {y: prize7.y}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(blackOut, {alpha: 0.85}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(infoTitle, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(infoText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(buy, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(equipped, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-	
-			if (ClientPrefs.fnvFound == false)
-			{
-				infoTitle.text = "???";
-				infoText.text = "I don't know what's this, just take it.\n-----------------------------------------
-				\nItem Cost: FREE | Your Tokens: " + ClientPrefs.tokens;
-			}
-			else
-			{
-				infoTitle.text = "FNV Pass";
-				infoText.text = "I don't know what's this, just take it.\n-----------------------------------------
-				\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
-			}
-
-			FlxTween.tween(prize8, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize9, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize10, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize11, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(charmPrize2, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-	
-			FlxTween.tween(prizeZeel, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prizeTrampoline, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prizeEgg, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			ClientPrefs.itemInfo = true;
-		}
-		if (FlxG.mouse.overlaps(buy) && FlxG.mouse.justPressed && (infoTitle.text == "FNV Pass" || infoTitle.text == "???") && ClientPrefs.fnvFound == false)
-		{
-			ClientPrefs.fnvFound = true;
-			ClientPrefs.songsUnlocked += 1;
-			ClientPrefs.xtraUnlocked = true;
-
-			NotificationAlert.showMessage(this, 'Freeplay', true);
-
-			ClientPrefs.saveSettings();
-			equipped.y = 600;
-	
-			infoTitle.text = "FNV Pass";
-			infoText.text = "I don't know what's this, just take it.\n-----------------------------------------
-			\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
-	
-			FlxG.sound.play(Paths.sound('confirmMenu'));
-			FlxG.sound.play(Paths.sound('shop/mouseClick'));
-		
-			FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			buy.alpha = 0;
-			equipped.alpha = 1;
-		}
-		else if (ClientPrefs.fnvFound == true && (infoTitle.text == "FNV Pass" || infoTitle.text == "???"))
-		{
-			FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			buy.alpha = 0;
-			equipped.alpha = 1;
-		}
-
-		if (FlxG.mouse.overlaps(prize8) && FlxG.mouse.justPressed && ClientPrefs.sellSelected == true && ClientPrefs.itemInfo == false)
-		{
-			FlxG.sound.play(Paths.sound('scrollMenu'));
-			FlxG.sound.play(Paths.sound('shop/mouseClick'));
-			FlxTween.tween(prize8.scale, {x: 1.4, y: 1.4}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize8, {x: prize7.x}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize8, {y: prize7.y}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(blackOut, {alpha: 0.85}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(infoTitle, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(infoText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(buy, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(equipped, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-	
-			if (ClientPrefs.shortFound == false)
-			{
-				infoTitle.text = "?.????";
-				infoText.text = "A- (You guys like shorts?)\n-----------------------------------------
-				\nItem Cost: 1 Token | Your Tokens: " + ClientPrefs.tokens;
-			}
-			else
-			{
-				infoTitle.text = "0.0015 Pass";
-				infoText.text = "A- (You guys like shorts?)\n-----------------------------------------
-				\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
-			}
-
-			FlxTween.tween(prize7, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize9, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize10, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize11, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(charmPrize2, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-	
-			FlxTween.tween(prizeZeel, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prizeTrampoline, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prizeEgg, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			ClientPrefs.itemInfo = true;
-		}
-		if (FlxG.mouse.overlaps(buy) && FlxG.mouse.justPressed && (infoTitle.text == "0.0015 Pass" || infoTitle.text == "?.????") && ClientPrefs.tokens >= 1 && ClientPrefs.shortFound == false)
-		{
-			ClientPrefs.tokens -= 1;
-			ClientPrefs.shortFound = true;
-			ClientPrefs.songsUnlocked += 1;
-			ClientPrefs.xtraUnlocked = true;
-
-			NotificationAlert.showMessage(this, 'Freeplay', true);
-
-			ClientPrefs.saveSettings();
-			equipped.y = 600;
-	
-			infoTitle.text = "0.0015 Pass";
-			infoText.text = "A- (You guys like shorts?)\n-----------------------------------------
-			\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
-	
-			FlxG.sound.play(Paths.sound('confirmMenu'));
-			FlxG.sound.play(Paths.sound('shop/mouseClick'));
-		
-			FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			buy.alpha = 0;
-			equipped.alpha = 1;
-		}
-		else if (ClientPrefs.shortFound == true && (infoTitle.text == "0.0015 Pass" || infoTitle.text == "?.????"))
-		{
-			FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			buy.alpha = 0;
-			equipped.alpha = 1;
-		}
-		else if (FlxG.mouse.overlaps(buy) && FlxG.mouse.justPressed && infoTitle.text == "?.????" && ClientPrefs.tokens < 1 && ClientPrefs.shortFound == false)
-		{
-			FlxG.sound.play(Paths.sound('accessDenied'));
-			FlxG.camera.shake(0.02, 0.2, null, true, FlxAxes.XY);
-		}
-
-		if (FlxG.mouse.overlaps(prize9) && FlxG.mouse.justPressed && ClientPrefs.sellSelected == true && ClientPrefs.itemInfo == false)
-		{
-			FlxG.sound.play(Paths.sound('scrollMenu'));
-			FlxG.sound.play(Paths.sound('shop/mouseClick'));
-			FlxTween.tween(prize9.scale, {x: 1.4, y: 1.4}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize9, {x: prize7.x}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize9, {y: prize7.y}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(blackOut, {alpha: 0.85}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(infoTitle, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(infoText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(buy, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(equipped, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-	
-			if (ClientPrefs.nicFound == false)
-			{
-				infoTitle.text = "????.???";
-				infoText.text = "I AM GOD! ..Probably.\n-----------------------------------------
-				\nItem Cost: 15 Tokens | Your Tokens: " + ClientPrefs.tokens;
-			}
-			else
-			{
-				infoTitle.text = "Slow.FLP Pass";
-				infoText.text = "I AM GOD! ..Probably.\n-----------------------------------------
-				\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
-			}
-
-			FlxTween.tween(prize7, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize8, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize10, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize11, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(charmPrize2, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-	
-			FlxTween.tween(prizeZeel, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prizeTrampoline, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prizeEgg, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			ClientPrefs.itemInfo = true;
-		}
-		if (FlxG.mouse.overlaps(buy) && FlxG.mouse.justPressed && (infoTitle.text == "Slow.FLP Pass" || infoTitle.text == "????.???") && ClientPrefs.tokens >= 15 && ClientPrefs.nicFound == false)
-		{
-			ClientPrefs.tokens -= 15;
-			ClientPrefs.nicFound = true;
-			ClientPrefs.songsUnlocked += 1;
-			ClientPrefs.xtraUnlocked = true;
-
-			NotificationAlert.showMessage(this, 'Freeplay', true);
-
-			ClientPrefs.saveSettings();
-			equipped.y = 600;
-	
-			infoTitle.text = "Slow.FLP Pass";
-			infoText.text = "I AM GOD! ..Probably.\n-----------------------------------------
-			\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
-	
-			FlxG.sound.play(Paths.sound('confirmMenu'));
-			FlxG.sound.play(Paths.sound('shop/mouseClick'));
-		
-			FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			buy.alpha = 0;
-			equipped.alpha = 1;
-		}
-		else if (ClientPrefs.nicFound == true && (infoTitle.text == "Slow.FLP Pass" || infoTitle.text == "????.???"))
-		{
-			FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			buy.alpha = 0;
-			equipped.alpha = 1;
-		}
-		else if (FlxG.mouse.overlaps(buy) && FlxG.mouse.justPressed && infoTitle.text == "????.???" && ClientPrefs.tokens < 15 && ClientPrefs.nicFound == false)
-		{
-			FlxG.sound.play(Paths.sound('accessDenied'));
-			FlxG.camera.shake(0.02, 0.2, null, true, FlxAxes.XY);
-		}
-
-		if (FlxG.mouse.overlaps(prize10) && FlxG.mouse.justPressed && ClientPrefs.sellSelected == true && ClientPrefs.itemInfo == false)
-		{
-			FlxG.sound.play(Paths.sound('scrollMenu'));
-			FlxG.sound.play(Paths.sound('shop/mouseClick'));
-			FlxTween.tween(prize10.scale, {x: 1.4, y: 1.4}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize10, {x: prize7.x}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize10, {y: prize7.y}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(blackOut, {alpha: 0.85}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(infoTitle, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(infoText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(buy, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(equipped, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-	
-			if (ClientPrefs.infatuationFound == false)
-			{
-				infoTitle.text = "????????????";
-				infoText.text = "You won't get away from me!! NEVEEEERRRR~\n-----------------------------------------
-				\nItem Cost: 20 Tokens | Your Tokens: " + ClientPrefs.tokens;
-			}
-			else
-			{
-				infoTitle.text = "Fanfuck Forever Pass";
-				infoText.text = "You won't get away from me!! NEVEEEERRRR~\n-----------------------------------------
-				\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
-			}
-
-			FlxTween.tween(prize7, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize8, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize9, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize11, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(charmPrize2, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-	
-			FlxTween.tween(prizeZeel, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prizeTrampoline, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prizeEgg, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			ClientPrefs.itemInfo = true;
-		}
-		if (FlxG.mouse.overlaps(buy) && FlxG.mouse.justPressed && (infoTitle.text == "Fanfuck Forever Pass" || infoTitle.text == "????????????") && ClientPrefs.tokens >= 20 && ClientPrefs.infatuationFound == false)
-		{
-			ClientPrefs.tokens -= 20;
-			ClientPrefs.infatuationFound = true;
-			ClientPrefs.songsUnlocked += 1;
-			ClientPrefs.xtraUnlocked = true;
-			ClientPrefs.saveSettings();
-			equipped.y = 600;
-	
-			infoTitle.text = "Fanfuck Forever Pass";
-			infoText.text = "You won't get away from me!! NEVEEEERRRR~\n-----------------------------------------
-			\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
-	
-			FlxG.sound.play(Paths.sound('confirmMenu'));
-			FlxG.sound.play(Paths.sound('shop/mouseClick'));
-		
-			FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			buy.alpha = 0;
-			equipped.alpha = 1;
-		}
-		else if (ClientPrefs.infatuationFound == true && (infoTitle.text == "Fanfuck Forever Pass" || infoTitle.text == "????????????"))
-		{
-			FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			buy.alpha = 0;
-			equipped.alpha = 1;
-		}
-		else if (FlxG.mouse.overlaps(buy) && FlxG.mouse.justPressed && infoTitle.text == "????????????" && ClientPrefs.tokens < 20 && ClientPrefs.infatuationFound == false)
-		{
-			FlxG.sound.play(Paths.sound('accessDenied'));
-			FlxG.camera.shake(0.02, 0.2, null, true, FlxAxes.XY);
-		}
-
-		if (FlxG.mouse.overlaps(prize11) && FlxG.mouse.justPressed && ClientPrefs.sellSelected == true && ClientPrefs.itemInfo == false)
-		{
-			FlxG.sound.play(Paths.sound('scrollMenu'));
-			FlxG.sound.play(Paths.sound('shop/mouseClick'));
-			FlxTween.tween(prize11.scale, {x: 1.4, y: 1.4}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize11, {x: prize7.x}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize11, {y: prize7.y}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(blackOut, {alpha: 0.85}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(infoTitle, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(infoText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(buy, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(equipped, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-	
-			if (ClientPrefs.rainyDazeFound == false)
-			{
-				infoTitle.text = "????? ????";
-				infoText.text = "Just waiting for the weather to lay off\nand stop pouring down..\n-----------------------------------------
-				\nItem Cost: 15 Tokens | Your Tokens: " + ClientPrefs.tokens;
-			}
-			else
-			{
-				infoTitle.text = "Rainy Daze Pass";
-				infoText.text = "Just waiting for the weather to lay off\nand stop pouring down..\n-----------------------------------------
-				\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
-			}
-
-			FlxTween.tween(prize7, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize8, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize9, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize10, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(charmPrize2, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-	
-			FlxTween.tween(prizeZeel, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prizeTrampoline, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prizeEgg, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			ClientPrefs.itemInfo = true;
-		}
-		if (FlxG.mouse.overlaps(buy) && FlxG.mouse.justPressed && (infoTitle.text == "Rainy Daze Pass" || infoTitle.text == "????? ????") && ClientPrefs.tokens >= 15 && ClientPrefs.rainyDazeFound == false)
-		{
-			ClientPrefs.tokens -= 15;
-			ClientPrefs.rainyDazeFound = true;
-			ClientPrefs.songsUnlocked += 1;
-			ClientPrefs.xtraUnlocked = true;
-
-			NotificationAlert.showMessage(this, 'Freeplay', true);
-
-			ClientPrefs.saveSettings();
-			equipped.y = 600;
-	
-			infoTitle.text = "Rainy Daze Pass";
-			infoText.text = "Just waiting for the weather to lay off\nand stop pouring down..\n-----------------------------------------
-			\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
-	
-			FlxG.sound.play(Paths.sound('confirmMenu'));
-			FlxG.sound.play(Paths.sound('shop/mouseClick'));
-		
-			FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			buy.alpha = 0;
-			equipped.alpha = 1;
-		}
-		else if (ClientPrefs.rainyDazeFound == true && (infoTitle.text == "Rainy Daze Pass" || infoTitle.text == "????? ????"))
-		{
-			FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			buy.alpha = 0;
-			equipped.alpha = 1;
-		}
-		else if (FlxG.mouse.overlaps(buy) && FlxG.mouse.justPressed && infoTitle.text == "????????" && ClientPrefs.tokens < 15 && ClientPrefs.rainyDazeFound == false)
-		{
-			FlxG.sound.play(Paths.sound('accessDenied'));
-			FlxG.camera.shake(0.02, 0.2, null, true, FlxAxes.XY);
-		}
-
-		if (FlxG.mouse.overlaps(prize12) && FlxG.mouse.justPressed && ClientPrefs.sellSelected == true && ClientPrefs.itemInfo == false)
-		{
-			FlxG.sound.play(Paths.sound('scrollMenu'));
-			FlxG.sound.play(Paths.sound('shop/mouseClick'));
-			FlxTween.tween(prize12.scale, {x: 1.4, y: 1.4}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize12, {x: prize12.x}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize12, {y: prize12.y}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(blackOut, {alpha: 0.85}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(infoTitle, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(infoText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(buy, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(equipped, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-	
-			if (ClientPrefs.debugFound == false)
-			{
-				infoTitle.text = "????????";
-				infoText.text = "Finally, he's contained!\nLast time he got out, the game almost fucking broke.\n-----------------------------------------
-				\nItem Cost: 7 Tokens | Your Tokens: " + ClientPrefs.tokens;
-			}
-			else
-			{
-				infoTitle.text = "Marauder Pass";
-				infoText.text = "Finally, he's contained!\nLast time he got out, the game almost fucking broke.\n-----------------------------------------
-				\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
-			}
-
-			FlxTween.tween(prize13, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize14, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(charmPrize3, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-	
-			FlxTween.tween(prizeZeel, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prizeTrampoline, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prizeEgg, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			ClientPrefs.itemInfo = true;
-		}
-		if (FlxG.mouse.overlaps(buy) && FlxG.mouse.justPressed && (infoTitle.text == "Marauder Pass" || infoTitle.text == "????????") && ClientPrefs.tokens >= 7 && ClientPrefs.debugFound == false)
-		{
-			ClientPrefs.tokens -= 7;
-			ClientPrefs.debugFound = true;
-			ClientPrefs.songsUnlocked += 1;
-			ClientPrefs.xtraUnlocked = true;
-
-			NotificationAlert.showMessage(this, 'Freeplay', true);
-			
-			ClientPrefs.saveSettings();
-			equipped.y = 600;
-	
-			infoTitle.text = "Marauder Pass";
-			infoText.text = "Finally, he's contained!\nLast time he got out, the game almost fucking broke.\n-----------------------------------------
-			\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
-	
-			FlxG.sound.play(Paths.sound('confirmMenu'));
-			FlxG.sound.play(Paths.sound('shop/mouseClick'));
-		
-			FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			buy.alpha = 0;
-			equipped.alpha = 1;
-		}
-		else if (ClientPrefs.debugFound == true && (infoTitle.text == "Marauder Pass" || infoTitle.text == "????????"))
-		{
-			FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			buy.alpha = 0;
-			equipped.alpha = 1;
-		}
-		else if (FlxG.mouse.overlaps(buy) && FlxG.mouse.justPressed && infoTitle.text == "????????" && ClientPrefs.tokens < 7 && ClientPrefs.debugFound == false)
-		{
-			FlxG.sound.play(Paths.sound('accessDenied'));
-			FlxG.camera.shake(0.02, 0.2, null, true, FlxAxes.XY);
-		}
-
-		if (FlxG.mouse.overlaps(prize13) && FlxG.mouse.justPressed && ClientPrefs.sellSelected == true && ClientPrefs.itemInfo == false)
-		{
-			FlxG.sound.play(Paths.sound('scrollMenu'));
-			FlxG.sound.play(Paths.sound('shop/mouseClick'));
-			FlxTween.tween(prize13.scale, {x: 1.4, y: 1.4}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize13, {x: prize12.x}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize13, {y: prize12.y}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(blackOut, {alpha: 0.85}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(infoTitle, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(infoText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(buy, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(equipped, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-	
-			if (ClientPrefs.susWeekFound == false)
-			{
-				infoTitle.text = "??? ????";
-				infoText.text = "I don't know man, this item seems kind of sus..\nIt looks like another IMPOSTOR is AMONG US-\n-----------------------------------------
-				\nItem Cost: 20 Tokens | Your Tokens: " + ClientPrefs.tokens;
-			}
-			else
-			{
-				infoTitle.text = "Sus Week Pass";
-				infoText.text = "I don't know man, this item seems kind of sus..\nIt looks like another IMPOSTOR is AMONG US-\n-----------------------------------------
-				\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
-			}
-
-			FlxTween.tween(prize12, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize14, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(charmPrize3, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-	
-			FlxTween.tween(prizeZeel, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prizeTrampoline, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prizeEgg, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			ClientPrefs.itemInfo = true;
-		}
-		if (FlxG.mouse.overlaps(buy) && FlxG.mouse.justPressed && (infoTitle.text == "Sus Week Pass" || infoTitle.text == "??? ????") && ClientPrefs.tokens >= 20 && ClientPrefs.susWeekFound == false)
-		{
-			ClientPrefs.tokens -= 20;
-			ClientPrefs.susWeekFound = true;
-			ClientPrefs.songsUnlocked += 1;
-			ClientPrefs.bonusUnlocked = true;
-
-			NotificationAlert.sendCategoryNotification = true;
-			NotificationAlert.showMessage(this, 'Normal', true);
-							
-			NotificationAlert.saveNotifications();
-			ClientPrefs.saveSettings();
-			equipped.y = 600;
-	
-			infoTitle.text = "Sus Week Pass";
-			infoText.text = "I don't know man, this item seems kind of sus..\nIt looks like another IMPOSTOR is AMONG US-\n-----------------------------------------
-			\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
-	
-			FlxG.sound.play(Paths.sound('confirmMenu'));
-			FlxG.sound.play(Paths.sound('shop/mouseClick'));
-		
-			FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			buy.alpha = 0;
-			equipped.alpha = 1;
-		}
-		else if (ClientPrefs.susWeekFound == true && (infoTitle.text == "Sus Week Pass" || infoTitle.text == "??? ????"))
-		{
-			FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			buy.alpha = 0;
-			equipped.alpha = 1;
-		}
-		else if (FlxG.mouse.overlaps(buy) && FlxG.mouse.justPressed && infoTitle.text == "??? ????" && ClientPrefs.tokens < 20 && ClientPrefs.susWeekFound == false)
-		{
-			FlxG.sound.play(Paths.sound('accessDenied'));
-			FlxG.camera.shake(0.02, 0.2, null, true, FlxAxes.XY);
-		}
-
-		if (FlxG.mouse.overlaps(prize14) && FlxG.mouse.justPressed && ClientPrefs.sellSelected == true && ClientPrefs.itemInfo == false)
-		{
-			FlxG.sound.play(Paths.sound('scrollMenu'));
-			FlxG.sound.play(Paths.sound('shop/mouseClick'));
-			FlxTween.tween(prize14.scale, {x: 1.4, y: 1.4}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize14, {x: prize12.x}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize14, {y: prize12.y}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(blackOut, {alpha: 0.85}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(infoTitle, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(infoText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(buy, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(equipped, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-	
-			if (ClientPrefs.dsideWeekFound == false)
-			{
-				infoTitle.text = "?-????? ????";
-				infoText.text = "Oooo~ This looks like a dope Cassette tape.\nI wonder what's inside?\n-----------------------------------------
-				\nItem Cost: 25 Tokens | Your Tokens: " + ClientPrefs.tokens;
-			}
-			else
-			{
-				infoTitle.text = "D-sides Week Pass";
-				infoText.text = "Oooo~ This looks like a dope Cassette tape.\nI wonder what's inside?\n-----------------------------------------
-				\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
-			}
-
-			FlxTween.tween(prize12, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize13, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(charmPrize3, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-	
-			FlxTween.tween(prizeZeel, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prizeTrampoline, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prizeEgg, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			ClientPrefs.itemInfo = true;
-		}
-		if (FlxG.mouse.overlaps(buy) && FlxG.mouse.justPressed && (infoTitle.text == "D-sides Week Pass" || infoTitle.text == "?-????? ????") && ClientPrefs.tokens >= 25 && ClientPrefs.dsideWeekFound == false)
-		{
-			ClientPrefs.tokens -= 25;
-			ClientPrefs.dsideWeekFound = true;
-			ClientPrefs.songsUnlocked += 1;
-			ClientPrefs.bonusUnlocked = true;
-
-			NotificationAlert.sendCategoryNotification = true;
-			NotificationAlert.showMessage(this, 'Normal', true);
-							
-			NotificationAlert.saveNotifications();
-			ClientPrefs.saveSettings();
-			equipped.y = 600;
-	
-			infoTitle.text = "D-sides Week Pass";
-			infoText.text = "Oooo~ This looks like a dope Cassette tape.\nI wonder what's inside?\n-----------------------------------------
-			\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
-	
-			FlxG.sound.play(Paths.sound('confirmMenu'));
-			FlxG.sound.play(Paths.sound('shop/mouseClick'));
-		
-			FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			buy.alpha = 0;
-			equipped.alpha = 1;
-		}
-		else if (ClientPrefs.dsideWeekFound == true && (infoTitle.text == "D-sides Week Pass" || infoTitle.text == "?-????? ????"))
-		{
-			FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			buy.alpha = 0;
-			equipped.alpha = 1;
-		}
-		else if (FlxG.mouse.overlaps(buy) && FlxG.mouse.justPressed && infoTitle.text == "?-????? ????" && ClientPrefs.tokens < 25 && ClientPrefs.dsideWeekFound == false)
-		{
-			FlxG.sound.play(Paths.sound('accessDenied'));
-			FlxG.camera.shake(0.02, 0.2, null, true, FlxAxes.XY);
-		}
-
-		if (FlxG.mouse.overlaps(prizeZeel) && FlxG.mouse.justPressed && ClientPrefs.sellSelected == true && ClientPrefs.itemInfo == false)
-		{
-			FlxG.sound.play(Paths.sound('scrollMenu'));
-			FlxG.sound.play(Paths.sound('shop/mouseClick'));
-			FlxTween.tween(prizeZeel.scale, {x: 1.4, y: 1.4}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			if (shelfOneON == true)
-			{
-				FlxTween.tween(prizeZeel, {x: prize1.x}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(prizeZeel, {y: prize1.y}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			}
-			else if (shelfTwoON == true)
-			{
-				FlxTween.tween(prizeZeel, {x: prize7.x}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(prizeZeel, {y: prize7.y}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			}
-			else if (shelfThreeON == true)
-			{
-				FlxTween.tween(prizeZeel, {x: prize12.x}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(prizeZeel, {y: prize12.y}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			}
-		
-			FlxTween.tween(blackOut, {alpha: 0.85}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(infoTitle, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(infoText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(buy, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(equipped, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			
-			if (ClientPrefs.zeelNakedPics == false)
-			{
-				infoTitle.text = "Zeel's Naked Pics";
-				infoText.text = "Earning this item unlocks Zeel's Naked Pics!\nPress EQUIPPED to view~\n!!BACK ON IT'S NORMAL PRIZE!!\n-----------------------------------------
-				\nItem Cost: 75 Tokens | Your Tokens: " + ClientPrefs.tokens;
-			}
-			else
-			{
-				infoTitle.text = "Zeel's Naked Pics";
-				infoText.text = "Earning this item unlocks Zeel's Naked Pics!\nPress EQUIPPED to view~\n!!BACK ON IT'S NORMAL PRIZE!!\n-----------------------------------------
-				\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
-			}
-
-			FlxTween.tween(prize1, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize2, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize3, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize4, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize5, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize6, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize7, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize8, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize9, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize10, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize11, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize12, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize13, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize14, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(charmPrize1, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(charmPrize2, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(charmPrize3, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-
-			FlxTween.tween(prizeTrampoline, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prizeEgg, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			ClientPrefs.itemInfo = true;
-		}
-		if (FlxG.mouse.overlaps(buy) && FlxG.mouse.justPressed && infoTitle.text == "Zeel's Naked Pics" && ClientPrefs.tokens >= 75 && ClientPrefs.zeelNakedPics == false)
-		{
-			ClientPrefs.tokens -= 75;
-			ClientPrefs.zeelNakedPics = true;
-			ClientPrefs.saveSettings();
-						
-			infoTitle.text = "Zeel's Naked Pics";
-			infoText.text = "Earning this item unlocks Zeel's Naked Pics!\nPress EQUIPPED to view~\n!!BACK ON IT'S NORMAL PRIZE!!\n-----------------------------------------
-			\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
-		
-			FlxG.sound.play(Paths.sound('confirmMenu'));
-			FlxG.sound.play(Paths.sound('shop/mouseClick'));
-
-			FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			buy.alpha = 0;
-			equipped.alpha = 1;
-		}
-		else if (ClientPrefs.zeelNakedPics == true && infoTitle.text == "Zeel's Naked Pics")
-		{
-			FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			buy.alpha = 0;
-			equipped.alpha = 1;
-		}
-		else if (FlxG.mouse.overlaps(buy) && FlxG.mouse.justPressed && infoTitle.text == "Zeel's Naked Pics" && ClientPrefs.tokens < 20 && ClientPrefs.zeelNakedPics == false)
-		{
-			FlxG.sound.play(Paths.sound('accessDenied'));
-			FlxG.camera.shake(0.02, 0.2, null, true, FlxAxes.XY);
-		}	
-
-		if (FlxG.mouse.overlaps(prizeTrampoline) && FlxG.mouse.justPressed && ClientPrefs.sellSelected == true && ClientPrefs.itemInfo == false)
-		{
-			FlxG.sound.play(Paths.sound('scrollMenu'));
-			FlxG.sound.play(Paths.sound('shop/mouseClick'));
-			FlxTween.tween(prizeTrampoline.scale, {x: 1.4, y: 1.4}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			if (shelfOneON)
-			{
-				FlxTween.tween(prizeTrampoline, {x: prize1.x}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(prizeTrampoline, {y: prize1.y}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			}
-			else if (shelfTwoON)
-			{
-				FlxTween.tween(prizeTrampoline, {x: prize7.x}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(prizeTrampoline, {y: prize7.y}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			}
-			else if (shelfThreeON)
-			{
-				FlxTween.tween(prizeTrampoline, {x: prize12.x}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(prizeTrampoline, {y: prize12.y}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			}
-		
-			FlxTween.tween(blackOut, {alpha: 0.85}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(infoTitle, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(infoText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(buy, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(equipped, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					
-			if (ClientPrefs.trampolineUnlocked == false)
-			{
-				infoTitle.text = "Trampoline Mode";
-				infoText.text = "Earning this item unlocks Trampoline Mode!\nTo use once you buy it, make sure you enable it through options >> FNV Settings!\n-----------------------------------------
-				\nItem Cost: 15 Tokens | Your Tokens: " + ClientPrefs.tokens;
-			}
-			else
-			{
-				infoTitle.text = "Trampoline Mode";
-				infoText.text = "Earning this item unlocks Trampoline Mode!\nTo use once you buy it, make sure you enable it through options >> FNV Settings!\n-----------------------------------------
-				\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
-			}
-	
-			FlxTween.tween(prize1, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize2, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize3, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize4, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize5, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize6, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize7, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize8, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize9, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize10, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize11, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize12, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize13, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prize14, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(charmPrize1, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(charmPrize2, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(charmPrize3, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				
-			FlxTween.tween(prizeZeel, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(prizeEgg, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			ClientPrefs.itemInfo = true;
-		}
-		if (FlxG.mouse.overlaps(buy) && FlxG.mouse.justPressed && infoTitle.text == "Trampoline Mode" && ClientPrefs.tokens >= 15 && ClientPrefs.trampolineUnlocked == false)
-		{
-			ClientPrefs.tokens -= 15;
-			ClientPrefs.trampolineUnlocked = true;
-
-			NotificationAlert.sendOptionsNotification = true;
-			NotificationAlert.showMessage(this, 'Normal', true);
-							
-			NotificationAlert.saveNotifications();
-			ClientPrefs.saveSettings();
-						
-			infoTitle.text = "Trampoline Mode";
-			infoText.text = "Earning this item unlocks Trampoline Mode!\nTo use once you buy it, make sure you enable it through options >> FNV Settings!\n-----------------------------------------
-			\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
-		
-			FlxG.sound.play(Paths.sound('confirmMenu'));
-			FlxG.sound.play(Paths.sound('shop/mouseClick'));
-
-			FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			buy.alpha = 0;
-			equipped.alpha = 1;
-		}
-		else if (ClientPrefs.trampolineUnlocked == true && infoTitle.text == "Trampoline Mode")
-		{
-			FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			buy.alpha = 0;
-			equipped.alpha = 1;
-		}
-		else if (FlxG.mouse.overlaps(buy) && FlxG.mouse.justPressed && infoTitle.text == "Trampoline Mode" && ClientPrefs.tokens < 15 && ClientPrefs.trampolineUnlocked == false)
-		{
-			FlxG.sound.play(Paths.sound('accessDenied'));
-			FlxG.camera.shake(0.02, 0.2, null, true, FlxAxes.XY);
-		}
-
-		if (FlxG.mouse.overlaps(prizeEgg) && FlxG.mouse.justPressed && ClientPrefs.sellSelected == true && ClientPrefs.itemInfo == false)
-			{
-				FlxG.sound.play(Paths.sound('scrollMenu'));
-				FlxG.sound.play(Paths.sound('shop/mouseClick'));
-				FlxTween.tween(prizeEgg.scale, {x: 1.4, y: 1.4}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				if (shelfOneON)
-				{
-					FlxTween.tween(prizeEgg, {x: prize1.x}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(prizeEgg, {y: prize1.y}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				}
-				else if (shelfTwoON)
-				{
-					FlxTween.tween(prizeEgg, {x: prize7.x}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(prizeEgg, {y: prize7.y}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				}
-				else if (shelfThreeON)
-				{
-					FlxTween.tween(prizeEgg, {x: prize12.x}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(prizeEgg, {y: prize12.y}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				}
-			
-				FlxTween.tween(blackOut, {alpha: 0.85}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(infoTitle, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(infoText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(buy, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(equipped, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-
-				infoTitle.text = "Egg";
-				infoText.text = "It's... an egg.\nMaybe not good for consuming it yourself, but someone else might be able to do so!\n-----------------------------------------
-				\nItem Cost: 3 | Your Tokens: " + ClientPrefs.tokens + " | Eggs Owned: " + ClientPrefs.eggs;
-		
-				FlxTween.tween(prize1, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(prize2, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(prize3, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(prize4, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(prize5, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(prize6, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(prize7, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(prize8, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(prize9, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(prize10, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(prize11, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(prize12, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(prize13, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(prize14, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(charmPrize1, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(charmPrize2, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(charmPrize3, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					
-				FlxTween.tween(prizeZeel, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(prizeTrampoline, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				ClientPrefs.itemInfo = true;
-			}
-			if (FlxG.mouse.overlaps(buy) && FlxG.mouse.justPressed && infoTitle.text == "Egg" && ClientPrefs.tokens >= 3)
-			{
-				ClientPrefs.tokens -= 3;
-				ClientPrefs.eggs += 1;
-				ClientPrefs.saveSettings();
-							
-				infoTitle.text = "Egg";
-				infoText.text = "It's... an egg.\nMaybe not good for consuming it yourself, but someone else might be able to.!\n-----------------------------------------
-				\nItem Cost: 3 | Your Tokens: " + ClientPrefs.tokens + " | Eggs Owned: " + ClientPrefs.eggs;
-			
-				FlxG.sound.play(Paths.sound('confirmMenu'));
-				FlxG.sound.play(Paths.sound('shop/mouseClick'));
-			}
-			else if (FlxG.mouse.overlaps(buy) && FlxG.mouse.justPressed && infoTitle.text == "Egg" && ClientPrefs.tokens < 3)
-			{
-				FlxG.sound.play(Paths.sound('accessDenied'));
-				FlxG.camera.shake(0.02, 0.2, null, true, FlxAxes.XY);
-			}
-
-			//Charms Section + Buy Info for each stuff
-			if (FlxG.mouse.overlaps(charmPrize1) && FlxG.mouse.justPressed && ClientPrefs.sellSelected == true && ClientPrefs.itemInfo == false)
-			{
-				FlxG.sound.play(Paths.sound('scrollMenu'));
-				FlxG.sound.play(Paths.sound('shop/mouseClick'));
-				FlxTween.tween(charmPrize1.scale, {x: 1.4, y: 1.4}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(charmPrize1, {x: prize1.x}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(charmPrize1, {y: prize1.y}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(blackOut, {alpha: 0.85}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(infoTitle, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(infoText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(buy, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(equipped, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-		
-				infoTitle.text = "Resistance Charm";
-				if (ClientPrefs.resCharmCollected == false)
-					infoText.text = "Uncomfortable to wear, but it is pretty protectable!\nThis Charm helps you resist health drain by over 50%!\nRemember, only 1 charm per song!\n-----------------------------------------
-					\nItem Cost: 20 Tokens | Your Tokens: " + ClientPrefs.tokens;
-				else
-					infoText.text = "Uncomfortable to wear, but it is pretty protectable!\nThis Charm helps you resist health drain by over 50%!\nRemember, only 1 charm per song!\n-----------------------------------------
-					\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
-		
-				FlxTween.tween(prize1, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(prize2, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(prize3, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(prize4, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(prize5, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(prize6, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-
-				FlxTween.tween(prizeZeel, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(prizeTrampoline, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(prizeEgg, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				ClientPrefs.itemInfo = true;
-			}
-			//Resistance Charm Purchase
-			if (FlxG.mouse.overlaps(buy) && FlxG.mouse.justPressed && infoTitle.text == "Resistance Charm" && ClientPrefs.tokens >= 20 && ClientPrefs.resCharmCollected == false)
-				{
-					ClientPrefs.tokens -= 20;
-					ClientPrefs.resCharmCollected = true;
-
-					NotificationAlert.showMessage(this, 'Normal', true);
-					NotificationAlert.sendInventoryNotification = true;
-					NotificationAlert.saveNotifications();
-
-					ClientPrefs.saveSettings();
-							
-					infoTitle.text = "Resistance Charm";
-					infoText.text = infoText.text = "Uncomfortable to wear, but it is pretty protectable!\nThis Charm helps you resist health drain by over 50%!\nRemember, only 1 charm per song!\n-----------------------------------------
-						\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
-			
-					FlxG.sound.play(Paths.sound('confirmMenu'));
+					ClientPrefs.itemInfo = true;
+					prizeSelected = prize.ID;
+					FlxG.sound.play(Paths.sound('scrollMenu'));
 					FlxG.sound.play(Paths.sound('shop/mouseClick'));
 	
+					var x:Float = 0;
+					var y:Float = 0;
+					switch(shelfSelected)
+					{
+						case 1:
+							x = prizeSlots.members[0].x; y = prizeSlots.members[0].y;
+						case 2:
+							x = prizeSlots.members[6].x; y = prizeSlots.members[6].y;
+						case 3:
+							x = prizeSlots.members[11].x; y = prizeSlots.members[11].y;
+					}
+
+					FlxTween.tween(prize, {x: x, y: y, "scale.x": 1.4, "scale.y": 1.4}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+					prizeSlots.forEach(function (prize:FlxSprite)
+					{
+						if (prize.ID != prizeSelected)
+							FlxTween.tween(prize, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+					});
+					FlxTween.tween(blackOut, {alpha: 0.85}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+					FlxTween.tween(infoTitle, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+					FlxTween.tween(infoText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 					FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					buy.alpha = 0;
-					equipped.alpha = 1;
-				}
-				else if (ClientPrefs.resCharmCollected == true && infoTitle.text == "Resistance Charm")
-				{
-					FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					buy.alpha = 0;
-					equipped.alpha = 1;
-				}
-				else if (FlxG.mouse.overlaps(buy) && FlxG.mouse.justPressed && infoTitle.text == "Resistance Charm" && ClientPrefs.tokens < 20 && ClientPrefs.resCharmCollected == false)
-				{
-					FlxG.sound.play(Paths.sound('accessDenied'));
-					FlxG.camera.shake(0.02, 0.2, null, true, FlxAxes.XY);
-				}
+					buy.alpha = 1;
+					equipped.alpha = 0;
+					FlxTween.tween(equipped, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 
-			if (FlxG.mouse.overlaps(charmPrize2) && FlxG.mouse.justPressed && ClientPrefs.sellSelected == true && ClientPrefs.itemInfo == false)
+					new FlxTimer().start(0.8, function (tmr:FlxTimer) {
+						canGoBack = true;
+					});
+
+					setUpInfoPanel(prize.ID);
+				}
+			});
+		}
+		else
+		{
+			if (FlxG.mouse.overlaps(buy) && FlxG.mouse.justPressed)
 			{
-				FlxG.sound.play(Paths.sound('scrollMenu'));
-				FlxG.sound.play(Paths.sound('shop/mouseClick'));
-				FlxTween.tween(charmPrize2.scale, {x: 1.4, y: 1.4}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(charmPrize2, {x: prize7.x}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(charmPrize2, {y: prize7.y}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(blackOut, {alpha: 0.85}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(infoTitle, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(infoText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(buy, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(equipped, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-		
-				infoTitle.text = "Auto Dodge Charm";
-				if (ClientPrefs.autoCharmCollected == false)
-					infoText.text = "This Charm makes you agile, meaning\nyou're hard to be hit by enemies!\nRemember, only 1 charm per song!\n-----------------------------------------
-					\nItem Cost: 25 Tokens | Your Tokens: " + ClientPrefs.tokens;
-				else
-					infoText.text = "This Charm makes you agile, meaning\nyou're hard to be hit by enemies!\nRemember, only 1 charm per song!\n-----------------------------------------
-					\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
-		
-				FlxTween.tween(prize7, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(prize8, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(prize9, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(prize10, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(prize11, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-
-				FlxTween.tween(prizeZeel, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(prizeTrampoline, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(prizeEgg, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				ClientPrefs.itemInfo = true;
-				new FlxTimer().start(0.8, function (tmr:FlxTimer) {
-					canGoBack = true;
+				prizeSlots.forEach(function (prize:FlxSprite)
+				{
+					if (prize.ID == prizeSelected)
+						processTransaction(prize.ID);
 				});
 			}
-			//Auto Dodge Charm Purchase
-			if (FlxG.mouse.overlaps(buy) && FlxG.mouse.justPressed && infoTitle.text == "Auto Dodge Charm" && ClientPrefs.tokens >= 25 && ClientPrefs.autoCharmCollected == false)
-				{
-					ClientPrefs.tokens -= 25;
-					ClientPrefs.autoCharmCollected = true;
-
-					NotificationAlert.showMessage(this, 'Normal', true);
-					NotificationAlert.sendInventoryNotification = true;
-					NotificationAlert.saveNotifications();
-
-					ClientPrefs.saveSettings();
-							
-					infoTitle.text = "Auto Dodge Charm";
-					infoText.text = "This Charm makes you agile, meaning\nyou're hard to be hit by enemies!\nRemember, only 1 charm per song!\n-----------------------------------------
-						\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
-			
-					FlxG.sound.play(Paths.sound('confirmMenu'));
-					FlxG.sound.play(Paths.sound('shop/mouseClick'));
-	
-					FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					buy.alpha = 0;
-					equipped.alpha = 1;
-				}
-				else if (ClientPrefs.autoCharmCollected == true && infoTitle.text == "Auto Dodge Charm")
-				{
-					FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					buy.alpha = 0;
-					equipped.alpha = 1;
-				}
-				else if (FlxG.mouse.overlaps(buy) && FlxG.mouse.justPressed && infoTitle.text == "Auto Dodge Charm" && ClientPrefs.tokens < 25 && ClientPrefs.autoCharmCollected == false)
-				{
-					FlxG.sound.play(Paths.sound('accessDenied'));
-					FlxG.camera.shake(0.02, 0.2, null, true, FlxAxes.XY);
-				}
-			
-			if (FlxG.mouse.overlaps(charmPrize3) && FlxG.mouse.justPressed && ClientPrefs.sellSelected == true && ClientPrefs.itemInfo == false)
-			{
-				FlxG.sound.play(Paths.sound('scrollMenu'));
-				FlxG.sound.play(Paths.sound('shop/mouseClick'));
-				FlxTween.tween(charmPrize3.scale, {x: 1.4, y: 1.4}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(charmPrize3, {x: prize12.x}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(charmPrize3, {y: prize12.y}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(blackOut, {alpha: 0.85}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(infoTitle, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(infoText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(buy, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(equipped, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-		
-				infoTitle.text = "Healing Charm";
-				if (ClientPrefs.healCharmCollected == false)
-					infoText.text = "Don't you just hate when you lose health?\nDon't worry, this Charm gives you the\nability to regain health!\nYou have 10 uses per song!\nRemember, only 1 charm per song!\n-----------------------------------------
-					\nItem Cost: 25 Tokens | Your Tokens: " + ClientPrefs.tokens;
-				else
-					infoText.text = "Don't you just hate when you lose health?\nDon't worry, this Charm gives you the\nability to regain health!\nYou have 10 uses per song!\nRemember, only 1 charm per song!\n-----------------------------------------
-					\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
-		
-				FlxTween.tween(prize12, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(prize13, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(prize14, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				
-				FlxTween.tween(prizeZeel, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(prizeTrampoline, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(prizeEgg, {alpha: 0.1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				ClientPrefs.itemInfo = true;
-				new FlxTimer().start(0.8, function (tmr:FlxTimer) {
-					canGoBack = true;
-				});
-			}
-			//Healing Charm Purchase
-			if (FlxG.mouse.overlaps(buy) && FlxG.mouse.justPressed && infoTitle.text == "Healing Charm" && ClientPrefs.tokens >= 25 && ClientPrefs.healCharmCollected == false)
-				{
-					ClientPrefs.tokens -= 25;
-					ClientPrefs.healCharmCollected = true;
-
-					NotificationAlert.showMessage(this, 'Normal', true);
-					NotificationAlert.sendInventoryNotification = true;
-					NotificationAlert.saveNotifications();
-
-					ClientPrefs.saveSettings();
-							
-					infoTitle.text = "Healing Charm";
-					infoText.text = "Don't you just hate when you lose health?\nDon't worry, this Charm gives you\nthe ability to regain health!\nYou have 10 uses per song!\nRemember, only 1 charm per song!\n-----------------------------------------
-					\nItem Cost: SOLD | Your Tokens: " + ClientPrefs.tokens;
-			
-					FlxG.sound.play(Paths.sound('confirmMenu'));
-					FlxG.sound.play(Paths.sound('shop/mouseClick'));
-	
-					FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					buy.alpha = 0;
-					equipped.alpha = 1;
-				}
-				else if (ClientPrefs.healCharmCollected == true && infoTitle.text == "Healing Charm")
-				{
-					FlxTween.tween(buy, {y: 600}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					buy.alpha = 0;
-					equipped.alpha = 1;
-				}
-				else if (FlxG.mouse.overlaps(buy) && FlxG.mouse.justPressed && infoTitle.text == "Healing Charm" && ClientPrefs.tokens < 25 && ClientPrefs.healCharmCollected == false)
-				{
-					FlxG.sound.play(Paths.sound('accessDenied'));
-					FlxG.camera.shake(0.02, 0.2, null, true, FlxAxes.XY);
-				}	
+		}
 
 			//EQUIPPED OPTION [Will only work on these 2 items]
 			if (FlxG.mouse.overlaps(equipped) && FlxG.mouse.justPressed)
@@ -4357,7 +1797,7 @@ class ShopState extends MusicBeatState
 				{
 					case "Zeel's Naked Pics":
 					{
-						if (ClientPrefs.zeelNakedPics == true && !initializedVideo)
+						if (ClientPrefs.zeelNakedPics && !initializedVideo)
 						{
 							if (!videoDone) //FROM INDIE CROSS!
 								{
@@ -4380,7 +1820,7 @@ class ShopState extends MusicBeatState
 
 					case "Trampoline Mode":
 					{
-						if (ClientPrefs.trampolineUnlocked == true)
+						if (ClientPrefs.trampolineUnlocked)
 						{
 							FlxG.sound.play(Paths.sound('shop/mouseClick'));
 							FlxG.sound.play(Paths.sound('confirmMenu'));
@@ -4392,7 +1832,7 @@ class ShopState extends MusicBeatState
 		}
 
 		//Cellar Shop
-		if (FlxG.keys.justPressed.UP && cellarShopAccessed == false && cellarShopActive == false && secretShopAccessed == false && ClientPrefs.sellSelected == false && ClientPrefs.luckSelected == false)
+		if (FlxG.keys.justPressed.UP && !cellarShopAccessed && !cellarShopActive && !secretShopAccessed && !ClientPrefs.sellSelected && !ClientPrefs.luckSelected)
 		{
 			//Dialogue reset
 			merchantDialogue.skip();
@@ -4403,9 +1843,10 @@ class ShopState extends MusicBeatState
 
 			transitionOoooOo.alpha = 0;
 			FlxTween.tween(background, {alpha: 0}, 1.2, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(luckOptionSlot1, {alpha: 0}, 1.2, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(luckOptionSlot2, {alpha: 0}, 1.2, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(luckOptionSlot3, {alpha: 0}, 1.2, {ease: FlxEase.cubeInOut, type: PERSIST});
+			luckOptionSlots.forEach(function(button:FlxSprite)
+			{
+				FlxTween.tween(button, {alpha: 0}, 1.2, {ease: FlxEase.cubeInOut, type: PERSIST});
+			});
 			FlxTween.tween(assistant, {alpha: 0}, 1.2, {ease: FlxEase.cubeInOut, type: PERSIST});
 			FlxTween.tween(merchantDialogue, {alpha: 0}, 1.2, {ease: FlxEase.cubeInOut, type: PERSIST});
 			FlxTween.tween(lights, {alpha: 0}, 1.2, {ease: FlxEase.cubeInOut, type: PERSIST});
@@ -4421,33 +1862,842 @@ class ShopState extends MusicBeatState
 		}
 		super.update(elapsed);
 	}
+
+	function checkButtons(shop:String)
+	{
+		switch(shop)
+		{
+			case "Main":
+				luckOptionSlots.forEach(function(button:FlxSprite)
+				{
+					if (FlxG.mouse.overlaps(button))
+						button.alpha = 1;
+					else
+						button.alpha = 0.6;
+				});
+			case "Zeel":
+				sellSlots.forEach(function(button:FlxSprite)
+				{
+					if (FlxG.mouse.overlaps(button))
+						button.alpha = 1;
+					else
+						button.alpha = 0.6;
+				});
+		}
+	}
+
+	function buttonTrigger(shop:String)
+	{
+		switch(shop)
+		{
+			case "Main":
+				luckOptionSlots.forEach(function(button:FlxSprite)
+				{
+					if (FlxG.mouse.overlaps(button) && FlxG.mouse.justPressed && !ClientPrefs.luckSelected)
+					{
+						switch(button.ID)
+						{
+							case 0:
+								ClientPrefs.luckSelected = true;
+								merchantDialogue.skip();
+								shelfSelected = 1;
+								choiceNumber = FlxG.random.int(1, 7);
+								choice.loadGraphic(Paths.image('shop/prizes/prize_' + choiceNumber));
+									
+								lights.animation.play('redlightsFlash');
+								testYourLuckBG.loadGraphic(Paths.image('shop/testYourLuckBG1'));
+								FlxTween.tween(testYourLuckBG, {x: -130}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+								FlxTween.tween(tokenShow, {x: 780}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 	
-	// Unlocks "Shopalic" achievement
-	function giveShopAchievement() {
-		add(new AchievementObject('shop_completed', camAchievement));
-		FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
-		trace('Giving achievement "shop_completed"');
+								FlxTween.tween(lights, {x: 90}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+								
+								FlxTween.tween(choice, {x: 250}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+								FlxTween.tween(testLuckButton, {x: 330}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+									
+								FlxTween.tween(spaceText, {x: 330}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+								FlxTween.tween(notEnoughTokensText, {x: 330}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+								FlxG.sound.play(Paths.sound('shop/shopOpenShelf'));
+								FlxG.sound.play(Paths.sound('shop/mouseClick'));
+	
+							case 1:
+								if (!ClientPrefs.nunWeekPlayed)
+								{
+									FlxG.sound.play(Paths.sound('accessDenied'));
+									FlxG.camera.shake(0.01, 0.2, null, true, FlxAxes.XY);
+								}
+								else
+								{
+									ClientPrefs.luckSelected = true;
+									merchantDialogue.skip();
+									shelfSelected = 2;
+									choiceNumber = FlxG.random.int(8, 14);
+									choice.loadGraphic(Paths.image('shop/prizes/prize_' + choiceNumber));
+									
+									lights.animation.play('bluelightsFlash');
+				
+									testYourLuckBG.loadGraphic(Paths.image('shop/testYourLuckBG2'));
+									FlxTween.tween(testYourLuckBG, {x: -130}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+									FlxTween.tween(tokenShow, {x: 780}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+			
+									FlxTween.tween(lights, {x: 90}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+									
+									FlxTween.tween(choice, {x: 250}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+									FlxTween.tween(testLuckButton, {x: 330}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+									
+									FlxTween.tween(spaceText, {x: 330}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+									FlxTween.tween(notEnoughTokensText, {x: 330}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+									FlxG.sound.play(Paths.sound('shop/shopOpenShelf'));
+									FlxG.sound.play(Paths.sound('shop/mouseClick'));
+								}
+	
+							case 2:
+								if (!ClientPrefs.kianaWeekPlayed)
+								{
+									FlxG.sound.play(Paths.sound('accessDenied'));
+									FlxG.camera.shake(0.01, 0.2, null, true, FlxAxes.XY);
+								}
+								else
+								{
+									ClientPrefs.luckSelected = true;
+									merchantDialogue.skip();
+									shelfSelected = 3;
+									choiceNumber = FlxG.random.int(15, 20);
+									choice.loadGraphic(Paths.image('shop/prizes/prize_' + choiceNumber));
+									
+									lights.animation.play('greenlightsFlash');
+									testYourLuckBG.loadGraphic(Paths.image('shop/testYourLuckBG3'));
+									FlxTween.tween(testYourLuckBG, {x: -130}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+									FlxTween.tween(tokenShow, {x: 780}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+	
+									FlxTween.tween(lights, {x: 90}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+									
+									FlxTween.tween(choice, {x: 250}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+									FlxTween.tween(testLuckButton, {x: 330}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+										
+									FlxTween.tween(spaceText, {x: 330}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+									FlxTween.tween(notEnoughTokensText, {x: 330}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+									FlxG.sound.play(Paths.sound('shop/shopOpenShelf'));
+									FlxG.sound.play(Paths.sound('shop/mouseClick'));
+								}
+						}
+					}
+				});
+
+			case "Zeel":
+				sellSlots.forEach(function(button:FlxSprite)
+				{
+					if (FlxG.mouse.overlaps(button) && FlxG.mouse.justPressed && !ClientPrefs.sellSelected && !gtfo)
+					{
+						switch(button.ID)
+						{
+							case 0:
+								ClientPrefs.sellSelected = true;
+								secretMerchantDialogue.skip();
+			
+								shelfSelected = 1;
+								FlxTween.tween(buyItemsBG, {y: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+								
+								prizeSlots.members[14].x = 250;
+								prizeSlots.members[15].x = 450;
+								prizeSlots.members[16].x = 650;
+								prizeSlots.forEach(function (prize:FlxSprite)
+								{
+									if (prize.ID <= 5)
+										FlxTween.tween(prize, {y: 160}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+									else if (prize.ID >= 14 && prize.ID <= 17)
+										FlxTween.tween(prize, {y: 315}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+								});
+
+								FlxG.sound.play(Paths.sound('shop/shopOpenShelf'));
+								FlxG.sound.play(Paths.sound('shop/mouseClick'));
+							
+							case 1:
+								if (!ClientPrefs.nunWeekPlayed)
+								{
+									FlxG.sound.play(Paths.sound('accessDenied'));
+									FlxG.camera.shake(0.02, 0.2, null, true, FlxAxes.XY);
+								}
+								else
+								{
+									ClientPrefs.sellSelected = true;
+									secretMerchantDialogue.skip();
+					
+									shelfSelected = 2;
+									FlxTween.tween(buyItemsBG, {y: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+									
+									prizeSlots.members[14].x = 50;
+									prizeSlots.members[15].x = 250;
+									prizeSlots.members[16].x = 450;
+									prizeSlots.forEach(function (prize:FlxSprite)
+									{
+										if ((prize.ID >= 6 && prize.ID <= 10) || prize.ID == 18)
+											FlxTween.tween(prize, {y: 160}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+										else if (prize.ID >= 14 && prize.ID <= 16)
+											FlxTween.tween(prize, {y: 315}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+									});
+
+									FlxG.sound.play(Paths.sound('shop/shopOpenShelf'));
+									FlxG.sound.play(Paths.sound('shop/mouseClick'));
+								}
+		
+							case 2:
+								if (!ClientPrefs.kianaWeekPlayed)
+								{
+									FlxG.sound.play(Paths.sound('accessDenied'));
+									FlxG.camera.shake(0.02, 0.2, null, true, FlxAxes.XY);
+								}
+								else
+								{
+									ClientPrefs.sellSelected = true;
+									secretMerchantDialogue.skip();
+			
+									shelfSelected = 3;
+									FlxTween.tween(buyItemsBG, {y: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+									
+									prizeSlots.members[14].x = 50;
+									prizeSlots.members[15].x = 250;
+									prizeSlots.members[16].x = 450;
+									prizeSlots.forEach(function (prize:FlxSprite)
+									{
+										if ((prize.ID >= 11 && prize.ID <= 13) || prize.ID == 19)
+											FlxTween.tween(prize, {y: 160}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+										else if (prize.ID >= 14 && prize.ID <= 16)
+											FlxTween.tween(prize, {y: 315}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+									});
+
+									FlxG.sound.play(Paths.sound('shop/shopOpenShelf'));
+									FlxG.sound.play(Paths.sound('shop/mouseClick'));
+								}
+						}
+					}
+				});
+		}
 	}
 
-	// Unlocks "Who is she?" achievement
-	function giveZeelAchievement() {
-		add(new AchievementObject('zeel_found', camAchievement));
-		FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
-		trace('Giving achievement "zeel_found"');
+	function revertLuck()
+	{
+		new FlxTimer().start(1.5, function (tmr:FlxTimer) {
+			if (ClientPrefs.tokens != 0)
+				FlxTween.tween(testLuckButton, {y: 550}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+			else
+				FlxTween.tween(notEnoughTokensText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+			FlxTween.tween(spaceText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+			ClientPrefs.choiceSelected = false;
+			if (flickerTween != null)
+				flickerTween.cancel();
+			ClientPrefs.saveSettings();
+		});
+	}
+	
+	function checkPrizeOverlap()
+	{
+		prizeSlots.forEach(function (prize:FlxSprite)
+		{
+			if (FlxG.mouse.overlaps(prize))
+				prize.alpha = 1;
+			else
+				prize.alpha = 0.3;
+		});
 	}
 
-	// Unlocks "Pervert" achievement
-	function giveZeelBoobaAchievement() {
-		add(new AchievementObject('pervert', camAchievement));
-		FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
-		trace('Giving achievement "pervert"');
+	function setUpInfoPanel(id:Int)
+	{
+		switch(id)
+		{
+			case 0:
+				infoTitle.text = (ClientPrefs.legacyWeekFound) ? "Legacy Week Pass" : "?????? ????";
+				infoText.text = "Let's take a trip down to the memory lane!\n-----------------------------------------
+					\nItem Cost: " + ((ClientPrefs.legacyWeekFound) ? "SOLD" : "20 Tokens") + " | Your Tokens: " + ClientPrefs.tokens;
+				if (ClientPrefs.legacyWeekFound)
+				{
+					buy.alpha = 0;
+					equipped.alpha = 1;
+				}
+
+			case 1:
+				infoTitle.text = (ClientPrefs.nunsationalFound) ? "Nunsational Pass" : "???????????";
+				infoText.text = "The Nuns have 1 more surprise for you!\n-----------------------------------------
+					\nItem Cost: " + ((ClientPrefs.nunsationalFound) ? "SOLD" : "15 Tokens") + " | Your Tokens: " + ClientPrefs.tokens;
+				if (ClientPrefs.nunsationalFound)
+				{
+					buy.alpha = 0;
+					equipped.alpha = 1;
+				}
+			
+			case 2:
+				infoTitle.text = (ClientPrefs.lustalityFound) ? "Lustality Pass" : "?????????";
+				infoText.text = "Kiana lusts to destroy you!\nWill you accept her old challenge?\n-----------------------------------------
+					\nItem Cost: " + ((ClientPrefs.lustalityFound) ? "SOLD" : "20 Tokens") + " | Your Tokens: " + ClientPrefs.tokens;
+				if (ClientPrefs.lustalityFound)
+				{
+					buy.alpha = 0;
+					equipped.alpha = 1;
+				}
+			
+			case 3:
+				infoTitle.text = (ClientPrefs.tofuFound) ? "Tofu Pass" : "????";
+				infoText.text = "This is the result of TOO MUCH CONFIDENCE\nin a game of checkers.\n-----------------------------------------
+					\nItem Cost: " + ((ClientPrefs.tofuFound) ? "SOLD" : "12 Tokens") + " | Your Tokens: " + ClientPrefs.tokens;
+				if (ClientPrefs.tofuFound)
+				{
+					buy.alpha = 0;
+					equipped.alpha = 1;
+				}
+
+			case 4:
+				infoTitle.text = (ClientPrefs.marcochromeFound) ? "Marcochrome Pass" : "?????-??????";
+				infoText.text = "He seems different from what he used to be...\nWhat do you think happened to him?\n-----------------------------------------
+					\nItem Cost: " + ((ClientPrefs.marcochromeFound) ? "SOLD" : "15 Tokens") + " | Your Tokens: " + ClientPrefs.tokens;
+				if (ClientPrefs.marcochromeFound)
+				{
+					buy.alpha = 0;
+					equipped.alpha = 1;
+				}
+
+			case 5:
+				infoTitle.text = (ClientPrefs.morkyWeekFound) ? "Joke Week Pass" : "???? ????";
+				infoText.text = "ALL HAIL MORKY! ALL HAIL MORKY!\n-----------------------------------------
+					\nItem Cost: " + ((ClientPrefs.morkyWeekFound) ? "SOLD" : "15 Tokens") + " | Your Tokens: " + ClientPrefs.tokens;
+				if (ClientPrefs.morkyWeekFound)
+				{
+					buy.alpha = 0;
+					equipped.alpha = 1;
+				}
+
+			case 6:
+				infoTitle.text = (ClientPrefs.fnvFound) ? "FNV Pass" : "???";
+				infoText.text = "I don't know what's this, just take it.\n-----------------------------------------
+					\nItem Cost: " + ((ClientPrefs.fnvFound) ? "SOLD" : "FREE") + " | Your Tokens: " + ClientPrefs.tokens;
+				if (ClientPrefs.fnvFound)
+				{
+					buy.alpha = 0;
+					equipped.alpha = 1;
+				}
+			
+			case 7:
+				infoTitle.text = (ClientPrefs.shortFound) ? "Jerry Pass" : "?.????";
+				infoText.text = "A- (You guys like shorts?)\n-----------------------------------------
+					\nItem Cost: " + ((ClientPrefs.shortFound) ? "SOLD" : "1 Token") + " | Your Tokens: " + ClientPrefs.tokens;
+				if (ClientPrefs.shortFound)
+				{
+					buy.alpha = 0;
+					equipped.alpha = 1;
+				}
+
+			case 8:
+				infoTitle.text = (ClientPrefs.nicFound) ? "Slow.FLP Pass" : "????.???";
+				infoText.text = "I AM GOD! ..Probably.\n-----------------------------------------
+					\nItem Cost: " + ((ClientPrefs.nicFound) ? "SOLD" : "15 Tokens") + " | Your Tokens: " + ClientPrefs.tokens;
+				if (ClientPrefs.nicFound)
+				{
+					buy.alpha = 0;
+					equipped.alpha = 1;
+				}
+
+			case 9:
+				infoTitle.text = (ClientPrefs.infatuationFound) ? "Fanfuck Forever Pass" : "????????????";
+				infoText.text = "You won't get away from me!! NEVEEEERRRR~\n-----------------------------------------
+					\nItem Cost: " + ((ClientPrefs.infatuationFound) ? "SOLD" : "20 Tokens") + " | Your Tokens: " + ClientPrefs.tokens;
+				if (ClientPrefs.infatuationFound)
+				{
+					buy.alpha = 0;
+					equipped.alpha = 1;
+				}
+			
+			case 10:
+				infoTitle.text = (ClientPrefs.rainyDazeFound) ? "Rainy Daze Pass" : "????? ????";
+				infoText.text = "Just waiting for the weather to lay off\nand stop pouring down..\n-----------------------------------------
+					\nItem Cost: " + ((ClientPrefs.rainyDazeFound) ? "SOLD" : "15 Tokens") + " | Your Tokens: " + ClientPrefs.tokens;
+				if (ClientPrefs.rainyDazeFound)
+				{
+					buy.alpha = 0;
+					equipped.alpha = 1;
+				}
+			
+			case 11:
+				infoTitle.text = (ClientPrefs.debugFound) ? "Marauder Pass" : "????????";
+				infoText.text = "Finally, he's contained!\nLast time he got out, the game almost fucking broke.\n-----------------------------------------
+					\nItem Cost: " + ((ClientPrefs.debugFound) ? "SOLD" : "7 Tokens") + " | Your Tokens: " + ClientPrefs.tokens;
+				if (ClientPrefs.debugFound)
+				{
+					buy.alpha = 0;
+					equipped.alpha = 1;
+				}
+
+			case 12:
+				infoTitle.text = (ClientPrefs.susWeekFound) ? "Sus Week Pass" : "??? ????";
+				infoText.text = "I don't know man, this item seems kind of sus..\nIt looks like another IMPOSTOR is AMONG US-\n-----------------------------------------
+					\nItem Cost: " + ((ClientPrefs.susWeekFound) ? "SOLD" : "20 Tokens") + " | Your Tokens: " + ClientPrefs.tokens;
+				if (ClientPrefs.susWeekFound)
+				{
+					buy.alpha = 0;
+					equipped.alpha = 1;
+				}
+
+			case 13:
+				infoTitle.text = (ClientPrefs.dsideWeekFound) ? "D-sides Week Pass" : "?-????? ????";
+				infoText.text = "Oooo~ This looks like a dope Cassette tape.\nI wonder what's inside?\n-----------------------------------------
+					\nItem Cost: " + ((ClientPrefs.dsideWeekFound) ? "SOLD" : "25 Tokens") + " | Your Tokens: " + ClientPrefs.tokens;
+				if (ClientPrefs.dsideWeekFound)
+				{
+					buy.alpha = 0;
+					equipped.alpha = 1;
+				}
+			
+			case 14:
+				infoTitle.text = "Zeel's Naked Pics";
+				infoText.text = "Earning this item unlocks my Naked Pictures!\nPress EQUIPPED to view~\n-----------------------------------------
+					\nItem Cost: " + ((ClientPrefs.zeelNakedPics) ? "SOLD" : "75 Tokens") + " | Your Tokens: " + ClientPrefs.tokens;
+				if (ClientPrefs.zeelNakedPics)
+				{
+					buy.alpha = 0;
+					equipped.alpha = 1;
+				}
+			
+			case 15:
+				infoTitle.text = "Trampoline Mode";
+				infoText.text = "Earning this item unlocks Trampoline Mode!\nTo use once you buy it, make sure you enable it through options >> Miescellaneous!\n-----------------------------------------
+					\nItem Cost: " + ((ClientPrefs.trampolineUnlocked) ? "SOLD" : "15 Tokens") + " | Your Tokens: " + ClientPrefs.tokens;
+				if (ClientPrefs.trampolineUnlocked)
+				{
+					buy.alpha = 0;
+					equipped.alpha = 1;
+				}
+
+			case 16:
+				infoTitle.text = "Egg";
+				infoText.text = "It's... an egg.\nMaybe not good for consuming it yourself, but someone else might be able to do so!\n-----------------------------------------
+					\nItem Cost: 3 | Your Tokens: " + ClientPrefs.tokens + " | Eggs Owned: " + ClientPrefs.eggs;
+
+			case 17:
+				infoTitle.text = "Resistance Charm";
+				infoText.text = "Uncomfortable to wear, but it is pretty protectable!\nThis Charm helps you resist health drain by over 50%!\nRemember, only 1 charm per song!\n-----------------------------------------
+					\nItem Cost: " + ((ClientPrefs.resCharmCollected) ? "SOLD" : "20 Tokens") + " | Your Tokens: " + ClientPrefs.tokens;
+				if (ClientPrefs.resCharmCollected)
+				{
+					buy.alpha = 0;
+					equipped.alpha = 1;
+				}
+
+			case 18:
+				infoTitle.text = "Auto Dodge Charm";
+				infoText.text = "This Charm makes you agile, meaning\nyou're hard to be hit by enemies!\nRemember, only 1 charm per song!\n-----------------------------------------
+					\nItem Cost: " + ((ClientPrefs.autoCharmCollected) ? "SOLD" : "25 Tokens") + " | Your Tokens: " + ClientPrefs.tokens;
+				if (ClientPrefs.autoCharmCollected)
+				{
+					buy.alpha = 0;
+					equipped.alpha = 1;
+				}
+
+			case 19:
+				infoTitle.text = "Healing Charm";
+				infoText.text = "Don't you just hate when you lose health?\nDon't worry, this Charm gives you the\nability to regain health!\nYou have 10 uses per song!\nRemember, only 1 charm per song!\n-----------------------------------------
+					\nItem Cost: " + ((ClientPrefs.healCharmCollected) ? "SOLD" : "25 Tokens") + " | Your Tokens: " + ClientPrefs.tokens;
+				if (ClientPrefs.healCharmCollected)
+				{
+					buy.alpha = 0;
+					equipped.alpha = 1;
+				}
+		}
 	}
 
-	// Unlocks "PervertX25" achievement
-	function giveZeelBoobaX25Achievement() {
-		add(new AchievementObject('pervertX25', camAchievement));
+	function processTransaction(id:Int)
+	{
+		switch(id)
+		{
+			case 0:
+				if (ClientPrefs.tokens >= 20 && !ClientPrefs.legacyWeekFound)
+				{
+					ClientPrefs.tokens -= 20;
+					ClientPrefs.legacyWeekFound = true;
+					ClientPrefs.songsUnlocked += 1;
+					ClientPrefs.bonusUnlocked = true;
+
+					NotificationAlert.sendCategoryNotification = true;
+					NotificationAlert.showMessage(this, 'Normal', true);
+									
+					NotificationAlert.saveNotifications();
+					ClientPrefs.saveSettings();
+
+					FlxG.sound.play(Paths.sound('confirmMenu'));
+					FlxG.sound.play(Paths.sound('shop/mouseClick'));
+				}
+				else
+				{
+					FlxG.sound.play(Paths.sound('accessDenied'));
+					FlxG.camera.shake(0.02, 0.2, null, true, FlxAxes.XY);
+				}
+			case 1:
+				if (ClientPrefs.tokens >= 15 && !ClientPrefs.nunsationalFound)
+				{
+					ClientPrefs.tokens -= 15;
+					ClientPrefs.nunsationalFound = true;
+					ClientPrefs.songsUnlocked += 1;
+					ClientPrefs.xtraUnlocked = true;
+
+					NotificationAlert.showMessage(this, 'Freeplay', true);
+
+					ClientPrefs.saveSettings();
+					FlxG.sound.play(Paths.sound('confirmMenu'));
+					FlxG.sound.play(Paths.sound('shop/mouseClick'));
+				}
+				else
+				{
+					FlxG.sound.play(Paths.sound('accessDenied'));
+					FlxG.camera.shake(0.02, 0.2, null, true, FlxAxes.XY);
+				}
+			case 2:
+				if (ClientPrefs.tokens >= 20 && !ClientPrefs.lustalityFound)
+				{
+					ClientPrefs.tokens -= 20;
+					ClientPrefs.lustalityFound = true;
+					ClientPrefs.songsUnlocked += 1;
+					ClientPrefs.xtraUnlocked = true;
+
+					NotificationAlert.showMessage(this, 'Freeplay', true);
+
+					ClientPrefs.saveSettings();
+					FlxG.sound.play(Paths.sound('confirmMenu'));
+					FlxG.sound.play(Paths.sound('shop/mouseClick'));
+				}
+				else
+				{
+					FlxG.sound.play(Paths.sound('accessDenied'));
+					FlxG.camera.shake(0.02, 0.2, null, true, FlxAxes.XY);
+				}
+			case 3:
+				if (ClientPrefs.tokens >= 12 && !ClientPrefs.tofuFound)
+				{
+					ClientPrefs.tokens -= 12;
+					ClientPrefs.tofuFound = true;
+					ClientPrefs.songsUnlocked += 1;
+					ClientPrefs.xtraUnlocked = true;
+
+					NotificationAlert.showMessage(this, 'Freeplay', true);
+
+					ClientPrefs.saveSettings();
+					FlxG.sound.play(Paths.sound('confirmMenu'));
+					FlxG.sound.play(Paths.sound('shop/mouseClick'));
+				}
+				else
+				{
+					FlxG.sound.play(Paths.sound('accessDenied'));
+					FlxG.camera.shake(0.02, 0.2, null, true, FlxAxes.XY);
+				}
+			case 4:
+				if (ClientPrefs.tokens >= 15 && !ClientPrefs.marcochromeFound)
+				{
+					ClientPrefs.tokens -= 15;
+					ClientPrefs.marcochromeFound = true;
+					ClientPrefs.songsUnlocked += 1;
+					ClientPrefs.xtraUnlocked = true;
+
+					NotificationAlert.showMessage(this, 'Freeplay', true);
+
+					ClientPrefs.saveSettings();
+					FlxG.sound.play(Paths.sound('confirmMenu'));
+					FlxG.sound.play(Paths.sound('shop/mouseClick'));
+				}
+				else
+				{
+					FlxG.sound.play(Paths.sound('accessDenied'));
+					FlxG.camera.shake(0.02, 0.2, null, true, FlxAxes.XY);
+				}
+			case 5:
+				if (ClientPrefs.tokens >= 15 && !ClientPrefs.morkyWeekFound)
+				{
+					ClientPrefs.tokens -= 15;
+					ClientPrefs.morkyWeekFound = true;
+					ClientPrefs.songsUnlocked += 1;
+					ClientPrefs.bonusUnlocked = true;
+
+					NotificationAlert.sendCategoryNotification = true;
+					NotificationAlert.showMessage(this, 'Normal', true);
+									
+					NotificationAlert.saveNotifications();
+					ClientPrefs.saveSettings();
+					FlxG.sound.play(Paths.sound('confirmMenu'));
+					FlxG.sound.play(Paths.sound('shop/mouseClick'));
+				}
+				else
+				{
+					FlxG.sound.play(Paths.sound('accessDenied'));
+					FlxG.camera.shake(0.02, 0.2, null, true, FlxAxes.XY);
+				}
+			case 6:
+				if (!ClientPrefs.fnvFound)
+				{
+					ClientPrefs.fnvFound = true;
+					ClientPrefs.songsUnlocked += 1;
+					ClientPrefs.xtraUnlocked = true;
+
+					NotificationAlert.showMessage(this, 'Freeplay', true);
+
+					ClientPrefs.saveSettings();
+					FlxG.sound.play(Paths.sound('confirmMenu'));
+					FlxG.sound.play(Paths.sound('shop/mouseClick'));
+				}
+				else
+				{
+					FlxG.sound.play(Paths.sound('accessDenied'));
+					FlxG.camera.shake(0.02, 0.2, null, true, FlxAxes.XY);
+				}
+			case 7:
+				if (ClientPrefs.tokens >= 1 && !ClientPrefs.shortFound)
+				{
+					ClientPrefs.tokens -= 1;
+					ClientPrefs.shortFound = true;
+					ClientPrefs.songsUnlocked += 1;
+					ClientPrefs.xtraUnlocked = true;
+
+					NotificationAlert.showMessage(this, 'Freeplay', true);
+
+					ClientPrefs.saveSettings();
+					FlxG.sound.play(Paths.sound('confirmMenu'));
+					FlxG.sound.play(Paths.sound('shop/mouseClick'));
+				}
+				else
+				{
+					FlxG.sound.play(Paths.sound('accessDenied'));
+					FlxG.camera.shake(0.02, 0.2, null, true, FlxAxes.XY);
+				}
+			case 8:
+				if (ClientPrefs.tokens >= 15 && !ClientPrefs.nicFound)
+				{
+					ClientPrefs.tokens -= 15;
+					ClientPrefs.nicFound = true;
+					ClientPrefs.songsUnlocked += 1;
+					ClientPrefs.xtraUnlocked = true;
+
+					NotificationAlert.showMessage(this, 'Freeplay', true);
+
+					ClientPrefs.saveSettings();
+					FlxG.sound.play(Paths.sound('confirmMenu'));
+					FlxG.sound.play(Paths.sound('shop/mouseClick'));
+				}
+				else
+				{
+					FlxG.sound.play(Paths.sound('accessDenied'));
+					FlxG.camera.shake(0.02, 0.2, null, true, FlxAxes.XY);
+				}
+			case 9:
+				if (ClientPrefs.tokens >= 20 && !ClientPrefs.infatuationFound)
+				{
+					ClientPrefs.tokens -= 20;
+					ClientPrefs.infatuationFound = true;
+					ClientPrefs.songsUnlocked += 1;
+					ClientPrefs.xtraUnlocked = true;
+
+					NotificationAlert.showMessage(this, 'Freeplay', true);
+
+					ClientPrefs.saveSettings();
+					FlxG.sound.play(Paths.sound('confirmMenu'));
+					FlxG.sound.play(Paths.sound('shop/mouseClick'));
+				}
+				else
+				{
+					FlxG.sound.play(Paths.sound('accessDenied'));
+					FlxG.camera.shake(0.02, 0.2, null, true, FlxAxes.XY);
+				}
+			case 10:
+				if (ClientPrefs.tokens >= 15 && !ClientPrefs.rainyDazeFound)
+				{
+					ClientPrefs.tokens -= 15;
+					ClientPrefs.rainyDazeFound = true;
+					ClientPrefs.songsUnlocked += 1;
+					ClientPrefs.xtraUnlocked = true;
+
+					NotificationAlert.showMessage(this, 'Freeplay', true);
+
+					ClientPrefs.saveSettings();
+					FlxG.sound.play(Paths.sound('confirmMenu'));
+					FlxG.sound.play(Paths.sound('shop/mouseClick'));
+				}
+				else
+				{
+					FlxG.sound.play(Paths.sound('accessDenied'));
+					FlxG.camera.shake(0.02, 0.2, null, true, FlxAxes.XY);
+				}
+			case 11:
+				if (ClientPrefs.tokens >= 7 && !ClientPrefs.debugFound)
+				{
+					ClientPrefs.tokens -= 7;
+					ClientPrefs.debugFound = true;
+					ClientPrefs.songsUnlocked += 1;
+					ClientPrefs.xtraUnlocked = true;
+
+					NotificationAlert.showMessage(this, 'Freeplay', true);
+
+					ClientPrefs.saveSettings();
+					FlxG.sound.play(Paths.sound('confirmMenu'));
+					FlxG.sound.play(Paths.sound('shop/mouseClick'));
+				}
+				else
+				{
+					FlxG.sound.play(Paths.sound('accessDenied'));
+					FlxG.camera.shake(0.02, 0.2, null, true, FlxAxes.XY);
+				}
+			case 12:
+				if (ClientPrefs.tokens >= 20 && !ClientPrefs.susWeekFound)
+				{
+					ClientPrefs.tokens -= 20;
+					ClientPrefs.susWeekFound = true;
+					ClientPrefs.songsUnlocked += 1;
+					ClientPrefs.bonusUnlocked = true;
+
+					NotificationAlert.sendCategoryNotification = true;
+					NotificationAlert.showMessage(this, 'Normal', true);
+									
+					NotificationAlert.saveNotifications();
+					ClientPrefs.saveSettings();
+					FlxG.sound.play(Paths.sound('confirmMenu'));
+					FlxG.sound.play(Paths.sound('shop/mouseClick'));
+				}
+				else
+				{
+					FlxG.sound.play(Paths.sound('accessDenied'));
+					FlxG.camera.shake(0.02, 0.2, null, true, FlxAxes.XY);
+				}
+			case 13:
+				if (ClientPrefs.tokens >= 25 && !ClientPrefs.dsideWeekFound)
+				{
+					ClientPrefs.tokens -= 25;
+					ClientPrefs.dsideWeekFound = true;
+					ClientPrefs.songsUnlocked += 1;
+					ClientPrefs.bonusUnlocked = true;
+
+					NotificationAlert.sendCategoryNotification = true;
+					NotificationAlert.showMessage(this, 'Normal', true);
+									
+					NotificationAlert.saveNotifications();
+					ClientPrefs.saveSettings();
+					FlxG.sound.play(Paths.sound('confirmMenu'));
+					FlxG.sound.play(Paths.sound('shop/mouseClick'));
+				}
+				else
+				{
+					FlxG.sound.play(Paths.sound('accessDenied'));
+					FlxG.camera.shake(0.02, 0.2, null, true, FlxAxes.XY);
+				}
+			case 14:
+				if (ClientPrefs.tokens >= 75 && !ClientPrefs.zeelNakedPics)
+				{
+					ClientPrefs.tokens -= 75;
+					ClientPrefs.zeelNakedPics = true;
+					ClientPrefs.saveSettings();
+
+					FlxG.sound.play(Paths.sound('confirmMenu'));
+					FlxG.sound.play(Paths.sound('shop/mouseClick'));
+				}
+				else
+				{
+					FlxG.sound.play(Paths.sound('accessDenied'));
+					FlxG.camera.shake(0.02, 0.2, null, true, FlxAxes.XY);
+				}
+			case 15:
+				if (ClientPrefs.tokens >= 15 && !ClientPrefs.trampolineUnlocked)
+				{
+					ClientPrefs.tokens -= 15;
+					ClientPrefs.trampolineUnlocked = true;
+
+					NotificationAlert.sendOptionsNotification = true;
+					NotificationAlert.showMessage(this, 'Normal', true);
+									
+					NotificationAlert.saveNotifications();
+					ClientPrefs.saveSettings();
+
+					FlxG.sound.play(Paths.sound('confirmMenu'));
+					FlxG.sound.play(Paths.sound('shop/mouseClick'));
+				}
+				else
+				{
+					FlxG.sound.play(Paths.sound('accessDenied'));
+					FlxG.camera.shake(0.02, 0.2, null, true, FlxAxes.XY);
+				}
+			case 16:
+				if (ClientPrefs.tokens >= 3)
+				{
+					ClientPrefs.tokens -= 3;
+					ClientPrefs.eggs += 1;
+					ClientPrefs.saveSettings();
+
+					FlxG.sound.play(Paths.sound('confirmMenu'));
+					FlxG.sound.play(Paths.sound('shop/mouseClick'));
+				}
+				else
+				{
+					FlxG.sound.play(Paths.sound('accessDenied'));
+					FlxG.camera.shake(0.02, 0.2, null, true, FlxAxes.XY);
+				}
+			case 17:
+				if (ClientPrefs.tokens >= 20 && !ClientPrefs.resCharmCollected)
+				{
+					ClientPrefs.tokens -= 20;
+					ClientPrefs.resCharmCollected = true;
+
+					NotificationAlert.showMessage(this, 'Normal', true);
+					NotificationAlert.sendInventoryNotification = true;
+					NotificationAlert.saveNotifications();
+
+					ClientPrefs.saveSettings();
+
+					FlxG.sound.play(Paths.sound('confirmMenu'));
+					FlxG.sound.play(Paths.sound('shop/mouseClick'));
+				}
+				else
+				{
+					FlxG.sound.play(Paths.sound('accessDenied'));
+					FlxG.camera.shake(0.02, 0.2, null, true, FlxAxes.XY);
+				}
+			case 18:
+				if (ClientPrefs.tokens >= 25 && !ClientPrefs.autoCharmCollected)
+				{
+					ClientPrefs.tokens -= 25;
+					ClientPrefs.autoCharmCollected = true;
+
+					NotificationAlert.showMessage(this, 'Normal', true);
+					NotificationAlert.sendInventoryNotification = true;
+					NotificationAlert.saveNotifications();
+
+					ClientPrefs.saveSettings();
+
+					FlxG.sound.play(Paths.sound('confirmMenu'));
+					FlxG.sound.play(Paths.sound('shop/mouseClick'));
+				}
+				else
+				{
+					FlxG.sound.play(Paths.sound('accessDenied'));
+					FlxG.camera.shake(0.02, 0.2, null, true, FlxAxes.XY);
+				}
+			case 19:
+				if (ClientPrefs.tokens >= 25 && !ClientPrefs.healCharmCollected)
+				{
+					ClientPrefs.tokens -= 25;
+					ClientPrefs.healCharmCollected = true;
+
+					NotificationAlert.showMessage(this, 'Normal', true);
+					NotificationAlert.sendInventoryNotification = true;
+					NotificationAlert.saveNotifications();
+
+					ClientPrefs.saveSettings();
+
+					FlxG.sound.play(Paths.sound('confirmMenu'));
+					FlxG.sound.play(Paths.sound('shop/mouseClick'));
+				}
+				else
+				{
+					FlxG.sound.play(Paths.sound('accessDenied'));
+					FlxG.camera.shake(0.02, 0.2, null, true, FlxAxes.XY);
+				}
+		}
+
+		setUpInfoPanel(id);
+	}
+
+	function giveAchievement(achievement:String) {
+		add(new AchievementObject(achievement, camAchievement));
 		FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
-		trace('Giving achievement "pervertX25"');
+		trace('Giving achievement "' + achievement + '"');
 	}
 
 	function ending()
@@ -4471,32 +2721,19 @@ class ShopState extends MusicBeatState
 
 	function getChoiceNumber(timer:FlxTimer)
 	{
-		if (ClientPrefs.choiceSelected == true && ended == false && ClientPrefs.tokens >= 0)
+		if (ClientPrefs.choiceSelected && !ended && ClientPrefs.tokens >= 0)
 		{
-			if (shelfOneON == true)
-				choiceNumber = FlxG.random.int(1, 7);
-			else if (shelfTwoON == true)
-				choiceNumber = FlxG.random.int(8, 14);
-			else if (shelfThreeON == true)
-				choiceNumber = FlxG.random.int(15, 19);
+			switch(shelfSelected)
+			{
+				case 1:
+					choiceNumber = FlxG.random.int(1, 7);
+				case 2:
+					choiceNumber = FlxG.random.int(8, 14);
+				case 3:
+					choiceNumber = FlxG.random.int(15, 19);
+			}
 			choice.loadGraphic(Paths.image('shop/prizes/prize_' + choiceNumber));
-			var bgTimerAgain:FlxTimer = new FlxTimer().start(0.06, getChoiceNumberAgain);
+			var bgTimerAgain:FlxTimer = new FlxTimer().start(0.06, getChoiceNumber);
 		}
 	}
-
-	function getChoiceNumberAgain(timer:FlxTimer)
-		{
-			if (ClientPrefs.choiceSelected == true && ended == false && ClientPrefs.tokens >= 0)
-			{
-				if (shelfOneON == true)
-					choiceNumber = FlxG.random.int(1, 7);
-				else if (shelfTwoON == true)
-					choiceNumber = FlxG.random.int(8, 14);
-				else if (shelfThreeON == true)
-					choiceNumber = FlxG.random.int(15, 19);
-				choice.loadGraphic(Paths.image('shop/prizes/prize_' + choiceNumber));
-				var bgTimer:FlxTimer = new FlxTimer().start(0.06, getChoiceNumber);
-			}
-		}
 }
-
