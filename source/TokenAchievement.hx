@@ -60,7 +60,7 @@ class TokenAchievement extends MusicBeatState
 		tokenIcon.updateHitbox();
 		tokenIcon.antialiasing = ClientPrefs.globalAntialiasing;
 
-		if (PlayState.checkForPowerUp == false)
+		if (!PlayState.checkForPowerUp)
 		{
 			bonusTokens = new FlxText(340, 130, FlxG.width, "No Power Up Bonus! -> +3", 40);
 			bonusTokens.alpha = 0;
@@ -107,7 +107,7 @@ class TokenAchievement extends MusicBeatState
 		new FlxTimer().start(2.5, function (tmr:FlxTimer) {
 			currentTokens.text = "Current Tokens: " + ClientPrefs.tokens;
 			
-			if (soundPlayed == false)
+			if (!soundPlayed)
 			{
 				FlxG.sound.play(Paths.sound('tokensAchieved'));
 
@@ -122,10 +122,10 @@ class TokenAchievement extends MusicBeatState
 				soundPlayed = true;
 			}
 
-			if (PlayState.checkForPowerUp == false)
+			if (!PlayState.checkForPowerUp)
 			{
 				new FlxTimer().start(0.6, function (tmr:FlxTimer) {
-					if (bonusSoundPlayed == false)
+					if (!bonusSoundPlayed)
 					{
 						ClientPrefs.tokens += 3;
 						currentTokens.text = "Current Tokens: " + ClientPrefs.tokens;
@@ -141,9 +141,7 @@ class TokenAchievement extends MusicBeatState
 						tokenIcon.scale.x = 0.975;
 						tokenIcon.scale.y = 0.975;
 		
-						FlxTween.tween(bonusTokens, {alpha: 0}, 0.6, {ease: FlxEase.cubeOut, type: PERSIST});
-						FlxTween.tween(bonusTokens, {y: bonusTokens.y - 30}, 0.6, {ease: FlxEase.cubeOut, type: PERSIST});
-						FlxTween.tween(bonusTokens.scale, {x: 1, y: 1}, 0.6, {ease: FlxEase.cubeOut, type: PERSIST});
+						FlxTween.tween(bonusTokens, {alpha: 0, y: bonusTokens.y - 30, "scale.x": 1, "scale.y": 1}, 0.6, {ease: FlxEase.cubeOut, type: PERSIST});
 						FlxTween.tween(currentTokens.scale, {x: 1, y: 1}, 0.6, {ease: FlxEase.cubeOut, type: PERSIST});
 						FlxTween.tween(tokenIcon.scale, {x: 0.8, y: 0.8}, 0.6, {ease: FlxEase.cubeOut, type: PERSIST});
 						bonusSoundPlayed = true;
@@ -154,10 +152,9 @@ class TokenAchievement extends MusicBeatState
 			new FlxTimer().start(2, function (tmr:FlxTimer) {
 				trail.alpha = 0;
 				textTrail.alpha = 0;
-				if (tweenPlayed == false)
+				if (!tweenPlayed)
 				{
-					FlxTween.tween(tokenIcon, {y: tokenIcon.y - 100}, 1, {ease: FlxEase.quadInOut, type: PERSIST});
-					FlxTween.tween(tokenIcon, {alpha: 0}, 0.6, {ease: FlxEase.quadInOut, type: PERSIST});
+					FlxTween.tween(tokenIcon, {alpha: 0, y: tokenIcon.y - 100}, 1, {ease: FlxEase.quadInOut, type: PERSIST});
 					FlxTween.tween(currentTokens, {alpha: 0}, 0.6, {ease: FlxEase.quadInOut, type: PERSIST});
 					tweenPlayed = true;
 				}

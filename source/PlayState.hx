@@ -765,8 +765,11 @@ class PlayState extends MusicBeatState
 		timeBarBG.sprTracker = timeBar;
 
 		strumLineNotes = new FlxTypedGroup<StrumNote>();
-		add(strumLineNotes);
-		add(grpNoteSplashes);
+		if (ClientPrefs.noteTailLayer == "Front")
+		{
+			add(strumLineNotes);
+			add(grpNoteSplashes);
+		}
 
 		if(ClientPrefs.timeBarType == 'Song Name')
 		{
@@ -2144,6 +2147,11 @@ class PlayState extends MusicBeatState
 
 		notes = new FlxTypedGroup<Note>();
 		add(notes);
+		if (ClientPrefs.noteTailLayer == "Behind")
+		{
+			add(strumLineNotes);
+			add(grpNoteSplashes);
+		}
 
 		var noteData:Array<SwagSection>;
 
@@ -2818,6 +2826,14 @@ class PlayState extends MusicBeatState
 				notes.insert(0, dunceNote);
 				dunceNote.spawned=true;
 				callOnLuas('onSpawnNote', [notes.members.indexOf(dunceNote), dunceNote.noteData, dunceNote.noteType, dunceNote.isSustainNote]);
+
+				if (!dunceNote.isSustainNote && ClientPrefs.noteTailLayer == "Behind")
+				{
+					var indexToThrow:Int = members.indexOf(strumLineNotes) + 1;
+					remove(dunceNote, true);
+					insert(indexToThrow, dunceNote);
+					dunceNote.cameras = [camHUD];
+				}
 
 				var index:Int = unspawnNotes.indexOf(dunceNote);
 				unspawnNotes.splice(index, 1);

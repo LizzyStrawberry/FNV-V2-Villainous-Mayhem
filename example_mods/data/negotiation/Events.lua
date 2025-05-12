@@ -103,26 +103,79 @@ function onBeatHit()
 		doTweenAlpha("hudFadeOut", "camHUD", 0, 1.5 / playbackRate, "circOut")
 	end
 	
-	if (curBeat >= 32 and curBeat < 96) or (curBeat >= 192 and curBeat < 224)
-	or (curBeat >= 288 and curBeat <= 352) then
+	if (curBeat >= 32 and curBeat < 96) or (curBeat >= 288 and curBeat <= 352) then
 		if curBeat % 2 == 0 then
 			triggerEvent("Add Camera Zoom", "0.045", "0.047")
 		end
-		if curBeat % 4 == 2 then
+		if curBeat % 8 == 2 then
+			for i = 0, 7 do
+				noteTweenAngle("NoteAngle"..i, i, 360, (0.75 + (i * 0.04)) / playbackRate, "circOut")
+			end
+		end
+		if curBeat % 8 == 6 then
+			for i = 0, 7 do
+				noteTweenAngle("NoteAngle"..i, i, 0, (0.75 + (i * 0.04)) / playbackRate, "circOut")
+			end
+		end
+	end
+	if curBeat == 161 then
+		for i = 0, 7 do
+			setPropertyFromGroup("strumLineNotes", i, "angle", 360)
+		end
+	end
+	if curBeat == 288 then
+		for i = 0, 7 do
+			setPropertyFromGroup("strumLineNotes", i, "angle", 0)
+		end
+	end
+	if curBeat >= 192 and curBeat < 224 then
+		if curBeat % 2 == 0 then
+			triggerEvent("Add Camera Zoom", "0.045", "0.047")
+		end
+		if curBeat % 8 == 2 then
+			for i = 0, 7 do
+				noteTweenAngle("NoteAngle"..i, i, 0, (0.75 + (i * 0.04)) / playbackRate, "circOut")
+			end
+		end
+		if curBeat % 8 == 6 then
 			for i = 0, 7 do
 				noteTweenAngle("NoteAngle"..i, i, 360, (0.75 + (i * 0.04)) / playbackRate, "circOut")
 			end
 		end
 	end
-	if (curBeat >= 96 and curBeat < 160) or (curBeat >= 224 and curBeat < 288) then
+	if curBeat >= 96 and curBeat < 160 then
 		triggerEvent("Add Camera Zoom", "0.04", "0.042")
+		if curBeat % 2 == 1 then
+			noteSpinSequence("normal")
+		end
+	end
+	if curBeat >= 224 and curBeat < 288 then
+		triggerEvent("Add Camera Zoom", "0.04", "0.042")
+		if curBeat % 2 == 1 then
+			noteSpinSequence("reverse")
+		end
 	end
 end
 
-function onTweenCompleted(tag)
-	for i = 0, 7 do
-		if tag == "NoteAngle"..i then
-			setPropertyFromGroup("strumLineNotes", i, "angle", 0)
-		end
+local sequence = {0, 7, 1, 6, 2, 5, 3, 4}
+local spinNum = 0
+function noteSpinSequence(direction)
+	if direction == "normal" then
+		sequence = {0, 7, 1, 6, 2, 5, 3, 4}
+	elseif direction == "reverse" then
+		sequence = {7, 0, 6, 1, 5, 2, 4, 3}
+	end
+	
+	if spinNum % 2 == 0 then
+		setPropertyFromGroup("strumLineNotes", sequence[spinNum + 1], "angle", 0)
+		noteTweenAngle("NoteSequence"..spinNum, sequence[spinNum + 1], 360, 0.5 / playbackRate, "circOut")
+	else
+		setPropertyFromGroup("strumLineNotes", sequence[spinNum + 1], "angle", 360)
+		noteTweenAngle("NoteSequence"..spinNum, sequence[spinNum + 1], 0, 0.5 / playbackRate, "circOut")
+	end
+	
+	spinNum = spinNum + 1
+	if spinNum > 7 then
+		spinNum = 0
 	end
 end

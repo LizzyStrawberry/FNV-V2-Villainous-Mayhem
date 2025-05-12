@@ -97,7 +97,6 @@ class PauseSubState extends MusicBeatSubstate
 		}
 		difficultyChoices.push('BACK');
 
-
 		pauseMusic = new FlxSound();
 		if(songName != null) {
 			pauseMusic.loadEmbedded(Paths.music(songName), true, true);
@@ -412,15 +411,13 @@ class PauseSubState extends MusicBeatSubstate
 		if (ClientPrefs.timeBarType == 'Song Name' || ClientPrefs.timeBarType == 'Disabled')
 			FlxTween.tween(timerInfo, {alpha: 1, y: timerInfo.y + 5}, 0.4, {ease: FlxEase.quartInOut, startDelay: 1.1});
 
-		if(levelInfo.text == 'Forsaken' || levelInfo.text == 'Forsaken (Picmixed)' || levelInfo.text == 'Partner')
+		if((levelInfo.text == 'Forsaken' || levelInfo.text == 'Forsaken (Picmixed)' || levelInfo.text == 'Partner') && !ClientPrefs.getGameplaySetting('botplay', false))
 		{
 			menuItemsOG.remove('Give up');
 			menuItemsOG.insert(3, 'You cannot escape.');
 		}
 		if(levelInfo.text == 'Iniquitous')
-		{
 			menuItemsOG.remove('Quick Settings');
-		}
 
 		regenMenu();
 		cameras = [FlxG.cameras.list[FlxG.cameras.list.length - 1]];
