@@ -56,6 +56,7 @@ class ClientPrefs {
 
 	//hard++ difficulty unlock
 	public static var iniquitousUnlocked:Bool = false;
+	public static var viewedDisclaimer:Bool = false;
 
 	//crash and save measure
 	public static var storyModeCrashMeasure:String = '';
@@ -410,6 +411,7 @@ class ClientPrefs {
 		FlxG.save.data.campaignSongsPlayed = campaignSongsPlayed;
 
 		FlxG.save.data.iniquitousUnlocked = iniquitousUnlocked;
+		FlxG.save.data.viewedDisclaimer = viewedDisclaimer;
 
 		FlxG.save.data.storyModeCrashMeasure = storyModeCrashMeasure;
 		FlxG.save.data.storyModeCrashWeek = storyModeCrashWeek;
@@ -650,6 +652,7 @@ class ClientPrefs {
 		campaignSongsPlayed = 0;
 
 		iniquitousUnlocked = false;
+		viewedDisclaimer = false;
 
 		storyModeCrashMeasure = '';
 		storyModeCrashWeek = -1;
@@ -840,6 +843,7 @@ class ClientPrefs {
 
 		galleryUnlocked = true;
 		iniquitousUnlocked = true;
+		viewedDisclaimer = true;
 		firstTime = true;
 
 		shopUnlocked = true;
@@ -1083,6 +1087,9 @@ class ClientPrefs {
 
 		if(FlxG.save.data.iniquitousUnlocked != null) {
 			iniquitousUnlocked = FlxG.save.data.iniquitousUnlocked;
+		}
+		if(FlxG.save.data.viewedDisclaimer != null) {
+			viewedDisclaimer = FlxG.save.data.viewedDisclaimer;
 		}
 
 		if(FlxG.save.data.campaignHighScore != null) {

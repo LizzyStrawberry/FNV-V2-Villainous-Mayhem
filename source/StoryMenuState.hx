@@ -325,7 +325,7 @@ class StoryMenuState extends MusicBeatState
 			add(libidiWarning);
 		}
 
-		if (ClientPrefs.mainWeekBeaten == true && ClientPrefs.gotWinMessage == false && isAboutToGetMessage == false)
+		if (ClientPrefs.mainWeekBeaten && !ClientPrefs.gotWinMessage && !isAboutToGetMessage)
 		{
 			wahoohie = new FlxSprite(0, 0).loadGraphic(Paths.image('mainStoryMode/wahoohie'));
 			wahoohie.antialiasing = ClientPrefs.globalAntialiasing;

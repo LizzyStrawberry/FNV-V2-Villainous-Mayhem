@@ -74,6 +74,12 @@ class IniquitousMenuState extends MusicBeatState
 
 	var loadedWeeks:Array<WeekData> = [];
 
+	var weekCardBG:FlxSprite;
+	var weekCard:FlxSprite;
+	var understand:FlxSprite;
+	var weekCardTitle:FlxSprite;
+	var weekCardText:FlxText;
+
 	override function create()
 	{
 		Paths.clearStoredMemory();
@@ -243,7 +249,7 @@ class IniquitousMenuState extends MusicBeatState
 		blackOut.alpha = 0;
 		add(blackOut);
 
-		if (ClientPrefs.performanceWarning == true)
+		if (ClientPrefs.performanceWarning)
 		{
 			libidiWarning = new FlxText(700, 100, 1000, "Warning:\nIs your PC strong enough to handle the week?\n(It is recommended to atleast have a graphics card installed)\n----------------------------
 			\nY: Yes | N: No", 32);
@@ -259,6 +265,56 @@ class IniquitousMenuState extends MusicBeatState
 		add(mechanicMessage);
 
 		messageNumber = FlxG.random.int(1, 4);
+
+		weekCardBG = new FlxSprite(0, 0).loadGraphic(Paths.image('mainStoryMode/weekCards/weekCardBGIniquitous'));
+		weekCardBG.antialiasing = ClientPrefs.globalAntialiasing;
+		weekCardBG.screenCenter();
+		add(weekCardBG);
+
+		weekCard = new FlxSprite(80, 165).loadGraphic(Paths.image('mainStoryMode/weekCards/mainWeeks/iniquitousCard'));
+		weekCard.antialiasing = ClientPrefs.globalAntialiasing;
+		add(weekCard);
+
+		weekCardText = new FlxText(560, 240, 710,
+			"<R>Be warned!<R>\nThis Gamemode is <R>very harsh<R>, allowing you to play <G>ONLY THE MAIN 3 WEEKS<G> of the mod in Iniquitous Difficulty!\nBe cautious, as each week has it's own <R>quirks and differences<R> compared to the regular modes!
+			\n<DR>Do you accept the Challenge?<DR>",
+			25);
+		weekCardText.setFormat("VCR OSD Mono", 30, FlxColor.WHITE, LEFT);
+		add(weekCardText);
+
+		weekCardTitle = new FlxSprite(0, 50).loadGraphic(Paths.image('mainStoryMode/weekCards/disclaimer'));
+		weekCardTitle.antialiasing = ClientPrefs.globalAntialiasing;
+		weekCardTitle.screenCenter(X);
+		add(weekCardTitle);
+
+		CustomFontFormats.addMarkers(weekCardText);
+
+		understand = new FlxSprite(0, 610).loadGraphic(Paths.image('mainStoryMode/weekCards/understand'));
+		understand.antialiasing = ClientPrefs.globalAntialiasing;
+		understand.screenCenter(X);
+		add(understand);
+
+		weekCardBG.y += 1500;
+		weekCard.y += 1500;
+		understand.y += 1500;
+		weekCardTitle.y += 1500;
+		weekCardText.y += 1500;
+
+		if (!ClientPrefs.viewedDisclaimer)
+			new FlxTimer().start(2, function(tmr:FlxTimer){
+				FlxTween.tween(weekCardBG, {y: 0}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
+				FlxTween.tween(weekCard, {y: 165}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
+				FlxTween.tween(understand, {y: 610}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
+				FlxTween.tween(weekCardTitle, {y: 50}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
+				FlxTween.tween(weekCardText, {y: 240}, 0.7, {ease: FlxEase.circOut, type: PERSIST, onComplete: function(twn:FlxTween)
+					{
+						loadedDisclaimer = movedBack = true;
+						
+					}
+				});
+				ClientPrefs.viewedDisclaimer = true;
+				ClientPrefs.saveSettings();
+			});
 
 		//check the save feature
 		trace('Saved Score :' + ClientPrefs.storyModeCrashScore);
@@ -290,6 +346,7 @@ class IniquitousMenuState extends MusicBeatState
 	}
 
 	var warning:Bool = false;
+	var loadedDisclaimer:Bool = false;
 	override function update(elapsed:Float)
 	{
 		// scoreText.setFormat('VCR OSD Mono', 32);
@@ -298,35 +355,56 @@ class IniquitousMenuState extends MusicBeatState
 
 		scoreText.text = "WEEK SCORE:" + lerpScore;
 
-		// FlxG.watch.addQuick('font', scoreText.font);
+		if (loadedDisclaimer)
+		{
+			if (FlxG.mouse.overlaps(understand))
+				understand.alpha = 1;
+			else
+				understand.alpha = 0.6;
+
+			if ((FlxG.mouse.overlaps(understand) && FlxG.mouse.justPressed) || controls.ACCEPT)
+			{
+				loadedDisclaimer = false;
+				FlxG.sound.play(Paths.sound('scrollMenu'));
+				FlxTween.tween(weekCardBG, {y: 2000}, 0.7, {ease: FlxEase.circIn, type: PERSIST});
+				FlxTween.tween(weekCard, {y: 2165}, 0.7, {ease: FlxEase.circIn, type: PERSIST});
+				FlxTween.tween(understand, {y: 2610}, 0.7, {ease: FlxEase.circIn, type: PERSIST});
+				FlxTween.tween(weekCardTitle, {y: 2050}, 0.7, {ease: FlxEase.circIn, type: PERSIST});
+				FlxTween.tween(weekCardText, {y: 2240}, 0.7, {ease: FlxEase.circIn, type: PERSIST, onComplete: function(twn:FlxTween)
+					{
+						movedBack = false;
+					}
+				});
+			}
+		}
 
 		if (!movedBack && !selectedWeek)
 		{
-			var upP = controls.UI_UP_P;
-			var downP = controls.UI_DOWN_P;
+			var upP = controls.UI_UP_P || (FlxG.mouse.overlaps(arrowSelectorLeft) && FlxG.mouse.justPressed);
+			var downP = controls.UI_DOWN_P || (FlxG.mouse.overlaps(arrowSelectorRight) && FlxG.mouse.justPressed);
 
-			if (!warning)
+			if (!warning && !loadedDisclaimer)
 			{
-				if (upP || (FlxG.mouse.overlaps(arrowSelectorLeft) && FlxG.mouse.justPressed))
-					{
-						changeWeek(-1);
-						changeDifficulty();
-						FlxG.sound.play(Paths.sound('scrollMenu'));
-					}
+				if (upP)
+				{
+					changeWeek(-1);
+					changeDifficulty();
+					FlxG.sound.play(Paths.sound('scrollMenu'));
+				}
 		
-					if (downP || (FlxG.mouse.overlaps(arrowSelectorRight) && FlxG.mouse.justPressed))
-					{
-						changeWeek(1);
-						changeDifficulty();
-						FlxG.sound.play(Paths.sound('scrollMenu'));
-					}
+				if (downP)
+				{
+					changeWeek(1);
+					changeDifficulty();
+					FlxG.sound.play(Paths.sound('scrollMenu'));
+				}
 		
-					if(FlxG.mouse.wheel != 0)
-					{
-						FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
-						changeWeek(-FlxG.mouse.wheel);
-						changeDifficulty();
-					}
+				if(FlxG.mouse.wheel != 0)
+				{
+					FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
+					changeWeek(-FlxG.mouse.wheel);
+					changeDifficulty();
+				}
 
 				if (controls.UI_RIGHT || (FlxG.mouse.overlaps(rightArrow) && FlxG.mouse.pressed))
 					rightArrow.animation.play('press')
@@ -358,12 +436,12 @@ class IniquitousMenuState extends MusicBeatState
 				openSubState(new ResetScoreSubState('', curDifficulty, '', curWeek));
 				//FlxG.sound.play(Paths.sound('scrollMenu'));
 			}
-			else if (warning == true && FlxG.keys.justPressed.Y)
+			else if (warning && FlxG.keys.justPressed.Y)
 			{
 				ClientPrefs.lowQuality = false;
 				selectWeek();
 			}
-			else if (warning == true && FlxG.keys.justPressed.N)
+			else if (warning && FlxG.keys.justPressed.N)
 			{
 				ClientPrefs.lowQuality = true;
 				selectWeek();
