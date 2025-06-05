@@ -1128,11 +1128,12 @@ class FreeplayBonusState extends MusicBeatState
 			ClientPrefs.saveSettings();
 		}			
 	}
+	
 	private function positionHighscore() {
-		scoreText.x = FlxG.width - scoreText.width - 406;
+		scoreText.x = (FlxG.width - scoreText.width) / 2;
 
-		scoreBG.scale.x = FlxG.width - scoreText.x + 6;
-		scoreBG.x = FlxG.width - (scoreBG.scale.x / 2);
+		scoreBG.x = scoreText.x - 6;
+		scoreBG.scale.x = scoreText.width + 12;
 		diffText.x = 640;
 		diffText.x -= diffText.width / 2;
 	}
