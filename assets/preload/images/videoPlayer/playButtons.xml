@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Created with Funkin Packer v0.1.3 https://neeeoo.github.io/funkin-packer/
+-->
+<TextureAtlas imagePath="playButtons.png" width="293" height="96">
+	<SubTexture name="playButton Hover0000" x="1.5" y="1.5" width="94" height="92.5" frameX="-0" frameY="-0" frameWidth="94.5" frameHeight="93"/>
+	<SubTexture name="playButton HoverChanged0000" x="95.5" y="1.5" width="94" height="92.5" frameX="-0" frameY="-0" frameWidth="94.5" frameHeight="93"/>
+	<SubTexture name="playButton Idle0000" x="189.5" y="1.5" width="56" height="83.5" frameX="-25" frameY="-3.5" frameWidth="94.5" frameHeight="93"/>
+	<SubTexture name="playButton IdleChanged0000" x="245.5" y="1.5" width="46" height="83.5" frameX="-25" frameY="-3.5" frameWidth="94.5" frameHeight="93"/>
+</TextureAtlas>

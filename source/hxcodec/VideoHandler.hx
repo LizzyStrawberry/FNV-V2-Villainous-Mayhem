@@ -13,6 +13,7 @@ import hxcodec.vlc.VLCBitmap;
  */
 class VideoHandler extends VLCBitmap
 {
+	public var onVideoPlayer:Bool = false;
 	public var canSkip:Bool = true;
 	public var skipKeys:Array<FlxKey> = [FlxKey.SPACE, FlxKey.ENTER];
 
@@ -24,7 +25,7 @@ class VideoHandler extends VLCBitmap
 
 	private var pauseMusic:Bool = false;
 
-	public function new(IndexModifier:Int = 0):Void
+	public function new(IndexModifier:Int = 0, allowFocusChanges:Bool = true):Void
 	{
 		super();
 
@@ -34,14 +35,17 @@ class VideoHandler extends VLCBitmap
 
 		FlxG.addChildBelowMouse(this, IndexModifier);
 
-		FlxG.signals.focusGained.add(function()
+		if (allowFocusChanges)
 		{
-			resume();
-		});
-		FlxG.signals.focusLost.add(function()
-		{
-			pause();
-		});
+			FlxG.signals.focusGained.add(function()
+			{
+				resume();
+			});
+			FlxG.signals.focusLost.add(function()
+			{
+				pause();
+			});
+		}
 	}
 
 	private function onVLCOpening():Void 
@@ -77,7 +81,10 @@ class VideoHandler extends VLCBitmap
 		if (FlxG.stage.hasEventListener(Event.ENTER_FRAME))
 			FlxG.stage.removeEventListener(Event.ENTER_FRAME, update);
 
-		dispose();
+		if (!onVideoPlayer)
+			dispose();
+		else
+			stop();
 
 		FlxG.removeChild(this);
 

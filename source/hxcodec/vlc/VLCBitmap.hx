@@ -236,6 +236,18 @@ class VLCBitmap extends Bitmap
 			LibVLC.media_player_set_pause(mediaPlayer, 0);
 	}
 
+	// Used for Video Player
+	public function getTime()
+	{
+		if (mediaPlayer != null)
+			LibVLC.media_player_get_time(mediaPlayer);
+	}
+	public function setTime(time:Int)
+	{
+		if (mediaPlayer != null)
+			LibVLC.media_player_set_time(mediaPlayer, time);
+	}
+
 	public function dispose():Void
 	{
 		#if HXC_DEBUG_TRACE

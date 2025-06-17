@@ -26,7 +26,11 @@ local ending = false
 function onEndSong()	
 	if difficulty == 0 then
 		if not ending and isStoryMode then
-			startVideo('WeekLegacy_End');
+			if getRandomInt(1, 25) == 12 then
+				startVideo('Week1_SecretEnd');
+			else
+				startVideo('Week1_NormalEnd');
+			end
 			ending = true
 			return Function_Stop
 		end

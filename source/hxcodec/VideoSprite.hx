@@ -14,18 +14,20 @@ class VideoSprite extends FlxSprite
 	public var bitmap:VideoHandler;
 	public var canvasWidth:Null<Int>;
 	public var canvasHeight:Null<Int>;
+	public var videoScale:Float = 1;
 
 	public var openingCallback:Void->Void = null;
 	public var graphicLoadedCallback:Void->Void = null;
 	public var finishCallback:Void->Void = null;
 
-	public function new(X:Float = 0, Y:Float = 0)
+	public function new(X:Float = 0, Y:Float = 0, scale:Float = 1, allowFocusChanges:Bool = true)
 	{
 		super(X, Y);
 
+		videoScale = scale;
 		makeGraphic(1, 1, FlxColor.TRANSPARENT);
 
-		bitmap = new VideoHandler();
+		bitmap = new VideoHandler(0, allowFocusChanges);
 		bitmap.canUseAutoResize = false;
 		bitmap.visible = false;
 		bitmap.openingCallback = function()
@@ -62,7 +64,12 @@ class VideoSprite extends FlxSprite
 
 			loadGraphic(graphic);
 
-			if (canvasWidth != null && canvasHeight != null)
+			if (videoScale != 1)
+			{
+				scale.set(videoScale, videoScale);
+				updateHitbox();
+			}
+			else if (canvasWidth != null && canvasHeight != null)
 			{
 				setGraphicSize(canvasWidth, canvasHeight);
 				updateHitbox();
@@ -84,4 +91,20 @@ class VideoSprite extends FlxSprite
 	 */
 	public function playVideo(Path:String, Skippable:Bool = true, Loop:Bool = false, PauseMusic:Bool = false):Void
 		bitmap.playVideo(Path, Skippable, Loop, PauseMusic);
+
+	// Used for video player
+	public function getTimeStamp() // Get current timestamp in ms
+		return bitmap.time;
+	public function setTimeStamp(time:Int) // Set current timestamp in ms
+		bitmap.setTime(time);
+	public function getDuration() // get total duration of video in ms
+		return bitmap.duration;
+	public function dispose() // Dispose of the video
+		bitmap.dispose();
+	public function playing() // Check if video is playing
+		return bitmap.isPlaying;
+	public function pause() // Pause the video
+		bitmap.pause();
+	public function resume() // Resume the video
+		bitmap.resume();
 }

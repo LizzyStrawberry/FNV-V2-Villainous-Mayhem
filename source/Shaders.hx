@@ -79,12 +79,12 @@ class ChromaticAberrationShader extends FlxShader
 class ChromaticAberrationEffect extends Effect
 {
 	public var shader:ChromaticAberrationShader;
-  public function new(offset:Float = 0.00){
-	shader = new ChromaticAberrationShader();
-    shader.rOffset.value = [offset];
-    shader.gOffset.value = [0.0];
-    shader.bOffset.value = [-offset];
-  }
+	public function new(offset:Float = 0.00){
+		shader = new ChromaticAberrationShader();
+		shader.rOffset.value = [offset];
+		shader.gOffset.value = [0.0];
+		shader.bOffset.value = [-offset];
+	}
 	
 	public function setChrome(chromeOffset:Float):Void
 	{
@@ -95,6 +95,84 @@ class ChromaticAberrationEffect extends Effect
 
 }
 
+class CRTEffect extends Effect
+{
+	public var shader:CRTShader = new CRTShader();
+
+	public function new(warp:Float = 1.25, scan:Float = 0.75)
+	{
+		shader.iTime.value = [0];
+		shader.warp.value = [warp];
+		shader.scan.value = [scan];
+	}
+
+	public function update(elapsed:Float):Void
+	{
+		shader.iTime.value[0] += elapsed;
+	}
+
+	public function setiTime(value:Float):Void
+	{
+		shader.iTime.value[0] = value;
+	}
+	public function setWarp(value:Float):Void
+	{
+		shader.warp.value[0] = value;
+	}
+	public function setScan(value:Float):Void
+	{
+		shader.scan.value[0] = value;
+	}
+}
+
+class CRTShader extends FlxShader
+{
+	@:glFragmentSource('
+		#pragma header
+		vec2 uv = openfl_TextureCoordv.xy;
+		vec2 fragCoord = openfl_TextureCoordv*openfl_TextureSize;
+		vec2 iResolution = openfl_TextureSize;
+		uniform float iTime;
+		#define iChannel0 bitmap
+		#define texture flixel_texture2D
+		#define fragColor gl_FragColor
+		#define mainImage main
+
+		uniform float warp = 1.25; // simulate curvature of CRT monitor
+		uniform float scan = 0.75; // simulate darkness between scanlines
+
+		void mainImage()
+		{
+			vec2 centeredUV = fragCoord / iResolution.xy;
+			vec2 dc = abs(0.5 - centeredUV);
+			dc *= dc;
+
+			// Apply CRT warp
+			centeredUV.x -= 0.5;
+			centeredUV.x *= 1.0 + (dc.y * 0.3 * warp);
+			centeredUV.x += 0.5;
+
+			centeredUV.y -= 0.5;
+			centeredUV.y *= 1.0 + (dc.x * 0.4 * warp);
+			centeredUV.y += 0.5;
+
+			// Discard fragments outside screen (to keep transparency)
+			if (centeredUV.x < 0.0 || centeredUV.x > 1.0 || centeredUV.y < 0.0 || centeredUV.y > 1.0) {
+				fragColor = vec4(0.0, 0.0, 0.0, 0.0);
+				return;
+			}
+
+			vec4 tex = texture(iChannel0, centeredUV);
+			float scanEffect = abs(sin(fragCoord.y * 3.14159) * 0.5 * scan);
+			vec3 finalColor = mix(tex.rgb, vec3(0.0), scanEffect);
+			fragColor = vec4(finalColor, tex.a); // retain alpha
+		}
+	')
+	public function new()
+	{
+		super();
+	}
+}
 
 class ScanlineEffect extends Effect
 {

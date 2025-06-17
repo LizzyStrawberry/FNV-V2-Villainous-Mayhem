@@ -108,7 +108,7 @@ class GalleryState extends MusicBeatState
 		textBG.alpha = 0.6;
 		add(textBG);
 
-		Text = new FlxText(textBG.x + 1000, textBG.y + 8, FlxG.width + 1000, "LEFT - A / RIGHT - D: Change Image | UP / DOWN: Change Gallery Category | BACKSPACE: Go back to the Main Menu", 24);
+		Text = new FlxText(textBG.x + 1000, textBG.y + 8, FlxG.width + 1000, "LEFT - A / RIGHT - D: Change Image | UP / DOWN: Change Gallery Category | SHIFT: Go to Video Player (MUST HAVE MAIN GAME COMPLETED!) | BACKSPACE: Go back to the Main Menu", 24);
 		Text.setFormat("VCR OSD Mono", 20, FlxColor.WHITE, RIGHT);
 		Text.scrollFactor.set();
 		add(Text);
@@ -152,12 +152,33 @@ class GalleryState extends MusicBeatState
 		super.create();
 	}
 
+	function completedMainGame()
+	{
+		// Have all Weeks Completed except for the crossover section
+		return Achievements.isAchievementUnlocked('Tutorial_Beaten')
+			&& Achievements.isAchievementUnlocked('WeekMarco_Beaten') && Achievements.isAchievementUnlocked('WeekMarcoVillainous_Beaten') && Achievements.isAchievementUnlocked('WeekMarcoIniquitous_Beaten')
+			&& Achievements.isAchievementUnlocked('WeekNun_Beaten') && Achievements.isAchievementUnlocked('WeekNunVillainous_Beaten') && Achievements.isAchievementUnlocked('WeekNunIniquitous_Beaten')
+			&& Achievements.isAchievementUnlocked('WeekKiana_Beaten') && Achievements.isAchievementUnlocked('WeekKianaVillainous_Beaten') && Achievements.isAchievementUnlocked('WeekKianaIniquitous_Beaten')
+			&& Achievements.isAchievementUnlocked('WeekMorky_Beaten') && Achievements.isAchievementUnlocked('WeekMorkyVillainous_Beaten')
+			&& Achievements.isAchievementUnlocked('WeekSus_Beaten') && Achievements.isAchievementUnlocked('WeekSusVillainous_Beaten')
+			&& Achievements.isAchievementUnlocked('WeekLegacy_Beaten') && Achievements.isAchievementUnlocked('WeekLegacyVillainous_Beaten')
+			&& Achievements.isAchievementUnlocked('WeekDside_Beaten') && Achievements.isAchievementUnlocked('WeekDsideVillainous_Beaten')
+			&& Achievements.isAchievementUnlocked('weekIniquitous_Beaten');
+	}
+	
 	override function update(elapsed:Float)
 	{
 		if (controls.BACK || FlxG.mouse.justPressedRight)
 		{
 			MusicBeatState.switchState(new MainMenuState(), 'stickers');
 			FlxG.sound.play(Paths.sound('cancelMenu'));
+		}
+		
+		if (FlxG.keys.pressed.SHIFT && completedMainGame())
+		{
+			FlxG.sound.music.stop();
+			MusicBeatState.switchState(new VideoPlayer());
+			FlxG.sound.play(Paths.sound('scrollMenu'));
 		}
 		
 		if (FlxG.mouse.overlaps(arrowSelectorLeft))
@@ -173,23 +194,15 @@ class GalleryState extends MusicBeatState
 		if (allowImageChange)
 		{
 			if (controls.UI_LEFT_P || (FlxG.mouse.overlaps(arrowSelectorLeft) && FlxG.mouse.justPressed))
-			{
 				changeImage(-1);
-			}
 			if (controls.UI_RIGHT_P || (FlxG.mouse.overlaps(arrowSelectorRight) && FlxG.mouse.justPressed))
-			{
 				changeImage(1);
-			}
 		}
 
 		if (controls.UI_DOWN_P)
-		{
 			changeCategory(-1);
-		}
 		if (controls.UI_UP_P)
-		{
 			changeCategory(1);
-		}
 
 		super.update(elapsed);
 	}
