@@ -3730,9 +3730,12 @@ class PlayState extends MusicBeatState
 		playDialogue = false;
 
 		#if ACHIEVEMENTS_ALLOWED
-		if(achievementObj != null) {
+		if(achievementObj != null)
+		{
 			return;
-		} else {
+		} 
+		else
+		{
 			var achieve:String = checkForAchievement(['Tutorial_Beaten',
 			'WeekMarco_Beaten', 'WeekMarcoVillainous_Beaten', 'WeekMarcoIniquitous_Beaten',
 			'WeekNun_Beaten','WeekNunVillainous_Beaten', 'WeekNunIniquitous_Beaten',
@@ -3757,7 +3760,8 @@ class PlayState extends MusicBeatState
 		#end
 
 		var ret:Dynamic = callOnLuas('onEndSong', [], false);
-		if(ret != FunkinLua.Function_Stop && !transitioning) {
+		if(ret != FunkinLua.Function_Stop && !transitioning) 
+		{
 			if (SONG.validScore)
 			{
 				#if !switch
@@ -3810,17 +3814,17 @@ class PlayState extends MusicBeatState
 					WeekData.loadTheFirstEnabledMod();
 
 					cancelMusicFadeTween();
-					if(FlxTransitionableState.skipNextTransIn) {
+					if(FlxTransitionableState.skipNextTransIn)
 						CustomFadeTransition.nextCamera = null;
-					}
 
 					if (!PlayState.checkForPowerUp)
 						PlayState.campaignScore += 35000;
 					
 					if (ClientPrefs.getGameplaySetting('practice', false) || ClientPrefs.getGameplaySetting('botplay', false)) //This means you used either Botplay or Practice mode
 					{
+						checkForPowerUp = false;
 						FlxG.sound.playMusic(Paths.music('freakyMenu'));
-						if (PlayState.isIniquitousMode == true)
+						if (PlayState.isIniquitousMode)
 						{
 							if (ClientPrefs.storyModeCrashWeekName == 'weekbeatrice')
 								ClientPrefs.ghostTapping = true;
@@ -3828,8 +3832,8 @@ class PlayState extends MusicBeatState
 						}
 						else
 							MusicBeatState.switchState(new StoryMenuState());
-						trace('TOKEN NUMBER AS OF RN: ' + ClientPrefs.tokens);			
-						trace('TOKENS ACHIEVED: ' + ClientPrefs.tokensAchieved);				
+						
+						trace('TOKEN NUMBER WITH BOTPLAY OR PRACTICE MODE BEING ON: ' + ClientPrefs.tokens);						
 					}
 					else if (ClientPrefs.storyModeCrashWeekName == 'mainTutWeek')
 					{
@@ -3838,18 +3842,8 @@ class PlayState extends MusicBeatState
 					}
 					else
 						MusicBeatState.switchState(new TokenAchievement());
-						
-					//Unlock Main Week Boss Songs in freeplay if you beat the song
-					if (ClientPrefs.villainyBeaten == false && PlayState.storyDifficulty >= 1 && Paths.formatToSongPath(SONG.song) == 'villainy')
-						ClientPrefs.villainyBeaten = true;
-					if (ClientPrefs.pointBlankBeaten == false && PlayState.storyDifficulty >= 1 && Paths.formatToSongPath(SONG.song) == 'point-blank')
-						ClientPrefs.pointBlankBeaten = true;
-					if (ClientPrefs.libidinousnessBeaten == false && PlayState.storyDifficulty >= 1 && Paths.formatToSongPath(SONG.song) == 'libidinousness')
-						ClientPrefs.libidinousnessBeaten = true;
-					if (ClientPrefs.excreteBeaten == false && PlayState.storyDifficulty >= 1 && Paths.formatToSongPath(SONG.song) == 'excrete')
-						ClientPrefs.excreteBeaten = true;
 
-					if (PlayState.storyDifficulty >= 1 && Paths.formatToSongPath(SONG.song) == 'libidinousness' && ClientPrefs.lowQuality == true)
+					if (PlayState.storyDifficulty >= 1 && Paths.formatToSongPath(SONG.song) == 'libidinousness' && ClientPrefs.lowQuality)
 						ClientPrefs.lowQuality = false;
 
 					ClientPrefs.ghostTapping = true;
@@ -3857,50 +3851,19 @@ class PlayState extends MusicBeatState
 					//Reset the crash detector to 0, since it means you've beaten the week and it did not crash
 					ClientPrefs.resetStoryModeProgress(false);
 
-					// if ()
-					if(!ClientPrefs.getGameplaySetting('practice', false) && !ClientPrefs.getGameplaySetting('botplay', false)) {
-						StoryMenuState.weekCompleted.set(WeekData.weeksList[storyWeek], true);
-
-					if (!ClientPrefs.getGameplaySetting('practice', false) && !ClientPrefs.getGameplaySetting('botplay', false))
+					var noHelp:Bool = !ClientPrefs.getGameplaySetting('practice', false) && !ClientPrefs.getGameplaySetting('botplay', false); // No help was used
+					if(noHelp)
 					{
-						var tokenMult:Bool = true;
-						var tokenScore:Int = songScore;
-						do{
-							if (tokenScore >= 150000)
-							{
-								ClientPrefs.tokensAchieved += 1;
-								tokenScore -= 150000;
-								tokenMult = true;
-							}
-							else
-							{
-								tokenMult = false;
-							}
-						}
-						while(tokenMult == true);
-
-						if (songMisses < 1)
-						{
-							ClientPrefs.tokensAchieved += 5;
-						}
-						else
-						{
-							ClientPrefs.tokensAchieved += 3;
-						}
+						StoryMenuState.weekCompleted.set(WeekData.weeksList[storyWeek], true);
+						unlockSong(Paths.formatToSongPath(SONG.song), "Beaten");
 					}
+					saveContents(noHelp);
 					
-					ClientPrefs.saveSettings();
-					trace('TOKEN NUMBER AS OF RN: ' + ClientPrefs.tokens);
-					trace('TOKENS ACHIEVED: ' + ClientPrefs.tokensAchieved);
-
-						if (SONG.validScore)
-						{
-							Highscore.saveWeekScore(WeekData.getWeekFileName(), campaignScore, storyDifficulty);
-						}
+					if (SONG.validScore)
+						Highscore.saveWeekScore(WeekData.getWeekFileName(), campaignScore, storyDifficulty);
 
 						FlxG.save.data.weekCompleted = StoryMenuState.weekCompleted;
 						FlxG.save.flush();
-					}
 					changedDifficulty = false;
 				}
 				else
@@ -3908,38 +3871,9 @@ class PlayState extends MusicBeatState
 					var difficulty:String = CoolUtil.getDifficultyFilePath();
 
 					trace('LOADING NEXT SONG');
-					trace(Paths.formatToSongPath(PlayState.storyPlaylist[0]) + difficulty);
 
-					if (!ClientPrefs.getGameplaySetting('practice', false) && !ClientPrefs.getGameplaySetting('botplay', false))
-					{
-						var tokenMult:Bool = true;
-						var tokenScore:Int = songScore;
-						do{
-							if (tokenScore >= 150000)
-							{
-								ClientPrefs.tokensAchieved += 1;
-								tokenScore -= 150000;
-								tokenMult = true;
-							}
-							else
-							{
-								tokenMult = false;
-							}
-						}
-						while(tokenMult == true);
-
-						if (songMisses < 1)
-							{
-								ClientPrefs.tokensAchieved += 5;
-							}
-						else
-							{
-								ClientPrefs.tokensAchieved += 3;
-							}
-						ClientPrefs.saveSettings();
-						trace('TOKEN NUMBER AS OF RN: ' + ClientPrefs.tokens);
-						trace('TOKENS ACHIEVED: ' + ClientPrefs.tokensAchieved);
-					}
+					var noHelp:Bool = !ClientPrefs.getGameplaySetting('practice', false) && !ClientPrefs.getGameplaySetting('botplay', false);
+					saveContents(noHelp);
 
 					FlxTransitionableState.skipNextTransIn = true;
 					FlxTransitionableState.skipNextTransOut = true;
@@ -3947,56 +3881,37 @@ class PlayState extends MusicBeatState
 					prevCamFollow = camFollow;
 					prevCamFollowPos = camFollowPos;
 
-					if (ClientPrefs.optimizationMode == true && ClientPrefs.storyModeCrashWeekName == 'weekkiana' && PlayState.storyPlaylist[0] == "Libidinousness")
+					// Song Checks
+					var weeksToCheck:Array<String> = ["mainweek", "weekkiana", "weeklegacy"];
+					var checkedWeek:Bool = false;
+					for (week in 0...weeksToCheck.length)
 					{
-						trace('Its working! No mechanics for Libidinousness!');
-						PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0] + difficulty + 'optimized', PlayState.storyPlaylist[0]);
-						trace(Paths.formatToSongPath(PlayState.storyPlaylist[0]) + difficulty + 'optimized');
+						if (ClientPrefs.storyModeCrashWeekName == weeksToCheck[week])
+						{
+							// Check all 3 fields. 2 Will be false most of the time.
+							checkedWeek = checkSongBeforeSwitching("LowQuality", PlayState.storyPlaylist[0], difficulty);
+							if (!checkedWeek)
+								checkedWeek = checkSongBeforeSwitching("Optimization", PlayState.storyPlaylist[0], difficulty);
+							if (!checkedWeek)
+								checkedWeek = checkSongBeforeSwitching("Mechanics", PlayState.storyPlaylist[0], difficulty);
+							break;
+						}		
 					}
-					else if (ClientPrefs.lowQuality == true && ClientPrefs.storyModeCrashWeekName == 'weekkiana' && PlayState.storyPlaylist[0] == "Libidinousness")
+					if (!checkedWeek)
 					{
-						trace('Its working! mechanics for Libidinousness, just with pngs!');
-						PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0] + difficulty + 'optimized', PlayState.storyPlaylist[0]);
-						trace(Paths.formatToSongPath(PlayState.storyPlaylist[0]) + difficulty + 'optimized');
-					}
-					else if (ClientPrefs.mechanics == false && ClientPrefs.storyModeCrashWeekName == 'mainweek' && PlayState.storyPlaylist[0] == "Toxic Mishap" && storyDifficulty == 1)
-					{
-						trace('Its working! No mechanics for Toxic Mishap in Villainous!');
-						PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0] + difficulty + 'Mechanicless', PlayState.storyPlaylist[0]);
-						trace(Paths.formatToSongPath(PlayState.storyPlaylist[0]) + difficulty + 'Mechanicless');
-					}
-					else if (ClientPrefs.mechanics == false && ClientPrefs.storyModeCrashWeekName == 'mainweek' && PlayState.storyPlaylist[0] == "Villainy" && storyDifficulty == 1)
-					{
-						trace('Its working! No mechanics for Villainy in Villainous!');
-						PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0] + difficulty + 'Mechanicless', PlayState.storyPlaylist[0]);
-						trace(Paths.formatToSongPath(PlayState.storyPlaylist[0]) + difficulty + 'Mechanicless');
-					}
-					else if (ClientPrefs.mechanics == false && ClientPrefs.storyModeCrashWeekName == 'weekkiana' && PlayState.storyPlaylist[0] == "Lustality Remix")
-					{
-						trace('Its working! No mechanics for Lustality Remix!');
-						PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0] + difficulty + 'Mechanicless', PlayState.storyPlaylist[0]);
-					}
-					else if (ClientPrefs.mechanics == false && ClientPrefs.storyModeCrashWeekName == 'weekkiana' && PlayState.storyPlaylist[0] == "Toybox" && storyDifficulty <= 1)
-					{
-						trace('Its working! No mechanics for Toybox!');
-						PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0] + difficulty + 'Mechanicless', PlayState.storyPlaylist[0]);
-					}
-					else if (ClientPrefs.mechanics == false && ClientPrefs.storyModeCrashWeekName == 'weeklegacy' && PlayState.storyPlaylist[0] == "Toxic Mishap (Legacy)")
-					{
-						trace('Its working! No mechanics for Toxic Mishap (Legacy)!');
-						PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0] + difficulty + 'Mechanicless', PlayState.storyPlaylist[0]);
-					}
-					else
 						PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0] + difficulty, PlayState.storyPlaylist[0]);
+						trace(Paths.formatToSongPath(PlayState.storyPlaylist[0]) + difficulty);
+					}
+
 					FlxG.sound.music.stop();
 
 					if (ClientPrefs.storyModeCrashWeekName == 'weeklegacy')
-						{
-							PlayState.SONG.player1 = 'playablegf-old'; //Change the player to the old version
-						}
-					if (ClientPrefs.storyModeCrashWeekName == 'weekmorky')
+						PlayState.SONG.player1 = 'playablegf-old'; //Change the player to the old version
+					else if (ClientPrefs.storyModeCrashWeekName == 'weekmorky')
+					{
 						if (storyPlaylist[0] == 'spendthrift')
 							PlayState.SONG.player1 = 'Spendthrift GF'; //Change the player to the spendthrift version
+					}	
 
 					if (FlxG.random.int(1, 8) == 4)
 						MusicBeatState.switchState(new MinigameState());
@@ -4027,53 +3942,16 @@ class PlayState extends MusicBeatState
 						WeekData.loadTheFirstEnabledMod();
 
 						cancelMusicFadeTween();
-						if(FlxTransitionableState.skipNextTransIn) {
+						if(FlxTransitionableState.skipNextTransIn)
 							CustomFadeTransition.nextCamera = null;
-						}
 
 						if (!PlayState.checkForPowerUp)
 							PlayState.campaignScore += 25000;
 						
-						if (ClientPrefs.getGameplaySetting('practice', false) || ClientPrefs.getGameplaySetting('botplay', false)) //This means you used either Botplay or Practice mode
-						{
-							checkForPowerUp = false;
-							FlxG.sound.playMusic(Paths.music('freakyMenu'));
-							MusicBeatState.switchState(new MainMenuState());
-							trace('TOKEN NUMBER AS OF RN: ' + ClientPrefs.tokens);					
-						}
-						else
-							MusicBeatState.switchState(new TokenAchievement());
+						MusicBeatState.switchState(new TokenAchievement());
 
-						if (!ClientPrefs.getGameplaySetting('practice', false) && !ClientPrefs.getGameplaySetting('botplay', false))
-						{
-							var tokenMult:Bool = true;
-							var tokenScore:Int = songScore;
-							do{
-								if (tokenScore >= 150000)
-								{
-									ClientPrefs.tokensAchieved += 1;
-									tokenScore -= 150000;
-									tokenMult = true;
-								}
-								else
-								{
-									tokenMult = false;
-								}
-							}
-							while(tokenMult == true);
-
-							if (songMisses < 1)
-							{
-								ClientPrefs.tokensAchieved += 2;
-							}
-							else
-							{
-								ClientPrefs.tokensAchieved += 1;
-							}
-						}
-						
-					ClientPrefs.saveSettings();
-					trace('TOKEN NUMBER SAVED: ' + ClientPrefs.tokensAchieved);
+						var noHelp:Bool = !ClientPrefs.getGameplaySetting('practice', false) && !ClientPrefs.getGameplaySetting('botplay', false);
+						saveContents(noHelp);
 
 					changedDifficulty = false;
 				}
@@ -4084,35 +3962,8 @@ class PlayState extends MusicBeatState
 					trace('LOADING NEXT SONG');
 					trace(Paths.formatToSongPath(PlayState.injectionPlaylist[0]) + difficulty);
 
-					if (!ClientPrefs.getGameplaySetting('practice', false) && !ClientPrefs.getGameplaySetting('botplay', false))
-					{
-						var tokenMult:Bool = true;
-						var tokenScore:Int = songScore;
-						do{
-							if (tokenScore >= 150000)
-							{
-								ClientPrefs.tokensAchieved += 1;
-								tokenScore -= 150000;
-								tokenMult = true;
-							}
-							else
-							{
-								tokenMult = false;
-							}
-						}
-						while(tokenMult == true);
-
-						if (songMisses < 1)
-							{
-								ClientPrefs.tokensAchieved += 2;
-							}
-						else
-							{
-								ClientPrefs.tokensAchieved += 1;
-							}
-						ClientPrefs.saveSettings();
-						trace('TOKEN NUMBER SAVED: ' + ClientPrefs.tokensAchieved);
-					}
+					var noHelp:Bool = !ClientPrefs.getGameplaySetting('practice', false) && !ClientPrefs.getGameplaySetting('botplay', false);
+					saveContents(noHelp);
 
 					FlxTransitionableState.skipNextTransIn = true;
 					FlxTransitionableState.skipNextTransOut = true;
@@ -4120,18 +3971,21 @@ class PlayState extends MusicBeatState
 					prevCamFollow = camFollow;
 					prevCamFollowPos = camFollowPos;
 					
-					if (PlayState.injectionPlaylist[0] == 'libidinousness' && ClientPrefs.lowQuality == true)
+					if (PlayState.injectionPlaylist[0] == 'libidinousness' && ClientPrefs.lowQuality)
 						PlayState.SONG = Song.loadFromJson('libidinousness-villainousoptimized', 'libidinousness');
 					else
 						PlayState.SONG = Song.loadFromJson(PlayState.injectionPlaylist[0] + difficulty, PlayState.injectionPlaylist[0]);
 
-					if (PlayState.injectionPlaylist[0] == 'cheap-skate-(legacy)' || PlayState.injectionPlaylist[0] == 'toxic-mishap-(legacy)' || PlayState.injectionPlaylist[0] == 'paycheck-(legacy)') //Week Legacy
-						PlayState.SONG.player1 = 'playablegf-old';
-					if (PlayState.injectionPlaylist[0] == 'unpaid-catastrophe' || PlayState.injectionPlaylist[0] == 'cheque') //Week D-Sides
-						PlayState.SONG.player1 = 'd-side gf';
-					if (PlayState.injectionPlaylist[0] == 'spendthrift') //Week Morky
-						PlayState.SONG.player1 = 'Spendthrift GF';
-
+					// Character Change
+					switch(PlayState.injectionPlaylist[0])
+					{
+						case 'cheap-skate-(legacy)', 'toxic-mishap-(legacy)', 'paycheck-(legacy)': //Week Legacy
+							PlayState.SONG.player1 = 'playablegf-old';
+						case 'unpaid-catastrophe', 'cheque': //Week D-Sides
+							PlayState.SONG.player1 = 'd-side gf';
+						case 'spendthrift': //Week Morky
+							PlayState.SONG.player1 = 'Spendthrift GF';
+					}
 					FlxG.sound.music.stop();
 
 					if (FlxG.random.int(1, 8) == 4)
@@ -4163,7 +4017,7 @@ class PlayState extends MusicBeatState
 				if (PlayState.mayhemSongsPlayed > 3)
 				{
 					var allowNRMode:Int = FlxG.random.int(0, 30);
-					if (allowNRMode == 5 || allowNRMode == 10 || allowNRMode == 15 || allowNRMode == 20 || allowNRMode == 25)
+					if (allowNRMode % 5 == 0 && allowNRMode >= 5 && allowNRMode <= 25) // 5, 10, 15, 10, 25
 					{
 						trace("Random Chart Mode on!");
 						mayhemNRMode = "Random";
@@ -4175,40 +4029,19 @@ class PlayState extends MusicBeatState
 					}
 				}
 				
-				if (PlayState.mayhemPlaylist[songSelected] == "toybox" || PlayState.mayhemPlaylist[songSelected] == "its-kiana" || PlayState.mayhemPlaylist[songSelected] == "villainy" 
-					|| PlayState.mayhemPlaylist[songSelected] == "point-blank"  || PlayState.mayhemPlaylist[songSelected] == "libidinousness" || PlayState.mayhemPlaylist[songSelected] == "excrete"
-					|| PlayState.mayhemPlaylist[songSelected] == "marauder" || PlayState.mayhemPlaylist[songSelected] == 'shucks-v2')
-				{
-					difficulty = CoolUtil.getDifficultyFilePath(1);
-				}
+				var villainousSongs:Array<String> = ['toybox', 'its-kiana', 'villainy', 'point-blank', 'libidinousness', 'excrete', 'marauder', 'shucks-v2'];
+				for (i in 0...villainousSongs.length)
+					if (PlayState.mayhemPlaylist[songSelected] == villainousSongs[i])
+					{
+						difficulty = CoolUtil.getDifficultyFilePath(1);
+						break;
+					}
 				
 				trace('LOADING NEXT SONG IN MAYHEM MODE');
 				trace(Paths.formatToSongPath(PlayState.mayhemPlaylist[songSelected]) + difficulty);
 
-				if (!ClientPrefs.getGameplaySetting('practice', false) && !ClientPrefs.getGameplaySetting('botplay', false))
-				{
-					var tokenMult:Bool = true;
-					var tokenScore:Int = songScore;
-					do{
-						if (tokenScore >= 150000)
-						{
-							ClientPrefs.tokensAchieved += 1;
-							tokenScore -= 150000;
-							tokenMult = true;
-						}
-						else
-							tokenMult = false;
-					}
-					while(tokenMult);
-
-					if (songMisses < 1)
-						ClientPrefs.tokensAchieved += 2;
-					else
-						ClientPrefs.tokensAchieved += 1;
-
-					ClientPrefs.saveSettings();
-					trace('TOKEN NUMBER SAVED SO FAR: ' + ClientPrefs.tokensAchieved);
-				}
+				var noHelp:Bool = !ClientPrefs.getGameplaySetting('practice', false) && !ClientPrefs.getGameplaySetting('botplay', false);
+				saveContents(noHelp);
 
 				FlxTransitionableState.skipNextTransIn = true;
 				FlxTransitionableState.skipNextTransOut = true;
@@ -4216,17 +4049,21 @@ class PlayState extends MusicBeatState
 				prevCamFollow = camFollow;
 				prevCamFollowPos = camFollowPos;
 					
-				if (PlayState.mayhemPlaylist[songSelected] == "libidinousness" && ClientPrefs.lowQuality == true)
+				if (PlayState.mayhemPlaylist[songSelected] == "libidinousness" && ClientPrefs.lowQuality)
 					PlayState.SONG = Song.loadFromJson('libidinousness-villainousoptimized', 'libidinousness');
 				else
 					PlayState.SONG = Song.loadFromJson(PlayState.mayhemPlaylist[songSelected] + difficulty, PlayState.mayhemPlaylist[songSelected]);
-					
-				if (PlayState.mayhemPlaylist[songSelected] == 'cheap-skate-(legacy)' || PlayState.mayhemPlaylist[songSelected] == 'toxic-mishap-(legacy)' || PlayState.mayhemPlaylist[songSelected] == 'paycheck-(legacy)') //Week Legacy
-					PlayState.SONG.player1 = 'playablegf-old';
-				if (PlayState.mayhemPlaylist[songSelected] == 'spendthrift') //Week Morky
-					PlayState.SONG.player1 = 'Spendthrift GF';
-				if (PlayState.mayhemPlaylist[songSelected] == 'its-kiana') // Bonus song
-					PlayState.SONG.player1 = 'd-side gf';
+
+				// Character Change
+				switch(PlayState.mayhemPlaylist[songSelected])
+				{
+					case 'cheap-skate-(legacy)', 'toxic-mishap-(legacy)', 'paycheck-(legacy)': //Week Legacy
+						PlayState.SONG.player1 = 'playablegf-old';
+					case 'unpaid-catastrophe', 'cheque': //Week D-Sides
+						PlayState.SONG.player1 = 'd-side gf';
+					case 'spendthrift': //Week Morky
+						PlayState.SONG.player1 = 'Spendthrift GF';
+				}
 
 				// Unlock Secret Song
 				if (!ClientPrefs.shucksUnlocked && PlayState.mayhemPlaylist[songSelected] == "shucks-v2")
@@ -4259,89 +4096,31 @@ class PlayState extends MusicBeatState
 				trace('WENT BACK TO FREEPLAY??');
 				WeekData.loadTheFirstEnabledMod();
 				cancelMusicFadeTween();
-				if(FlxTransitionableState.skipNextTransIn) {
+				if(FlxTransitionableState.skipNextTransIn)
 					CustomFadeTransition.nextCamera = null;
-				}
 				
-				if (Paths.formatToSongPath(SONG.song) == 'libidinousness' && ClientPrefs.lowQuality == true)
+				if (Paths.formatToSongPath(SONG.song) == 'libidinousness' && ClientPrefs.lowQuality)
 					ClientPrefs.lowQuality = false;
 
-				if (ClientPrefs.tofuPlayed == false && Paths.formatToSongPath(SONG.song) == 'tofu')
-					ClientPrefs.tofuPlayed = true;
-				if (ClientPrefs.lustalityPlayed == false && (Paths.formatToSongPath(SONG.song) == 'lustality' || Paths.formatToSongPath(SONG.song) == 'lustality-v1'))
-					ClientPrefs.lustalityPlayed = true;
-				if (ClientPrefs.marcochromePlayed == false && Paths.formatToSongPath(SONG.song) == 'marcochrome')
-					ClientPrefs.marcochromePlayed = true;
-				if (ClientPrefs.nunsationalPlayed == false && Paths.formatToSongPath(SONG.song) == 'nunsational')
-					ClientPrefs.nunsationalPlayed = true;
-				if (ClientPrefs.nicPlayed == false && Paths.formatToSongPath(SONG.song) == 'slowflp')
-					ClientPrefs.nicPlayed = true;
-				if (ClientPrefs.debugPlayed == false && Paths.formatToSongPath(SONG.song) == 'marauder')
-					ClientPrefs.debugPlayed = true;
-				if (ClientPrefs.fnvPlayed == false && Paths.formatToSongPath(SONG.song) == 'fnv')
-					ClientPrefs.fnvPlayed = true;
-				if (ClientPrefs.infatuationPlayed == false && Paths.formatToSongPath(SONG.song) == 'fanfuck-forever')
-					ClientPrefs.infatuationPlayed = true;
-				if (ClientPrefs.rainyDazePlayed == false && Paths.formatToSongPath(SONG.song) == 'rainy-daze')
-					ClientPrefs.rainyDazePlayed = true;
-				//Unlocking Crossover Songs
-				if (ClientPrefs.ourplePlayed == false && Paths.formatToSongPath(SONG.song) == 'vguy')
-					ClientPrefs.ourplePlayed = true;
-				if (ClientPrefs.kyuPlayed == false && Paths.formatToSongPath(SONG.song) == 'fast-food-therapy')
-					ClientPrefs.kyuPlayed = true;
-				if (ClientPrefs.tacticalMishapPlayed == false && Paths.formatToSongPath(SONG.song) == 'tactical-mishap')
-					ClientPrefs.tacticalMishapPlayed = true;
-				if (ClientPrefs.breacherPlayed == false && Paths.formatToSongPath(SONG.song) == 'breacher')
-					ClientPrefs.breacherPlayed = true;
-				if (ClientPrefs.negotiationPlayed == false && Paths.formatToSongPath(SONG.song) == 'negotiation')
-					ClientPrefs.negotiationPlayed = true;
-				if (ClientPrefs.ccPlayed == false && Paths.formatToSongPath(SONG.song) == 'concert-chaos')
-					ClientPrefs.ccPlayed = true;
+				var noHelp:Bool = !ClientPrefs.getGameplaySetting('practice', false) && !ClientPrefs.getGameplaySetting('botplay', false);
+				saveContents(noHelp);
 
-				ClientPrefs.saveSettings();
-
-				if (!ClientPrefs.getGameplaySetting('practice', false) && !ClientPrefs.getGameplaySetting('botplay', false)) //for the tokens
+				if (noHelp)
+					unlockSong(Paths.formatToSongPath(SONG.song), "Played");
+				
+				if (SONG.validScore && noHelp)
 				{
-					var tokenMult:Bool = true;
-					var tokenScore:Int = songScore;
-					do{
-						if (tokenScore >= 150000)
-						{
-							ClientPrefs.tokensAchieved += 1;
-							tokenScore -= 150000;
-							tokenMult = true;
-						}
-						else
-						{
-							tokenMult = false;
-						}
-					}
-					while(tokenMult == true);
-
-					if (songMisses < 1)
-					{
-						ClientPrefs.tokensAchieved += 2;
-					}
-					else
-					{
-						ClientPrefs.tokensAchieved += 1;
-					}
-					ClientPrefs.saveSettings();
-					trace('TOKEN NUMBER AS OF RN: ' + ClientPrefs.tokens);
-					trace('TOKENS ACHIEVED: ' + ClientPrefs.tokensAchieved);
-					if (SONG.validScore)
-					{
-						var percent:Float = ratingPercent;
-						if(Math.isNaN(percent)) percent = 0;
-						Highscore.saveScore(SONG.song, songScore, storyDifficulty, percent);
-					}
+					var percent:Float = ratingPercent;
+					if(Math.isNaN(percent)) percent = 0;
+					Highscore.saveScore(SONG.song, songScore, storyDifficulty, percent);
 				}
+
 				if (Paths.formatToSongPath(SONG.song) == 'couple-clash')
 				{
 					MusicBeatState.switchState(new ResultsScreenState());
 					ClientPrefs.tokensAchieved = 0;
 				}
-				else if (Paths.formatToSongPath(SONG.song) == 'jerry' || Paths.formatToSongPath(SONG.song) == 'instrumentally-deranged')
+				else if (Paths.formatToSongPath(SONG.song) == 'jerry' || Paths.formatToSongPath(SONG.song) == 'instrumentally-deranged' || !noHelp)
 				{
 					FlxG.sound.playMusic(Paths.music('freakyMenu'));
 					if (FreeplayCategoryState.freeplayName == 'MAIN') //go to Main Freeplay
@@ -4355,28 +4134,152 @@ class PlayState extends MusicBeatState
 					else if (FreeplayCategoryXtraState.freeplayName == 'XTRABONUS') //go to Xtra Freeplay [Using Bonus Songs]
 						MusicBeatState.switchState(new FreeplayXtraBonusState());
 				}		
-				else if (ClientPrefs.getGameplaySetting('practice', false) || ClientPrefs.getGameplaySetting('botplay', false)) //This means you used either Botplay or Practice mode
-				{
-					FlxG.sound.playMusic(Paths.music('freakyMenu'));
-					if (ClientPrefs.onCrossSection == true)
-						MusicBeatState.switchState(new CrossoverState());
-					else if (FreeplayCategoryState.freeplayName == 'MAIN') //go to Main Freeplay
-						MusicBeatState.switchState(new FreeplayState());
-					else if (FreeplayCategoryState.freeplayName == 'BONUS') //go to Bonus Freeplay
-						MusicBeatState.switchState(new FreeplayBonusState());
-					else if (FreeplayCategoryXtraState.freeplayName == 'XTRASHOP') //go to Xtra Freeplay [Using Shop songs]
-						MusicBeatState.switchState(new FreeplayXtraState());
-					else if (FreeplayCategoryXtraState.freeplayName == 'XTRACROSSOVER') //go to Xtra Freeplay [Using Crossover Songs]
-						MusicBeatState.switchState(new FreeplayXtraCrossoverState());
-					else if (FreeplayCategoryXtraState.freeplayName == 'XTRABONUS') //go to Xtra Freeplay [Using Bonus Songs]
-						MusicBeatState.switchState(new FreeplayXtraBonusState());
-				}
 				else
 					MusicBeatState.switchState(new TokenAchievement());
 				changedDifficulty = false;
 			}
 			transitioning = true;
 		}
+	}
+
+	function saveContents(noHelp:Bool)
+	{
+		trace('TOKEN NUMBER AS OF BEFORE SAVING CONTENTS: ' + ClientPrefs.tokens);
+		if (!noHelp)
+		{
+			trace('NO TOKENS ACHIEVED.');
+			return;
+		}
+
+		// Token Bonus based on score
+		var tokenMult:Bool = true;
+		var tokenScore:Int = songScore;
+		do
+		{
+			if (tokenScore >= 150000)
+			{
+				ClientPrefs.tokensAchieved += 1;
+				tokenScore -= 150000;
+			}
+			else
+				tokenMult = false;
+		}
+		while(tokenMult);
+
+		// Token Bonus based on misses
+		ClientPrefs.tokensAchieved += (songMisses < 1) ? 5 : 3;
+		ClientPrefs.saveSettings();
+
+		trace('TOKENS SAVED AND ACHIEVED: ' + ClientPrefs.tokensAchieved);
+	}
+
+	function checkSongBeforeSwitching(type:String, song:String, diff:String):Bool
+	{
+		var checkedSong:Bool = false;
+		var loweredType:String = type.toLowerCase();
+		var reflectType:Dynamic = null;
+		var endType:String = "";
+
+		switch(loweredType)
+		{
+			case "optimization":
+				reflectType = Reflect.field(ClientPrefs, (type.toLowerCase() == "optimization") ? "optimizationMode" : "lowQuality");
+				endType = "optimized";
+
+				if (reflectType && PlayState.storyPlaylist[0] == song && Song.loadFromJson(song + diff + endType, song) != null)
+				{
+					PlayState.SONG = Song.loadFromJson(song + diff + endType, song);
+					checkedSong = true;
+				}
+
+			case "lowquality":
+				reflectType = Reflect.field(ClientPrefs, "lowQuality");
+				endType = "optimized";
+
+				if (reflectType && PlayState.storyPlaylist[0] == song && Song.loadFromJson(song + diff + endType, song) != null)
+				{
+					PlayState.SONG = Song.loadFromJson(song + diff + endType, song);
+					checkedSong = true;
+				}
+
+			case "mechanics":
+				reflectType = Reflect.field(ClientPrefs, type.toLowerCase());
+				endType = "Mechanicless";
+				
+				if (!reflectType && PlayState.storyPlaylist[0] == song && Song.loadFromJson(song + diff + endType, song) != null)
+				{
+					PlayState.SONG = Song.loadFromJson(song + diff + endType, song);
+					checkedSong = true;
+				}
+			
+		}
+
+		if (!checkedSong)
+			trace('$song is invalid! -> $loweredType is $reflectType! -> No modifications caused.');
+		else
+		{
+			trace('Checked $song! -> No Mechanics in $diff -> Caused by: $loweredType!');
+			trace(Paths.formatToSongPath(song + diff + endType));
+		}
+
+		return checkedSong;
+	}
+	
+	function unlockSong(songName:String, type:String)
+	{
+		var songVariable:String = songName + type;
+		var reflectedSong:Dynamic = Reflect.field(ClientPrefs, songVariable);
+		switch(songName) // Fix Reflects for said songs
+		{
+			// Beaten stuff check
+			case "point-blank":
+				songVariable = "pointBlankBeaten";
+
+			// Played stuff check
+			case "lustality-v1":
+				songVariable = "lustalityPlayed";
+			case "slowflp":
+				songVariable = "nicPlayed";
+			case "marauder":
+				songVariable = "debugPlayed";
+			case "fanfuck-forever":
+				songVariable = "infatuationPlayed";
+			case "rainy-daze":
+				songVariable = "rainyDazePlayed";
+			case "vguy":
+				songVariable = "ourplePlayed";
+			case "fast-food-therapy":
+				songVariable = "kyuPlayed";
+			case "tactical-mishap'":
+				songVariable = "tacticalMishapPlayed";
+			case "concert-chaos":
+				songVariable = "ccPlayed";
+			
+		}
+		reflectedSong = Reflect.field(ClientPrefs, songVariable);
+		if (reflectedSong == null)
+		{
+			trace('Checked if $songName has a Played Field -> Does not exist!');
+			return;
+		}
+		else
+			trace('Checked if $songName has a Played Field -> It is $reflectedSong.');
+
+
+		if (type == "Beaten")
+		{
+			if (!reflectedSong && PlayState.storyDifficulty >= 1 && Paths.formatToSongPath(SONG.song) == songName)
+				Reflect.setField(ClientPrefs, songVariable, true);
+		}
+		else
+		{
+			if (!reflectedSong && Paths.formatToSongPath(SONG.song) == songName)
+				Reflect.setField(ClientPrefs, songVariable, true);
+		}
+		
+		trace('Field for $songName is now ' + Reflect.field(ClientPrefs, songVariable));
+
+		ClientPrefs.saveSettings();
 	}
 
 	#if ACHIEVEMENTS_ALLOWED

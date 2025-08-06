@@ -486,9 +486,7 @@ class ResultsScreenState extends MusicBeatState
             });
         });
 
-        if (GameOverSubstate.injected == true)
-            FlxG.sound.play(Paths.sound('resultsJingleFail'));
-        else if (GameOverSubstate.mayhemed == true && PlayState.mayhemSongsPlayed < 1)
+        if (GameOverSubstate.injected == true || (GameOverSubstate.mayhemed == true && PlayState.mayhemSongsPlayed < 1))
             FlxG.sound.play(Paths.sound('resultsJingleFail'));
         else
             FlxG.sound.play(Paths.sound('resultsJingle'));
