@@ -2,6 +2,7 @@
 
 package;
 
+#if !mobile
 class CppAPI
 {
 	#if cpp
@@ -85,3 +86,4 @@ class CppAPI
 	}
 	#end
 }
+#end

@@ -2,7 +2,7 @@
 <project>
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="Friday Night Villainy 2.0: A Villainous Mayhem" file="Funkin' Villainy 2.0" packageName="com.shadowmario.psychengine" package="com.shadowmario.psychengine" main="Main" version="0.2.8 Legacy" company="Strawberry" />
+	<app title="Friday Night Villainy 2.0: A Villainous Mayhem" file="Funkin' Villainy 2.0" packageName="com.lizzystrawberry.fnv" package="com.lizzystrawberry.fnv" main="Main" version="0.2.8 Legacy" company="Strawberry" />
 
 	<!--Switch Export with Unique ApplicationID and Icon-->
 	<set name="APP_ID" value="0x0100f6c013bbc000" />
@@ -47,14 +47,15 @@
 	<define name="DEBUG_ALLOWED"/>
 	<define name="DISCORD_ALLOWED" if="desktop" />
 	<!--define name="STARTUP_CACHE"/--> <!-- DELETE THIS TO REMOVE CACHING AT THE START OF THE GAME -->
-	<define name="MODS_ALLOWED" if="desktop" />
-	<define name="LUA_ALLOWED" if="desktop" />
+	<define name="MODS_ALLOWED" if="desktop || mobile" />
+	<define name="LUA_ALLOWED" if="desktop || mobile" />
 	<define name="ACHIEVEMENTS_ALLOWED" />
-	<define name="VIDEOS_ALLOWED" if="web || windows" unless="32bits"/>
+	<define name="VIDEOS_ALLOWED" if="desktop || mobile" unless="32bits"/>
 	<define name="PSYCH_WATERMARKS"/> <!-- DELETE THIS TO REMOVE WATERMARKS/DEV NAMES ON TITLE SCREEN -->
 	<define name="TITLE_SCREEN_EASTER_EGG" /> <!-- DELETE THE if="officialBuild" for enabling this on an unofficial build -->
 	<define name="CRASH_HANDLER" if="desktop release" />
 
+	<assets path="assets/mobile" if="mobile" />
 	<assets path="assets/preload" rename="assets" exclude="*.ogg" if="web"/>
 	<assets path="assets/preload" rename="assets" exclude="*.mp3"  unless="web"/>
 
@@ -107,9 +108,10 @@
 
 	<haxelib name="linc_luajit" if="LUA_ALLOWED"/>
 	<haxelib name="hxCodec" if="VIDEOS_ALLOWED"/>
-	<!--<haxelib name="polymod"/> -->
 	<haxelib name="discord_rpc" if="DISCORD_ALLOWED"/>
-	<!-- <haxelib name="hxcpp-debug-server" if="desktop"/> -->
+	<haxelib name="hxcpp-debug-server" if="desktop"/>
+	
+	<haxelib name="extension-haptics" if="mobile" />
 
 	<!-- <haxelib name="markdown" /> -->
 	<!-- <haxelib name="HtmlParser" /> -->
@@ -166,6 +168,9 @@
 	
 	<!-- REMOVE DEPRECATION WARNINGS /-->
 	<haxedef name='no-deprecation-warnings' />
+	
+	<!-- Do whatever you want I'm tired uninstall and install everytime -->
+	<certificate path="key.keystore" password="fnvmobile" alias="fnvmobileport" alias-password="fnvmobile" if="android" unless="debug" />
 	
 	<!--Macro fixes-->
 	<haxeflag name="--macro" value="allowPackage('flash')" />

@@ -41,8 +41,7 @@ class FPS extends TextField
 	{
 		super();
 
-		this.x = x;
-		this.y = y;
+		positionFPS(x, y);
 
 		currentFPS = 0;
 		selectable = false;
@@ -90,8 +89,10 @@ class FPS extends TextField
 			memoryMegas = Math.abs(FlxMath.roundDecimal(System.totalMemory / 1000000, 1));
 			if (memoryMegas > memPeak)
 				memPeak = memoryMegas;
-			if (ClientPrefs.showMemPeak == true)
+			if (ClientPrefs.showMemPeak)
 				text += "\nMemory: " + memoryMegas + " MB\nMemory Peak: " + memPeak + " MB";
+			else
+				text = "FPS: " + currentFPS;
 			#end
 
 			textColor = 0xFFFFFFFF;
@@ -111,5 +112,11 @@ class FPS extends TextField
 		}
 
 		cacheCount = currentCount;
+	}
+
+	public inline function positionFPS(X:Float, Y:Float, ?scale:Float = 1){
+		scaleX = scaleY = #if android (scale > 1 ? scale : 1) #else (scale < 1 ? scale : 1) #end;
+		x = FlxG.game.x + X;
+		y = FlxG.game.y + Y;
 	}
 }

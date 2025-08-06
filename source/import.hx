@@ -10,6 +10,36 @@ import hxcodec.VideoHandler;
 import hxcodec.VideoSprite;
 #end
 
+// Mobile Components
+import mobile.objects.Hitbox;
+import mobile.objects.TouchPad;
+import mobile.objects.TouchButton;
+import mobile.objects.ScrollableObject;
+import mobile.objects.TouchZone;
+import mobile.input.MobileInputID;
+import mobile.input.MobileInputManager;
+import mobile.input.IMobileControls;
+import mobile.backend.StorageUtil;
+import mobile.backend.MobileData;
+import mobile.backend.MobileUtil;
+import mobile.backend.TouchUtil;
+import mobile.backend.SwipeUtil;
+
+// Haptic Feedback
+import extension.haptics.Haptic;
+
+//Android
+#if android
+import android.content.Context as AndroidContext;
+import android.widget.Toast as AndroidToast;
+import android.os.Environment as AndroidEnvironment;
+import android.Permissions as AndroidPermissions;
+import android.Settings as AndroidSettings;
+import android.Tools as AndroidTools;
+import android.os.Build.VERSION as AndroidVersion;
+import android.os.Build.VERSION_CODES as AndroidVersionCode;
+#end
+
 // Shaders
 import Shaders;
 import openfl.filters.ShaderFilter;
@@ -54,7 +84,7 @@ import flixel.util.FlxTimer;
 import flixel.util.FlxAxes;
 import flixel.util.FlxSave;
 import flixel.input.keyboard.FlxKey;
-
+import flixel.util.FlxDestroyUtil;
 
 using StringTools;
 #end

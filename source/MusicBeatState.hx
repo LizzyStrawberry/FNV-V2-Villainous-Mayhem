@@ -6,6 +6,8 @@ import flixel.math.FlxRect;
 import flixel.addons.transition.FlxTransitionableState;
 import flixel.util.FlxGradient;
 
+import mobile.objects.tap.TapCircleManager;
+
 class MusicBeatState extends FlxUIState
 {
 	private var curSection:Int = 0;
@@ -18,12 +20,112 @@ class MusicBeatState extends FlxUIState
 	private var curDecBeat:Float = 0;
 	private var controls(get, never):Controls;
 
+	public var touchPad:TouchPad;
+	public var touchPadCam:FlxCamera;
+	public var hitbox:IMobileControls;
+	public var hitboxCam:FlxCamera;
+	public var tapManager:TapCircleManager;
+
 	public static var camBeat:FlxCamera;
 
 	public static var transitionType:String = "fade"; // Default transition type
 
-	inline function get_controls():Controls
-		return PlayerSettings.player1.controls;
+	private function get_controls()
+		return Controls.instance;
+
+	public function addTouchPad(DPad:String, Action:String)
+	{
+		touchPad = new TouchPad(DPad, Action);
+		add(touchPad);
+	}
+
+	public function addTouchPadCamera(defaultDrawTarget:Bool = false):Void
+	{
+		if (touchPad != null)
+		{
+			if (!(getState() is PlayState))
+			{
+				touchPadCam = new FlxCamera();
+				touchPadCam.bgColor.alpha = 0;
+				FlxG.cameras.add(touchPadCam, defaultDrawTarget);
+				touchPad.cameras = [touchPadCam];
+			}
+			else
+			{
+				touchPad.cameras = [PlayState.instance.camTouchPad];
+			}
+		}
+	}
+
+	public function addHitbox(defaultDrawTarget:Bool = false):Void
+	{
+		var extraMode = MobileData.extraActions.get(ClientPrefs.extraHints);
+
+		hitbox = new Hitbox(extraMode); // Best mode there is
+
+		if (!(getState() is PlayState))
+		{
+			hitboxCam = new FlxCamera();
+			hitboxCam.bgColor.alpha = 0;
+			FlxG.cameras.add(hitboxCam, defaultDrawTarget);
+
+			hitbox.instance.cameras = [hitboxCam];
+		}
+		else
+			hitbox.instance.cameras = [PlayState.instance.camHitbox];
+		
+		hitbox.instance.visible = false;
+		add(hitbox.instance);
+	}
+
+	public function removeTouchPad()
+	{
+		if (touchPad != null)
+		{
+			remove(touchPad);
+			touchPad = FlxDestroyUtil.destroy(touchPad);
+		}
+
+		if(touchPadCam != null)
+		{
+			FlxG.cameras.remove(touchPadCam);
+			touchPadCam = FlxDestroyUtil.destroy(touchPadCam);
+		}
+	}
+
+	public function removeHitbox()
+	{
+		if (hitbox != null)
+		{
+			remove(hitbox.instance);
+			hitbox.instance = FlxDestroyUtil.destroy(hitbox.instance);
+			hitbox = null;
+		}
+
+		if (hitboxCam != null)
+		{
+			FlxG.cameras.remove(hitboxCam);
+			hitboxCam = FlxDestroyUtil.destroy(hitboxCam);
+		}
+	}
+
+	public function removeTapEffect()
+	{
+		if (tapManager != null)
+		{
+			remove(tapManager);
+			tapManager = FlxDestroyUtil.destroy(tapManager);
+		}
+	}
+
+	override function destroy()
+	{
+		removeTouchPad();
+		removeHitbox();
+		removeTapEffect();
+
+		super.destroy();
+	}
 
 	override function create() {
 		camBeat = FlxG.camera;
@@ -39,7 +141,21 @@ class MusicBeatState extends FlxUIState
 		}
 
 		FlxTransitionableState.skipNextTransOut = false;
+
+		#if mobile
+		new FlxTimer().start(0.1, function(_) // Always add this a bit later than normal
+		{
+			if (!isInvalidState())
+			{
+				tapManager = new TapCircleManager();
+				add(tapManager);
+			}	
+		});
+		#end
 	}
+
+	function isInvalidState()
+		return (getState() is PlayState || getState() is TitleState);
 
 	override function update(elapsed:Float)
 	{

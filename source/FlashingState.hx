@@ -36,7 +36,7 @@ class FlashingState extends MusicBeatState
 			The mod has been tested on lower end hardware, and although it works fine, you may encounter some small issues!\n
 			We recommend you tamper around in the options menu and toy around with the options for the best experience possible!\n
 			Enjoy FNV's V2.0 Update!!\n
-			Press ENTER to continue to Quick Settings.\n
+			Press A to continue to Quick Settings.\n
 			",
 			32);
 		warnText.setFormat("VCR OSD Mono", 32, FlxColor.WHITE, CENTER);
@@ -116,6 +116,8 @@ class FlashingState extends MusicBeatState
 		add(optionTextDesc);
 
 		changeSelection();
+
+		addTouchPad('NONE', 'A');
 	}
 	
 	var pressedEnter:Int = 0;
@@ -135,6 +137,8 @@ class FlashingState extends MusicBeatState
 						FlxTween.tween(settingsText, { alpha: 1 }, 1, {
 							onComplete: function (twn:FlxTween) {
 								FlxTween.color(settingsText, 1, FlxColor.WHITE, FlxColor.YELLOW, {type: PINGPONG});
+								removeTouchPad();
+								addTouchPad('LEFT_FULL', 'A');
 							} 
 						});
 						FlxTween.tween(optionText1, { alpha: 1 }, 1);

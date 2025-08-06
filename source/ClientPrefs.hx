@@ -4,6 +4,23 @@ import flixel.input.keyboard.FlxKey;
 import Controls;
 
 class ClientPrefs {
+	// Mobile Controls and shit
+	public static var extraHints:String = "NONE"; // mobile extra hint option
+	public static var hitboxPos:Bool = false; // hitbox extra hint position option - Set the hint position on top by default
+	public static var controlsAlpha:Float = FlxG.onMobile ? 0.6 : 0.1;
+	public static var gameControlsAlpha:Float = FlxG.onMobile ? 0.6 : 0.1;
+	public static var screensaver:Bool = false;
+	public static var haptics:Bool = true;
+	#if android
+	public static var storageType:String = "EXTERNAL_DATA";
+	#end
+	public static var hitboxType:String = "Gradient";
+	public static var padRGB:Array<Array<FlxColor>> = [
+		[0xFFC24B99, 0xFFFFFFFF, 0xFF3C1F56],
+		[0xFF00FFFF, 0xFFFFFFFF, 0xFF1542B7],
+		[0xFF12FA05, 0xFFFFFFFF, 0xFF0A4447],
+		[0xFFF9393F, 0xFFFFFFFF, 0xFF651038]];
+
 	public static var downScroll:Bool = false;
 	public static var middleScroll:Bool = false;
 	public static var opponentStrums:Bool = true;
@@ -345,6 +362,18 @@ class ClientPrefs {
 	}
 
 	public static function saveSettings() {
+		FlxG.save.data.extraHints = extraHints;
+		FlxG.save.data.hitboxPos = hitboxPos;
+		FlxG.save.data.controlsAlpha = controlsAlpha;
+		FlxG.save.data.gameControlsAlpha = gameControlsAlpha;
+		FlxG.save.data.screensaver = screensaver;
+		FlxG.save.data.haptics = haptics;
+		#if android
+		FlxG.save.data.storageType = storageType;
+		#end
+		FlxG.save.data.hitboxType = hitboxType;
+		FlxG.save.data.padRGB = padRGB;
+
 		FlxG.save.data.downScroll = downScroll;
 		FlxG.save.data.middleScroll = middleScroll;
 		FlxG.save.data.opponentStrums = opponentStrums;
@@ -725,6 +754,36 @@ class ClientPrefs {
 	}
 
 	public static function loadPrefs() {
+		if(FlxG.save.data.extraHints != null) {
+			extraHints = FlxG.save.data.extraHints;
+		}
+		if(FlxG.save.data.hitboxPos != null) {
+			hitboxPos = FlxG.save.data.hitboxPos;
+		}
+		if(FlxG.save.data.controlsAlpha != null) {
+			controlsAlpha = FlxG.save.data.controlsAlpha;
+		}
+		if(FlxG.save.data.gameControlsAlpha != null) {
+			gameControlsAlpha = FlxG.save.data.gameControlsAlpha;
+		}
+		if(FlxG.save.data.screensaver != null) {
+			screensaver = FlxG.save.data.screensaver;
+		}
+		if(FlxG.save.data.haptics != null) {
+			haptics = FlxG.save.data.haptics;
+		}
+		#if android
+		if(FlxG.save.data.storageType != null) {
+			storageType = FlxG.save.data.storageType;
+		}
+		#end
+		if(FlxG.save.data.hitboxType != null) {
+			hitboxType = FlxG.save.data.hitboxType;
+		}
+		if(FlxG.save.data.padRGB != null) {
+			padRGB = FlxG.save.data.padRGB;
+		}
+		
 		if(FlxG.save.data.downScroll != null) {
 			downScroll = FlxG.save.data.downScroll;
 		}

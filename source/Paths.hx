@@ -52,6 +52,7 @@ class Paths
 		'assets/music/freakyMenu.$SOUND_EXT',
 		'assets/shared/music/breakfast.$SOUND_EXT',
 		'assets/shared/music/tea-time.$SOUND_EXT',
+		'assets/mobile/touchpad/bg.png'
 	];
 	/// haya I love you for the base cache dump I took to the max
 	public static function clearUnusedMemory() {
@@ -124,6 +125,9 @@ class Paths
 			if(FileSystem.exists(modded)) return modded;
 		}
 		#end
+
+		if (library == "mobile")
+			return getMobilePath(file);
 		
 		if (library != null)
 			return getLibraryPath(file, library);
@@ -159,6 +163,11 @@ class Paths
 	inline public static function getPreloadPath(file:String = '')
 	{
 		return 'assets/$file';
+	}
+
+	inline public static function getMobilePath(file:String = '')
+	{
+		return 'assets/mobile/$file';
 	}
 
 	inline static public function file(file:String, type:AssetType = TEXT, ?library:String)
@@ -250,31 +259,42 @@ class Paths
 		var file:String = null;
 	
 		#if MODS_ALLOWED
-		file = modsImages(key);
-		if (currentTrackedAssets.exists(file))
-		{
-			localTrackedAssets.push(file);
-			return currentTrackedAssets.get(file);
-		}
-		else if (FileSystem.exists(file))
-			bitmap = BitmapData.fromFile(file);
-		else
-		#end
-		{
-			file = getPath('images/$key.png', IMAGE, library);
+			file = modsImages(key);
 			if (currentTrackedAssets.exists(file))
 			{
 				localTrackedAssets.push(file);
 				return currentTrackedAssets.get(file);
 			}
-			else if (OpenFlAssets.exists(file, IMAGE))
-				bitmap = OpenFlAssets.getBitmapData(file);
-		}
+			else if (FileSystem.exists(file))
+				bitmap = BitmapData.fromFile(file);
+			else
+		#end
+			{
+				file = getPath('images/$key.astc', BINARY, library);
+				if (currentTrackedAssets.exists(file))
+				{
+					localTrackedAssets.push(file);
+					return currentTrackedAssets.get(file);
+				}
+				else if (OpenFlAssets.exists(file, BINARY))
+					bitmap = OpenFlAssets.getBitmapData(file);
+				else
+				{
+					file = getPath('images/$key.png', IMAGE, library);
+					if (currentTrackedAssets.exists(file))
+					{
+						localTrackedAssets.push(file);
+						return currentTrackedAssets.get(file);
+					}
+					else if (OpenFlAssets.exists(file, IMAGE))
+						bitmap = OpenFlAssets.getBitmapData(file);
+				}
+			}
 	
 		if (bitmap != null)
 		{
 			localTrackedAssets.push(file);
-			if (allowGPU && ClientPrefs.cacheOnGPU)
+			/*if (allowGPU && ClientPrefs.cacheOnGPU)
 			{
 				var texture:RectangleTexture = FlxG.stage.context3D.createRectangleTexture(bitmap.width, bitmap.height, BGRA, true);
 				texture.uploadFromBitmapData(bitmap);
@@ -282,7 +302,7 @@ class Paths
 				bitmap.dispose();
 				bitmap.disposeImage();
 				bitmap = BitmapData.fromTexture(texture);
-			}
+			}*/
 			var newGraphic:FlxGraphic = FlxGraphic.fromBitmapData(bitmap, false, file);
 			newGraphic.persist = true;
 			newGraphic.destroyOnNoUse = false;
@@ -290,7 +310,7 @@ class Paths
 			//trace('$file has been cached to GPU.');
 			return newGraphic;
 		}
-	
+		trace('oh no its returning null NOOOO ($file)');
 		return null;
 	}
 
@@ -423,37 +443,44 @@ class Paths
 	public static var currentTrackedSounds:Map<String, Sound> = [];
 	public static function returnSound(path:String, key:String, ?library:String) {
 		#if MODS_ALLOWED
-		var modLibPath:String = '';
-		if (library != null) modLibPath = '$library/';
-		if (path != null) modLibPath += '$path';
-
-		var file:String = modsSounds(modLibPath, key);
+		var file:String = modsSounds(path, key);
 		if(FileSystem.exists(file)) {
-			if(!currentTrackedSounds.exists(file))
-			{
-				currentTrackedSounds.set(file, Sound.fromFile(file));
-				//trace('precached mod sound: $file');
+			try {
+				if(!currentTrackedSounds.exists(file)) {
+					currentTrackedSounds.set(file, Sound.fromFile(file));
+				}
+			} catch (e:Dynamic) {
+				Sys.println('Paths.returnSound(): SOUND NOT FOUND: $key');
+				return null;
 			}
-			localTrackedAssets.push(file);
+			localTrackedAssets.push(key);
 			return currentTrackedSounds.get(file);
 		}
 		#end
-
 		// I hate this so god damn much
-		var gottenPath:String = '$key.$SOUND_EXT';
-		if(path != null) gottenPath = '$path/$gottenPath';
-		gottenPath = getPath(gottenPath, SOUND, library);
+		var gottenPath:String = getPath('$path/$key.$SOUND_EXT', SOUND, library);
 		gottenPath = gottenPath.substring(gottenPath.indexOf(':') + 1, gottenPath.length);
 		// trace(gottenPath);
-		if(!currentTrackedSounds.exists(gottenPath))
-		{
-			var retKey:String = (path != null) ? '$path/$key' : key;
-			retKey = ((path == 'songs') ? 'songs:' : '') + getPath('$retKey.$SOUND_EXT', SOUND, library);
-			if(OpenFlAssets.exists(retKey, SOUND))
+		try {
+			if(!currentTrackedSounds.exists(gottenPath))
 			{
-				currentTrackedSounds.set(gottenPath, OpenFlAssets.getSound(retKey));
-				//trace('precached vanilla sound: $retKey');
+				var sound:Sound = null;
+				final fullPath:String = #if !mobile './' + #end gottenPath;
+
+				if (sys.FileSystem.exists(fullPath))
+					sound = Sound.fromFile(fullPath);
+				else
+				{
+					var folder:String = '';
+					if(path == 'songs') folder = 'songs:';
+					sound = OpenFlAssets.getSound(folder + getPath('$path/$key.$SOUND_EXT', SOUND, library));
+				}
+
+				currentTrackedSounds.set(gottenPath, sound);
 			}
+		} catch (e:Dynamic) {
+			Sys.println('Paths.returnSound(): SOUND NOT FOUND: $key');
+			return null;
 		}
 		localTrackedAssets.push(gottenPath);
 		return currentTrackedSounds.get(gottenPath);
@@ -461,7 +488,7 @@ class Paths
 
 	#if MODS_ALLOWED
 	inline static public function mods(key:String = '') {
-		return 'mods/' + key;
+		return #if mobile Sys.getCwd() + #end 'mods/' + key;
 	}
 
 	inline static public function modsFont(key:String) {
@@ -520,7 +547,7 @@ class Paths
 				return fileToCheck;
 
 		}
-		return 'mods/' + key;
+		return #if mobile Sys.getCwd() + #end 'mods/' + key;
 	}
 
 	public static var globalMods:Array<String> = [];
@@ -572,6 +599,36 @@ class Paths
 			}
 		}
 		return list;
+	}
+
+	inline public static function directoriesWithFile(path:String, fileToFind:String, mods:Bool = true)
+	{
+		var foldersToCheck:Array<String> = [];
+		foldersToCheck.push(path + fileToFind);
+
+		#if MODS_ALLOWED
+		if(mods)
+		{
+			// Global mods first
+			for(mod in Paths.getGlobalMods())
+			{
+				var folder:String = Paths.mods(mod + '/' + fileToFind);
+				if(FileSystem.exists(folder)) foldersToCheck.push(folder);
+			}
+
+			// Then "PsychEngine/mods/" main folder
+			var folder:String = Paths.mods(fileToFind);
+			if(FileSystem.exists(folder)) foldersToCheck.push(Paths.mods(fileToFind));
+
+			// And lastly, the loaded mod's folder
+			if(Paths.currentModDirectory != null && Paths.currentModDirectory.length > 0)
+			{
+				var folder:String = Paths.mods(Paths.currentModDirectory + '/' + fileToFind);
+				if(FileSystem.exists(folder)) foldersToCheck.push(folder);
+			}
+		}
+		#end
+		return foldersToCheck;
 	}
 	#end
 }

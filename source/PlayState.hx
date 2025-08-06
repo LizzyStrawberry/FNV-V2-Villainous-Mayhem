@@ -50,6 +50,7 @@ class PlayState extends MusicBeatState
 	public static var inPlayState:Bool = false;
 	public static var STRUM_X = 42;
 	public static var STRUM_X_MIDDLESCROLL = -278;
+	public static var playerNotePositions:Array<Float> = [260, 440, 710, 890];
 
 	public static var ratingStuff:Array<Dynamic> = [
 		['You Suck Ass.', 0.2], //From 0% to 19%
@@ -221,6 +222,10 @@ class PlayState extends MusicBeatState
 
 	public var iconP1:HealthIcon;
 	public var iconP2:HealthIcon;
+	#if mobile
+	public var camHitbox:FlxCamera;
+	public var camTouchPad:FlxCamera;
+	#end
 	public var camHUD:FlxCamera;
 	public var camGame:FlxCamera;
 	public var camOther:FlxCamera;
@@ -353,6 +358,8 @@ class PlayState extends MusicBeatState
 	// Rotation Fix
 	public var allowRotationFix:Bool = true;
 
+	public var luaTouchPad:TouchPad;
+
 	override public function create()
 	{
 		inPlayState = true;
@@ -420,12 +427,24 @@ class PlayState extends MusicBeatState
 		// var gameCam:FlxCamera = FlxG.camera;
 		camGame = new FlxCamera();
 		camHUD = new FlxCamera();
+		#if mobile
+		camHitbox = new FlxCamera();
+		camTouchPad = new FlxCamera();
+		#end
 		camOther = new FlxCamera();
 		camHUD.bgColor.alpha = 0;
+		#if mobile
+		camHitbox.bgColor.alpha = 0;
+		camTouchPad.bgColor.alpha = 0;
+		#end
 		camOther.bgColor.alpha = 0;
 
 		FlxG.cameras.reset(camGame);
 		FlxG.cameras.add(camHUD, false);
+		#if mobile
+		FlxG.cameras.add(camHitbox, false);
+		FlxG.cameras.add(camTouchPad, false);
+		#end
 		FlxG.cameras.add(camOther, false);
 		grpNoteSplashes = new FlxTypedGroup<NoteSplash>();
 
@@ -745,6 +764,15 @@ class PlayState extends MusicBeatState
 
 		opponentStrums = new FlxTypedGroup<StrumNote>();
 		playerStrums = new FlxTypedGroup<StrumNote>();
+
+		#if mobile
+		addTouchPad("NONE", "PAUSE");
+		touchPad.visible = touchPad.active = false;
+		addTouchPadCamera();
+		#end
+		addHitbox();
+		hitbox.onButtonDown.add(onButtonPress);
+		hitbox.onButtonUp.add(onButtonRelease);
 
 		// startCountdown();
 
@@ -1527,10 +1555,22 @@ class PlayState extends MusicBeatState
 			generateStaticArrows(0);
 			generateStaticArrows(1);
 			for (i in 0...playerStrums.length) {
+				#if mobile
+				// GenerateStaticArrows is a bitch :( )
+				playerStrums.members[i].x = MobileUtil.fixX(playerNotePositions[i]);
+				playerStrums.members[i].y = ClientPrefs.downScroll ? MobileUtil.fixY(550) : MobileUtil.fixY(70);
+				#end
 				setOnLuas('defaultPlayerStrumX' + i, playerStrums.members[i].x);
 				setOnLuas('defaultPlayerStrumY' + i, playerStrums.members[i].y);
 			}
 			for (i in 0...opponentStrums.length) {
+				#if mobile
+				// GenerateStaticArrows is a bitch :( )
+				opponentStrums.members[i].x = 10 + (i * 65);
+				opponentStrums.members[i].y = ClientPrefs.downScroll ? MobileUtil.fixY(70) : MobileUtil.fixY(590);
+				opponentStrums.members[i].scale.x /= 1.75;
+				opponentStrums.members[i].scale.y /= 1.75;
+				#end
 				setOnLuas('defaultOpponentStrumX' + i, opponentStrums.members[i].x);
 				setOnLuas('defaultOpponentStrumY' + i, opponentStrums.members[i].y);
 				//if(ClientPrefs.middleScroll) opponentStrums.members[i].visible = false;
@@ -1551,6 +1591,11 @@ class PlayState extends MusicBeatState
 				startedCountdown = true;
 			else
 				startedCountdown = false;
+
+			#if mobile
+			hitbox.instance.visible = (!cpuControlled) ? true : false;
+			touchPad.visible = touchPad.active = true;
+			#end
 
 			Conductor.songPosition = -Conductor.crochet * 5;
 			setOnLuas('startedCountdown', false);
@@ -2458,6 +2503,9 @@ class PlayState extends MusicBeatState
 		super.openSubState(SubState);
 	}
 
+	#if mobile
+	var padPauseTween:FlxTween;
+	#end
 	override function closeSubState()
 	{
 		if (paused)
@@ -2490,6 +2538,13 @@ class PlayState extends MusicBeatState
 			paused = false;
 			if (chartingMode)
 				startedCountdown = canPause = true; // In case you are on charting mode and need to skip
+
+			#if mobile
+			if (padPauseTween != null)
+				padPauseTween.cancel();
+			touchPad.active = true;
+			touchPad.alpha = ClientPrefs.gameControlsAlpha;
+			#end
 
 			callOnLuas('onResume', []);
 
@@ -2619,8 +2674,9 @@ class PlayState extends MusicBeatState
 			botplayTxt.alpha = 1 - Math.sin((Math.PI * botplaySine) / 180);
 		}
 
-		if (controls.PAUSE && startedCountdown && canPause)
+		if (controls.PAUSE #if android || TouchUtil.pressAction(touchPad.buttonPAUSE) ||  FlxG.android.justReleased.BACK #end && startedCountdown && canPause)
 		{
+			if (ClientPrefs.haptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
 			var ret:Dynamic = callOnLuas('onPause', [], false);
 			if(ret != FunkinLua.Function_Stop) {
 				openPauseMenu();
@@ -3052,14 +3108,11 @@ class PlayState extends MusicBeatState
 		persistentDraw = true;
 		paused = true;
 
-		// 1 / 1000 chance for Gitaroo Man easter egg
-		/*if (FlxG.random.bool(0.1))
-		{
-			// gitaroo man easter egg
-			cancelMusicFadeTween();
-			MusicBeatState.switchState(new GitarooPause());
-		}
-		else {*/
+		#if mobile
+		touchPad.active = false;
+		padPauseTween = FlxTween.tween(touchPad, {alpha: 0}, 0.7 / playbackRate, {ease: FlxEase.linear, type: PERSIST});
+		#end
+
 		if(FlxG.sound.music != null) {
 			FlxG.sound.music.pause();
 			vocals.pause();
@@ -3689,6 +3742,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
+		#if mobile hitbox.instance.visible = touchPad.visible = false; #end
 		timeBarBG.visible = false;
 		timeBar.visible = false;
 		timeTxt.visible = false;
@@ -4799,6 +4853,118 @@ class PlayState extends MusicBeatState
 		return -1;
 	}
 
+	private function onButtonPress(button:TouchButton):Void
+	{
+		var buttonCode:Int = (button.IDs[0].toString().startsWith('NOTE')) ? button.IDs[0] : button.IDs[1];
+
+		if (!cpuControlled && startedCountdown && !paused && buttonCode > -1 && button.justPressed)
+		{
+			if (!boyfriend.stunned && generatedMusic && !endingSong)
+			{
+				// more accurate hit time for the ratings?
+				var lastTime:Float = Conductor.songPosition;
+				Conductor.songPosition = FlxG.sound.music.time;
+
+				var canMiss:Bool = !ClientPrefs.ghostTapping;
+
+				// heavily based on my own code LOL if it aint broke dont fix it
+				var pressNotes:Array<Note> = [];
+				// var notesDatas:Array<Int> = [];
+				var notesStopped:Bool = false;
+
+				var sortedNotesList:Array<Note> = [];
+				notes.forEachAlive(function(daNote:Note)
+				{
+					if (strumsBlocked[daNote.noteData] != true
+						&& daNote.canBeHit
+						&& daNote.mustPress
+						&& !daNote.tooLate
+						&& !daNote.wasGoodHit
+						&& !daNote.isSustainNote
+						&& !daNote.blockHit)
+					{
+						if (daNote.noteData == buttonCode)
+						{
+							sortedNotesList.push(daNote);
+							// notesDatas.push(daNote.noteData);
+						}
+						canMiss = true;
+					}
+				});
+				sortedNotesList.sort(sortHitNotes);
+
+				if (sortedNotesList.length > 0)
+				{
+					for (epicNote in sortedNotesList)
+					{
+						for (doubleNote in pressNotes)
+						{
+							if (Math.abs(doubleNote.strumTime - epicNote.strumTime) < 1)
+							{
+								// doubleNote.kill();
+								notes.remove(doubleNote, true);
+								doubleNote.destroy();
+							}
+							else
+								notesStopped = true;
+						}
+
+						// eee jack detection before was not super good
+						if (!notesStopped)
+						{
+							goodNoteHit(epicNote);
+							pressNotes.push(epicNote);
+						}
+					}
+				}
+				else
+				{
+					callOnLuas('onGhostTap', [buttonCode]);
+					if (canMiss)
+					{
+						noteMissPress(buttonCode);
+					}
+				}
+
+				// I dunno what you need this for but here you go
+				//									- Shubs
+
+				// Shubs, this is for the "Just the Two of Us" achievement lol
+				//									- Shadow Mario
+				keysPressed[buttonCode] = true;
+
+				// more accurate hit time for the ratings? part 2 (Now that the calculations are done, go back to the time it was before for not causing a note stutter)
+				Conductor.songPosition = lastTime;
+			}
+
+			var spr:StrumNote = playerStrums.members[buttonCode];
+			if (strumsBlocked[buttonCode] != true && spr != null && spr.animation.curAnim.name != 'confirm')
+			{
+				spr.playAnim('pressed');
+				spr.resetAnim = 0;
+			}
+			callOnLuas('onKeyPress', [buttonCode]);
+			callOnLuas('onButtonPress', [buttonCode]);
+		}
+	}
+
+	private function onButtonRelease(button:TouchButton):Void
+	{
+		var buttonCode:Int = (button.IDs[0].toString().startsWith('NOTE')) ? button.IDs[0] : button.IDs[1];
+
+		if (!cpuControlled && startedCountdown && !paused && buttonCode > -1)
+		{
+			var spr:StrumNote = playerStrums.members[buttonCode];
+			if (spr != null)
+			{
+				spr.playAnim('static');
+				spr.resetAnim = 0;
+			}
+			callOnLuas('onKeyRelease', [buttonCode]);
+			callOnLuas('onButtonRelease', [buttonCode]);
+		}
+	}
+
 	// Hold notes
 	private function keyShit():Void
 	{
@@ -5234,6 +5400,8 @@ class PlayState extends MusicBeatState
 			}
 			note.wasGoodHit = true;
 			vocals.volume = 1;
+			if (ClientPrefs.haptics && !cpuControlled)
+				Haptic.vibrateOneShot(0.05, 0.35, 0.5); // Vibrate for [x] seconds at [%] intensity
 
 			var isSus:Bool = note.isSustainNote; //GET OUT OF MY HEAD, GET OUT OF MY HEAD, GET OUT OF MY HEAD
 			var leData:Int = Math.round(Math.abs(note.noteData));
@@ -6047,4 +6215,99 @@ class PlayState extends MusicBeatState
 
 	var curLight:Int = -1;
 	var curLightEvent:Int = -1;
+
+	public function makeLuaTouchPad(DPadMode:String, ActionMode:String) {
+		if(members.contains(luaTouchPad)) return;
+
+		if(!variables.exists("luaTouchPad"))
+			variables.set("luaTouchPad", luaTouchPad);
+
+		luaTouchPad = new TouchPad(DPadMode, ActionMode);
+		luaTouchPad.alpha = ClientPrefs.controlsAlpha;
+	}
+	
+	public function addLuaTouchPad() {
+		if(luaTouchPad == null || members.contains(luaTouchPad)) return;
+
+		var target = FunkinLua.getInstance();
+		target.insert(target.members.length + 1, luaTouchPad);
+	}
+
+	public function addLuaTouchPadCamera() {
+		if(luaTouchPad != null)
+			luaTouchPad.cameras = [camOther];
+	}
+
+	public function removeLuaTouchPad() {
+		if (luaTouchPad != null) {
+			luaTouchPad.kill();
+			luaTouchPad.destroy();
+			remove(luaTouchPad);
+			luaTouchPad = null;
+		}
+	}
+
+	public function luaTouchPadPressed(button:Dynamic):Bool {
+		if(luaTouchPad != null) {
+			if(Std.isOfType(button, String))
+				return luaTouchPad.buttonPressed(MobileInputID.fromString(button));
+			else if(Std.isOfType(button, Array)){
+				var FUCK:Array<String> = button; // haxe said "You Can't Iterate On A Dyanmic Value Please Specificy Iterator or Iterable *insert nerd emoji*" so that's the only i foud to fix
+				var idArray:Array<MobileInputID> = [];
+				for(strId in FUCK)
+					idArray.push(MobileInputID.fromString(strId));
+				return luaTouchPad.anyPressed(idArray);
+			} else
+				return false;
+		}
+		return false;
+	}
+
+	public function luaTouchPadJustPressed(button:Dynamic):Bool {
+		if(luaTouchPad != null) {
+			if(Std.isOfType(button, String))
+				return luaTouchPad.buttonJustPressed(MobileInputID.fromString(button));
+			else if(Std.isOfType(button, Array)){
+				var FUCK:Array<String> = button;
+				var idArray:Array<MobileInputID> = [];
+				for(strId in FUCK)
+					idArray.push(MobileInputID.fromString(strId));
+				return luaTouchPad.anyJustPressed(idArray);
+			} else
+				return false;
+		}
+		return false;
+	}
+	
+	public function luaTouchPadJustReleased(button:Dynamic):Bool {
+		if(luaTouchPad != null) {
+			if(Std.isOfType(button, String))
+				return luaTouchPad.buttonJustReleased(MobileInputID.fromString(button));
+			else if(Std.isOfType(button, Array)){
+				var FUCK:Array<String> = button;
+				var idArray:Array<MobileInputID> = [];
+				for(strId in FUCK)
+					idArray.push(MobileInputID.fromString(strId));
+				return luaTouchPad.anyJustReleased(idArray);
+			} else
+				return false;
+		}
+		return false;
+	}
+
+	public function luaTouchPadReleased(button:Dynamic):Bool {
+		if(luaTouchPad != null) {
+			if(Std.isOfType(button, String))
+				return luaTouchPad.buttonReleased(MobileInputID.fromString(button));
+			else if(Std.isOfType(button, Array)){
+				var FUCK:Array<String> = button;
+				var idArray:Array<MobileInputID> = [];
+				for(strId in FUCK)
+					idArray.push(MobileInputID.fromString(strId));
+				return luaTouchPad.anyReleased(idArray);
+			} else
+				return false;
+		}
+		return false;
+	}
 }

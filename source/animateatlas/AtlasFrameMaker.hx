@@ -13,12 +13,11 @@ import animateatlas.displayobject.SpriteMovieClip;
 import flixel.graphics.FlxGraphic;
 import flixel.graphics.frames.FlxFramesCollection;
 import flixel.graphics.frames.FlxFrame;
+import flixel.util.FlxColor;
+
 #if desktop
 import sys.FileSystem;
 import sys.io.File;
-#else
-import js.html.FileSystem;
-import js.html.File;
 #end
 
 using StringTools;
