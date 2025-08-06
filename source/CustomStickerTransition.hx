@@ -1,20 +1,10 @@
 package;
 
-import flixel.group.FlxGroup;
-import flixel.FlxCamera;
 import Conductor.BPMChangeEvent;
-import flixel.FlxG;
 import flixel.addons.ui.FlxUIState;
 import flixel.math.FlxRect;
-import flixel.util.FlxTimer;
 import flixel.addons.transition.FlxTransitionableState;
-import flixel.tweens.FlxEase;
-import flixel.tweens.FlxTween;
-import flixel.util.FlxColor;
 import flixel.util.FlxGradient;
-import flixel.FlxSubState;
-import flixel.FlxSprite;
-import flixel.FlxCamera;
 
 //Shit is definitely not like how the actual transition of FNF, but it works, so i don't give a fuck lmao
 class CustomStickerTransition extends MusicBeatSubstate {
@@ -84,7 +74,7 @@ class CustomStickerTransition extends MusicBeatSubstate {
             stickersBackupVars[i] = [stickerPath, sticker.x, sticker.y, sticker.angle, sticker.scale.x];
 
             stickerTween = FlxTween.tween(sticker, {alpha: 1, "scale.x": 1.3, "scale.y": 1.3}, 0.02, {startDelay: i * 0.02, ease: FlxEase.bounceInOut, onComplete: function(twn:FlxTween) {
-                FlxG.sound.play(Paths.sound('stickerSounds/keyClick' + FlxG.random.int(1, 9)));
+                FlxG.sound.play(Paths.sound('stickerSounds/keyClick' + FlxG.random.int(1, 8)));
                 stickersBackupVars[i][1] = sticker.x;
                 stickersBackupVars[i][2] = sticker.y;
                 if (i == numStickers - 1)
@@ -127,7 +117,7 @@ class CustomStickerTransition extends MusicBeatSubstate {
         //trace('removing stickers!!1!');
         for (i in 0...stickersBackup.length) {
             stickerTween = FlxTween.tween(stickersBackup[i], {alpha: 0, "scale.x": stickersBackupVars[i][4], "scale.y": stickersBackupVars[i][4]}, 0.02, {startDelay: i * 0.02, ease: FlxEase.bounceInOut, onComplete: function(twn:FlxTween) {
-                FlxG.sound.play(Paths.sound('stickerSounds/keyClick' + FlxG.random.int(1, 9)));
+                FlxG.sound.play(Paths.sound('stickerSounds/keyClick' + FlxG.random.int(1, 8)));
                 if (stickers[i] != null && stickersBackup[i] != null)
                 {
                     stickers[i].kill();

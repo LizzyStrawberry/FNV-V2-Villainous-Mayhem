@@ -1,35 +1,17 @@
 package;
 
-#if desktop
-import Discord.DiscordClient;
-#end
-import flixel.FlxG;
-import flixel.FlxObject;
-import flixel.FlxSprite;
-import flixel.FlxSubState;
-import flixel.text.FlxText;
-import flixel.util.FlxColor;
-import flixel.tweens.FlxEase;
-import flixel.effects.FlxFlicker;
 import lime.app.Application;
 import flixel.graphics.frames.FlxAtlasFrames;
-import flixel.group.FlxGroup.FlxTypedGroup;
 import flash.text.TextField;
 import lime.utils.Assets;
 import flixel.addons.transition.FlxTransitionableState;
-import flixel.tweens.FlxTween;
-import flixel.util.FlxTimer;
-import flixel.input.keyboard.FlxKey;
 import flixel.addons.display.FlxBackdrop;
 import Alphabet;
 
 #if MODS_ALLOWED
-import sys.FileSystem;
-import sys.io.File;
 import haxe.io.Path;
 #end
 
-import hxcodec.VideoHandler;
 import flash.system.System;
 
 using StringTools;
@@ -170,7 +152,7 @@ class InfoState extends MusicBeatState
 		bg.alpha = 0.5;
 		add(bg);
 
-		BGchecker = new FlxBackdrop(Paths.image('promotion/BGgrid-' + FlxG.random.int(1, 8)), 0, 0, true, true); 
+		BGchecker = new FlxBackdrop(Paths.image('promotion/BGgrid-' + FlxG.random.int(1, 8)), FlxAxes.XY, 0, 0); 
 		BGchecker.updateHitbox(); 
 		BGchecker.scrollFactor.set(0, 0); 
 		BGchecker.alpha = 0; 
@@ -323,7 +305,7 @@ class InfoState extends MusicBeatState
 					spr.color = FlxColor.BLACK;
 
 				//Bonus Cast
-			case 'marcussy' | 'amogleen' | 'morky':
+			case 'marcussy' | 'amogleen':
 				if (!ClientPrefs.susWeekPlayed)
 					spr.color = FlxColor.BLACK;
 			case 'aizeen' | 'marcus' | 'cgoon':

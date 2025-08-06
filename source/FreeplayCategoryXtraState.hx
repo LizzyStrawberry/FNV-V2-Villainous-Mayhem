@@ -1,31 +1,11 @@
 package;
 
-#if desktop
-import Discord.DiscordClient;
-#end
-import flixel.FlxG;
-import flixel.FlxObject;
-import flixel.FlxSprite;
-import flixel.FlxSubState;
-import flixel.text.FlxText;
-import flixel.util.FlxColor;
-import flixel.tweens.FlxEase;
-import flixel.effects.FlxFlicker;
 import lime.app.Application;
 import flixel.graphics.frames.FlxAtlasFrames;
-import flixel.group.FlxGroup.FlxTypedGroup;
 import flash.text.TextField;
 import lime.utils.Assets;
 import flixel.addons.transition.FlxTransitionableState;
-import flixel.tweens.FlxTween;
-import flixel.util.FlxTimer;
-import flixel.input.keyboard.FlxKey;
-import flixel.util.FlxAxes;
 import Alphabet;
-
-#if MODS_ALLOWED
-import sys.FileSystem;
-#end
 
 class FreeplayCategoryXtraState extends MusicBeatState
 {

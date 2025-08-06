@@ -1,28 +1,10 @@
 package;
 
-#if desktop
-import Discord.DiscordClient;
-#end
 import flash.text.TextField;
-import flixel.FlxG;
-import flixel.FlxSprite;
 import flixel.addons.display.FlxGridOverlay;
-import flixel.group.FlxGroup.FlxTypedGroup;
-import flixel.math.FlxMath;
-import flixel.text.FlxText;
-import flixel.util.FlxColor;
-import flixel.tweens.FlxTween;
-import flixel.tweens.FlxEase;
 import flixel.addons.display.FlxBackdrop;
-import flixel.util.FlxTimer;
-import Alphabet;
-#if MODS_ALLOWED
-import sys.FileSystem;
-import sys.io.File;
-#end
 import lime.utils.Assets;
 
-using StringTools;
 
 class CreditsState extends MusicBeatState
 {
@@ -81,7 +63,7 @@ class CreditsState extends MusicBeatState
 		add(bg);
 		bg.screenCenter();
 
-		BGchecker = new FlxBackdrop(Paths.image('promotion/BGgrid-' + FlxG.random.int(1, 8)), 0, 0, true, true); 
+		BGchecker = new FlxBackdrop(Paths.image('promotion/BGgrid-' + FlxG.random.int(1, 8)), FlxAxes.XY, 0, 0); 
 		BGchecker.updateHitbox(); 
 		BGchecker.scrollFactor.set(0, 0); 
 		BGchecker.alpha = 0; 

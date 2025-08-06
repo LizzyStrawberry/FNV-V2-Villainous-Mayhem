@@ -1,32 +1,12 @@
 package;
 
-#if desktop
-import Discord.DiscordClient;
-#end
 import editors.ChartingState;
 import flash.text.TextField;
-import flixel.FlxG;
-import flixel.FlxSprite;
-import flixel.FlxCamera;
 import flixel.addons.display.FlxGridOverlay;
 import flixel.addons.transition.FlxTransitionableState;
-import flixel.group.FlxGroup.FlxTypedGroup;
-import flixel.math.FlxMath;
-import flixel.text.FlxText;
-import flixel.util.FlxColor;
-import flixel.tweens.FlxEase;
-import flixel.util.FlxTimer;
-import flixel.tweens.FlxTween;
 import lime.utils.Assets;
-import flixel.system.FlxSound;
 import openfl.utils.Assets as OpenFlAssets;
 import WeekData;
-import Achievements;
-#if MODS_ALLOWED
-import sys.FileSystem;
-#end
-
-using StringTools;
 
 class FreeplayXtraState extends MusicBeatState
 {
@@ -230,7 +210,7 @@ class FreeplayXtraState extends MusicBeatState
 				songText.text = '????????? ??';
 
 			if (songText.text == 'Marcochrome' && ClientPrefs.marcochromeViewed == false)
-				songText.text = '???????????';
+				songText.text = '?????????????';
 
 			if (songText.text == 'Tofu' && ClientPrefs.tofuViewed == false)
 				songText.text = '????';
@@ -511,7 +491,7 @@ class FreeplayXtraState extends MusicBeatState
 					lockedSelection.alpha = 1;
 				}
 			}
-			case 'Marcochrome' | "???????????":
+			case 'Marcochrome' | "?????????????":
 			{
 				unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_Marcochrome'));
 				unlockedSelection.scale.set(1, 1);
@@ -525,7 +505,7 @@ class FreeplayXtraState extends MusicBeatState
 
 				if (ClientPrefs.marcochromeViewed == false)
 				{
-					selectionText.text = "???????????";
+					selectionText.text = "?????????????";
 					lockedSelection.alpha = 1;
 				}
 			}

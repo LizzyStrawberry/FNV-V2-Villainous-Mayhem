@@ -1,33 +1,14 @@
 package options;
 
-#if desktop
-import Discord.DiscordClient;
-#end
 import flash.text.TextField;
-import flixel.FlxG;
-import flixel.FlxSprite;
 import flixel.addons.display.FlxGridOverlay;
-import flixel.group.FlxGroup.FlxTypedGroup;
-import flixel.math.FlxMath;
-import flixel.text.FlxText;
-import flixel.util.FlxColor;
 import lime.utils.Assets;
-import flixel.FlxSubState;
 import flash.text.TextField;
-import flixel.FlxG;
-import flixel.FlxSprite;
-import flixel.util.FlxSave;
 import haxe.Json;
-import flixel.tweens.FlxEase;
-import flixel.tweens.FlxTween;
-import flixel.util.FlxTimer;
 import flixel.input.keyboard.FlxKey;
-import flixel.graphics.FlxGraphic;
 import Controls;
 
 import flash.system.System;
-
-using StringTools;
 
 class OptionsState extends MusicBeatState
 {
@@ -266,10 +247,8 @@ class OptionsState extends MusicBeatState
 
 					FlxTween.tween(blackOut, {alpha: 1}, 2, {ease: FlxEase.cubeIn, type: PERSIST, onComplete: function (twn:FlxTween)
 						{
-							ClientPrefs.resetSettings();
-							ClientPrefs.loadPrefs();
-							NotificationAlert.resetNotifications();
-							NotificationAlert.loadNotifications();
+							FlxG.save.erase();
+							FlxG.save.flush();
 							new FlxTimer().start(0.4, function(tmr:FlxTimer)
 							{
 								System.exit(0);

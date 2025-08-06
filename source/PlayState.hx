@@ -1,26 +1,13 @@
 package;
 
-import flixel.graphics.FlxGraphic;
-#if desktop
-import Discord.DiscordClient;
-#end
 import Section.SwagSection;
 import Song.SwagSong;
 import WiggleEffect.WiggleEffectType;
-import flixel.FlxBasic;
-import flixel.FlxCamera;
-import flixel.FlxG;
 
 import openfl.filters.ShaderFilter;
-import Shaders;
 import openfl.display.Shader;
 
 import flixel.FlxGame;
-import flixel.math.FlxRandom;
-import flixel.FlxObject;
-import flixel.FlxSprite;
-import flixel.FlxState;
-import flixel.FlxSubState;
 import flixel.addons.display.FlxGridOverlay;
 import flixel.addons.effects.FlxTrail;
 import flixel.addons.effects.FlxTrailArea;
@@ -29,23 +16,14 @@ import flixel.addons.effects.chainable.FlxWaveEffect;
 import flixel.addons.transition.FlxTransitionableState;
 import flixel.graphics.atlas.FlxAtlas;
 import flixel.graphics.frames.FlxAtlasFrames;
-import flixel.group.FlxGroup.FlxTypedGroup;
-import flixel.math.FlxMath;
-import flixel.math.FlxPoint;
 import flixel.math.FlxRect;
-import flixel.system.FlxSound;
-import flixel.text.FlxText;
-import flixel.tweens.FlxEase;
-import flixel.tweens.FlxTween;
 import flixel.ui.FlxBar;
 import flixel.util.FlxCollision;
-import flixel.util.FlxColor;
 import flixel.util.FlxSort;
 import flixel.util.FlxStringUtil;
 import flixel.util.FlxTimer;
 import haxe.Json;
 import lime.utils.Assets;
-import openfl.Lib;
 import openfl.display.BlendMode;
 import openfl.display.StageQuality;
 import openfl.filters.BitmapFilter;
@@ -66,22 +44,6 @@ import StageData;
 import FunkinLua;
 import DialogueBoxPsych;
 import Conductor.Rating;
-
-#if !flash 
-import flixel.addons.display.FlxRuntimeShader;
-import openfl.filters.ShaderFilter;
-#end
-
-#if sys
-import sys.FileSystem;
-import sys.io.File;
-#end
-
-#if VIDEOS_ALLOWED
-import hxcodec.VideoHandler;
-#end
-
-using StringTools;
 
 class PlayState extends MusicBeatState
 {
@@ -338,7 +300,7 @@ class PlayState extends MusicBeatState
 	public var opponentCameraOffset:Array<Float> = null;
 	public var girlfriendCameraOffset:Array<Float> = null;
 
-	#if desktop
+	#if DISCORD_ALLOWED
 	// Discord RPC variables
 	var storyDifficultyText:String = "";
 	var detailsText:String = "";
@@ -1016,7 +978,7 @@ class PlayState extends MusicBeatState
 
 		precacheList.set('alphabet', 'image');
 	
-		#if desktop
+		#if DISCORD_ALLOWED
 			// Updating Discord Rich Presence.
 			#if DEBUG_ALLOWED
 			DiscordClient.changePresence(detailsText, "DEVELOPER MODE ACTIVE", 'face'); // make sure to remove for public build
@@ -1162,12 +1124,13 @@ class PlayState extends MusicBeatState
 			for (note in unspawnNotes) note.resizeByRatio(ratio);
 		}
 		songSpeed = value;
-		noteKillOffset = 350 / songSpeed;
+		noteKillOffset = Math.max(Conductor.stepCrochet, 350 / songSpeed * playbackRate);
 		return value;
 	}
 
 	function set_playbackRate(value:Float):Float
 	{
+		#if FLX_PITCH
 		if(generatedMusic)
 		{
 			if(vocals != null) vocals.pitch = value;
@@ -1178,17 +1141,27 @@ class PlayState extends MusicBeatState
 			if(defaultCountDownOne != null) defaultCountDownOne.pitch = value;
 			if(defaultCountDownTwo != null) defaultCountDownTwo.pitch = value;
 			if(defaultCountDownThree != null) defaultCountDownThree.pitch = value;
+
+			var ratio:Float = playbackRate / value; //funny word huh
+			if(ratio != 1)
+			{
+				for (note in notes.members) note.resizeByRatio(ratio);
+				for (note in unspawnNotes) note.resizeByRatio(ratio);
+			}
 		}
 		playbackRate = value;
-		if (value != 1)
-			playbackRateFreeplay = true;
-		else
-			playbackRateFreeplay = false;
-		FlxAnimationController.globalSpeed = value;
-		trace('Anim speed: ' + FlxAnimationController.globalSpeed);
+		playbackRateFreeplay = (value != 1) ? true : false;
+
+		FlxG.animationTimeScale = value;
+		trace('Anim speed: ' + FlxG.animationTimeScale);
+
 		Conductor.safeZoneOffset = (ClientPrefs.safeFrames / 60) * 1000 * value;
+
 		setOnLuas('playbackRate', playbackRate);
-		return value;
+		#else
+		playbackRate = Note.noteAnimSpeed = 1.0; // ensuring -Crow
+		#end
+		return playbackRate;
 	}
 
 	public function addTextToDebug(text:String, color:FlxColor) {
@@ -2102,7 +2075,7 @@ class PlayState extends MusicBeatState
 		moveCameraSection();
 		setOnLuas('mustHitSection', SONG.notes[curSection].mustHitSection);
 
-		#if desktop
+		#if DISCORD_ALLOWED
 			// Updating Discord Rich Presence (with Time Left)
 			#if DEBUG_ALLOWED
 				DiscordClient.changePresence(detailsText, "DEVELOPER MODE ACTIVE", 'face'); // make sure to remove for public build
@@ -2520,7 +2493,7 @@ class PlayState extends MusicBeatState
 
 			callOnLuas('onResume', []);
 
-			#if desktop
+			#if DISCORD_ALLOWED
 			if (startTimer != null && startTimer.finished)
 			{
 				#if DEBUG_ALLOWED
@@ -2545,7 +2518,7 @@ class PlayState extends MusicBeatState
 
 	override public function onFocus():Void
 	{
-		#if desktop
+		#if DISCORD_ALLOWED
 		if (health > 0 && !paused)
 		{
 			if (Conductor.songPosition > 0.0)
@@ -2572,7 +2545,7 @@ class PlayState extends MusicBeatState
 
 	override public function onFocusLost():Void
 	{
-		#if desktop
+		#if DISCORD_ALLOWED
 		if (health > 0 && !paused)
 		{
 			#if DEBUG_ALLOWED
@@ -3094,7 +3067,7 @@ class PlayState extends MusicBeatState
 		openSubState(new PauseSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
 		//}
 
-		#if desktop
+		#if DISCORD_ALLOWED
 			#if DEBUG_ALLOWED
 				DiscordClient.changePresence(detailsText, "DEVELOPER MODE ACTIVE", 'face');
 			#else
@@ -3111,7 +3084,7 @@ class PlayState extends MusicBeatState
 		MusicBeatState.switchState(new ChartingState());
 		chartingMode = true;
 
-		#if desktop
+		#if DISCORD_ALLOWED
 		DiscordClient.changePresence("Chart Editor", null, null, true);
 		#end
 	}
@@ -3143,7 +3116,7 @@ class PlayState extends MusicBeatState
 
 				// MusicBeatState.switchState(new GameOverState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
 
-				#if desktop
+				#if DISCORD_ALLOWED
 				// Game Over doesn't get his own variable because it's only used here
 					#if DEBUG_ALLOWED
 						DiscordClient.changePresence(detailsText, "DEVELOPER MODE ACTIVE", 'face');
@@ -5453,12 +5426,10 @@ class PlayState extends MusicBeatState
 		if(FunkinLua.hscript != null) FunkinLua.hscript = null;
 		#end
 
-		if(!ClientPrefs.controllerMode)
-		{
-			FlxG.stage.removeEventListener(KeyboardEvent.KEY_DOWN, onKeyPress);
-			FlxG.stage.removeEventListener(KeyboardEvent.KEY_UP, onKeyRelease);
-		}
-		FlxAnimationController.globalSpeed = 1;
+		FlxG.stage.removeEventListener(KeyboardEvent.KEY_DOWN, onKeyPress);
+		FlxG.stage.removeEventListener(KeyboardEvent.KEY_UP, onKeyRelease);
+
+		FlxG.animationTimeScale = 1;
 		FlxG.sound.music.pitch = 1;
 		super.destroy();
 	}

@@ -1,32 +1,27 @@
 package editors;
 
-#if desktop
-import Discord.DiscordClient;
-#end
-import flixel.FlxG;
-import flixel.FlxSprite;
 import flixel.addons.display.FlxGridOverlay;
 import flixel.addons.transition.FlxTransitionableState;
-import flixel.group.FlxGroup.FlxTypedGroup;
-import flixel.math.FlxMath;
-import flixel.text.FlxText;
-import flixel.util.FlxColor;
-import flixel.system.FlxSound;
 #if MODS_ALLOWED
 import sys.FileSystem;
 #end
+
+import TokenAchievement;
 
 using StringTools;
 
 class MasterEditorMenu extends MusicBeatState
 {
+	public static var debugCheck:Bool = false;
+
 	var options:Array<String> = [
 		'Week Editor',
 		'Menu Character Editor',
 		'Dialogue Editor',
 		'Dialogue Portrait Editor',
 		'Character Editor',
-		'Chart Editor'
+		'Chart Editor',
+		'Test Token Achievement'
 	];
 	private var grpTexts:FlxTypedGroup<Alphabet>;
 	private var directories:Array<String> = [null];
@@ -126,6 +121,9 @@ class MasterEditorMenu extends MusicBeatState
 					LoadingState.loadAndSwitchState(new DialogueEditorState(), false);
 				case 'Chart Editor'://felt it would be cool maybe
 					LoadingState.loadAndSwitchState(new ChartingState(), false);
+				case 'Test Token Achievement'://felt it would be cool maybe
+					MusicBeatState.switchState(new TokenAchievement());
+					debugCheck = true;
 			}
 			FlxG.sound.music.volume = 0;
 			#if PRELOAD_ALL

@@ -1,40 +1,17 @@
 package;
 
-#if desktop
-import Discord.DiscordClient;
-#end
-import flixel.FlxG;
-import flixel.FlxObject;
-import flixel.FlxSprite;
-import flixel.FlxSubState;
-import flixel.text.FlxText;
-import flixel.util.FlxColor;
-import flixel.tweens.FlxEase;
-import flixel.effects.FlxFlicker;
 import lime.app.Application;
 import flixel.graphics.frames.FlxAtlasFrames;
-import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.addons.text.FlxTypeText;
 import flash.text.TextField;
 import lime.utils.Assets;
 import flixel.addons.transition.FlxTransitionableState;
-import flixel.tweens.FlxTween;
-import flixel.util.FlxTimer;
-import flixel.input.keyboard.FlxKey;
 import flixel.addons.display.FlxBackdrop;
-import flixel.util.FlxAxes;
 
 import editors.ChartingState;
-import flash.text.TextField;
 import flixel.addons.display.FlxGridOverlay;
-import flixel.math.FlxMath;
-import flixel.system.FlxSound;
 import openfl.utils.Assets as OpenFlAssets;
 import Alphabet;
-
-#if MODS_ALLOWED
-import sys.FileSystem;
-#end
 
 class ResultsScreenState extends MusicBeatState 
 {
@@ -103,7 +80,7 @@ class ResultsScreenState extends MusicBeatState
 
     override public function create()
     {
-        #if desktop
+        #if DISCORD_ALLOWED
 		// Updating Discord Rich Presence
 		DiscordClient.changePresence("Results!", null);
 		#end
@@ -133,7 +110,7 @@ class ResultsScreenState extends MusicBeatState
 		bg.alpha = 1;
 		add(bg);
 
-		BGchecker = new FlxBackdrop(Paths.image('promotion/BGgrid-' + FlxG.random.int(1, 8)), 0, 0, true, true); 
+		BGchecker = new FlxBackdrop(Paths.image('promotion/BGgrid-' + FlxG.random.int(1, 8)), FlxAxes.XY, 0, 0); 
 		BGchecker.updateHitbox(); 
 		BGchecker.scrollFactor.set(0, 0); 
 		BGchecker.alpha = 0; 

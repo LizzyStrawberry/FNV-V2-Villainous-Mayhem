@@ -1,16 +1,5 @@
 package;
 
-#if desktop
-import Discord.DiscordClient;
-#end
-import flixel.FlxG;
-import flixel.FlxObject;
-import flixel.FlxSprite;
-import flixel.FlxSubState;
-import flixel.text.FlxText;
-import flixel.util.FlxColor;
-import flixel.tweens.FlxEase;
-import flixel.effects.FlxFlicker;
 import lime.app.Application;
 import flixel.addons.effects.FlxTrail;
 import flixel.addons.effects.FlxTrailArea;
@@ -18,17 +7,8 @@ import flixel.graphics.frames.FlxAtlasFrames;
 import flash.text.TextField;
 import lime.utils.Assets;
 import flixel.addons.transition.FlxTransitionableState;
-import flixel.tweens.FlxTween;
-import flixel.util.FlxTimer;
-
-import flash.text.TextField;
 import flixel.addons.display.FlxGridOverlay;
-import flixel.math.FlxMath;
-import flixel.system.FlxSound;
 import openfl.utils.Assets as OpenFlAssets;
-#if MODS_ALLOWED
-import sys.FileSystem;
-#end
 
 class TokenAchievement extends MusicBeatState
 {
@@ -37,7 +17,6 @@ class TokenAchievement extends MusicBeatState
 	var tokenSub:Int = 0;
 	var bgGradient:FlxSprite;
 	var trail:FlxTrail;
-	var textTrail:FlxTrail;
 	var bonusTokens:FlxText;
 
 	override function create()
@@ -82,9 +61,7 @@ class TokenAchievement extends MusicBeatState
 
 		trail = new FlxTrail(tokenIcon, null, 2, 3, 0.3, 0.069); //nice
 		add(trail);
-		textTrail = new FlxTrail(currentTokens, null, 4, 3, 0.3, 0.069); //nice
-		add(textTrail);
-		
+
 		super.create();
 
 		FlxTween.tween(currentTokens, {alpha: 1}, 0.6, {ease: FlxEase.quadInOut, type: PERSIST});
@@ -151,7 +128,6 @@ class TokenAchievement extends MusicBeatState
 
 			new FlxTimer().start(2, function (tmr:FlxTimer) {
 				trail.alpha = 0;
-				textTrail.alpha = 0;
 				if (!tweenPlayed)
 				{
 					FlxTween.tween(tokenIcon, {alpha: 0, y: tokenIcon.y - 100}, 1, {ease: FlxEase.quadInOut, type: PERSIST});
@@ -164,7 +140,13 @@ class TokenAchievement extends MusicBeatState
 					if (ClientPrefs.onCrossSection == false)
 						ClientPrefs.storyModeCrashDifficultyNum = -1;
 					ClientPrefs.saveSettings();
-					MusicBeatState.switchState(new ResultsScreenState());
+					if (editors.MasterEditorMenu.debugCheck)
+					{
+						MusicBeatState.switchState(new editors.MasterEditorMenu());
+						editors.MasterEditorMenu.debugCheck = false;
+					}
+					else
+						MusicBeatState.switchState(new ResultsScreenState());
 				});
 			});
 		});

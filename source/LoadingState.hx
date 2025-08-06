@@ -3,16 +3,7 @@ package;
 import flixel.math.FlxRandom;
 import lime.app.Promise;
 import lime.app.Future;
-import flixel.FlxG;
-import flixel.text.FlxText;
-import flixel.tweens.FlxEase;
-import flixel.util.FlxColor;
-import flixel.tweens.FlxTween;
-import flixel.FlxState;
-import flixel.FlxSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
-import flixel.util.FlxTimer;
-import flixel.math.FlxMath;
 import Section.SwagSection;
 import Song.SwagSong;
 

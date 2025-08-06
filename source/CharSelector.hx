@@ -3,21 +3,9 @@ package;
 
 import Section.SwagSection;
 
-// These may be swapped depending on what may need it. Some older ones may need a different one based on the 'Song' TypeDef
 import Song.SwagSong; // Usually Used One
-// import Song.SongData; // What my version of Kade engine is apparently using
 
-import flixel.FlxG;
-import flixel.FlxSprite;
 import flixel.addons.display.FlxGridOverlay;
-import flixel.group.FlxGroup.FlxTypedGroup;
-import flixel.math.FlxMath;
-import flixel.text.FlxText;
-import flixel.tweens.FlxEase;
-import flixel.tweens.FlxTween;
-import flixel.util.FlxColor;
-import flixel.effects.FlxFlicker;
-import flixel.util.FlxTimer;
 import lime.utils.Assets;
 import haxe.Json;
 import Boyfriend.Boyfriend;
@@ -25,7 +13,6 @@ import Character.Character;
 import HealthIcon.HealthIcon;
 import flixel.ui.FlxBar;
 
-import StringTools;
 import FreeplayState;
 
 class CharSelector extends MusicBeatState{

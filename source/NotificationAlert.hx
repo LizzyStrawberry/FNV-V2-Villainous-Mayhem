@@ -1,14 +1,5 @@
 package;
 
-import flixel.FlxG;
-import flixel.util.FlxSave;
-import flixel.tweens.FlxEase;
-import flixel.tweens.FlxTween;
-import flixel.util.FlxTimer;
-import flixel.FlxState;
-import flixel.FlxSprite;
-import flixel.util.FlxColor;
-
 class NotificationAlert {
     public static var sendMessage:Bool = false;
     public static var sendCategoryNotification:Bool = false;

@@ -1,5 +1,3 @@
-// GOT THIS FROM MARIO'S MADNESS V2 TO BE ABLE TO CHANGE DESKTOP BACKGROUNDS, THANK YOU SO FUCKING MUCH
-
 package;
 
 import cpp.*;
@@ -24,24 +22,19 @@ class Transparency
 	private static var winExStyle:LONG;
 
 	@:native("FindWindowA") @:extern
-	private static function findWindow(className:cpp.ConstCharStar, windowName:cpp.ConstCharStar):HWND
-		return null;
+	private static function findWindow(className:cpp.ConstCharStar, windowName:cpp.ConstCharStar):HWND;
 
 	@:native("SetWindowLongA") @:extern
-	private static function setWindowLong(hWnd:HWND, nIndex:Int, dwNewLong:LONG):LONG
-		return null;
+	private static function setWindowLong(hWnd:HWND, nIndex:Int, dwNewLong:LONG):LONG;
 
 	@:native("GetWindowLongA") @:extern
-	private static function getWindowLong(hWnd:HWND, nIndex:Int):LONG
-		return null;
+	private static function getWindowLong(hWnd:HWND, nIndex:Int):LONG;
 
 	@:native("SetLayeredWindowAttributes") @:extern
-	private static function setLayeredWindowAttributes(hwnd:HWND, crKey:COLORREF, bAlpha:BYTE, dwFlags:DWORD):BOOL
-		return null;
+	private static function setLayeredWindowAttributes(hwnd:HWND, crKey:COLORREF, bAlpha:BYTE, dwFlags:DWORD):BOOL;
 
 	@:native("GetLastError") @:extern
-	private static function getLastError():DWORD
-		return null;
+	private static function getLastError():DWORD;
 
 	public static function setTransparency(winName:String, color:Int):Void
 	{
@@ -57,10 +50,6 @@ class Transparency
 			trace("Error getting window style!");
 			trace("Code: " + Std.string(getLastError()));
 		}
-		/*if (setWindowLong(win, -16, winStyle & ~(0x00C00000 | 0x00040000 | 0x00010000 | 0x00020000 | 0x00080000)) == 0) {
-			trace("Error removing window borders!");
-			trace("Code: " + Std.string(getLastError()));
-		}*/
 		winExStyle = getWindowLong(win, -20);
 		if (winExStyle == 0)
 		{
@@ -81,13 +70,16 @@ class Transparency
 
 	public static function reset():Void
 	{
-		/*if (setWindowLong(win, -20, winExStyle) == 0) {
-				trace("Error restoring extended window style!");
-				trace("Code: " + Std.string(getLastError()));
-			}
-			if (setWindowLong(win, -16, winStyle) == 0) {
-				trace("Error restoring window borders!");
-				trace("Code: " + Std.string(getLastError()));
-		}*/
+		// Uncomment if you want to restore original styles
+		/*
+		if (setWindowLong(win, -20, winExStyle) == 0) {
+			trace("Error restoring extended window style!");
+			trace("Code: " + Std.string(getLastError()));
+		}
+		if (setWindowLong(win, -16, winStyle) == 0) {
+			trace("Error restoring window borders!");
+			trace("Code: " + Std.string(getLastError()));
+		}
+		*/
 	}
 }

@@ -1,38 +1,13 @@
 package;
 
-#if desktop
-import Discord.DiscordClient;
-#end
-import flixel.math.FlxRandom;
-import flixel.FlxG;
-import flixel.group.FlxGroup;
-import flixel.FlxObject;
-import flixel.FlxSprite;
-import flixel.util.FlxTimer;
-import flixel.FlxCamera;
 import flixel.addons.transition.FlxTransitionableState;
-import flixel.effects.FlxFlicker;
 import flixel.graphics.frames.FlxAtlasFrames;
-import flixel.group.FlxGroup.FlxTypedGroup;
-import flixel.text.FlxText;
-import flixel.math.FlxMath;
-import flixel.tweens.FlxEase;
-import flixel.tweens.FlxTween;
-import flixel.graphics.FlxGraphic;
-import flixel.util.FlxColor;
 import lime.app.Application;
 import Achievements;
 import editors.MasterEditorMenu;
-import flixel.input.keyboard.FlxKey;
-import flixel.util.FlxAxes;
 import flixel.addons.display.FlxBackdrop;
 
-import hxcodec.VideoHandler;
 import flash.system.System;
-
-import sys.FileSystem;
-
-using StringTools;
 
 class MainMenuState extends MusicBeatState
 {
@@ -627,7 +602,7 @@ class MainMenuState extends MusicBeatState
 			add(libidiWarning);
 		}
 
-		BGchecker = new FlxBackdrop(Paths.image('promotion/BGgrid-' + FlxG.random.int(1, 8)), 0, 0, true, true); 
+		BGchecker = new FlxBackdrop(Paths.image('promotion/BGgrid-' + FlxG.random.int(1, 8)), FlxAxes.XY, 0, 0); 
 		BGchecker.updateHitbox(); 
 		BGchecker.scrollFactor.set(0, 0); 
 		BGchecker.alpha = 0; 

@@ -1,22 +1,7 @@
 package;
 
-import flixel.FlxG;
-import flixel.FlxObject;
-import flixel.FlxSubState;
-import flixel.math.FlxMath;
-import flixel.math.FlxPoint;
-import flixel.FlxSprite;
-import flixel.util.FlxColor;
-import flixel.text.FlxText;
-import flixel.tweens.FlxEase;
-import flixel.tweens.FlxTween;
-import flixel.util.FlxTimer;
 import Song.SwagSong;
 
-import sys.FileSystem;
-import sys.io.File;
-
-import hxcodec.VideoHandler;
 import flash.system.System;
 
 class GameOverSubstate extends MusicBeatSubstate
