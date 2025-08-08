@@ -173,23 +173,9 @@ class OptionsState extends MusicBeatState
 				FlxG.sound.music.volume = 0;
 			} 
 			else if (ClientPrefs.optionsFreeplay)
-			{
-				if (FreeplayCategoryState.freeplayName == 'MAIN') //go to Main Freeplay
-					MusicBeatState.switchState(new FreeplayState());
-				else if (FreeplayCategoryState.freeplayName == 'BONUS') //go to Bonus Freeplay
-					MusicBeatState.switchState(new FreeplayBonusState());
-				else if (FreeplayCategoryXtraState.freeplayName == 'XTRASHOP') //go to Xtra Freeplay [Using Shop songs]
-					MusicBeatState.switchState(new FreeplayXtraState());
-				else if (FreeplayCategoryXtraState.freeplayName == 'XTRACROSSOVER') //go to Xtra Freeplay [Using Crossover Songs]
-					MusicBeatState.switchState(new FreeplayXtraCrossoverState());
-				else if (FreeplayCategoryXtraState.freeplayName == 'XTRABONUS') //go to Xtra Freeplay [Using Bonus Songs]
-					MusicBeatState.switchState(new FreeplayXtraBonusState());
-			}
+				MusicBeatState.switchState(new FreeplayState()); // Back To Freeplay
 			else
-			{
-				FlxG.sound.play(Paths.sound('cancelMenu'));
 				MusicBeatState.switchState(new MainMenuState());
-			}
 		}
 
 

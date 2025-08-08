@@ -10,7 +10,6 @@ import Alphabet;
 class FreeplayCategoryXtraState extends MusicBeatState
 {
     public static var categorySelected:Int = 0;
-    public static var freeplayName:String = '';
 
     var textBG:FlxSprite;
     var Text:FlxText;
@@ -28,7 +27,7 @@ class FreeplayCategoryXtraState extends MusicBeatState
 		DiscordClient.changePresence("Selecting XTRA Freeplay Mode", null);
 		#end
 
-        freeplayName = '';
+        FreeplayState.songCategory = '';
 
         bgGradient = new FlxSprite(0, 0).loadGraphic(Paths.image('pauseGradient/gradient_Null'));
         bgGradient.color = 0xFF00a800;
@@ -142,7 +141,7 @@ class FreeplayCategoryXtraState extends MusicBeatState
                 FlxFlicker.flicker(xtraShop, 1.5, 0.04, false);
                 FlxTween.tween(xtraCrossover, {alpha: 0}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
                 FlxTween.tween(xtraBonus, {alpha: 0}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
-                freeplayName = 'XTRASHOP';
+                FreeplayState.songCategory = 'XTRASHOP';
 
                 FlxG.sound.play(Paths.sound('confirmMenu'));
 
@@ -150,7 +149,7 @@ class FreeplayCategoryXtraState extends MusicBeatState
 
                 new FlxTimer().start(1, function(tmr:FlxTimer)
                 {
-                    MusicBeatState.switchState(new FreeplayXtraState());
+                    MusicBeatState.switchState(new FreeplayState());
                 });
             }
 
@@ -159,7 +158,7 @@ class FreeplayCategoryXtraState extends MusicBeatState
                 FlxFlicker.flicker(xtraCrossover, 1.5, 0.04, false);
                 FlxTween.tween(xtraShop, {alpha: 0}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
                 FlxTween.tween(xtraBonus, {alpha: 0}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
-                freeplayName = 'XTRACROSSOVER';
+                FreeplayState.songCategory = 'XTRACROSSOVER';
     
                 FlxG.sound.play(Paths.sound('confirmMenu'));
     
@@ -167,7 +166,7 @@ class FreeplayCategoryXtraState extends MusicBeatState
                 
                 new FlxTimer().start(1, function(tmr:FlxTimer)
                  {
-                    MusicBeatState.switchState(new FreeplayXtraCrossoverState());
+                    MusicBeatState.switchState(new FreeplayState());
                  });
             }
             if (ClientPrefs.crossoverUnlocked == false && categorySelected == 1 && (controls.ACCEPT || (FlxG.mouse.overlaps(xtraCrossover) && FlxG.mouse.justPressed)))
@@ -181,7 +180,7 @@ class FreeplayCategoryXtraState extends MusicBeatState
                 FlxFlicker.flicker(xtraBonus, 1.5, 0.04, false);
                 FlxTween.tween(xtraShop, {alpha: 0}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
                 FlxTween.tween(xtraCrossover, {alpha: 0}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
-                freeplayName = 'XTRABONUS';
+                FreeplayState.songCategory = 'XTRABONUS';
     
                 FlxG.sound.play(Paths.sound('confirmMenu'));
     
@@ -189,7 +188,7 @@ class FreeplayCategoryXtraState extends MusicBeatState
                 
                 new FlxTimer().start(1, function(tmr:FlxTimer)
                  {
-                    MusicBeatState.switchState(new FreeplayXtraBonusState());
+                    MusicBeatState.switchState(new FreeplayState());
                  });
             }
             if (ClientPrefs.xtraBonusUnlocked == false && categorySelected == 2 && (controls.ACCEPT || (FlxG.mouse.overlaps(xtraBonus) && FlxG.mouse.justPressed)))

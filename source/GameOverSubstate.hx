@@ -215,18 +215,10 @@ class GameOverSubstate extends MusicBeatSubstate
 					PlayState.isMayhemMode = false;
 					MusicBeatState.switchState(new MainMenuState());
 				} else {
-					if (ClientPrefs.onCrossSection == true)
+					if (ClientPrefs.onCrossSection)
 						MusicBeatState.switchState(new CrossoverState()); //go to Crossover State
-					else if (FreeplayCategoryState.freeplayName == 'MAIN') //go to Main Freeplay
-						MusicBeatState.switchState(new FreeplayState());
-					else if (FreeplayCategoryState.freeplayName == 'BONUS') //go to Bonus Freeplay
-						MusicBeatState.switchState(new FreeplayBonusState());
-					else if (FreeplayCategoryXtraState.freeplayName == 'XTRASHOP') //go to Xtra Freeplay [Using Shop songs]
-						MusicBeatState.switchState(new FreeplayXtraState());
-					else if (FreeplayCategoryXtraState.freeplayName == 'XTRACROSSOVER') //go to Xtra Freeplay [Using Crossover Songs]
-						MusicBeatState.switchState(new FreeplayXtraCrossoverState());
-					else if (FreeplayCategoryXtraState.freeplayName == 'XTRABONUS') //go to Xtra Freeplay [Using Bonus Songs]
-						MusicBeatState.switchState(new FreeplayXtraBonusState());
+					else
+						MusicBeatState.switchState(new FreeplayState()); // Back To Freeplay
 				}
 	
 				if (ClientPrefs.iniquitousWeekUnlocked == true && ClientPrefs.iniquitousWeekBeaten == false)

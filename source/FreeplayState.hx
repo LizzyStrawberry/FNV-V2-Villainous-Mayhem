@@ -10,6 +10,7 @@ import WeekData;
 
 class FreeplayState extends MusicBeatState
 {
+	public static var songCategory:String = "";
 	var songs:Array<SongMetadata> = [];
 
 	var selector:FlxText;
@@ -25,10 +26,7 @@ class FreeplayState extends MusicBeatState
 	var intendedScore:Int = 0;
 	var intendedRating:Float = 0;
 
-	private var grpSongs:FlxTypedGroup<Alphabet>;
 	private var curPlaying:Bool = false;
-
-	private var iconArray:Array<HealthIcon> = [];
 
 	var colorTween:FlxTween;
 
@@ -42,7 +40,6 @@ class FreeplayState extends MusicBeatState
 	var intendedColor:Int;
 
 	var unlockedSelection:FlxSprite;
-	var placeholderSelection:FlxSprite;
 	var lockedSelection:FlxSprite;
 
 	var transparentButton:FlxSprite;
@@ -59,11 +56,8 @@ class FreeplayState extends MusicBeatState
 
 	override function create()
 	{
-		if (CharSelector.isSelectinChar == false)
-		{
-			Paths.clearStoredMemory();
-			Paths.clearUnusedMemory();
-		}
+		//Paths.clearStoredMemory();
+		//Paths.clearUnusedMemory();
 		
 		persistentUpdate = true;
 		PlayState.isStoryMode = false;
@@ -73,170 +67,26 @@ class FreeplayState extends MusicBeatState
 
 		#if desktop
 		// Updating Discord Rich Presence
-		DiscordClient.changePresence("In MAIN WEEKS Freeplay Mode", null);
+		DiscordClient.changePresence('In $songCategory Freeplay Mode', null);
 		#end
-
-		if (FreeplayCategoryState.freeplayWeekName == "MAIN")
-		{
-			for (i in 0...WeekData.weeksList.length) {
-				if(weekIsLocked(WeekData.weeksList[i])) continue;
-	
-				var leWeek:WeekData = WeekData.weeksLoaded.get(WeekData.weeksList[i]);
-				var leSongs:Array<String> = [];
-				var leChars:Array<String> = [];
-	
-				for (j in 0...leWeek.songs.length)
-				{
-					leSongs.push(leWeek.songs[j][0]);
-					leChars.push(leWeek.songs[j][1]);
-				}
-	
-				WeekData.setDirectoryFromWeek(leWeek);
-				for (song in leWeek.songs)
-				{
-					var colors:Array<Int> = song[2];
-					if(colors == null || colors.length < 3)
-					{
-						colors = [146, 113, 253];
-					}
-					addSong(song[0], i, song[1], FlxColor.fromRGB(colors[0], colors[1], colors[2]));
-				}
-			}
-			WeekData.loadTheFirstEnabledMod();
-		}
 		
 		//check if songs were found to be unlocked
-		//Story Mode Weeks
-		//Week 1
-		if (ClientPrefs.villainyBeaten == true && FreeplayCategoryState.freeplayWeekName == "MAIN")
-			addSong('Villainy', 1, 'marcophase3', FlxColor.fromRGB(6, 155, 13));
-
-		//Week 2
-		if (ClientPrefs.nunWeekFound == true && ClientPrefs.nunWeekPlayed == false && FreeplayCategoryState.freeplayWeekName == "NUNS")
-			addSong('Nunday Monday', 3, 'mystery', FlxColor.fromRGB(255, 84, 84));
-		if (ClientPrefs.nunWeekFound == true && ClientPrefs.nunWeekPlayed == true && FreeplayCategoryState.freeplayWeekName == "NUNS")
-			addSong('Nunday Monday', 3, 'beatrice', FlxColor.fromRGB(255, 84, 84));
-
-		if (ClientPrefs.nunWeekFound == true && ClientPrefs.nunWeekPlayed == false && FreeplayCategoryState.freeplayWeekName == "NUNS")
-			addSong('Nunconventional', 3, 'mystery', FlxColor.fromRGB(255, 0, 53));
-		if (ClientPrefs.nunWeekFound == true && ClientPrefs.nunWeekPlayed == true && FreeplayCategoryState.freeplayWeekName == "NUNS")
-			addSong('Nunconventional', 3, 'beatrice', FlxColor.fromRGB(255, 0, 53));
-
-		if (ClientPrefs.nunWeekFound == true && ClientPrefs.nunWeekPlayed == true && ClientPrefs.pointBlankBeaten == true && FreeplayCategoryState.freeplayWeekName == "NUNS")
-			addSong('Point Blank', 3, 'yaku', FlxColor.fromRGB(255, 255, 25));
-
-		//Week 3
-		if (ClientPrefs.kianaWeekFound == true && ClientPrefs.kianaWeekPlayed == false && FreeplayCategoryState.freeplayWeekName == "DEMONS")
-			addSong('Forsaken', 3, 'mystery', FlxColor.fromRGB(39, 0, 87));
-		if (ClientPrefs.kianaWeekFound == true && ClientPrefs.kianaWeekPlayed == true && FreeplayCategoryState.freeplayWeekName == "DEMONS")
-			addSong('Forsaken', 3, 'dv', FlxColor.fromRGB(39, 0, 87));
-
-		if (ClientPrefs.kianaWeekFound == true && ClientPrefs.kianaWeekPlayed == false && FreeplayCategoryState.freeplayWeekName == "DEMONS")
-			addSong('Toybox', 3, 'mystery', FlxColor.fromRGB(213, 84, 192));
-		if (ClientPrefs.kianaWeekFound == true && ClientPrefs.kianaWeekPlayed == true && FreeplayCategoryState.freeplayWeekName == "DEMONS")
-			addSong('Toybox', 3, 'narrin', FlxColor.fromRGB(213, 84, 192));
-
-		if (ClientPrefs.kianaWeekFound == true && ClientPrefs.kianaWeekPlayed == false && FreeplayCategoryState.freeplayWeekName == "DEMONS")
-			addSong('Lustality Remix', 3, 'mystery', FlxColor.fromRGB(146, 0, 133));
-		if (ClientPrefs.kianaWeekFound == true && ClientPrefs.kianaWeekPlayed == true && FreeplayCategoryState.freeplayWeekName == "DEMONS")
-			addSong('Lustality Remix', 3, 'kiana', FlxColor.fromRGB(146, 0, 133));
-
-		if (ClientPrefs.kianaWeekFound == true && ClientPrefs.kianaWeekPlayed == true && ClientPrefs.libidinousnessBeaten == true && FreeplayCategoryState.freeplayWeekName == "DEMONS")
-			addSong('Libidinousness', 3, 'KianaFinalPhase', FlxColor.fromRGB(156, 0, 73));
-
-		/*		//KIND OF BROKEN NOW AND ALSO PRETTY USELESS//
-
-		var initSonglist = CoolUtil.coolTextFile(Paths.txt('freeplaySonglist'));
-		for (i in 0...initSonglist.length)
-		{
-			if(initSonglist[i] != null && initSonglist[i].length > 0) {
-				var songArray:Array<String> = initSonglist[i].split(":");
-				addSong(songArray[0], 0, songArray[1], Std.parseInt(songArray[2]));
-			}
-		}*/
-		grpSongs = new FlxTypedGroup<Alphabet>();
-		add(grpSongs);
+		setUpSongs(songCategory.toLowerCase());
 
 		for (i in 0...songs.length)
-		{
-			songText= new Alphabet(90, 320, songs[i].songName, true);
-			songText.isMenuItem = true;
-			songText.targetY = i - curSelected;
-			grpSongs.add(songText);
-
-			var maxWidth = 980;
-			if (songText.width > maxWidth)
-			{
-				songText.scaleX = maxWidth / songText.width;
-			}
-			songText.snapToPosition();
-
 			Paths.currentModDirectory = songs[i].folder;
-			icon= new HealthIcon(songs[i].songCharacter);
-			icon.sprTracker = songText;
 
-			// using a FlxGroup is too much fuss!
-			iconArray.push(icon);
-			add(icon);
-
-			// songText.x += 40;
-			// DONT PUT X IN THE FIRST PARAMETER OF new ALPHABET() !!
-			// songText.screenCenter(X);
-
-			if (songText.text == 'Nunday Monday' && ClientPrefs.nunWeekPlayed == false)
-				songText.text = '?????? ??????';
-
-			if (songText.text == 'Nunconventional' && ClientPrefs.nunWeekPlayed == false)
-				songText.text = '???????????????';
-
-			if (songText.text == 'Point Blank' && ClientPrefs.nunWeekPlayed == false)
-				songText.text = '????? ?????';
-
-
-			if (songText.text == 'Forsaken' && ClientPrefs.kianaWeekFound == false)
-				songText.text = '????????';
-
-			if (songText.text == 'Toybox' && ClientPrefs.kianaWeekFound == false)
-				songText.text = '??????';
-
-			if (songText.text == 'Lustality Remix' && ClientPrefs.kianaWeekFound == false)
-				songText.text = '????????? ?????';
-
-			if (songText.text == 'Libidinousness' && ClientPrefs.kianaWeekFound == false)
-				songText.text = '??????????????';
-		}
 		WeekData.setDirectoryFromWeek();
 
 		if(curSelected >= songs.length) curSelected = 0;
 
 		if(lastDifficultyName == '')
-		{
 			lastDifficultyName = CoolUtil.defaultDifficulty;
-		}
+
 		curDifficulty = Math.round(Math.max(0, CoolUtil.defaultDifficulties.indexOf(lastDifficultyName)));
-
-		var swag:Alphabet = new Alphabet(1, 0, "swag");
-
-		// JUST DOIN THIS SHIT FOR TESTING!!!
-		/* 
-			var md:String = Markdown.markdownToHtml(Assets.getText('CHANGELOG.md'));
-
-			var texFel:TextField = new TextField();
-			texFel.width = FlxG.width;
-			texFel.height = FlxG.height;
-			// texFel.
-			texFel.htmlText = md;
-
-			FlxG.stage.addChild(texFel);
-
-			// scoreText.textField.htmlText = md;
-
-			trace(md);
-		 */
 
 		newBG = new FlxSprite().loadGraphic(Paths.image('freeplayStuff/Background'));
 		newBG.antialiasing = ClientPrefs.globalAntialiasing;
-		//newBG.alpha = 0.6;
 		add(newBG);
 		newBG.screenCenter();
 
@@ -247,7 +97,6 @@ class FreeplayState extends MusicBeatState
 		unlockedSelection.antialiasing = ClientPrefs.globalAntialiasing;
 		unlockedSelection.screenCenter();
 		unlockedSelection.y -= 65;
-		//unlockedSelection.alpha = 0;
 		add(unlockedSelection);
 
 		lockedSelection = new FlxSprite().loadGraphic(Paths.image('freeplayStuff/selection_QuestionMark'));
@@ -257,13 +106,6 @@ class FreeplayState extends MusicBeatState
 		lockedSelection.alpha = 0;
 		add(lockedSelection);
 
-		placeholderSelection = new FlxSprite().loadGraphic(Paths.image('freeplayStuff/selection_Placeholder'));
-		placeholderSelection.antialiasing = ClientPrefs.globalAntialiasing;
-		placeholderSelection.screenCenter();
-		placeholderSelection.y -= 65;
-		placeholderSelection.alpha = 0;
-		add(placeholderSelection);
-
 		transparentButton = new FlxSprite().loadGraphic(Paths.image('freeplayStuff/transparentButton'));
 		transparentButton.antialiasing = ClientPrefs.globalAntialiasing;
 		transparentButton.screenCenter();
@@ -271,7 +113,7 @@ class FreeplayState extends MusicBeatState
 		transparentButton.alpha = 0;
 		add(transparentButton);
 
-		selectionText = new Alphabet(640, 560, "This is a test", true);
+		selectionText = new Alphabet(640, 560, "Unknown Song", true);
 		selectionText.setAlignmentFromString('center');
 		add(selectionText);
 
@@ -318,7 +160,7 @@ class FreeplayState extends MusicBeatState
 
 		messageNumber = FlxG.random.int(1, 4);
 
-		if (ClientPrefs.performanceWarning == true)
+		if (ClientPrefs.performanceWarning)
 		{
 			libidiWarning = new FlxText(700, 100, 1000, "<R>Warning:<R>\n<DP>'Libidinousness'<DP> takes a lot of juice off of your PC.\nCan it handle it?\n<R>(It is recommended to atleast have a graphics card installed)<R>\n----------------------------
 			\n<G>Y:<G> <G>Yes<G> | <r>N:<r> <r>No<r>", 32);
@@ -330,28 +172,27 @@ class FreeplayState extends MusicBeatState
 
 			add(libidiWarning);
 		}
-
-		songSelector();
 		
-			var textBG:FlxSprite = new FlxSprite(0, FlxG.height - 26).makeGraphic(FlxG.width, 26, 0xFF000000);
-			textBG.alpha = 0.6;
-			add(textBG);
+		var textBG:FlxSprite = new FlxSprite(0, FlxG.height - 26).makeGraphic(FlxG.width, 26, 0xFF000000);
+		textBG.alpha = 0.6;
+		add(textBG);
 	
-			#if PRELOAD_ALL
-			var leText:String = "Press SPACE to listen to the Song / Press TAB to go to Options / Press RESET to Reset your Score and Accuracy.";
-			var size:Int = 16;
-			#else
-			var leText:String = "Press CTRL to open the Gameplay Changers Menu / Press RESET to Reset your Score and Accuracy.";
-			var size:Int = 18;
-			#end
-			var text:FlxText = new FlxText(textBG.x, textBG.y + 4, FlxG.width, leText, size);
-			text.setFormat(Paths.font("vcr.ttf"), size, FlxColor.WHITE, RIGHT);
-			text.scrollFactor.set();
-			add(text);
+		#if PRELOAD_ALL
+		var leText:String = "Press SPACE to listen to the Song / Press TAB to go to Options / Press RESET to Reset your Score and Accuracy.";
+		var size:Int = 16;
+		#else
+		var leText:String = "Press CTRL to open the Gameplay Changers Menu / Press RESET to Reset your Score and Accuracy.";
+		var size:Int = 18;
+		#end
+		var text:FlxText = new FlxText(textBG.x, textBG.y + 4, FlxG.width, leText, size);
+		text.setFormat(Paths.font("vcr.ttf"), size, FlxColor.WHITE, RIGHT);
+		text.scrollFactor.set();
+		add(text);
 
 		changeSelection();
 		changeDiff();
-
+		songSelector();
+		
 		super.create();
 	}
 
@@ -361,257 +202,489 @@ class FreeplayState extends MusicBeatState
 		super.closeSubState();
 	}
 
-	public function addSong(songName:String, weekNum:Int, songCharacter:String, color:Int)
-	{
-		songs.push(new SongMetadata(songName, weekNum, songCharacter, color));
-	}
+	public function addSong(songName:String, weekNum:Int, color:Int)
+		songs.push(new SongMetadata(songName, weekNum, color));
 
 	function weekIsLocked(name:String):Bool {
 		var leWeek:WeekData = WeekData.weeksLoaded.get(name);
 		return (!leWeek.startUnlocked && leWeek.weekBefore.length > 0 && (!StoryMenuState.weekCompleted.exists(leWeek.weekBefore) || !StoryMenuState.weekCompleted.get(leWeek.weekBefore)));
 	}
 
-	/*public function addWeek(songs:Array<String>, weekNum:Int, weekColor:Int, ?songCharacters:Array<String>)
+	function setUpSongs(category:String)
 	{
-		if (songCharacters == null)
-			songCharacters = ['bf'];
-
-		var num:Int = 0;
-		for (song in songs)
+		switch(category)
 		{
-			addSong(song, weekNum, songCharacters[num]);
-			this.songs[this.songs.length-1].color = weekColor;
+			case "main":
+				for (i in 0...WeekData.weeksList.length) {
+					if(weekIsLocked(WeekData.weeksList[i])) continue;
+		
+					var leWeek:WeekData = WeekData.weeksLoaded.get(WeekData.weeksList[i]);
+		
+					WeekData.setDirectoryFromWeek(leWeek);
+					for (song in leWeek.songs)
+					{
+						var colors:Array<Int> = song[2];
+						if(colors == null || colors.length < 3)
+						{
+							colors = [146, 113, 253];
+						}
+						addSong(song[0], i, FlxColor.fromRGB(colors[0], colors[1], colors[2]));
+					}
+				}
+				WeekData.loadTheFirstEnabledMod();
 
-			if (songCharacters.length != 1)
-				num++;
+				if (ClientPrefs.villainyBeaten) addSong('Villainy', 1, FlxColor.fromRGB(6, 155, 13));
+
+			case "nuns":
+				//Week 2	
+				if (ClientPrefs.nunWeekFound) 
+				{
+					addSong('Nunday Monday', 3, FlxColor.fromRGB(255, 84, 84));
+					addSong('Nunconventional', 3, FlxColor.fromRGB(255, 0, 53));
+					if (ClientPrefs.pointBlankBeaten) addSong('Point Blank', 3, FlxColor.fromRGB(255, 255, 25));
+				}
+
+			case "demons":
+				//Week 3
+				if (ClientPrefs.kianaWeekFound)
+				{
+					addSong('Forsaken', 3, FlxColor.fromRGB(39, 0, 87));
+					addSong('Toybox', 3, FlxColor.fromRGB(213, 84, 192));
+					addSong('Lustality Remix', 3, FlxColor.fromRGB(146, 0, 133));
+					if (ClientPrefs.libidinousnessBeaten) addSong('Libidinousness', 3, FlxColor.fromRGB(156, 0, 73));
+				}
+
+			case "mork":
+				//Week Morky
+				if (ClientPrefs.morkyWeekFound)
+				{
+					addSong('Spendthrift', 3, FlxColor.fromRGB(40, 255, 53));
+					addSong('Instrumentally Deranged', 3, FlxColor.fromRGB(0, 113, 253));
+					addSong('Get Villaind', 3, FlxColor.fromRGB(66, 255, 153));
+				}
+
+			case "legacy":
+				//Week Legacy
+				if (ClientPrefs.legacyWeekFound)
+				{
+					addSong('Cheap Skate (Legacy)', 3, FlxColor.fromRGB(66, 255, 153));
+					addSong('Toxic Mishap (Legacy)', 3, FlxColor.fromRGB(6, 155, 13));
+					addSong('Paycheck (Legacy)', 3, FlxColor.fromRGB(163, 187, 137));
+				}
+
+			case "sus":
+				//Week Sus
+				if (ClientPrefs.susWeekFound)
+				{
+					addSong('Sussus Marcus', 3, FlxColor.fromRGB(80, 155, 80));
+					addSong('Villain In Board', 3, FlxColor.fromRGB(22, 82, 22));
+					if (ClientPrefs.excreteBeaten) addSong('Excrete', 3, FlxColor.fromRGB(0, 135, 0));
+				}
+
+			case "dsides":
+				//Week D-sides
+				if (ClientPrefs.dsideWeekFound)
+				{
+					addSong('Unpaid Catastrophe', 3, FlxColor.fromRGB(166, 53, 255));
+					addSong('Cheque', 3, FlxColor.fromRGB(106, 233, 253));
+					addSong("Get Gooned", 3, FlxColor.fromRGB(20, 153, 255));
+				}
+
+			case "xtrashop":
+				// Freeplay | Shop Exclusive Songs
+				if (ClientPrefs.nunsationalFound) addSong('Nunsational', 3, FlxColor.fromRGB(255, 0, 53));
+				if (ClientPrefs.lustalityFound)
+				{
+					addSong('Lustality', 3, FlxColor.fromRGB(195, 0, 153));
+					addSong('Lustality V1', 3, FlxColor.fromRGB(195, 0, 153));
+				}		
+				if (ClientPrefs.tofuFound) addSong('Tofu', 3, FlxColor.fromRGB(255, 235, 0));
+				if (ClientPrefs.marcochromeFound) addSong('Marcochrome', 3, FlxColor.fromRGB(0, 75, 0));
+				if (ClientPrefs.nicFound) addSong('Slow.FLP', 3, FlxColor.fromRGB(255, 255, 255));
+				if (ClientPrefs.debugFound) addSong('Marauder', 3, FlxColor.fromRGB(0 , 0, 0));
+				if (ClientPrefs.fnvFound) addSong('FNV', 3, FlxColor.fromRGB(147, 0, 151));
+				if (ClientPrefs.rainyDazeFound) addSong('Rainy Daze', 3, FlxColor.fromRGB(230, 0, 255));
+				if (ClientPrefs.shortFound) addSong('Jerry', 3, FlxColor.fromRGB(255, 255, 255));
+				if (ClientPrefs.infatuationFound) addSong('Fanfuck Forever', 3, FlxColor.fromRGB(230, 0, 255));
+
+			case "xtracrossover":
+				if (ClientPrefs.ourpleFound) addSong('VGuy', 3, FlxColor.fromRGB(115, 13, 255));
+				if (ClientPrefs.kyuFound) addSong('Fast Food Therapy', 3, FlxColor.fromRGB(255, 239, 11));
+				if (ClientPrefs.tacticalMishapFound) addSong('Tactical Mishap', 3, FlxColor.fromRGB(255, 73, 155));
+				if (ClientPrefs.breacherFound) addSong('Breacher', 3, FlxColor.fromRGB(122, 49, 137));
+				if (ClientPrefs.negotiationFound) addSong('Negotiation', 3, FlxColor.fromRGB(239, 0, 31));
+				if (ClientPrefs.ccFound) addSong('Concert Chaos', 3, FlxColor.fromRGB(155,0,206));
+
+			case "xtrabonus":
+				if (ClientPrefs.itsameDsidesUnlocked) addSong("It's Kiana", 3, FlxColor.fromRGB(59, 229, 255));
+				addSong('Slow.FLP (Old)', 3, FlxColor.fromRGB(255, 255, 255));
+				addSong('Marauder (Old)', 3, FlxColor.fromRGB(0 ,0, 0));
+				addSong('Get Villaind (Old)', 3, FlxColor.fromRGB(66, 255, 153));
+				addSong("Get Pico'd", 3, FlxColor.fromRGB(20, 153, 255));
+				addSong('Forsaken (Picmixed)', 3, FlxColor.fromRGB(39, 0, 87));
+				addSong('Partner', 3, FlxColor.fromRGB(39, 0, 87));
+				if (ClientPrefs.shucksUnlocked) addSong('Shucks V2', 3, FlxColor.fromRGB(0 ,0, 0));
 		}
-	}*/
+	}
 
 	function songSelector()
 	{
-		switch(songs[curSelected].songName)
+		var customPosition:Bool = false;
+		
+		selectionText.text = songs[curSelected].songName;
+
+		switch(selectionText.text)
 		{
 			//Tutorial
-			case 'Couple Clash':
-			{
-				unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_CoupleClash'));	
-				unlockedSelection.alpha = 1;
-				unlockedSelection.scale.set(1, 1);	
-				unlockedSelection.screenCenter();
-				unlockedSelection.y -= 65;
-				lockedSelection.alpha = 0;
-
-				placeholderSelection.alpha = 0;	
-
-				selectionText.text = "Couple Clash";
-			}
+			case 'Couple Clash': unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_CoupleClash'));	
 			
 			//main Week	
-			case 'Scrouge':
-			{
-				unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_CheapSkateV3'));	
-				unlockedSelection.alpha = 1;
-				unlockedSelection.scale.set(1, 1);	
-				unlockedSelection.screenCenter();
-				unlockedSelection.y -= 65;
-				lockedSelection.alpha = 0;
-
-				placeholderSelection.alpha = 0;	
-
-				selectionText.text = "Scrouge";
-			}
-			case 'Toxic Mishap':
-			{
-				unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_ToxicMishap'));
-				unlockedSelection.alpha = 1;
-				unlockedSelection.scale.set(1, 1);
-				unlockedSelection.screenCenter();
-				unlockedSelection.y -= 65;
-				lockedSelection.alpha = 0;
-
-				placeholderSelection.alpha = 0;
-
-				selectionText.text = "Toxic Mishap";
-			}
-			case 'Paycheck':
-			{
-				unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_PaycheckV2'));
-				unlockedSelection.alpha = 1;
-				unlockedSelection.scale.set(1, 1);
-				unlockedSelection.screenCenter();
-				unlockedSelection.y -= 65;
-				lockedSelection.alpha = 0;
-
-				placeholderSelection.alpha = 0;
-
-				selectionText.text = "Paycheck";
-			}
-			case 'Villainy':
-			{
-				unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_Villainy'));
-				unlockedSelection.alpha = 1;
-				unlockedSelection.scale.set(1, 1);
-				unlockedSelection.screenCenter();
-				unlockedSelection.y -= 65;
-				lockedSelection.alpha = 0;
-
-				placeholderSelection.alpha = 0;
-
-				selectionText.text = "Villainy";
-			}
+			case 'Scrouge': unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_CheapSkateV3'));	
+			case 'Toxic Mishap': unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_ToxicMishap'));
+			case 'Paycheck': unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_PaycheckV2'));
+			case 'Villainy': unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_Villainy'));
 
 			//Week 2 - Nun Week
-			case 'Nunday Monday' | '?????? ??????':
-			{
+			case 'Nunday Monday':
 				unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_NundayMonday'));
-				unlockedSelection.alpha = 1;
-				unlockedSelection.scale.set(1, 1);
-				unlockedSelection.screenCenter();
-				unlockedSelection.y -= 65;
-				lockedSelection.alpha = 0;
-
-				placeholderSelection.alpha = 0;
-
-				selectionText.text = "Nunday Monday";
-
-				if (ClientPrefs.nunWeekPlayed == false)
+				if (!ClientPrefs.nunWeekPlayed)
 				{
 					selectionText.text = "?????? ??????";
 					lockedSelection.alpha = 1;
-					unlockedSelection.alpha = 0;
 				}
-			}
-			case 'Nunconventional' | '???????????????':
-			{
+			case 'Nunconventional':
 				unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_Nunconventional'));
-				unlockedSelection.alpha = 1;
-				unlockedSelection.scale.set(1, 1);
-				unlockedSelection.screenCenter();
-				unlockedSelection.y -= 65;
-				lockedSelection.alpha = 0;
-
-				placeholderSelection.alpha = 0;
-
-				selectionText.text = "Nunconventional";
-
-				if (ClientPrefs.nunWeekPlayed == false)
+				if (!ClientPrefs.nunWeekPlayed)
 				{
 					selectionText.text = "???????????????";
 					lockedSelection.alpha = 1;
-					unlockedSelection.alpha = 0;
 				}
-			}
-			case 'Point Blank' | '????? ?????':
-			{
+			case 'Point Blank':
 				unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_PointBlank'));
-				unlockedSelection.alpha = 1;
-				unlockedSelection.scale.set(1, 1);
-				unlockedSelection.screenCenter();
-				unlockedSelection.y -= 65;
-				lockedSelection.alpha = 0;
-
-				placeholderSelection.alpha = 0;
-
-				selectionText.text = "Point Blank";
-
-				if (ClientPrefs.nunWeekPlayed == false)
+				if (!ClientPrefs.nunWeekPlayed)
 				{
 					selectionText.text = "????? ?????";
 					lockedSelection.alpha = 1;
-					unlockedSelection.alpha = 0;
 				}
-			}
 
 			//Week 3 - Unnamed Trinity
-			case 'Forsaken' | '????????':
-			{
+			case 'Forsaken':
+				customPosition = true;
 				unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_Forsaken'));
-				unlockedSelection.alpha = 1;
 				unlockedSelection.scale.set(1.2, 1.2);
 				unlockedSelection.screenCenter();
 				unlockedSelection.x += 20;
 				unlockedSelection.y -= 60;
-				lockedSelection.alpha = 0;
 
-				placeholderSelection.alpha = 0;
-
-				selectionText.text = "Forsaken";
-
-				if (ClientPrefs.kianaWeekPlayed == false)
+				if (!ClientPrefs.kianaWeekPlayed)
 				{
 					selectionText.text = "????????";
 					lockedSelection.alpha = 1;
-					unlockedSelection.alpha = 0;
 				}
-			}
-			case 'Toybox' | '??????':
-			{
+			case 'Toybox':
 				unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_Toybox'));
-				unlockedSelection.alpha = 1;
-				unlockedSelection.scale.set(1, 1);
-				unlockedSelection.screenCenter();
-				unlockedSelection.y -= 65;
-				lockedSelection.alpha = 0;
-
-				placeholderSelection.alpha = 0;
-
-				selectionText.text = "Toybox";
-
-				if (ClientPrefs.kianaWeekPlayed == false)
+				if (!ClientPrefs.kianaWeekPlayed)
 				{
 					selectionText.text = "??????";
 					lockedSelection.alpha = 1;
-					unlockedSelection.alpha = 0;
 				}
-			}
-			case 'Lustality Remix' | '????????? ?????':
-			{
+			case 'Lustality Remix':
 				unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_LustalityRemix'));
-				unlockedSelection.alpha = 1;
-				unlockedSelection.scale.set(1, 1);
-				unlockedSelection.screenCenter();
-				unlockedSelection.y -= 65;
-				lockedSelection.alpha = 0;
-
-				placeholderSelection.alpha = 0;
-
-				selectionText.text = "Lustality Remix";
-
-				if (ClientPrefs.kianaWeekPlayed == false)
+				if (!ClientPrefs.kianaWeekPlayed)
 				{
 					selectionText.text = "????????? ?????";
 					lockedSelection.alpha = 1;
-					unlockedSelection.alpha = 0;
 				}
-			}
-			case 'Libidinousness' | '??????????????':
-			{
+			case 'Libidinousness':
 				unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_Libidinousness'));
-				unlockedSelection.alpha = 1;
-				unlockedSelection.scale.set(1, 1);
-				unlockedSelection.screenCenter();
-				unlockedSelection.y -= 65;
-				lockedSelection.alpha = 0;
-
-				placeholderSelection.alpha = 0;
-
-				selectionText.text = "Libidinousness";
-
-				if (ClientPrefs.kianaWeekPlayed == false)
+				if (!ClientPrefs.kianaWeekPlayed)
 				{
 					selectionText.text = "??????????????";
 					lockedSelection.alpha = 1;
-					unlockedSelection.alpha = 0;
 				}
-			}
+
+			//Week Morky
+			case 'Spendthrift':
+				unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_Spendthrift'));
+				if (!ClientPrefs.morkyWeekPlayed)
+				{
+					selectionText.text = "???????????";
+					lockedSelection.alpha = 1;
+				}
+			case 'Instrumentally Deranged':
+				unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_InstrumentallyDeranged'));
+				if (!ClientPrefs.morkyWeekPlayed)
+				{
+					selectionText.text = "????. ????????";
+					lockedSelection.alpha = 1;
+				}
+			case 'Get Villaind':
+				customPosition = true;
+				unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_GetVillaind'));
+				unlockedSelection.frames = Paths.getSparrowAtlas('freeplayStuff/selection_GetVillaind');
+				unlockedSelection.animation.addByPrefix('idle', "mork mork0", 24);
+				unlockedSelection.scale.set(0.68, 0.657);
+				unlockedSelection.x = 115;
+				unlockedSelection.y -= 107;
+				unlockedSelection.animation.play('idle');
+
+				selectionText.text = "Get Villain'd";
+				if (!ClientPrefs.morkyWeekPlayed)
+				{
+					selectionText.text = "??? ?????????";
+					lockedSelection.alpha = 1;
+				}
+
+			//Week Sus
+			case 'Sussus Marcus':
+				unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_SussusMarcus'));
+				if (!ClientPrefs.susWeekPlayed)
+				{
+					selectionText.text = "?????? ??????";
+					lockedSelection.alpha = 1;
+				}
+			case 'Villain In Board':
+				unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_VillainInBoard'));
+				if (!ClientPrefs.susWeekPlayed)
+				{
+					selectionText.text = "??????? ?? ?????";
+					lockedSelection.alpha = 1;
+				}
+			case 'Excrete':
+				customPosition = true;
+				unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_Excrete'));
+				unlockedSelection.scale.set(1.15, 1.15);
+				unlockedSelection.screenCenter();
+				unlockedSelection.x += 15;
+				unlockedSelection.y -= 65;
+
+				if (!ClientPrefs.susWeekPlayed)
+				{
+					selectionText.text = "???????";
+					lockedSelection.alpha = 1;
+				}
+
+			//week Legacy
+			case 'Cheap Skate (Legacy)':
+				unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_CheapSkate'));
+				if (!ClientPrefs.legacyWeekPlayed)
+				{
+					selectionText.text = "????? ????? (???)";
+					lockedSelection.alpha = 1;
+				}
+
+			case 'Toxic Mishap (Legacy)':
+				unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_ToxicMishap'));
+				if (!ClientPrefs.legacyWeekPlayed)
+				{
+					selectionText.text = "????? ?????? (???)";
+					lockedSelection.alpha = 1;
+				}
+
+			case 'Paycheck (Legacy)':
+				unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_PaycheckClassic'));
+				if (!ClientPrefs.legacyWeekPlayed)
+				{
+					selectionText.text = "?????????? (???)";
+					lockedSelection.alpha = 1;
+				}
+
+			//Week D-sides
+			case 'Unpaid Catastrophe':
+				unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_UnpaidCatastrophe'));
+				if (!ClientPrefs.dsideWeekPlayed)
+				{
+					selectionText.text = "?????? ???????????";
+					lockedSelection.alpha = 1;
+				}
+			case 'Cheque':
+				unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_Cheque'));
+				if (!ClientPrefs.dsideWeekPlayed)
+				{
+					selectionText.text = "??????";
+					lockedSelection.alpha = 1;
+				}
+			case "Get Gooned":
+				unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_GetGooned'));
+				if (!ClientPrefs.dsideWeekPlayed)
+				{
+					selectionText.text = "??? ??????";
+					lockedSelection.alpha = 1;
+				}
+
+			// Freeplay | Shop Exclusives
+			case 'Nunsational' :
+				unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_Nunsational'));
+				if (!ClientPrefs.nunsationalViewed)
+				{
+					selectionText.text = "???????????";
+					lockedSelection.alpha = 1;
+				}
+			case 'Marcochrome':
+				unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_Marcochrome'));
+				if (!ClientPrefs.marcochromeViewed)
+				{
+					selectionText.text = "?????????????";
+					lockedSelection.alpha = 1;
+				}
+			case 'Tofu':
+				unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_Tofu'));
+				if (!ClientPrefs.tofuViewed)
+				{
+					selectionText.text = "????";
+					lockedSelection.alpha = 1;
+				}
+			case 'Lustality':
+				unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_Lustality'));
+				if (!ClientPrefs.lustalityViewed)
+				{
+					selectionText.text = "?????????";
+					lockedSelection.alpha = 1;
+				}
+			case 'Lustality V1':
+				unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_Lustality'));
+				if (!ClientPrefs.lustalityViewed)
+				{
+					selectionText.text = "????????? ??";
+					lockedSelection.alpha = 1;
+				}
+			case 'Slow.FLP':
+				unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_SlowFLP'));
+				if (!ClientPrefs.nicViewed)
+				{
+					selectionText.text = "????.???";
+					lockedSelection.alpha = 1;
+				}
+			case 'Marauder':
+				unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_Marauder'));
+				if (!ClientPrefs.debugViewed)
+				{
+					selectionText.text = "????????";
+					lockedSelection.alpha = 1;
+				}
+			case 'FNV':
+				unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_FNV'));
+				if (!ClientPrefs.fnvViewed)
+				{
+					selectionText.text = "???";
+					lockedSelection.alpha = 1;
+				}
+			case 'Rainy Daze':
+				unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_RainyDaze'));
+				if (!ClientPrefs.rainyDazeViewed)
+				{
+					selectionText.text = "????? ????";
+					lockedSelection.alpha = 1;
+				}
+			case 'Jerry':
+				unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_00015'));
+				if (!ClientPrefs.shortViewed)
+				{
+					selectionText.text = "?.????";
+					lockedSelection.alpha = 1;
+				}
+			case 'Fanfuck Forever':
+				unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_FanfuckForever'));
+				if (!ClientPrefs.infatuationViewed)
+				{
+					selectionText.text = "????????????";
+					lockedSelection.alpha = 1;
+				}
+
+			// Crossovers
+			case 'Tactical Mishap':
+				unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_TacticalMishap'));
+				if (!ClientPrefs.tacticalMishapPlayed)
+				{
+					selectionText.text = "???????? ??????";
+					lockedSelection.alpha = 1;
+				}
+			case 'VGuy':
+				unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_VGuy'));
+				if (!ClientPrefs.ourplePlayed)
+				{
+					selectionText.text = "????";
+					lockedSelection.alpha = 1;
+				}
+			case 'Fast Food Therapy':
+				unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_FastFoodTherapy'));
+				if (!ClientPrefs.kyuPlayed)
+				{
+					selectionText.text = "???? ???? ???????";
+					lockedSelection.alpha = 1;
+				}
+			case 'Breacher':
+				customPosition = true;
+				unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_Breacher'));
+				unlockedSelection.screenCenter();
+				unlockedSelection.y -= 60;
+				unlockedSelection.scale.set(1.12, 1.12);
+
+				if (!ClientPrefs.breacherPlayed)
+				{
+					selectionText.text = "????????";
+					lockedSelection.alpha = 1;
+				}
+			case 'Negotiation':
+				unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_Negotiation'));
+				if (!ClientPrefs.negotiationPlayed)
+				{
+					selectionText.text = "???????????";
+					lockedSelection.alpha = 1;
+				}
+			case 'Concert Chaos':
+				unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_ConcertChaos'));
+				if (!ClientPrefs.ccPlayed)
+				{
+					selectionText.text = "??????? ?????";
+					lockedSelection.alpha = 1;
+				}
+
+			// Bonuses
+			case 'Slow.FLP (Old)': unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_SlowFLP'));
+			case 'Marauder (Old)': unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_Marauder'));
+			case 'Get Villaind (Old)':
+				customPosition = true;
+				unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_GetVillaind'));
+				unlockedSelection.frames = Paths.getSparrowAtlas('freeplayStuff/selection_GetVillaind');
+				unlockedSelection.animation.addByPrefix('idle', "mork mork0", 24);
+				unlockedSelection.scale.set(0.68, 0.657);
+				unlockedSelection.x = 115;
+				unlockedSelection.y -= 107;
+				unlockedSelection.animation.play('idle');
+
+			case "Get Pico'd": unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_GetGooned'));
+			case 'Forsaken (Picmixed)':
+				customPosition = true;
+				unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_Forsaken'));
+				unlockedSelection.scale.set(1.2, 1.2);
+				unlockedSelection.screenCenter();
+				unlockedSelection.x += 20;
+				unlockedSelection.y -= 60;
+
+			case "It's Kiana": unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_ItsKiana'));
+			case "Partner":
+				customPosition = true;
+				unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_Forsaken'));
+				unlockedSelection.scale.set(1.2, 1.2);
+				unlockedSelection.screenCenter();
+				unlockedSelection.x += 20;
+				unlockedSelection.y -= 60;
+				
+			case "Shucks V2": unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_ShucksV2'));
 
 			default:
-			{
 				lockedSelection.alpha = 1;
-				placeholderSelection.alpha = 0;
+				selectionText.text = "Unknown Song";
+		}
 
-				selectionText.text = "I love testing lmao";
-			}
+		if (!customPosition)
+		{
+			unlockedSelection.alpha = 1;
+			unlockedSelection.scale.set(1, 1);
+			unlockedSelection.screenCenter();
+			unlockedSelection.y -= 65;
+			lockedSelection.alpha = 0;
 		}
 	}
 
@@ -662,14 +735,12 @@ class FreeplayState extends MusicBeatState
 				if (upP || (FlxG.mouse.overlaps(arrowSelectorLeft) && FlxG.mouse.justPressed))
 				{
 					changeSelection(-shiftMult);
-					songSelector();
 					changeDiff();
 					holdTime = 0;
 				}
 				if (downP || (FlxG.mouse.overlaps(arrowSelectorRight) && FlxG.mouse.justPressed))
 				{
 					changeSelection(shiftMult);
-					songSelector();
 					changeDiff();
 					holdTime = 0;
 				}
@@ -683,7 +754,6 @@ class FreeplayState extends MusicBeatState
 					if(holdTime > 0.5 && checkNewHold - checkLastHold > 0)
 					{
 						changeSelection((checkNewHold - checkLastHold) * (controls.UI_UP ? -shiftMult : shiftMult));
-						songSelector();
 						changeDiff();
 					}
 				}
@@ -712,7 +782,7 @@ class FreeplayState extends MusicBeatState
 			{
 				warning = false;
 				FlxTween.tween(blackOut, {alpha: 0}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
-				if (ClientPrefs.performanceWarning == true)
+				if (ClientPrefs.performanceWarning)
 					FlxTween.tween(libidiWarning, {alpha: 0}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
 			}
 			else
@@ -723,13 +793,18 @@ class FreeplayState extends MusicBeatState
 				}
 				ClientPrefs.optionsFreeplay = false;
 				FlxG.sound.play(Paths.sound('cancelMenu'));
-				if (ClientPrefs.inShop == true)
+				if (ClientPrefs.inShop)
 				{
 					FlxG.sound.music.fadeOut(0.7); 
 					MusicBeatState.switchState(new ShopState());
 				}
 				else
-					MusicBeatState.switchState(new FreeplayCategoryState());
+				{
+					if (songCategory.toLowerCase().startsWith("xtra"))
+						MusicBeatState.switchState(new FreeplayCategoryXtraState());
+					else
+						MusicBeatState.switchState(new FreeplayCategoryState());
+				}
 			}
 		}
 		if(FlxG.keys.justPressed.TAB)	
@@ -774,20 +849,20 @@ class FreeplayState extends MusicBeatState
 			FlxG.sound.play(Paths.sound('confirmMenu'));
 			var songLowercase:String = Paths.formatToSongPath(songs[curSelected].songName);
 			var poop:String = Highscore.formatSong(songLowercase, curDifficulty);
-			/*#if MODS_ALLOWED
-			if(!sys.FileSystem.exists(Paths.modsJson(songLowercase + '/' + poop)) && !sys.FileSystem.exists(Paths.json(songLowercase + '/' + poop))) {
-			#else
-			if(!OpenFlAssets.exists(Paths.json(songLowercase + '/' + poop))) {
-			#end
-				poop = songLowercase;
-				curDifficulty = 1;
-				trace('Couldnt find file');
-			}*/
-			trace(poop);
-			if (!ClientPrefs.mechanics && ((curDifficulty == 2 && (songs[curSelected].songName == 'Scrouge' || songs[curSelected].songName == 'Toxic Mishap' || songs[curSelected].songName == 'Paycheck'
-				|| songs[curSelected].songName == 'Nunday Monday' || songs[curSelected].songName == 'Nunconventional' || songs[curSelected].songName == 'Forsaken'  || songs[curSelected].songName == 'Toybox'
-				|| songs[curSelected].songName == 'Lustality Remix')) //NORMAL SONGS
-				|| (curDifficulty == 1 && (songs[curSelected].songName == 'Villainy' || songs[curSelected].songName == 'Point Blank' || songs[curSelected].songName == 'Libidinousness'))))//BOSS SONGS
+
+			var showMechWarn:Bool = false;
+			var mechSongs:Array<String> = ['Scrouge', 'Toxic Mishap', 'Paycheck', 'Nunday Monday', 'Nunconventional', 'Forsaken', 'Toybox', 'Lustality Remix', 'Forsaken (Picmixed)', 'Partner'];
+			var bossMechSongs:Array<String> = ['Villainy', 'Point Blank', 'Libidinousness'];
+
+			for (i in 0...mechSongs.length)
+				if(!ClientPrefs.mechanics && curDifficulty == 2 && songs[curSelected].songName == mechSongs[i])
+					showMechWarn = true;
+
+			for (i in 0...bossMechSongs.length)
+				if(!ClientPrefs.mechanics && curDifficulty == 1 && songs[curSelected].songName == bossMechSongs[i])
+					showMechWarn = true;
+
+			if (showMechWarn)
 			{
 				trace('IT WORKS LMAO, Go enable mechanics');
 				FlxTween.tween(blackOut, {alpha: 0.6}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
@@ -807,62 +882,17 @@ class FreeplayState extends MusicBeatState
 			else
 			{
 				ClientPrefs.resetStoryModeProgress(true);
-				ClientPrefs.inMenu = false;
-				ClientPrefs.lowQuality = false;
+				ClientPrefs.inMenu = ClientPrefs.lowQuality = PlayState.isStoryMode = false;
 				PlayState.SONG = Song.loadFromJson(poop, songLowercase);
-				PlayState.isStoryMode = false;
 				PlayState.storyDifficulty = curDifficulty;
 
-				trace('CURRENT WEEK: ' + WeekData.getWeekFileName());
-				if(colorTween != null) {
+				trace('Loaded $poop');
+
+				if(colorTween != null)
 					colorTween.cancel();
-				}
 
-				if (songs[curSelected].songName == 'Toxic Mishap')
-				{
-					if (!ClientPrefs.mechanics && curDifficulty == 1)
-					{
-						trace('I got loaded lol [Toxic Mishap], on villainous with no mechanics');
-						PlayState.SONG = Song.loadFromJson('toxic-mishap-villainousMechanicless', 'toxic-mishap');
-					}
-				}
-
-				if (songs[curSelected].songName == 'Villainy')
-				{
-					if (!ClientPrefs.mechanics && curDifficulty == 0)
-					{
-						trace('I got loaded lol [Villainy], on villainous with no mechanics');
-						PlayState.SONG = Song.loadFromJson('villainy-villainousMechanicless', 'villainy');
-					}
-				}
-
-				if (songs[curSelected].songName == 'Toybox')
-				{
-					if (!ClientPrefs.mechanics && curDifficulty == 0)
-					{
-						trace('I got loaded lol [Toybox], on casual with no mechanics');
-						PlayState.SONG = Song.loadFromJson('toybox-casualMechanicless', 'toybox');
-					}
-					if (!ClientPrefs.mechanics && curDifficulty == 1)
-					{
-						trace('I got loaded lol [Toybox], on villainous with no mechanics');
-						PlayState.SONG = Song.loadFromJson('toybox-villainousMechanicless', 'toybox');
-					}
-				}
-				
-				if (songs[curSelected].songName == 'Lustality Remix')
-				{
-					if (!ClientPrefs.mechanics && curDifficulty == 0)
-					{
-						trace('I got loaded lol [Lustality Remix], on casual with no mechanics');
-						PlayState.SONG = Song.loadFromJson('lustality-remix-casualMechanicless', 'lustality-remix');
-					}
-					if (!ClientPrefs.mechanics && curDifficulty == 1)
-					{
-						trace('I got loaded lol [Lustality Remix], on villainous with no mechanics');
-						PlayState.SONG = Song.loadFromJson('lustality-remix-villainousMechanicless', 'lustality-remix');
-					}
-				}
+				checkForMechanics(songs[curSelected].songName);
+				var loadCharSelector:Bool = checkForCharSelector(songs[curSelected].songName);
 
 				if (songs[curSelected].songName == 'Libidinousness' && !ClientPrefs.optimizationMode && ClientPrefs.performanceWarning)
 				{
@@ -873,15 +903,7 @@ class FreeplayState extends MusicBeatState
 					FlxTween.tween(blackOut, {alpha: 0.7}, 1.2, {ease: FlxEase.circOut, type: PERSIST});
 					FlxTween.tween(libidiWarning, {alpha: 1}, 1.2, {ease: FlxEase.circOut, type: PERSIST});
 				}
-				else if (FlxG.keys.pressed.SHIFT)
-				{
-					FlxG.mouse.visible = false;
-					LoadingState.loadAndSwitchState(new ChartingState());
-					FlxG.sound.music.volume = 0;
-				}	
-				else if (ClientPrefs.optimizationMode == false && (songs[curSelected].songName == 'Scrouge' || songs[curSelected].songName == 'Toxic Mishap' || songs[curSelected].songName == 'Paycheck' 
-				    || songs[curSelected].songName == 'Nunday Monday' || songs[curSelected].songName == 'Nunconventional' || songs[curSelected].songName == 'Point Blank'
-					|| songs[curSelected].songName == 'Lustality Remix'))
+				else if (loadCharSelector)
 				{
 					MusicBeatState.switchState(new CharSelector());
 					FlxG.sound.music.volume = 1;
@@ -901,7 +923,7 @@ class FreeplayState extends MusicBeatState
 		else if(controls.RESET)
 		{
 			persistentUpdate = false;
-			openSubState(new ResetScoreSubState(songs[curSelected].songName, curDifficulty, songs[curSelected].songCharacter));
+			openSubState(new ResetScoreSubState(songs[curSelected].songName, curDifficulty));
 			FlxG.sound.play(Paths.sound('scrollMenu'));
 		}
 
@@ -942,6 +964,39 @@ class FreeplayState extends MusicBeatState
 			vocals.destroy();
 		}
 		vocals = null;
+	}
+
+	function checkForCharSelector(songName:String)
+	{
+		if (ClientPrefs.optimizationMode) return false;
+		var charSelectorSongs:Array<String> = ['Scrouge','Toxic Mishap', 'Paycheck', 'Nunday Monday', 'Nunconventional', 'Point Blank', 'Lustality Remix',
+		'Get Villaind', 'Spendthrift', 'Cheap Skate (Legacy)', 'Toxic Mishap (Legacy)', 'Paycheck (Legacy)', 'Lustality', 'Lustality V1',
+		'Nunsational', 'FNV', "It's Kiana", "Get Villaind (Old)"];
+
+		for (i in 0...charSelectorSongs.length)
+			if (songName == charSelectorSongs[i])
+				return true;
+
+		return false;
+	}
+	function checkForMechanics(songName:String)
+	{
+		if (ClientPrefs.mechanics)
+		{
+			trace('Mechanics are on, no need to check for mechanics.');
+			return;
+		}
+
+		var diff:String = CoolUtil.getDifficultyFilePath(curDifficulty);
+		var fixedName:String = Paths.formatToSongPath(songName);
+		if (Song.loadFromJson(fixedName + diff + 'Mechanicless', fixedName) != null)
+		{
+			PlayState.SONG = Song.loadFromJson(fixedName + diff + 'Mechanicless', fixedName);
+			trace('Loading $songName without mechanics with chart file -> ${(fixedName + diff)}Mechanicless');
+		}
+		else
+			trace('No such chart file exists for song -> ${(fixedName + diff)}Mechanicless');
+		
 	}
 
 	function changeDiff(change:Int = 0)
@@ -1009,70 +1064,40 @@ class FreeplayState extends MusicBeatState
 			});
 		}
 
-		// selector.y = (70 * curSelected) + 30;
-
 		#if !switch
 		intendedScore = Highscore.getScore(songs[curSelected].songName, curDifficulty);
 		intendedRating = Highscore.getRating(songs[curSelected].songName, curDifficulty);
 		#end
-
-		var bullShit:Int = 0;
-
-		for (i in 0...iconArray.length)
-		{
-			iconArray[i].alpha = 0.6;
-		}
-
-		iconArray[curSelected].alpha = 1;
-
-		for (item in grpSongs.members)
-		{
-			item.targetY = bullShit - curSelected;
-			bullShit++;
-
-			item.alpha = 0.6;
-			// item.setGraphicSize(Std.int(item.width * 0.8));
-
-			if (item.targetY == 0)
-			{
-				item.alpha = 1;
-				// item.setGraphicSize(Std.int(item.width));
-			}
-		}
 		
 		Paths.currentModDirectory = songs[curSelected].folder;
 		PlayState.storyWeek = songs[curSelected].week;
 
 		//This if is used on songs which have the 'Iniquitous' difficulty on
-		if (songs[curSelected].songName == 'Scrouge' || songs[curSelected].songName == 'Toxic Mishap' || songs[curSelected].songName == 'Paycheck' //Week 1
-		|| songs[curSelected].songName == 'Nunday Monday' || songs[curSelected].songName == 'Nunconventional'//Week 2
-		|| songs[curSelected].songName == 'Forsaken' || songs[curSelected].songName == 'Toybox' || songs[curSelected].songName == 'Lustality Remix' //Week 3
-		)
-		{	
-			CoolUtil.difficulties = CoolUtil.mainWeekDifficulties.copy();
-		
-			if(CoolUtil.difficulties.contains(CoolUtil.mainWeekDifficulty))
-			{
-				if (Achievements.isAchievementUnlocked('weekIniquitous_Beaten'))
-					curDifficulty = Math.round(Math.max(0, CoolUtil.mainWeekDifficulties.indexOf(CoolUtil.mainWeekDifficulty)));
-				else
-					curDifficulty = Math.round(Math.max(0, 1));
-			}
-			else
-				curDifficulty = 0;
+		var songName:String = songs[curSelected].songName;
+		switch (songName)
+		{
+			case 'Scrouge', 'Toxic Mishap', 'Paycheck', 'Nunday Monday', 'Nunconventional', 'Forsaken', 'Toybox', 'Lustality Remix',
+				"Forsaken (Picmixed)", "Partner":
+				CoolUtil.difficulties = CoolUtil.mainWeekDifficulties.copy();
+
+			case "Couple Clash", "Excrete", "FNV", "Rainy Daze", "Jerry", "Marauder", "It's Kiana", "Shucks V2":
+				CoolUtil.difficulties = CoolUtil.tcDifficulties.copy();
+			
+			case "Villainy", "Point Blank", "Libidinousness":
+				CoolUtil.difficulties = CoolUtil.bossFightDifficulties.copy();
+
+			default:
+				CoolUtil.difficulties = CoolUtil.defaultDifficulties.copy();
 		}
-		else
-			CoolUtil.difficulties = CoolUtil.defaultDifficulties.copy();
 
-		//Week Songs
-		if (songs[curSelected].songName == 'Couple Clash')
-			CoolUtil.difficulties = CoolUtil.tcDifficulties.copy();
-
-		if (songs[curSelected].songName == 'Villainy' || songs[curSelected].songName == 'Point Blank' || songs[curSelected].songName == 'Libidinousness')
-			CoolUtil.difficulties = CoolUtil.bossFightDifficulties.copy();
-
-
-		if(CoolUtil.difficulties.contains(CoolUtil.bossFightDifficulty))
+		if(CoolUtil.difficulties.contains(CoolUtil.mainWeekDifficulty))
+		{
+			if (Achievements.isAchievementUnlocked('weekIniquitous_Beaten'))
+				curDifficulty = Math.round(Math.max(0, CoolUtil.mainWeekDifficulties.indexOf(CoolUtil.mainWeekDifficulty)));
+			else
+				curDifficulty = Math.round(Math.max(0, 1));
+		}
+		else if(CoolUtil.difficulties.contains(CoolUtil.bossFightDifficulty))
 			curDifficulty = Math.round(Math.max(0, CoolUtil.bossFightDifficulties.indexOf(CoolUtil.bossFightDifficulty)));
 		else if(CoolUtil.difficulties.contains(CoolUtil.tcDifficulty))
 			curDifficulty = Math.round(Math.max(0, CoolUtil.tcDifficulties.indexOf(CoolUtil.tcDifficulty)));
@@ -1085,6 +1110,8 @@ class FreeplayState extends MusicBeatState
 		//trace('Pos of ' + lastDifficultyName + ' is ' + newPos);
 		if(newPos > -1)
 			curDifficulty = newPos;
+
+		songSelector();
 	}
 
 	private function positionHighscore() {
@@ -1103,43 +1130,180 @@ class FreeplayState extends MusicBeatState
 		{
 			trace('I got loaded lol, Unlocking Nunconventional!');
 			ClientPrefs.nunWeekPlayed = true;
-			ClientPrefs.saveSettings();
 		}
-
-		if (songs[curSelected].songName == 'Nunday Monday' && ClientPrefs.nunWeekPlayed == false)
+		else if (songs[curSelected].songName == 'Nunday Monday' && ClientPrefs.nunWeekPlayed == false)
 		{
 			trace('I got loaded lol, Unlocking Nunday Monday!');
 			ClientPrefs.nunWeekPlayed = true;
-			ClientPrefs.saveSettings();
 		}
-			
-		if (songs[curSelected].songName == 'Point Blank' && ClientPrefs.nunWeekPlayed == false)
+		else if (songs[curSelected].songName == 'Point Blank' && ClientPrefs.nunWeekPlayed == false)
 		{
 			trace('I got loaded lol, Unlocking Point Blank!');
 			ClientPrefs.nunWeekPlayed = true;
-			ClientPrefs.saveSettings();
 		}
-
-		if (songs[curSelected].songName == 'Forsaken' && ClientPrefs.kianaWeekFound == false)
+		else if (songs[curSelected].songName == 'Forsaken' && ClientPrefs.kianaWeekFound == false)
 		{
 			trace('I got loaded lol, Unlocking Forsaken!');
 			ClientPrefs.kianaWeekFound = true;
-			ClientPrefs.saveSettings();
-		}
 
-		if (songs[curSelected].songName == 'Toybox' && ClientPrefs.kianaWeekFound == false)
+		}
+		else if (songs[curSelected].songName == 'Toybox' && ClientPrefs.kianaWeekFound == false)
 		{
 			trace('I got loaded lol, Unlocking Toybox!');
 			ClientPrefs.kianaWeekFound = true;
-			ClientPrefs.saveSettings();
 		}
-
-		if (songs[curSelected].songName == 'Lustality Remix' && ClientPrefs.kianaWeekFound == false)
+		else if (songs[curSelected].songName == 'Lustality Remix' && ClientPrefs.kianaWeekFound == false)
 		{
 			trace('I got loaded lol, Unlocking Lustality Remix!');
 			ClientPrefs.kianaWeekFound = true;
-			ClientPrefs.saveSettings();
 		}
+		else if (songs[curSelected].songName == 'Spendthrift' && ClientPrefs.morkyWeekPlayed == false)
+		{
+			trace('I got loaded lol, Unlocking Spendthrift!');
+			ClientPrefs.morkyWeekPlayed = true;
+		}
+		else if (songs[curSelected].songName == 'Instrumentally Deranged' && ClientPrefs.morkyWeekPlayed == false)
+		{
+			trace('I got loaded lol, Unlocking Instrumentally Deranged!');
+			ClientPrefs.morkyWeekPlayed = true;
+		}
+		else if (songs[curSelected].songName == 'Get Villaind' && ClientPrefs.morkyWeekPlayed == false)
+		{
+			trace('I got loaded lol, Unlocking Get Villain\'d!');
+			ClientPrefs.morkyWeekPlayed = true;
+		}
+		else if (songs[curSelected].songName == 'Cheap Skate (Legacy)' && ClientPrefs.legacyWeekPlayed == false)
+		{
+			trace('I got loaded lol, Unlocking Cheap Skate (Legacy)!');
+			ClientPrefs.legacyWeekPlayed = true;
+		}
+		else if (songs[curSelected].songName == 'Toxic Mishap (Legacy)' && ClientPrefs.legacyWeekPlayed == false)
+		{
+			trace('I got loaded lol, Unlocking Toxic Mishap (Legacy)!');
+			ClientPrefs.legacyWeekPlayed = true;
+		}
+		else if (songs[curSelected].songName == 'Paycheck (Legacy)' && ClientPrefs.legacyWeekPlayed == false)
+		{
+			trace('I got loaded lol, Unlocking Paycheck (Legacy)!');
+			ClientPrefs.legacyWeekPlayed = true;
+		}
+		else if (songs[curSelected].songName == 'Sussus Marcus' && ClientPrefs.susWeekPlayed == false)
+		{
+			trace('I got loaded lol, Unlocking Sussus Marcus!');
+			ClientPrefs.susWeekPlayed = true;		
+		}
+		else if (songs[curSelected].songName == 'Villain In Board' && ClientPrefs.susWeekPlayed == false)
+		{
+			trace('I got loaded lol, Unlocking Villain In Board!');
+			ClientPrefs.susWeekPlayed = true;
+		}
+		else if (songs[curSelected].songName == 'Excrete' && ClientPrefs.susWeekPlayed == false)
+		{
+			trace('I got loaded lol, Unlocking Excrete!');
+			ClientPrefs.susWeekPlayed = true;
+		}
+		else if (songs[curSelected].songName == 'Unpaid Catastrophe' && ClientPrefs.dsideWeekPlayed == false)
+		{
+			trace('I got loaded lol, Unlocking Unpaid Catastrophe!');
+			ClientPrefs.dsideWeekPlayed = true;
+		}
+		else if (songs[curSelected].songName == 'Cheque' && ClientPrefs.dsideWeekPlayed == false)
+		{
+			trace('I got loaded lol, Unlocking Cheque!');
+			ClientPrefs.dsideWeekPlayed = true;
+		}
+		else if (songs[curSelected].songName == "Get Gooned" && ClientPrefs.dsideWeekPlayed == false)
+		{
+			trace('I got loaded lol, Unlocking Get Gooned!');
+			ClientPrefs.dsideWeekPlayed = true;
+		}
+		else if (songs[curSelected].songName == 'Nunsational' && ClientPrefs.nunsationalViewed == false)
+		{
+			trace('I got loaded lol, Unlocking Nunsational!');
+			ClientPrefs.nunsationalViewed = true;
+		}
+		else if (songs[curSelected].songName == 'Marcochrome' && ClientPrefs.marcochromeViewed == false)
+		{
+			trace('I got loaded lol, Unlocking Marcochrome!');
+			ClientPrefs.marcochromeViewed = true;
+		}
+		else if (songs[curSelected].songName == 'Tofu' && ClientPrefs.tofuViewed == false)
+		{
+			trace('I got loaded lol, Unlocking Tofu!');
+			ClientPrefs.tofuViewed = true;
+		}
+		else if (songs[curSelected].songName == 'Tofu' && ClientPrefs.tofuViewed == false)
+		{
+			trace('I got loaded lol, Unlocking Tofu!');
+			ClientPrefs.tofuViewed = true;
+		}
+		else if ((songs[curSelected].songName == 'Lustality' || songs[curSelected].songName == 'Lustality V1') && ClientPrefs.lustalityViewed == false)
+		{
+			trace('I got loaded lol, Unlocking Lustality / Lustality V1!');
+			ClientPrefs.lustalityViewed = true;
+		}
+		else if (songs[curSelected].songName == 'Slow.FLP' && ClientPrefs.nicViewed == false)
+		{
+			trace('I got loaded lol, Unlocking Slow.FLP!');
+			ClientPrefs.nicViewed = true;
+		}
+		else if (songs[curSelected].songName == 'Marauder' && ClientPrefs.debugViewed == false)
+		{
+			trace('I got loaded lol, Unlocking Marauder!');
+			ClientPrefs.debugViewed = true;
+		}
+		else if (songs[curSelected].songName == 'FNV' && ClientPrefs.fnvViewed == false)
+		{
+			trace('I got loaded lol, Unlocking FNV!');
+			ClientPrefs.fnvViewed = true;
+		}
+		else if (songs[curSelected].songName == 'Rainy Daze' && ClientPrefs.rainyDazeViewed == false)
+		{
+			trace('I got loaded lol, Unlocking Rainy Daze!');
+			ClientPrefs.rainyDazeViewed = true;
+		}
+		else if (songs[curSelected].songName == 'Jerry' && ClientPrefs.shortViewed == false)
+		{
+			trace('I got loaded lol, Unlocking Jerry!');
+			ClientPrefs.shortViewed = true;
+		}
+		else if (songs[curSelected].songName == 'Fanfuck Forever' && ClientPrefs.infatuationViewed == false)
+		{
+			trace('I got loaded lol, Unlocking Fanfuck Forever!');
+			ClientPrefs.infatuationViewed = true;
+		}
+		else if (songs[curSelected].songName == 'VGuy' && ClientPrefs.ourplePlayed == false)
+		{
+			trace('I got loaded lol, Unlocking VGuy!');
+			ClientPrefs.ourplePlayed = true;
+		}
+		else if (songs[curSelected].songName == 'Fast Food Therapy' && ClientPrefs.kyuPlayed == false)
+		{
+			trace('I got loaded lol, Unlocking Fast Food Therapy!');
+			ClientPrefs.kyuPlayed = true;
+		}
+		else if (songs[curSelected].songName == 'Tactical Mishap' && ClientPrefs.tacticalMishapPlayed == false)
+		{
+			trace('I got loaded lol, Unlocking Tactical Mishap!');
+			ClientPrefs.tacticalMishapFound = true;
+			ClientPrefs.tacticalMishapPlayed = true;
+		}		
+		else if (songs[curSelected].songName == 'Breacher' && ClientPrefs.breacherPlayed == false)
+		{
+			trace('I got loaded lol, Unlocking Breacher!');
+			ClientPrefs.breacherPlayed = true;
+		}
+		else if (songs[curSelected].songName == 'Negotiation' && ClientPrefs.negotiationPlayed == false)
+		{
+			trace('I got loaded lol, Unlocking Negotiation!');
+			ClientPrefs.negotiationPlayed = true;
+		}
+		else if (songs[curSelected].songName == 'Concert Chaos' && ClientPrefs.ccPlayed == false)
+		{
+			trace('I got loaded lol, Unlocking Concert Chaos!');
+			ClientPrefs.ccPlayed = true;
+		}
+		ClientPrefs.saveSettings();
 	}
 }
 
@@ -1147,15 +1311,13 @@ class SongMetadata
 {
 	public var songName:String = "";
 	public var week:Int = 0;
-	public var songCharacter:String = "";
 	public var color:Int = -7179779;
 	public var folder:String = "";
 
-	public function new(song:String, week:Int, songCharacter:String, color:Int)
+	public function new(song:String, week:Int, color:Int)
 	{
 		this.songName = song;
 		this.week = week;
-		this.songCharacter = songCharacter;
 		this.color = color;
 		this.folder = Paths.currentModDirectory;
 		if(this.folder == null) this.folder = '';
