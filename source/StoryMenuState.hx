@@ -596,7 +596,7 @@ class StoryMenuState extends MusicBeatState
 			else if(controls.RESET || touchPad.buttonY.justPressed)
 			{
 				touchPad.active = touchPad.visible = persistentUpdate = false;
-				openSubState(new ResetScoreSubState('', curDifficulty, '', curWeek));
+				openSubState(new ResetScoreSubState('', curDifficulty, curWeek));
 				//FlxG.sound.play(Paths.sound('scrollMenu'));
 			}
 			else if (!stopMoving && !loadedWeekInfo && (controls.ACCEPT || TouchUtil.pressAction(sprDifficulty)))

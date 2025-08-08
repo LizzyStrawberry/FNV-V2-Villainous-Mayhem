@@ -282,17 +282,9 @@ class CharSelector extends MusicBeatState{
 
                 FlxFlicker.flicker(imageArray[curSelected], 0);
 
-                FlxTween.tween(icon, {y: icon.y + 200}, 1.2, {ease: FlxEase.cubeInOut, type: PERSIST});
-                FlxTween.tween(icon, {angle: 5}, 0.9, {ease: FlxEase.cubeInOut, type: PERSIST});
-
-                FlxTween.tween(arrowSelectorLeft, {x: arrowSelectorLeft.x + 10}, 1.2, {ease: FlxEase.cubeInOut, type: PERSIST});
-                FlxTween.tween(arrowSelectorLeft, {y: arrowSelectorLeft.y + 200}, 1.2, {ease: FlxEase.cubeInOut, type: PERSIST});
-                FlxTween.tween(arrowSelectorLeft, {angle: 7}, 0.9, {ease: FlxEase.cubeInOut, type: PERSIST});
-
-                FlxTween.tween(arrowSelectorRight, {x: arrowSelectorRight.x + 10}, 1.2, {ease: FlxEase.cubeInOut, type: PERSIST});
-                FlxTween.tween(arrowSelectorRight, {y: arrowSelectorRight.y + 200}, 1.2, {ease: FlxEase.cubeInOut, type: PERSIST});
-                FlxTween.tween(arrowSelectorRight, {angle: -7}, 0.9, {ease: FlxEase.cubeInOut, type: PERSIST});
-
+                FlxTween.tween(icon, {y: icon.y + 200, angle: 5}, 1.2, {ease: FlxEase.cubeInOut, type: PERSIST});
+                FlxTween.tween(arrowSelectorLeft, {x: arrowSelectorLeft.x + 10, y: arrowSelectorLeft.y + 200, angle: -7}, 1.2, {ease: FlxEase.cubeInOut, type: PERSIST});
+                FlxTween.tween(arrowSelectorRight, {x: arrowSelectorRight.x + 10, y: arrowSelectorRight.y + 200, angle: -7}, 1.2, {ease: FlxEase.cubeInOut, type: PERSIST});
                 // This is to make the audio stop when leaving to PlayState
                 FlxG.sound.music.volume = 0;
 
@@ -311,18 +303,10 @@ class CharSelector extends MusicBeatState{
                 if (PlayState.isStoryMode)
                     FlxG.switchState(new StoryMenuState());
                 else
-                    if (ClientPrefs.onCrossSection == true)
-                        MusicBeatState.switchState(new CrossoverState()); //go to Crossover State
-                    else if (FreeplayCategoryState.freeplayName == 'MAIN') //go to Main Freeplay
-                        MusicBeatState.switchState(new FreeplayState());
-                    else if (FreeplayCategoryState.freeplayName == 'BONUS') //go to Bonus Freeplay
-                        MusicBeatState.switchState(new FreeplayBonusState());
-                    else if (FreeplayCategoryXtraState.freeplayName == 'XTRASHOP') //go to Xtra Freeplay [Using Shop songs]
-                        MusicBeatState.switchState(new FreeplayXtraState());
-                    else if (FreeplayCategoryXtraState.freeplayName == 'XTRACROSSOVER') //go to Xtra Freeplay [Using Crossover Songs]
-                        MusicBeatState.switchState(new FreeplayXtraCrossoverState());
-                    else if (FreeplayCategoryXtraState.freeplayName == 'XTRABONUS') //go to Xtra Freeplay [Using Bonus Songs]
-						MusicBeatState.switchState(new FreeplayXtraBonusState());
+                    if (ClientPrefs.onCrossSection)
+						MusicBeatState.switchState(new CrossoverState()); //go to Crossover State
+					else
+						MusicBeatState.switchState(new FreeplayState()); // Back To Freeplay
             }
             if (unlockTest)
                 {

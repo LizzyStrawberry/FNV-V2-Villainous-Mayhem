@@ -479,18 +479,10 @@ class ResultsScreenState extends MusicBeatState
                 ClientPrefs.campaignSongsPlayed = 0;
                 ClientPrefs.saveSettings();
 
-                if (ClientPrefs.onCrossSection == true)
-                    MusicBeatState.switchState(new CrossoverState()); //go to Crossover State
-                else if (FreeplayCategoryState.freeplayName == 'MAIN') //go to Main Freeplay
-                    MusicBeatState.switchState(new FreeplayState(), 'stickers');
-                else if (FreeplayCategoryState.freeplayName == 'BONUS') //go to Bonus Freeplay
-                    MusicBeatState.switchState(new FreeplayBonusState(), 'stickers');
-                else if (FreeplayCategoryXtraState.freeplayName == 'XTRASHOP') //go to Xtra Freeplay [Using Shop songs]
-                    MusicBeatState.switchState(new FreeplayXtraState(), 'stickers');
-                else if (FreeplayCategoryXtraState.freeplayName == 'XTRACROSSOVER') //go to Xtra Freeplay [Using Crossover Songs]
-                    MusicBeatState.switchState(new FreeplayXtraCrossoverState(), 'stickers');
-                else if (FreeplayCategoryXtraState.freeplayName == 'XTRABONUS') //go to Xtra Freeplay [Using Crossover Songs]
-                    MusicBeatState.switchState(new FreeplayXtraBonusState(), 'stickers');
+                if (ClientPrefs.onCrossSection)
+					MusicBeatState.switchState(new CrossoverState()); //go to Crossover State
+				else
+					MusicBeatState.switchState(new FreeplayState()); // Back To Freeplay
             }
                 
             FlxTween.tween(BGchecker, {alpha: 0}, 0.4, {ease: FlxEase.quadInOut, type: PERSIST});

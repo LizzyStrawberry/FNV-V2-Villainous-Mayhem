@@ -1256,12 +1256,12 @@ class MainMenuState extends MusicBeatState
 					if (storyShit[curStorySelected] == 'mayhem' && controls.RESET)
 					{
 						persistentUpdate = false;
-						openSubState(new ResetScoreSubState('Mayhem Mode', -1, '', -1));
+						openSubState(new ResetScoreSubState('Mayhem Mode', -1, -1));
 					}
 					if (storyShit[curStorySelected] == 'injection' && controls.RESET)
 					{
 						persistentUpdate = false;
-						openSubState(new ResetScoreSubState('Injection Mode', curDifficulty, '', -1));
+						openSubState(new ResetScoreSubState('Injection Mode', curDifficulty, -1));
 					}
 
 					if (storyShit[curStorySelected] == 'injection')

@@ -11,7 +11,6 @@ class FreeplayCategoryState extends MusicBeatState
 {
     public static var categorySelected:Int = 0;
     public static var freeplayName:String = '';
-    public static var freeplayWeekName:String = '';
 
     var textBG:FlxSprite;
     var Text:FlxText;
@@ -40,18 +39,18 @@ class FreeplayCategoryState extends MusicBeatState
         firstSpriteSelection.updateHitbox();
 		add(firstSpriteSelection);
 
-        if (ClientPrefs.bonusUnlocked == false)
+        if (!ClientPrefs.bonusUnlocked)
             secondSpriteSelection = new FlxSprite().loadGraphic(Paths.image('freeplayStuff/categories/BonusLocked'));
-        else if (ClientPrefs.bonusUnlocked == true)
+        else
             secondSpriteSelection = new FlxSprite().loadGraphic(Paths.image('freeplayStuff/categories/Bonus'));
         secondSpriteSelection.x += 645;
         secondSpriteSelection.antialiasing = ClientPrefs.globalAntialiasing;
         secondSpriteSelection.updateHitbox();
 		add(secondSpriteSelection);
 
-        if (ClientPrefs.xtraUnlocked == false)
+        if (!ClientPrefs.xtraUnlocked)
             thirdSpriteSelection = new FlxSprite().loadGraphic(Paths.image('freeplayStuff/categories/XtraLocked'));
-        else if (ClientPrefs.xtraUnlocked == true)
+        else
             thirdSpriteSelection = new FlxSprite().loadGraphic(Paths.image('freeplayStuff/categories/Xtra'));
         thirdSpriteSelection.y += 360;
         thirdSpriteSelection.antialiasing = ClientPrefs.globalAntialiasing;
@@ -66,9 +65,9 @@ class FreeplayCategoryState extends MusicBeatState
         week1.updateHitbox();
 		add(week1);
 
-        if (ClientPrefs.nunWeekFound == false)
+        if (!ClientPrefs.nunWeekFound)
             week2 = new FlxSprite().loadGraphic(Paths.image('freeplayStuff/categories/weekLocked'));
-        else if (ClientPrefs.nunWeekFound == true)
+        else
             week2 = new FlxSprite().loadGraphic(Paths.image('freeplayStuff/categories/week2'));
         week2.x += 475;
         week2.y += 845;
@@ -76,7 +75,7 @@ class FreeplayCategoryState extends MusicBeatState
         week2.updateHitbox();
 		add(week2);
 
-        if (ClientPrefs.kianaWeekFound == false)
+        if (!ClientPrefs.kianaWeekFound)
             week3 = new FlxSprite().loadGraphic(Paths.image('freeplayStuff/categories/weekLocked'));
         else
             week3 = new FlxSprite().loadGraphic(Paths.image('freeplayStuff/categories/week3'));
@@ -86,18 +85,18 @@ class FreeplayCategoryState extends MusicBeatState
         week3.updateHitbox();
 		add(week3);
 
-        if (ClientPrefs.dsideWeekFound == false)
+        if (!ClientPrefs.dsideWeekFound)
             week4 = new FlxSprite().loadGraphic(Paths.image('freeplayStuff/categories/weekLocked'));
-        else if (ClientPrefs.dsideWeekFound == true)
+        else
             week4 = new FlxSprite().loadGraphic(Paths.image('freeplayStuff/categories/week4'));
         week4.y += 845;
         week4.antialiasing = ClientPrefs.globalAntialiasing;
         week4.updateHitbox();
 		add(week4);
 
-        if (ClientPrefs.legacyWeekFound == false)
+        if (!ClientPrefs.legacyWeekFound)
             week5 = new FlxSprite().loadGraphic(Paths.image('freeplayStuff/categories/weekLocked'));
-        else if (ClientPrefs.legacyWeekFound == true)
+        else
             week5 = new FlxSprite().loadGraphic(Paths.image('freeplayStuff/categories/week5'));
         week5.x += 320;
         week5.y += 845;
@@ -105,7 +104,7 @@ class FreeplayCategoryState extends MusicBeatState
         week5.updateHitbox();
 		add(week5);
 
-        if (ClientPrefs.morkyWeekFound == false)
+        if (!ClientPrefs.morkyWeekFound)
             week6 = new FlxSprite().loadGraphic(Paths.image('freeplayStuff/categories/weekLocked'));
         else
             week6 = new FlxSprite().loadGraphic(Paths.image('freeplayStuff/categories/week6'));
@@ -115,7 +114,7 @@ class FreeplayCategoryState extends MusicBeatState
         week6.updateHitbox();
 		add(week6);
 
-        if (ClientPrefs.susWeekFound == false)
+        if (!ClientPrefs.susWeekFound)
             week7 = new FlxSprite().loadGraphic(Paths.image('freeplayStuff/categories/weekLocked'));
         else
             week7 = new FlxSprite().loadGraphic(Paths.image('freeplayStuff/categories/week7'));
@@ -375,7 +374,7 @@ class FreeplayCategoryState extends MusicBeatState
                 FlxFlicker.flicker(week1, 1.5, 0.04, false);
                 FlxTween.tween(week2, {alpha: 0}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
                 FlxTween.tween(week3, {alpha: 0}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
-                freeplayWeekName = 'MAIN';
+                FreeplayState.songCategory = 'MAIN';
     
                 FlxG.sound.play(Paths.sound('confirmMenu'));
     
@@ -392,7 +391,7 @@ class FreeplayCategoryState extends MusicBeatState
                 FlxFlicker.flicker(week2, 1.5, 0.04, false);
                 FlxTween.tween(week1, {alpha: 0}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
                 FlxTween.tween(week3, {alpha: 0}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
-                freeplayWeekName = 'NUNS';
+                FreeplayState.songCategory = 'NUNS';
 
                 FlxG.sound.play(Paths.sound('confirmMenu'));
     
@@ -414,7 +413,7 @@ class FreeplayCategoryState extends MusicBeatState
                 FlxFlicker.flicker(week3, 1.5, 0.04, false);
                 FlxTween.tween(week1, {alpha: 0}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
                 FlxTween.tween(week2, {alpha: 0}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
-                freeplayWeekName = 'DEMONS';
+                FreeplayState.songCategory = 'DEMONS';
 
                 FlxG.sound.play(Paths.sound('confirmMenu'));
         
@@ -481,7 +480,7 @@ class FreeplayCategoryState extends MusicBeatState
                 FlxTween.tween(week5, {alpha: 0}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
                 FlxTween.tween(week6, {alpha: 0}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
                 FlxTween.tween(week7, {alpha: 0}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
-                freeplayWeekName = 'DSIDES';
+                FreeplayState.songCategory = 'DSIDES';
     
                 FlxG.sound.play(Paths.sound('confirmMenu'));
     
@@ -489,7 +488,7 @@ class FreeplayCategoryState extends MusicBeatState
     
                 new FlxTimer().start(1, function(tmr:FlxTimer)
                 {
-                    MusicBeatState.switchState(new FreeplayBonusState());
+                    MusicBeatState.switchState(new FreeplayState());
                 });
             }
             if (ClientPrefs.dsideWeekFound == false && categorySelected == 0 && (controls.ACCEPT || (FlxG.mouse.overlaps(week4) && FlxG.mouse.justPressed)))
@@ -504,7 +503,7 @@ class FreeplayCategoryState extends MusicBeatState
                 FlxTween.tween(week4, {alpha: 0}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
                 FlxTween.tween(week6, {alpha: 0}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
                 FlxTween.tween(week7, {alpha: 0}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
-                freeplayWeekName = 'LEGACY';
+                FreeplayState.songCategory = 'LEGACY';
 
                 FlxG.sound.play(Paths.sound('confirmMenu'));
     
@@ -512,7 +511,7 @@ class FreeplayCategoryState extends MusicBeatState
                     
                 new FlxTimer().start(1, function(tmr:FlxTimer)
                 {
-                    MusicBeatState.switchState(new FreeplayBonusState());
+                    MusicBeatState.switchState(new FreeplayState());
                 });
             }
             if (ClientPrefs.legacyWeekFound == false && categorySelected == 1 && (controls.ACCEPT || (FlxG.mouse.overlaps(week5) && FlxG.mouse.justPressed)))
@@ -527,7 +526,7 @@ class FreeplayCategoryState extends MusicBeatState
                 FlxTween.tween(week4, {alpha: 0}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
                 FlxTween.tween(week5, {alpha: 0}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
                 FlxTween.tween(week7, {alpha: 0}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
-                freeplayWeekName = 'MORK';
+                FreeplayState.songCategory = 'MORK';
 
                 FlxG.sound.play(Paths.sound('confirmMenu'));
         
@@ -535,7 +534,7 @@ class FreeplayCategoryState extends MusicBeatState
                         
                 new FlxTimer().start(1, function(tmr:FlxTimer)
                 {
-                    MusicBeatState.switchState(new FreeplayBonusState());
+                    MusicBeatState.switchState(new FreeplayState());
                 });
             }
             if (ClientPrefs.susWeekFound == false && categorySelected == 2 && (controls.ACCEPT || (FlxG.mouse.overlaps(week6) && FlxG.mouse.justPressed)))
@@ -550,7 +549,7 @@ class FreeplayCategoryState extends MusicBeatState
                 FlxTween.tween(week4, {alpha: 0}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
                 FlxTween.tween(week5, {alpha: 0}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
                 FlxTween.tween(week6, {alpha: 0}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
-                freeplayWeekName = 'SUS';
+                FreeplayState.songCategory = 'SUS';
 
                 FlxG.sound.play(Paths.sound('confirmMenu'));
         
@@ -558,7 +557,7 @@ class FreeplayCategoryState extends MusicBeatState
                         
                 new FlxTimer().start(1, function(tmr:FlxTimer)
                 {
-                    MusicBeatState.switchState(new FreeplayBonusState());
+                    MusicBeatState.switchState(new FreeplayState());
                 });
             }
             if (ClientPrefs.susWeekFound == false && categorySelected == 3 && (controls.ACCEPT || (FlxG.mouse.overlaps(week7) && FlxG.mouse.justPressed)))
