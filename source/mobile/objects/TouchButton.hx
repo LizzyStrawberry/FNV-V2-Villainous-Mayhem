@@ -11,7 +11,6 @@ import flixel.util.FlxDestroyUtil.IFlxDestroyable;
 import flixel.input.mouse.FlxMouseButton;
 #end
 import mobile.input.MobileInputID;
-import shaders.flixel.system.FlxShader;
 import PauseSubState;
 
 /**

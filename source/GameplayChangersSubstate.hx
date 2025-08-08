@@ -139,6 +139,9 @@ class GameplayChangersSubstate extends MusicBeatSubstate
 
 		changeSelection();
 		reloadCheckboxes();
+
+		addTouchPad('LEFT_FULL', 'A_B');
+		addTouchPadCamera();
 	}
 
 	var nextAccept:Int = 5;

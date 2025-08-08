@@ -6,7 +6,7 @@ import options.Option;
 
 class MobileOptionsSubState extends BaseOptionsMenu {
 	#if android
-	var storageTypes:Array<String> = ["EXTERNAL_DATA", "EXTERNAL_OBB", "EXTERNAL_MEDIA", "EXTERNAL", "EXTERNAL_GLOBAL"];
+	var storageTypes:Array<String> = ["EXTERNAL_DATA", "EXTERNAL"];
 	var externalPaths:Array<String> = StorageUtil.checkExternalPaths(true);
 	final lastStorageType:String = ClientPrefs.storageType;
 	#end
@@ -96,10 +96,7 @@ class MobileOptionsSubState extends BaseOptionsMenu {
 		var lastStoragePath:String = StorageType.fromStrForce(lastStorageType) + '/';
 
 		try
-		{
-			if (ClientPrefs.storageType != "EXTERNAL")
-				Sys.command('rm', ['-rf', lastStoragePath]);
-		}
+			Sys.command('rm', ['-rf', lastStoragePath]);
 		catch (e:haxe.Exception)
 			trace('Failed to remove last directory. (${e.message})');
 	}

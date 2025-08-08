@@ -252,12 +252,12 @@ function onCreatePost()
 			hasDiffSlots = false
 		end
 
-		makeLuaSprite('coloredPlayerCircle', 'healthBars/colorChangingSlot', 850, getProperty('healthBar.y') - 70);
+		makeLuaSprite('coloredPlayerCircle', 'healthBars/colorChangingSlot', mobileFix("X", 850), getProperty('healthBar.y') - 70);
 		scaleObject('coloredPlayerCircle', 0.9, 0.9)
 		setObjectCamera('coloredPlayerCircle', 'hud')
 		addLuaSprite('coloredPlayerCircle', true)
 		
-		makeLuaSprite('coloredOpponentCircle', 'healthBars/colorChangingSlot', 280, getProperty('healthBar.y') - 70);
+		makeLuaSprite('coloredOpponentCircle', 'healthBars/colorChangingSlot', mobileFix("X", 280), getProperty('healthBar.y') - 70);
 		scaleObject('coloredOpponentCircle', 0.9, 0.9)
 		setObjectCamera('coloredOpponentCircle', 'hud')
 		addLuaSprite('coloredOpponentCircle', true)
@@ -310,11 +310,11 @@ function checkSongSpecifications()
 	-- Song specific
 	if songName == "Libidinousness" then
 		if downscroll then
-			setProperty('coloredPlayerCircle.y', 20)
-			setProperty('coloredOpponentCircle.y', 20)
+			setProperty('coloredPlayerCircle.y', mobileFix("Y", 20))
+			setProperty('coloredOpponentCircle.y', mobileFix("Y", 20))
 		else
-			setProperty('coloredPlayerCircle.y', 575)
-			setProperty('coloredOpponentCircle.y', 575)
+			setProperty('coloredPlayerCircle.y', mobileFix("Y", 575))
+			setProperty('coloredOpponentCircle.y', mobileFix("Y", 575))
 		end
 	end
 end

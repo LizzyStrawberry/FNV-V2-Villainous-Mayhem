@@ -243,7 +243,7 @@ class DialogueBoxPsych extends FlxSpriteGroup
 
 		FlxTween.tween(arrowThingy, {x: arrowThingy.x - 10}, 0.7, {ease: FlxEase.cubeOut, type: LOOPING});
 
-		skipText = new FlxText(12, FlxG.height - 44, 0, "Press ESC to Skip.", 12);
+		skipText = new FlxText(12, FlxG.height - 44, 0, "Swipe and press BACK to Skip.", 12);
 		skipText.scrollFactor.set();
 		skipText.setFormat("VCR OSD Mono", 24, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(skipText);
@@ -338,7 +338,7 @@ class DialogueBoxPsych extends FlxSpriteGroup
 			else if (curDialogue.boxVisible == "No")
 				box.visible = false;
 
-			if (FlxG.keys.justPressed.ESCAPE)
+			if (FlxG.keys.justPressed.ESCAPE || FlxG.android.justReleased.BACK)
 			{
 				dialogueEnded = true;
 
@@ -355,7 +355,7 @@ class DialogueBoxPsych extends FlxSpriteGroup
 				FlxG.sound.play(Paths.sound(closeSound), closeVolume);
 			}
 
-			if(PlayerSettings.player1.controls.ACCEPT) {
+			if(PlayerSettings.player1.controls.ACCEPT || TouchUtil.pressAction(arrowThingy)) {
 				if(!daText.finishedText) {
 					arrowThingy.alpha = 1;
 					daText.finishText();

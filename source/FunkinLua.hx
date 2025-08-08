@@ -2398,6 +2398,19 @@ class FunkinLua {
 			return closed;
 		});
 
+		Lua_helper.add_callback(lua, "mobileFix", function(axis:String, value:Float, raw:Bool = false) {
+			switch(axis.toLowerCase()) {
+				case 'x': value = (raw) ? MobileUtil.rawX(value) : MobileUtil.fixX(value);
+				case 'y': value = (raw) ? MobileUtil.rawY(value) : MobileUtil.fixY(value);
+			}
+
+			return value;
+		});
+
+		Lua_helper.add_callback(lua, "pressAction", function(?obj:FlxObject = null) {
+			return TouchUtil.pressAction(obj);
+		});
+
 		#if DISCORD_ALLOWED
 			Discord.DiscordClient.addLuaCallbacks(lua);
 		#end

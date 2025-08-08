@@ -123,69 +123,33 @@ class ResultsScreenState extends MusicBeatState
         ratingText.setFormat("SF Atarian System Bold Italic", 70, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, 0xFF000000);
         ratingText.alpha = 0;
         ratingText.screenCenter(XY);
-        ratingText.x += 650;
+        ratingText.x += MobileUtil.fixX(650);
         ratingText.y += 100;
         ratingText.borderSize = 3;
         ratingText.angle = -90;
         add(ratingText);
 
-        if (PlayState.isInjectionMode)
-        {
-            if (FlxMath.roundDecimal((PlayState.injectionRating / PlayState.injectionSongsPlayed) * 100, 2) == 100.00)
-                ratingText.text = "PERFECT!   PERFECT!   PERFECT!   PERFECT!   PERFECT!   PERFECT!   PERFECT!   PERFECT!";
-            else if ((FlxMath.roundDecimal((PlayState.injectionRating / PlayState.injectionSongsPlayed) * 100, 2) >= 90.00) && (FlxMath.roundDecimal((PlayState.injectionRating / PlayState.injectionSongsPlayed) * 100, 2) <= 99.99))
-                ratingText.text = "Wahoohie!   Wahoohie!   Wahoohie!   Wahoohie!   Wahoohie!   Wahoohie!   Wahoohie!   Wahoohie!";   
-            else if ((FlxMath.roundDecimal((PlayState.injectionRating / PlayState.injectionSongsPlayed) * 100, 2)>= 80.00) && (FlxMath.roundDecimal((PlayState.injectionRating / PlayState.injectionSongsPlayed) * 100, 2) <= 89.99))
-                ratingText.text = "Great!   Great!   Great!   Great!   Great!   Great!   Great!   Great!   Great!";
-            else if ((FlxMath.roundDecimal((PlayState.injectionRating / PlayState.injectionSongsPlayed) * 100, 2)>= 70.00) && (FlxMath.roundDecimal((PlayState.injectionRating / PlayState.injectionSongsPlayed) * 100, 2) <= 79.99))
-                ratingText.text = "Good!   Good!   Good!   Good!   Good!   Good!   Good!   Good!   Good!";
-            else if ((FlxMath.roundDecimal((PlayState.injectionRating / PlayState.injectionSongsPlayed) * 100, 2)>= 69.00) && (FlxMath.roundDecimal((PlayState.injectionRating / PlayState.injectionSongsPlayed) * 100, 2) <= 69.99))
-                ratingText.text = "Sussy~   Sussy~   Sussy~   Sussy~   Sussy~   Sussy~   Sussy~   Sussy~";
-            else if ((FlxMath.roundDecimal((PlayState.injectionRating / PlayState.injectionSongsPlayed) * 100, 2) >= 60.00) && (FlxMath.roundDecimal((PlayState.injectionRating / PlayState.injectionSongsPlayed) * 100, 2)<= 68.99))
-                ratingText.text = "Okay..?   Okay..?   Okay..?   Okay..?   Okay..?   Okay..?   Okay..?   Okay..?";
-            else if ((FlxMath.roundDecimal((PlayState.injectionRating / PlayState.injectionSongsPlayed) * 100, 2) >= 50.00) && (FlxMath.roundDecimal((PlayState.injectionRating / PlayState.injectionSongsPlayed) * 100, 2) <= 59.99))
-                ratingText.text = "Passable..   Passable..   Passable..   Passable..   Passable..   Passable..   Passable..   Passable..";
-            else
-                ratingText.text = "Fail..   Fail..   Fail..   Fail..   Fail..   Fail..   Fail..   Fail..";
-        }
-        else if (PlayState.isMayhemMode)
-        {
-            if (FlxMath.roundDecimal((PlayState.mayhemRating / PlayState.mayhemSongsPlayed) * 100, 2) == 100.00)
-                ratingText.text = "PERFECT!   PERFECT!   PERFECT!   PERFECT!   PERFECT!   PERFECT!   PERFECT!   PERFECT!";
-            else if ((FlxMath.roundDecimal((PlayState.mayhemRating / PlayState.mayhemSongsPlayed) * 100, 2) >= 90.00) && (FlxMath.roundDecimal((PlayState.mayhemRating / PlayState.mayhemSongsPlayed) * 100, 2) <= 99.99))
-                ratingText.text = "Wahoohie!   Wahoohie!   Wahoohie!   Wahoohie!   Wahoohie!   Wahoohie!   Wahoohie!   Wahoohie!";   
-            else if ((FlxMath.roundDecimal((PlayState.mayhemRating / PlayState.mayhemSongsPlayed) * 100, 2) >= 80.00) && (FlxMath.roundDecimal((PlayState.mayhemRating / PlayState.mayhemSongsPlayed) * 100, 2) <= 89.99))
-                ratingText.text = "Great!   Great!   Great!   Great!   Great!   Great!   Great!   Great!   Great!";
-            else if ((FlxMath.roundDecimal((PlayState.mayhemRating / PlayState.mayhemSongsPlayed) * 100, 2) >= 70.00) && (FlxMath.roundDecimal((PlayState.mayhemRating / PlayState.mayhemSongsPlayed) * 100, 2) <= 79.99))
-                ratingText.text = "Good!   Good!   Good!   Good!   Good!   Good!   Good!   Good!   Good!";
-            else if ((FlxMath.roundDecimal((PlayState.mayhemRating / PlayState.mayhemSongsPlayed) * 100, 2) >= 69.00) && (FlxMath.roundDecimal((PlayState.mayhemRating / PlayState.mayhemSongsPlayed) * 100, 2) <= 69.99))
-                ratingText.text = "Sussy~   Sussy~   Sussy~   Sussy~   Sussy~   Sussy~   Sussy~   Sussy~";
-            else if ((FlxMath.roundDecimal((PlayState.mayhemRating / PlayState.mayhemSongsPlayed) * 100, 2) >= 60.00) && (FlxMath.roundDecimal((PlayState.mayhemRating / PlayState.mayhemSongsPlayed) * 100, 2) <= 68.99))
-                ratingText.text = "Okay..?   Okay..?   Okay..?   Okay..?   Okay..?   Okay..?   Okay..?   Okay..?";
-            else if ((FlxMath.roundDecimal((PlayState.mayhemRating / PlayState.mayhemSongsPlayed) * 100, 2) >= 50.00) && (FlxMath.roundDecimal((PlayState.mayhemRating / PlayState.mayhemSongsPlayed) * 100, 2) <= 59.99))
-                ratingText.text = "Passable..   Passable..   Passable..   Passable..   Passable..   Passable..   Passable..   Passable..";
-            else
-                ratingText.text = "Fail..   Fail..   Fail..   Fail..   Fail..   Fail..   Fail..   Fail..";
-        }
+        var mode:String = "";
+        if (PlayState.isInjectionMode) mode = "injection" else if (PlayState.isMayhemMode) mode = "mayhem" else mode = "campaign";
+        var reflectedRating = Reflect.field(PlayState, mode + "Rating");
+        var reflectedSongsPlayed = Reflect.field(PlayState, mode + "SongsPlayed");
+
+        if (FlxMath.roundDecimal((reflectedRating / reflectedSongsPlayed) * 100, 2) == 100.00)
+            ratingText.text = "PERFECT!   PERFECT!   PERFECT!   PERFECT!   PERFECT!   PERFECT!   PERFECT!   PERFECT!";
+        else if ((FlxMath.roundDecimal((reflectedRating / reflectedSongsPlayed) * 100, 2) >= 90.00) && (FlxMath.roundDecimal((reflectedRating / reflectedSongsPlayed) * 100, 2) <= 99.99))
+            ratingText.text = "Wahoohie!   Wahoohie!   Wahoohie!   Wahoohie!   Wahoohie!   Wahoohie!   Wahoohie!   Wahoohie!";   
+        else if ((FlxMath.roundDecimal((reflectedRating / reflectedSongsPlayed) * 100, 2)>= 80.00) && (FlxMath.roundDecimal((reflectedRating / reflectedSongsPlayed) * 100, 2) <= 89.99))
+            ratingText.text = "Great!   Great!   Great!   Great!   Great!   Great!   Great!   Great!   Great!";
+        else if ((FlxMath.roundDecimal((reflectedRating / reflectedSongsPlayed) * 100, 2)>= 70.00) && (FlxMath.roundDecimal((reflectedRating / reflectedSongsPlayed) * 100, 2) <= 79.99))
+            ratingText.text = "Good!   Good!   Good!   Good!   Good!   Good!   Good!   Good!   Good!";
+        else if ((FlxMath.roundDecimal((reflectedRating / reflectedSongsPlayed) * 100, 2)>= 69.00) && (FlxMath.roundDecimal((reflectedRating / reflectedSongsPlayed) * 100, 2) <= 69.99))
+            ratingText.text = "Sussy~   Sussy~   Sussy~   Sussy~   Sussy~   Sussy~   Sussy~   Sussy~";
+        else if ((FlxMath.roundDecimal((reflectedRating / reflectedSongsPlayed) * 100, 2) >= 60.00) && (FlxMath.roundDecimal((reflectedRating / reflectedSongsPlayed) * 100, 2)<= 68.99))
+            ratingText.text = "Okay..?   Okay..?   Okay..?   Okay..?   Okay..?   Okay..?   Okay..?   Okay..?";
+        else if ((FlxMath.roundDecimal((reflectedRating / reflectedSongsPlayed) * 100, 2) >= 50.00) && (FlxMath.roundDecimal((reflectedRating / reflectedSongsPlayed) * 100, 2) <= 59.99))
+            ratingText.text = "Passable..   Passable..   Passable..   Passable..   Passable..   Passable..   Passable..   Passable..";
         else
-        {
-            if (FlxMath.roundDecimal((ClientPrefs.campaignRating / ClientPrefs.campaignSongsPlayed) * 100, 2) == 100.00)
-                ratingText.text = "PERFECT!   PERFECT!   PERFECT!   PERFECT!   PERFECT!   PERFECT!   PERFECT!   PERFECT!";
-            else if ((FlxMath.roundDecimal((ClientPrefs.campaignRating / ClientPrefs.campaignSongsPlayed) * 100, 2) >= 90.00) && (FlxMath.roundDecimal((ClientPrefs.campaignRating / ClientPrefs.campaignSongsPlayed) * 100, 2) <= 99.99))
-                ratingText.text = "Wahoohie!   Wahoohie!   Wahoohie!   Wahoohie!   Wahoohie!   Wahoohie!   Wahoohie!   Wahoohie!";   
-            else if ((FlxMath.roundDecimal((ClientPrefs.campaignRating / ClientPrefs.campaignSongsPlayed) * 100, 2) >= 80.00) && (FlxMath.roundDecimal((ClientPrefs.campaignRating / ClientPrefs.campaignSongsPlayed) * 100, 2) <= 89.99))
-                ratingText.text = "Great!   Great!   Great!   Great!   Great!   Great!   Great!   Great!   Great!";
-            else if ((FlxMath.roundDecimal((ClientPrefs.campaignRating / ClientPrefs.campaignSongsPlayed) * 100, 2) >= 70.00) && (FlxMath.roundDecimal((ClientPrefs.campaignRating / ClientPrefs.campaignSongsPlayed) * 100, 2) <= 79.99))
-                ratingText.text = "Good!   Good!   Good!   Good!   Good!   Good!   Good!   Good!   Good!";
-            else if ((FlxMath.roundDecimal((ClientPrefs.campaignRating / ClientPrefs.campaignSongsPlayed) * 100, 2) >= 69.00) && (FlxMath.roundDecimal((ClientPrefs.campaignRating / ClientPrefs.campaignSongsPlayed) * 100, 2) <= 69.99))
-                ratingText.text = "Sussy~   Sussy~   Sussy~   Sussy~   Sussy~   Sussy~   Sussy~   Sussy~";
-            else if ((FlxMath.roundDecimal((ClientPrefs.campaignRating / ClientPrefs.campaignSongsPlayed) * 100, 2) >= 60.00) && (FlxMath.roundDecimal((ClientPrefs.campaignRating / ClientPrefs.campaignSongsPlayed) * 100, 2) <= 68.99))
-                ratingText.text = "Okay..?   Okay..?   Okay..?   Okay..?   Okay..?   Okay..?   Okay..?   Okay..?";
-            else if ((FlxMath.roundDecimal((ClientPrefs.campaignRating / ClientPrefs.campaignSongsPlayed) * 100, 2) >= 50.00) && (FlxMath.roundDecimal((ClientPrefs.campaignRating / ClientPrefs.campaignSongsPlayed) * 100, 2) <= 59.99))
-                ratingText.text = "Passable..   Passable..   Passable..   Passable..   Passable..   Passable..   Passable..   Passable..";
-            else
-                ratingText.text = "Fail..   Fail..   Fail..   Fail..   Fail..   Fail..   Fail..   Fail..";
-        }
+            ratingText.text = "Fail..   Fail..   Fail..   Fail..   Fail..   Fail..   Fail..   Fail..";
 
         if (PlayState.isInjectionMode || PlayState.isStoryMode)
         {
@@ -266,22 +230,17 @@ class ResultsScreenState extends MusicBeatState
             }
         }
 
+        var infoText:String = "";
         if (PlayState.isInjectionMode)
-            info = new FlxText(20, 240, FlxG.width,
-               "Total Score: \nTotal Misses: \nAverage Rating: \nBest Note Combo: \nTotal Songs Played:",
-               25);
+            infoText = "Total Score: \nTotal Misses: \nAverage Rating: \nBest Note Combo: \nTotal Songs Played:";
         else if (PlayState.isMayhemMode)
-            info = new FlxText(20, 240, FlxG.width,
-                "Total Score: \nAverage Rating: \nBest Note Combo: \nTotal Challenges Completed: \nTotal Songs Beaten:",
-                25);
+            infoText = "Total Score: \nAverage Rating: \nBest Note Combo: \nTotal Challenges Completed: \nTotal Songs Beaten:";
         else if (PlayState.isStoryMode)
-            info = new FlxText(20, 240, FlxG.width,
-                "Total Score: \nTotal Misses: \nAverage Rating: \nBest Note Combo:",
-                25);
+            infoText = "Total Score: \nTotal Misses: \nAverage Rating: \nBest Note Combo:";
         else if (!PlayState.isStoryMode && !PlayState.isIniquitousMode && !PlayState.isInjectionMode && !PlayState.isMayhemMode)
-            info = new FlxText(20, 240, FlxG.width,
-                "Total Score: \nTotal Misses: \nTotal Rating: \nBest Note Combo:",
-                25);
+            infoText = "Total Score: \nTotal Misses: \nTotal Rating: \nBest Note Combo:";
+
+        info = new FlxText(20, 240, FlxG.width, infoText, 25);
         info.setFormat("SF Atarian System Bold Italic", 60, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, 0xFF000000);
         info.alpha = 1;
         info.borderSize = 3.5;
@@ -300,12 +259,9 @@ class ResultsScreenState extends MusicBeatState
         enterText.borderSize = 3;
         add(enterText);
 
-        if (PlayState.isStoryMode)
-            enterText.text = "Press <G>ENTER<G> to go back to Story Mode Selection!";
-        else if (PlayState.isInjectionMode || PlayState.isMayhemMode)
-            enterText.text = "Press <G>ENTER<G> to go back to Main Menu!";
-        else
-            enterText.text = "Press <G>ENTER<G> to go back to Freeplay Selection!";
+        if (PlayState.isStoryMode) enterText.text = "<G>TAP<G> to go back to Story Mode Selection!";
+        else if (PlayState.isInjectionMode || PlayState.isMayhemMode) enterText.text = "<G>TAP<G> to go back to Main Menu!";
+        else enterText.text = "<G>TAP<G> to go back to Freeplay Selection!";
         CustomFontFormats.addMarkers(enterText);
 
         FlxTween.tween(resultsTitle, {y: 120}, 1, {ease: FlxEase.circOut, type: PERSIST});
@@ -347,13 +303,9 @@ class ResultsScreenState extends MusicBeatState
                     info.text = "Total Score: <G>" + (PlayState.mayhemScore - powerUpBonus) +"<G>\nAverage Rating: <G>" + FlxMath.roundDecimal((PlayState.mayhemRating / PlayState.mayhemSongsPlayed) * 100, 2) + "%<G>\nBest Note Combo: <G>" + PlayState.mayhemBestCombo + "<G>\nTotal Challenges Beaten: <G>" + PlayState.mayhemTotalChallenges + "<G>\nTotal Songs Beaten: <G>" + PlayState.mayhemSongsPlayed + "<G>";
             }
             else if (PlayState.isStoryMode)
-            {
                  info.text = "Total Score: <G>" + (PlayState.campaignScore - powerUpBonus) + "<G>\nTotal Misses: <G>" + PlayState.campaignMisses + "<G>\nAverage Rating: <G>" + FlxMath.roundDecimal((ClientPrefs.campaignRating / ClientPrefs.campaignSongsPlayed) * 100, 2) + "%<G>\nBest Note Combo: <G>" + ClientPrefs.campaignBestCombo + "<G>";
-            }
             else if (!PlayState.isStoryMode && !PlayState.isIniquitousMode && !PlayState.isInjectionMode && !PlayState.isMayhemMode)
-            {
                  info.text = "Total Score: <G>" + (PlayState.freeplayScore - powerUpBonus) + "<G>\nTotal Misses: <G>" + PlayState.freeplayMisses + "<G>\nTotal Rating: <G>" + FlxMath.roundDecimal((ClientPrefs.campaignRating / ClientPrefs.campaignSongsPlayed) * 100, 2) + "%<G>\nBest Note Combo: <G>" + ClientPrefs.campaignBestCombo + "<G>";
-            }
             CustomFontFormats.addMarkers(info);
             FlxTween.tween(char, {y: char.y + 10}, 2.2, {ease: FlxEase.cubeInOut, type: PINGPONG});
         });
@@ -392,13 +344,9 @@ class ResultsScreenState extends MusicBeatState
                         info.text = "Total Score: <G>" + PlayState.mayhemScore +"<G>\nAverage Rating: <G>" + FlxMath.roundDecimal((PlayState.mayhemRating / PlayState.mayhemSongsPlayed) * 100, 2) + "%<G>\nBest Note Combo: <G>" + PlayState.mayhemBestCombo + "<G>\nTotal Challenges Beaten: <G>" + PlayState.mayhemTotalChallenges + "<G>\nTotal Songs Beaten: <G>" + PlayState.mayhemSongsPlayed + "<G>";
                 }
                 else if (PlayState.isStoryMode)
-                {
                     info.text = "Total Score: <G>" + PlayState.campaignScore + "<G>\nTotal Misses: <G>" + PlayState.campaignMisses + "<G>\nAverage Rating: <G>" + FlxMath.roundDecimal((ClientPrefs.campaignRating / ClientPrefs.campaignSongsPlayed) * 100, 2) + "%<G>\nBest Note Combo: <G>" + ClientPrefs.campaignBestCombo + "<G>";
-                }
                 else if (!PlayState.isStoryMode && !PlayState.isIniquitousMode && !PlayState.isInjectionMode && !PlayState.isMayhemMode)
-                {
                     info.text = "Total Score: <G>" + PlayState.freeplayScore + "<G>\nTotal Misses: <G>" + PlayState.freeplayMisses + "<G>\nTotal Rating: <G>" + FlxMath.roundDecimal((ClientPrefs.campaignRating / ClientPrefs.campaignSongsPlayed) * 100, 2) + "%<G>\nBest Note Combo: <G>" + ClientPrefs.campaignBestCombo + "<G>";
-                }
                 CustomFontFormats.addMarkers(info);
 
                 info.scale.set(1.075, 1.075);
@@ -413,37 +361,22 @@ class ResultsScreenState extends MusicBeatState
 
             FlxTween.tween(enterText, {alpha: 1}, 1.6, {ease: FlxEase.cubeInOut, type: PINGPONG});
             
+            var addNewRecord:Bool = false;
+
             //New Record!
             if ((PlayState.isStoryMode && (ClientPrefs.campaignHighScore <= PlayState.campaignScore))
                 || ((!PlayState.isStoryMode && !PlayState.isIniquitousMode && !PlayState.isInjectionMode && !PlayState.isMayhemMode) && (ClientPrefs.campaignHighScore <= PlayState.freeplayScore)))
+                addNewRecord = true;
+            else if ((PlayState.mayhemSongsPlayed > ClientPrefs.mayhemEndScore))
+                addNewRecord = true;
+            else if ((PlayState.injectionScore > ClientPrefs.injectionEndScore && PlayState.storyDifficulty == 0) || (PlayState.injectionScore > ClientPrefs.injectionVilEndScore && PlayState.storyDifficulty == 1))
+                addNewRecord = true;
+
+            if (addNewRecord)
             {
                 newRecord = new FlxText(20, 500, FlxG.width,
                 "New Record!",
                  35);
-                 newRecord.setFormat("SF Atarian System Bold Italic", 50, FlxColor.YELLOW, LEFT, FlxTextBorderStyle.OUTLINE, 0xFF000000);
-                 newRecord.alpha = 1;
-                 newRecord.borderSize = 3;
-                add(newRecord);
-                FlxG.sound.play(Paths.sound('newRecord'));
-                FlxFlicker.flicker(newRecord, 999, 0.3, false, false);
-            }
-            else if ((PlayState.mayhemSongsPlayed > ClientPrefs.mayhemEndScore))
-            {
-                newRecord = new FlxText(20, 550, FlxG.width,
-                "New Record!",
-                 35);
-                 newRecord.setFormat("SF Atarian System Bold Italic", 50, FlxColor.YELLOW, LEFT, FlxTextBorderStyle.OUTLINE, 0xFF000000);
-                 newRecord.alpha = 1;
-                 newRecord.borderSize = 3;
-                add(newRecord);
-                FlxG.sound.play(Paths.sound('newRecord'));
-                FlxFlicker.flicker(newRecord, 999, 0.3, false, false);
-            }
-            else if ((PlayState.injectionScore > ClientPrefs.injectionEndScore && PlayState.storyDifficulty == 0) || (PlayState.injectionScore > ClientPrefs.injectionVilEndScore && PlayState.storyDifficulty == 1))
-            {
-                newRecord = new FlxText(20, 550, FlxG.width,
-                 "New Record!",
-                35);
                 newRecord.setFormat("SF Atarian System Bold Italic", 50, FlxColor.YELLOW, LEFT, FlxTextBorderStyle.OUTLINE, 0xFF000000);
                 newRecord.alpha = 1;
                 newRecord.borderSize = 3;
@@ -463,7 +396,7 @@ class ResultsScreenState extends MusicBeatState
             });
         });
 
-        if (GameOverSubstate.injected == true || (GameOverSubstate.mayhemed == true && PlayState.mayhemSongsPlayed < 1))
+        if (GameOverSubstate.injected || (GameOverSubstate.mayhemed && PlayState.mayhemSongsPlayed < 1))
             FlxG.sound.play(Paths.sound('resultsJingleFail'));
         else
             FlxG.sound.play(Paths.sound('resultsJingle'));
@@ -478,14 +411,14 @@ class ResultsScreenState extends MusicBeatState
 
         if (controls.ACCEPT)
         {
-            if (!ClientPrefs.onCrossSection == true)
+            if (!ClientPrefs.onCrossSection)
                 ClientPrefs.resetStoryModeProgress(true);
             FlxG.sound.music.fadeOut(0.2);
             FlxG.sound.play(Paths.sound('confirmMenu'));
 
             new FlxTimer().start(0.2, function(tmr:FlxTimer)
             {
-                if (ClientPrefs.iniquitousWeekUnlocked == true && ClientPrefs.iniquitousWeekBeaten == false)
+                if (ClientPrefs.iniquitousWeekUnlocked && !ClientPrefs.iniquitousWeekBeaten)
                     FlxG.sound.playMusic(Paths.music('malumIctum'));
                 else if (FlxG.random.int(1, 10) == 2)
                     FlxG.sound.playMusic(Paths.music('AJDidThat'));
@@ -498,7 +431,7 @@ class ResultsScreenState extends MusicBeatState
 
             if (PlayState.isStoryMode)
             {
-                if (PlayState.isIniquitousMode == true)
+                if (PlayState.isIniquitousMode)
                     MusicBeatState.switchState(new IniquitousMenuState(), 'stickers');
                 else
                     MusicBeatState.switchState(new StoryMenuState(), 'stickers');

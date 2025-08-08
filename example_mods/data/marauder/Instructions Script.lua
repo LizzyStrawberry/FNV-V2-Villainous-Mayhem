@@ -18,7 +18,7 @@ end
 
 function onCreate()
 	if mechanics then
-		makeLuaSprite('Warning', 'instructions/Inst-Debug', 0, 0)
+		makeLuaSprite('Warning', 'instructions/Inst-Debug', mobileFix("X", 0), 0)
 		setObjectCamera('Warning', 'other')
 		setProperty('Warning.alpha', 0)
 		scaleObject('Warning', 0.67, 0.67)
@@ -27,12 +27,12 @@ function onCreate()
 		makeLuaSprite('bossFight', 'instructions/bossFightWarning', 0, 0)
 		setObjectCamera('bossFight', 'other')
 		setProperty('bossFight.alpha', 0)
-		scaleObject('bossFight', 0.67, 0.67)
+		setGraphicSize("bossFight", screenWidth, screenHeight)
 		addLuaSprite('bossFight')
 		
 		runTimer('textgohi', 1)
 		
-		makeLuaText('WarningTXT', 'PRESS Y TO START!', 900, 0, 650)
+		makeLuaText('WarningTXT', 'TOUCH TO START!', 900, 0, 650)
 		setTextAlignment('WarningTXT', 'LEFT')
 		setTextSize('WarningTXT', 40)
 		setProperty('WarningTXT.alpha', 0)
@@ -43,7 +43,7 @@ end
 
 function onUpdate()
 	if mechanics then
-		if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.Y') and confirmed == 0 then
+		if pressAction() and confirmed == 0 then
 			allowCountdown = true
 			startCountdown();
 			doTweenAlpha('nomorewarningimage', 'Warning', 0, 1 / playbackRate, 'sineOut');

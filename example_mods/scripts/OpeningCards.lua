@@ -7,7 +7,7 @@ local dur = 0
 function onCreatePost()	
 	dur = 0.7 / playbackRate;
 	
-	makeLuaSprite('openingcards', 'openingcards/card', 0, -70);
+	makeLuaSprite('openingcards', 'openingcards/card', mobileFix("X", 0), -70);
 	setObjectCamera('openingcards', 'hud')
 	addLuaSprite('openingcards', true)
 		
@@ -16,13 +16,13 @@ function onCreatePost()
 		setProperty('openingcards.y', 70)
 	end
 		
-	makeLuaText('NowPlay', songName, screenWidth, getProperty('openingcards.x'), -70);
+	makeLuaText('NowPlay', songName, 1280, getProperty('openingcards.x'), -70);
 	setObjectCamera('NowPlay', 'hud');
 	setTextSize('NowPlay', 32);
 	setTextFont('NowPlay', 'PhantomMuff.ttf')
 	addLuaText('NowPlay');
 		
-	makeLuaText('NowPlay2', "Composed by: ", screenWidth, getProperty('openingcards.x'), -70);
+	makeLuaText('NowPlay2', "Composed by: ", 1280, getProperty('openingcards.x'), -70);
 	setObjectCamera('NowPlay2', 'hud');
 	setTextSize('NowPlay2', 32);
 	setTextFont('NowPlay2', 'PhantomMuff.ttf')

@@ -1169,13 +1169,6 @@ class PlayState extends MusicBeatState
 			if(defaultCountDownOne != null) defaultCountDownOne.pitch = value;
 			if(defaultCountDownTwo != null) defaultCountDownTwo.pitch = value;
 			if(defaultCountDownThree != null) defaultCountDownThree.pitch = value;
-
-			var ratio:Float = playbackRate / value; //funny word huh
-			if(ratio != 1)
-			{
-				for (note in notes.members) note.resizeByRatio(ratio);
-				for (note in unspawnNotes) note.resizeByRatio(ratio);
-			}
 		}
 		playbackRate = value;
 		playbackRateFreeplay = (value != 1) ? true : false;
@@ -2255,33 +2248,13 @@ class PlayState extends MusicBeatState
 						sustainNote.parent = swagNote;
 						unspawnNotes.push(sustainNote);
 						
-						if (sustainNote.mustPress)
-						{
-							sustainNote.x += FlxG.width / 2; // general offset
-						}
-						else if(ClientPrefs.middleScroll)
-						{
-							sustainNote.x += 310;
-							if(daNoteData > 1) //Up and Right
-							{
-								sustainNote.x += FlxG.width / 2 + 25;
-							}
-						}
+						if (!sustainNote.mustPress)
+							sustainNote.visible = false;
 					}
 				}
 
-				if (swagNote.mustPress)
-				{
-					swagNote.x += FlxG.width / 2; // general offset
-				}
-				else if(ClientPrefs.middleScroll)
-				{
-					swagNote.x += 310;
-					if(daNoteData > 1) //Up and Right
-					{
-						swagNote.x += FlxG.width / 2 + 25;
-					}
-				}
+				if (!swagNote.mustPress)
+					swagNote.visible = false;
 
 				if(!noteTypeMap.exists(swagNote.noteType)) {
 					noteTypeMap.set(swagNote.noteType, true);
@@ -3909,7 +3882,7 @@ class PlayState extends MusicBeatState
 					prevCamFollowPos = camFollowPos;
 
 					// Song Checks
-					var weeksToCheck:Array<String> = ["mainweek", "weekkiana", "weeklegacy"];
+					var weeksToCheck:Array<String> = ["mainweek", "mainweekkiana", "weeklegacy"];
 					var checkedWeek:Bool = false;
 					for (week in 0...weeksToCheck.length)
 					{
@@ -5929,7 +5902,7 @@ class PlayState extends MusicBeatState
 							ClientPrefs.saveSettings();
 						}
 					case 'WeekKiana_Beaten':
-						if(WeekData.getWeekFileName() == 'weekkiana' && isStoryMode && storyPlaylist.length <= 1 && !changedDifficulty && !usedPractice)
+						if(WeekData.getWeekFileName() == 'mainweekkiana' && isStoryMode && storyPlaylist.length <= 1 && !changedDifficulty && !usedPractice)
 						{
 							unlock = true;
 							ClientPrefs.eggs += 1;
@@ -5944,7 +5917,7 @@ class PlayState extends MusicBeatState
 							ClientPrefs.saveSettings();
 						}
 					case 'WeekKianaVillainous_Beaten':
-						if(WeekData.getWeekFileName() == 'weekkiana' && isStoryMode && storyPlaylist.length <= 1 && !changedDifficulty && CoolUtil.difficultyString() == 'VILLAINOUS' && !usedPractice)
+						if(WeekData.getWeekFileName() == 'mainweekkiana' && isStoryMode && storyPlaylist.length <= 1 && !changedDifficulty && CoolUtil.difficultyString() == 'VILLAINOUS' && !usedPractice)
 						{
 							unlock = true;
 							ClientPrefs.eggs += 1;
@@ -5952,7 +5925,7 @@ class PlayState extends MusicBeatState
 							ClientPrefs.saveSettings();
 						}
 					case 'WeekKianaIniquitous_Beaten':
-						if(WeekData.getWeekFileName() == 'weekkiana' && isStoryMode && storyPlaylist.length <= 1 && !changedDifficulty && CoolUtil.difficultyString() == 'INIQUITOUS' && !usedPractice)
+						if(WeekData.getWeekFileName() == 'mainweekkiana' && isStoryMode && storyPlaylist.length <= 1 && !changedDifficulty && CoolUtil.difficultyString() == 'INIQUITOUS' && !usedPractice)
 						{
 							unlock = true;
 							ClientPrefs.eggs += 1;

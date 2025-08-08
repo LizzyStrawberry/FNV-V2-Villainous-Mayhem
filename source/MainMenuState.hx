@@ -158,7 +158,6 @@ class MainMenuState extends MusicBeatState
 
 	var getLeftArrowX:Float = 0;
 	var getRightArrowX:Float = 0;
-	var transparentButton:FlxSprite;
 
 	var blackOut:FlxSprite;
 	var blackOut2:FlxSprite;
@@ -289,6 +288,7 @@ class MainMenuState extends MusicBeatState
 		bg.scrollFactor.set(0, yScroll);
 		bg.updateHitbox();
 		bg.screenCenter(XY);
+		bg.setGraphicSize(Std.int(bg.width * 1.375));
 		bg.antialiasing = ClientPrefs.globalAntialiasing;
 		add(bg);
 
@@ -304,11 +304,10 @@ class MainMenuState extends MusicBeatState
 			else
 				bgChange = new FlxSprite(-80).loadGraphic(Paths.image('mainMenuBgs/menu-' + FlxG.random.int(1, 5)));
 			bgChange.scrollFactor.set(0, yScroll);
-			bgChange.setGraphicSize(Std.int(bgChange.width * 1.175));
+			bgChange.setGraphicSize(Std.int(bgChange.width * 1.375));
 			bgChange.updateHitbox();
 			bgChange.screenCenter(XY);
 			bgChange.alpha = 0;
-			bgChange.x += 120;
 			bgChange.antialiasing = ClientPrefs.globalAntialiasing;
 			add(bgChange);
 		}
@@ -320,9 +319,9 @@ class MainMenuState extends MusicBeatState
 		add(camFollow);
 		add(camFollowPos);
 		
-		bgBorder = new FlxSprite(-80).loadGraphic(Paths.image('menuBorder'));
+		bgBorder = new FlxSprite(MobileUtil.fixX(-60)).loadGraphic(Paths.image('menuBorder'));
 		bgBorder.scrollFactor.set(0, 0);
-		bgBorder.setGraphicSize(Std.int(bgBorder.width * 1.175));
+		bgBorder.setGraphicSize(Std.int(bgBorder.width * 1.275));
 		bgBorder.updateHitbox();
 		bgBorder.screenCenter();
 		bgBorder.antialiasing = ClientPrefs.globalAntialiasing;
@@ -336,68 +335,11 @@ class MainMenuState extends MusicBeatState
 			scale = 6 / optionShit.length;
 		}*/
 
-		for (i in 0...optionShit.length)
-		{
-			var offset:Float = 108 - (Math.max(optionShit.length, 4) - 4) * 80;
-			var menuItem:FlxSprite = new FlxSprite(0, (i * 140)  + offset);
-			menuItem.scale.x = scale;
-			menuItem.scale.y = scale;
-			menuItem.frames = Paths.getSparrowAtlas('mainmenu/menu_' + optionShit[i]);
-			menuItem.animation.addByPrefix('idle', optionShit[i] + " basic", 24);
-			menuItem.animation.addByPrefix('selected', optionShit[i] + " white0", 24);
-			if ((optionShit[i] == 'freeplay' && !ClientPrefs.mainWeekBeaten) || (optionShit[i] == 'gallery' && !ClientPrefs.galleryUnlocked) || (optionShit[i] == 'info' && !ClientPrefs.mainWeekBeaten))
-			{
-				menuItem.animation.addByPrefix('locked', optionShit[i] + " white locked", 24);
-				menuItem.animation.play('locked');
-			}
-			else
-				menuItem.animation.play('idle');
-			menuItem.ID = i;
-			menuItem.screenCenter(X);
-			menuItem.x -= 220;
-			menuItem.screenCenter(Y);
-			menuItem.y = 510;
-			menuItems.add(menuItem);
-
-			var scr:Float = (optionShit.length - 4) * 0.135;
-			if(optionShit.length < 6) scr = 0;
-			menuItem.scrollFactor.set(0, scr);
-			menuItem.antialiasing = ClientPrefs.globalAntialiasing;
-			//menuItem.setGraphicSize(Std.int(menuItem.width * 0.58));
-			menuItem.updateHitbox();
-
-			if (curSelected != menuItem.ID)
-				menuItem.alpha = 0;
-			else
-				menuItem.alpha = 1;
-		}
-
-		transparentButton = new FlxSprite(0, 0);
-		transparentButton.makeGraphic(480, 80, FlxColor.WHITE);
-		transparentButton.screenCenter();
-		transparentButton.x -= 290;
-		transparentButton.alpha = 0;
-		transparentButton.y += 230;
-		add(transparentButton);
-
-		var versionShit:FlxText = new FlxText(12, FlxG.height - 64, 0, "Friday Night Villainy v" + FNVVersion, 12);
-		versionShit.scrollFactor.set();
-		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		add(versionShit);
-		var versionShit:FlxText = new FlxText(12, FlxG.height - 44, 0, "Psych Engine v" + psychEngineVersion, 12);
-		versionShit.scrollFactor.set();
-		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		add(versionShit);
-		var versionShit:FlxText = new FlxText(12, FlxG.height - 24, 0, "Friday Night Funkin' v" + Application.current.meta.get('version'), 12);
-		versionShit.scrollFactor.set();
-		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		add(versionShit);
-
 		menuSelectors = new FlxGroup();
 		add(menuSelectors);
 
 		var ui_tex = Paths.getSparrowAtlas('campaign_menu_UI_assets');
-		leftArrow = new FlxSprite(FlxG.width - 1250, 550);
+		leftArrow = new FlxSprite(MobileUtil.fixX(30), 550);
 		leftArrow.frames = ui_tex;
 		leftArrow.animation.addByPrefix('idle', "arrow left");
 		leftArrow.animation.addByPrefix('press', "arrow push left");
@@ -418,6 +360,53 @@ class MainMenuState extends MusicBeatState
 		getRightArrowX = rightArrow.x;
 		getLeftArrowX = leftArrow.x;
 
+		for (i in 0...optionShit.length)
+		{
+			var offset:Float = 108 - (Math.max(optionShit.length, 4) - 4) * 80;
+			var menuItem:FlxSprite = new FlxSprite(leftArrow.x, (i * 140)  + offset);
+			menuItem.scale.x = scale;
+			menuItem.scale.y = scale;
+			menuItem.frames = Paths.getSparrowAtlas('mainmenu/menu_' + optionShit[i]);
+			menuItem.animation.addByPrefix('idle', optionShit[i] + " basic", 24);
+			menuItem.animation.addByPrefix('selected', optionShit[i] + " white0", 24);
+			if ((optionShit[i] == 'freeplay' && !ClientPrefs.mainWeekBeaten) || (optionShit[i] == 'gallery' && !ClientPrefs.galleryUnlocked) || (optionShit[i] == 'info' && !ClientPrefs.mainWeekBeaten))
+			{
+				menuItem.animation.addByPrefix('locked', optionShit[i] + " white locked", 24);
+				menuItem.animation.play('locked');
+			}
+			else
+				menuItem.animation.play('idle');
+			menuItem.ID = i;
+			menuItem.screenCenter(Y);
+			menuItem.y = MobileUtil.fixY(510);
+			menuItems.add(menuItem);
+
+			var scr:Float = (optionShit.length - 4) * 0.135;
+			if(optionShit.length < 6) scr = 0;
+			menuItem.scrollFactor.set(0, scr);
+			menuItem.antialiasing = ClientPrefs.globalAntialiasing;
+			//menuItem.setGraphicSize(Std.int(menuItem.width * 0.58));
+			menuItem.updateHitbox();
+
+			if (curSelected != menuItem.ID)
+				menuItem.alpha = 0;
+			else
+				menuItem.alpha = 1;
+		}
+
+		var versionShit:FlxText = new FlxText(12, FlxG.height - 64, 0, "Friday Night Villainy v" + FNVVersion, 12);
+		versionShit.scrollFactor.set();
+		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		add(versionShit);
+		var versionShit:FlxText = new FlxText(12, FlxG.height - 44, 0, "Psych Engine v" + psychEngineVersion, 12);
+		versionShit.scrollFactor.set();
+		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		add(versionShit);
+		var versionShit:FlxText = new FlxText(12, FlxG.height - 24, 0, "Friday Night Funkin' v" + Application.current.meta.get('version'), 12);
+		versionShit.scrollFactor.set();
+		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		add(versionShit);
+
 		#if ACHIEVEMENTS_ALLOWED
 		Achievements.loadAchievements();
 		var leDate = Date.now();
@@ -431,7 +420,7 @@ class MainMenuState extends MusicBeatState
 		}
 		#end
 
-		exclamationMark = new FlxSprite(1190, 110).loadGraphic(Paths.image('exclamationMark'));
+		exclamationMark = new FlxSprite(MobileUtil.rawX(1190), 110).loadGraphic(Paths.image('exclamationMark'));
 		exclamationMark.antialiasing = ClientPrefs.globalAntialiasing;
 		exclamationMark.alpha = 0.5;
 		exclamationMark.scale.set(0.5, 0.5);
@@ -454,7 +443,7 @@ class MainMenuState extends MusicBeatState
 			NotificationAlert.saveNotifications();
 		}
 
-		optionsButton = new FlxSprite(1168, 0).loadGraphic(Paths.image('optionsButton'));
+		optionsButton = new FlxSprite(MobileUtil.rawX(1168), 0).loadGraphic(Paths.image('optionsButton'));
 		optionsButton.antialiasing = ClientPrefs.globalAntialiasing;
 		optionsButton.alpha = 0.5;
 		optionsButton.updateHitbox();
@@ -467,7 +456,7 @@ class MainMenuState extends MusicBeatState
 			NotificationAlert.saveNotifications();
 		}
 
-		inventoryButton = new FlxSprite(1168, 230).loadGraphic(Paths.image('inventoryButton'));
+		inventoryButton = new FlxSprite(MobileUtil.rawX(1168), 230).loadGraphic(Paths.image('inventoryButton'));
 		inventoryButton.antialiasing = ClientPrefs.globalAntialiasing;
 		inventoryButton.alpha = 0.5;
 		inventoryButton.updateHitbox();
@@ -507,8 +496,6 @@ class MainMenuState extends MusicBeatState
 		CustomFontFormats.addMarkers(tokenShow);
 		add(tokenShow);
 
-		FlxG.mouse.visible = true;
-
 		blackOut = new FlxSprite(0, 0).makeGraphic(FlxG.width, FlxG.height, 0xFF000000);
 		blackOut.alpha = 0;
 		add(blackOut);
@@ -521,7 +508,7 @@ class MainMenuState extends MusicBeatState
 			var storyStuff:FlxSprite = new FlxSprite().loadGraphic(Paths.image('mainmenu/story_' + storyShit[i]));
 			storyStuff.ID = i;
 			storyStuff.screenCenter(X);
-			storyStuff.x += 1420;
+			storyStuff.x += MobileUtil.rawX(1520);
 			storyStuff.screenCenter(Y);
 			storyStuffs.add(storyStuff);
 			storyStuff.scrollFactor.set(0, 0);
@@ -530,14 +517,14 @@ class MainMenuState extends MusicBeatState
 			//trace(storyStuff.x);
 		}
 
-		storySelection = new Alphabet(2020, 320, "Test", true);
+		storySelection = new Alphabet(MobileUtil.rawX(2020), 320, "Test", true);
 		storySelection.setAlignmentFromString('center');
-		storySelection.alpha = 0.6;
+		storySelection.alpha = 1;
 		storySelection.scaleX = 0.8;
 		storySelection.scaleY = 0.8;
 		add(storySelection);
 
-		storyText = new FlxText(30, 300, FlxG.width,
+		storyText = new FlxText(MobileUtil.fixX(30), 300, FlxG.width,
 			"Test!",
 			25);
 		storyText.setFormat("VCR OSD Mono", 40, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, 0xFF000000);
@@ -555,7 +542,7 @@ class MainMenuState extends MusicBeatState
 		difficultySelectors = new FlxGroup();
 		add(difficultySelectors);
 
-		leftDiffArrow = new FlxSprite(810, 410);
+		leftDiffArrow = new FlxSprite(MobileUtil.fixX(850), 410);
 		leftDiffArrow.frames = ui_tex;
 		leftDiffArrow.animation.addByPrefix('idle', "arrow left");
 		leftDiffArrow.animation.addByPrefix('press', "arrow push left");
@@ -613,7 +600,7 @@ class MainMenuState extends MusicBeatState
 		// Add the character to the selection
 		gfPocket = new FlxSprite(0, 0).loadGraphic(Paths.image('inventoryChars/gf'));
 		gfPocket.screenCenter(XY);
-		gfPocket.x -= 340;
+		gfPocket.x -= MobileUtil.fixX(340);
 		gfPocket.y += 40;
 		gfPocket.alpha = 0;
 		gfPocket.updateHitbox();
@@ -701,11 +688,11 @@ class MainMenuState extends MusicBeatState
 		buffSelected.antialiasing = ClientPrefs.globalAntialiasing;
 		add(buffSelected);
 
-		inventoryTitle = new Alphabet(420, 10, "Inventory", true);
+		inventoryTitle = new Alphabet(MobileUtil.fixX(420), 10, "Inventory", true);
 		inventoryTitle.alpha = 0;
 		add(inventoryTitle);
 
-		buffTitle = new Alphabet(1170, 200, "Buffs", true);
+		buffTitle = new Alphabet(MobileUtil.fixX(1200), 200, "Buffs", true);
 		buffTitle.scaleX = 0.7;
 		buffTitle.scaleY = 0.7;
 		buffTitle.alpha = 0;
@@ -751,7 +738,7 @@ class MainMenuState extends MusicBeatState
 			add(charm);
 		}	
 
-		charmTitle = new Alphabet(1120, 610, "Charms", true);
+		charmTitle = new Alphabet(MobileUtil.fixX(1150), 610, "Charms", true);
 		charmTitle.scaleX = 0.7;
 		charmTitle.scaleY = 0.7;
 		charmTitle.alpha = 0;
@@ -827,7 +814,7 @@ class MainMenuState extends MusicBeatState
 				}
 			}
 
-		changeItem();
+		changeItem(0, false);
 
 		//Notification alert
 		//check if everything is unlocked for the crossover section, all weeks, all shop songs are beaten
@@ -883,6 +870,15 @@ class MainMenuState extends MusicBeatState
 			NotificationAlert.saveNotifications();
 		}
 		super.create();
+
+		var scroll = new ScrollableObject(0.004, 50, 100, FlxG.width, FlxG.height, "X");
+		scroll.onFullScroll.add(delta -> {
+			if (storySelected && !applyStory)
+				changeItem(delta);
+		});
+		add(scroll);
+
+		addTouchPad("NONE", "B");
 	}
 
 	// Unlocks "FNV_Completed" achievement
@@ -980,7 +976,7 @@ class MainMenuState extends MusicBeatState
 
 	if (ClientPrefs.firstTime)
 	{
-		if(FlxG.mouse.overlaps(exclamationMark) && FlxG.mouse.justPressed)
+		if(TouchUtil.pressAction(exclamationMark))
 		{
 			MusicBeatState.switchState(new tutorial.TutorialState(), 'stickers');
 
@@ -991,25 +987,25 @@ class MainMenuState extends MusicBeatState
 		//hover on things thing
 		if (askedForInfo == false && (!selectedSomethin && !storySelected && !inventoryOpened))
 		{
-			if (FlxG.mouse.overlaps(shopButton))
+			if (TouchUtil.overlaps(shopButton))
 				shopButton.alpha = 1;
 			else
 				shopButton.alpha = 0.5;
-			if (FlxG.mouse.overlaps(exclamationMark))
+			if (TouchUtil.overlaps(exclamationMark))
 				exclamationMark.alpha = 1;
 			else
 				exclamationMark.alpha = 0.5;
-			if (FlxG.mouse.overlaps(optionsButton))
+			if (TouchUtil.overlaps(optionsButton))
 				optionsButton.alpha = 1;
 			else
 				optionsButton.alpha = 0.5;
-			if (FlxG.mouse.overlaps(inventoryButton))
+			if (TouchUtil.overlaps(inventoryButton))
 				inventoryButton.alpha = 1;
 			else
 				inventoryButton.alpha = 0.5;
 		}
 
-		if (FlxG.mouse.overlaps(optionsButton) && FlxG.mouse.justPressed && askedForInfo == false && (!selectedSomethin && !storySelected && !inventoryOpened))
+		if (TouchUtil.pressAction(optionsButton) && askedForInfo == false && (!selectedSomethin && !storySelected && !inventoryOpened))
 		{
 			ClientPrefs.inMenu = true;
 			selectedSomethin = true;
@@ -1020,22 +1016,22 @@ class MainMenuState extends MusicBeatState
 			});
 		}
 
-		if (FlxG.mouse.overlaps(leftArrow) && askedForInfo == false && selectedSomethin == false)
+		if (TouchUtil.overlaps(leftArrow) && askedForInfo == false && selectedSomethin == false)
 			FlxTween.tween(leftArrow, {x: getLeftArrowX - 2}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
 		else
 			FlxTween.tween(leftArrow, {x: getLeftArrowX}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
 	
-		if (FlxG.mouse.overlaps(rightArrow) && askedForInfo == false && selectedSomethin == false)
+		if (TouchUtil.overlaps(rightArrow) && askedForInfo == false && selectedSomethin == false)
 			FlxTween.tween(rightArrow, {x: getRightArrowX + 2}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
 		else
 			FlxTween.tween(rightArrow, {x: getRightArrowX}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
 
-		if ((controls.UI_RIGHT || (FlxG.mouse.overlaps(rightArrow) && FlxG.mouse.pressed)) && askedForInfo == false && storySelected == false)
+		if ((controls.UI_RIGHT || TouchUtil.pressAction(rightArrow)) && askedForInfo == false && storySelected == false)
 			rightArrow.animation.play('press')
 		else
 			rightArrow.animation.play('idle');
 	
-		if ((controls.UI_LEFT || (FlxG.mouse.overlaps(leftArrow) && FlxG.mouse.pressed)) && askedForInfo == false && storySelected == false)
+		if ((controls.UI_LEFT || TouchUtil.pressAction(leftArrow)) && askedForInfo == false && storySelected == false)
 			leftArrow.animation.play('press');
 		else
 			leftArrow.animation.play('idle');
@@ -1051,9 +1047,8 @@ class MainMenuState extends MusicBeatState
 
 		if (!selectedSomethin)
 		{
-			if ((controls.UI_LEFT_P || (FlxG.mouse.overlaps(leftArrow) && FlxG.mouse.justPressed)) && askedForInfo == false)
+			if ((controls.UI_LEFT_P || TouchUtil.pressAction(leftArrow)) && askedForInfo == false)
 			{
-				FlxG.sound.play(Paths.sound('scrollMenu'));
 				changeItem(-1);
 					
 				menuItems.forEach(function(spr:FlxSprite)
@@ -1069,9 +1064,8 @@ class MainMenuState extends MusicBeatState
 				});
 			}
 	
-			if ((controls.UI_RIGHT_P || (FlxG.mouse.overlaps(rightArrow) && FlxG.mouse.justPressed)) && askedForInfo == false)
+			if ((controls.UI_RIGHT_P || TouchUtil.pressAction(rightArrow)) && askedForInfo == false)
 			{
-				FlxG.sound.play(Paths.sound('scrollMenu'));
 				changeItem(1);
 				menuItems.forEach(function(spr:FlxSprite)
 				{
@@ -1086,28 +1080,28 @@ class MainMenuState extends MusicBeatState
 					});
 			}
 
-			if (controls.BACK || FlxG.mouse.justPressedRight)
+			if (controls.BACK)
 			{
 					selectedSomethin = true;
 					FlxG.sound.play(Paths.sound('cancelMenu'));
 					MusicBeatState.switchState(new TitleState());
 			}
 
-			if ((controls.ACCEPT || (FlxG.mouse.overlaps(transparentButton) && FlxG.mouse.justPressed)) && askedForInfo == false && allowInteraction == true)
+			if ((controls.ACCEPT || TouchUtil.pressAction(menuItems.members[curSelected])) && askedForInfo == false && allowInteraction == true)
 			{
 				if (optionShit[curSelected] == 'story_mode')
 				{
 					selectedSomethin = true;
 					allowInteraction = false;
 					storySelected = true;
-					changeItem();
+					changeItem(0, false);
 					FlxG.sound.play(Paths.sound('confirmMenu'));
 					storyStuffs.forEach(function(spr:FlxSprite)
 					{
-						FlxTween.tween(spr, {x: 597}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
+						FlxTween.tween(spr, {x: MobileUtil.rawX(697)}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
 					});
 					FlxTween.tween(blackOut, {alpha: 0.6}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
-					FlxTween.tween(storySelection, {x: 1020}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
+					FlxTween.tween(storySelection, {x: MobileUtil.rawX(1020)}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
 					FlxTween.tween(storyText, {alpha: 1}, 0.7, {ease: FlxEase.circOut, type: PERSIST, onComplete: function (twn:FlxTween) {
 							allowInteraction = true;
 						}
@@ -1220,7 +1214,7 @@ class MainMenuState extends MusicBeatState
 		{
 			if (!applyStory && allowInteraction == true && inventoryOpened == false)
 			{
-				if (controls.BACK || FlxG.mouse.justPressedRight)
+				if (controls.BACK)
 				{
 					if (warning)
 					{
@@ -1236,11 +1230,10 @@ class MainMenuState extends MusicBeatState
 						FlxG.sound.play(Paths.sound('cancelMenu'));
 						storyStuffs.forEach(function(spr:FlxSprite)
 						{
-							FlxTween.tween(spr, {x: 1697}, 0.7, {ease: FlxEase.circIn, type: PERSIST});
+							FlxTween.tween(spr, {x: MobileUtil.rawX(1797)}, 0.7, {ease: FlxEase.circIn, type: PERSIST});
 						});
 						FlxTween.tween(blackOut, {alpha: 0}, 0.7, {ease: FlxEase.circIn, type: PERSIST});
-						FlxTween.tween(storySelection, {x: 2020}, 0.7, {ease: FlxEase.circIn, type: PERSIST});
-						FlxTween.tween(storySelection, {alpha: 0.6}, 0.7, {ease: FlxEase.circIn, type: PERSIST});
+						FlxTween.tween(storySelection, {x: MobileUtil.rawX(2020)}, 0.7, {ease: FlxEase.circIn, type: PERSIST});
 						FlxTween.tween(storyText, {alpha: 0}, 0.7, {ease: FlxEase.circOut, type: PERSIST, onComplete: function (twn:FlxTween) {
 								allowInteraction = true;
 							}
@@ -1255,15 +1248,10 @@ class MainMenuState extends MusicBeatState
 				if (!warning && askedForInfo == false)
 				{
 					if (controls.UI_LEFT_P)
-					{
 						changeItem(-1);
-						FlxG.sound.play(Paths.sound('scrollMenu'));
-					}
+
 					if (controls.UI_RIGHT_P)
-					{
 						changeItem(1);
-						FlxG.sound.play(Paths.sound('scrollMenu'));
-					}
 
 					if (storyShit[curStorySelected] == 'mayhem' && controls.RESET)
 					{
@@ -1278,30 +1266,25 @@ class MainMenuState extends MusicBeatState
 
 					if (storyShit[curStorySelected] == 'injection')
 					{
-						if ((FlxG.mouse.overlaps(rightDiffArrow) && FlxG.mouse.pressed))
+						if ((TouchUtil.overlaps(rightDiffArrow) && TouchUtil.touch.pressed))
 							rightDiffArrow.animation.play('press');
 						else
 							rightDiffArrow.animation.play('idle');
 						
-						if ((FlxG.mouse.overlaps(leftDiffArrow) && FlxG.mouse.pressed))
+						if ((TouchUtil.overlaps(leftDiffArrow) && TouchUtil.touch.pressed))
 							leftDiffArrow.animation.play('press');
 						else
 							leftDiffArrow.animation.play('idle');
 
-						if ((FlxG.mouse.overlaps(rightDiffArrow) && FlxG.mouse.justPressed))
+						if (TouchUtil.pressAction(rightDiffArrow))
 							changeDifficulty(1);
 						
-						if ((FlxG.mouse.overlaps(leftDiffArrow) && FlxG.mouse.justPressed))
+						if (TouchUtil.pressAction(leftDiffArrow))
 							changeDifficulty(-1);
 					}
 				}
 
-				if (FlxG.mouse.overlaps(storySelection) && askedForInfo == false)
-					FlxTween.tween(storySelection, {alpha: 1}, 0.5, {ease: FlxEase.circOut, type: PERSIST});
-				else
-					FlxTween.tween(storySelection, {alpha: 0.6}, 0.5, {ease: FlxEase.circOut, type: PERSIST});
-
-				if ((controls.ACCEPT || (FlxG.mouse.overlaps(storySelection) && FlxG.mouse.justPressed)) && !warning && ((storyShit[curStorySelected] == 'injection' && curDifficulty == 1) || storyShit[curStorySelected] == 'mayhem'))
+				if ((controls.ACCEPT || TouchUtil.pressAction(storySelection)) && !warning && ((storyShit[curStorySelected] == 'injection' && curDifficulty == 1) || storyShit[curStorySelected] == 'mayhem'))
 				{
 					if (ClientPrefs.performanceWarning)
 					{
@@ -1321,7 +1304,7 @@ class MainMenuState extends MusicBeatState
 				{
 					loadExtraMode();
 				}
-				else if ((controls.ACCEPT || (FlxG.mouse.overlaps(storySelection) && FlxG.mouse.justPressed)) && askedForInfo == false 
+				else if ((controls.ACCEPT || TouchUtil.pressAction(storySelection)) && askedForInfo == false 
 					&& (storyShit[curStorySelected] == 'classic' || storyShit[curStorySelected] == 'iniquitous' || (storyShit[curStorySelected] == 'injection' && curDifficulty == 0)))
 				{
 					if (storyShit[curStorySelected] == 'iniquitous' && (!Achievements.isAchievementUnlocked('weekIniquitous_Beaten')))
@@ -1373,7 +1356,6 @@ class MainMenuState extends MusicBeatState
 									ClientPrefs.resetStoryModeProgress(true);
 									ClientPrefs.inMenu = false;
 									PlayState.isInjectionMode = true;
-									FlxG.mouse.visible = false;
 	
 									PlayState.injectionDifficulty = curDifficulty;
 									PlayState.storyDifficulty = PlayState.injectionDifficulty;
@@ -1397,7 +1379,7 @@ class MainMenuState extends MusicBeatState
 			}	
 		}
 
-		if (controls.BACK || FlxG.mouse.justPressedRight)
+		if (controls.BACK)
 		{
 			if (inventoryOpened == true)
 			{
@@ -1425,7 +1407,7 @@ class MainMenuState extends MusicBeatState
 			}
 		}
 
-		if ((FlxG.keys.pressed.I || (FlxG.mouse.overlaps(inventoryButton) && FlxG.mouse.justPressed)) && inventoryOpened == false && selectedSomethin == false)
+		if ((FlxG.keys.pressed.I || TouchUtil.pressAction(inventoryButton)) && inventoryOpened == false && selectedSomethin == false)
 		{
 			openingShit = true;
 			selectedSomethin = true;
@@ -1509,61 +1491,54 @@ class MainMenuState extends MusicBeatState
 		{
 			buffItems.forEach(function(buff:FlxSprite)
 			{
-				if (FlxG.mouse.overlaps(buff) && FlxG.mouse.justPressed && buff.ID == 0)
+				if (TouchUtil.pressAction(buff))
 				{
-					buffSelect(0);
-				}
-				if (FlxG.mouse.overlaps(buff) && FlxG.mouse.justPressed && buff.ID == 1)
-				{
-					if (ClientPrefs.buff1Unlocked == false)
+					var allowBuff:Bool = true;
+					if (!Reflect.field(ClientPrefs, "buff" + buff.ID + "Unlocked") && buff.ID != 0)
+					{
 						FlxG.sound.play(Paths.sound('cancelMenu'), 0.6);
-					else
-						buffSelect(1);
-				}
-				if (FlxG.mouse.overlaps(buff) && FlxG.mouse.justPressed && buff.ID == 2)
-				{
-					if (ClientPrefs.buff2Unlocked == false)
-						FlxG.sound.play(Paths.sound('cancelMenu'), 0.6);
-					else
-						buffSelect(2);
-				}
-			if (FlxG.mouse.overlaps(buff) && FlxG.mouse.justPressed && buff.ID == 3)
-				{
-					if (ClientPrefs.buff3Unlocked == false)
-						FlxG.sound.play(Paths.sound('cancelMenu'), 0.6);
-					else
-						buffSelect(3);
+						allowBuff = false;
+					}
+					if (allowBuff)
+						buffSelect(buff.ID);
 				}
 			});
 
 			charmItems.forEach(function(charm:FlxSprite)
+			{
+				if (TouchUtil.pressAction(charm))
 				{
-					if (FlxG.mouse.overlaps(charm) && FlxG.mouse.justPressed && charm.ID == 0)
+					var allowCharm:Bool = true;
+					switch(charm.ID)
 					{
-						if (ClientPrefs.resCharmCollected == false)
-							FlxG.sound.play(Paths.sound('cancelMenu'), 0.6);
-						else
-							charmSelect(0);
+						case 0:
+							if (!ClientPrefs.resCharmCollected)
+							{
+								FlxG.sound.play(Paths.sound('cancelMenu'), 0.6);
+								allowCharm = false;
+							}
+						case 1:
+							if (!ClientPrefs.autoCharmCollected)
+							{
+								FlxG.sound.play(Paths.sound('cancelMenu'), 0.6);
+								allowCharm = false;
+							}
+						case 2:
+							if (!ClientPrefs.healCharmCollected)
+							{
+								FlxG.sound.play(Paths.sound('cancelMenu'), 0.6);
+								allowCharm = false;
+							}		
 					}
-					if (FlxG.mouse.overlaps(charm) && FlxG.mouse.justPressed && charm.ID == 1)
-					{
-						if (ClientPrefs.autoCharmCollected == false)
-							FlxG.sound.play(Paths.sound('cancelMenu'), 0.6);
-						else
-							charmSelect(1);
-					}
-					if (FlxG.mouse.overlaps(charm) && FlxG.mouse.justPressed && charm.ID == 2)
-					{
-						if (ClientPrefs.healCharmCollected == false)
-							FlxG.sound.play(Paths.sound('cancelMenu'), 0.6);
-						else
-							charmSelect(2);
-					}
-				});
+
+					if (allowCharm)
+						charmSelect(charm.ID);
+				}
+			});
 			
 		}
 
-		if (FlxG.mouse.overlaps(shopButton) && FlxG.mouse.justPressed && askedForInfo == false && ClientPrefs.inShop == false && (!selectedSomethin && !storySelected))
+		if (TouchUtil.pressAction(shopButton) && askedForInfo == false && ClientPrefs.inShop == false && (!selectedSomethin && !storySelected))
 		{
 			FlxG.sound.music.fadeOut(0.5);
 			FlxG.sound.play(Paths.sound('scrollMenu'));
@@ -1649,7 +1624,6 @@ class MainMenuState extends MusicBeatState
 						ClientPrefs.resetStoryModeProgress(true);
 						ClientPrefs.inMenu = false;
 						PlayState.isInjectionMode = true;
-						FlxG.mouse.visible = false;
 
 						PlayState.injectionDifficulty = curDifficulty;
 						PlayState.storyDifficulty = PlayState.injectionDifficulty;
@@ -1676,7 +1650,6 @@ class MainMenuState extends MusicBeatState
 						PlayState.mayhemScore = 0;
 						PlayState.mayhemBestCombo = 0;
 						PlayState.mayhemTotalChallenges = 0;
-						FlxG.mouse.visible = false;
 
 						CoolUtil.difficulties = CoolUtil.defaultDifficulties.copy();		
 						curDifficulty = FlxG.random.int(0, 1);
@@ -1841,9 +1814,10 @@ class MainMenuState extends MusicBeatState
 	}
 
 	
-	function changeItem(huh:Int = 0)
+	function changeItem(huh:Int = 0, ?playSound:Bool = true)
 	{
-		if (storySelected == false && inventoryOpened == false)
+		if (playSound) FlxG.sound.play(Paths.sound('scrollMenu'));
+		if (!storySelected && !inventoryOpened)
 		{
 			curSelected += huh;
 
@@ -1859,11 +1833,11 @@ class MainMenuState extends MusicBeatState
 	
 				if (spr.ID == curSelected)
 				{
-					if (optionShit[curSelected] == 'freeplay' && ClientPrefs.mainWeekBeaten == false)
+					if (optionShit[curSelected] == 'freeplay' && !ClientPrefs.mainWeekBeaten)
 						spr.animation.play('locked');
-					else if (optionShit[curSelected] == 'gallery' && ClientPrefs.galleryUnlocked == false)
+					else if (optionShit[curSelected] == 'gallery' && !ClientPrefs.galleryUnlocked)
 						spr.animation.play('locked');
-					else if (optionShit[curSelected] == 'info' && ClientPrefs.mainWeekBeaten == false)
+					else if (optionShit[curSelected] == 'info' && !ClientPrefs.mainWeekBeaten)
 						spr.animation.play('locked');
 					else
 						spr.animation.play('selected');

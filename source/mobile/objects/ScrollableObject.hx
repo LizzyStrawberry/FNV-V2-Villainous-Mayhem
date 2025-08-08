@@ -15,20 +15,23 @@ class ScrollableObject extends TouchZone {
     private var isDragging:Bool = false;
     private var isTapping:Bool = false;
     private var lastYPos:Float = 0;
+    private var lastXPos:Float = 0;
     private var partialScrollTracker:Float = 0;
     private var scrollScale:Float = 0;
+    private var curAxis:String;
     private var clickButton:FlxObject;
 
-    public function new(scrollScale:Float,x:Float, y:Float, width:Float, height:Float, clickButton:FlxObject = null) 
+    public function new(scrollScale:Float,x:Float, y:Float, width:Float, height:Float, axis:String = "Y", clickButton:FlxObject = null) 
     {
         this.scrollScale = scrollScale;
+        this.curAxis = axis.toLowerCase();
         this.clickButton = clickButton;
         super(x,y,width,height);
     }
 
     override function update(elapsed:Float) {
         super.update(elapsed);
-        var curDelta = getDeltaY();
+        var curDelta = getDelta(curAxis);
 
         if
             #if mobile
@@ -92,6 +95,29 @@ class ScrollableObject extends TouchZone {
                 return touch;
     
         return null;
+    }
+
+    private function getDelta(axis:String):Float {
+        switch(axis)
+        {
+            case "x":
+                return getDeltaX();
+            case "y":
+                return getDeltaY();
+        }
+
+        return 0;
+    }
+
+    private function getDeltaX():Float {
+        #if mobile
+        if(FlxG.touches.getFirst() == null) return 0;
+        var delta = FlxG.touches.getFirst().viewX - lastXPos;
+        lastXPos = FlxG.touches.getFirst().viewX;
+        return delta;
+        #else
+        return FlxG.mouse.deltaViewX;
+        #end
     }
 
     private function getDeltaY():Float {

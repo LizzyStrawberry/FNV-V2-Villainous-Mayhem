@@ -25,12 +25,6 @@ class MobileData {
 
 		readDirectory(Paths.getMobilePath('DPadModes'), dpadModes);
 		readDirectory(Paths.getMobilePath('ActionModes'), actionModes);
-		#if MODS_ALLOWED
-		for (folder in Paths.directoriesWithFile(Paths.getMobilePath(), '')) {
-			readDirectory(Path.join([folder, 'DPadModes']), dpadModes);
-			readDirectory(Path.join([folder, 'ActionModes']), actionModes);
-		}
-		#end
 
 		for (data in ExtraActions.createAll())
 			extraActions.set(data.getName(), data);
