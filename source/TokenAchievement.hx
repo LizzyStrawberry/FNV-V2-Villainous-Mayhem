@@ -79,6 +79,7 @@ class TokenAchievement extends MusicBeatState
 	var soundPlayed:Bool = false;
 	var bonusSoundPlayed:Bool = false;
 	var tweenPlayed:Bool = false;
+	var twn:FlxTween;
 	override function update(elapsed:Float)
 	{
 		new FlxTimer().start(2.5, function (tmr:FlxTimer) {
@@ -94,7 +95,7 @@ class TokenAchievement extends MusicBeatState
 				tokenIcon.scale.x = 0.975;
 				tokenIcon.scale.y = 0.975;
 
-				FlxTween.tween(currentTokens.scale, {x: 1, y: 1}, 0.6, {ease: FlxEase.cubeOut, type: PERSIST});
+				twn = FlxTween.tween(currentTokens.scale, {x: 1, y: 1}, 0.6, {ease: FlxEase.cubeOut, type: PERSIST});
 				FlxTween.tween(tokenIcon.scale, {x: 0.8, y: 0.8}, 0.6, {ease: FlxEase.cubeOut, type: PERSIST});
 				soundPlayed = true;
 			}
@@ -106,6 +107,9 @@ class TokenAchievement extends MusicBeatState
 					{
 						ClientPrefs.tokens += 3;
 						currentTokens.text = "Current Tokens: " + ClientPrefs.tokens;
+
+						if (twn != null)
+							twn.cancel();
 		
 						FlxG.sound.play(Paths.sound('bonusTokens'));
 						bonusTokens.alpha = 1;
@@ -142,11 +146,11 @@ class TokenAchievement extends MusicBeatState
 					ClientPrefs.saveSettings();
 					if (editors.MasterEditorMenu.debugCheck)
 					{
-						MusicBeatState.switchState(new editors.MasterEditorMenu());
+						MusicBeatState.switchState(new editors.MasterEditorMenu(), "stickers");
 						editors.MasterEditorMenu.debugCheck = false;
 					}
 					else
-						MusicBeatState.switchState(new ResultsScreenState());
+						MusicBeatState.switchState(new ResultsScreenState(), "stickers");
 				});
 			});
 		});
