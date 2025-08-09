@@ -1782,8 +1782,8 @@ class ShopState extends MusicBeatState
 									FlxG.sound.play(Paths.sound('shop/mouseClick'));
 									FlxG.sound.play(Paths.sound('confirmMenu'));
 						
-									var video:VideoHandler = new VideoHandler();
-									video.playVideo(Paths.video('Zeels Naked Pics'));
+									var video:VideoSprite = new VideoSprite(Paths.video('Zeels Naked Pics'), false, true, false);
+									video.play();
 									initializedVideo = true;
 									video.finishCallback = function()
 									{

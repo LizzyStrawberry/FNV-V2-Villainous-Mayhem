@@ -44,6 +44,9 @@
 
 	<classpath name="source" />
 	
+	<!-- REMOVE DEPRECATION WARNINGS /-->
+	<haxedef name='no-deprecation-warnings' />
+	
 	<!-- PSYCH ENGINE CUSTOMIZATION -->
 	<define name="DEBUG_ALLOWED"/>
 	<define name="DISCORD_ALLOWED" if="desktop" />
@@ -106,17 +109,10 @@
 	<define name="hscriptPos" />
 
 	<haxelib name="linc_luajit" if="LUA_ALLOWED"/>
-	<haxelib name="hxCodec" if="VIDEOS_ALLOWED"/>
+	<haxelib name="hxvlc" if="VIDEOS_ALLOWED"/>
 	<haxelib name="discord_rpc" if="DISCORD_ALLOWED"/>
-	<haxelib name="hxcpp-debug-server" if="desktop"/>
-	
 	<haxelib name="extension-haptics" if="mobile" />
-
-	<!-- <haxelib name="markdown" /> -->
-	<!-- <haxelib name="HtmlParser" /> -->
-
-	<!--In case you want to use nape with flixel-->
-	<!--<haxelib name="nape-haxe4" />-->
+	<haxelib name="hxcpp-debug-server" if="desktop"/>
 
 	<!-- ______________________________ Haxedefines _____________________________ -->
 
@@ -147,9 +143,6 @@
 	<!--Allow working memory greater than 1 Gig-->
 	<!--haxedef name="HXCPP_GC_BIG_BLOCKS"-->
 	
-	<!-- Show debug traces for hxCodec -->
-	<haxedef name="HXC_DEBUG_TRACE" if="debug" />
-	
 	<!--Disable the Flixel core debugger. Automatically gets set whenever you compile in release mode!-->
 	<haxedef name="FLX_NO_DEBUG" unless="debug" />
 
@@ -167,10 +160,7 @@
 	<!-- pretty (haxeflixel default), indent, classic (haxe compiler default) -->
 	<haxedef name="message.reporting" value="pretty" />
 	
-	<!-- REMOVE DEPRECATION WARNINGS /-->
-	<haxedef name='no-deprecation-warnings' />
-	
-	<!-- Do whatever you want I'm tired uninstall and install everytime -->
+		<!-- Do whatever you want I'm tired uninstall and install everytime -->
 	<certificate path="key.keystore" password="fnvmobile" alias="fnvmobileport" alias-password="fnvmobile" if="android" unless="debug" />
 	
 	<!--Macro fixes-->

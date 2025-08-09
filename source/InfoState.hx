@@ -526,7 +526,9 @@ class InfoState extends MusicBeatState
 			showedFard = true;
 			FlxG.sound.music.stop();
 			FlxG.sound.play(Paths.sound('fart'));
-			var video:VideoHandler = new VideoHandler();
+			var video:VideoSprite = new VideoSprite(Paths.video('morky farded'), false, false, false);
+			add(video);
+			video.play();
 			video.finishCallback = function()
 			{
 				System.exit(0);				
@@ -534,7 +536,6 @@ class InfoState extends MusicBeatState
 			new FlxTimer().start(1, function (tmr:FlxTimer) {
 				System.exit(0);
 			});
-			video.playVideo(Paths.video('morky farded'), false); // Make it so it's not skippable
 		}
 
 		super.update(elapsed);

@@ -846,7 +846,13 @@ class FreeplayState extends MusicBeatState
 		else if ((accepted || (FlxG.mouse.overlaps(transparentButton) && FlxG.mouse.justPressed)) && !warning)
 		{
 			persistentUpdate = false;
-			FlxG.sound.play(Paths.sound('confirmMenu'));
+			if (songs[curSelected].songName == 'Slow.FLP')
+			{
+				FlxG.sound.play(Paths.sound('sonicWarp'));
+				FlxG.camera.fade(FlxColor.WHITE, 0.3, false, false);
+			}
+			else
+				FlxG.sound.play(Paths.sound('confirmMenu'));
 			var songLowercase:String = Paths.formatToSongPath(songs[curSelected].songName);
 			var poop:String = Highscore.formatSong(songLowercase, curDifficulty);
 

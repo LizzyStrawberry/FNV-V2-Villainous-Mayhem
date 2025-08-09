@@ -5,7 +5,9 @@ import flixel.addons.transition.FlxTransitionableState;
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.ui.FlxBar;
 import lime.app.Application;
-import flixel.input.mouse.FlxMouseEventManager;
+import flixel.input.mouse.FlxMouseEvent;
+import hxvlc.flixel.FlxVideoSprite;
+import haxe.Int64Helper;
 
 class VideoPlayer extends MusicBeatState
 {
@@ -49,7 +51,7 @@ class VideoPlayer extends MusicBeatState
 
     var videoPlayerGroup:FlxGroup;
     var playButton:FlxClickableSprite;
-    var video:VideoSprite;
+    var video:FlxVideoSprite;
 
     // Video Player Assets
     var overlay:FlxSprite;
@@ -79,8 +81,6 @@ class VideoPlayer extends MusicBeatState
 
     var appText:FlxText;
     var emptyText:FlxText;
-
-    var mouseManager:FlxMouseEventManager;
 
     override public function create():Void {
         FlxG.mouse.visible = true;
@@ -158,11 +158,20 @@ class VideoPlayer extends MusicBeatState
         videoBG.screenCenter(XY);
         add(videoBG);
 
+        video = new FlxVideoSprite();
+        video.scale.set(0.75, 0.75);
+        video.updateHitbox();
+        video.antialiasing = ClientPrefs.globalAntialiasing;
+        video.bitmap.onEndReached.add(function (){
+            video.bitmap.time = video.bitmap.length;
+            paused = true;
+            playButton.isChanged = false;
+            setVideo(curVideo, false);
+        });
+
         // Group to sort out the video with the playButton and overlay
         videoPlayerGroup = new FlxGroup();
         add(videoPlayerGroup);
-
-        video = new VideoSprite(0, 0, 0.75, false);
         
         overlay = new FlxSprite().makeGraphic(960, 95, FlxColor.BLACK);
         overlay.screenCenter(XY);
@@ -179,7 +188,7 @@ class VideoPlayer extends MusicBeatState
         videoPlayerAssets.push(playButton);
         add(playButton);
 
-        progressBar = new FlxBar(playButton.x + 100, playButton.y + 50, LEFT_TO_RIGHT, 800, 10, this, 'progress', 0, video.getDuration() + 0.00001);
+        progressBar = new FlxBar(playButton.x + 100, playButton.y + 50, LEFT_TO_RIGHT, 800, 10, this, 'progress', 0, 0.00001);
         progressBar.createFilledBar(0xFF2b2b2b, 0xFFff0000);
         progressBar.alpha = 0;
         progressBar.origin.x = videoBG.origin.x;
@@ -194,7 +203,7 @@ class VideoPlayer extends MusicBeatState
 		add(closeButton);
         
         // Time text
-        timeText = new FlxText(progressBar.x, progressBar.y - 20, 100, "0:00 / 0:00");
+        timeText = new FlxText(progressBar.x, progressBar.y - 20, 120, "0:00 / 0:00");
         timeText.setFormat("VCR OSD Mono", 14, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, 0xFF000000);
         timeText.borderSize = 2;
         timeText.origin.x = videoBG.origin.x;
@@ -210,8 +219,7 @@ class VideoPlayer extends MusicBeatState
         videoPlayerGroup.add(timeText);
 
         // Mouse input for seeking
-        mouseManager = new FlxMouseEventManager();
-        mouseManager.add(progressBar, onBarClick);
+        FlxMouseEvent.add(progressBar, onBarClick, onBarClick, onBarClick, onBarClick);
 
         if (ClientPrefs.shaders)
         {
@@ -349,7 +357,6 @@ class VideoPlayer extends MusicBeatState
 
     var isUIVisible:Bool = false;
     var paused:Bool = true;
-    var progress:Float;
 
     var viewingVideo:Bool = false;
     var videoStarted:Bool = false;
@@ -363,10 +370,19 @@ class VideoPlayer extends MusicBeatState
         moveIcons();
         checkUIVisibility(elapsed);
 
-        // Get time for the video
-        progress = video.getTimeStamp();
-        progressBar.value = progress;
-        timeText.text = (viewingVideo && !transitioning) ? formatTime(video.getTimeStamp()) + " / " + formatTime(video.getDuration()) : "0:00 / 0:00";
+        // Get time for the video (Int64 to float using int64helper etc etc)
+        if (viewingVideo && video.bitmap != null) {
+            var curTimeInFloat = int64toMSFloat(video.bitmap.time);
+            var lengthInFloat = int64toMSFloat(video.bitmap.length);
+
+            if (lengthInFloat > 0 && progressBar.max != lengthInFloat) progressBar.setRange(0, lengthInFloat);
+            progressBar.value = curTimeInFloat;
+
+            timeText.text = formatTime(curTimeInFloat) + " / " + formatTime(lengthInFloat);
+        } else {
+            timeText.text = "00:00 / 00:00";
+            progressBar.value = 0;
+        }
 
         // Messing with Alphas
         progressBar.alpha = timeText.alpha = playButton.alpha; // Everything follows the playButton
@@ -386,10 +402,8 @@ class VideoPlayer extends MusicBeatState
                 FlxG.sound.play(Paths.sound('cancelMenu'));
                 if (viewingVideo)
                 {
-                    if (video.playing())
-                        video.dispose();
-                    video.destroy();
-                    videoPlayerGroup.remove(video, true); // Remove from group
+                    if (video.bitmap != null) video.stop();
+                    video.alpha = 0;
 
                     viewingVideo = playButton.isChanged = false;
 
@@ -532,32 +546,14 @@ class VideoPlayer extends MusicBeatState
         curVideo = vidToLoad;
         viewingVideo = transitioning = true;
 
-        FlxTween.tween(videoBG, {"scale.x": 1}, 0.25, {ease: FlxEase.circOut, onComplete: function (twn:FlxTween)
+        FlxTween.tween(videoBG, {"scale.x": 1}, 0.25, {ease: FlxEase.circOut, onComplete: function (_)
         {
-             // Video gets paused, applying new video
+            // Video gets paused, applying new video
             paused = true;
             videoStarted = transitioning = false;
 
-            if (video.playing()) // If video is playing, dispose it
-                video.dispose();
-            video.destroy(); // Destroy to make new videoSprite
-            videoPlayerGroup.remove(video, true); // Remove from group
-
-            video = new VideoSprite(0, 0, 0.75, false);
-            video.screenCenter(XY);
-            video.origin.x = videoBG.origin.x;
-            video.x -= 479; video.y -= 270;
-            video.antialiasing = ClientPrefs.globalAntialiasing;
-            video.finishCallback = function()
-            {
-                // When video is complete, pause it
-                paused = true;
-                playButton.isChanged = false;
-                setVideo(vidToLoad, false);
-            }
-
-            // Add the video to the right index part of the group
-            videoPlayerGroup.insert(videoPlayerGroup.members.indexOf(videoBG) + 1, video);
+            if (video.bitmap != null && video.bitmap.isPlaying) video.stop(); 
+            video.alpha = 0;
         }
         });
     }
@@ -569,51 +565,59 @@ class VideoPlayer extends MusicBeatState
         if (videoStarted) // If video is already playing
         {
             playButton.isChanged = paused;
-            if (paused)
-                video.pause();
-            else
-                video.resume();
+            if (paused) video.pause(); else video.resume();
         }
         else
         {
             videoStarted = true;
 
-            video.playVideo(Paths.video(videoPaths[curVideo][0]), false);
-            progressBar.setRange(0, video.getDuration() + 0.0001); // min cannot be equal to max bru
-            video.resume();
+            var vidPath:String = Paths.video(videoPaths[curVideo][0]);
+            video.load(vidPath, null);
+            video.play();
+            video.alpha = 1;
 
-            playButton.isChanged = false;
-            paused = false;
+            var lengthInFloat = int64toMSFloat(video.bitmap.length);
+            progressBar.setRange(0, Math.max(1, lengthInFloat));
+
+            trace("Playing video: " + vidPath);
+            playButton.isChanged = paused = false;
         }
     }   
 
     function onBarClick(sprite:FlxSprite):Void
     {
-        if (videoStarted)
+        if (!videoStarted) return;
+
+        if (FlxG.mouse.justReleased)
         {
+            var lengthInFloat = int64toMSFloat(video.bitmap.length);
+            if (lengthInFloat <= 0) return;
+
             // Get mouse position on bar
             var mouseXPos:Float = FlxG.mouse.x - progressBar.x;
             var progress:Float = mouseXPos / progressBar.width;
+            var newMsF = progress * lengthInFloat;
 
-            // Set timestamp and resume the video
-            video.setTimeStamp(Std.int(progress * video.getDuration()));
+            // Float -> Int64 (safe for long media)
+            video.bitmap.time = Int64Helper.fromFloat(newMsF);
 
-            if (paused)
-            {
-                playButton.isChanged = false;
-                paused = false;
-            }
+            trace("New Time: " + formatTime(newMsF) + " | " + video.bitmap.time);
         }
     }
 
-    private function formatTime(ms:Int):String {
-        var totalSeconds:Int = Math.floor(ms / 1000); // Convert total miliseconds to total seconds
-        var minutes:Int = Math.floor(totalSeconds / 60); // Convert to minutes
-        var secs:Int = Math.floor(totalSeconds % 60); // Convert to seconds
+    inline function int64toMSFloat(x:haxe.Int64):Float
+    {
+        // treat negatives (e.g. -1 before metadata) as 0 for UI
+        if (x < 0) return 0.;
+        // hi * 2^32 + unsigned(low)
+        return x.high * 4294967296.0 + (x.low >>> 0);
+    }
 
-        // Stringify
-        var stringifiedMins = Std.string(minutes);
-        var stringifiedSecs = Std.string(secs);
-        return stringifiedMins + ":" + ((secs < 10) ? "0" + stringifiedSecs : stringifiedSecs);
+    inline function formatTime(msF:Float):String {
+        var ms = Std.int(msF);
+        var s  = Std.int(ms / 1000);
+        var m  = Std.int(s / 60);
+        s %= 60;
+        return StringTools.lpad('' + m, '0', 2) + ":" + StringTools.lpad('' + s, '0', 2);
     }
 }
