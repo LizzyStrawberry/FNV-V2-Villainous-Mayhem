@@ -62,4 +62,8 @@ class MusicBeatSubstate extends FlxSubState
 	{
 		//do literally nothing dumbass
 	}
+
+	public static function getSubState():MusicBeatSubstate {
+		return cast(FlxG.state.subState, MusicBeatSubstate);
+	}
 }

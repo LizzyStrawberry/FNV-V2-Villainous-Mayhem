@@ -73,13 +73,14 @@ class CustomStickerTransition extends MusicBeatSubstate {
 
             stickersBackupVars[i] = [stickerPath, sticker.x, sticker.y, sticker.angle, sticker.scale.x];
 
-            stickerTween = FlxTween.tween(sticker, {alpha: 1, "scale.x": 1.3, "scale.y": 1.3}, 0.02, {startDelay: i * 0.02, ease: FlxEase.bounceInOut, onComplete: function(twn:FlxTween) {
+            stickerTween = FlxTween.tween(sticker, {alpha: 1, "scale.x": 1.4, "scale.y": 1.4}, 0.02, {startDelay: i * 0.012, ease: FlxEase.bounceInOut, onComplete: function(twn:FlxTween) {
+                FlxTween.tween(sticker, {"scale.x": 1.3, "scale.y": 1.3}, 0.02, {ease: FlxEase.cubeInOut, type: PERSIST});
                 FlxG.sound.play(Paths.sound('stickerSounds/keyClick' + FlxG.random.int(1, 8)));
                 stickersBackupVars[i][1] = sticker.x;
                 stickersBackupVars[i][2] = sticker.y;
                 if (i == numStickers - 1)
                 {
-                    new FlxTimer().start(0.14, function (tmr:FlxTimer) {
+                    new FlxTimer().start(0.24, function (tmr:FlxTimer) {
                         finishCallback();
                     });
                 }
@@ -116,7 +117,7 @@ class CustomStickerTransition extends MusicBeatSubstate {
     {
         //trace('removing stickers!!1!');
         for (i in 0...stickersBackup.length) {
-            stickerTween = FlxTween.tween(stickersBackup[i], {alpha: 0, "scale.x": stickersBackupVars[i][4], "scale.y": stickersBackupVars[i][4]}, 0.02, {startDelay: i * 0.02, ease: FlxEase.bounceInOut, onComplete: function(twn:FlxTween) {
+            stickerTween = FlxTween.tween(stickersBackup[i], {alpha: 0, "scale.x": stickersBackupVars[i][4], "scale.y": stickersBackupVars[i][4]}, 0.02, {startDelay: i * 0.012, ease: FlxEase.bounceInOut, onComplete: function(twn:FlxTween) {
                 FlxG.sound.play(Paths.sound('stickerSounds/keyClick' + FlxG.random.int(1, 8)));
                 if (stickers[i] != null && stickersBackup[i] != null)
                 {
