@@ -23,6 +23,7 @@ class PauseSubState extends MusicBeatSubstate
 	var skipTimeText:FlxText;
 	var skipTimeTracker:Alphabet;
 	var curTime:Float = Math.max(0, Conductor.songPosition);
+	var pauseCam:FlxCamera;
 
 	public static var levelInfo:FlxText;
 	var timerInfo:FlxText;
@@ -51,6 +52,13 @@ class PauseSubState extends MusicBeatSubstate
 	public function new(x:Float, y:Float)
 	{
 		super();
+
+		pauseCam = new FlxCamera();
+		pauseCam.bgColor = 0;
+		pauseCam.zoom = 1;
+		FlxG.cameras.add(pauseCam, false);
+		cameras = [pauseCam];
+
 		if(CoolUtil.difficulties.length < 2) menuItemsOG.remove('Change Difficulty'); //No need to change difficulty if there is only one!
 		if(PlayState.isInjectionMode || PlayState.isMayhemMode) menuItemsOG.remove('Restart Song');
 		if(ClientPrefs.getGameplaySetting('botplay', false)) menuItemsOG.remove('Quick Settings');
@@ -408,7 +416,6 @@ class PauseSubState extends MusicBeatSubstate
 			menuItemsOG.remove('Quick Settings');
 
 		regenMenu();
-		cameras = [FlxG.cameras.list[FlxG.cameras.list.length - 1]];
 	}
 
 	var holdTime:Float = 0;
@@ -679,22 +686,22 @@ class PauseSubState extends MusicBeatSubstate
 						if (PlayState.isIniquitousMode == true)
 						{
 							PlayState.isIniquitousMode = false;
-							MusicBeatState.switchState(new IniquitousMenuState());
+							MusicBeatState.switchState(new IniquitousMenuState(), "stickers");
 						}
 						else
-							MusicBeatState.switchState(new StoryMenuState());
+							MusicBeatState.switchState(new StoryMenuState(), "stickers");
 					}else if(PlayState.isInjectionMode) {
 						PlayState.isInjectionMode = false;
-						MusicBeatState.switchState(new MainMenuState());
+						MusicBeatState.switchState(new MainMenuState(), "stickers");
 					}else if(PlayState.isMayhemMode) {
 						PlayState.isMayhemMode = false;
 						PlayState.mayhemNRMode = "";
-						MusicBeatState.switchState(new MainMenuState());
+						MusicBeatState.switchState(new MainMenuState(), "stickers");
 					} else {
 						if (ClientPrefs.onCrossSection)
-							MusicBeatState.switchState(new CrossoverState()); //go to Crossover State
+							MusicBeatState.switchState(new CrossoverState(), "stickers"); //go to Crossover State
 						else
-							MusicBeatState.switchState(new FreeplayState()); // Back To Freeplay
+							MusicBeatState.switchState(new FreeplayState(), "stickers"); // Back To Freeplay
 					}
 					PlayState.cancelMusicFadeTween();
 					if (ClientPrefs.onCrossSection == false)
@@ -1448,6 +1455,7 @@ class PauseSubState extends MusicBeatSubstate
 	override function destroy()
 	{
 		pauseMusic.destroy();
+		FlxG.cameras.remove(pauseCam, true);
 
 		super.destroy();
 	}

@@ -192,7 +192,7 @@ class FreeplayState extends MusicBeatState
 		changeSelection();
 		changeDiff();
 		songSelector();
-		
+
 		super.create();
 	}
 
@@ -801,9 +801,9 @@ class FreeplayState extends MusicBeatState
 				else
 				{
 					if (songCategory.toLowerCase().startsWith("xtra"))
-						MusicBeatState.switchState(new FreeplayCategoryXtraState());
+						MusicBeatState.switchState(new FreeplayCategoryXtraState(), "stickers");
 					else
-						MusicBeatState.switchState(new FreeplayCategoryState());
+						MusicBeatState.switchState(new FreeplayCategoryState(), "stickers");
 				}
 			}
 		}
@@ -812,7 +812,7 @@ class FreeplayState extends MusicBeatState
 			persistentUpdate = false;
 			ClientPrefs.optionsFreeplay = true;
 			ClientPrefs.inMenu = true;
-			LoadingState.loadAndSwitchState(new options.OptionsState());
+			MusicBeatState.switchState(new options.OptionsState(), "stickers");
 		}
 		if(ctrl)
 		{
@@ -1050,6 +1050,7 @@ class FreeplayState extends MusicBeatState
 	{
 		if(playSound) FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
 
+		var lastSelected = curSelected;
 		curSelected += change;
 
 		if (curSelected < 0)
@@ -1117,7 +1118,8 @@ class FreeplayState extends MusicBeatState
 		if(newPos > -1)
 			curDifficulty = newPos;
 
-		songSelector();
+		if (curSelected != lastSelected)
+			songSelector();
 	}
 
 	private function positionHighscore() {

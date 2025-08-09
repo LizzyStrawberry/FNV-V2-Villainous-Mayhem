@@ -145,7 +145,6 @@ class MainMenuState extends MusicBeatState
 	var lerpMayhemedScore:Int = 0;
 	var intendedMayhemedScore:Int = 0;
 
-	var menuItem:FlxSprite;
 	var camFollow:FlxObject;
 	var camFollowPos:FlxObject;
 	var debugKeys:Array<FlxKey>;
@@ -330,68 +329,29 @@ class MainMenuState extends MusicBeatState
 		menuItems = new FlxTypedGroup<FlxSprite>();
 		add(menuItems);
 
-		var scale:Float = 0.8;
-		/*if(optionShit.length > 6) {
-			scale = 6 / optionShit.length;
-		}*/
-
-		menuSelectors = new FlxGroup();
-		add(menuSelectors);
-
-		var ui_tex = Paths.getSparrowAtlas('campaign_menu_UI_assets');
-		leftArrow = new FlxSprite(MobileUtil.fixX(30), 550);
-		leftArrow.frames = ui_tex;
-		leftArrow.animation.addByPrefix('idle', "arrow left");
-		leftArrow.animation.addByPrefix('press', "arrow push left");
-		leftArrow.animation.play('idle');
-		leftArrow.updateHitbox();
-		leftArrow.antialiasing = ClientPrefs.globalAntialiasing;
-		menuSelectors.add(leftArrow);
-		
-		rightArrow = new FlxSprite(leftArrow.x + 586, leftArrow.y);
-		rightArrow.frames = ui_tex;
-		rightArrow.animation.addByPrefix('idle', 'arrow right');
-		rightArrow.animation.addByPrefix('press', "arrow push right", 24, false);
-		rightArrow.animation.play('idle');
-		rightArrow.updateHitbox();
-		rightArrow.antialiasing = ClientPrefs.globalAntialiasing;
-		menuSelectors.add(rightArrow);
-
-		getRightArrowX = rightArrow.x;
-		getLeftArrowX = leftArrow.x;
-
 		for (i in 0...optionShit.length)
 		{
-			var offset:Float = 108 - (Math.max(optionShit.length, 4) - 4) * 80;
-			var menuItem:FlxSprite = new FlxSprite(leftArrow.x, (i * 140)  + offset);
-			menuItem.scale.x = scale;
-			menuItem.scale.y = scale;
-			menuItem.frames = Paths.getSparrowAtlas('mainmenu/menu_' + optionShit[i]);
-			menuItem.animation.addByPrefix('idle', optionShit[i] + " basic", 24);
-			menuItem.animation.addByPrefix('selected', optionShit[i] + " white0", 24);
-			if ((optionShit[i] == 'freeplay' && !ClientPrefs.mainWeekBeaten) || (optionShit[i] == 'gallery' && !ClientPrefs.galleryUnlocked) || (optionShit[i] == 'info' && !ClientPrefs.mainWeekBeaten))
-			{
-				menuItem.animation.addByPrefix('locked', optionShit[i] + " white locked", 24);
-				menuItem.animation.play('locked');
-			}
-			else
-				menuItem.animation.play('idle');
+			var isLocked:Bool = (optionShit[i] == 'freeplay' && !ClientPrefs.mainWeekBeaten) || (optionShit[i] == 'gallery' && !ClientPrefs.galleryUnlocked) || (optionShit[i] == 'info' && !ClientPrefs.mainWeekBeaten);
+			var imagePath:FlxGraphic = Paths.image('mainmenu/menu_' + optionShit[i] + ((isLocked) ? "Locked" : ""));
+			var menuItem:FlxSprite = new FlxSprite(0, 0).loadGraphic(imagePath);
 			menuItem.ID = i;
-			menuItem.screenCenter(Y);
-			menuItem.y = MobileUtil.fixY(510);
+			menuItem.screenCenter(XY);
+			menuItem.x -= 300;
+			menuItem.y = 520;
 			menuItems.add(menuItem);
 
 			var scr:Float = (optionShit.length - 4) * 0.135;
 			if(optionShit.length < 6) scr = 0;
 			menuItem.scrollFactor.set(0, scr);
 			menuItem.antialiasing = ClientPrefs.globalAntialiasing;
-			//menuItem.setGraphicSize(Std.int(menuItem.width * 0.58));
 			menuItem.updateHitbox();
 
 			if (curSelected != menuItem.ID)
 				menuItem.alpha = 0;
 			else
 				menuItem.alpha = 1;
+
+			FlxTween.tween(menuItem, {"scale.x": 1.05, "scale.y": 1.05}, 1.5, {ease: FlxEase.cubeInOut, type: PINGPONG});
 		}
 
 		var versionShit:FlxText = new FlxText(12, FlxG.height - 64, 0, "Friday Night Villainy v" + FNVVersion, 12);
@@ -1050,34 +1010,11 @@ class MainMenuState extends MusicBeatState
 			if ((controls.UI_LEFT_P || TouchUtil.pressAction(leftArrow)) && askedForInfo == false)
 			{
 				changeItem(-1);
-					
-				menuItems.forEach(function(spr:FlxSprite)
-				{
-					if (curSelected != spr.ID)
-					{
-						spr.alpha = 0;
-					} 
-					else
-					{
-						spr.alpha = 1;
-					}
-				});
 			}
 	
 			if ((controls.UI_RIGHT_P || TouchUtil.pressAction(rightArrow)) && askedForInfo == false)
 			{
 				changeItem(1);
-				menuItems.forEach(function(spr:FlxSprite)
-				{
-					if (curSelected != spr.ID)
-					{
-						spr.alpha = 0;
-					} 
-					else
-					{
-						spr.alpha = 1;
-					}
-					});
 			}
 
 			if (controls.BACK)
@@ -1087,7 +1024,7 @@ class MainMenuState extends MusicBeatState
 					MusicBeatState.switchState(new TitleState());
 			}
 
-			if ((controls.ACCEPT || TouchUtil.pressAction(menuItems.members[curSelected])) && askedForInfo == false && allowInteraction == true)
+			if ((controls.ACCEPT || TouchUtil.pressAction(menuItems.members[curSelected]))) && askedForInfo == false && allowInteraction == true)
 			{
 				if (optionShit[curSelected] == 'story_mode')
 				{
@@ -1137,15 +1074,7 @@ class MainMenuState extends MusicBeatState
 					menuItems.forEach(function(spr:FlxSprite)
 					{
 						if (curSelected != spr.ID)
-						{
-							FlxTween.tween(spr, {alpha: 0}, 0.4, {
-								ease: FlxEase.quadOut,
-								onComplete: function(twn:FlxTween)
-								{
-									spr.kill();
-								}
-							});
-						}
+							spr.kill();
 						else
 						{
 							FlxFlicker.flicker(spr, 1, 0.06, false, false, function(flick:FlxFlicker)
@@ -1816,7 +1745,6 @@ class MainMenuState extends MusicBeatState
 	
 	function changeItem(huh:Int = 0, ?playSound:Bool = true)
 	{
-		if (playSound) FlxG.sound.play(Paths.sound('scrollMenu'));
 		if (!storySelected && !inventoryOpened)
 		{
 			curSelected += huh;
@@ -1828,26 +1756,7 @@ class MainMenuState extends MusicBeatState
 	
 			menuItems.forEach(function(spr:FlxSprite)
 			{
-				spr.animation.play('idle');
-				spr.updateHitbox();
-	
-				if (spr.ID == curSelected)
-				{
-					if (optionShit[curSelected] == 'freeplay' && !ClientPrefs.mainWeekBeaten)
-						spr.animation.play('locked');
-					else if (optionShit[curSelected] == 'gallery' && !ClientPrefs.galleryUnlocked)
-						spr.animation.play('locked');
-					else if (optionShit[curSelected] == 'info' && !ClientPrefs.mainWeekBeaten)
-						spr.animation.play('locked');
-					else
-						spr.animation.play('selected');
-					var add:Float = 0;
-					if(menuItems.length > 4) {
-						add = menuItems.length * 8;
-					}
-					camFollow.setPosition(spr.getGraphicMidpoint().x, spr.getGraphicMidpoint().y - add);
-					spr.centerOffsets();
-				}
+				spr.alpha = (spr.ID == curSelected) ? 1 : 0;
 			});
 		}
 		else
@@ -1885,11 +1794,11 @@ class MainMenuState extends MusicBeatState
 				case 'iniquitous':
 					if (Achievements.isAchievementUnlocked('weekIniquitous_Beaten') && Achievements.isAchievementUnlocked('WeekMarcoIniquitous_Beaten')
 						&& Achievements.isAchievementUnlocked('WeekNunIniquitous_Beaten') && Achievements.isAchievementUnlocked('WeekKianaIniquitous_Beaten'))
-						storyText.text = "Do you dare oppose your <DR_>wrath?<DR_>";
+						storyText.text = "Do you dare oppose your <DR>wrath?<DR>";
 					else if (Achievements.isAchievementUnlocked('weekIniquitous_Beaten'))
-						storyText.text = "Do you dare oppose his <DR_>wrath?<DR_>";
+						storyText.text = "Do you dare oppose his <DR>wrath?<DR>";
 					else
-						storyText.text = "Defeat <DR_>ME<DR_> first.";
+						storyText.text = "Defeat <DR>ME<DR> first.";
 					storyText.color = 0xFFff0000;
 					storyText.y = 325;
 
@@ -1910,14 +1819,14 @@ class MainMenuState extends MusicBeatState
 							warnMayhem += 'Optimization Mode';
 						if (warnMayhem == '')
 						{
-							storyText.text = "Play through the Main Game\nin <GR>ONE attempt<GR>!!\n<P>Health<P> and <G>Score<G> gets saved\nalong the way!\nTry not to lose,\nor you <R_>lose your progress<R_>!";
+							storyText.text = "Play through the Main Game\nin <GR>ONE attempt<GR>!!\n<P>Health<P> and <G>Score<G> gets saved\nalong the way!\nTry not to lose,\nor you <R>lose your progress<R>!";
 							storyText.y = 265;
 
 							CustomFontFormats.addMarkers(storyText);
 						}
 						else
 						{
-							storyText.text = "You can't access this mode.\nPlease disable the following: <R_>\n" + warnMayhem + "<R_>";
+							storyText.text = "You can't access this mode.\nPlease disable the following: <R>\n" + warnMayhem + "<R>";
 							storyText.y = 310;
 
 							CustomFontFormats.addMarkers(storyText);
@@ -1956,7 +1865,7 @@ class MainMenuState extends MusicBeatState
 						}
 						else
 						{
-							storyText.text = "You can't access this mode.\nPlease disable the following: <R_>\n" + warnMayhem + "<R_>";
+							storyText.text = "You can't access this mode.\nPlease disable the following: <R>\n" + warnMayhem + "<R>";
 							storyText.y = 310;
 
 							CustomFontFormats.addMarkers(storyText);

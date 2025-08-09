@@ -37,6 +37,8 @@ class TitleState extends MusicBeatState
 	public static var volumeUpKeys:Array<FlxKey> = [FlxKey.NUMPADPLUS, FlxKey.PLUS];
 
 	public static var initialized:Bool = false;
+	public static var isVideoSet:Bool = false;
+	public static var isVideoDone:Bool = false;
 
 	var blackScreen:FlxSprite;
 	var credGroup:FlxGroup;
@@ -49,9 +51,6 @@ class TitleState extends MusicBeatState
 	var titleTextAlphas:Array<Float> = [1, .64];
 
 	var curWacky:Array<String> = [];
-
-	var isVideoSet:Bool = false;
-	var isVideoDone:Bool = false;
 
 	var wackyImage:FlxSprite;
 
@@ -166,7 +165,7 @@ class TitleState extends MusicBeatState
 			#if VIDEOS_ALLOWED
 			new FlxTimer().start(1, function(_)
 			{
-				startVideo();
+				if (isVideoDone) startIntro(); else startVideo();
 			});
 			#else
 			isVideoSet = isVideoDone = true;
