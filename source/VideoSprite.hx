@@ -112,7 +112,7 @@ class VideoSprite extends FlxSpriteGroup {
 	public function skipControl(elapsed:Float):Void {
 		if (!canSkip) return;
 
-		if (FlxG.keys.pressed.ENTER || FlxG.keys.pressed.SPACE) {
+		if (FlxG.keys.pressed.ENTER || FlxG.keys.pressed.SPACE #if mobile || TouchUtil.touch.pressed #end) {
 			holdingTime = Math.max(0, Math.min(_timeToSkip, holdingTime + elapsed));
 		} else if (holdingTime > 0) {
 			holdingTime = Math.max(0, FlxMath.lerp(holdingTime, -0.1, FlxMath.bound(elapsed * 3, 0, 1)));
