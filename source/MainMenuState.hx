@@ -502,6 +502,7 @@ class MainMenuState extends MusicBeatState
 		difficultySelectors = new FlxGroup();
 		add(difficultySelectors);
 
+		var ui_tex = Paths.getSparrowAtlas('campaign_menu_UI_assets');
 		leftDiffArrow = new FlxSprite(MobileUtil.fixX(850), 410);
 		leftDiffArrow.frames = ui_tex;
 		leftDiffArrow.animation.addByPrefix('idle', "arrow left");
@@ -1024,7 +1025,7 @@ class MainMenuState extends MusicBeatState
 					MusicBeatState.switchState(new TitleState());
 			}
 
-			if ((controls.ACCEPT || TouchUtil.pressAction(menuItems.members[curSelected]))) && askedForInfo == false && allowInteraction == true)
+			if ((controls.ACCEPT || TouchUtil.pressAction(menuItems.members[curSelected])) && askedForInfo == false && allowInteraction == true)
 			{
 				if (optionShit[curSelected] == 'story_mode')
 				{
