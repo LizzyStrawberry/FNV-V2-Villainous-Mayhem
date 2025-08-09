@@ -6,8 +6,7 @@ import Discord.DiscordClient;
 #end
 
 #if VIDEOS_ALLOWED
-import hxcodec.VideoHandler;
-import hxcodec.VideoSprite;
+import VideoSprite;
 #end
 
 // Shaders

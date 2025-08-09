@@ -147,8 +147,8 @@ function onUpdate()
 	end
 		
 	if curStep == 2372 and not videoPlayed then
-		callScript('scripts/VideoSpriteHandler', 'makeVideoSprite', {'goneCrazy', 'Shucks Cutscene', 0, 0, 'camHUD', 0})
-		setProperty('goneCrazy.alpha', 0)
+		startVideo("Shucks Cutscene noVol", false, true, false, true) -- Umskippable, for Mid Song, not loopable, play on load
+		setProperty('videoCutscene.alpha', 0)
 		videoPlayed = true
 	end
 	if curStep == 2380 then
@@ -162,7 +162,7 @@ function onUpdate()
 		for i = 0, 7 do
 			noteTweenAlpha('fuckYouNote'..i, i, 0, 0.8 / playbackRate, 'circOut')
 		end
-		doTweenAlpha('goneCrazy', 'goneCrazy', 1, 0.8 / playbackRate, 'cubeInOut')
+		doTweenAlpha('goneCrazy', 'videoCutscene', 1, 0.8 / playbackRate, 'cubeInOut')
 	end
 	if curStep == 2640 then
 		for i = 0, 7 do
@@ -174,7 +174,7 @@ function onUpdate()
 	end
 	if curStep == 2656 then
 		cameraFlash('game', 'FFFFFF', 1.3 / playbackRate, false)
-		setProperty('goneCrazy.alpha', 0)
+		setProperty('videoCutscene.alpha', 0)
 	end
 	
 	--Lyrics!

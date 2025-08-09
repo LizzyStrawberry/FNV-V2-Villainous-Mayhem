@@ -329,9 +329,7 @@ class DialogueBoxPsych extends FlxSpriteGroup
 			FlxTween.tween(skipText, {alpha: 1}, 0.7, {ease: FlxEase.cubeOut, type: PERSIST});
 
 			if (beatriceShit != null && curDialogue.expression != 'fadeaway')
-			{
 				beatriceShit.percent = 100;
-			}
 
 			if (curDialogue.boxVisible == "Yes")
 				box.visible = true;
@@ -355,7 +353,8 @@ class DialogueBoxPsych extends FlxSpriteGroup
 				FlxG.sound.play(Paths.sound(closeSound), closeVolume);
 			}
 
-			if(PlayerSettings.player1.controls.ACCEPT) {
+			var videoPlaying:Bool = PlayState.instance.videoCutscene != null && PlayState.instance.videoCutscene.videoSprite.bitmap.isPlaying;
+			if(PlayerSettings.player1.controls.ACCEPT && !videoPlaying) {
 				if(!daText.finishedText) {
 					arrowThingy.alpha = 1;
 					daText.finishText();

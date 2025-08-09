@@ -122,7 +122,7 @@ class GameOverSubstate extends MusicBeatSubstate
 
 		camFollow = new FlxPoint(boyfriend.getGraphicMidpoint().x, boyfriend.getGraphicMidpoint().y);
 
-		FlxG.sound.play(Paths.sound(deathSoundName));
+		if (deathSoundName != null && deathSoundName != "") FlxG.sound.play(Paths.sound(deathSoundName));
 		Conductor.changeBPM(100);
 		// FlxG.camera.followLerp = 1;
 		// FlxG.camera.focusOn(FlxPoint.get(FlxG.width / 2, FlxG.height / 2));
@@ -157,78 +157,65 @@ class GameOverSubstate extends MusicBeatSubstate
 
 		if (controls.ACCEPT)
 		{
-			if (initializedVideo || PlayState.isInjectionMode || PlayState.isMayhemMode)
-			{
-				//do nothing
-			}
-			else if (PlayState.SONG.stage == 'debug')
-				System.exit(0);
-			else
+			if (!(initializedVideo || PlayState.isInjectionMode || PlayState.isMayhemMode))
 				endBullshit();
 		}
 
 		if (controls.BACK)
 		{
-			if (PlayState.SONG.stage == "DV's BG" && !initializedVideo)
+			if (!(initializedVideo || PlayState.isInjectionMode || PlayState.isMayhemMode))
 			{
-				if (PlayState.SONG.player1 == "cassettteGirl") // Casette Girl Death
-					createDeathVideo("DVCrash", false, true);
-				else
-					createDeathVideo("DVCrashPico", false, true);
-			}
-			else if (initializedVideo || PlayState.isInjectionMode || PlayState.isMayhemMode)
-			{
-				//do nothing, imma do this to prevent people from going back to the menu on Songs
-			}
-			else
-			{
-				FlxG.sound.music.stop();
-				PlayState.deathCounter = 0;
-				PlayState.seenCutscene = false;
-				PlayState.chartingMode = false;
-				PlayState.checkForPowerUp = false;
-				
-				WeekData.loadTheFirstEnabledMod();
-
-				ClientPrefs.lowQuality = false;
-				if (PlayState.isStoryMode){
-					ClientPrefs.ghostTapping = true;
-					
-					//Reset the crash detector to 0, since it means you've beaten the week and it did not crash
-					ClientPrefs.storyModeCrashMeasure = '';
-					ClientPrefs.storyModeCrashWeek = -1;
-					ClientPrefs.storyModeCrashWeekName = '';
-					ClientPrefs.storyModeCrashScore = 0;
-					ClientPrefs.storyModeCrashMisses = 0;
-					ClientPrefs.storyModeCrashDifficultyNum = -1;
-					ClientPrefs.storyModeCrashDifficulty = '';
-					ClientPrefs.saveSettings();
-
-					if (PlayState.isIniquitousMode)
-						MusicBeatState.switchState(new IniquitousMenuState());
+				if (PlayState.SONG.stage == "DV's BG")
+				{
+					if (PlayState.SONG.player1 == "cassettteGirl") // Casette Girl Death
+						createDeathVideo("DVCrash", false, true);
 					else
-						MusicBeatState.switchState(new StoryMenuState());
-				}else if(PlayState.isInjectionMode) {
-					PlayState.isInjectionMode = false;
-					MusicBeatState.switchState(new MainMenuState());
-				}else if(PlayState.isMayhemMode) {
-					PlayState.isMayhemMode = false;
-					MusicBeatState.switchState(new MainMenuState());
-				} else {
-					if (ClientPrefs.onCrossSection)
-						MusicBeatState.switchState(new CrossoverState()); //go to Crossover State
-					else
-						MusicBeatState.switchState(new FreeplayState()); // Back To Freeplay
+						createDeathVideo("DVCrashPico", false, true);
 				}
-	
-				if (ClientPrefs.iniquitousWeekUnlocked == true && ClientPrefs.iniquitousWeekBeaten == false)
-					FlxG.sound.playMusic(Paths.music('malumIctum'));
-				else if (FlxG.random.int(1, 10) == 2)
-					FlxG.sound.playMusic(Paths.music('AJDidThat'));
 				else
-					FlxG.sound.playMusic(Paths.music('freakyMenu'));
-				PlayState.instance.callOnLuas('onGameOverConfirm', [false]);
-			}	
+				{
+					if (FlxG.sound.music != null)
+						FlxG.sound.music.stop();
+
+					PlayState.deathCounter = 0;
+					PlayState.seenCutscene = false;
+					PlayState.chartingMode = false;
+					PlayState.checkForPowerUp = false;
+					
+					WeekData.loadTheFirstEnabledMod();
+
+					ClientPrefs.lowQuality = false;
+					if (PlayState.isStoryMode){
+						ClientPrefs.ghostTapping = true;
+						
+						ClientPrefs.resetStoryModeProgress(true);
+
+						if (PlayState.isIniquitousMode)
+							MusicBeatState.switchState(new IniquitousMenuState());
+						else
+							MusicBeatState.switchState(new StoryMenuState());
+					}else if(PlayState.isInjectionMode) {
+						PlayState.isInjectionMode = false;
+						MusicBeatState.switchState(new MainMenuState());
+					}else if(PlayState.isMayhemMode) {
+						PlayState.isMayhemMode = false;
+						MusicBeatState.switchState(new MainMenuState());
+					} else {
+						if (ClientPrefs.onCrossSection)
+							MusicBeatState.switchState(new CrossoverState()); //go to Crossover State
+						else
+							MusicBeatState.switchState(new FreeplayState()); // Back To Freeplay
+					}
+		
+					if (ClientPrefs.iniquitousWeekUnlocked && !ClientPrefs.iniquitousWeekBeaten)
+						FlxG.sound.playMusic(Paths.music('malumIctum'));
+					else if (FlxG.random.int(1, 10) == 2)
+						FlxG.sound.playMusic(Paths.music('AJDidThat'));
+					else
+						FlxG.sound.playMusic(Paths.music('freakyMenu'));
+					PlayState.instance.callOnLuas('onGameOverConfirm', [false]);
+				}	
+			}
 		}
 
 		if (boyfriend.animation.curAnim != null && boyfriend.animation.curAnim.name == 'firstDeath')
@@ -264,7 +251,7 @@ class GameOverSubstate extends MusicBeatSubstate
 	var endingDur:Float = 0.7;
 	function coolStartDeath(?volume:Float = 1):Void
 	{
-		FlxG.sound.playMusic(Paths.music(loopSoundName), volume);
+		if (loopSoundName != null && loopSoundName != "") FlxG.sound.playMusic(Paths.music(loopSoundName), volume);
 	}
 
 	function endBullshit():Void
@@ -282,7 +269,7 @@ class GameOverSubstate extends MusicBeatSubstate
 			else
 			{
 				FlxG.sound.music.stop();
-				FlxG.sound.play(Paths.music(endSoundName));
+				if (endSoundName != null && endSoundName != "") FlxG.sound.play(Paths.music(endSoundName));
 			}
 
 			if (Paths.formatToSongPath(PlayState.SONG.song) == 'tactical-mishap')
@@ -303,6 +290,7 @@ class GameOverSubstate extends MusicBeatSubstate
 
 	function createDeathVideo(videoPath:String = '', canSkip:Bool = true, crashGame:Bool = false)
 	{
+		videoPath = Paths.video(videoPath);
 		initializedVideo = true;
 	
 		boyfriend.visible = false;
@@ -310,9 +298,7 @@ class GameOverSubstate extends MusicBeatSubstate
 		if (FlxG.sound.music != null)
 			FlxG.sound.music.stop();
 
-		var video:VideoHandler = new VideoHandler();
-		video.playVideo(Paths.video(videoPath), canSkip);
-		video.finishCallback = function()
+		function onVideoEnd()
 		{
 			if (!ClientPrefs.allowPCChanges && Wallpaper.oldWallpaper != null)
 				CppAPI.setWallpaper("old");
@@ -321,7 +307,13 @@ class GameOverSubstate extends MusicBeatSubstate
 				System.exit(0);
 			else if (!PlayState.isMayhemMode || !PlayState.isInjectionMode)
 				MusicBeatState.resetState();
-		};
+		}
+
+		var video:VideoSprite = new VideoSprite(videoPath, false, canSkip, false);
+		video.finishCallback = onVideoEnd;
+		video.onSkip = onVideoEnd;
+		add(video);
+		video.play();
 	}
 
 	function checkForMechanics()
@@ -344,7 +336,7 @@ class GameOverSubstate extends MusicBeatSubstate
 				}
 
 			case "villainy":
-				if (PlayState.storyDifficulty == 0 || (PlayState.storyDifficulty == 1 && PlayState.isStoryMode == true)) //On Freeplay: 0, on Story Mode: 1
+				if (PlayState.storyDifficulty == 0 || (PlayState.storyDifficulty == 1 && PlayState.isStoryMode)) //On Freeplay: 0, on Story Mode: 1
 				{
 					if (ClientPrefs.mechanics == false)
 					{
