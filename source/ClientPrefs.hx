@@ -33,7 +33,7 @@ class ClientPrefs {
 	public static var lowQuality:Bool = false;
 
 	public static var shaders:Bool = true;
-	public static var cacheOnGPU:Bool = #if !switch false #else true #end;
+	public static var cacheOnGPU:Bool = false;
 	public static var gore:Bool = true;
 	public static var optimizationMode:Bool = false;
 	public static var comboPosition:String = 'Hud';
@@ -45,7 +45,7 @@ class ClientPrefs {
 	public static var noteSplashMode:String = 'Inwards';
 	public static var timeBarFlash:String = 'All Enabled';
 	public static var performanceWarning:Bool = true;
-	public static var allowPCChanges:Bool = true;
+	public static var allowPCChanges:Bool = false;
 
 	public static var mainWeekBeaten:Bool = false;
 	public static var gotWinMessage:Bool = false;

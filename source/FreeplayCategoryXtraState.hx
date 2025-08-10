@@ -31,9 +31,8 @@ class FreeplayCategoryXtraState extends MusicBeatState
 
         bgGradient = new FlxSprite(0, 0).loadGraphic(Paths.image('pauseGradient/gradient_Null'));
         bgGradient.color = 0xFF00a800;
-        bgGradient.x = 100;
-		bgGradient.scale.x = 1.3;
-		bgGradient.scale.y = 1.1;
+		bgGradient.setGraphicSize(FlxG.width, FlxG.height);
+        bgGradient.screenCenter(X);
 		bgGradient.alpha = 0;
 		bgGradient.scrollFactor.set();
 		add(bgGradient);
@@ -65,6 +64,10 @@ class FreeplayCategoryXtraState extends MusicBeatState
         xtraBonus.updateHitbox();
 		add(xtraBonus);
 
+        xtraShop.x = MobileUtil.fixX(xtraShop.x);
+        xtraCrossover.x = MobileUtil.fixX(xtraCrossover.x);
+        xtraBonus.x = MobileUtil.fixX(xtraBonus.x);
+
         textBG = new FlxSprite(0, FlxG.height - 38).makeGraphic(FlxG.width, 46, 0xFF000000);
 		textBG.alpha = 0.6;
 		add(textBG);
@@ -83,6 +86,7 @@ class FreeplayCategoryXtraState extends MusicBeatState
         borders = new FlxSprite(0, 0).loadGraphic(Paths.image('promotion/Borders'));
 		borders.antialiasing = ClientPrefs.globalAntialiasing;
 		add(borders);
+        borders.setGraphicSize(FlxG.width, FlxG.height);
 
         changeItem();
 

@@ -16,13 +16,6 @@ class MiscellaneousSubState extends BaseOptionsMenu
 		title = 'Miscellaneous Settings';
 		rpcTitle = 'Miscellaneous Menu'; //for Discord Rich Presence
 
-		var option:Option = new Option('PC Changes Permanance', //Name
-			'If checked, any change that occurs, such as Background changes and such, will stay, even if the mod closes.', //Description
-			'allowPCChanges', //Save data variable name
-			'bool', //Variable type
-			true); //Default value
-		addOption(option);
-
 		var option:Option = new Option('Timer Color Switch:', //Name
 			'The Time Bar will switch colors according to the note colors.\nHow would you like this to work?', //Description
 			'timeBarFlash',

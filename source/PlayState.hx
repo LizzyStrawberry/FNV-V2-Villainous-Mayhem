@@ -472,6 +472,10 @@ class PlayState extends MusicBeatState
 			detailsText = "Mayhem Mode";
 		else
 			detailsText = "Freeplay";
+			
+		// String for when the game is paused
+		detailsPausedText = "Paused - " + detailsText;
+		#end
 
 		//For Injection Mode
 		if (isInjectionMode)
@@ -485,10 +489,6 @@ class PlayState extends MusicBeatState
 			health = mayhemHealth;
 			healthCheck = mayhemHealth;
 		}
-			
-		// String for when the game is paused
-		detailsPausedText = "Paused - " + detailsText;
-		#end
 
 		GameOverSubstate.resetVariables();
 		var songName:String = Paths.formatToSongPath(SONG.song);
@@ -767,7 +767,6 @@ class PlayState extends MusicBeatState
 
 		#if mobile
 		addTouchPad("NONE", "PAUSE");
-		touchPad.visible = touchPad.active = false;
 		addTouchPadCamera();
 		#end
 		addHitbox();
@@ -1092,7 +1091,7 @@ class PlayState extends MusicBeatState
 		#end
 	}
 
-	public function initLuaShader(name:String, ?glslVersion:Int = 120)
+	public function initLuaShader(name:String)
 	{
 		if(!ClientPrefs.shaders) return false;
 
@@ -1169,6 +1168,13 @@ class PlayState extends MusicBeatState
 			if(defaultCountDownOne != null) defaultCountDownOne.pitch = value;
 			if(defaultCountDownTwo != null) defaultCountDownTwo.pitch = value;
 			if(defaultCountDownThree != null) defaultCountDownThree.pitch = value;
+
+			var ratio:Float = playbackRate / value; //funny word huh
+			if(ratio != 1)
+			{
+				for (note in notes.members) note.resizeByRatio(ratio);
+				for (note in unspawnNotes) note.resizeByRatio(ratio);
+			}
 		}
 		playbackRate = value;
 		playbackRateFreeplay = (value != 1) ? true : false;
@@ -1180,7 +1186,7 @@ class PlayState extends MusicBeatState
 
 		setOnLuas('playbackRate', playbackRate);
 		#else
-		playbackRate = Note.noteAnimSpeed = 1.0; // ensuring -Crow
+		playbackRate = 1.0; // ensuring -Crow
 		#end
 		return playbackRate;
 	}

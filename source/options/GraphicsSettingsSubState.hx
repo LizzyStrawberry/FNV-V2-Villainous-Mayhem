@@ -22,13 +22,6 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 			'bool', //Variable type
 			true); //Default value
 		addOption(option);
-
-		var option:Option = new Option('GPU Caching', //Name
-			"If checked, allows the GPU to be used for caching textures, decreasing RAM usage.\nDon't turn this on if you have a shitty GPU.", //Description
-			'cacheOnGPU',
-			'bool',
-			true);
-		addOption(option);
 		
 		var option:Option = new Option('Anti-Aliasing',
 			'If unchecked, disables anti-aliasing, increases performance\nat the cost of sharper visuals.',

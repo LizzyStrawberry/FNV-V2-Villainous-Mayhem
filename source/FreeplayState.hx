@@ -63,8 +63,6 @@ class FreeplayState extends MusicBeatState
 		PlayState.isStoryMode = false;
 		WeekData.reloadWeekFiles(false);
 
-		FlxG.mouse.visible = true;
-
 		#if desktop
 		// Updating Discord Rich Presence
 		DiscordClient.changePresence('In $songCategory Freeplay Mode', null);
@@ -86,6 +84,7 @@ class FreeplayState extends MusicBeatState
 		curDifficulty = Math.round(Math.max(0, CoolUtil.defaultDifficulties.indexOf(lastDifficultyName)));
 
 		newBG = new FlxSprite().loadGraphic(Paths.image('freeplayStuff/Background'));
+		newBG.setGraphicSize(FlxG.width, FlxG.height);
 		newBG.antialiasing = ClientPrefs.globalAntialiasing;
 		add(newBG);
 		newBG.screenCenter();
@@ -113,7 +112,7 @@ class FreeplayState extends MusicBeatState
 		transparentButton.alpha = 0;
 		add(transparentButton);
 
-		selectionText = new Alphabet(640, 560, "Unknown Song", true);
+		selectionText = new Alphabet(MobileUtil.fixX(640), MobileUtil.fixY(560), "Unknown Song", true);
 		selectionText.setAlignmentFromString('center');
 		add(selectionText);
 
@@ -177,28 +176,29 @@ class FreeplayState extends MusicBeatState
 		textBG.alpha = 0.6;
 		add(textBG);
 	
-		#if PRELOAD_ALL
-		var leText:String = "Press SPACE to listen to the Song / Press TAB to go to Options / Press RESET to Reset your Score and Accuracy.";
+		var leText:String = "Press S to listen to the Song / Press E to go to Options / Press C to open Gameplay Changers / Press R to Reset your Score and Accuracy.";
 		var size:Int = 16;
-		#else
-		var leText:String = "Press CTRL to open the Gameplay Changers Menu / Press RESET to Reset your Score and Accuracy.";
-		var size:Int = 18;
-		#end
 		var text:FlxText = new FlxText(textBG.x, textBG.y + 4, FlxG.width, leText, size);
 		text.setFormat(Paths.font("vcr.ttf"), size, FlxColor.WHITE, RIGHT);
 		text.scrollFactor.set();
 		add(text);
 
-		changeSelection();
+		changeSelection(0, false, false);
 		changeDiff();
 		songSelector();
 
 		super.create();
+
+		addTouchPad("NONE", "FREEPLAY");
 	}
 
 	override function closeSubState() {
-		changeSelection(0, false);
+		changeSelection(0, false, false);
 		persistentUpdate = true;
+
+		removeTouchPad();
+		addTouchPad('NONE', 'FREEPLAY');
+
 		super.closeSubState();
 	}
 
@@ -424,7 +424,7 @@ class FreeplayState extends MusicBeatState
 				unlockedSelection.frames = Paths.getSparrowAtlas('freeplayStuff/selection_GetVillaind');
 				unlockedSelection.animation.addByPrefix('idle', "mork mork0", 24);
 				unlockedSelection.scale.set(0.68, 0.657);
-				unlockedSelection.x = 115;
+				unlockedSelection.x = MobileUtil.fixX(115);
 				unlockedSelection.y -= 107;
 				unlockedSelection.animation.play('idle');
 
@@ -649,7 +649,7 @@ class FreeplayState extends MusicBeatState
 				unlockedSelection.frames = Paths.getSparrowAtlas('freeplayStuff/selection_GetVillaind');
 				unlockedSelection.animation.addByPrefix('idle', "mork mork0", 24);
 				unlockedSelection.scale.set(0.68, 0.657);
-				unlockedSelection.x = 115;
+				unlockedSelection.x = MobileUtil.fixX(115);
 				unlockedSelection.y -= 107;
 				unlockedSelection.animation.play('idle');
 
@@ -721,9 +721,9 @@ class FreeplayState extends MusicBeatState
 
 		var upP = controls.UI_UP_P;
 		var downP = controls.UI_DOWN_P;
-		var accepted = controls.ACCEPT;
-		var space = FlxG.keys.justPressed.SPACE;
-		var ctrl = FlxG.keys.justPressed.CONTROL;
+		var accepted = controls.ACCEPT || TouchUtil.pressAction(unlockedSelection);
+		var space = FlxG.keys.justPressed.SPACE || touchPad.buttonS.justPressed;
+		var ctrl = FlxG.keys.justPressed.CONTROL || touchPad.buttonC.justPressed;
 
 		var shiftMult:Int = 1;
 		if(FlxG.keys.pressed.SHIFT) shiftMult = 3;
@@ -732,13 +732,13 @@ class FreeplayState extends MusicBeatState
 		{
 			if(songs.length > 1)
 			{
-				if (upP || (FlxG.mouse.overlaps(arrowSelectorLeft) && FlxG.mouse.justPressed))
+				if (upP || TouchUtil.pressAction(arrowSelectorLeft))
 				{
 					changeSelection(-shiftMult);
 					changeDiff();
 					holdTime = 0;
 				}
-				if (downP || (FlxG.mouse.overlaps(arrowSelectorRight) && FlxG.mouse.justPressed))
+				if (downP || TouchUtil.pressAction(arrowSelectorRight))
 				{
 					changeSelection(shiftMult);
 					changeDiff();
@@ -759,24 +759,24 @@ class FreeplayState extends MusicBeatState
 				}
 			}
 
-			if (FlxG.mouse.overlaps(arrowSelectorLeft))
+			if (TouchUtil.overlaps(arrowSelectorLeft))
 				FlxTween.tween(arrowSelectorLeft, {x: getLeftArrowX - 2}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
 			else
 				FlxTween.tween(arrowSelectorLeft, {x: getLeftArrowX}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
 	
-			if (FlxG.mouse.overlaps(arrowSelectorRight))
+			if (TouchUtil.overlaps(arrowSelectorRight))
 				FlxTween.tween(arrowSelectorRight, {x: getRightArrowX + 2}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
 			else
 				FlxTween.tween(arrowSelectorRight, {x: getRightArrowX}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
 	
-			if (controls.UI_LEFT_P)
+			if (controls.UI_LEFT_P || SwipeUtil.swipeLeft)
 				changeDiff(-1);
-			else if (controls.UI_RIGHT_P)
+			else if (controls.UI_RIGHT_P || SwipeUtil.swipeRight)
 				changeDiff(1);
 			else if (upP || downP) changeDiff();
 		}
 
-		if (controls.BACK || FlxG.mouse.justPressedRight)
+		if (controls.BACK  #if mobile || FlxG.android.justReleased.BACK #end)
 		{
 			if (warning)
 			{
@@ -807,7 +807,7 @@ class FreeplayState extends MusicBeatState
 				}
 			}
 		}
-		if(FlxG.keys.justPressed.TAB)	
+		if(FlxG.keys.justPressed.TAB || touchPad.buttonE.justPressed)	
 		{
 			persistentUpdate = false;
 			ClientPrefs.optionsFreeplay = true;
@@ -926,7 +926,7 @@ class FreeplayState extends MusicBeatState
 				destroyFreeplayVocals();
 			}
 		}
-		else if(controls.RESET)
+		else if(controls.RESET || touchPad.buttonR.justPressed)
 		{
 			persistentUpdate = false;
 			openSubState(new ResetScoreSubState(songs[curSelected].songName, curDifficulty));
@@ -1046,8 +1046,9 @@ class FreeplayState extends MusicBeatState
 		positionHighscore();
 	}
 
-	function changeSelection(change:Int = 0, playSound:Bool = true)
+	function changeSelection(change:Int = 0, playSound:Bool = true, ?allowHaptics:Bool = true)
 	{
+		if (ClientPrefs.haptics && allowHaptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
 		if(playSound) FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
 
 		var lastSelected = curSelected;

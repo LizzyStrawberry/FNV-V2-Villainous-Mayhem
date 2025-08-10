@@ -329,6 +329,31 @@ class MainMenuState extends MusicBeatState
 		menuItems = new FlxTypedGroup<FlxSprite>();
 		add(menuItems);
 
+		menuSelectors = new FlxGroup();
+		add(menuSelectors);
+
+		var ui_tex = Paths.getSparrowAtlas('campaign_menu_UI_assets');
+		leftArrow = new FlxSprite(MobileUtil.fixX(30), 550);
+		leftArrow.frames = ui_tex;
+		leftArrow.animation.addByPrefix('idle', "arrow left");
+		leftArrow.animation.addByPrefix('press', "arrow push left");
+		leftArrow.animation.play('idle');
+		leftArrow.updateHitbox();
+		leftArrow.antialiasing = ClientPrefs.globalAntialiasing;
+		menuSelectors.add(leftArrow);
+		
+		rightArrow = new FlxSprite(leftArrow.x + 586, leftArrow.y);
+		rightArrow.frames = ui_tex;
+		rightArrow.animation.addByPrefix('idle', 'arrow right');
+		rightArrow.animation.addByPrefix('press', "arrow push right", 24, false);
+		rightArrow.animation.play('idle');
+		rightArrow.updateHitbox();
+		rightArrow.antialiasing = ClientPrefs.globalAntialiasing;
+		menuSelectors.add(rightArrow);
+
+		getRightArrowX = rightArrow.x;
+		getLeftArrowX = leftArrow.x;
+
 		for (i in 0...optionShit.length)
 		{
 			var isLocked:Bool = (optionShit[i] == 'freeplay' && !ClientPrefs.mainWeekBeaten) || (optionShit[i] == 'gallery' && !ClientPrefs.galleryUnlocked) || (optionShit[i] == 'info' && !ClientPrefs.mainWeekBeaten);
@@ -502,8 +527,7 @@ class MainMenuState extends MusicBeatState
 		difficultySelectors = new FlxGroup();
 		add(difficultySelectors);
 
-		var ui_tex = Paths.getSparrowAtlas('campaign_menu_UI_assets');
-		leftDiffArrow = new FlxSprite(MobileUtil.fixX(850), 410);
+		leftDiffArrow = new FlxSprite(MobileUtil.fixX(875), 410);
 		leftDiffArrow.frames = ui_tex;
 		leftDiffArrow.animation.addByPrefix('idle', "arrow left");
 		leftDiffArrow.animation.addByPrefix('press', "arrow push left");
@@ -775,7 +799,7 @@ class MainMenuState extends MusicBeatState
 				}
 			}
 
-		changeItem(0, false);
+		changeItem(0, false, false);
 
 		//Notification alert
 		//check if everything is unlocked for the crossover section, all weeks, all shop songs are beaten
@@ -1239,16 +1263,19 @@ class MainMenuState extends MusicBeatState
 				{
 					if (storyShit[curStorySelected] == 'iniquitous' && (!Achievements.isAchievementUnlocked('weekIniquitous_Beaten')))
 					{
+						if (ClientPrefs.haptics) Haptic.vibratePattern([0.2, 0.2, 0.6], [1, 0.75, 1], [0.5, 0.5, 0.5]);
 						FlxG.camera.shake(0.02, 0.5, null, false, FlxAxes.XY);
 						FlxG.sound.play(Paths.sound('accessDenied'));
 					}
 					else if (storyShit[curStorySelected] == 'injection' && (ClientPrefs.weeksUnlocked < 7 || warnMayhem != ''))
 					{
+						if (ClientPrefs.haptics) Haptic.vibratePattern([0.2, 0.2, 0.6], [1, 0.75, 1], [0.5, 0.5, 0.5]);
 						FlxG.camera.shake(0.02, 0.5, null, false, FlxAxes.XY);
 						FlxG.sound.play(Paths.sound('accessDenied'));
 					}
 					else if (storyShit[curStorySelected] == 'mayhem' && (allowMayhemGameMode == false || warnMayhem != ''))
 					{
+						if (ClientPrefs.haptics) Haptic.vibratePattern([0.2, 0.2, 0.6], [1, 0.75, 1], [0.5, 0.5, 0.5]);
 						FlxG.camera.shake(0.02, 0.5, null, false, FlxAxes.XY);
 						FlxG.sound.play(Paths.sound('accessDenied'));
 					}
@@ -1270,6 +1297,7 @@ class MainMenuState extends MusicBeatState
 							}
 						}
 
+						if (ClientPrefs.haptics) Haptic.vibrateOneShot(1, 0.75, 0.5);
 						applyStory = true;
 						FlxG.sound.play(Paths.sound('confirmMenu'));
 						FlxFlicker.flicker(storySelection, 1, 0.06, false, false, function(flick:FlxFlicker)
@@ -1339,6 +1367,7 @@ class MainMenuState extends MusicBeatState
 
 		if ((FlxG.keys.pressed.I || TouchUtil.pressAction(inventoryButton)) && inventoryOpened == false && selectedSomethin == false)
 		{
+			if (ClientPrefs.haptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
 			openingShit = true;
 			selectedSomethin = true;
 			inventoryOpened = true;
@@ -1490,16 +1519,19 @@ class MainMenuState extends MusicBeatState
 	{
 		if (storyShit[curStorySelected] == 'injection' && (ClientPrefs.weeksUnlocked < 7 || warnMayhem != ''))
 		{
+			if (ClientPrefs.haptics) Haptic.vibratePattern([0.2, 0.2, 0.6], [1, 0.75, 1], [0.5, 0.5, 0.5]);
 			FlxG.camera.shake(0.02, 0.5, null, false, FlxAxes.XY);
 			FlxG.sound.play(Paths.sound('accessDenied'));
 		}
 		else if (storyShit[curStorySelected] == 'mayhem' && (allowMayhemGameMode == false || warnMayhem != ''))
 		{
+			if (ClientPrefs.haptics) Haptic.vibratePattern([0.2, 0.2, 0.6], [1, 0.75, 1], [0.5, 0.5, 0.5]);
 			FlxG.camera.shake(0.02, 0.5, null, false, FlxAxes.XY);
 			FlxG.sound.play(Paths.sound('accessDenied'));
 		}
 		else
 		{
+			if (ClientPrefs.haptics) Haptic.vibrateOneShot(1, 0.75, 0.5);
 			applyStory = true;
 			FlxG.sound.play(Paths.sound('confirmMenu'));
 			if (FlxG.keys.justPressed.Y)
@@ -1667,42 +1699,44 @@ class MainMenuState extends MusicBeatState
 			intendedInjectedScore = ClientPrefs.injectionEndScore;
 	}
 
-	function charmSelect(huh:Int = 0)
-		{
-			curCharmSelected = huh;
-			charmItems.forEach(function(charm:FlxSprite)
-			{
-				if (curCharmSelected == charm.ID)
-					charm.alpha = 1;
-				else
-					charm.alpha = 0.2;
-	
-				switch(curCharmSelected)
-				{
-					case 0:
-						if (ClientPrefs.resCharmCollected == false)
-							charmText.text = "Locked";
-						else
-							charmText.text = "Resistance";
-						FlxG.sound.play(Paths.sound('scrollMenu'), 0.6);
-					case 1:
-						if (ClientPrefs.resCharmCollected == false)
-							charmText.text = "Locked";
-						else
-							charmText.text = "Auto Dodge";
-						FlxG.sound.play(Paths.sound('scrollMenu'), 0.6);
-					case 2:
-						if (ClientPrefs.resCharmCollected == false)
-							charmText.text = "Locked";
-						else
-							charmText.text = "Healing";
-						FlxG.sound.play(Paths.sound('scrollMenu'), 0.6);
-				}
-			});
-		}
-
-	function buffSelect(huh:Int = 0)
+	function charmSelect(huh:Int = 0, ?allowHaptics:Bool = true)
 	{
+		if (ClientPrefs.haptics && allowHaptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
+		curCharmSelected = huh;
+		charmItems.forEach(function(charm:FlxSprite)
+		{
+			if (curCharmSelected == charm.ID)
+				charm.alpha = 1;
+			else
+				charm.alpha = 0.2;
+	
+			switch(curCharmSelected)
+			{
+				case 0:
+					if (ClientPrefs.resCharmCollected == false)
+						charmText.text = "Locked";
+					else
+						charmText.text = "Resistance";
+					FlxG.sound.play(Paths.sound('scrollMenu'), 0.6);
+				case 1:
+					if (ClientPrefs.resCharmCollected == false)
+						charmText.text = "Locked";
+					else
+						charmText.text = "Auto Dodge";
+					FlxG.sound.play(Paths.sound('scrollMenu'), 0.6);
+				case 2:
+					if (ClientPrefs.resCharmCollected == false)
+						charmText.text = "Locked";
+					else
+						charmText.text = "Healing";
+					FlxG.sound.play(Paths.sound('scrollMenu'), 0.6);
+			}
+		});
+	}
+
+	function buffSelect(huh:Int = 0, ?allowHaptics:Bool = true)
+	{
+		if (ClientPrefs.haptics && allowHaptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
 		curBuffSelected = huh;
 		buffItems.forEach(function(buff:FlxSprite)
 		{
@@ -1744,8 +1778,9 @@ class MainMenuState extends MusicBeatState
 	}
 
 	
-	function changeItem(huh:Int = 0, ?playSound:Bool = true)
+	function changeItem(huh:Int = 0, ?playSound:Bool = true, ?allowHaptics:Bool = true)
 	{
+		if (ClientPrefs.haptics && allowHaptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
 		if (!storySelected && !inventoryOpened)
 		{
 			curSelected += huh;

@@ -96,9 +96,13 @@ class MobileOptionsSubState extends BaseOptionsMenu {
 		var lastStoragePath:String = StorageType.fromStrForce(lastStorageType) + '/';
 
 		try
+		{
 			Sys.command('rm', ['-rf', lastStoragePath]);
+		}
 		catch (e:haxe.Exception)
+		{
 			trace('Failed to remove last directory. (${e.message})');
+		}
 	}
 	#end
 

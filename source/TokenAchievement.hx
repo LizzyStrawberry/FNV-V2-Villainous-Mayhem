@@ -146,11 +146,11 @@ class TokenAchievement extends MusicBeatState
 					ClientPrefs.saveSettings();
 					if (editors.MasterEditorMenu.debugCheck)
 					{
-						MusicBeatState.switchState(new editors.MasterEditorMenu(), "stickers");
+						MusicBeatState.switchState(new editors.MasterEditorMenu());
 						editors.MasterEditorMenu.debugCheck = false;
 					}
 					else
-						MusicBeatState.switchState(new ResultsScreenState(), "stickers");
+						MusicBeatState.switchState(new ResultsScreenState());
 				});
 			});
 		});

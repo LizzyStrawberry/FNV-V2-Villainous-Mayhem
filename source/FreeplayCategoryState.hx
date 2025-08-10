@@ -15,6 +15,7 @@ class FreeplayCategoryState extends MusicBeatState
     var textBG:FlxSprite;
     var Text:FlxText;
 
+    var bgGradient:FlxSprite;
     var firstSpriteSelection:FlxSprite;
     var secondSpriteSelection:FlxSprite;
     var thirdSpriteSelection:FlxSprite;
@@ -34,6 +35,15 @@ class FreeplayCategoryState extends MusicBeatState
 		#end
 
         freeplayName = '';
+
+        bgGradient = new FlxSprite(0, 0).loadGraphic(Paths.image('pauseGradient/gradient_Null'));
+        bgGradient.color = 0xFF00a800;
+        bgGradient.x = 100;
+		bgGradient.setGraphicSize(FlxG.width, FlxG.height);
+		bgGradient.alpha = 0;
+		bgGradient.scrollFactor.set();
+		add(bgGradient);
+
         firstSpriteSelection = new FlxSprite().loadGraphic(Paths.image('freeplayStuff/categories/Main'));
         firstSpriteSelection.antialiasing = ClientPrefs.globalAntialiasing;
         firstSpriteSelection.updateHitbox();
@@ -56,6 +66,10 @@ class FreeplayCategoryState extends MusicBeatState
         thirdSpriteSelection.antialiasing = ClientPrefs.globalAntialiasing;
         thirdSpriteSelection.updateHitbox();
 		add(thirdSpriteSelection);
+
+        firstSpriteSelection.x = MobileUtil.fixX(firstSpriteSelection.x);
+        secondSpriteSelection.x = MobileUtil.fixX(secondSpriteSelection.x);
+        thirdSpriteSelection.x = MobileUtil.fixX(thirdSpriteSelection.x);
 
         week1 = new FlxSprite().loadGraphic(Paths.image('freeplayStuff/categories/week1'));
         week1.x += 135;
@@ -124,6 +138,14 @@ class FreeplayCategoryState extends MusicBeatState
         week7.updateHitbox();
 		add(week7);
 
+        week1.x = MobileUtil.fixX(week1.x);
+        week2.x = MobileUtil.fixX(week2.x);
+        week3.x = MobileUtil.fixX(week3.x);
+        week4.x = MobileUtil.fixX(week4.x);
+        week5.x = MobileUtil.fixX(week5.x);
+        week6.x = MobileUtil.fixX(week6.x);
+        week7.x = MobileUtil.fixX(week7.x);
+
         textBG = new FlxSprite(0, FlxG.height - 38).makeGraphic(FlxG.width, 46, 0xFF000000);
 		textBG.alpha = 0.6;
 		add(textBG);
@@ -135,6 +157,7 @@ class FreeplayCategoryState extends MusicBeatState
 
         FlxTween.tween(Text, {x: textBG.x - 2500}, 20, {ease: FlxEase.linear, type: LOOPING});
 
+        FlxTween.tween(bgGradient, {alpha: 1}, 3.4, {ease: FlxEase.quartInOut, type: PINGPONG});
         FlxTween.tween(firstSpriteSelection, {y: firstSpriteSelection.y + 7}, 5, {ease: FlxEase.cubeInOut, type: PINGPONG});
         FlxTween.tween(secondSpriteSelection, {y: secondSpriteSelection.y + 7}, 5.01, {ease: FlxEase.cubeInOut, type: PINGPONG});
         FlxTween.tween(thirdSpriteSelection, {y: thirdSpriteSelection.y + 7}, 5.02, {ease: FlxEase.cubeInOut, type: PINGPONG});

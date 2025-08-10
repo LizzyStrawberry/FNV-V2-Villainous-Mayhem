@@ -12,7 +12,7 @@ import flash.system.System;
 
 class OptionsState extends MusicBeatState
 {
-	var options:Array<String> = ['Achievements', #if desktop 'Controls', #end 'Gameplay', 'Graphics - Visuals & UI', 'Miscellaneous', 'Erase Save Data'];
+	var options:Array<String> = ['Achievements', #if desktop 'Controls', #end 'Gameplay', 'Graphics - Visuals & UI', 'Miscellaneous', "Mobile Options", 'Erase Save Data'];
 	private var grpOptions:FlxTypedGroup<Alphabet>;
 	private static var curSelected:Int = 0;
 	public static var menuBG:FlxSprite;
@@ -45,6 +45,8 @@ class OptionsState extends MusicBeatState
 				openSubState(new options.MiscellaneousSubState());
 			case 'Adjust Delay and Combo':
 				LoadingState.loadAndSwitchState(new options.NoteOffsetState());
+			case 'Mobile Options':
+				openSubState(new mobile.options.MobileOptionsSubState());
 			case 'Erase Save Data':
 				FlxG.sound.play(Paths.sound('cancelMenu'));
 				erasingData = true;

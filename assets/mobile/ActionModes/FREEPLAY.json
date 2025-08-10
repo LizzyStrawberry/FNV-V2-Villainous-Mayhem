@@ -13,6 +13,27 @@
       "x": 124,
       "y": 596,
       "color": "0x44FF00"
+    },
+    {
+      "button": "buttonE",
+      "graphic": "e",
+      "x": 248,
+      "y": 596,
+      "color": "0xFFF200"
+    },
+    {
+      "button": "buttonS",
+      "graphic": "s",
+      "x": 0,
+      "y": 472,
+      "color": "0x00FFFF"
+    },
+    {
+      "button": "buttonR",
+      "graphic": "r",
+      "x": 124,
+      "y": 472,
+      "color": "0xFF0000"
     }
   ]
 }

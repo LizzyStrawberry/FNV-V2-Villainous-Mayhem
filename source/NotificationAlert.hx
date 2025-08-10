@@ -25,8 +25,8 @@ class NotificationAlert {
 		notification.updateHitbox();
 
         // Position notification on top of the target sprite
-        notification.x = target.x + (targetX);
-        notification.y = target.y + (targetY);
+        notification.x = MobileUtil.rawX(target.x + (targetX));
+        notification.y = MobileUtil.rawY(target.y + (targetY));
 
         return notification;
     }
@@ -64,7 +64,7 @@ class NotificationAlert {
     public static var dur:Float = 2;
     public static function createMessagePopUp(state:FlxState, type:String, checkForShop:Bool = false)
     {
-        notifMessage = new FlxSprite(800, 545);
+        notifMessage = new FlxSprite(MobileUtil.fixX(800), 545);
         switch(type)
         {
             case 'Normal' |'normal' |'NORMAL':
