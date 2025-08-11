@@ -9,10 +9,10 @@ import flixel.util.FlxGradient;
 //Shit is definitely not like how the actual transition of FNF, but it works, so i don't give a fuck lmao
 class CustomStickerTransition extends MusicBeatSubstate {
     public static var finishCallback:Void->Void;
+    public static var nextCamera:FlxCamera;
     private var spawn:Bool;
     private var stickerTween:FlxTween;
 
-    private var stickerCam:FlxCamera;
     public static var stickers:Array<FlxSprite> = [];
     public static var stickersBackup:Array<FlxSprite> = [];
     public static var stickersBackupVars:Array<Dynamic> = [];
@@ -35,13 +35,6 @@ class CustomStickerTransition extends MusicBeatSubstate {
 
         if (stickerTween != null)
             stickerTween.cancel();
-        
-        stickerCam = new FlxCamera(0, 0, FlxG.width, FlxG.height);
-        stickerCam.scroll.x = 0;
-        stickerCam.scroll.y = 0;
-        stickerCam.bgColor = FlxG.camera.bgColor;
-
-        FlxG.cameras.add(stickerCam);
 
         if (spawn)
         {
@@ -50,15 +43,21 @@ class CustomStickerTransition extends MusicBeatSubstate {
         }
         else
             readdStickers();
+
+		nextCamera = null;
     }
 
     public function spawnStickers():Void {
+        var zoom:Float = CoolUtil.boundTo(FlxG.camera.zoom, 0.05, 1);
+		var width:Int = Std.int(FlxG.width / zoom);
+		var height:Int = Std.int(FlxG.height / zoom);
+        
         for (i in 0...numStickers) {
             var sticker = new FlxSprite();
             var stickerPath = stickerPaths[FlxG.random.int(0, stickerPaths.length - 1)];
             sticker.loadGraphic(Paths.image(stickerPath));
-            sticker.x = FlxG.random.float(-200, (FlxG.width - sticker.width) + 200);
-            sticker.y = FlxG.random.float(-200, (FlxG.height - sticker.height) + 200);
+            sticker.x = FlxG.random.float(-200, (width - sticker.width) + 200);
+            sticker.y = FlxG.random.float(-200, (height - sticker.height) + 200);
             sticker.alpha = 0;
             sticker.angle = FlxG.random.float(-60, 70);
             sticker.scale.x = 1.3;
@@ -69,7 +68,7 @@ class CustomStickerTransition extends MusicBeatSubstate {
             this.add(sticker);
             stickers.push(sticker);
 
-            stickers[i].cameras = [stickerCam];
+            stickers[i].cameras = FlxG.cameras.list;
 
             stickersBackupVars[i] = [stickerPath, sticker.x, sticker.y, sticker.angle, sticker.scale.x];
 
@@ -106,7 +105,7 @@ class CustomStickerTransition extends MusicBeatSubstate {
             this.add(sticker);
             stickersBackup.push(sticker);
 
-            stickersBackup[i].cameras = [stickerCam];
+            if(nextCamera != null) stickersBackup[i].cameras = [nextCamera];
         }
         new FlxTimer().start(0.05, function (tmr:FlxTimer) {
             despawnStickers();
@@ -142,18 +141,5 @@ class CustomStickerTransition extends MusicBeatSubstate {
         stickers = [];
         stickersBackup = [];
         stickersBackupVars = [];
-    }
-
-    override function update(elapsed:Float) {
-        super.update(elapsed);
-    }
-
-    override public function destroy():Void {
-        super.destroy();
-
-        if (stickerCam != null) {
-            FlxG.cameras.remove(stickerCam, true);
-            stickerCam.destroy();
-        }
     }
 }

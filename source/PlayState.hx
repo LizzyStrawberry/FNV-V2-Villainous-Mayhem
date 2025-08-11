@@ -288,7 +288,6 @@ class PlayState extends MusicBeatState
 	public static var campaignScore:Int = 0;
 	public static var campaignMisses:Int = 0;
 	public static var seenCutscene:Bool = false;
-	public static var playDialogue:Bool = false;
 	public static var deathCounter:Int = 0;
 
 	public var defaultCamZoom:Float = 1.05;
@@ -449,7 +448,6 @@ class PlayState extends MusicBeatState
 		grpNoteSplashes = new FlxTypedGroup<NoteSplash>();
 
 		FlxG.cameras.setDefaultDrawTarget(camGame, true);
-		CustomFadeTransition.nextCamera = camOther;
 
 		persistentUpdate = true;
 		persistentDraw = true;
@@ -979,15 +977,8 @@ class PlayState extends MusicBeatState
 		}
 
 		var daSong:String = Paths.formatToSongPath(curSong);
-		if (isStoryMode && !seenCutscene)
-		{
-			startCountdown();
 
-			seenCutscene = true;
-			playDialogue = true;
-		}
-		else
-			startCountdown();
+		startCountdown();
 
 		RecalculateRating();
 
@@ -1062,8 +1053,6 @@ class PlayState extends MusicBeatState
 			}
 		}
 		Paths.clearUnusedMemory();
-		
-		CustomFadeTransition.nextCamera = camOther;
 
 		// In case of Optimization Mode, disable camGame
 			if (ClientPrefs.optimizationMode)
@@ -1527,6 +1516,7 @@ class PlayState extends MusicBeatState
 			}
 			psychDialogue.nextDialogueThing = startNextDialogue;
 			psychDialogue.skipDialogueThing = skipDialogue;
+			psychDialogue.endDialogueThing = endDialogue;
 			psychDialogue.cameras = [camOther];
 			add(psychDialogue);
 		} else {
@@ -1582,9 +1572,10 @@ class PlayState extends MusicBeatState
 			return;
 		}
 
-		inCutscene = false;
 		var ret:Dynamic = callOnLuas('onStartCountdown', [], false);
 		if(ret != FunkinLua.Function_Stop) {
+			inCutscene = false;
+
 			if (skipCountdown || startOnTime > 0) skipArrowStartTween = true;
 
 			generateStaticArrows(0);
@@ -2117,6 +2108,10 @@ class PlayState extends MusicBeatState
 
 	function skipDialogue() {
 		callOnLuas('onSkipDialogue', [dialogueCount]);
+	}
+
+	function endDialogue() {
+		callOnLuas('onEndDialogue', []);
 	}
 
 	var previousFrameTime:Int = 0;
@@ -3769,13 +3764,10 @@ class PlayState extends MusicBeatState
 
 		deathCounter = 0;
 		seenCutscene = false;
-		playDialogue = false;
 
 		#if ACHIEVEMENTS_ALLOWED
 		if(achievementObj != null)
-		{
 			return;
-		} 
 		else
 		{
 			var achieve:String = checkForAchievement(['Tutorial_Beaten',
@@ -3856,8 +3848,6 @@ class PlayState extends MusicBeatState
 					WeekData.loadTheFirstEnabledMod();
 
 					cancelMusicFadeTween();
-					if(FlxTransitionableState.skipNextTransIn)
-						CustomFadeTransition.nextCamera = null;
 
 					if (!PlayState.checkForPowerUp)
 						PlayState.campaignScore += 35000;
@@ -3984,8 +3974,6 @@ class PlayState extends MusicBeatState
 						WeekData.loadTheFirstEnabledMod();
 
 						cancelMusicFadeTween();
-						if(FlxTransitionableState.skipNextTransIn)
-							CustomFadeTransition.nextCamera = null;
 
 						if (!PlayState.checkForPowerUp)
 							PlayState.campaignScore += 25000;
@@ -4138,8 +4126,6 @@ class PlayState extends MusicBeatState
 				trace('WENT BACK TO FREEPLAY??');
 				WeekData.loadTheFirstEnabledMod();
 				cancelMusicFadeTween();
-				if(FlxTransitionableState.skipNextTransIn)
-					CustomFadeTransition.nextCamera = null;
 				
 				if (Paths.formatToSongPath(SONG.song) == 'libidinousness' && ClientPrefs.lowQuality)
 					ClientPrefs.lowQuality = false;

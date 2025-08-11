@@ -1,3 +1,12 @@
+local shadedAssets = {"boyfriend", "dad", "gf", "fg", "bg", "bf", "ded"}
+
+function onCreate()
+	if shadersEnabled then
+		setGlobalFromScript("scripts/RTXLightingShaderConfig", "spritesToCheck", shadedAssets)
+		setGlobalFromScript("scripts/RTXLightingShaderConfig", "shadedSong", true)
+	end
+end
+
 function onCreatePost()
 	if shadersEnabled then
 		triggerEvent('Set RTX Data', '0.45,0.14693698199611,0,0.73984069904636,0,0,0,0,0.50535529939004,0.4888692479833,0,0.83333333333333,213.74111478708,40.795747278957')
