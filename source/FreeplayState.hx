@@ -1128,7 +1128,7 @@ class FreeplayState extends MusicBeatState
 
 		scoreBG.x = scoreText.x - 6;
 		scoreBG.scale.x = scoreText.width + 12;
-		diffText.x = 640;
+		diffText.x = MobileUtil.fixX(640);
 		diffText.x -= diffText.width / 2;
 	}
 

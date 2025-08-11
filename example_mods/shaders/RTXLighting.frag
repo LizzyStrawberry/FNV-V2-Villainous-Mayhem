@@ -1,7 +1,5 @@
 #pragma header
-
-
-
+#define mainImage main
 
 //https://github.com/jamieowen/glsl-blend !!!!
 
@@ -68,22 +66,20 @@ void main()
     vec4 spritecolor = flixel_texture2D(bitmap, uv);    
     vec2 resFactor = 1.0 / openfl_TextureSize.xy;
 
-    
     spritecolor.rgb = blendMultiply(spritecolor.rgb, satinColor.rgb, satinColor.a); //apply satin (but no blur)
 
     //inner shadow
     float offsetX = cos(innerShadowAngle);
     float offsetY = sin(innerShadowAngle);
     vec2 distMult = (innerShadowDistance*resFactor) / SAMPLEDIST;
-    for (int i = 0; i < SAMPLEDIST; i++) //sample nearby pixels to see if theyre transparent, multiply blend by inverse alpha to brighten the edge pixels
+    for (int i = 0; i < int(SAMPLEDIST); i++) //sample nearby pixels to see if theyre transparent, multiply blend by inverse alpha to brighten the edge pixels
     {
         //make sure to use texture2D instead of flixel_texture2D so alpha doesnt effect it
-        vec4 col = texture2D(bitmap, uv + vec2(offsetX * (distMult.x * i), offsetY * (distMult.y * i)));
+        vec4 col = texture2D(bitmap, uv + vec2(offsetX * (distMult.x * float(i)), offsetY * (distMult.y * float(i))));
         spritecolor.rgb = blendColorDodge(spritecolor.rgb, innerShadowColor.rgb, innerShadowColor.a * inv(col.a)); //mult by the inverse alpha so it blends from the outside
     }
 
     spritecolor.rgb = blendLighten(spritecolor.rgb, overlayColor.rgb, overlayColor.a); //apply overlay
-
     
     gl_FragColor = spritecolor * spritecolor.a;
 }

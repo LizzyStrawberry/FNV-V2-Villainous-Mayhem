@@ -1,6 +1,6 @@
 @echo off
 haxelib --always set flixel-addons 3.2.1
-haxelib --always set flixel-ui 2.6.2
+haxelib --always set flixel-ui 2.6.1
 haxelib --always set flixel 5.5.0
 haxelib --always set hscript 2.5.0
 haxelib --always set hxvlc mobileport

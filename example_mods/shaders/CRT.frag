@@ -3,14 +3,14 @@
 uniform float iTime;
 #define iChannel0 bitmap
 #define texture flixel_texture2D
-#define fragCoord (openfl_TextureCoordv * openfl_TextureSize)
-#define iResolution openfl_TextureSize
 
 float warp = 0.75; // simulate curvature of CRT monitor
 float scan = 0.75; // simulate darkness between scanlines
 
 void main()
 {
+    vec2 iResolution = openfl_TextureSize;
+    vec2 fragCoord = openfl_TextureCoordv*openfl_TextureSize;
     // Normalized UV
     vec2 uv = fragCoord / iResolution;
 

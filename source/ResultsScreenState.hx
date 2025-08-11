@@ -409,7 +409,7 @@ class ResultsScreenState extends MusicBeatState
         BGchecker.x += 0.5*(elapsed/(1/120));
         BGchecker.y += 0.16 / (ClientPrefs.framerate / 60); 
 
-        if (controls.ACCEPT)
+        if (controls.ACCEPT || TouchUtil.pressAction())
         {
             if (!ClientPrefs.onCrossSection)
                 ClientPrefs.resetStoryModeProgress(true);
