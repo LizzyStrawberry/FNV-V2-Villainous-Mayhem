@@ -74,6 +74,16 @@ class CoolUtil
 		return difficulties[PlayState.storyDifficulty].toUpperCase();
 	}
 
+	public static function diffStringToNum(diff:String):Int
+	{
+		for (i in 0...difficulties.length)
+		{
+			if (diff.toLowerCase() == difficulties[i].toLowerCase())
+				return i;
+		}
+		return -1;
+	}
+
 	inline public static function boundTo(value:Float, min:Float, max:Float):Float {
 		return Math.max(min, Math.min(max, value));
 	}

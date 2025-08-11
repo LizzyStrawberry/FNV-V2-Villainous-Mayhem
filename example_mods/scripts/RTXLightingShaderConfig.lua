@@ -1,5 +1,7 @@
+shadedSong = false
+spritesToCheck = {'boyfriend', 'dad', 'gf'}
+
 local useEditor = false
-local shadedSong = true
 local sliders = 
 {
     --name     val  x   y   wid  hei  min  max  dragging  color
@@ -23,12 +25,26 @@ local sliders =
     {'innerDistance', 20, 800, 100, 200, 10,  0,   50,   false, "0xFFCCCCCC"}
 }
 
-local spritesToCheck = {'boyfriend', 'dad', 'gf', 'crossBG', 'seerBG'}
 function onCreatePost()
-    if shadedSong then
+	if shadedSong then
 		initLuaShader('RTXLighting')
 		for sprite = 1, #(spritesToCheck) do
 			setSpriteShader(spritesToCheck[sprite], 'RTXLighting')
+		end
+		
+		if songName == "Shucks V2" then
+			runHaxeCode([[
+				for (note in game.unspawnNotes)
+				{
+					if (note.strumTime >= 54153)
+						note.shader = game.createRuntimeShader("RTXLighting");
+				}
+				for (note in game.notes)
+				{
+					if (note.strumTime >= 54153)
+						note.shader = game.createRuntimeShader("RTXLighting");
+				}
+			]])
 		end
 
 		setShaderFloatArray('boyfriend', 'overlayColor', {0.0, 0.0, 0.0, 0.0})
@@ -70,7 +86,7 @@ function onCreatePost()
 end
 
 function onEvent(tag, val1, val2)
-    if shadedSong then
+	if shadedSong then
 		if tag == "Set RTX Data" then
 			setRTXData(val1)
 		elseif tag == "Open RTX Editor" then
@@ -107,7 +123,7 @@ end
 ---
 
 function setRTXData(dataStr)
-    if shadedSong then
+	if shadedSong then
 		local data = split(dataStr, ",")
 
 		for i = 1, #data do
@@ -151,8 +167,6 @@ function createEditorHUD()
     makeGraphic("mouse", mouseWidth, mouseWidth, '0xFFAAAAAA')
     setObjectCamera("mouse", 'other')
     addLuaSprite("mouse", true)
-
-
 end
 
 --helper funcs-------
@@ -177,6 +191,29 @@ function onUpdate(elapsed)
     if useEditor then 
       updateEditor(elapsed)
     end
+end
+
+local addedShader = false
+local hudThings = {'healthBar', 'healthBarBG', 'iconP1', 'iconP2', 'coloredPlayerCircle', 'coloredOpponentCircle', 'charmSocket', 'iconPlayer',
+				'iconOpponent', 'timeBar', 'timeBarBG', 'reloadBar', 'mayhembackBar', 'mayhemPads', 'mayhemBar', 'mayhemText'}
+function onStepHit()
+	if curStep == 704 and songName == 'Shucks V2' and not addedShader and shadedSong then
+		runHaxeCode([[
+			for (note in game.opponentStrums) note.shader = game.createRuntimeShader("RTXLighting");
+			for (note in game.playerStrums) note.shader = game.createRuntimeShader("RTXLighting");
+		]])
+		if (getPropertyFromClass('ClientPrefs', 'buff1Selected') == false and getPropertyFromClass('ClientPrefs', 'buff2Selected') == false
+		and getPropertyFromClass('ClientPrefs', 'buff3Selected') == false) or mechanics == false or botPlay == true then
+			for i = 1, #(hudThings)-5 do
+				setSpriteShader(hudThings[i], 'RTXLighting')
+			end
+		else
+			for i = 1, #(hudThings) do
+				setSpriteShader(hudThings[i], 'RTXLighting')
+			end
+		end
+		addedShader = true
+	end
 end
 
 function updateEditor(elapsed)

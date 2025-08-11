@@ -1,5 +1,13 @@
 local start = false
 local pxSize = 10
+local shadedAssets = {'boyfriend', 'dad', 'gf', 'crossBG', 'seerBG'}
+
+function onCreate()
+	if shadersEnabled then
+		setGlobalFromScript("scripts/RTXLightingShaderConfig", "spritesToCheck", shadedAssets)
+		setGlobalFromScript("scripts/RTXLightingShaderConfig", "shadedSong", true)
+	end
+end
 
 function onCreatePost()
 	if shadersEnabled then

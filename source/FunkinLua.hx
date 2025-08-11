@@ -114,7 +114,6 @@ class FunkinLua {
 		set('weekRaw', PlayState.storyWeek);
 		set('week', WeekData.weeksList[PlayState.storyWeek]);
 		set('seenCutscene', PlayState.seenCutscene);
-		set('playDialogue', PlayState.playDialogue);
 
 		// Camera poo
 		set('cameraX', 0);
@@ -1591,6 +1590,10 @@ class FunkinLua {
 		Lua_helper.add_callback(lua, "precacheMusic", function(name:String) {
 			CoolUtil.precacheMusic(name);
 		});
+		Lua_helper.add_callback(lua, "difficultyStringToNumber", function(diff:String) {
+			var diffNum:Int = CoolUtil.diffStringToNum(diff);
+			return diffNum;
+		});
 		Lua_helper.add_callback(lua, "triggerEvent", function(name:String, arg1:Dynamic, arg2:Dynamic) {
 			var value1:String = arg1;
 			var value2:String = arg2;
@@ -1621,9 +1624,6 @@ class FunkinLua {
 			}
 
 			PlayState.cancelMusicFadeTween();
-			CustomFadeTransition.nextCamera = PlayState.instance.camOther;
-			if(FlxTransitionableState.skipNextTransIn)
-				CustomFadeTransition.nextCamera = null;
 
 			if(PlayState.isStoryMode)
 				MusicBeatState.switchState(new StoryMenuState());

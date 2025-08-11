@@ -177,6 +177,8 @@ class WeekData {
 			}
 		}
 		#end
+
+		//weeksList.sort(Reflect.compare);
 	}
 
 	private static function addWeek(weekToCheck:String, path:String, directory:String, i:Int, originalLength:Int)

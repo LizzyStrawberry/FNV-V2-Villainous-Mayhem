@@ -549,7 +549,7 @@ class ResultsScreenState extends MusicBeatState
                 if (ClientPrefs.onCrossSection)
 					MusicBeatState.switchState(new CrossoverState()); //go to Crossover State
 				else
-					MusicBeatState.switchState(new FreeplayState()); // Back To Freeplay
+					MusicBeatState.switchState(new FreeplayState(), "stickers"); // Back To Freeplay
             }
                 
             FlxTween.tween(BGchecker, {alpha: 0}, 0.4, {ease: FlxEase.quadInOut, type: PERSIST});

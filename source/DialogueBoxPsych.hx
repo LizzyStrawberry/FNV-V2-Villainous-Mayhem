@@ -162,6 +162,7 @@ class DialogueBoxPsych extends FlxSpriteGroup
 	public var finishThing:Void->Void;
 	public var nextDialogueThing:Void->Void = null;
 	public var skipDialogueThing:Void->Void = null;
+	public var endDialogueThing:Void->Void = null;
 	var bgFade:FlxSprite = null;
 	var box:FlxSprite;
 	var textToType:String = '';
@@ -339,7 +340,9 @@ class DialogueBoxPsych extends FlxSpriteGroup
 			if (FlxG.keys.justPressed.ESCAPE)
 			{
 				dialogueEnded = true;
-
+				if(endDialogueThing != null) {
+					endDialogueThing();
+				}
 				FlxTween.tween(box, {alpha: 0}, 0.5, {ease: FlxEase.circOut, type: PERSIST});
 				FlxTween.tween(arrowThingy, {alpha: 0}, 0.5, {ease: FlxEase.circOut, type: PERSIST});
 
@@ -363,6 +366,9 @@ class DialogueBoxPsych extends FlxSpriteGroup
 					}
 				} else if(currentText >= dialogueList.dialogue.length) {
 					dialogueEnded = true;
+					if(endDialogueThing != null) {
+						endDialogueThing();
+					}
 					FlxTween.tween(box, {alpha: 0}, 0.5, {ease: FlxEase.circOut, type: PERSIST});
 					FlxTween.tween(arrowThingy, {alpha: 0}, 0.5, {ease: FlxEase.circOut, type: PERSIST});
 
