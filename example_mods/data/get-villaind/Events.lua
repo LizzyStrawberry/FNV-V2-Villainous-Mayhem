@@ -267,12 +267,22 @@ function onStepHit()
 		cameraFlash('game', 'ffffff', 0.8 / playbackRate, false)
 		
 		callScript('scripts/VideoSpriteHandler', 'makeVideoSprite', {'flamies', 'flames', -20, 175, 'camGame', 0})
-		setProperty('flamies.alpha', 0.5)
-		scaleObject('flamies', 2, 2)
+		startVideo("flames", false, true, false, true)
+		setObjectCamera("videoCutscene", "game")
+		runHaxeCode([[
+			PlayState.instance.videoCutscene.videoSprite.bitmap.onFormatSetup.add(function() {
+				PlayState.instance.videoCutscene.videoSprite.scale.set(2, 2);
+				PlayState.instance.videoCutscene.videoSprite.updateHitbox();
+				PlayState.instance.videoCutscene.videoSprite.screenCenter();
+			});
+		]])
+		setObjectOrder("videoCutscene", getObjectOrder("dadGroup") - 1)
+		setProperty('videoCutscene.alpha', 0.5)
+	end
+	if curStep == 2288 then
+		doTweenAlpha('flamiesGoBye', 'videoCutscene', 0, 0.45 / playbackRate, 'cubeInOut')
 	end
 	if curStep == 2296 then
-		doTweenAlpha('flamies', 'flamies', 0, 0.6 / playbackRate, 'cubeInOut')
-		
 		startVideo("theBilly", false, true, false, true)
 		setObjectCamera("videoCutscene", "game")
 		runHaxeCode([[
