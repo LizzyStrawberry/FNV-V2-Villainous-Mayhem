@@ -91,7 +91,7 @@ class CreditsState extends MusicBeatState
 		textBGDown.alpha = 0.6;
 		add(textBGDown);
 
-        tipDown = new FlxText(textBGDown.x + 1200, textBGDown.y + 8, FlxG.width + 1600, "LEFT / RIGHT: Change Developer | BACKSPACE: Go back to the Main Menu | Press DEV Icon to go to DEV's Social Media Page | LEFT / RIGHT ARROWS: Change Credits Category | TAB: Go to Special Credits", 24);
+        tipDown = new FlxText(textBGDown.x + 1200, textBGDown.y + 8, FlxG.width + 1600, "SWIPE: Change Developer | B: Go back to the Main Menu | Tap on DEV Icon to go to DEV's Social Media Page | LEFT / RIGHT ARROWS: Change Credits Category | C: Go to Special Credits", 24);
 		tipDown.setFormat("VCR OSD Mono", 24, FlxColor.WHITE, RIGHT);
 		tipDown.scrollFactor.set();
 		add(tipDown);
@@ -114,20 +114,21 @@ class CreditsState extends MusicBeatState
 			['AJTheFunky', 'aj', '<G>Roles:<G>\n- Main Charter\n- Made Hidden Menu Music Cover', "'Subscribe to <GR>AjTheFunky<GR> on <R>YouTube<R> :3'", 'https://ajthefunky.carrd.co/', '57ce78']
 		];
 
-		creditSprite = new FlxSprite(-80).loadGraphic(Paths.image('credits/FNVDevs/credits-' + creditsStuff[curSelected][1]));
+		creditSprite = new FlxSprite(MobileUtil.fixX(-80)).loadGraphic(Paths.image('credits/FNVDevs/credits-' + creditsStuff[curSelected][1]));
 		creditSprite.scrollFactor.set(0, 0);
 		creditSprite.updateHitbox();
 		creditSprite.screenCenter();
+		creditSprite.x = MobileUtil.fixX(creditSprite.x);
 		creditSprite.antialiasing = ClientPrefs.globalAntialiasing;
 		add(creditSprite);
 
-		titleText = new Alphabet(640, 90, "This is a test", true);
+		titleText = new Alphabet(MobileUtil.fixX(640), 90, "This is a test", true);
 		titleText.setAlignmentFromString('center');
 		titleText.scaleX = 0.7;
 		titleText.scaleY = 0.7;
 		add(titleText);
 
-		icon = new FlxSprite(-80).loadGraphic(Paths.image('credits/FNVDevIcons/' + creditsStuff[curSelected][1]));
+		icon = new FlxSprite(MobileUtil.fixX(-80)).loadGraphic(Paths.image('credits/FNVDevIcons/' + creditsStuff[curSelected][1]));
 		icon.screenCenter();
 		icon.y += 270;
 		icon.alpha = 0.7;
@@ -142,7 +143,7 @@ class CreditsState extends MusicBeatState
 		descBox.alpha = 0.6;
 		add(descBox);
 
-		descText = new FlxText(50, 320, 380, "", 32);
+		descText = new FlxText(MobileUtil.fixX(50), 320, 380, "", 32);
 		descText.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		descText.scrollFactor.set();
 		descText.borderSize = 2;
@@ -157,7 +158,7 @@ class CreditsState extends MusicBeatState
 		descBoxQuote.alpha = 0.6;
 		add(descBoxQuote);
 
-		descTextQuote = new FlxText(850, 320, 380, "", 32);
+		descTextQuote = new FlxText(MobileUtil.fixX(850), 320, 380, "", 32);
 		descTextQuote.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		descTextQuote.scrollFactor.set();
 		descTextQuote.borderSize = 2;
@@ -170,12 +171,12 @@ class CreditsState extends MusicBeatState
 		CustomFontFormats.addMarkers(descText);
 		CustomFontFormats.addMarkers(descTextQuote);
 
-		arrowSelectorLeft = new FlxSprite(-20, 230).loadGraphic(Paths.image('freeplayStuff/arrowSelectorLeft'));
+		arrowSelectorLeft = new FlxSprite(MobileUtil.fixX(-20), 230).loadGraphic(Paths.image('freeplayStuff/arrowSelectorLeft'));
 		arrowSelectorLeft.antialiasing = ClientPrefs.globalAntialiasing;
 		arrowSelectorLeft.scale.set(0.5, 0.5);
 		add(arrowSelectorLeft);
 
-		arrowSelectorRight = new FlxSprite(1160, 230).loadGraphic(Paths.image('freeplayStuff/arrowSelectorRight'));
+		arrowSelectorRight = new FlxSprite(MobileUtil.fixX(1160), 230).loadGraphic(Paths.image('freeplayStuff/arrowSelectorRight'));
 		arrowSelectorRight.antialiasing = ClientPrefs.globalAntialiasing;
 		arrowSelectorRight.scale.set(0.5, 0.5);
 		add(arrowSelectorRight);
@@ -231,7 +232,7 @@ class CreditsState extends MusicBeatState
 		descBoxFormer.alpha = 0.6;
 		add(descBoxFormer);
 
-		descTextFormer = new FlxText(50, FlxG.height + offsetThing - 25, 1180, "", 32);
+		descTextFormer = new FlxText(MobileUtil.fixX(50), FlxG.height + offsetThing - 25, 1180, "", 32);
 		descTextFormer.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER/*, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK*/);
 		descTextFormer.scrollFactor.set();
 		descTextFormer.x += 1500;
@@ -240,9 +241,24 @@ class CreditsState extends MusicBeatState
 		add(descTextFormer);
 		descTextFormer.text = formerCreditsStuff[curSelectedFormer][2];
 
+		var scrollMain = new ScrollableObject(-0.004, 50, 100, FlxG.width, FlxG.height, "X");
+		scrollMain.onFullScroll.add(delta -> {
+			if (creditsSelected == 'CURRENT')
+				changeCredits(delta, true, true);
+		});
+		add(scrollMain);
+		var scrollFormer = new ScrollableObject(-0.004, 50, 100, FlxG.width, FlxG.height, "Y");
+		scrollFormer.onFullScroll.add(delta -> {
+			if (creditsSelected == 'FORMER')
+				changeCredits(delta, true, true);
+		});
+		add(scrollFormer);
+
 		changeCredits();
 		fixFormerCredits();
 		super.create();
+
+		addTouchPad("NONE", "B_C");
 	}
 
 	var quitting:Bool = false;
@@ -260,20 +276,20 @@ class CreditsState extends MusicBeatState
 
 		if(!quitting)
 		{
-			if (FlxG.mouse.overlaps(arrowSelectorLeft))
+			if (TouchUtil.overlaps(arrowSelectorLeft))
 				FlxTween.tween(arrowSelectorLeft, {x: getarrowSelectorLeftX - 2}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
 			else
 				FlxTween.tween(arrowSelectorLeft, {x: getarrowSelectorLeftX}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
 
-			if (FlxG.mouse.overlaps(arrowSelectorRight))
+			if (TouchUtil.overlaps(arrowSelectorRight))
 				FlxTween.tween(arrowSelectorRight, {x: getarrowSelectorRightX + 2}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
 			else
 				FlxTween.tween(arrowSelectorRight, {x: getarrowSelectorRightX}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
 
-			if (FlxG.keys.pressed.TAB)
+			if (FlxG.keys.pressed.TAB || touchPad.buttonC.justPressed)
 				MusicBeatState.switchState(new LegacyCreditsState());	
 
-			if (controls.BACK || FlxG.mouse.justPressedRight)
+			if (controls.BACK)
 			{
 				if(colorTween != null) {
 					colorTween.cancel();
@@ -290,7 +306,7 @@ class CreditsState extends MusicBeatState
 				if(controls.UI_RIGHT_P)
 					changeCredits(1, true, true);
 
-				if (FlxG.mouse.overlaps(icon))
+				if (TouchUtil.overlaps(icon))
 				{
 					FlxTween.tween(icon, {y: getIconY - 2}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
 					FlxTween.tween(icon, {alpha: 1}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
@@ -300,7 +316,7 @@ class CreditsState extends MusicBeatState
 					FlxTween.tween(icon, {y: getIconY}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
 					FlxTween.tween(icon, {alpha: 0.7}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
 				}
-				if ((FlxG.mouse.overlaps(icon) && FlxG.mouse.justPressed) || controls.ACCEPT)
+				if (TouchUtil.pressAction(icon) || controls.ACCEPT)
 					CoolUtil.browserLoad(creditsStuff[curSelected][4]);
 			}
 			else if (creditsSelected == 'FORMER')
@@ -310,13 +326,13 @@ class CreditsState extends MusicBeatState
 				if(controls.UI_DOWN_P)
 					changeCredits(1, true, true);
 
-				if (controls.ACCEPT)
+				if (controls.ACCEPT || TouchUtil.pressAction(grpOptions.members[curSelectedFormer]))
 					CoolUtil.browserLoad(formerCreditsStuff[curSelectedFormer][3]);
 			}
 
 			if (!transitioning)
 			{
-				if (FlxG.mouse.overlaps(arrowSelectorLeft) && FlxG.mouse.justPressed)
+				if (TouchUtil.pressAction(arrowSelectorLeft))
 				{
 					if (creditsSelected == 'CURRENT')
 						changeCreditsCategory('FORMER');
@@ -325,7 +341,7 @@ class CreditsState extends MusicBeatState
 					transitioning = true;
 				}
 		
-				if (FlxG.mouse.overlaps(arrowSelectorRight) && FlxG.mouse.justPressed)
+				if (TouchUtil.pressAction(arrowSelectorRight))
 				{
 					if (creditsSelected == 'CURRENT')
 						changeCreditsCategory('FORMER');
@@ -397,7 +413,7 @@ class CreditsState extends MusicBeatState
 
 		if (creditsSelected == 'CURRENT')
 		{
-			tipDown.text = "LEFT / RIGHT: Change Developer | BACKSPACE: Go back to the Main Menu | Press DEV Icon to go to DEV's Social Media Page | LEFT / RIGHT ARROWS: Change Credits Category | TAB: Go to Special Credits";
+			tipDown.text = "SWIPE: Change Developer | B: Go back to the Main Menu | Tap on DEV Icon to go to DEV's Social Media Page | LEFT / RIGHT ARROWS: Change Credits Category | C: Go to Special Credits";
 			curSelected += change;
 
 			if (curSelected < 0)
@@ -412,9 +428,9 @@ class CreditsState extends MusicBeatState
 				creditSprite.scale.set(1, 1);
 
 			if (curSelected == 11)
-				creditSprite.x = 358.5;
+				creditSprite.x = MobileUtil.fixX(358.5);
 			else
-				creditSprite.x = 383.5;
+				creditSprite.x = MobileUtil.fixX(383.5);
 	
 			icon.loadGraphic(Paths.image('credits/FNVDevIcons/' + creditsStuff[curSelected][1]));
 	
@@ -443,7 +459,7 @@ class CreditsState extends MusicBeatState
 		}
 		else if (creditsSelected == 'FORMER')
 		{
-			tipDown.text = "UP / DOWN: Change Credit | BACKSPACE: Go back to the Main Menu | Press ENTER to go to DEV's Social Media Page | LEFT / RIGHT ARROWS: Change Credits Category | TAB: Go to Special Credits";
+			tipDown.text = "SWIPE: Change Credit | B: Go back to the Main Menu | Tap on DEV's name to go to DEV's Social Media Page | LEFT / RIGHT ARROWS: Change Credits Category | C: Go to Special Credits";
 		
 			curSelectedFormer += change;
 			if (curSelectedFormer < 1)

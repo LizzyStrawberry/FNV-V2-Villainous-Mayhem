@@ -913,11 +913,9 @@ class FreeplayState extends MusicBeatState
 				{
 					MusicBeatState.switchState(new CharSelector());
 					FlxG.sound.music.volume = 1;
-					FlxG.mouse.visible = true;
 				}
 				else
 				{
-					FlxG.mouse.visible = false;
 					LoadingState.loadAndSwitchState(new PlayState());
 					FlxG.sound.music.volume = 0;
 				}
@@ -957,7 +955,6 @@ class FreeplayState extends MusicBeatState
 				else if (curDifficulty == 1)
 					PlayState.SONG = Song.loadFromJson('libidinousness-iniquitousoptimized', 'libidinousness');
 			}	
-			FlxG.mouse.visible = false;
 			LoadingState.loadAndSwitchState(new PlayState());
 			FlxG.sound.music.volume = 0;
 		}

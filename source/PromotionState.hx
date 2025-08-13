@@ -86,8 +86,9 @@ class PromotionState extends MusicBeatState
         previousColor = curColor;
 
         background = new FlxSprite(0, 0).loadGraphic(Paths.image('promotion/Background'));
-        background.setGraphicSize(Std.int(background.width * 1.175));
+        background.setGraphicSize(FlxG.width, FlxG.height);
 		background.antialiasing = ClientPrefs.globalAntialiasing;
+        background.screenCenter();
 		add(background);
 
         BGchecker = new FlxBackdrop(Paths.image('promotion/BGgrid-' + FlxG.random.int(1, 8)), FlxAxes.XY, 0, 0); 
@@ -106,14 +107,14 @@ class PromotionState extends MusicBeatState
 		textBG.alpha = 0.6;
 		add(textBG);
 
-        Text = new FlxText(textBG.x + 1000, textBG.y + 8, FlxG.width + 1000, "LEFT - A / RIGHT - D: Change Mod | CLICK ON MOD / ENTER: Go to mod's download page | BACKSPACE: Go back to the Main Menu", 24);
+        Text = new FlxText(textBG.x + 1000, textBG.y + 8, FlxG.width + 1000, "LEFT / RIGHT: Change Mod | TAP: Go to mod's download page | B: Go back to the Main Menu", 24);
 		Text.setFormat("VCR OSD Mono", 24, FlxColor.WHITE, RIGHT);
 		Text.scrollFactor.set();
 		add(Text);
 
         FlxTween.tween(Text, {x: textBG.x - 2500}, 20, {ease: FlxEase.linear, type: LOOPING});
 
-        currentImage = new FlxSprite(0, -20).loadGraphic(Paths.image('promotion/prom_' + modSelected[curModSelected]));
+        currentImage = new FlxSprite(MobileUtil.fixX(0), MobileUtil.fixY(-20)).loadGraphic(Paths.image('promotion/prom_' + modSelected[curModSelected]));
 		currentImage.antialiasing = ClientPrefs.globalAntialiasing;
 		currentImage.scale.set(0.7, 0.7);
 		add(currentImage);
@@ -125,6 +126,8 @@ class PromotionState extends MusicBeatState
  
         borders = new FlxSprite(0, 0).loadGraphic(Paths.image('promotion/Borders'));
 		borders.antialiasing = ClientPrefs.globalAntialiasing;
+        borders.setGraphicSize(FlxG.width, FlxG.height);
+        borders.screenCenter();
 		add(borders);
 
         titleText = new Alphabet(currentImage.x + 630, currentImage.y + 30, "This is a test", true);
@@ -139,12 +142,12 @@ class PromotionState extends MusicBeatState
 
         changeMod();
 
-        arrowSelectorLeft = new FlxSprite(80, 240).loadGraphic(Paths.image('freeplayStuff/arrowSelectorLeft'));
+        arrowSelectorLeft = new FlxSprite(MobileUtil.fixX(80), MobileUtil.fixY(240)).loadGraphic(Paths.image('freeplayStuff/arrowSelectorLeft'));
 		arrowSelectorLeft.antialiasing = ClientPrefs.globalAntialiasing;
 		arrowSelectorLeft.scale.set(0.5, 0.5);
 		add(arrowSelectorLeft);
 
-		arrowSelectorRight = new FlxSprite(1060, 240).loadGraphic(Paths.image('freeplayStuff/arrowSelectorRight'));
+		arrowSelectorRight = new FlxSprite(MobileUtil.fixX(1060), MobileUtil.fixY(240)).loadGraphic(Paths.image('freeplayStuff/arrowSelectorRight'));
 		arrowSelectorRight.antialiasing = ClientPrefs.globalAntialiasing;
 		arrowSelectorRight.scale.set(0.5, 0.5);
 		add(arrowSelectorRight);
@@ -166,6 +169,8 @@ class PromotionState extends MusicBeatState
         });
 
         super.create();
+        
+        addTouchPad("NONE", "B");
     }
 
     var sidePressed:String = '';

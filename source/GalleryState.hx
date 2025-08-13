@@ -54,7 +54,7 @@ class GalleryState extends MusicBeatState
 
 	override function create()
 	{
-		#if desktop
+		#if DISCORD_ALLOWED
 		// Updating Discord Rich Presence
 		DiscordClient.changePresence("Viewing the Gallery", null);
 		#end
@@ -66,6 +66,8 @@ class GalleryState extends MusicBeatState
         previousColor = curColor;
 
 		background = new FlxSprite(0, 0).loadGraphic(Paths.image('Gallery/Background'));
+		background.setGraphicSize(FlxG.width, FlxG.height);
+		background.screenCenter();
 		background.antialiasing = ClientPrefs.globalAntialiasing;
 		add(background);
 
@@ -86,24 +88,24 @@ class GalleryState extends MusicBeatState
 		textBG.alpha = 0.6;
 		add(textBG);
 
-		Text = new FlxText(textBG.x + 1000, textBG.y + 8, FlxG.width + 1000, "LEFT - A / RIGHT - D: Change Image | UP / DOWN: Change Gallery Category | SHIFT: Go to Video Player (MUST HAVE MAIN GAME COMPLETED!) | BACKSPACE: Go back to the Main Menu", 24);
+		Text = new FlxText(textBG.x + 1000, textBG.y + 8, FlxG.width + 1000, "LEFT / RIGHT: Change Image | SWIPE UP / DOWN: Change Gallery Category | C: Go to Video Player (MUST HAVE MAIN GAME COMPLETED!) | B: Go back to the Main Menu", 24);
 		Text.setFormat("VCR OSD Mono", 20, FlxColor.WHITE, RIGHT);
 		Text.scrollFactor.set();
 		add(Text);
 	
 		FlxTween.tween(Text, {x: textBG.x - 2500}, 20, {ease: FlxEase.linear, type: LOOPING});
 
-		currentImage = new FlxSprite(0, -20).loadGraphic(Paths.image('Gallery/image_1'));
+		currentImage = new FlxSprite(MobileUtil.fixX(0), -20).loadGraphic(Paths.image('Gallery/image_1'));
 		currentImage.antialiasing = ClientPrefs.globalAntialiasing;
 		currentImage.scale.set(0.7, 0.7);
 		add(currentImage);
 
-		arrowSelectorLeft = new FlxSprite(80, 240).loadGraphic(Paths.image('freeplayStuff/arrowSelectorLeft'));
+		arrowSelectorLeft = new FlxSprite(MobileUtil.fixX(80), 240).loadGraphic(Paths.image('freeplayStuff/arrowSelectorLeft'));
 		arrowSelectorLeft.antialiasing = ClientPrefs.globalAntialiasing;
 		arrowSelectorLeft.scale.set(0.5, 0.5);
 		add(arrowSelectorLeft);
 
-		arrowSelectorRight = new FlxSprite(1060, 240).loadGraphic(Paths.image('freeplayStuff/arrowSelectorRight'));
+		arrowSelectorRight = new FlxSprite(MobileUtil.fixX(1060), 240).loadGraphic(Paths.image('freeplayStuff/arrowSelectorRight'));
 		arrowSelectorRight.antialiasing = ClientPrefs.globalAntialiasing;
 		arrowSelectorRight.scale.set(0.5, 0.5);
 		add(arrowSelectorRight);
@@ -127,7 +129,15 @@ class GalleryState extends MusicBeatState
 		changeImage();
 		changeCategory();
 
+		var scroll = new ScrollableObject(0.005, 50, 100, FlxG.width, FlxG.height, "Y");
+		scroll.onFullScroll.add(delta -> {
+			changeCategory(delta);
+		});
+		add(scroll);
+
 		super.create();
+
+		addTouchPad("NONE", "B_C");
 	}
 
 	function completedMainGame()
@@ -152,7 +162,7 @@ class GalleryState extends MusicBeatState
 			FlxG.sound.play(Paths.sound('cancelMenu'));
 		}
 		
-		if (FlxG.keys.pressed.SHIFT && completedMainGame())
+		if ((FlxG.keys.pressed.SHIFT || touchPad.buttonC.justPressed) && completedMainGame())
 		{
 			FlxG.sound.music.stop();
 			MusicBeatState.switchState(new VideoPlayer());
@@ -186,20 +196,20 @@ class GalleryState extends MusicBeatState
 	}
 
 	function changeColor()
-		{
-			FlxTween.color(background, 5, FlxColor.fromString(previousColor), FlxColor.fromString(curColor), {ease: FlxEase.cubeInOut});
+	{
+		FlxTween.color(background, 5, FlxColor.fromString(previousColor), FlxColor.fromString(curColor), {ease: FlxEase.cubeInOut});
 	
-			new FlxTimer().start(5, function (tmr:FlxTimer) 
+		new FlxTimer().start(5, function (tmr:FlxTimer) 
+		{
+			previousColor = curColor;
+			curNum = FlxG.random.int(0, 7);
+			curColor = colors[curNum];
+			new FlxTimer().start(1, function (tmr:FlxTimer)
 			{
-				previousColor = curColor;
-				curNum = FlxG.random.int(0, 7);
-				curColor = colors[curNum];
-				new FlxTimer().start(1, function (tmr:FlxTimer)
-				{
-					changeColor();
-				});
+				changeColor();
 			});
-		}
+		});
+	}
 
 	function changeCategory(huh:Int = 0)
 	{
@@ -213,7 +223,7 @@ class GalleryState extends MusicBeatState
 		if (categorySelected == 1)
 		{
 			categoryTitle.text = "Menu Screens";
-			categoryTitle.x = 370;
+			categoryTitle.x = MobileUtil.fixX(370);
 
 			currentImage.alpha = 1;
 			arrowSelectorLeft.alpha = 1;
@@ -229,7 +239,7 @@ class GalleryState extends MusicBeatState
 		if (categorySelected == 2)
 		{
 			categoryTitle.text = "Title Loading Screens";
-			categoryTitle.x = 170;
+			categoryTitle.x = MobileUtil.fixX(170);
 
 			currentImage.alpha = 1;
 			arrowSelectorLeft.alpha = 1;
@@ -245,7 +255,7 @@ class GalleryState extends MusicBeatState
 		if (categorySelected == 3)
 		{
 			categoryTitle.text = "New Loading Screens";
-			categoryTitle.x = 210;
+			categoryTitle.x = MobileUtil.fixX(210);
 
 			currentImage.alpha = 1;
 			arrowSelectorLeft.alpha = 1;
@@ -261,7 +271,7 @@ class GalleryState extends MusicBeatState
 		if (categorySelected == 4)
 		{
 			categoryTitle.text = "Old Loading Screens";
-			categoryTitle.x = 210;
+			categoryTitle.x = MobileUtil.fixX(210);
 
 			if (ClientPrefs.oldLoadScreensUnlocked == false)
 			{
@@ -294,7 +304,7 @@ class GalleryState extends MusicBeatState
 		if (categorySelected == 5)
 		{
 			categoryTitle.text = "Ad Mechanic Art";
-			categoryTitle.x = 300;
+			categoryTitle.x = MobileUtil.fixX(300);
 
 			if (ClientPrefs.adMechanicScreensUnlocked == false)
 			{
@@ -327,7 +337,7 @@ class GalleryState extends MusicBeatState
 		if (categorySelected == 6)
 		{
 			categoryTitle.text = "Fanarts";
-			categoryTitle.x = 470;
+			categoryTitle.x = MobileUtil.fixX(470);
 
 			if (ClientPrefs.fanartScreensUnlocked == false)
 			{
@@ -360,7 +370,7 @@ class GalleryState extends MusicBeatState
 		if (categorySelected == 7)
 		{
 			categoryTitle.text = "Random Arts";
-			categoryTitle.x = 385;
+			categoryTitle.x = MobileUtil.fixX(385);
 
 			if (ClientPrefs.randomArtScreensUnlocked == false)
 			{

@@ -104,6 +104,8 @@ class ShopState extends MusicBeatState
 	var videoDone:Bool = false;
 	var initializedVideo:Bool = false;
 
+	var mobilePositions:Array<Float> = [];
+
 	override function create()
 	{
 		#if desktop
@@ -163,15 +165,22 @@ class ShopState extends MusicBeatState
 		ClientPrefs.talkedToZeel = false;
 		ClientPrefs.saveSettings();
 		*/
-		
-		FlxG.mouse.visible = true;
+
 		FlxG.sound.playMusic(Paths.music('shopTheme'), 0);
 		FlxG.sound.music.fadeIn(3.0); 
+
+		for (i in 0...prizeBoard.length)
+		{
+			prizeBoard[i][0] = MobileUtil.fixX(prizeBoard[i][0]);
+			prizeBoard[i][1] = MobileUtil.fixY(prizeBoard[i][1]);
+		}
 
 		if(!ClientPrefs.shopUnlocked)
 		{
 			closedShop = new FlxSprite(0, 0).loadGraphic(Paths.image('shop/shopClosed'));
 			closedShop.antialiasing = ClientPrefs.globalAntialiasing;
+			closedShop.setGraphicSize(FlxG.width, FlxG.height);
+			closedShop.screenCenter(X);
 			add(closedShop);
 		}
 		else
@@ -184,12 +193,14 @@ class ShopState extends MusicBeatState
 			bg.screenCenter();
 			add(bg);
 
-			transitionOoooOo = new FlxSprite(-1370, 0).loadGraphic(Paths.image('shop/transition'));
+			transitionOoooOo = new FlxSprite(MobileUtil.fixX(-1370), 0).loadGraphic(Paths.image('shop/transition'));
 			transitionOoooOo.antialiasing = ClientPrefs.globalAntialiasing;
 			transitionOoooOo.scale.x = 1.5;
 			add(transitionOoooOo);
 			
 			background = new FlxSprite(0, 0).loadGraphic(Paths.image('shop/Background'));
+			background.setGraphicSize(FlxG.width, FlxG.height);
+			background.screenCenter(X);
 			background.antialiasing = ClientPrefs.globalAntialiasing;
 			add(background);
 
@@ -198,7 +209,7 @@ class ShopState extends MusicBeatState
 
 			for (i in 0...3)
 			{
-				var button:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image('shop/Buttons'));
+				var button:FlxSprite = new FlxSprite(MobileUtil.fixX(0), MobileUtil.fixY(0)).loadGraphic(Paths.image('shop/Buttons'));
 				button.frames = Paths.getSparrowAtlas('shop/Buttons');
 				button.antialiasing = ClientPrefs.globalAntialiasing;
 				button.ID = i;
@@ -309,31 +320,33 @@ class ShopState extends MusicBeatState
 
 	
 			//Test Your Luck Assets preparation
-			testYourLuckBG = new FlxSprite(0, 0).loadGraphic(Paths.image('shop/testYourLuckBG1'));
+			testYourLuckBG = new FlxSprite(MobileUtil.fixX(1600), 0).loadGraphic(Paths.image('shop/testYourLuckBG1'));
 			testYourLuckBG.antialiasing = ClientPrefs.globalAntialiasing;
-			testYourLuckBG.x += 1400;
 			testYourLuckBG.scale.x = 1.1;
+			mobilePositions.push(testYourLuckBG.x);
 			add(testYourLuckBG);
 			
 
-			tokenShow = new FlxText(820, 335, FlxG.width,
+			tokenShow = new FlxText(MobileUtil.fixX(820), 335, FlxG.width,
 				"Tokens: " + ClientPrefs.tokens,
 				32);
-				tokenShow.setFormat("VCR OSD Mono", 60, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, 0xFF000000);
-				tokenShow.x += 1700;
-				tokenShow.borderSize = 5;
-
-				CustomFontFormats.addMarkers(tokenShow);
+			tokenShow.setFormat("VCR OSD Mono", 60, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, 0xFF000000);
+			tokenShow.x += 1900;
+			tokenShow.borderSize = 5;
+			mobilePositions.push(tokenShow.x);
+			CustomFontFormats.addMarkers(tokenShow);
 			add(tokenShow);
 
-			choice = new FlxSprite(460, 280).loadGraphic(Paths.image('shop/prizes/prize_' + FlxG.random.int(1, 14)));
+			mobilePositions.push(background.x);
+
+			choice = new FlxSprite(MobileUtil.fixX(460), 280).loadGraphic(Paths.image('shop/prizes/prize_' + FlxG.random.int(1, 14)));
 			choice.antialiasing = ClientPrefs.globalAntialiasing;
 			choice.scale.x = 2.1;
 			choice.scale.y = 2.1;
 			choice.x += 1400;
 			add(choice);
 
-			lights = new FlxSprite(1580, 180).loadGraphic(Paths.image('shop/lights'));//put your cords and image here
+			lights = new FlxSprite(MobileUtil.fixX(1580), 180).loadGraphic(Paths.image('shop/lights'));//put your cords and image here
 			lights.frames = Paths.getSparrowAtlas('shop/lights');//here put the name of the xml
 			//lights.scale.set(1.1, 1.1);
 			lights.animation.addByPrefix('redlightsFlash', 'redLights0', 24, true);//on 'idle normal' change it to your xml one
@@ -344,31 +357,30 @@ class ShopState extends MusicBeatState
 			lights.antialiasing = ClientPrefs.globalAntialiasing;
 			add(lights);
 		
-			testLuckButton = new FlxSprite(330, 550).loadGraphic(Paths.image('shop/testLuckButton'));
+			testLuckButton = new FlxSprite(MobileUtil.fixX(330), 550).loadGraphic(Paths.image('shop/testLuckButton'));
 			testLuckButton.antialiasing = ClientPrefs.globalAntialiasing;
 			testLuckButton.x += 1400;
 			add(testLuckButton);
-			
 
-			spaceText = new FlxSprite(630, 550).loadGraphic(Paths.image('shop/pressSpace'));
+			spaceText = new FlxSprite(MobileUtil.fixX(630), 550).loadGraphic(Paths.image('shop/pressSpace'));
 			spaceText.antialiasing = ClientPrefs.globalAntialiasing;
 			spaceText.alpha = 0;
 			spaceText.x += 1400;
 			add(spaceText);
 
-			notEnoughTokensText = new FlxSprite(630, 550).loadGraphic(Paths.image('shop/notEnoughTokens'));
+			notEnoughTokensText = new FlxSprite(MobileUtil.fixX(630), 550).loadGraphic(Paths.image('shop/notEnoughTokens'));
 			notEnoughTokensText.antialiasing = ClientPrefs.globalAntialiasing;
 			notEnoughTokensText.alpha = 0;
 			notEnoughTokensText.x += 1400;
 			add(notEnoughTokensText);
 			
 		//SECRET SHOP ASSETS
-		backgroundSecret = new FlxSprite(0, 0).makeGraphic(FlxG.width, FlxG.height, 0xFF000000);
+		backgroundSecret = new FlxSprite(MobileUtil.fixX(0), 0).makeGraphic(FlxG.width, FlxG.height, 0xFF000000);
 		backgroundSecret.antialiasing = ClientPrefs.globalAntialiasing;
 		backgroundSecret.x -= 2000;
 		add(backgroundSecret);
 
-		assistantSecret = new FlxSprite(0, 205).loadGraphic(Paths.image('shop/Liz Shopper'));//put your cords and image here
+		assistantSecret = new FlxSprite(MobileUtil.fixX(0), 205).loadGraphic(Paths.image('shop/Liz Shopper'));//put your cords and image here
 		assistantSecret.frames = Paths.getSparrowAtlas('shop/Liz Shopper');//here put the name of the xml
 		assistantSecret.scale.set(1.2, 1.2);
 		assistantSecret.x -= 2000;
@@ -382,7 +394,7 @@ class ShopState extends MusicBeatState
 
 		endingSecret();
 
-		booba = new FlxSprite(0, 0).loadGraphic(Paths.image('shop/thatBoobaHitbox'));
+		booba = new FlxSprite(MobileUtil.fixX(0), 0).loadGraphic(Paths.image('shop/thatBoobaHitbox'));
 		booba.screenCenter();
 		booba.scale.set(1.25, 1.25);
 		booba.alpha = 0;
@@ -400,7 +412,7 @@ class ShopState extends MusicBeatState
 			if ((i == 1 && !ClientPrefs.nunWeekPlayed) || (i == 2 && !ClientPrefs.kianaWeekPlayed))
 				locked = true;
 
-			var button:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image('shop/sellOption' + (i + 1) + ((locked) ? "locked" : "")));
+			var button:FlxSprite = new FlxSprite(MobileUtil.fixX(0), 0).loadGraphic(Paths.image('shop/sellOption' + (i + 1) + ((locked) ? "locked" : "")));
 			button.antialiasing = ClientPrefs.globalAntialiasing;
 			button.ID = i;
 			button.scale.set(0.6, 0.6);
@@ -424,7 +436,7 @@ class ShopState extends MusicBeatState
 		dialogueTextSecret = new FlxText(0, 0, FlxG.width, "", 32);
 
 		if (ClientPrefs.secretShopShowcased == false)
-			secretMerchantDialogue = new FlxTypeText(-130, 30, 600, "Oh hello there! [Press Enter To Continue]", 32, true);
+			secretMerchantDialogue = new FlxTypeText(-130, 30, 600, "Oh hello there! [Tap To Continue]", 32, true);
 		else
 			secretMerchantDialogue = new FlxTypeText(-130, 30, 800, "Hey there, looks like you have finally found your way here!", 32, true);
 		secretMerchantDialogue.font = 'VCR OSD Mono';
@@ -436,7 +448,7 @@ class ShopState extends MusicBeatState
 		add(secretMerchantDialogue);
 
 		if (ClientPrefs.secretShopShowcased == false)
-			showcaseSecretDialogue = new FlxTypeText(-130, 30, 600, "Oh hello there! [Press Enter To Continue]", 32, true);
+			showcaseSecretDialogue = new FlxTypeText(-130, 30, 600, "Oh hello there! [Tap To Continue]", 32, true);
 		else
 			showcaseSecretDialogue = new FlxTypeText(-130, 30, 800, "Hey there, looks like you have finally found your way here!", 32, true);
 		showcaseSecretDialogue.font = 'VCR OSD Mono';
@@ -450,6 +462,8 @@ class ShopState extends MusicBeatState
 		//buy Items Asset Preparation
 		buyItemsBG = new FlxSprite(0, 0).loadGraphic(Paths.image('shop/buyItemsBG'));
 		buyItemsBG.antialiasing = ClientPrefs.globalAntialiasing;
+		buyItemsBG.setGraphicSize(FlxG.width, FlxG.height);
+		buyItemsBG.screenCenter(X);
 		buyItemsBG.y += 800;
 		add(buyItemsBG);
 
@@ -485,7 +499,7 @@ class ShopState extends MusicBeatState
 		//ONLY FOR WHEN YOU ACCESS THE SHOP FOR THE FIRST TIME!
 		if (!ClientPrefs.shopShowcased && !firstTime)
 		{
-			showcaseDialogue = new FlxTypeText(0, 0, 600, "OH! ANOTHER CUSTOMER!\n[Press Enter To Continue]", 32, true);
+			showcaseDialogue = new FlxTypeText(0, 0, 600, "OH! ANOTHER CUSTOMER!\n[Tap To Continue]", 32, true);
 			showcaseDialogue.font = 'VCR OSD Mono';
 			showcaseDialogue.color = FlxColor.WHITE;
 			showcaseDialogue.alignment = CENTER;
@@ -516,6 +530,8 @@ class ShopState extends MusicBeatState
 		Achievements.loadAchievements();
 
 		super.create();
+
+		addTouchPad("LEFT_FULL", "B");
 	}
 
 	var pressedBack:Bool = false;
@@ -565,7 +581,7 @@ class ShopState extends MusicBeatState
 		}
 		else if (!ClientPrefs.shopShowcased)
 		{
-			if (FlxG.keys.justPressed.ENTER)
+			if (FlxG.keys.justPressed.ENTER || TouchUtil.pressAction())
 			{
 				trace ("Pressed Enter : " + pressedEnter);
 				switch (assistNum)
@@ -580,48 +596,47 @@ class ShopState extends MusicBeatState
 				switch (pressedEnter)
 				{
 					case 0:
-						dialogueText.text = "Greetings Good person! My name is Mimiko, and I am a travelling merchant!\n[Press Enter To Continue]";
+						dialogueText.text = "Greetings Good person! My name is Mimiko, and I am a travelling merchant!\n[Tap To Continue]";
 					case 1:
-						dialogueText.text = "Instead of selling stuff, you can win everything you want via gambling on my Prize Machines!\n[Press Enter To Continue]";
+						dialogueText.text = "Instead of selling stuff, you can win everything you want via gambling on my Prize Machines!\n[Tap To Continue]";
 					case 2:
-						dialogueText.text = "In order to use my machines, press whichever of the 3 Prize Machine buttons on your right!\n[Press Enter To Continue]";
+						dialogueText.text = "In order to use my machines, press whichever of the 3 Prize Machine buttons on your right!\n[Tap To Continue]";
 					case 3:
-						dialogueText.text = "My prizes vary between each machine, hence why we have 3 Machines here!\n[Press Enter To Continue]";
+						dialogueText.text = "My prizes vary between each machine, hence why we have 3 Machines here!\n[Tap To Continue]";
 					case 4:
 						{
-							FlxTween.tween(testYourLuckBG, {x: -130}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+							FlxTween.tween(testYourLuckBG, {x: MobileUtil.fixX(-130)}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 							FlxTween.tween(tokenShow, {x: 780}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 			
-							FlxTween.tween(lights, {x: 70}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-							
-							FlxTween.tween(choice, {x: 250}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-							FlxTween.tween(testLuckButton, {x: 310}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-							
-							FlxTween.tween(spaceText, {x: 310}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-							FlxTween.tween(notEnoughTokensText, {x: 310}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+							FlxTween.tween(lights, {x: MobileUtil.fixX(90)}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+									
+							FlxTween.tween(choice, {x: MobileUtil.fixX(250)}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+							FlxTween.tween(testLuckButton, {x: MobileUtil.fixX(330)}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+										
+							FlxTween.tween(spaceText, {x: MobileUtil.fixX(330)}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+							FlxTween.tween(notEnoughTokensText, {x: MobileUtil.fixX(330)}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 							FlxTween.tween(blackOut, {alpha: 0.8}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-							dialogueText.text = "Taking a turn only costs 1 token each time! If you have more than 1, you're good to go!\n[Press Enter To Continue]";
+							dialogueText.text = "Taking a turn only costs 1 token each time! If you have more than 1, you're good to go!\n[Tap To Continue]";
 						}
 					case 5:
-						dialogueText.text = "Each Prize Machine has a different variety of items to win, so try to win them all!\n[Press Enter To Continue]";				
+						dialogueText.text = "Each Prize Machine has a different variety of items to win, so try to win them all!\n[Tap To Continue]";				
 					case 6:
-						dialogueText.text = "To use my Machine, click on the button below to start rolling the items! Once you're ready, press SPACE, and see what you'll earn!\n[Press Enter To Continue]";		
+						dialogueText.text = "To use my Machine, click on the button below to start rolling the items! Once you're ready, press SPACE, and see what you'll earn!\n[Tap To Continue]";		
 					case 7:
-						dialogueText.text = "Beware though! Winning an item will not remove it from the Prize Machine, so if you earn it again, it will act like a miss, and your token will be wasted!\n[Press Enter To Continue]";
+						dialogueText.text = "Beware though! Winning an item will not remove it from the Prize Machine, so if you earn it again, it will act like a miss, and your token will be wasted!\n[Tap To Continue]";
 					case 8:
 						{
-							FlxTween.tween(testYourLuckBG, {x: 1400}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-							FlxTween.tween(tokenShow, {x: 2480}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+							FlxTween.tween(testYourLuckBG, {x: mobilePositions[0]}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+							FlxTween.tween(tokenShow, {x:mobilePositions[1]}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 
-							FlxTween.tween(choice, {x: 1660}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-							FlxTween.tween(testLuckButton, {x: 1710}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+							FlxTween.tween(choice, {x: MobileUtil.fixX(1660)}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+							FlxTween.tween(testLuckButton, {x: MobileUtil.fixX(1710)}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+							FlxTween.tween(spaceText, {x: MobileUtil.fixX(1710)}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+							FlxTween.tween(notEnoughTokensText, {x: MobileUtil.fixX(1710)}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+							FlxTween.tween(lights, {x: MobileUtil.fixX(1480)}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 
-							FlxTween.tween(spaceText, {x: 1710}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-							FlxTween.tween(notEnoughTokensText, {x: 1710}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-							
-							FlxTween.tween(lights, {x: 1480}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 							FlxTween.tween(blackOut, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-							dialogueText.text = "Other than that, remember to use your mouse cursor to move around! Have fun shopping!\n[Press Enter To Continue]";
+							dialogueText.text = "Other than that, remember to use your mouse cursor to move around! Have fun shopping!\n[Tap To Continue]";
 						}
 					case 9:
 						{
@@ -777,13 +792,13 @@ class ShopState extends MusicBeatState
 					pressedBack = true;
 					shelfSelected = 0;
 					FlxG.sound.play(Paths.sound('cancelMenu'));
-					FlxTween.tween(testYourLuckBG, {x: 1400}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(tokenShow, {x: 2480}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(choice, {x: 1660}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(testLuckButton, {x: 1710}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(spaceText, {x: 1710}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(notEnoughTokensText, {x: 1710}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-					FlxTween.tween(lights, {x: 1480}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+					FlxTween.tween(testYourLuckBG, {x: mobilePositions[0]}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+					FlxTween.tween(tokenShow, {x: mobilePositions[1]}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+					FlxTween.tween(choice, {x: MobileUtil.fixX(1660)}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+					FlxTween.tween(testLuckButton, {x: MobileUtil.fixX(1710)}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+					FlxTween.tween(spaceText, {x: MobileUtil.fixX(1710)}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+					FlxTween.tween(notEnoughTokensText, {x: MobileUtil.fixX(1710)}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+					FlxTween.tween(lights, {x: MobileUtil.fixX(1480)}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 
 					new FlxTimer().start(0.6, function (tmr:FlxTimer) {
 						pressedBack = false;
@@ -824,8 +839,8 @@ class ShopState extends MusicBeatState
 				checkButtons((changedShop) ? "Zeel" : "Main");
 
 			//Dialogue
-			if(FlxG.mouse.overlaps(assistant) && FlxG.mouse.justPressed && !ClientPrefs.luckSelected && !changedShop && !cellarShopActive
-			&& (!FlxG.mouse.overlaps(luckOptionSlots.members[0]) && !FlxG.mouse.overlaps(luckOptionSlots.members[1]) && !FlxG.mouse.overlaps(luckOptionSlots.members[2])))
+			if(TouchUtil.pressAction(assistant) && !ClientPrefs.luckSelected && !changedShop && !cellarShopActive
+			&& (!TouchUtil.overlaps(luckOptionSlots.members[0]) && !TouchUtil.overlaps(luckOptionSlots.members[1]) && !TouchUtil.overlaps(luckOptionSlots.members[2])))
 			{
 					dialogueNumber = FlxG.random.int(1, 29);
 					switch (assistNum)
@@ -920,22 +935,21 @@ class ShopState extends MusicBeatState
 				FlxTween.tween(notEnoughTokensText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 				tokensRunOut = false;
 			}
-			if(FlxG.mouse.overlaps(testLuckButton) && FlxG.mouse.justPressed && ClientPrefs.luckSelected && ended && ClientPrefs.tokens > 0)
+			if(TouchUtil.pressAction(testLuckButton) && ClientPrefs.luckSelected && ended && ClientPrefs.tokens > 0)
 			{
 				ClientPrefs.choiceSelected = true;
 				ClientPrefs.tokens -= 1;
-				ended = false;
-				done = false;
+				done = ended = false;
 				var bgTimer:FlxTimer = new FlxTimer().start(0.05, getChoiceNumber);	
 				FlxG.sound.play(Paths.sound('shop/mouseClick'));
 				FlxTween.tween(testLuckButton, {y: testLuckButton.y + 550}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 				FlxTween.tween(spaceText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 			}
-			if (controls.ACCEPT && !pressedSpace && ClientPrefs.choiceSelected && !done)
+			if (controls.ACCEPT || TouchUtil.pressAction(spaceText) && allowTap && !pressedSpace && ClientPrefs.choiceSelected && !done)
 			{
 				FlxG.sound.play(Paths.sound('confirmMenu'));
-				pressedSpace = true;
-				done = true;
+				allowTap = false;
+				done = pressedSpace = true;
 			}
 			if(pressedSpace)
 			{
@@ -1415,21 +1429,21 @@ class ShopState extends MusicBeatState
 			}
 
 		//FROM BELOW HERE UNTIL super.update(elapsed), THIS IS WHERE THE SECRET SHOP CODE WILL SHOW UP
-		if (FlxG.keys.justPressed.LEFT && !changedShop)
+		if (controls.UI_LEFT && !changedShop)
 		{
 			merchantDialogue.skip();
 			ending();
 			changedShop = true;
 
 			FlxG.sound.play(Paths.sound('confirmMenu'));
-			FlxTween.tween(background, {x: 2000}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+			FlxTween.tween(background, {x: MobileUtil.fixX(2000)}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 			luckOptionSlots.forEach(function(button:FlxSprite)
 			{
 				FlxTween.tween(button, {x: 2670}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 			});
 			FlxTween.tween(assistant, {x: 2070}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 			FlxTween.tween(merchantDialogue, {x: 2000}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(lights, {x: 2070}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+			FlxTween.tween(lights, {x: MobileUtil.fixX(2070)}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 			FlxTween.tween(transitionOoooOo, {x: 1370}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 	
 			FlxTween.tween(bulb, {x: 1600}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
@@ -1440,14 +1454,14 @@ class ShopState extends MusicBeatState
 				{
 					FlxTween.tween(butt, {x: 200}, 1.8 + (butt.ID * 0.04), {ease: FlxEase.cubeInOut, type: PERSIST});
 				});
-				FlxTween.tween(booba, {x: 780}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(assistantSecret, {x: 740}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(secretMerchantDialogue, {x: 130}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+				FlxTween.tween(booba, {x: MobileUtil.fixX(780)}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+				FlxTween.tween(assistantSecret, {x: MobileUtil.fixX(740)}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+				FlxTween.tween(secretMerchantDialogue, {x: MobileUtil.fixX(130)}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 			});
 			new FlxTimer().start(3.7, function (tmr:FlxTimer) {
 				if (!ClientPrefs.secretShopShowcased)
 				{
-					showcaseSecretDialogue.x = 130;
+					showcaseSecretDialogue.x = MobileUtil.fixX(130);
 					FlxTween.tween(showcaseSecretDialogue, {alpha: 1}, 0.01, {ease: FlxEase.cubeInOut, type: PERSIST});
 					showcaseSecretDialogue.start(0.04, true, endingSecret);
 				}
@@ -1464,7 +1478,7 @@ class ShopState extends MusicBeatState
 				#end
 			});
 		}
-		if (FlxG.keys.justPressed.RIGHT && secretShopAccessed && !ClientPrefs.sellSelected && !ClientPrefs.luckSelected && ClientPrefs.secretShopShowcased)
+		if (controls.UI_RIGHT && secretShopAccessed && !ClientPrefs.sellSelected && !ClientPrefs.luckSelected && ClientPrefs.secretShopShowcased && changedShop)
 		{
 			secretMerchantDialogue.skip();
 			endingSecret();
@@ -1481,7 +1495,7 @@ class ShopState extends MusicBeatState
 			FlxTween.tween(secretMerchantDialogue, {x: -2400}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 
 			new FlxTimer().start(2, function (tmr:FlxTimer) {
-				FlxTween.tween(background, {x: 0}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+				FlxTween.tween(background, {x: mobilePositions[2]}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 				luckOptionSlots.forEach(function(button:FlxSprite)
 				{
 					var offset:Int = 0;
@@ -1494,11 +1508,11 @@ class ShopState extends MusicBeatState
 							if (!ClientPrefs.kianaWeekPlayed)
 								offset = 5;
 					}	
-					FlxTween.tween(button, {x: 780 + offset},  1.8 + (button.ID * 0.04), {ease: FlxEase.cubeInOut, type: PERSIST});
+					FlxTween.tween(button, {x: MobileUtil.fixX(780 + offset)},  1.8 + (button.ID * 0.04), {ease: FlxEase.cubeInOut, type: PERSIST});
 					
 				});
 				FlxTween.tween(assistant, {x: -10}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-				FlxTween.tween(lights, {x: 1470}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+				FlxTween.tween(lights, {x: MobileUtil.fixX(1470)}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 				FlxTween.tween(bulb, {x: -400}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 				FlxTween.tween(merchantDialogue, {x: 0}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 			
@@ -1548,15 +1562,15 @@ class ShopState extends MusicBeatState
 				switch (pressedEnter)
 				{
 					case 0:
-						dialogueTextSecret.text = "Haven't had any customers since last update~\n[Press Enter To Continue]";	
+						dialogueTextSecret.text = "Haven't had any customers since last update~\n[Tap To Continue]";	
 					case 1:
-						dialogueTextSecret.text = "I don't want to bother you with questions, so I'll be straight forward this time~\n[Press Enter To Continue]";
+						dialogueTextSecret.text = "I don't want to bother you with questions, so I'll be straight forward this time~\n[Tap To Continue]";
 					case 2:
-						dialogueTextSecret.text = "If you wish to buy anything that this 'Mimiko' guy lets you win, click on any of the shelfs~\n[Press Enter To Continue]";
+						dialogueTextSecret.text = "If you wish to buy anything that this 'Mimiko' guy lets you win, click on any of the shelfs~\n[Tap To Continue]";
 					case 3:
-						dialogueTextSecret.text = "Each shelf contains specific items that are inside the corresponding prize machine~\n[Press Enter To Continue]";
+						dialogueTextSecret.text = "Each shelf contains specific items that are inside the corresponding prize machine~\n[Tap To Continue]";
 					case 4:
-						dialogueTextSecret.text = "Have fun shopping~ Don't hesitate to ask me anything~\n[Press Enter To Continue]";
+						dialogueTextSecret.text = "Have fun shopping~ Don't hesitate to ask me anything~\n[Tap To Continue]";
 					case 5:
 					{
 						ClientPrefs.secretShopShowcased = true;
@@ -1579,9 +1593,9 @@ class ShopState extends MusicBeatState
 		}
 		else
 		{
-			if(FlxG.mouse.overlaps(assistantSecret) && FlxG.mouse.justPressed && !ClientPrefs.sellSelected)
+			if(TouchUtil.pressAction(assistantSecret) && !ClientPrefs.sellSelected)
 			{
-				if (FlxG.mouse.overlaps(booba))
+				if (TouchUtil.overlaps(booba))
 				{
 					touchedBoobies += 1;
 					dialogueNumberSecret = FlxG.random.int(1, 18);
@@ -1712,7 +1726,7 @@ class ShopState extends MusicBeatState
 			//Selling Section Bundled with Buying Process
 			prizeSlots.forEach(function (prize:FlxSprite)
 			{
-				if (FlxG.mouse.overlaps(prize) && FlxG.mouse.justPressed && ClientPrefs.sellSelected)
+				if (TouchUtil.pressAction(prize) && ClientPrefs.sellSelected)
 				{
 					ClientPrefs.itemInfo = true;
 					prizeSelected = prize.ID;
@@ -1755,7 +1769,7 @@ class ShopState extends MusicBeatState
 		}
 		else
 		{
-			if (FlxG.mouse.overlaps(buy) && FlxG.mouse.justPressed)
+			if (TouchUtil.pressAction(buy))
 			{
 				prizeSlots.forEach(function (prize:FlxSprite)
 				{
@@ -1766,7 +1780,7 @@ class ShopState extends MusicBeatState
 		}
 
 			//EQUIPPED OPTION [Will only work on these 2 items]
-			if (FlxG.mouse.overlaps(equipped) && FlxG.mouse.justPressed)
+			if (TouchUtil.pressAction(equipped))
 			{
 				switch (infoTitle.text)
 				{
@@ -1807,7 +1821,7 @@ class ShopState extends MusicBeatState
 		}
 
 		//Cellar Shop
-		if (FlxG.keys.justPressed.UP && !cellarShopAccessed && !cellarShopActive && !secretShopAccessed && !ClientPrefs.sellSelected && !ClientPrefs.luckSelected)
+		if (controls.UI_UP && !cellarShopAccessed && !cellarShopActive && !secretShopAccessed && !ClientPrefs.sellSelected && !ClientPrefs.luckSelected)
 		{
 			//Dialogue reset
 			merchantDialogue.skip();
@@ -1845,15 +1859,18 @@ class ShopState extends MusicBeatState
 			case "Main":
 				luckOptionSlots.forEach(function(button:FlxSprite)
 				{
-					if (FlxG.mouse.overlaps(button))
-						button.alpha = 1;
-					else
-						button.alpha = 0.6;
+					if (!cellarShopActive)
+					{
+						if (TouchUtil.overlaps(button))
+							button.alpha = 1;
+						else
+							button.alpha = 0.6;
+					}
 				});
 			case "Zeel":
 				sellSlots.forEach(function(button:FlxSprite)
 				{
-					if (FlxG.mouse.overlaps(button))
+					if (TouchUtil.overlaps(button))
 						button.alpha = 1;
 					else
 						button.alpha = 0.6;
@@ -1868,7 +1885,7 @@ class ShopState extends MusicBeatState
 			case "Main":
 				luckOptionSlots.forEach(function(button:FlxSprite)
 				{
-					if (FlxG.mouse.overlaps(button) && FlxG.mouse.justPressed && !ClientPrefs.luckSelected)
+					if (TouchUtil.pressAction(button) && !ClientPrefs.luckSelected)
 					{
 						switch(button.ID)
 						{
@@ -1881,16 +1898,16 @@ class ShopState extends MusicBeatState
 									
 								lights.animation.play('redlightsFlash');
 								testYourLuckBG.loadGraphic(Paths.image('shop/testYourLuckBG1'));
-								FlxTween.tween(testYourLuckBG, {x: -130}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-								FlxTween.tween(tokenShow, {x: 780}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+								FlxTween.tween(testYourLuckBG, {x: MobileUtil.fixX(-130)}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+								FlxTween.tween(tokenShow, {x: MobileUtil.fixX(780)}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 	
-								FlxTween.tween(lights, {x: 90}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-								
-								FlxTween.tween(choice, {x: 250}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-								FlxTween.tween(testLuckButton, {x: 330}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+								FlxTween.tween(lights, {x: MobileUtil.fixX(90)}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 									
-								FlxTween.tween(spaceText, {x: 330}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-								FlxTween.tween(notEnoughTokensText, {x: 330}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+								FlxTween.tween(choice, {x: MobileUtil.fixX(250)}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+								FlxTween.tween(testLuckButton, {x: MobileUtil.fixX(330)}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+										
+								FlxTween.tween(spaceText, {x: MobileUtil.fixX(330)}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+								FlxTween.tween(notEnoughTokensText, {x: MobileUtil.fixX(330)}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 								FlxG.sound.play(Paths.sound('shop/shopOpenShelf'));
 								FlxG.sound.play(Paths.sound('shop/mouseClick'));
 	
@@ -1911,16 +1928,16 @@ class ShopState extends MusicBeatState
 									lights.animation.play('bluelightsFlash');
 				
 									testYourLuckBG.loadGraphic(Paths.image('shop/testYourLuckBG2'));
-									FlxTween.tween(testYourLuckBG, {x: -130}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-									FlxTween.tween(tokenShow, {x: 780}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			
-									FlxTween.tween(lights, {x: 90}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+									FlxTween.tween(testYourLuckBG, {x: MobileUtil.fixX(-130)}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+									FlxTween.tween(tokenShow, {x: MobileUtil.fixX(780)}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+	
+									FlxTween.tween(lights, {x: MobileUtil.fixX(90)}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 									
-									FlxTween.tween(choice, {x: 250}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-									FlxTween.tween(testLuckButton, {x: 330}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-									
-									FlxTween.tween(spaceText, {x: 330}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-									FlxTween.tween(notEnoughTokensText, {x: 330}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+									FlxTween.tween(choice, {x: MobileUtil.fixX(250)}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+									FlxTween.tween(testLuckButton, {x: MobileUtil.fixX(330)}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+										
+									FlxTween.tween(spaceText, {x: MobileUtil.fixX(330)}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+									FlxTween.tween(notEnoughTokensText, {x: MobileUtil.fixX(330)}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 									FlxG.sound.play(Paths.sound('shop/shopOpenShelf'));
 									FlxG.sound.play(Paths.sound('shop/mouseClick'));
 								}
@@ -1941,16 +1958,16 @@ class ShopState extends MusicBeatState
 									
 									lights.animation.play('greenlightsFlash');
 									testYourLuckBG.loadGraphic(Paths.image('shop/testYourLuckBG3'));
-									FlxTween.tween(testYourLuckBG, {x: -130}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-									FlxTween.tween(tokenShow, {x: 780}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+									FlxTween.tween(testYourLuckBG, {x: MobileUtil.fixX(-130)}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+									FlxTween.tween(tokenShow, {x: MobileUtil.fixX(780)}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 	
-									FlxTween.tween(lights, {x: 90}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+									FlxTween.tween(lights, {x: MobileUtil.fixX(90)}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 									
-									FlxTween.tween(choice, {x: 250}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-									FlxTween.tween(testLuckButton, {x: 330}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+									FlxTween.tween(choice, {x: MobileUtil.fixX(250)}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+									FlxTween.tween(testLuckButton, {x: MobileUtil.fixX(330)}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 										
-									FlxTween.tween(spaceText, {x: 330}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-									FlxTween.tween(notEnoughTokensText, {x: 330}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+									FlxTween.tween(spaceText, {x: MobileUtil.fixX(330)}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+									FlxTween.tween(notEnoughTokensText, {x: MobileUtil.fixX(330)}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 									FlxG.sound.play(Paths.sound('shop/shopOpenShelf'));
 									FlxG.sound.play(Paths.sound('shop/mouseClick'));
 								}
@@ -1961,7 +1978,7 @@ class ShopState extends MusicBeatState
 			case "Zeel":
 				sellSlots.forEach(function(button:FlxSprite)
 				{
-					if (FlxG.mouse.overlaps(button) && FlxG.mouse.justPressed && !ClientPrefs.sellSelected && !gtfo)
+					if (TouchUtil.pressAction(button) && !ClientPrefs.sellSelected && !gtfo)
 					{
 						switch(button.ID)
 						{
@@ -1971,10 +1988,10 @@ class ShopState extends MusicBeatState
 			
 								shelfSelected = 1;
 								FlxTween.tween(buyItemsBG, {y: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-								
-								prizeSlots.members[14].x = 250;
-								prizeSlots.members[15].x = 450;
-								prizeSlots.members[16].x = 650;
+
+								prizeSlots.members[14].x = MobileUtil.fixX(250);
+								prizeSlots.members[15].x = MobileUtil.fixX(450);
+								prizeSlots.members[16].x = MobileUtil.fixX(650);
 								prizeSlots.forEach(function (prize:FlxSprite)
 								{
 									if (prize.ID <= 5)
@@ -2000,9 +2017,10 @@ class ShopState extends MusicBeatState
 									shelfSelected = 2;
 									FlxTween.tween(buyItemsBG, {y: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 									
-									prizeSlots.members[14].x = 50;
-									prizeSlots.members[15].x = 250;
-									prizeSlots.members[16].x = 450;
+									prizeSlots.members[14].x = MobileUtil.fixX(50);
+									prizeSlots.members[15].x = MobileUtil.fixX(250);
+									prizeSlots.members[16].x = MobileUtil.fixX(450);
+									
 									prizeSlots.forEach(function (prize:FlxSprite)
 									{
 										if ((prize.ID >= 6 && prize.ID <= 10) || prize.ID == 18)
@@ -2029,9 +2047,9 @@ class ShopState extends MusicBeatState
 									shelfSelected = 3;
 									FlxTween.tween(buyItemsBG, {y: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 									
-									prizeSlots.members[14].x = 50;
-									prizeSlots.members[15].x = 250;
-									prizeSlots.members[16].x = 450;
+									prizeSlots.members[14].x = MobileUtil.fixX(50);
+									prizeSlots.members[15].x = MobileUtil.fixX(250);
+									prizeSlots.members[16].x = MobileUtil.fixX(450);
 									prizeSlots.forEach(function (prize:FlxSprite)
 									{
 										if ((prize.ID >= 11 && prize.ID <= 13) || prize.ID == 19)
@@ -2068,7 +2086,7 @@ class ShopState extends MusicBeatState
 	{
 		prizeSlots.forEach(function (prize:FlxSprite)
 		{
-			if (FlxG.mouse.overlaps(prize))
+			if (TouchUtil.overlaps(prize))
 				prize.alpha = 1;
 			else
 				prize.alpha = 0.3;
@@ -2694,10 +2712,12 @@ class ShopState extends MusicBeatState
 		assistantSecret.offset.set(0, 0);
 	}
 
+	var allowTap:Bool = false;
 	function getChoiceNumber(timer:FlxTimer)
 	{
 		if (ClientPrefs.choiceSelected && !ended && ClientPrefs.tokens >= 0)
 		{
+			allowTap = true;
 			switch(shelfSelected)
 			{
 				case 1:

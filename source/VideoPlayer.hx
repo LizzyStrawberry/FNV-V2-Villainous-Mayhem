@@ -83,8 +83,6 @@ class VideoPlayer extends MusicBeatState
     var emptyText:FlxText;
 
     override public function create():Void {
-        FlxG.mouse.visible = true;
-
         #if DISCORD_ALLOWED
 		// Updating Discord Rich Presence
 		DiscordClient.changePresence("In Marco's Desktop", null);
@@ -103,7 +101,7 @@ class VideoPlayer extends MusicBeatState
         deskNames = new FlxTypedGroup<FlxText>();
         add(deskNames);
 
-        addObjects("desktop", deskCategories, 25, 50, 7);
+        addObjects("desktop", deskCategories, MobileUtil.fixX(25), 50, 7);
 
         // Set Scrolling Text
         var textBG:FlxSprite = new FlxSprite(0, FlxG.height - 38).makeGraphic(FlxG.width, 46, 0xFF000000);
@@ -161,6 +159,7 @@ class VideoPlayer extends MusicBeatState
         video = new FlxVideoSprite();
         video.scale.set(0.75, 0.75);
         video.updateHitbox();
+        video.x -= 479; video.y -= 270;
         video.antialiasing = ClientPrefs.globalAntialiasing;
         video.bitmap.onEndReached.add(function (){
             video.bitmap.time = video.bitmap.length;
@@ -180,7 +179,7 @@ class VideoPlayer extends MusicBeatState
         overlay.alpha = 0;
         overlay.y += 220;
 
-        playButton = new FlxClickableSprite(161, FlxG.height - 181, "videoPlayer/playButtons", "playButton", false, true, playOrPause);
+        playButton = new FlxClickableSprite(MobileUtil.fixX(161), FlxG.height - 181, "videoPlayer/playButtons", "playButton", false, true, playOrPause);
         playButton.antialiasing = ClientPrefs.globalAntialiasing;
         playButton.setHitbox();
         playButton.origin.x = videoBG.origin.x;
@@ -218,9 +217,6 @@ class VideoPlayer extends MusicBeatState
         videoPlayerGroup.add(closeButton);
         videoPlayerGroup.add(timeText);
 
-        // Mouse input for seeking
-        FlxMouseEvent.add(progressBar, onBarClick, onBarClick, onBarClick, onBarClick);
-
         if (ClientPrefs.shaders)
         {
             var scanline:ShaderEffect = new CRTEffect(1.25, 0.75);
@@ -228,7 +224,7 @@ class VideoPlayer extends MusicBeatState
             FlxG.camera.setFilters(camFilter);
         }
 
-        blackOut = new FlxSprite().makeGraphic(1280, 720, FlxColor.BLACK);
+        blackOut = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
         add(blackOut);
         new FlxTimer().start(0.25, startBootUp);
 
@@ -237,7 +233,7 @@ class VideoPlayer extends MusicBeatState
 
     private function startBootUp(tmr:FlxTimer)
     {
-        var whiteFlash:FlxSprite = new FlxSprite().makeGraphic(1280, 720, FlxColor.WHITE);
+        var whiteFlash:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.WHITE);
         whiteFlash.scale.set(1, 0);
 		add(whiteFlash);
         
@@ -277,7 +273,7 @@ class VideoPlayer extends MusicBeatState
             }
             var x:Float = (rowCounter * xOffset) + xStart;
                 
-            if (variant == "desktop" && deskCategories[i][1] == "bin") { x = 1150; y = 500; }
+            if (variant == "desktop" && deskCategories[i][1] == "bin") { x = MobileUtil.fixX(1150); y = MobileUtil.fixY(500); }
             var icon:FlxClickableSprite = new FlxClickableSprite(x, y, 'videoPlayer/desktopIcons', (variant == "videos") ? 'vidIcon' : deskCategories[i][1], true, function(){
                 switch(variant)
                 {
@@ -332,7 +328,7 @@ class VideoPlayer extends MusicBeatState
             {
                 FlxTween.tween(appText, {alpha: 1}, 0.25, {ease: FlxEase.circInOut, type: PERSIST});
                 if (asset != "bin")
-                    addObjects("videos", videoPaths, 205, 15, 6, 150);
+                    addObjects("videos", videoPaths, MobileUtil.fixX(205), 15, 6, 150);
                 else
                 {
                     emptyText.screenCenter(Y);
@@ -362,9 +358,11 @@ class VideoPlayer extends MusicBeatState
     var videoStarted:Bool = false;
     var transitioning:Bool = false;
     var openedFolder:Bool = false;
+    var uiTimer:FlxTimer;
     override public function update(elapsed:Float):Void {
         super.update(elapsed);
 
+        onBarClick();
         checkDragging(desktopIcons);
         checkScales();
         moveIcons();
@@ -386,14 +384,16 @@ class VideoPlayer extends MusicBeatState
 
         // Messing with Alphas
         progressBar.alpha = timeText.alpha = playButton.alpha; // Everything follows the playButton
-        if(FlxG.mouse.overlaps(videoBG) && viewingVideo)
-            isUIVisible = true;
-        else
-            isUIVisible = false;
+        if(TouchUtil.pressAction(videoBG) && viewingVideo)
+        {
+            isUIVisible = !isUIVisible;
+            if (uiTimer != null) uiTimer.cancel();
+            if (!isUIVisible) uiTimer = new FlxTimer().start(7, function(_) { isUIVisible = false; });
+        }
 
         if (onPlayer)
         {
-            var back = controls.BACK || ((FlxG.mouse.overlaps(closeButton) || FlxG.mouse.overlaps(winCloseButton)) && FlxG.mouse.justPressed);
+            var back = controls.BACK || (TouchUtil.pressAction(closeButton) || TouchUtil.pressAction(winCloseButton));
 
             if (!transitioning && back) // make sure you're not transitioning
             {
@@ -518,7 +518,7 @@ class VideoPlayer extends MusicBeatState
                 if (videoPlayerAssets[i].alpha < 0.6)
                     videoPlayerAssets[i].alpha += 5 * elapsed;
 
-            if (FlxG.mouse.overlaps(closeButton))
+            if (TouchUtil.overlaps(closeButton))
                 closeButton.alpha = 1;
             else if (closeButton.alpha > 0.6)
                 closeButton.alpha -= 5 * elapsed;
@@ -532,7 +532,7 @@ class VideoPlayer extends MusicBeatState
 
         if (openedFolder)
         {
-            if (FlxG.mouse.overlaps(winCloseButton))
+            if (TouchUtil.overlaps(winCloseButton))
                 winCloseButton.alpha = 1;
             else if (winCloseButton.alpha > 0.6)
                 winCloseButton.alpha -= 5 * elapsed;
@@ -584,17 +584,17 @@ class VideoPlayer extends MusicBeatState
         }
     }   
 
-    function onBarClick(sprite:FlxSprite):Void
+    function onBarClick():Void
     {
         if (!videoStarted) return;
 
-        if (FlxG.mouse.justReleased)
+        if (TouchUtil.pressAction(progressBar))
         {
             var lengthInFloat = int64toMSFloat(video.bitmap.length);
             if (lengthInFloat <= 0) return;
 
-            // Get mouse position on bar
-            var mouseXPos:Float = FlxG.mouse.x - progressBar.x;
+            // Get touch position on bar
+            var mouseXPos:Float = TouchUtil.touch.x - progressBar.x;
             var progress:Float = mouseXPos / progressBar.width;
             var newMsF = progress * lengthInFloat;
 

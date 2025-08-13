@@ -22,7 +22,7 @@ class LegacyCreditsState extends MusicBeatState
 
 	override function create()
 	{
-		#if desktop
+		#if DISCORD_ALLOWED
 		// Updating Discord Rich Presence
 		DiscordClient.changePresence("In the Credits Menu", null);
 		#end
@@ -131,7 +131,7 @@ class LegacyCreditsState extends MusicBeatState
 		descBox.alpha = 0.6;
 		add(descBox);
 
-		descText = new FlxText(50, FlxG.height + offsetThing - 25, 1180, "", 32);
+		descText = new FlxText(MobileUtil.fixX(50), FlxG.height + offsetThing - 25, 1180, "", 32);
 		descText.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER/*, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK*/);
 		descText.scrollFactor.set();
 		//descText.borderSize = 2.4;
@@ -141,6 +141,13 @@ class LegacyCreditsState extends MusicBeatState
 		bg.color = getCurrentBGColor();
 		intendedColor = bg.color;
 		changeSelection();
+
+		var scroll = new ScrollableObject(-0.005, 50, 100, FlxG.width, FlxG.height, "Y");
+		scroll.onFullScroll.add(delta -> {
+			changeSelection(delta);
+		});
+		add(scroll);
+
 		super.create();
 	}
 
@@ -193,7 +200,7 @@ class LegacyCreditsState extends MusicBeatState
 				}
 			}
 
-			if(controls.ACCEPT && (creditsStuff[curSelected][3] == null || creditsStuff[curSelected][3].length > 4)) {
+			if((controls.ACCEPT || TouchUtil.pressAction(grpOptions.members[curSelected])) && (creditsStuff[curSelected][3] == null || creditsStuff[curSelected][3].length > 4)) {
 				CoolUtil.browserLoad(creditsStuff[curSelected][3]);
 			}
 			if (controls.BACK || FlxG.mouse.justPressedRight)

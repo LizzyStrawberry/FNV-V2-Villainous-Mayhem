@@ -59,7 +59,7 @@ class MusicBeatState extends FlxUIState
 
 	public function addHitbox(defaultDrawTarget:Bool = false):Void
 	{
-		var extraMode = MobileData.extraActions.get(ClientPrefs.extraHints);
+		var extraMode = MobileData.extraActions.get(getExtraMode(PlayState.SONG.song));
 
 		hitbox = new Hitbox(extraMode); // Best mode there is
 
@@ -76,6 +76,27 @@ class MusicBeatState extends FlxUIState
 		
 		hitbox.instance.visible = false;
 		add(hitbox.instance);
+	}
+
+	public static function getExtraMode(songName:String):String
+	{
+		var songsWithDodge:Array<String> = ["Breacher", "Excrete", "Iniquitous", "Lustality", "Lustality V1",
+		"Paycheck", "Paycheck (Legacy)", "Point Blank", "Viilain In Board"]; // Songs that only utilize Dodge
+		var songsWithAttack:Array<String> = ["Lustality Remix", "Toybox"]; // Songs that Utilize Both Dodge and Attack
+		
+		for (song in songsWithDodge) 
+		{
+			if (song == songName)
+				return "DODGE";
+		}
+
+		for (song in songsWithAttack) 
+		{
+			if (song == songName)
+				return "ATTACK";
+		}
+
+		return "NONE";
 	}
 
 	public function removeTouchPad()

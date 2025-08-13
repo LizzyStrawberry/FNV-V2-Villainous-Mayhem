@@ -267,32 +267,32 @@ class Controls extends FlxActionSet
 	public var DODGE(get, never):Bool;
 
 	inline function get_DODGE()
-		return _dodge.check();
+		return _dodge.check() || hitboxJustPressed(MobileInputID.DODGE);
 
 	public var ATTACK(get, never):Bool;
 
 	inline function get_ATTACK()
-		return _attack.check();
+		return _attack.check() || hitboxJustPressed(MobileInputID.ATTACK);
 
 	public var MAYHEM(get, never):Bool;
 
 	inline function get_MAYHEM()
-		return _mayhem.check();
+		return _mayhem.check() || hitboxJustPressed(MobileInputID.MAYHEM);
 
 	public var CHARM1(get, never):Bool;
 
 	inline function get_CHARM1()
-		return _charm1.check();
+		return _charm1.check() || hitboxJustPressed(MobileInputID.RESCHARM);
 
 	public var CHARM2(get, never):Bool;
 
 	inline function get_CHARM2()
-		return _charm2.check();
+		return _charm2.check() || hitboxJustPressed(MobileInputID.AUTOCHARM);
 
 	public var CHARM3(get, never):Bool;
 
 	inline function get_CHARM3()
-		return _charm3.check();
+		return _charm3.check() || hitboxJustPressed(MobileInputID.HEALCHARM);
 
 	public var BACK(get, never):Bool;
 

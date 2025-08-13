@@ -1,0 +1,39 @@
+{
+  "buttons": [
+    {
+      "button": "buttonPAUSE",
+      "graphic": "pause",
+      "x": 1156,
+      "y": 2,
+      "color": "0x00C8FF"
+    },
+    {
+      "button": "buttonResCharm",
+      "graphic": "resCharm",
+      "x": 0,
+      "y": 2,
+      "color": "0x1764FF"
+    },
+    {
+      "button": "buttonAutoCharm",
+      "graphic": "autoCharm",
+      "x": 124,
+      "y": 2,
+      "color": "0xFFE817"
+    },
+    {
+      "button": "buttonHealCharm",
+      "graphic": "healCharm",
+      "x": 248,
+      "y": 2,
+      "color": "0x00FF11"
+    },
+    {
+      "button": "buttonMayhem",
+      "graphic": "mayhem",
+      "x": 0,
+      "y": 124,
+      "color": "0xFF6200"
+    }
+  ]
+}

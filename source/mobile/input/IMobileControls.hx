@@ -35,8 +35,12 @@ interface IMobileControls
 	public var buttonUp:TouchButton;
 	public var buttonRight:TouchButton;
 	public var buttonDown:TouchButton;
-	public var buttonExtra:TouchButton;
-	public var buttonExtra2:TouchButton;
+	public var buttonResCharm:TouchButton;
+	public var buttonAutoCharm:TouchButton;
+	public var buttonHealCharm:TouchButton;
+	public var buttonMayhem:TouchButton;
+	public var buttonDodge:TouchButton;
+	public var buttonAttack:TouchButton;
 	public var instance:MobileInputManager;
 	public var onButtonDown:FlxTypedSignal<TouchButton->Void>;
 	public var onButtonUp:FlxTypedSignal<TouchButton->Void>;

@@ -11,7 +11,7 @@ local heal = false
 local allowCharms = true
 function onCreate()
 	if not optimizationMode then
-		if not mechanics or songName == 'Couple Clash' or (isIniquitousMode and week == 'weekkiana') then --Disable this for exceptions
+		if not mechanics or songName == 'Couple Clash' or (isIniquitousMode and week == 'mainweekkiana') then --Disable this for exceptions
 			allowCharms = false
 			setPropertyFromClass('ClientPrefs', 'resistanceCharm', 0);
 			setPropertyFromClass('ClientPrefs', 'autoCharm', 0);

@@ -67,7 +67,14 @@ class AchievementsMenuState extends MusicBeatState
 		
 		changeSelection();
 
+		var scroll = new ScrollableObject(0.004, 50, 100, FlxG.width, FlxG.height, "Y");
+		scroll.onFullScroll.add(delta -> {
+			changeSelection(delta);
+		});
+
 		super.create();
+
+		addTouchPad("NONE", "B");
 	}
 
 	var shiftMult:Int = 1;

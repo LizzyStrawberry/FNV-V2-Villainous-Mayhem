@@ -53,8 +53,14 @@ class TouchPad extends MobileInputManager implements IMobileControls
 	public var buttonX:TouchButton = new TouchButton(0, 0, [MobileInputID.X]);
 	public var buttonY:TouchButton = new TouchButton(0, 0, [MobileInputID.Y]);
 	public var buttonZ:TouchButton = new TouchButton(0, 0, [MobileInputID.Z]);
-	public var buttonExtra:TouchButton = new TouchButton(0, 0);
-	public var buttonExtra2:TouchButton = new TouchButton(0, 0);
+
+	public var buttonResCharm:TouchButton = new TouchButton(0, 0, [MobileInputID.RESCHARM]);
+	public var buttonAutoCharm:TouchButton = new TouchButton(0, 0, [MobileInputID.AUTOCHARM]);
+	public var buttonHealCharm:TouchButton = new TouchButton(0, 0, [MobileInputID.HEALCHARM]);
+	public var buttonMayhem:TouchButton = new TouchButton(0, 0, [MobileInputID.MAYHEM]);
+
+	public var buttonDodge:TouchButton = new TouchButton(0, 0);
+	public var buttonAttack:TouchButton = new TouchButton(0, 0);
 
 	public var instance:MobileInputManager;
 	public var onButtonDown:FlxTypedSignal<TouchButton->Void> = new FlxTypedSignal<TouchButton->Void>();
@@ -98,18 +104,6 @@ class TouchPad extends MobileInputManager implements IMobileControls
 			}
 		}
 
-		switch (Extra)
-		{
-			case SINGLE:
-				add(buttonExtra = createButton(0, FlxG.height - 137, 's', 0xFF0066FF));
-				setExtrasPos();
-			case DOUBLE:
-				add(buttonExtra = createButton(0, FlxG.height - 137, 's', 0xFF0066FF));
-				add(buttonExtra2 = createButton(FlxG.width - 132, FlxG.height - 137, 'g', 0xA6FF00));
-				setExtrasPos();
-			case NONE: // nothing
-		}
-
 		alpha = (!(MusicBeatState.getState() is PlayState) || MusicBeatSubstate.getSubState() is PauseSubState) ? ClientPrefs.controlsAlpha : ClientPrefs.gameControlsAlpha;
 		scrollFactor.set();
 		updateTrackedButtons();
@@ -126,46 +120,6 @@ class TouchPad extends MobileInputManager implements IMobileControls
 			var field = Reflect.field(this, fieldName);
 			if (Std.isOfType(field, TouchButton))
 				Reflect.setField(this, fieldName, FlxDestroyUtil.destroy(field));
-		}
-	}
-
-	public function setExtrasDefaultPos()
-	{
-		var int:Int = 0;
-
-		if (MobileData.save.data.extraData == null)
-			MobileData.save.data.extraData = new Array();
-
-		for (button in Reflect.fields(this))
-		{
-			var field = Reflect.field(this, button);
-			if (button.toLowerCase().contains('extra') && Std.isOfType(field, TouchButton))
-			{
-				MobileData.save.data.extraData[int] = FlxPoint.get(field.x, field.y);
-				++int;
-			}
-		}
-		MobileData.save.flush();
-	}
-
-	public function setExtrasPos()
-	{
-		var int:Int = 0;
-		if (MobileData.save.data.extraData == null)
-			setExtrasDefaultPos();
-
-		for (button in Reflect.fields(this))
-		{
-			var field = Reflect.field(this, button);
-			if (button.toLowerCase().contains('extra') && Std.isOfType(field, TouchButton))
-			{
-				if (MobileData.save.data.extraData.length > int)
-					setExtrasDefaultPos();
-				var point = MobileData.save.data.extraData[int];
-				field.x = point.x;
-				field.y = point.y;
-				int++;
-			}
 		}
 	}
 

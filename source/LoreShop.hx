@@ -64,7 +64,7 @@ class LoreShop extends MusicBeatState
 		FlxG.sound.music.fadeIn(3.0);  
 
         // Cellar Shop
-		hermit = new FlxSprite(400, 80).loadGraphic(Paths.image('shop/hermit'));//put your cords and image here
+		hermit = new FlxSprite(MobileUtil.fixX(400), 80).loadGraphic(Paths.image('shop/hermit'));//put your cords and image here
 		hermit.frames = Paths.getSparrowAtlas('shop/hermit');//here put the name of the xml
 		hermit.scale.x = 0.85;
         hermit.scale.y = 0.85;
@@ -80,7 +80,7 @@ class LoreShop extends MusicBeatState
 		hermit.antialiasing = ClientPrefs.globalAntialiasing;
 		add(hermit);
 
-		cellarLights = new FlxSprite(-40, 300).loadGraphic(Paths.image('shop/hermitBG'));
+		cellarLights = new FlxSprite(MobileUtil.fixX(-40), 300).loadGraphic(Paths.image('shop/hermitBG'));
 		cellarLights.frames = Paths.getSparrowAtlas('shop/hermitBG');
 		cellarLights.animation.addByPrefix('idle', 'bg0', 24, true);
 		cellarLights.animation.play('idle');
@@ -92,7 +92,7 @@ class LoreShop extends MusicBeatState
 
 		dialogueTextCellar = new FlxText(0, 0, FlxG.width, "", 32);
 
-		cellarMerchantDialogue = new FlxTypeText(340, 0, 600, "Greetings, fellow traveler.", 32, true);
+		cellarMerchantDialogue = new FlxTypeText(MobileUtil.fixX(340), 0, 600, "Greetings, fellow traveler.", 32, true);
 		cellarMerchantDialogue.font = 'VCR OSD Mono';
 		cellarMerchantDialogue.color = FlxColor.WHITE;
         cellarMerchantDialogue.alignment = CENTER;
@@ -100,7 +100,7 @@ class LoreShop extends MusicBeatState
 		cellarMerchantDialogue.sounds = [FlxG.sound.load(Paths.sound('shopDialogue'), 0.4)];
 		add(cellarMerchantDialogue);
 
-		cellarOption = new FlxSprite(0, 0).loadGraphic(Paths.image('shop/cellarOption'));
+		cellarOption = new FlxSprite(MobileUtil.fixX(0), 0).loadGraphic(Paths.image('shop/cellarOption'));
 		cellarOption.antialiasing = ClientPrefs.globalAntialiasing;
 		cellarOption.screenCenter();
 		cellarOption.x += 160;
@@ -113,7 +113,7 @@ class LoreShop extends MusicBeatState
 		blackOut.alpha = 0;
 		add(blackOut);
 
-        shopTitle = new Alphabet(400, 10, "Cellar Shop", true);
+        shopTitle = new Alphabet(MobileUtil.fixX(400), 10, "Cellar Shop", true);
 		shopTitle.alpha = 0;
 		add(shopTitle);
 
@@ -124,12 +124,12 @@ class LoreShop extends MusicBeatState
         galleryIcon.alpha = 0;
 		add(galleryIcon);
 
-        galleryItemCost = new FlxText(galleryIcon.x - 450, galleryIcon.y + 250, FlxG.width, "Chests Available", 36);
+        galleryItemCost = new FlxText(galleryIcon.x - 450, galleryIcon.y + 250, 1280, "Chests Available", 36);
 		galleryItemCost.setFormat("VCR OSD Mono", 36, 0xFFFFFFFF, CENTER);
 		galleryItemCost.alpha = 0;
 		add(galleryItemCost);
 
-        galleryItemInfo = new FlxText(galleryItemCost.x, galleryItemCost.y - 300, FlxG.width, "Gallery", 36);
+        galleryItemInfo = new FlxText(galleryItemCost.x, galleryItemCost.y - 300, 1280, "Gallery", 36);
 		galleryItemInfo.setFormat("VCR OSD Mono", 36, 0xFFFFFFFF, CENTER);
 		galleryItemInfo.alpha = 0;
 		add(galleryItemInfo);
@@ -141,12 +141,12 @@ class LoreShop extends MusicBeatState
         loreScrollsIcon.alpha = 0;
 		add(loreScrollsIcon);
 
-        scrollItemCost = new FlxText(loreScrollsIcon.x - 450, loreScrollsIcon.y + 250, FlxG.width, "Cost: 5 Eggs", 36);
+        scrollItemCost = new FlxText(loreScrollsIcon.x - 450, loreScrollsIcon.y + 250, 1280, "Cost: 5 Eggs", 36);
 		scrollItemCost.setFormat("VCR OSD Mono", 36, 0xFFFFFFFF, CENTER);
 		scrollItemCost.alpha = 0;
 		add(scrollItemCost);
 
-        scrollItemInfo = new FlxText(scrollItemCost.x, scrollItemCost.y - 300, FlxG.width, "Lore Scroll", 36);
+        scrollItemInfo = new FlxText(scrollItemCost.x, scrollItemCost.y - 300, 1280, "Lore Scroll", 36);
 		scrollItemInfo.setFormat("VCR OSD Mono", 36, 0xFFFFFFFF, CENTER);
 		scrollItemInfo.alpha = 0;
 		add(scrollItemInfo);
@@ -169,7 +169,7 @@ class LoreShop extends MusicBeatState
 		secondBlackOut.alpha = 0;
 		add(secondBlackOut);
 
-        galleryTitle = new Alphabet(330, 10, "Gallery Items", true);
+        galleryTitle = new Alphabet(MobileUtil.fixX(330), 10, "Gallery Items", true);
 		galleryTitle.alpha = 0;
 		add(galleryTitle);
 
@@ -202,7 +202,7 @@ class LoreShop extends MusicBeatState
 		add(categoryPrices);
 		for (i in 0...4)
 		{
-			var text = new FlxText(0, 0, FlxG.width, "Cost: ");
+			var text = new FlxText(MobileUtil.fixX(0), 0, FlxG.width, "Cost: ");
             text.setFormat("VCR OSD Mono", 32, 0xFFFFFFFF, CENTER);
 			text.screenCenter();
 			text.ID = i;
@@ -248,7 +248,7 @@ class LoreShop extends MusicBeatState
 		prizeEgg.antialiasing = ClientPrefs.globalAntialiasing;
         add(prizeEgg);
 
-        eggCounter = new FlxText(prizeEgg.x - 500, prizeEgg.y + 60, FlxG.width, ": " + ClientPrefs.eggs, 36);
+        eggCounter = new FlxText(prizeEgg.x - 500, prizeEgg.y + 60, 1280, ": " + ClientPrefs.eggs, 36);
 		eggCounter.setFormat("VCR OSD Mono", 25, 0xFFFFFFFF, CENTER);
 		eggCounter.alpha = 0;
 		add(eggCounter);
@@ -277,14 +277,14 @@ class LoreShop extends MusicBeatState
 		lightSpin.antialiasing = ClientPrefs.globalAntialiasing;
 		add(lightSpin);
 
-        achievementText = new FlxText(0, 0, FlxG.width, "TEST");
+        achievementText = new FlxText(0, 0, 1280, "TEST");
         achievementText.setFormat("VCR OSD Mono", 50, 0xFFFFFF00, CENTER);
 		achievementText.screenCenter();
         achievementText.alpha = 0;
         achievementText.borderSize = 4;
         add(achievementText);
 
-        achievementTextInfo = new FlxText(0, 0, FlxG.width, "This category has been saved to your <G>gallery<G>!\nFeel free to go view its contents!");
+        achievementTextInfo = new FlxText(0, 0, 1280, "This category has been saved to your <G>gallery<G>!\nFeel free to go view its contents!");
         achievementTextInfo.setFormat("VCR OSD Mono", 30, 0xFFFFFFFF, CENTER, FlxTextBorderStyle.OUTLINE, 0xFF000000);
 		achievementTextInfo.screenCenter();
         achievementTextInfo.y += 300;
@@ -328,6 +328,8 @@ class LoreShop extends MusicBeatState
 		}
 
         super.create();
+
+        addTouchPad("NONE", "B");
     }
 
     function giveAchievement() {
@@ -492,7 +494,7 @@ class LoreShop extends MusicBeatState
 
             if (!inChestRoom && !transitioning)
             {
-                if(FlxG.mouse.overlaps(cellarOption) && !selectinItem)
+                if(TouchUtil.overlaps(cellarOption) && !selectinItem)
                 {
                     cellarOption.alpha = 1;
                 }
@@ -501,7 +503,7 @@ class LoreShop extends MusicBeatState
                     cellarOption.alpha = 0.6;
                 }
                 //Dialogue
-                if((!FlxG.mouse.overlaps(cellarOption)) && ClientPrefs.itemInfo == false && FlxG.mouse.overlaps(hermit) && FlxG.mouse.justPressed && !selectinItem)
+                if((!TouchUtil.overlaps(cellarOption)) && ClientPrefs.itemInfo == false && TouchUtil.pressAction(hermit) && !selectinItem)
                 {
                     dialogueNumberCellar = FlxG.random.int(1, 30);
                         switch (dialogueNumberCellar)
@@ -573,7 +575,7 @@ class LoreShop extends MusicBeatState
                         cellarMerchantDialogue.start(0.04, true);
                 }
             
-                if(FlxG.mouse.overlaps(cellarOption) && FlxG.mouse.justPressed && ClientPrefs.itemInfo == false)
+                if(TouchUtil.pressAction(cellarOption) && ClientPrefs.itemInfo == false)
                 {
                     FlxG.sound.play(Paths.sound('scrollMenu'));
                     FlxG.sound.play(Paths.sound('shop/mouseClick'));
@@ -606,7 +608,7 @@ class LoreShop extends MusicBeatState
 
                 if (selectinItem)
                 {
-                    if(FlxG.mouse.overlaps(galleryIcon) && ClientPrefs.galleryUnlocked == true)
+                    if(TouchUtil.overlaps(galleryIcon) && ClientPrefs.galleryUnlocked == true)
                     {
                         galleryIcon.alpha = 1;
                     }
@@ -615,7 +617,7 @@ class LoreShop extends MusicBeatState
                         galleryIcon.alpha = 0.6;
                     }
 
-                    if(FlxG.mouse.overlaps(loreScrollsIcon) && ClientPrefs.numberOfScrolls != 10)
+                    if(TouchUtil.overlaps(loreScrollsIcon) && ClientPrefs.numberOfScrolls != 10)
                     {
                         loreScrollsIcon.alpha = 1;
                     }
@@ -624,7 +626,7 @@ class LoreShop extends MusicBeatState
                         loreScrollsIcon.alpha = 0.6;
                     }
 
-                    if (FlxG.mouse.overlaps(galleryIcon) && FlxG.mouse.justPressed && ClientPrefs.itemInfo == true && completedGallery)
+                    if (TouchUtil.pressAction(galleryIcon) && ClientPrefs.itemInfo == true && completedGallery)
                     {
                         if (ClientPrefs.eggs >= 1)
                         {
@@ -643,7 +645,7 @@ class LoreShop extends MusicBeatState
                             cellarMerchantDialogue.start(0.04, true);
                         }
                     }
-                    if (FlxG.mouse.overlaps(loreScrollsIcon) && FlxG.mouse.justPressed && ClientPrefs.itemInfo == true && ClientPrefs.numberOfScrolls == 10)
+                    if (TouchUtil.pressAction(loreScrollsIcon) && ClientPrefs.itemInfo == true && ClientPrefs.numberOfScrolls == 10)
                     {
                         if (ClientPrefs.eggs >= 1)
                         {
@@ -663,7 +665,7 @@ class LoreShop extends MusicBeatState
                         }
                     }
 
-                    if (FlxG.mouse.overlaps(loreScrollsIcon) && FlxG.mouse.justPressed && ClientPrefs.itemInfo == true && ClientPrefs.numberOfScrolls != 10)
+                    if (TouchUtil.pressAction(loreScrollsIcon) && ClientPrefs.itemInfo == true && ClientPrefs.numberOfScrolls != 10)
                     {
                         if (ClientPrefs.eggs >= 5)
                         {
@@ -686,7 +688,7 @@ class LoreShop extends MusicBeatState
                     }
                 }
 
-                if (FlxG.mouse.overlaps(galleryIcon) && FlxG.mouse.justPressed && ClientPrefs.itemInfo == true && !completedGallery && inChestRoom == false)
+                if (TouchUtil.pressAction(galleryIcon) && ClientPrefs.itemInfo == true && !completedGallery && inChestRoom == false)
                 {
                     transitioning = true;
 
@@ -713,7 +715,7 @@ class LoreShop extends MusicBeatState
             {
                 chests.forEach(function(spr:FlxSprite)
                 {
-                    if (FlxG.mouse.overlaps(spr))
+                    if (TouchUtil.overlaps(spr))
                         switch(spr.ID)
                         {
                             case 0:
@@ -726,7 +728,7 @@ class LoreShop extends MusicBeatState
                                 changeSelection(3);
                         }
                     
-                    if (FlxG.mouse.overlaps(spr) && FlxG.mouse.justPressed && !completedGallery)
+                    if (TouchUtil.pressAction(spr) && !completedGallery)
                     {
                         animChest.alpha = 1;
                         FlxG.sound.play(Paths.sound('shop/mouseClick'));

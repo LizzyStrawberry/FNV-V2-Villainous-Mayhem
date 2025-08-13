@@ -130,8 +130,8 @@ class CRTShader extends FlxShader
 		#define fragColor gl_FragColor
 		#define mainImage main
 
-		uniform float warp = 1.25; // simulate curvature of CRT monitor
-		uniform float scan = 0.75; // simulate darkness between scanlines
+		uniform float warp; // simulate curvature of CRT monitor
+		uniform float scan; // simulate darkness between scanlines
 
 		void mainImage()
 		{

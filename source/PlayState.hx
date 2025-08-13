@@ -763,8 +763,12 @@ class PlayState extends MusicBeatState
 		opponentStrums = new FlxTypedGroup<StrumNote>();
 		playerStrums = new FlxTypedGroup<StrumNote>();
 
+		var touchPadUI:String = "FULL_UI_PAUSE";
+		if ((PlayState.isIniquitousMode && WeekData.weeksList[PlayState.storyWeek] == 'mainweekkiana') || !ClientPrefs.mechanics || Paths.formatToSongPath(PlayState.SONG.song) == "couple-clash")
+			touchPadUI = "PAUSE";
+
 		#if mobile
-		addTouchPad("NONE", "PAUSE");
+		addTouchPad("NONE", touchPadUI);
 		addTouchPadCamera();
 		#end
 		addHitbox();
@@ -1130,6 +1134,39 @@ class PlayState extends MusicBeatState
 		return false;
 	}
 	#end
+
+	function fixTouchPadButtons()
+	{
+		// Certain conditions are met so this doesn't work
+		if ((PlayState.isIniquitousMode && WeekData.weeksList[PlayState.storyWeek] == 'mainweekkiana') || !ClientPrefs.mechanics || Paths.formatToSongPath(PlayState.SONG.song) == "couple-clash") return;
+	
+		if (!ClientPrefs.buff1Selected && !ClientPrefs.buff2Selected && !ClientPrefs.buff3Selected)
+		{
+			touchPad.buttonMayhem.visible = touchPad.buttonMayhem.active = false;
+			return;
+		}
+
+		if (getLuaObject("mayhembackBar").scale.x < 1)
+			touchPad.buttonMayhem.color = FlxColor.fromString("0xFFFFFFFF");
+		else
+			touchPad.buttonMayhem.color = FlxColor.fromString("0xFF6200");
+
+		if (ClientPrefs.resistanceCharm <= 1 || ClientPrefs.autoCharm <= 1 || ClientPrefs.healingCharm == 0)
+		{
+			touchPad.buttonResCharm.visible = touchPad.buttonResCharm.active = false;
+			touchPad.buttonAutoCharm.visible = touchPad.buttonAutoCharm.active = false;
+			touchPad.buttonHealCharm.visible = touchPad.buttonHealCharm.active = false;
+			touchPad.buttonMayhem.y = MobileUtil.rawY(0);
+			return;
+		}
+
+		if (ClientPrefs.healingCharm <= 9 && ClientPrefs.healingCharm > 0)
+		{
+			touchPad.buttonResCharm.visible = touchPad.buttonResCharm.active = false;
+			touchPad.buttonAutoCharm.visible = touchPad.buttonAutoCharm.active = false;
+			return;
+		}
+	}
 
 	function set_songSpeed(value:Float):Float
 	{
@@ -2654,6 +2691,8 @@ class PlayState extends MusicBeatState
 
 		callOnLuas('onUpdate', [elapsed]);
 
+		fixTouchPadButtons();
+		
 		if (isMayhemMode)
 			scoreTxt.text = 'Health: ' + FlxMath.roundDecimal(health, 2) 
 			+ ' | Score: ' + songScore

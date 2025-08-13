@@ -7,6 +7,7 @@ haxelib --always set hxvlc mobileport
 haxelib --always set hxcpp git
 haxelib --always set lime git
 haxelib --always set openfl git
+haxelib --always set linc_luajit mobilegit
 haxelib --always set seedyrng 1.1.0
 echo.
 echo Haxe Libraries Setup Completed! You can now compile FNV freely!

@@ -120,8 +120,8 @@ class InfoState extends MusicBeatState
 	var desc:FlxText;
 
 	var charGroup:Array<FlxSprite> = [];
-	var CHAR_DEFAULT_X:Int = 810;
-	var CHAR_DEFAULT_Y:Int = 40;
+	var CHAR_DEFAULT_X:Int = Std.int(MobileUtil.fixX(810));
+	var CHAR_DEFAULT_Y:Int = Std.int(MobileUtil.fixY(40));
 
 	var textBG:FlxSprite;
 	var textBGMain:FlxSprite;
@@ -149,6 +149,8 @@ class InfoState extends MusicBeatState
 
 		bg = new FlxSprite().loadGraphic(Paths.image('promotion/Background'));
 		bg.color = 0xFFe1e1e1;
+		bg.setGraphicSize(FlxG.width, FlxG.height);
+		bg.screenCenter();
 		bg.alpha = 0.5;
 		add(bg);
 
@@ -181,12 +183,11 @@ class InfoState extends MusicBeatState
 		loadCharacters(FileSystem.absolutePath("assets/images/characterInfo"));
 		updateCharPositions(false);
 
-		textBGMain = new FlxSprite(-400, 45).loadGraphic(Paths.image('characterInfo/infoCard'));
+		textBGMain = new FlxSprite(MobileUtil.fixX(90), 45).loadGraphic(Paths.image('characterInfo/infoCard'));
 		textBGMain.scale.set(1.2, 1);
-		textBGMain.x += 490;
 		add(textBGMain);
 
-		titleText = new Alphabet(420, 90, "This is a test", true);
+		titleText = new Alphabet(MobileUtil.fixX(420), 90, "This is a test", true);
 		titleText.setAlignmentFromString('center');
 		add(titleText);
 
@@ -203,7 +204,7 @@ class InfoState extends MusicBeatState
 		getRightArrowX = arrowSelectorRight.x;
 		getLeftArrowX = arrowSelectorLeft.x;
 
-		desc = new FlxText(60, 200, 700,
+		desc = new FlxText(MobileUtil.fixX(60), 200, 700,
 			"This will only appear if i\ndon't have any text\nset for the characters.\nWe'll be checking the amount of space\nI can use to add these descriptions in.\nI should theoretically have enough\nspace to type this much stuff.\n#fortniteforlife lmao",
 			52);
 		desc.setFormat("SF Atarian System", 33, FlxColor.WHITE, CENTER);
@@ -241,6 +242,8 @@ class InfoState extends MusicBeatState
 		changeItem();
 
 		super.create();
+
+		addTouchPad("NONE", "B");
 	}
 
 	function loadCharacters(folder:String)

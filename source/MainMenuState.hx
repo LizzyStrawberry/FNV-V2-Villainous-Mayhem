@@ -677,7 +677,7 @@ class MainMenuState extends MusicBeatState
 		inventoryTitle.alpha = 0;
 		add(inventoryTitle);
 
-		buffTitle = new Alphabet(MobileUtil.fixX(1200), 200, "Buffs", true);
+		buffTitle = new Alphabet(MobileUtil.fixX(825), 150, "Buffs", true);
 		buffTitle.scaleX = 0.7;
 		buffTitle.scaleY = 0.7;
 		buffTitle.alpha = 0;
@@ -723,7 +723,7 @@ class MainMenuState extends MusicBeatState
 			add(charm);
 		}	
 
-		charmTitle = new Alphabet(MobileUtil.fixX(1150), 610, "Charms", true);
+		charmTitle = new Alphabet(MobileUtil.fixX(800), 450, "Charms", true);
 		charmTitle.scaleX = 0.7;
 		charmTitle.scaleY = 0.7;
 		charmTitle.alpha = 0;

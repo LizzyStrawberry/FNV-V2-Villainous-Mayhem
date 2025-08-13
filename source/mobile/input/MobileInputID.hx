@@ -63,6 +63,18 @@ enum abstract MobileInputID(Int) from Int to Int {
 	// Pausing
 	var PAUSE = 42;
 
+	// Charms
+	var RESCHARM = 43;
+	var AUTOCHARM = 44;
+	var HEALCHARM = 45;
+
+	// Mayhem
+	var MAYHEM = 46;
+
+	// Dodge + Attack
+	var DODGE = 47;
+	var ATTACK = 48;
+
 	@:from
 	public static inline function fromString(s:String) {
 		s = s.toUpperCase();

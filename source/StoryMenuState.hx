@@ -133,7 +133,7 @@ class StoryMenuState extends MusicBeatState
 			{
 				loadedWeeks.push(weekFile);
 				WeekData.setDirectoryFromWeek(weekFile);
-				var weekThing:MenuItem = new MenuItem(MobileUtil.fixX(0), bgSprite.y + 396, WeekData.weeksList[i]);
+				var weekThing:MenuItem = new MenuItem(0, bgSprite.y + 396, WeekData.weeksList[i]);
 				weekThing.y += ((weekThing.height + 20) * num);
 				weekThing.targetY = num;
 				grpWeekText.add(weekThing);
@@ -234,12 +234,12 @@ class StoryMenuState extends MusicBeatState
 			NotificationAlert.saveNotifications();
 		}
 
-		arrowSelectorLeft = new FlxSprite(-20, 230).loadGraphic(Paths.image('freeplayStuff/arrowSelectorLeft'));
+		arrowSelectorLeft = new FlxSprite(MobileUtil.fixX(-20), 230).loadGraphic(Paths.image('freeplayStuff/arrowSelectorLeft'));
 		arrowSelectorLeft.antialiasing = ClientPrefs.globalAntialiasing;
 		arrowSelectorLeft.scale.set(0.5, 0.5);
 		add(arrowSelectorLeft);
 
-		arrowSelectorRight = new FlxSprite(1160, 230).loadGraphic(Paths.image('freeplayStuff/arrowSelectorRight'));
+		arrowSelectorRight = new FlxSprite(MobileUtil.fixX(1160), 230).loadGraphic(Paths.image('freeplayStuff/arrowSelectorRight'));
 		arrowSelectorRight.antialiasing = ClientPrefs.globalAntialiasing;
 		arrowSelectorRight.scale.set(0.5, 0.5);
 		add(arrowSelectorRight);

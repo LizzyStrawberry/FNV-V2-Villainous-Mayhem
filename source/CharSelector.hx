@@ -147,7 +147,7 @@ class CharSelector extends MusicBeatState{
 
         // Making sure the background is added first to be in the back and then adding the character names and character images afterwords
         menuBG = new FlxSprite().loadGraphic(Paths.image('promotion/Background'));
-        menuBG.setGraphicSize(Std.int(menuBG.width * 1.1));
+        menuBG.setGraphicSize(FlxG.width, FlxG.height);
         menuBG.updateHitbox();
         menuBG.screenCenter();
         menuBG.antialiasing = true;
@@ -175,7 +175,7 @@ class CharSelector extends MusicBeatState{
         }
   
         Border = new FlxSprite().loadGraphic(Paths.image('charSelect/borders'));
-        Border.setGraphicSize(Std.int(menuBG.width * 1.1));
+        Border.setGraphicSize(FlxG.width, FlxG.height);
         Border.updateHitbox();
         Border.screenCenter();
         Border.antialiasing = true;
@@ -243,32 +243,32 @@ class CharSelector extends MusicBeatState{
         
         if (!alreadySelected)
         {
-            if (FlxG.mouse.overlaps(icon))
+            if (TouchUtil.overlaps(icon))
                 FlxTween.tween(icon, {y: getIconY - 2}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
             else
                 FlxTween.tween(icon, {y: getIconY}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
 
-            if (FlxG.mouse.overlaps(arrowSelectorLeft))
+            if (TouchUtil.overlaps(arrowSelectorLeft))
 				FlxTween.tween(arrowSelectorLeft, {x: getLeftArrowX - 2}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
 			else
 				FlxTween.tween(arrowSelectorLeft, {x: getLeftArrowX}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
 	
-			if (FlxG.mouse.overlaps(arrowSelectorRight))
+			if (TouchUtil.overlaps(arrowSelectorRight))
 				FlxTween.tween(arrowSelectorRight, {x: getRightArrowX + 2}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
 			else
 				FlxTween.tween(arrowSelectorRight, {x: getRightArrowX}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
 
-            if (leftPress || (FlxG.mouse.overlaps(arrowSelectorLeft) && FlxG.mouse.justPressed))
+            if (leftPress || TouchUtil.pressAction(arrowSelectorLeft))
             {
                 FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
                 changeSelection(-1);
             }
-            if (rightPress || ((FlxG.mouse.overlaps(arrowSelectorRight)) && FlxG.mouse.justPressed))
+            if (rightPress || TouchUtil.pressAction(arrowSelectorRight))
             {
                 FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
                 changeSelection(1);
             }
-            if (accepted || (FlxG.mouse.overlaps(icon) && (!FlxG.mouse.overlaps(arrowSelectorRight)) && FlxG.mouse.justPressed))
+            if (accepted || TouchUtil.pressAction(icon))
             {
                 isSelectinChar = false;
                 alreadySelected = true;
@@ -293,11 +293,10 @@ class CharSelector extends MusicBeatState{
 
                 new FlxTimer().start(1.4, function(tmr:FlxTimer)
                 {
-                    FlxG.mouse.visible = false;
                     LoadingState.loadAndSwitchState(new PlayState()); // Gonna try this for Psych
                 });
             }
-            if (goBack || FlxG.mouse.justPressedRight)
+            if (goBack || FlxG.android.justReleased.BACK)
             {
                 FlxG.sound.play(Paths.sound('cancelMenu'));
                 if (PlayState.isStoryMode)

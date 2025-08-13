@@ -91,6 +91,12 @@ end
 
 function onCreatePost()    
 	if instructionsData.hasMechanic then
+		makeLuaSprite('overlay', '', 0, 0)
+		makeGraphic('overlay', screenWidth, screenHeight, '000000')
+		screenCenter("overlay", "XY")
+		setProperty('overlay.alpha', 0)
+		setScrollFactor('overlay', 0, 0)
+		
 		makeLuaSprite('warn', 'instructions/Inst-'..instructionsData.instGraphic, 0, 0)
 		setObjectCamera('warn', 'other')
 		setProperty('warn.alpha', 0)
@@ -117,7 +123,7 @@ end
 function onUpdate()
 	if instructionsData.hasMechanic and difficulty >= instructionsData.diff and showMechanic and not confirmMechanic then
 		if instructionsData.isBossFight then setProperty("bossFight.alpha", getProperty("warnTxt.alpha")) end
-        
+        setProperty("overlay.alpha", getProperty("warn.alpha"))
         if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.Y') then
             playSound('confirmMenu');
 

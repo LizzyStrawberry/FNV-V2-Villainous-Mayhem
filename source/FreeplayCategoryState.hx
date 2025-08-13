@@ -38,8 +38,8 @@ class FreeplayCategoryState extends MusicBeatState
 
         bgGradient = new FlxSprite(0, 0).loadGraphic(Paths.image('pauseGradient/gradient_Null'));
         bgGradient.color = 0xFF00a800;
-        bgGradient.x = 100;
-		bgGradient.setGraphicSize(FlxG.width, FlxG.height);
+        bgGradient.setGraphicSize(FlxG.width, FlxG.height);
+        bgGradient.screenCenter(X);
 		bgGradient.alpha = 0;
 		bgGradient.scrollFactor.set();
 		add(bgGradient);

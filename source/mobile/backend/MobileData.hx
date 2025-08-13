@@ -131,7 +131,7 @@ typedef ButtonsData = {
 }
 
 enum ExtraActions {
-	SINGLE;
-	DOUBLE;
+	DODGE;
+	ATTACK;
 	NONE;
 }
