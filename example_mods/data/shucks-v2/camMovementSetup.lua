@@ -16,6 +16,19 @@ function onBeatHit()
 		callScript("scripts/Camera Movement", "setCameraProperty", {"camOffsets", "35"})
 		callScript("scripts/Camera Movement", "setCameraProperty", {"camZooms", "1, 1.3, 1.5"})
 	end
+	if curBeat == 176 then
+		callScript("scripts/Camera Movement", "setCameraProperty", {"dadCamera", "750, 350"})
+		callScript("scripts/Camera Movement", "setCameraProperty", {"camZooms", "0.7, 1.3, 1.5"})
+	end
+	if curBeat == 180 then
+		doTweenZoom("camGameMove", "camGame", 0.8, 10 / playbackRate, "cubeInOut")
+	end
+	if curBeat == 208 then
+		cancelTween("camGameMove")
+		setProperty("mainCamZoom", true)
+		callScript("scripts/Camera Movement", "setCameraProperty", {"dadCamera", "600, 300"})
+		callScript("scripts/Camera Movement", "setCameraProperty", {"camZooms", "1, 1.3, 1.5"})
+	end
 	if curBeat == 440 then
 		callScript("scripts/Camera Movement", "setCameraProperty", {"camZooms", "1, 2, 1.5"})
 		callScript("scripts/Camera Movement", "setCameraProperty", {"camOffsets", "20"})

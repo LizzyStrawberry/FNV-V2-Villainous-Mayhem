@@ -23,7 +23,7 @@ function onCreate()
 	doTweenAngle('bfnormal1', 'bf', 20, 1.4 / playbackRate, 'cubeInOut')
 	
 	makeLuaSprite('blackBG', '', 0, 0)
-	makeGraphic('blackBG', 2000, 2000, '000000')
+	makeGraphic('blackBG', screenWidth * 1.25, screenHeight * 1.25, '000000')
 	setScrollFactor('blackBG', 0, 0)
 	setObjectCamera('blackBG', 'game')
 	screenCenter('blackBG', 'XY')

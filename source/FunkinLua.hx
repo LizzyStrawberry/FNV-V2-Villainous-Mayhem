@@ -17,6 +17,7 @@ import openfl.utils.Assets;
 import flixel.addons.transition.FlxTransitionableState;
 
 import Type.ValueType;
+import haxe.Constraints;
 import Controls;
 import DialogueBoxPsych;
 
@@ -33,6 +34,7 @@ import Discord;
 using StringTools;
 
 class FunkinLua {
+	static final instanceStr:Dynamic = "##PSYCHLUA_STRINGTOOBJ";
 	public static var Function_Stop:Dynamic = 1;
 	public static var Function_Continue:Dynamic = 0;
 	public static var Function_StopLua:Dynamic = 2;
@@ -645,90 +647,7 @@ class FunkinLua {
 			}
 			Lua.pushnil(lua);
 		});
-		/*Lua_helper.add_callback(lua, "getGlobals", function(luaFile:String){ // returns a copy of the specified file's globals
-			var cervix = luaFile + ".lua";
-			if(luaFile.endsWith(".lua"))cervix=luaFile;
-			var doPush = false;
-			#if MODS_ALLOWED
-			if(FileSystem.exists(Paths.modFolders(cervix)))
-			{
-				cervix = Paths.modFolders(cervix);
-				doPush = true;
-			}
-			else if(FileSystem.exists(cervix))
-			{
-				doPush = true;
-			}
-			else {
-				cervix = Paths.getPreloadPath(cervix);
-				if(FileSystem.exists(cervix)) {
-					doPush = true;
-				}
-			}
-			#else
-			cervix = Paths.getPreloadPath(cervix);
-			if(Assets.exists(cervix)) {
-				doPush = true;
-			}
-			#end
-			if(doPush)
-			{
-				for (luaInstance in PlayState.instance.luaArray)
-				{
-					if(luaInstance.scriptName == cervix)
-					{
-						Lua.newtable(lua);
-						var tableIdx = Lua.gettop(lua);
 
-						Lua.pushvalue(luaInstance.lua, Lua.LUA_GLOBALSINDEX);
-						Lua.pushnil(luaInstance.lua);
-						while(Lua.next(luaInstance.lua, -2) != 0) {
-							// key = -2
-							// value = -1
-
-							var pop:Int = 0;
-
-							// Manual conversion
-							// first we convert the key
-							if(Lua.isnumber(luaInstance.lua,-2)){
-								Lua.pushnumber(lua, Lua.tonumber(luaInstance.lua, -2));
-								pop++;
-							}else if(Lua.isstring(luaInstance.lua,-2)){
-								Lua.pushstring(lua, Lua.tostring(luaInstance.lua, -2));
-								pop++;
-							}else if(Lua.isboolean(luaInstance.lua,-2)){
-								Lua.pushboolean(lua, Lua.toboolean(luaInstance.lua, -2));
-								pop++;
-							}
-							// TODO: table
-
-
-							// then the value
-							if(Lua.isnumber(luaInstance.lua,-1)){
-								Lua.pushnumber(lua, Lua.tonumber(luaInstance.lua, -1));
-								pop++;
-							}else if(Lua.isstring(luaInstance.lua,-1)){
-								Lua.pushstring(lua, Lua.tostring(luaInstance.lua, -1));
-								pop++;
-							}else if(Lua.isboolean(luaInstance.lua,-1)){
-								Lua.pushboolean(lua, Lua.toboolean(luaInstance.lua, -1));
-								pop++;
-							}
-							// TODO: table
-
-							if(pop==2)Lua.rawset(lua, tableIdx); // then set it
-							Lua.pop(luaInstance.lua, 1); // for the loop
-						}
-						Lua.pop(luaInstance.lua,1); // end the loop entirely
-						Lua.pushvalue(lua, tableIdx); // push the table onto the stack so it gets returned
-
-						return;
-					}
-
-				}
-			}
-			Lua.pushnil(lua);
-		});*/
 		Lua_helper.add_callback(lua, "isRunning", function(luaFile:String){
 			var cervix = luaFile + ".lua";
 			if(luaFile.endsWith(".lua"))cervix=luaFile;
@@ -902,6 +821,59 @@ class FunkinLua {
 				luaTrace(scriptName + ":" + lastCalledFunction + " - " + e, false, false, FlxColor.RED);
 			}
 			#end
+		});
+
+		Lua_helper.add_callback(lua, "callMethod", function(funcToRun:String, ?args:Array<Dynamic> = null) {
+			return callMethodFromObject(PlayState.instance, funcToRun, parseInstances(args));
+		});
+		Lua_helper.add_callback(lua, "callMethodFromClass", function(className:String, funcToRun:String, ?args:Array<Dynamic> = null) {
+			return callMethodFromObject(Type.resolveClass(className), funcToRun, parseInstances(args));
+		});
+
+		Lua_helper.add_callback(lua, "createInstance", function(variableToSave:String, className:String, ?args:Array<Dynamic> = null) {
+			variableToSave = variableToSave.trim().replace('.', '');
+			if(!PlayState.instance.variables.exists(variableToSave))
+			{
+				if(args == null) args = [];
+				var myType:Dynamic = Type.resolveClass(className);
+		
+				if(myType == null)
+				{
+					luaTrace('createInstance: Variable $variableToSave is already being used and cannot be replaced!', false, false, FlxColor.RED);
+					return false;
+				}
+
+				var obj:Dynamic = Type.createInstance(myType, args);
+				if(obj != null)
+					PlayState.instance.variables.set(variableToSave, obj);
+				else
+					luaTrace('createInstance: Failed to create $variableToSave, arguments are possibly wrong.', false, false, FlxColor.RED);
+
+				return (obj != null);
+			}
+			else luaTrace('createInstance: Variable $variableToSave is already being used and cannot be replaced!', false, false, FlxColor.RED);
+			return false;
+		});
+		Lua_helper.add_callback(lua, "addInstance", function(objectName:String, ?inFront:Bool = false) {
+			if(PlayState.instance.variables.exists(objectName))
+			{
+				var obj:Dynamic = PlayState.instance.variables.get(objectName);
+				if (inFront)
+					getInstance().add(obj);
+				else
+				{
+					if(!PlayState.instance.isDead)
+						PlayState.instance.insert(PlayState.instance.members.indexOf(getLowestCharacterGroup()), obj);
+					else
+						GameOverSubstate.instance.insert(GameOverSubstate.instance.members.indexOf(GameOverSubstate.instance.boyfriend), obj);
+				}
+			}
+			else luaTrace('addInstance: Can\'t add what doesn\'t exist~ ($objectName)', false, false, FlxColor.RED);
+		});
+		Lua_helper.add_callback(lua, "instanceArg", function(instanceName:String, ?className:String = null) {
+			var retStr:String ='$instanceStr::$instanceName';
+			if(className != null) retStr += '::$className';
+			return retStr;
 		});
 
 		Lua_helper.add_callback(lua, "loadSong", function(?name:String = null, ?difficultyNum:Int = -1) {
@@ -1162,9 +1134,11 @@ class FunkinLua {
 		});
 		Lua_helper.add_callback(lua, "doTweenZoom", function(tag:String, vars:String, value:Dynamic, duration:Float, ease:String) {
 			var penisExam:Dynamic = tweenShit(tag, vars);
+			if (vars == "camGame") PlayState.instance.mainCamZoom = false;
 			if(penisExam != null) {
 				PlayState.instance.modchartTweens.set(tag, FlxTween.tween(penisExam, {zoom: value}, duration, {ease: getFlxEaseByString(ease),
 					onComplete: function(twn:FlxTween) {
+						if (vars == "camGame") PlayState.instance.mainCamZoom = true;
 						PlayState.instance.callOnLuas('onTweenCompleted', [tag]);
 						PlayState.instance.modchartTweens.remove(tag);
 					}
@@ -2926,6 +2900,79 @@ class FunkinLua {
 			if(Std.isOfType(value, type)) return true;
 		}
 		return false;
+	}
+
+	public static inline function getLowestCharacterGroup():FlxSpriteGroup
+	{
+		var group:FlxSpriteGroup = PlayState.instance.gfGroup;
+		var pos:Int = PlayState.instance.members.indexOf(group);
+
+		var newPos:Int = PlayState.instance.members.indexOf(PlayState.instance.boyfriendGroup);
+		if(newPos < pos)
+		{
+			group = PlayState.instance.boyfriendGroup;
+			pos = newPos;
+		}
+		
+		newPos = PlayState.instance.members.indexOf(PlayState.instance.dadGroup);
+		if(newPos < pos)
+		{
+			group = PlayState.instance.dadGroup;
+			pos = newPos;
+		}
+		return group;
+	}
+
+	static function parseInstances(args:Array<Dynamic>)
+	{
+		for (i in 0...args.length)
+		{
+			var myArg:String = cast args[i];
+			if(myArg != null && myArg.length > instanceStr.length)
+			{
+				var index:Int = myArg.indexOf('::');
+				if(index > -1)
+				{
+					myArg = myArg.substring(index+2);
+					//trace('Op1: $myArg');
+					var lastIndex:Int = myArg.lastIndexOf('::');
+
+					var split:Array<String> = myArg.split('.');
+					args[i] = (lastIndex > -1) ? Type.resolveClass(myArg.substring(0, lastIndex)) : PlayState.instance;
+					for (j in 0...split.length)
+					{
+						//trace('Op2: ${Type.getClass(args[i])}, ${split[j]}');
+						args[i] = getVarInArray(args[i], split[j].trim());
+						//trace('Op3: ${args[i] != null ? Type.getClass(args[i]) : null}');
+					}
+				}
+			}
+		}
+		return args;
+	}
+
+	static function callMethodFromObject(classObj:Dynamic, funcStr:String, args:Array<Dynamic> = null)
+	{
+		if(args == null) args = [];
+
+		var split:Array<String> = funcStr.split('.');
+		var funcToRun:Function = null;
+		var obj:Dynamic = classObj;
+		//trace('start: ' + obj);
+		if(obj == null)
+		{
+			return null;
+		}
+
+		for (i in 0...split.length)
+		{
+			obj = getVarInArray(obj, split[i].trim());
+			//trace(obj, split[i]);
+		}
+
+		funcToRun = cast obj;
+		//trace('end: $obj');
+		return funcToRun != null ? Reflect.callMethod(obj, funcToRun, args) : null;
 	}
 
 	#if hscript

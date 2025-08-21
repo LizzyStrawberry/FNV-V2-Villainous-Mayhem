@@ -1,4 +1,4 @@
-local shadedAssets = {"boyfriend", "dad", "gf", "fg", "bg", "bf", "ded"}
+local shadedAssets = {"boyfriend", "dad", "gf", "fg", "bg", "bf", "ded", "hand", "stabbed"}
 
 function onCreate()
 	if shadersEnabled then
