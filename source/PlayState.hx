@@ -226,6 +226,8 @@ class PlayState extends MusicBeatState
 	public var camOther:FlxCamera;
 	public var cameraSpeed:Float = 1;
 
+	public var mainCamZoom:Bool = true;
+
 	var dialogue:Array<String> = ['blah blah blah', 'coolswag'];
 	var dialogueJson:DialogueFile = null;
 
@@ -2801,7 +2803,7 @@ class PlayState extends MusicBeatState
 
 		if (camZooming)
 		{
-			FlxG.camera.zoom = FlxMath.lerp(defaultCamZoom, FlxG.camera.zoom, CoolUtil.boundTo(1 - (elapsed * 3.125 * camZoomingDecay * playbackRate), 0, 1));
+			if (mainCamZoom) FlxG.camera.zoom = FlxMath.lerp(defaultCamZoom, FlxG.camera.zoom, CoolUtil.boundTo(1 - (elapsed * 3.125 * camZoomingDecay * playbackRate), 0, 1));
 			camHUD.zoom = FlxMath.lerp(1, camHUD.zoom, CoolUtil.boundTo(1 - (elapsed * 3.125 * camZoomingDecay * playbackRate), 0, 1));
 		}
 
@@ -3369,7 +3371,7 @@ class PlayState extends MusicBeatState
 						if(Math.isNaN(camZoom)) camZoom = 0.015;
 						if(Math.isNaN(hudZoom)) hudZoom = 0.03;
 
-						FlxG.camera.zoom += camZoom;
+						if (mainCamZoom) FlxG.camera.zoom += camZoom;
 						camHUD.zoom += hudZoom;
 					}
 				}
@@ -3379,7 +3381,7 @@ class PlayState extends MusicBeatState
 					if(Math.isNaN(camZoom)) camZoom = 0.015;
 					if(Math.isNaN(hudZoom)) hudZoom = 0.03;
 
-					FlxG.camera.zoom += camZoom;
+					if (mainCamZoom) FlxG.camera.zoom += camZoom;
 					camHUD.zoom += hudZoom;
 				}
 
@@ -5541,13 +5543,13 @@ class PlayState extends MusicBeatState
 			{
 				if (camZooming && FlxG.camera.zoom < 1.65 && ClientPrefs.camZooms)
 				{
-					FlxG.camera.zoom += 0.015 * camZoomingMult;
+					if (mainCamZoom) FlxG.camera.zoom += 0.015 * camZoomingMult;
 					camHUD.zoom += 0.03 * camZoomingMult;
 				}
 			}
 			else if (camZooming && FlxG.camera.zoom < 1.35 && ClientPrefs.camZooms)
 			{
-				FlxG.camera.zoom += 0.015 * camZoomingMult;
+				if (mainCamZoom) FlxG.camera.zoom += 0.015 * camZoomingMult;
 				camHUD.zoom += 0.03 * camZoomingMult;
 			}
 
