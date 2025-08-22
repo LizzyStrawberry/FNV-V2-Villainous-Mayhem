@@ -2399,6 +2399,18 @@ class FunkinLua {
 			PlayState.instance.modchartTexts.set(tag, leText);
 		});
 
+		Lua_helper.add_callback(lua, "addMarkers", function(tag:String) {
+			var obj:FlxText = getTextObject(tag);
+			if(obj != null)
+			{	
+				CustomFontFormats.addMarkers(obj);
+				return true;
+			}
+
+			luaTrace("addMarkers: Object " + tag + " doesn't exist!", false, false, FlxColor.RED);
+			return false;
+		});
+
 		Lua_helper.add_callback(lua, "setTextString", function(tag:String, text:String) {
 			var obj:FlxText = getTextObject(tag);
 			if(obj != null)

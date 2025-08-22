@@ -10,8 +10,17 @@ local instructShit =
 {
     hasMech = true,
     isBoss = true,
-    graphName = "MarcoSpeed",
+    graphName = "marcoPhase3",
+	frame = 0,
     diff = "Villainous"
+}
+
+local tipShit = 
+{
+	numOfTips = 1,
+    title1 = "SCROLL SPEED",
+    tip1 = "Marco loves to tamper around with the <GR>scroll speed<GR> every now and then.\nBe prepared for any <G>speed ups<G> or <R>slow downs!<R>",
+	tipIcon1 = "scrollSpeed"
 }
 
 local name = "Cutscene and Instructions Handler"
@@ -23,7 +32,8 @@ function onCreate()
     end
 
     if mechanics then -- To only apply this if mechanics are enabled!
-        callScript("scripts/"..name, "setInstructionsData", {instructShit.hasMech, instructShit.isBoss, instructShit.graphName, instructShit.diff})
+        callScript("scripts/"..name, "setInstructionsData", {instructShit.hasMech, instructShit.isBoss, instructShit.graphName, instructShit.frame, instructShit.diff})
+        callScript("scripts/"..name, "setTipData", {tipShit.numOfTips, tipShit.title1, tipShit.tip1, tipShit.tipIcon1})
     end
 end
 
