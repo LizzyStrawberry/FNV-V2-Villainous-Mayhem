@@ -14,7 +14,7 @@ local tipShit =
     tip1 = "Beware of Kiana's lust notes! Pressing them will increase the Lust Bar bit by bit!",
 	tipIcon1 = "lustNote",
 	title2 = "TAIL LUNGE",
-    tip2 = "Dropping on all 4's, Kiana won't hesitate to hit you with her tail! Press DODGE to avoid the attack!",
+    tip2 = "Dropping on all 4's, Kiana won't hesitate to hit you with her tail! Touch <PUR>DODGE<PUR> to avoid the attack!",
 	tipIcon2 = "lustTimer"
 }
 

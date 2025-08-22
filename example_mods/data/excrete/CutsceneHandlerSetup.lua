@@ -11,7 +11,7 @@ local tipShit =
 {
 	numOfTips = 1,
     title1 = "LIGHTS OUT",
-    tip1 = "Marcussy keeps messing up the lights! Hit your <G>DODGE<G> button 10 times before it gets borderline dark to fix them!",
+    tip1 = "Marcussy keeps messing up the lights! Hit your <PUR>DODGE<PUR> button 10 times before it gets borderline dark to fix them!",
 	tipIcon1 = "lightsOut"
 }
 

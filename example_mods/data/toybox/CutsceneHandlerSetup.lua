@@ -22,10 +22,10 @@ local tipShit =
     tip1 = "Your health isn't gonna regenerate normally, but deplete periodically instead!\nShoot Narrin with the bullet notes to regain your health!\nMissing won't cause any penalties, but keep your eyes open!",
 	tipIcon1 = "gun",
 	title2 = "DODGE",
-    tip2 = "Narrin will send her dolls after you, so make sure you press your DODGE button before the doll hits you, jamming your gun in the process!\nRemember, dodging has a cooldown!",
+    tip2 = "Narrin will send her dolls after you, so make sure you touch your <PUR>DODGE<PUR> Hitbox before the doll hits you, jamming your gun in the process!\nRemember, dodging has a cooldown!",
 	tipIcon2 = "dodgePico",
 	title3 = "UNJAM",
-    tip3 = "Getting hit will jam your gun!\nMake sure you press ATTACK a few times to unjam the gun!\nUnjamming also has a bit of a cooldown, don't spam!",
+    tip3 = "Getting hit will jam your gun!\nMake sure you touch <B>ATTACK<B> a few times to unjam the gun!\nUnjamming also has a bit of a cooldown, don't spam!",
 	tipIcon3 = "jammed"
 }
 

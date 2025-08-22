@@ -19,7 +19,7 @@ local tipShit =
 {
 	numOfTips = 1,
     title1 = "<R>SPIKE<R> ATTACK",
-    tip1 = "Kiana's gone BERSERK!\nPress LEFT or RIGHT to move away from the rising spikes!\nKeep track of the beat, it helps!",
+    tip1 = "Kiana's gone BERSERK!\nHit LEFT or RIGHT HITBOXES to move away from the rising spikes!\nKeep track of the beat, it helps!",
 	tipIcon1 = "spikes"
 }
 

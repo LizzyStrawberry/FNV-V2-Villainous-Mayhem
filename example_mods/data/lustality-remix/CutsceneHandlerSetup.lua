@@ -22,10 +22,10 @@ local tipShit =
     tip1 = "Beware of Kiana's lust notes! Pressing them will increase the Lust Bar bit by bit, and stun you for a few seconds!",
 	tipIcon1 = "lustNote",
 	title2 = "ATTACK",
-    tip2 = "Looks like you finally learned how to attack back!\nOnce the cooldown is over, press ATTACK to attack Kiana!\n<G>Remember your keybinds!<G>",
+    tip2 = "Looks like you finally learned how to attack back!\nOnce the cooldown is over, touch <B>ATTACK<B> to attack Kiana!\n<G>Remember your keybinds!<G>",
 	tipIcon2 = "attackButton",
 	title3 = "TAIL LUNGE",
-    tip3 = "Dropping on all 4's, Kiana won't hesitate to hit you with her tail! Press DODGE to avoid the attack!\n<G>Remember your keybinds!<G>",
+    tip3 = "Dropping on all 4's, Kiana won't hesitate to hit you with her tail! Touch <PUR>DODGE<PUR> to avoid the attack!\n<G>Remember your keybinds!<G>",
 	tipIcon3 = "lustTimer"
 }
 

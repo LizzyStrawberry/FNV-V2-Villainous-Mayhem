@@ -1,4 +1,4 @@
-local hudThings = {'watermark', 'watermark2', 'healthBar', 'healthBarBG', 'iconP1', 'iconP2', 'scoreTxt'}
+local hudThings = {'watermark', 'healthBar', 'healthBarBG', 'iconP1', 'iconP2', 'scoreTxt'}
 local scrollSpeed = 1.2
 local dur = 1
 local videoPlayed = false

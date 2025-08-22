@@ -198,7 +198,7 @@ function onCreatePost()
             addLuaSprite('bossFight')
         end
 		
-		makeLuaText('warnTxt', 'PRESS Y TO START!', 900, 10, 650)
+		makeLuaText('warnTxt', 'TOUCH TO START!', 900, 10, 650)
 		setTextAlignment('warnTxt', 'LEFT')
 		setTextSize('warnTxt', 40)
 		setProperty('warnTxt.alpha', 0)

@@ -1147,11 +1147,13 @@ class PlayState extends MusicBeatState
 			touchPad.buttonMayhem.visible = touchPad.buttonMayhem.active = false;
 			return;
 		}
-
-		if (getLuaObject("mayhembackBar").scale.x < 1)
-			touchPad.buttonMayhem.color = FlxColor.fromString("0xFFFFFFFF");
 		else
-			touchPad.buttonMayhem.color = FlxColor.fromString("0xFF6200");
+		{
+			if (getLuaObject("mayhembackBar").scale.x < 1)
+				touchPad.buttonMayhem.color = FlxColor.fromString("0xFFFFFFFF");
+			else
+				touchPad.buttonMayhem.color = FlxColor.fromString("0xFF6200");
+		}
 
 		if (ClientPrefs.resistanceCharm <= 1 || ClientPrefs.autoCharm <= 1 || ClientPrefs.healingCharm == 0)
 		{

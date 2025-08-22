@@ -20,7 +20,7 @@ local tipShit =
 {
 	numOfTips = 1,
     title1 = "PROPAGANDA",
-    tip1 = "While Aileen is distracting you, Marco's decided that it's <G>AD TIME!<G>\nPress the respective Key once the ad appears!\nDelaying will only cause death!",
+    tip1 = "While Aileen is distracting you, Marco's decided that it's <G>AD TIME!<G>\nPress the respective extra hitbox once the ad appears!\nDelaying will only cause death!",
 	tipIcon1 = "ads"
 }
 

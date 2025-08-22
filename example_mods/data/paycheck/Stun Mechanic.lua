@@ -9,7 +9,7 @@ local pressedKey = false
 local timerCompleted = false
 local turnedTimerOn = false
 
-local Keys = {'A','B','C','D','SPACE'}
+local Keys = {'Dodge','Attack'}
 local numRand = Keys[math.random(#Keys)]
 
 local ended = false
@@ -103,7 +103,7 @@ function onUpdate()
 			end
 			
 			--pressing the key selected to redo the mechanic
-			if not pressedKey and timerCompleted and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.'..numRand) then
+			if not pressedKey and timerCompleted and keyJustPressed(numRand) then
 				kill = false
 				
 				setProperty('popup.alpha', 0)
@@ -135,11 +135,11 @@ function onUpdate()
 		
 			--setting text
 			if randomBitchCount == 7 then
-				setTextString('WarningText', 'PRESS '..numRand..' IF YOU HAVE NO BITCHES')
+				setTextString('WarningText', 'TOUCH '..numRand..' IF YOU HAVE NO BITCHES')
 			elseif LizKianaNaked == 2 then
-				setTextString('WarningText', 'PRESS '..numRand..' For Liz and Kiana Naked')
+				setTextString('WarningText', 'TOUCH '..numRand..' For Liz and Kiana Naked')
 			else
-				setTextString('WarningText', 'PRESS '..numRand..' TO REMOVE POP UP!')
+				setTextString('WarningText', 'TOUCH '..numRand..' TO REMOVE POP UP!')
 			end
 		end
 	end

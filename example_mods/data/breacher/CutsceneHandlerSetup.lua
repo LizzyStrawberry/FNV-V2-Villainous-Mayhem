@@ -11,7 +11,7 @@ local tipShit =
 {
 	numOfTips = 1,
     title1 = "<PUR>POISON<PUR> ATTACK",
-    tip1 = "Beware of AI's attack!\nPress <G>DODGE<G> once you hear the 3rd click on her attack sequence, or get hit by the needle!",
+    tip1 = "Beware of AI's attack!\Touch <PUR>DODGE<PUR> once you hear the 3rd click on her attack sequence, or get hit by the needle!",
 	tipIcon1 = "aiTail"
 }
 
