@@ -11,7 +11,16 @@ local instructShit =
     hasMech = true,
     isBoss = true,
     graphName = "Yaku",
+	frame = 0,
     diff = "Villainous"
+}
+
+local tipShit = 
+{
+	numOfTips = 1,
+    title1 = "<G>DOUBLE<G> ATTACK",
+    tip1 = "Watch out for Yaku's Double Attack!\nIt can hurt badly!",
+	tipIcon1 = "yakuRings"
 }
 
 local name = "Cutscene and Instructions Handler"
@@ -24,8 +33,9 @@ function onCreate()
     end
 
     if mechanics then -- To only apply this if mechanics are enabled!
-        callScript("scripts/"..name, "setInstructionsData", {instructShit.hasMech, instructShit.isBoss, instructShit.graphName, instructShit.diff})
-    end
+        callScript("scripts/"..name, "setInstructionsData", {instructShit.hasMech, instructShit.isBoss, instructShit.graphName, instructShit.frame, instructShit.diff})
+		callScript("scripts/"..name, "setTipData", {tipShit.numOfTips, tipShit.title1, tipShit.tip1, tipShit.tipIcon1})
+	end
 end
 
 function onEndDialogue()
