@@ -1088,15 +1088,7 @@ class FreeplayState extends MusicBeatState
 		{
 			if (Achievements.isAchievementUnlocked('weekIniquitous_Beaten'))
 				curDifficulty = Math.round(Math.max(0, CoolUtil.mainWeekDifficulties.indexOf(CoolUtil.mainWeekDifficulty)));
-			else
-				curDifficulty = Math.round(Math.max(0, 1));
 		}
-		else if(CoolUtil.difficulties.contains(CoolUtil.bossFightDifficulty))
-			curDifficulty = Math.round(Math.max(0, CoolUtil.bossFightDifficulties.indexOf(CoolUtil.bossFightDifficulty)));
-		else if(CoolUtil.difficulties.contains(CoolUtil.tcDifficulty))
-			curDifficulty = Math.round(Math.max(0, CoolUtil.tcDifficulties.indexOf(CoolUtil.tcDifficulty)));
-		else if(CoolUtil.difficulties.contains(CoolUtil.defaultDifficulty))
-			curDifficulty = Math.round(Math.max(0, CoolUtil.defaultDifficulties.indexOf(CoolUtil.defaultDifficulty)));
 		else
 			curDifficulty = 0;
 

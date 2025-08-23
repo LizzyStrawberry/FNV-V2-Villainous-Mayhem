@@ -130,7 +130,7 @@ class ResultsScreenState extends MusicBeatState
         add(ratingText);
 
         var mode:String = "";
-        if (PlayState.isInjectionMode) mode = "injection" else if (PlayState.isMayhemMode) mode = "mayhem" else mode = "campaign";
+        if (PlayState.isInjectionMode) mode = "injection"; else if (PlayState.isMayhemMode) mode = "mayhem"; else mode = "campaign";
         var reflectedRating = Reflect.field(PlayState, mode + "Rating");
         var reflectedSongsPlayed = Reflect.field(PlayState, mode + "SongsPlayed");
 
