@@ -293,11 +293,7 @@ class FreeplayState extends MusicBeatState
 			case "xtrashop":
 				// Freeplay | Shop Exclusive Songs
 				if (ClientPrefs.nunsationalFound) addSong('Nunsational', 3, FlxColor.fromRGB(255, 0, 53));
-				if (ClientPrefs.lustalityFound)
-				{
-					addSong('Lustality', 3, FlxColor.fromRGB(195, 0, 153));
-					addSong('Lustality V1', 3, FlxColor.fromRGB(195, 0, 153));
-				}		
+				if (ClientPrefs.lustalityFound) addSong('Lustality V1', 3, FlxColor.fromRGB(195, 0, 153));		
 				if (ClientPrefs.tofuFound) addSong('Tofu', 3, FlxColor.fromRGB(255, 235, 0));
 				if (ClientPrefs.marcochromeFound) addSong('Marcochrome', 3, FlxColor.fromRGB(0, 75, 0));
 				if (ClientPrefs.nicFound) addSong('Slow.FLP', 3, FlxColor.fromRGB(255, 255, 255));
@@ -532,13 +528,6 @@ class FreeplayState extends MusicBeatState
 				if (!ClientPrefs.tofuViewed)
 				{
 					selectionText.text = "????";
-					lockedSelection.alpha = 1;
-				}
-			case 'Lustality':
-				unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_Lustality'));
-				if (!ClientPrefs.lustalityViewed)
-				{
-					selectionText.text = "?????????";
 					lockedSelection.alpha = 1;
 				}
 			case 'Lustality V1':
@@ -976,7 +965,7 @@ class FreeplayState extends MusicBeatState
 	{
 		if (ClientPrefs.optimizationMode) return false;
 		var charSelectorSongs:Array<String> = ['Scrouge','Toxic Mishap', 'Paycheck', 'Nunday Monday', 'Nunconventional', 'Point Blank', 'Lustality Remix',
-		'Get Villaind', 'Spendthrift', 'Cheap Skate (Legacy)', 'Toxic Mishap (Legacy)', 'Paycheck (Legacy)', 'Lustality', 'Lustality V1',
+		'Get Villaind', 'Spendthrift', 'Cheap Skate (Legacy)', 'Toxic Mishap (Legacy)', 'Paycheck (Legacy)', 'Lustality V1',
 		'Nunsational', 'FNV', "It's Kiana", "Get Villaind (Old)"];
 
 		for (i in 0...charSelectorSongs.length)
@@ -1245,9 +1234,9 @@ class FreeplayState extends MusicBeatState
 			trace('I got loaded lol, Unlocking Tofu!');
 			ClientPrefs.tofuViewed = true;
 		}
-		else if ((songs[curSelected].songName == 'Lustality' || songs[curSelected].songName == 'Lustality V1') && ClientPrefs.lustalityViewed == false)
+		else if (songs[curSelected].songName == 'Lustality V1' && ClientPrefs.lustalityViewed == false)
 		{
-			trace('I got loaded lol, Unlocking Lustality / Lustality V1!');
+			trace('I got loaded lol, Unlocking Lustality V1!');
 			ClientPrefs.lustalityViewed = true;
 		}
 		else if (songs[curSelected].songName == 'Slow.FLP' && ClientPrefs.nicViewed == false)
