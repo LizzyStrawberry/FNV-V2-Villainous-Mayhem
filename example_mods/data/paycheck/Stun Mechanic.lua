@@ -3,7 +3,7 @@ local LizKianaNaked = 0
 
 local kill = false
 
-local keyArray = {'A','B','C','D','SPACE'}
+local keyArray = {'A','B','C','D','SPACE', 'X', 'Z', 'K', 'L', 'V', 'M', 'P', 'TAB'}
 local key = nil
 local cheatsOn = false
 
