@@ -1646,7 +1646,7 @@ class PlayState extends MusicBeatState
 			var typeOfCountdown:String = null;
 			switch (Paths.formatToSongPath(SONG.song))
 			{
-				case "lustality" | "lustality-v1" | "lustality-remix":
+				case "lustality-v1" | "lustality-remix":
 					typeOfCountdown = "kiana";
 				case "nunday-monday" | "nunconventional" | "nunsational":
 					typeOfCountdown = "beatrice";
@@ -3822,7 +3822,7 @@ class PlayState extends MusicBeatState
 			'WeekLegacy_Beaten', 'WeekLegacyVillainous_Beaten',
 			'WeekDside_Beaten', 'WeekDsideVillainous_Beaten',
 			'weekIniquitous_Beaten',
-			'tofu_Beaten',  'marcochrome_Beaten', 'lustality_Beaten', 'lustalityV1_Beaten','nunsational_Beaten', 'FNV_Beaten',
+			'tofu_Beaten',  'marcochrome_Beaten', 'lustalityV1_Beaten','nunsational_Beaten', 'FNV_Beaten',
 			'short_Beaten', 'nic_Beaten', 'fanfuck_Beaten', 'rainyDaze_Beaten', 'marauder_Beaten',
 			'vGuy_Beaten', 'fastFoodTherapy_Beaten', 'tacticalMishap_Beaten', 'breacher_Beaten', 'concertChaos_Beaten', 'crossover_Beaten',
 			'pervert', 'pervertX25',
@@ -6104,13 +6104,6 @@ class PlayState extends MusicBeatState
 							
 							ClientPrefs.saveSettings();
 						}
-					case 'lustality_Beaten':
-						if(Paths.formatToSongPath(SONG.song) == 'lustality' && !changedDifficulty && !usedPractice && CoolUtil.difficultyString() == 'VILLAINOUS') {
-							unlock = true;
-							ClientPrefs.eggs += 1;
-							
-							ClientPrefs.saveSettings();
-						}
 					case 'lustalityV1_Beaten':
 						if(Paths.formatToSongPath(SONG.song) == 'lustality-v1' && !changedDifficulty && !usedPractice && CoolUtil.difficultyString() == 'VILLAINOUS') {
 							unlock = true;
@@ -6218,8 +6211,7 @@ class PlayState extends MusicBeatState
 							&& Achievements.isAchievementUnlocked('WeekDside_Beaten') && Achievements.isAchievementUnlocked('WeekDsideVillainous_Beaten') && Achievements.isAchievementUnlocked('weekIniquitous_Beaten')
 							&& Achievements.isAchievementUnlocked('tofu_Beaten') && Achievements.isAchievementUnlocked('marcochrome_Beaten') 
 							// Shop Songs
-							&& (Achievements.isAchievementUnlocked('lustality_Beaten') || Achievements.isAchievementUnlocked('lustalityV1_Beaten'))
-							&& Achievements.isAchievementUnlocked('nunsational_Beaten')
+							&& Achievements.isAchievementUnlocked('lustalityV1_Beaten') && Achievements.isAchievementUnlocked('nunsational_Beaten')
 							&& Achievements.isAchievementUnlocked('FNV_Beaten') && Achievements.isAchievementUnlocked('short_Beaten')
 							&& Achievements.isAchievementUnlocked('nic_Beaten') && Achievements.isAchievementUnlocked('fanfuck_Beaten')
 							&& Achievements.isAchievementUnlocked('rainyDaze_Beaten') && Achievements.isAchievementUnlocked('marauder_Beaten')

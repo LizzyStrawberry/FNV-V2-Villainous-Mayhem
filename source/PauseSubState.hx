@@ -142,7 +142,7 @@ class PauseSubState extends MusicBeatSubstate
 			case 'Toybox':
 				bgGradient.color = 0xFFd554c0;
 				pauseCard.color = 0xFFd554c0;
-			case 'Lustality' | 'Lustality Remix':
+			case 'Lustality Remix':
 				bgGradient.color = 0xFFff59d8;
 				pauseCard.color = 0xFFff59d8;
 			case 'Libidinousness':
@@ -1415,34 +1415,6 @@ class PauseSubState extends MusicBeatSubstate
 							PlayState.SONG = Song.loadFromJson('lustality-remix-villainous', 'lustality-remix');
 						}
 						
-					}
-
-				case "Lustality":
-					if (ClientPrefs.mechanics == false)
-					{
-						if (PlayState.storyDifficulty == 0)
-						{
-							trace('Its working! No mechanics for Lustality in Casual!');
-							PlayState.SONG = Song.loadFromJson('lustality-casualMechanicless', 'lustality');
-						}
-						else if (PlayState.storyDifficulty == 1)
-						{
-							trace('Its working! No mechanics for Lustality in Villainous!');
-							PlayState.SONG = Song.loadFromJson('lustality-villainousMechanicless', 'lustality');
-						}
-					}
-					else if (ClientPrefs.mechanics == true)
-					{
-						if (PlayState.storyDifficulty == 0)
-						{
-							trace('Its working! Mechanics for Lustality in Casual!');
-							PlayState.SONG = Song.loadFromJson('lustality', 'lustality');
-						}
-						else if (PlayState.storyDifficulty == 1)
-						{
-							trace('Its working! Mechanics for Lustality in Villainous!');
-							PlayState.SONG = Song.loadFromJson('lustality-villainous', 'lustality');
-						}
 					}
 
 				case "Lustality V1":
