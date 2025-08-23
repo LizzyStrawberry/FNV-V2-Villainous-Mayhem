@@ -25,7 +25,6 @@ class Achievements {
 		// Shop Songs
 		["Bets are gone!",		"Beat Tofu in Villainous Mode.",				'tofu_Beaten',			false],
 		["Lunacy.",		"Beat Marcochrome in Villainous Mode.",				'marcochrome_Beaten',			false],
-		["Retrolust!",		"Beat Lustality in Villainous Mode.",				'lustality_Beaten',			false],
 		["Legacy Retrolust!",		"Beat Lustality V1 in Villainous Mode.",				'lustalityV1_Beaten',			false],
 		["Nun of our problem!",		"Beat Nunsational in Villainous Mode.",				'nunsational_Beaten',			false],
 		["FNV",		"Beat FNV in Villainous Mode.",				'FNV_Beaten',			false],
@@ -54,57 +53,7 @@ class Achievements {
 	];
 	public static var achievementsMap:Map<String, Bool> = new Map<String, Bool>();
 
-	public static var achievementsStuffBackUp:Array<Dynamic> = [ //Name, Description, Achievement save tag, Hidden achievement
-		["Freaky on a Friday Night",	"Play on a Friday... Night.",						'friday_night_play',	 true],
-		["Banging now or later?",		"Beat the tutorial.",				'Tutorial_Beaten',			false],
-		["Get the fuck out.",		"Beat Week 1 (Cheap Skate Villains).",				'WeekMarco_Beaten',			false],
-		["Villanous Performance!",		"Beat Week 1 (Cheap Skate Villains) in Villainous Mode.",				'WeekMarcoVillainous_Beaten',			false],
-		["Toxic Flashbacks!",		"Beat Week 1 (Cheap Skate Villains) in Iniquitous Mode.",				'WeekMarcoIniquitous_Beaten',			false],
-		["Divined Victory!",		"Beat Week 2 (Orphanage Hustle).",				'WeekNun_Beaten',			false],
-		["Nun-Controllable!",		"Beat Week 2 (Orphanage Hustle) in Villainous Mode.",				'WeekNunVillainous_Beaten',			false],
-		["Relieved Memories!",		"Beat Week 2 (Orphanage Hustle) in Iniquitous Mode.",				'WeekNunIniquitous_Beaten',			false],
-		["Pro Dweller!",		"Beat Week 3 (The Unnamed Trinity).",				'WeekKiana_Beaten',			false],
-		["Unnamed No More!",		"Beat Week 3 (The Unnamed Trinity).",				'WeekKianaVillainous_Beaten',			false],
-		["Not Herself Anymore.",		"Beat Week 3 (The Unnamed Trinity) in Iniquitous Mode.",				'WeekKianaIniquitous_Beaten',			false],
-		["You're Done For!",		"Beat Iniquitous.",				'weekIniquitous_Beaten',			false],
-		["GRAHH MORKY",		"Beat Week Morky (Goofy Ah Villains).",				'WeekMorky_Beaten',			false],
-		["IT'S MORE THAN MORKY",		"Beat Week Morky (Goofy Ah Villains) in Villainous Mode.",				'WeekMorkyVillainous_Beaten',			false],
-		["Sussy Escapade!",		"Beat Week Sus (A Villain Is Among Us).",				'WeekSus_Beaten',			false],
-		["Ejected!",		"Beat Week Sus (A Villain Is Among Us) in Villainous Mode.",				'WeekSusVillainous_Beaten',			false],
-		["Deja Vu!",		"Beat Week Legacy (Alpha Villains).",				'WeekLegacy_Beaten',			false],
-		["IT'S HAPPENING AGAIN!",		"Beat Week Legacy (Alpha Villains) in Villainous Mode.",				'WeekLegacyVillainous_Beaten',			false],
-		["Gooned and Quirk'd!",		"Beat Week D-Sides (4 Side Villainy).",				'WeekDside_Beaten',			false],
-		["Underpaid Victory!",		"Beat Week D-Sides (4 Side Villainy) in Villainous Mode.",				'WeekDsideVillainous_Beaten',			false],
-		// Shop Songs
-		["Bets are gone!",		"Beat Tofu in Villainous Mode.",				'tofu_Beaten',			false],
-		["Lunacy.",		"Beat Marcochrome in Villainous Mode.",				'marcochrome_Beaten',			false],
-		["Retrolust!",		"Beat Lustality in Villainous Mode.",				'lustality_Beaten',			false],
-		["Legacy Retrolust!",		"Beat Lustality V1 in Villainous Mode.",				'lustalityV1_Beaten',			false],
-		["Nun of our problem!",		"Beat Nunsational in Villainous Mode.",				'nunsational_Beaten',			false],
-		["FNV",		"Beat FNV in Villainous Mode.",				'FNV_Beaten',			false],
-		["WORLD RECORD!",		"Play the shortest song in the entirety of FNF!",				'short_Beaten',			false],
-		["I am not God.",		"Beat Slow.FLP in Villainous Mode.",				'nic_Beaten',			false],
-		["ME LIKEY YOU",		"Beat FanFuck Forever in Villainous Mode.",				'fanfuck_Beaten',			false],
-		["Come again another day!",		"Beat Rainy Daze in Villainous Mode.",				'rainyDaze_Beaten',			false],
-		["Virus Terminated.",		"Beat Marauder in Villainous Mode.",				'marauder_Beaten',			false],
-		// Crossover Songs
-		["Die in a fire!",		"Beat VGuy in Villainous Mode.",				'vGuy_Beaten',			false],
-		["Unconventional Encounter!",		"Beat Fast Food Therapy in Villainous Mode.",				'fastFoodTherapy_Beaten',			false],
-		["BOOM BABY!",		"Beat Tactical Mishap in Villainous Mode.",				'tacticalMishap_Beaten',			false],
-		["Absolute No-Solver!",		"Beat Breacher in Villainous Mode.",				'breacher_Beaten',			false],
-		["World Wide!",		"Beat Concert Chaos in Villainous Mode.",				'concertChaos_Beaten',			false],
-		["Dimension Traveller!",		"Finish Beyond Reality.",				'crossover_Beaten',			false],
-		//Extra Shit
-		["You shouldn't be here.",		"Beat It's Kiana.",				'itsKiana_Beaten',			false],
-		["Very Concerning.",		"Find Hermit and The Cellar.",				'hermit_found',			false],
-		["Who is she?",		"Find Zeel and her Illegal Shop.",				'zeel_found',			false],
-		["Caught on 4K.",		"Touch Merchant Zeel's Boobies.",				'pervert',			false],
-		["Certified Pervert.",		"Touch Merchant Zeel's Boobies 25 times in a row.",				'pervertX25',			false],
-		["Shopalic!",		"Buy/Obtain all Song/Week Items in the shop.",				'shop_completed',			false],
-		["THINK FAST!!",		"Get flashbanged.",				'flashbang',			false],
-		["FNV!!",		"Get all of the achievements!",				'FNV_Completed',			false],
-		["You found me.",	"Huh?",						'secret',	 true]
-	];
+	public static var achievementsStuffBackUp:Array<Dynamic> = achievementsStuff;
 	public static var achievementsMapBackUp:Map<String, Bool> = new Map<String, Bool>();
 
 
@@ -116,7 +65,7 @@ class Achievements {
 	}
 
 	public static function debugUnlock() {
-		for (i in 0...45)
+		for (i in 0...44)
 		{
 			var name:String = achievementsStuff[i][2];
 			FlxG.log.add('Completed achievement "' + name +'"');
