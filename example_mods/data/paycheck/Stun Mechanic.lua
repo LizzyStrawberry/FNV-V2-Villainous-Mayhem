@@ -3,7 +3,7 @@ local LizKianaNaked = 0
 
 local kill = false
 
-local keyArray = {'A','B','C','D','SPACE'}
+local keyArray = {'Left','Right','Up','Down','Dodge', "Attack"}
 local key = nil
 local cheatsOn = false
 
@@ -73,7 +73,7 @@ function onUpdate(elapsed)
 				cheatsOn = true
 			end
 			
-			if kill and keyboardJustPressed(key) then
+			if kill and keyJustPressed(key) then
 				setUpContents()
 				playSound('clickText')
 			end
