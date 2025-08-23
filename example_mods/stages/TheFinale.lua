@@ -23,7 +23,7 @@ function onCreate()
 		scaleObject('Base', 1.1, 1.1)
 		setProperty('Base.alpha', 0)
 		
-		setProperty('defaultCamZoom', 0.7)
+		setProperty('defaultCamZoom', 0.8)
 		
 		setObjectOrder('Base', getObjectOrder('dadGroup') + 1)
 

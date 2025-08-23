@@ -58,7 +58,7 @@ function onUpdate()
 	if curBeat == 136 then
 		setProperty('bg.alpha', 1)
 		setProperty('boyfriend.alpha', 1)
-		setProperty('defaultCamZoom', 0.8)
+		setProperty('defaultCamZoom', 0.95)
 		cameraFlash('game', 'FFFFFF', 0.6 / playbackRate, false)
 		triggerEvent('Change Character', 'dad', 'Narrin Side')
 	end

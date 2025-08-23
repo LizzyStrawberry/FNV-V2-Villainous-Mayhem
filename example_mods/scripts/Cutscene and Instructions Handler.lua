@@ -102,7 +102,7 @@ local showMechanic = false
 local confirmMechanic = false
 
 function onStartCountdown()
-	if enabled then
+	if not seenCutscene and enabled then
 		if cutsceneData.hasStartupVideo and not viewedVideo then -- In Case of Start Up Video
 			startVideo(cutsceneData.videoPath)
 			viewedVideo = true
@@ -312,6 +312,8 @@ function onTweenCompleted(tag)
             removeLuaSprite('bossFight', true)
         end
 		removeLuaText('warnTxt', true)
+		
+		showMechanic = false
 	end
 end
 
@@ -329,8 +331,6 @@ end
 function setInstructionsData(mechOn, bFight, graph, iconFrame, diffString, tipNum, tip1, tip2, tip3)
 	if diffString == nil then diffString = "Casual" end -- Fail Safe
 	if iconFrame == nil then iconFrame = 0 end -- Fail Safe
-	if tipNum == nil then tipNum = 1 end -- Fail Safe
-	if tip1 == nil then tip1 = "This is a test tip." end -- Fail Safe
 	
     instructionsData.hasMechanic = mechOn
     instructionsData.isBossFight = bFight
@@ -339,11 +339,6 @@ function setInstructionsData(mechOn, bFight, graph, iconFrame, diffString, tipNu
 	instructionsData.iconFrame = iconFrame
 	
 	instructionsData.diff = difficultyStringToNumber(diffString)
-	
-	instructionsData.numOfTips = tipNum
-	instructionsData.textForTip1 = tip1
-	instructionsData.textForTip2 = tip2
-	instructionsData.textForTip3 = tip3
 end
 
 function setTipData(tipNum, title1, tip1, icon1, title2, tip2, icon2, title3, tip3, icon3)

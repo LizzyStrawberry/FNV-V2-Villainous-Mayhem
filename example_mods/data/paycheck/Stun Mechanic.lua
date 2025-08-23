@@ -29,7 +29,7 @@ function onCreatePost()
 			LizKianaNaked = getRandomInt(1, 15) -- For Secret Text n.2
 			
 			--creating text and images
-			makeLuaText('keyWarn', 'PRESS TO REMOVE POP UP!', 900, 0, 650)
+			makeLuaText('keyWarn', 'PRESS TO REMOVE POP UP!', 900, mobileFix("X", 0), 650)
 			setTextAlignment('keyWarn', 'LEFT')
 			setTextSize('keyWarn', 40)
 			setObjectCamera('keyWarn', 'other')
@@ -40,9 +40,10 @@ function onCreatePost()
 			setObjectCamera('colorChangingBG', 'hud')
 			setProperty('colorChangingBG.visible', false)
 			setObjectOrder('colorChangingBG', getObjectOrder('scoreTxt') + 1)
+			setGraphicSize("colorChangingBG", screenWidth, screenHeight)
 			addLuaSprite('colorChangingBG', true)
 				
-			makeLuaSprite('advert', 'effects/popups/New/popup-'..getRandomInt(1, 10), 0, 0)
+			makeLuaSprite('advert', 'effects/popups/New/popup-'..getRandomInt(1, 10), mobileFix("X", 0), 0)
 			setScrollFactor('advert', 0, 0)
 			setObjectCamera('advert', 'hud')
 			setObjectOrder('advert', getObjectOrder('colorChangingBG') + 1)

@@ -8,7 +8,7 @@ function onCreate()
 	for i = 0, maxHearts do
 		numberX = getRandomInt(-100, 700)
 		numberY = getRandomInt(-100, 700)
-		makeAnimatedLuaSprite('heart'..i, 'effects/heartPop', numberX, numberY)
+		makeAnimatedLuaSprite('heart'..i, 'effects/heartPop', mobileFix("X", numberX), numberY)
 		addAnimationByPrefix('heart'..i, 'pop', 'heart pop up0', 36, false)
 		setProperty('heart'..i..'.alpha', 0)
 		setObjectCamera('heart'..i, 'hud')
@@ -64,7 +64,7 @@ function onUpdate()
 		for i = 0, maxHearts do
 			numberX = getRandomInt(-100, 700)
 			numberY = getRandomInt(-100, 700)
-			setProperty('heart'..i..'.x', numberX)
+			setProperty('heart'..i..'.x', mobileFix("X", numberX))
 			setProperty('heart'..i..'.y', numberY)
 			
 			setProperty('heart'..i..'.alpha', 1)
@@ -81,7 +81,7 @@ function onUpdate()
 		for i = 0, maxHearts do
 			numberX = getRandomInt(-100, 700)
 			numberY = getRandomInt(-100, 700)
-			setProperty('heart'..i..'.x', numberX)
+			setProperty('heart'..i..'.x', mobileFix("X", numberX))
 			setProperty('heart'..i..'.y', numberY)
 			
 			setProperty('heart'..i..'.alpha', 1)
@@ -97,7 +97,7 @@ function onUpdate()
 		for i = 0, maxHearts do
 			numberX = getRandomInt(-100, 700)
 			numberY = getRandomInt(-100, 700)
-			setProperty('heart'..i..'.x', numberX)
+			setProperty('heart'..i..'.x', mobileFix("X", numberX))
 			setProperty('heart'..i..'.y', numberY)
 			
 			setProperty('heart'..i..'.alpha', 1)
@@ -111,5 +111,6 @@ function onUpdate()
 	end
 	if curBeat == 296 then
 		triggerEvent('Change Character', 'dad', 'kianaPhase3')
+		setProperty("defaultCamZoom", 0.7)
 	end
 end

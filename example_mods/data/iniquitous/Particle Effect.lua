@@ -37,7 +37,7 @@ function onUpdate()
 	if shadersEnabled then
 		if options.generateParticles and getRandomInt(1, options.Particle.commonity) == 1 then
 			options.ParticleNum = options.ParticleNum + 1
-			(options.Particle.animated and makeAnimatedLuaSprite or makeLuaSprite)(options.Particle.name .. options.ParticleNum, options.Particle.imagePath, getRandomInt(options.Particle.minimumX, options.Particle.maximumX), options.Particle.startY)
+			(options.Particle.animated and makeAnimatedLuaSprite or makeLuaSprite)(options.Particle.name .. options.ParticleNum, options.Particle.imagePath, mobileFix("X", getRandomInt(options.Particle.minimumX, options.Particle.maximumX)), options.Particle.startY)
 			scaleObject(options.Particle.name .. options.ParticleNum, options.Particle.scaleX, options.Particle.scaleY)
 			addLuaSprite(options.Particle.name .. options.ParticleNum, options.Particle.overlapping)
 			doTweenY('particleweeee' .. options.ParticleNum, options.Particle.name .. options.ParticleNum, options.Particle.destinationY, options.Particle.speed, 'sineInOut')

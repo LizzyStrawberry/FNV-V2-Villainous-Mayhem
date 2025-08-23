@@ -14,7 +14,7 @@ function onCreate()
 	if mechanics then
 		addCharacterToList('playableGF-stun', 'boyfriend')
 
-		makeAnimatedLuaSprite('time2', 'effects/timer', 560 , 40)
+		makeAnimatedLuaSprite('time2', 'effects/timer', mobileFix("X", 560) , 40)
 		addAnimationByPrefix('time2', 'Stunned', 'timer rundown0', 24, false)
 		setProperty('time2.alpha', 0)
 		scaleObject('time2', 0.5, 0.5)
@@ -22,19 +22,19 @@ function onCreate()
 		setScrollFactor('time2', 1, 1)
 		addLuaSprite('time2', true)
 		
-		makeLuaSprite('dodgeNow', 'effects/dodge', 370, 170)
+		makeLuaSprite('dodgeNow', 'effects/dodge', mobileFix("X", 370), 170)
 		setProperty('dodgeNow.alpha', 0)
 		scaleObject('dodgeNow', 0.6, 0.6)
 		setObjectCamera('dodgeNow', 'hud')
 		setScrollFactor('dodgeNow', 1, 1)
 		addLuaSprite('dodgeNow', true)
 		
-		makeLuaSprite('barBack', 'effects/barBack', 1100, 170)
+		makeLuaSprite('barBack', 'effects/barBack', screenWidth - 170, 170)
 		setObjectCamera('barBack', 'hud')
 		setProperty('barBack.origin.y', 365)
 		addLuaSprite('barBack', true)
 		
-		makeLuaSprite('bar', 'effects/bar', 1100, 170)
+		makeLuaSprite('bar', 'effects/bar', screenWidth - 170, 170)
 		setObjectCamera('bar', 'hud')
 		addLuaSprite('bar', true)
 		
@@ -50,7 +50,7 @@ function onCreate()
 			addLuaSprite('counterTime1', true)
 		end
 		
-		makeLuaText('warning', 'Get Ready!', 600, 345, 200)
+		makeLuaText('warning', 'Get Ready!', 600, mobileFix("X", 345), 200)
 		setTextSize('warning', 50)
 		setProperty('warning.alpha', 0)
 		addLuaText('warning')

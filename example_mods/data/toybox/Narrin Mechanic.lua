@@ -27,7 +27,7 @@ function onCreatePost()
 		setPropertyFromClass('PlayState', 'reloadingGun', false)
 		makeLuaSprite('barBack', 'effects/faithBarBack', 1100, 170) --Used to drain the health smoothly
 		
-		makeLuaSprite('ammoBox', 'effects/unjammed', 930, 550);
+		makeLuaSprite('ammoBox', 'effects/unjammed', mobileFix("X", 930), 550);
 		if downscroll then
 			setProperty('ammoBox.y', 0)
 		end
@@ -49,6 +49,7 @@ function onCreatePost()
 		setScrollFactor('dollWarning', 0, 0)
 		setObjectCamera('dollWarning', 'hud')
 		setProperty('dollWarning.alpha', 0)
+		setGraphicSize("dollWarning", screenWidth, screenHeight)
 		addLuaSprite('dollWarning', true)
 	
 		beatSelected = beatsAllowed[getRandomInt(1, 6)]

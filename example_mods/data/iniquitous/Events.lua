@@ -11,12 +11,12 @@ function onCreate()
 		precacheSound('Static Noises/Glitch-'..i)
 	end
 	
-	makeLuaSprite('intro', 'bgs/iniquitous/intro1', -350, -200)
+	makeLuaSprite('intro', 'bgs/iniquitous/intro1', mobileFix("X", -350), -200)
 	setScrollFactor('intro', 0, 0)
 	setObjectCamera('intro', 'game')
 	addLuaSprite('intro', true)
 	
-	makeLuaSprite('intro2', 'bgs/iniquitous/intro2', -350, -200)
+	makeLuaSprite('intro2', 'bgs/iniquitous/intro2', mobileFix("X", -350), -200)
 	setScrollFactor('intro2', 0, 0)
 	setObjectCamera('intro2', 'game')
 	setProperty('intro2.alpha', 0)
@@ -32,7 +32,7 @@ function onCreate()
 	setObjectCamera('blackBG', 'game')
 	addLuaSprite('blackBG', true)
 	
-	makeLuaText('dialogue', "", 1000, 130, 520)
+	makeLuaText('dialogue', "", 1000, mobileFix("X", 130), 520)
 	setTextSize('dialogue', 35)
 	setProperty('dialogue.alpha', 0)
 	setObjectCamera('dialogue', 'game')

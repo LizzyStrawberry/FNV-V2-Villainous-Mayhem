@@ -80,6 +80,8 @@ class MusicBeatState extends FlxUIState
 
 	public static function getExtraMode(songName:String):String
 	{
+		if (!ClientPrefs.mechanics) return "NONE";
+		
 		var songsWithDodge:Array<String> = ["Breacher", "Excrete", "Iniquitous", "Lustality", "Lustality V1",
 		"Point Blank", "Viilain In Board"]; // Songs that only utilize Dodge
 		var songsWithAttack:Array<String> = ["Lustality Remix", "Toybox", "Paycheck", "Paycheck (Legacy)"]; // Songs that Utilize Both Dodge and Attack

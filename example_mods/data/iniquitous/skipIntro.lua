@@ -25,7 +25,7 @@ function onCreatePost()
         end
     end
 	
-	makeLuaText('skipTXT', 'Press SPACE to skip the intro.', 900, 200, 650)
+	makeLuaText('skipTXT', 'TAP to skip the intro.', 900, mobileFix("X", 200), 650)
 	setTextAlignment('skipTXT', 'CENTER')
 	setTextSize('skipTXT', 30)
 	setProperty('skipTXT.alpha', 0)
@@ -45,7 +45,7 @@ end
 skippedIntro = false
 function onUpdate()
     if canSkip and getSongPosition() < skipTime then
-        if (keybind ~= '' and keyJustPressed(keybind)) or (keyboard ~= '' and keyboardJustPressed(keyboard)) then
+        if pressAction() or (keyboard ~= '' and keyboardJustPressed(keyboard)) then
             canSkip = false
 			skippedIntro = true
             -- debugPrint('hi ', getSongPosition(), ' ', skipTime)
