@@ -50,7 +50,7 @@ function onCreate()
 			
 		end
 		
-		setProperty('defaultCamZoom', 0.9)
+		setProperty('defaultCamZoom', 1.05)
 
 		addLuaSprite('bg', false)
 		addLuaSprite('fg', false)

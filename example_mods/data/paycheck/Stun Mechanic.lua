@@ -9,7 +9,7 @@ local pressedKey = false
 local timerCompleted = false
 local turnedTimerOn = false
 
-local Keys = {'Dodge','Attack'}
+local Keys = {'Left', 'Right', 'Up', 'Down', 'Dodge', 'Attack'}
 local numRand = Keys[math.random(#Keys)]
 
 local ended = false
@@ -36,7 +36,7 @@ function onCreatePost()
 			LizKianaNaked = math.random(1,15) -- For Secret Text n.2
 			
 			--creating text and images
-			makeLuaText('WarningText', 'PRESS '..numRand..' TO REMOVE POP UP!', 900, 0, 650)
+			makeLuaText('WarningText', 'TAP TO REMOVE POP UP!', 900, 0, 650)
 			setTextAlignment('WarningText', 'LEFT')
 			setTextSize('WarningText', 40)
 			setObjectCamera('WarningText', 'other')
@@ -134,12 +134,14 @@ function onUpdate()
 			end
 		
 			--setting text
-			if randomBitchCount == 7 then
-				setTextString('WarningText', 'TOUCH '..numRand..' IF YOU HAVE NO BITCHES')
-			elseif LizKianaNaked == 2 then
-				setTextString('WarningText', 'TOUCH '..numRand..' For Liz and Kiana Naked')
-			else
-				setTextString('WarningText', 'TOUCH '..numRand..' TO REMOVE POP UP!')
+			if timerCompleted then
+				if randomBitchCount == 7 then
+					setTextString('WarningText', 'TOUCH '..numRand..' IF YOU HAVE NO BITCHES')
+				elseif LizKianaNaked == 2 then
+					setTextString('WarningText', 'TOUCH '..numRand..' For Liz and Kiana Naked')
+				else
+					setTextString('WarningText', 'TOUCH '..numRand..' TO REMOVE POP UP!')
+				end
 			end
 		end
 	end

@@ -361,6 +361,12 @@ class ClientPrefs {
 		//trace(defaultKeys);
 	}
 
+	public static function saveCharmInfo() {
+		FlxG.save.data.resistanceCharm = resistanceCharm;
+		FlxG.save.data.autoCharm = autoCharm;
+		FlxG.save.data.healingCharm = healingCharm;
+	}
+
 	public static function saveSettings() {
 		FlxG.save.data.extraHints = extraHints;
 		FlxG.save.data.hitboxPos = hitboxPos;

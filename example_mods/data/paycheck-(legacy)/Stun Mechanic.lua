@@ -9,7 +9,7 @@ local pressedKey = false
 local timerCompleted = false
 local turnedTimerOn = false
 
-local Keys = {'Dodge','Attack'}
+local Keys = {'Left', 'Right', 'Up', 'Down', 'Dodge','Attack'}
 local numRand = Keys[math.random(#Keys)]
 
 local ended = false

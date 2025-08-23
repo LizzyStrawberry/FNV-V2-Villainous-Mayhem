@@ -217,7 +217,13 @@ class CharSelector extends MusicBeatState{
 
         FlxTween.color(menuBG, 1.1, FlxColor.fromString(previousColor), FlxColor.fromString(curColor), {ease: FlxEase.cubeInOut});
 
-        changeSelection();
+        var scroll = new ScrollableObject(-0.004, 50, 100, FlxG.width, FlxG.height, "X");
+		scroll.onFullScroll.add(delta -> {
+			changeSelection(delta);
+		});
+        add(scroll);
+
+        changeSelection(0, false);
         cameras = [FlxG.cameras.list[FlxG.cameras.list.length - 1]];
         super.create();
     }
@@ -259,15 +265,9 @@ class CharSelector extends MusicBeatState{
 				FlxTween.tween(arrowSelectorRight, {x: getRightArrowX}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
 
             if (leftPress || TouchUtil.pressAction(arrowSelectorLeft))
-            {
-                FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
                 changeSelection(-1);
-            }
             if (rightPress || TouchUtil.pressAction(arrowSelectorRight))
-            {
-                FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
                 changeSelection(1);
-            }
             if (accepted || TouchUtil.pressAction(icon))
             {
                 isSelectinChar = false;
@@ -327,8 +327,9 @@ class CharSelector extends MusicBeatState{
     }
 
     // Changes the currently selected character
-    function changeSelection(changeAmount:Int = 0):Void
+    function changeSelection(changeAmount:Int = 0, ?playSound:Bool = true):Void
     {
+        if (playSound) FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
         // This just ensures you don't go over the intended amount
         curSelected += changeAmount;
         if (curSelected < 0)

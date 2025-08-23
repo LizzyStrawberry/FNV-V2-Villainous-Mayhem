@@ -29,5 +29,6 @@ function onCreatePost()
 	if mechanics then -- To only apply this if mechanics are enabled!
 		loadGraphic("backdrop", "instructions/Inst-Debug")
 		scaleObject("backdrop", 0.67, 0.67)
+		screenCenter("backdrop", "XY")
 	end
 end

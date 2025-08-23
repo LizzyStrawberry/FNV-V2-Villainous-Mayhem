@@ -164,6 +164,8 @@ class FreeplayCategoryState extends MusicBeatState
 
         changeItem();
 
+        addTouchPad("NONE", "B");
+
         super.create();
     }
 
@@ -296,9 +298,9 @@ class FreeplayCategoryState extends MusicBeatState
 
                 new FlxTimer().start(0.5, function(tmr:FlxTimer)
                 {
-                    changeItem();
                     changin = false;
                     selectedMainSomething = false;
+                    changeItem();
                 });
             }
 
@@ -322,9 +324,9 @@ class FreeplayCategoryState extends MusicBeatState
                 
                 new FlxTimer().start(0.5, function(tmr:FlxTimer)
                 {
-                    changeItem();
                     changin = false;
                     selectedBonusSomething = false;
+                    changeItem();
                 });
             }
             if (ClientPrefs.bonusUnlocked == false && categorySelected == 1 && (controls.ACCEPT || (FlxG.mouse.overlaps(secondSpriteSelection) && FlxG.mouse.justPressed)))

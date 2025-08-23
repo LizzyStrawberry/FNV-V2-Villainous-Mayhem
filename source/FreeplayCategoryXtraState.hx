@@ -90,6 +90,8 @@ class FreeplayCategoryXtraState extends MusicBeatState
 
         changeItem();
 
+        addTouchPad("NONE", "B");
+        
         super.create();
     }
 

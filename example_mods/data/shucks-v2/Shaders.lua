@@ -1,4 +1,5 @@
 local shadedAssets = {"boyfriend", "dad", "gf", "fg", "bg", "bf", "ded", "hand", "stabbed"}
+local addedShader = false
 
 function onCreate()
 	if shadersEnabled then
@@ -39,6 +40,8 @@ function onUpdate(elapsed)
 					trace(game.getLuaObject('camShader').shader + ' Has Been Loaded!'); 
 					FlxG.game.setFilters([new ShaderFilter(game.getLuaObject('camShader').shader)]);
 				]]);
+				
+				addedShader = true
 			end
 		end
 	end
@@ -51,14 +54,16 @@ function lerp(a, b, c, d)
 end
 
 function onUpdatePost(elapsed)
-	if shadersEnabled then
+	if shadersEnabled and addedShader then
 		setShaderFloat("camShader", 'amount', lerp(getShaderFloat('camShader', 'amount'), 0, (0.4 + (stepCrochet * 0.004)) / playbackRate, elapsed));
 	end
 end
 
 function onBeatHit()
-	if curBeat >= 856 and curBeat <= 984 and getShaderFloat("camShader", 'amount') > -0.0425 then
-		setShaderFloat("camShader", 'amount', -0.0425)
+	if shadersEnabled then
+		if curBeat >= 856 and curBeat <= 984 and getShaderFloat("camShader", 'amount') > -0.0425 then
+			setShaderFloat("camShader", 'amount', -0.0425)
+		end
 	end
 end
 

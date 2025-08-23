@@ -36,6 +36,8 @@ class PauseSubState extends MusicBeatSubstate
 	var charmIcon:FlxSprite;
 	var showCharm:Bool = false;
 
+	var leftBar:FlxSprite;
+	var rightBar:FlxSprite;
 	var bgGradient:FlxSprite;
 	var pauseCard:FlxSprite;
 	var arrows:FlxSprite;
@@ -265,12 +267,13 @@ class PauseSubState extends MusicBeatSubstate
 
 		var margin:Int = Std.int(Math.max(0, (FlxG.width - pauseCard.width) * 0.5));
 		if (margin > 0) {
-			var leftBar  = new FlxSprite(0, 0).makeGraphic(margin, FlxG.height, FlxColor.BLACK);
-			var rightBar = new FlxSprite(FlxG.width - margin, 0).makeGraphic(margin, FlxG.height, FlxColor.BLACK);
+			leftBar = new FlxSprite(0, 0).makeGraphic(margin, FlxG.height, FlxColor.BLACK);
+			rightBar = new FlxSprite(FlxG.width - margin, 0).makeGraphic(margin, FlxG.height, FlxColor.BLACK);
 
 			for (bar in [leftBar, rightBar])
 			{
 				bar.scrollFactor.set();
+				bar.alpha = 0;
 				add(bar);
 			}
 		}
@@ -293,7 +296,7 @@ class PauseSubState extends MusicBeatSubstate
 
 		add(levelInfo);
 
-		var pad:Int = 24;
+		var pad:Int = 25;
 		var levelDifficulty:FlxText = new FlxText(pauseCard.x + pad, 15 + 48, 0, "", 32);
 		if (PlayState.isMayhemMode)
 			levelDifficulty.text += "Mayhem";
@@ -405,6 +408,9 @@ class PauseSubState extends MusicBeatSubstate
 		levelDifficulty.x = pauseCard.x + pauseCard.width - levelDifficulty.width - pad;
 		blueballedTxt.x = pauseCard.x + pauseCard.width - blueballedTxt.width - pad;
 
+		for (bar in [leftBar, rightBar])
+			FlxTween.tween(bar, {alpha: 1}, 0.4, {ease: FlxEase.quartInOut});
+
 		FlxTween.tween(bg, {alpha: 0.6}, 0.4, {ease: FlxEase.quartInOut});
 		FlxTween.tween(bgGradient, {alpha: 1}, 0.4, {ease: FlxEase.quartInOut});
 		FlxTween.tween(pauseCard, {alpha: 1}, 0.4, {ease: FlxEase.quartInOut});
@@ -431,9 +437,15 @@ class PauseSubState extends MusicBeatSubstate
 
 		regenMenu();
 
-		var scroll = new ScrollableObject(0.004, 50, 100, FlxG.width, FlxG.height, "Y");
+		var button = new TouchZone(800, mainItem.y, 600, 95);
+		button.cameras = [pauseCam];
+		var scroll = new ScrollableObject(0.004, 50, 100, FlxG.width, FlxG.height, "Y", button);
 		scroll.onFullScroll.add(delta -> {
 			changeSelection(delta);
+		});
+		scroll.onTap.add(() ->{
+			if (!onQuickSettings)
+				accepted = true;
 		});
 
 		var scrollOptions = new ScrollableObject(0.004, 50, 100, FlxG.width, FlxG.height, "Y");
@@ -448,6 +460,7 @@ class PauseSubState extends MusicBeatSubstate
 				applyOption(delta);
 		});
 		add(scroll);
+		add(button);
 		add(scrollOptions);
 		add(scrollOptions2);
 	}
@@ -475,6 +488,7 @@ class PauseSubState extends MusicBeatSubstate
 	var botplayOn:Bool = false;
 	var huh = 0;
 	var delay:Bool = false;
+	var accepted:Bool = false;
 
 	override function update(elapsed:Float)
 	{
@@ -486,7 +500,6 @@ class PauseSubState extends MusicBeatSubstate
 
 		var upP = controls.UI_UP_P;
 		var downP = controls.UI_DOWN_P;
-		var accepted = controls.ACCEPT || TouchUtil.pressAction();
 
 		if (upP && (onSkipTime == false && onQuickSettings == false))
 		{
@@ -544,7 +557,7 @@ class PauseSubState extends MusicBeatSubstate
 						skipTimeBGTweenFadeOut = FlxTween.tween(skipTimeBG, {alpha: 0}, 0.4, {ease: FlxEase.quartInOut});
 					}
 					
-					if (accepted)
+					if (accepted || controls.ACCEPT)
 					{
 						if(curTime < Conductor.songPosition)
 						{
@@ -592,7 +605,7 @@ class PauseSubState extends MusicBeatSubstate
 			// Exclusively for "More Options.."
 			if (PlayState.isInjectionMode || PlayState.isMayhemMode)
 			{
-				if (curOption == 3 && controls.ACCEPT)
+				if (curOption == 3 && (controls.ACCEPT || TouchUtil.pressAction(grpOpts.members[curOption])))
 				{
 					PlayState.instance.paused = true;
 					PlayState.instance.vocals.volume = 0;
@@ -603,7 +616,7 @@ class PauseSubState extends MusicBeatSubstate
 			}
 			else if (PlayState.isIniquitousMode)
 			{
-				if (curOption == 4 && controls.ACCEPT)
+				if (curOption == 4 && (controls.ACCEPT || TouchUtil.pressAction(grpOpts.members[curOption])))
 				{
 					PlayState.instance.paused = true;
 					PlayState.instance.vocals.volume = 0;
@@ -614,7 +627,7 @@ class PauseSubState extends MusicBeatSubstate
 			}
 			else
 			{
-				if (curOption == 5 && controls.ACCEPT)
+				if (curOption == 5 && (controls.ACCEPT || TouchUtil.pressAction(grpOpts.members[curOption])))
 				{
 					PlayState.instance.paused = true;
 					PlayState.instance.vocals.volume = 0;
@@ -627,7 +640,7 @@ class PauseSubState extends MusicBeatSubstate
 			if (controls.BACK)
 			{
 				removeTouchPad();
-				onQuickSettings = false;
+				onQuickSettings = accepted = false;
 					
 				if (optionsBGTweenFadeIn != null)
 					optionsBGTweenFadeIn.cancel();
@@ -635,7 +648,11 @@ class PauseSubState extends MusicBeatSubstate
 
 				if (optionInfoTweenFadeIn != null)
 					optionInfoTweenFadeIn.cancel();
-				optionInfoTweenFadeOut = FlxTween.tween(optionInfo, {alpha: 0}, 0.4, {ease: FlxEase.quartOut});
+				optionInfoTweenFadeOut = FlxTween.tween(optionInfo, {alpha: 0}, 0.4, {ease: FlxEase.quartOut, onComplete: function(_)
+					{
+						onQuickSettings = false;
+					}
+				});
 
 				for (item in grpOpts.members)
 				{
@@ -654,7 +671,7 @@ class PauseSubState extends MusicBeatSubstate
 			}
 		}
 
-		if (accepted && (cantUnpause <= 0 || !ClientPrefs.controllerMode) && (onSkipTime == false && onQuickSettings == false))
+		if ((accepted || controls.ACCEPT) && (cantUnpause <= 0 || !ClientPrefs.controllerMode) && (onSkipTime == false && onQuickSettings == false))
 		{
 			if (ClientPrefs.haptics) Haptic.vibrateOneShot(0.05, 0.35, 0.5);
 			if (menuItems == difficultyChoices)
@@ -757,7 +774,6 @@ class PauseSubState extends MusicBeatSubstate
 
 	function openQuickSettings()
 	{
-		addTouchPad("NONE", "B");
 		optionsBG = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 		optionsBG.alpha = 0;
 		optionsBG.scrollFactor.set();
@@ -795,6 +811,8 @@ class PauseSubState extends MusicBeatSubstate
 		}
 
 		changeOption();
+
+		addTouchPad("NONE", "B");
 	}
 
 	function applyOption(wah:Int = 0)
@@ -805,7 +823,7 @@ class PauseSubState extends MusicBeatSubstate
 			huh = 1;
 		if (huh < 0)
 			huh = 0;
-		FlxG.sound.play(Paths.sound('ConfirmMenu'), 0.2);
+		FlxG.sound.play(Paths.sound('confirmMenu'), 0.2);
 
 		if ((PlayState.isStoryMode && !PlayState.isIniquitousMode)
 		|| (!PlayState.isStoryMode && !PlayState.isIniquitousMode && !PlayState.isInjectionMode && !PlayState.isMayhemMode)) //STORY MODE OR FREEPLAY
@@ -1037,10 +1055,10 @@ class PauseSubState extends MusicBeatSubstate
 						optionInfo.text = "Determine whether you want your notes to be scrolled upwards or downwards.\n\n(Settings are applied once you restart or move to the next song.)";
 					case 4:
 						optionInfo.y = 275;
-						optionInfo.text = "Determine whether you want to turn botplay on or off.\n\n<R>WARNING:<R>\nTurning botplay <G>ON<G> will reset your gameplay, aswell as your progress.\nTo disable, press CTRL on the Story Mode / Freeplay Menu.";
+						optionInfo.text = "Determine whether you want to turn botplay on or off.\n\n<R>WARNING:<R>\nTurning botplay <G>ON<G> will reset your gameplay, aswell as your progress.\nTo disable, tap C on the Story Mode / Freeplay Menu.";
 					case 5:
 						optionInfo.y = 320;
-						optionInfo.text = "Press ENTER to access all of FNV's settings.\nNo progress will be lost.";
+						optionInfo.text = "TAP to access all of FNV's settings.\nNo progress will be lost.";
 				}
 	
 				if (ClientPrefs.mechanics == true)
@@ -1125,7 +1143,7 @@ class PauseSubState extends MusicBeatSubstate
 						optionInfo.text = "Determine whether you want your notes to be scrolled upwards or downwards.\n\n(Settings are applied once you move to the next song.)";
 					case 3:
 						optionInfo.y = 320;
-						optionInfo.text = "Press ENTER to access all of FNV's settings.\nNo progress will be lost.";
+						optionInfo.text = "TAP to access all of FNV's settings.\nNo progress will be lost.";
 				}
 	
 				if (ClientPrefs.shaders == true)
@@ -1196,10 +1214,10 @@ class PauseSubState extends MusicBeatSubstate
 						optionInfo.text = "Determine whether you want your notes to be scrolled upwards or downwards.\n\n(Settings are applied once you restart or move to the next song.)";
 					case 3:
 						optionInfo.y = 275;
-						optionInfo.text = "Determine whether you want to turn botplay on or off.\n\n<R>WARNING:<R>\nTurning botplay <G>ON<G> will reset your gameplay, aswell as your progress.\nTo disable, press CTRL on the Story Mode / Freeplay Menu.";
+						optionInfo.text = "Determine whether you want to turn botplay on or off.\n\n<R>WARNING:<R>\nTurning botplay <G>ON<G> will reset your gameplay, aswell as your progress.\nTo disable, tap C on the Story Mode / Freeplay Menu.";
 					case 4:
 						optionInfo.y = 320;
-						optionInfo.text = "Press ENTER to access all of FNV's settings.\nNo progress will be lost.";
+						optionInfo.text = "TAP to access all of FNV's settings.\nNo progress will be lost.";
 				}
 	
 				if (ClientPrefs.shaders == true)

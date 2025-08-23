@@ -20,7 +20,7 @@ function onCreate()
 		
 		if allowCharms then 
 			-- Creating the text for the Charms
-			makeLuaText('charmActivate', '', 1000, 100, 320)
+			makeLuaText('charmActivate', '', 1000, mobileFix("X", 100), 320)
 			setTextSize('charmActivate', 50)
 			setProperty('charmActivate.alpha', 0)
 			addLuaText('charmActivate')

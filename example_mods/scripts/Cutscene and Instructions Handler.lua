@@ -143,7 +143,7 @@ function onCreatePost()
 		setGraphicSize('backdrop', screenWidth, screenHeight)
 		addLuaSprite('backdrop')
 		
-		makeLuaSprite('gimmickTitle', 'instructions/opponentGimmick', 500, 50)
+		makeLuaSprite('gimmickTitle', 'instructions/opponentGimmick', mobileFix("X", 500), 50)
 		scaleObject("gimmickTitle", 1.15, 1.2)
 		setObjectCamera('gimmickTitle', 'other')
 		setProperty('gimmickTitle.alpha', 0)
@@ -154,14 +154,14 @@ function onCreatePost()
 		createInstance('iconGimmick', 'HealthIcon', {instructionsData.instGraphic, false})
 		setObjectCamera('iconGimmick', "other")
 		scaleObject("iconGimmick", 2.25, 2.25)
-		setProperty("iconGimmick.x", 150) setProperty("iconGimmick.y", 300)
+		setProperty("iconGimmick.x", mobileFix("X", 150)) setProperty("iconGimmick.y", 300)
 		setProperty("iconGimmick.animation.curAnim.curFrame", instructionsData.iconFrame) setProperty("iconGimmick.alpha", 0)
 		if backdropColor ~= "NONE" then
 			addInstance('iconGimmick')
 		end
 
 		for i = 1, tipData.numOfTips do
-			makeLuaSprite('tipIcon'..i, 'instructions/tipIcons/'..tipData["tipIcon"..i], 375 + (tipData.numOfTips * 50), 175)
+			makeLuaSprite('tipIcon'..i, 'instructions/tipIcons/'..tipData["tipIcon"..i], mobileFix("X", 375 + (tipData.numOfTips * 50)), 175)
 			setObjectCamera('tipIcon'..i, 'other')
 			scaleObject('tipIcon'..i, 0.5 - (tipData.numOfTips * 0.1), 0.5 - (tipData.numOfTips * 0.1))
 			setProperty('tipIcon'..i..'.alpha', 0)

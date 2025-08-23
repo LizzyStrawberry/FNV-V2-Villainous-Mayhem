@@ -721,7 +721,7 @@ class FreeplayState extends MusicBeatState
 
 		var upP = controls.UI_UP_P;
 		var downP = controls.UI_DOWN_P;
-		var accepted = controls.ACCEPT || TouchUtil.pressAction(unlockedSelection);
+		var accepted = controls.ACCEPT || TouchUtil.pressAction(transparentButton);
 		var space = FlxG.keys.justPressed.SPACE || touchPad.buttonS.justPressed;
 		var ctrl = FlxG.keys.justPressed.CONTROL || touchPad.buttonC.justPressed;
 
@@ -769,14 +769,14 @@ class FreeplayState extends MusicBeatState
 			else
 				FlxTween.tween(arrowSelectorRight, {x: getRightArrowX}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
 	
-			if (controls.UI_LEFT_P || SwipeUtil.swipeLeft)
+			if (controls.UI_LEFT_P || (SwipeUtil.swipeLeft && !TouchUtil.pressAction(transparentButton) && !TouchUtil.pressAction(arrowSelectorLeft)))
 				changeDiff(-1);
-			else if (controls.UI_RIGHT_P || SwipeUtil.swipeRight)
+			else if (controls.UI_RIGHT_P || (SwipeUtil.swipeRight && !TouchUtil.pressAction(transparentButton) && !TouchUtil.pressAction(arrowSelectorRight)))
 				changeDiff(1);
 			else if (upP || downP) changeDiff();
 		}
 
-		if (controls.BACK  #if mobile || FlxG.android.justReleased.BACK #end)
+		if (controls.BACK #if mobile || FlxG.android.justReleased.BACK #end)
 		{
 			if (warning)
 			{
@@ -843,7 +843,7 @@ class FreeplayState extends MusicBeatState
 				#end
 			}
 		}
-		else if ((accepted || (FlxG.mouse.overlaps(transparentButton) && FlxG.mouse.justPressed)) && !warning)
+		else if (accepted && !warning)
 		{
 			persistentUpdate = false;
 			if (songs[curSelected].songName == 'Slow.FLP')

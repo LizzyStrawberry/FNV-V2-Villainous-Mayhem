@@ -766,7 +766,8 @@ class PlayState extends MusicBeatState
 		playerStrums = new FlxTypedGroup<StrumNote>();
 
 		var touchPadUI:String = "FULL_UI_PAUSE";
-		if ((PlayState.isIniquitousMode && WeekData.weeksList[PlayState.storyWeek] == 'mainweekkiana') || !ClientPrefs.mechanics || Paths.formatToSongPath(PlayState.SONG.song) == "couple-clash")
+		var removeFullUI:Bool = (PlayState.isIniquitousMode && WeekData.weeksList[PlayState.storyWeek] == 'mainweekkiana') || !ClientPrefs.mechanics || Paths.formatToSongPath(PlayState.SONG.song) == "couple-clash" || ClientPrefs.optimizationMode || cpuControlled;
+		if (removeFullUI)
 			touchPadUI = "PAUSE";
 
 		#if mobile
@@ -776,8 +777,6 @@ class PlayState extends MusicBeatState
 		addHitbox();
 		hitbox.onButtonDown.add(onButtonPress);
 		hitbox.onButtonUp.add(onButtonRelease);
-
-		// startCountdown();
 
 		generateSong(SONG.song);
 
@@ -1140,19 +1139,20 @@ class PlayState extends MusicBeatState
 	function fixTouchPadButtons()
 	{
 		// Certain conditions are met so this doesn't work
-		if ((PlayState.isIniquitousMode && WeekData.weeksList[PlayState.storyWeek] == 'mainweekkiana') || !ClientPrefs.mechanics || Paths.formatToSongPath(PlayState.SONG.song) == "couple-clash") return;
+		if ((PlayState.isIniquitousMode && WeekData.weeksList[PlayState.storyWeek] == 'mainweekkiana') || Paths.formatToSongPath(PlayState.SONG.song) == "couple-clash" 
+			|| !ClientPrefs.mechanics || ClientPrefs.optimizationMode || cpuControlled) return;
 	
 		if (!ClientPrefs.buff1Selected && !ClientPrefs.buff2Selected && !ClientPrefs.buff3Selected)
-		{
 			touchPad.buttonMayhem.visible = touchPad.buttonMayhem.active = false;
-			return;
-		}
 		else
 		{
-			if (getLuaObject("mayhembackBar").scale.x < 1)
-				touchPad.buttonMayhem.color = FlxColor.fromString("0xFFFFFFFF");
-			else
-				touchPad.buttonMayhem.color = FlxColor.fromString("0xFF6200");
+			if (getLuaObject("mayhembackBar") != null)
+			{
+				if (getLuaObject("mayhembackBar").scale.x < 1)
+					touchPad.buttonMayhem.color = FlxColor.fromString("0xFFFFFFFF");
+				else
+					touchPad.buttonMayhem.color = FlxColor.fromString("0xFF6200");	
+			}
 		}
 
 		if (ClientPrefs.resistanceCharm <= 1 || ClientPrefs.autoCharm <= 1 || ClientPrefs.healingCharm == 0)
@@ -1168,6 +1168,7 @@ class PlayState extends MusicBeatState
 		{
 			touchPad.buttonResCharm.visible = touchPad.buttonResCharm.active = false;
 			touchPad.buttonAutoCharm.visible = touchPad.buttonAutoCharm.active = false;
+			touchPad.buttonHealCharm.x = touchPad.buttonResCharm.x; // Get the button to where the Resistance one is
 			return;
 		}
 	}
@@ -1462,7 +1463,6 @@ class PlayState extends MusicBeatState
 						FlxG.camera.snapToTarget();
 					}
 					videoCutscene = null;
-					canPause = true;
 					inCutscene = false;
 					startAndEnd();
 				}
@@ -1662,6 +1662,7 @@ class PlayState extends MusicBeatState
 			#if mobile
 			hitbox.instance.visible = (!cpuControlled) ? true : false;
 			touchPad.visible = touchPad.active = true;
+			touchPad.buttonPAUSE.active = false;
 			#end
 
 			Conductor.songPosition = -Conductor.crochet * 5;
@@ -1775,7 +1776,7 @@ class PlayState extends MusicBeatState
 							defaultCountDownOne.pitch = playbackRate;
 							defaultCountDownOne.play(false);
 						case 3:
-							canPause = true;
+							canPause = #if mobile touchPad.buttonPAUSE.active = #end true;
 							if (boyfriend.animOffsets.exists('hey'))
 								boyfriend.playAnim('hey', true);
 							if (dad.animOffsets.exists('hey'))
@@ -1937,7 +1938,7 @@ class PlayState extends MusicBeatState
 								//-----------------------------------------
 								case 3:
 									new FlxTimer().start(0.2 / playbackRate, function (tmr:FlxTimer) {
-										canPause = true; // Allow Pausing
+										canPause = #if mobile touchPad.buttonPAUSE.active = #end true; // Allow Pausing
 									});
 							}
 
@@ -2015,7 +2016,7 @@ class PlayState extends MusicBeatState
 									}
 								});
 								new FlxTimer().start(0.2 / playbackRate, function (tmr:FlxTimer) {
-									canPause = true;
+									canPause = #if mobile touchPad.buttonPAUSE.active = #end true;
 								});
 							});
 						});
@@ -2727,7 +2728,7 @@ class PlayState extends MusicBeatState
 			botplayTxt.alpha = 1 - Math.sin((Math.PI * botplaySine) / 180);
 		}
 
-		if (controls.PAUSE #if android || TouchUtil.pressAction(touchPad.buttonPAUSE) ||  FlxG.android.justReleased.BACK #end && startedCountdown && canPause)
+		if (controls.PAUSE #if mobile || TouchUtil.pressAction(touchPad.buttonPAUSE) #if android || FlxG.android.justReleased.BACK #end #end && startedCountdown && canPause)
 		{
 			if (ClientPrefs.haptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
 			var ret:Dynamic = callOnLuas('onPause', [], false);
@@ -2737,8 +2738,7 @@ class PlayState extends MusicBeatState
 		}
 
 		#if DEBUG_ALLOWED
-			if (FlxG.keys.anyJustPressed(debugKeysChart) && !endingSong && !inCutscene)
-				openChartEditor();
+		if (FlxG.keys.anyJustPressed(debugKeysChart) && !endingSong && !inCutscene) openChartEditor();
 		#end
 
 		// FlxG.watch.addQuick('VOL', vocals.amplitudeLeft);
