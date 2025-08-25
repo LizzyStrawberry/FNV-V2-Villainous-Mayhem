@@ -976,7 +976,7 @@ class EditorPlayState extends MusicBeatState
 			}
 
 			strumLineNotes.add(babyArrow);
-			babyArrow.postAddedToGroup();
+			babyArrow.postAddedToGroup(true);
 		}
 	}
 

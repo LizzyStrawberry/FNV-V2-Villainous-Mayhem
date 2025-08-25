@@ -221,11 +221,14 @@ class StrumNote extends FlxSprite
 		}
 	}
 
-	public function postAddedToGroup() {
+	public function postAddedToGroup(legacy:Bool) {
 		playAnim('static');
-		x += Note.swagWidth * noteData;
-		x += 50;
-		x += ((FlxG.width / 2) * player);
+		if (legacy)
+		{
+			x += Note.swagWidth * noteData;
+			x += 50;
+			x += ((FlxG.width / 2) * player);
+		}
 		ID = noteData;
 	}
 

@@ -1,7 +1,7 @@
 function onCreate()
 	-- background shit
 	if not optimizationMode then
-		makeLuaSprite('bg', "bgs/tofu/background", -160, -160);
+		makeLuaSprite('bg', "bgs/tofu/background", -180, -160);
 		setScrollFactor('bg', 0.9, 0.9);
 		scaleObject('bg', 0.9, 0.9)
 		

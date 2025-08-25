@@ -1,12 +1,12 @@
 function onCreate()
 	if getPropertyFromClass('ClientPrefs', 'cinematicBars') == true then
 		makeLuaSprite('bartop1', '', -100, -750)
-		makeGraphic('bartop1', 1480, 720,'000000')
+		makeGraphic('bartop1', screenWidth * 1.25, 720,'000000')
 		setObjectCamera('bartop1','other')
 		setScrollFactor('bartop1', 0, 0)
 
 		makeLuaSprite('barbot1', '', -100, 750)
-		makeGraphic('barbot1', 1480, 120, '000000')
+		makeGraphic('barbot1', screenWidth * 1.25, 120, '000000')
 		setScrollFactor('barbot1', 0, 0)
 		setObjectCamera('barbot1', 'other')	
 		

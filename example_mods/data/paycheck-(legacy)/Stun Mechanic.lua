@@ -39,6 +39,7 @@ function onCreatePost()
 			setScrollFactor('advert', 0, 0)
 			setObjectCamera('advert', 'hud')
 			setObjectOrder('advert', getObjectOrder('scoreTxt') + 1)
+			setGraphicSize("advert", screenWidth, screenHeight)
 			setProperty('advert.visible', false)
 			addLuaSprite('advert', true)
 			

@@ -7,16 +7,6 @@ end
 function onUpdatePost()
 	-- Note Flip
 	if curBeat <= 190 then
-		setPropertyFromGroup('playerStrums', 0, 'x', 92)
-		setPropertyFromGroup('playerStrums', 1, 'x', 204)
-		setPropertyFromGroup('playerStrums', 2, 'x', 316)
-		setPropertyFromGroup('playerStrums', 3, 'x', 428)
-	
-		setPropertyFromGroup('opponentStrums', 0, 'x', 732)
-		setPropertyFromGroup('opponentStrums', 1, 'x', 844)
-		setPropertyFromGroup('opponentStrums', 2, 'x', 956)
-		setPropertyFromGroup('opponentStrums', 3, 'x', 1068)
-	
 		-- HealthBar Flip
 		x1 = getProperty('iconP1.x')
 		x2 = getProperty('iconP2.x')
@@ -28,16 +18,6 @@ function onUpdatePost()
 		setProperty('iconOpponent.x', x1)
 	end
 	if curBeat > 190 then
-		setPropertyFromGroup('opponentStrums', 0, 'x', 92)
-		setPropertyFromGroup('opponentStrums', 1, 'x', 204)
-		setPropertyFromGroup('opponentStrums', 2, 'x', 316)
-		setPropertyFromGroup('opponentStrums', 3, 'x', 428)
-	
-		setPropertyFromGroup('playerStrums', 0, 'x', 732)
-		setPropertyFromGroup('playerStrums', 1, 'x', 844)
-		setPropertyFromGroup('playerStrums', 2, 'x', 956)
-		setPropertyFromGroup('playerStrums', 3, 'x', 1068)
-	
 		setProperty('healthBar.flipX', false)
 		setProperty('iconP1.flipX', false)
 		setProperty('iconP2.flipX', false)

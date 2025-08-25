@@ -1,5 +1,5 @@
 local changeHud = false
-
+local songStarted = false
 function onCreate()
 	-- background shit
 	if not optimizationMode then
@@ -17,13 +17,17 @@ function onCreate()
 		addLuaSprite('seerBG', false);
 	end
 	
-	setProperty("defaultCamZoom", 0.75)
+	setProperty("defaultCamZoom", 0.8)
 end
 
 function onCreatePost()
 	if not optimizationMode then
 		setScene("Cross")
 	end
+end
+
+function onSongStart()
+    songStarted = true
 end
 
 function setScene(char)
@@ -41,6 +45,8 @@ function setScene(char)
 		for i = 0, 3 do
 			setPropertyFromGroup('opponentStrums', i, 'texture', 'notes/AsulNOTE_assets');
 			setPropertyFromGroup('playerStrums', i, 'texture', 'notes/AileenNOTE_assets');
+			setPropertyFromGroup('opponentStrums', i, 'scale.x', getPropertyFromGroup("opponentStrums", i, 'scale.x') / 1.75) 
+			setPropertyFromGroup('opponentStrums', i, 'scale.y', getPropertyFromGroup("opponentStrums", i, 'scale.y') / 1.75) 
 		end
 		
 		setProperty("crossBG.visible", false)
@@ -65,7 +71,11 @@ function setScene(char)
 		for i = 0, 3 do
 			setPropertyFromGroup('opponentStrums', i, 'texture', 'notes/CrossNOTE_assets');
 			setPropertyFromGroup('playerStrums', i, 'texture', 'notes/MarcoNOTE_assets');
-		end
+			if songStarted then
+		    	setPropertyFromGroup('opponentStrums', i, 'scale.x', getPropertyFromGroup("opponentStrums", i, 'scale.x') / 1.75) 
+		    	setPropertyFromGroup('opponentStrums', i, 'scale.y', getPropertyFromGroup("opponentStrums", i, 'scale.y') / 1.75) 
+	        end 
+	end
 		
 		setProperty("crossBG.visible", true)
 		setProperty("seerBG.visible", false)

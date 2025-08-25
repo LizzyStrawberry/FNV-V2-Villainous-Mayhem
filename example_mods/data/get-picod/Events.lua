@@ -38,7 +38,7 @@ function onCreate()
 	setObjectCamera('sabotage', 'game')
 	addLuaSprite('sabotage', true)
 	
-	makeLuaText('contextText', 'Context:\n'..context, 900, 185, 480)
+	makeLuaText('contextText', 'Context:\n'..context, 900, mobileFix("X", 185), 480)
 	setTextAlignment('contextText', 'Center')
 	setProperty('contextText.alpha', 0)
 	setTextSize('contextText', 20)

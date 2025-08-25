@@ -1,14 +1,6 @@
 function onCreate()
 	addCharacterToList('MichaelFAalt', 'dad')
 	addCharacterToList('KyuAlt', 'boyfriend')
-	
-	makeLuaText('tip', 'Your Notes are here!', 1000, -180, 170)
-	if downscroll then
-		setProperty('tip.y', 520)
-	end
-	setTextSize('tip', 30)
-	setProperty('tip.alpha', 0)
-	addLuaText('tip')
 end
 
 function opponentNoteHit() -- health draining mechanic
@@ -25,12 +17,6 @@ function opponentNoteHit() -- health draining mechanic
 end
 
 function onUpdate()
-	if curBeat == 0 then
-		doTweenAlpha('tip', 'tip', 1, 0.7, 'cubeInOut')
-	end
-	if curBeat == 16 then
-		doTweenAlpha('tip', 'tip', 0, 0.7, 'cubeInOut')
-	end
 	if curBeat == 25 then
 		triggerEvent('Play Animation', 'switch', 'dad')
 	end

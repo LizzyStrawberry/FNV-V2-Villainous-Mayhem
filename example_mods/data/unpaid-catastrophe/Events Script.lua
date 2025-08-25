@@ -45,7 +45,7 @@ function onUpdate()
 		setProperty('defaultCamZoom', 1.2)
 	end
 	if curBeat == 96 then
-		setProperty('defaultCamZoom', 0.8)
+		setProperty('defaultCamZoom', 1)
 	end
 	if curStep == 408 then
 		setProperty('defaultCamZoom', 1.2)
@@ -61,7 +61,7 @@ function onUpdate()
 	end
 	if curStep == 416 then
 		cameraFlash('game', 'FFFFFF', 0.5, false)
-		setProperty('defaultCamZoom', 0.8)
+		setProperty('defaultCamZoom', 1)
 	end
 	if curBeat == 248 then
 		cameraFlash('game', 'FFFFFF', 0.5, false)
@@ -76,7 +76,7 @@ function onUpdate()
 		setProperty('defaultCamZoom', 1.4)
 	end
 	if curBeat == 400 then
-		setProperty('defaultCamZoom', 0.8)
+		setProperty('defaultCamZoom', 1)
 	end
 	if curBeat == 408 then
 		cameraFlash('game', 'FFFFFF', 0.5, false)

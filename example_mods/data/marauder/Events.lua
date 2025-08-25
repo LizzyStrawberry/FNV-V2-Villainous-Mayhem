@@ -11,16 +11,8 @@ local glitchText = {'??????', 'ERR0R', 'D3BUG', '!*&%^(', '?!?!#&$', '??<:"{|}?'
 					'?!@#%&$(!!^*(!@)^', 'XXXXXXXXX', 'BUGGED', 'D0NT D13', 'MARAUDER', '!)@(#&&$X13U0X'}
 local curNum
 
-local windowXORIGIN = 0
-local windowYORIGIN = 0
-local wobbleSpeed = 1  -- Initial wobble speed
-local maxWobbleSpeed = 120  -- Maximum wobble speed
-
 function onCreate()
 	setProperty('gf.visible', false)
-	
-	windowXORIGIN = getPropertyFromClass('openfl.Lib', 'application.window.x')
-	windowYORIGIN = getPropertyFromClass('openfl.Lib', 'application.window.y')
 	
 	headLeftOriginY1 = getProperty('headLeft.y')
 	headLeftOriginY2 = getProperty('headLeft2.y')
@@ -143,13 +135,6 @@ function onUpdate()
 		cameraFlash('game', 'FFFFFF', 0.8 / playbackRate, false)
 		setProperty('defaultCamZoom', 0.8)
 	end
-	if curStep == 1919 then
-		if shadersEnabled == true then
-			cancelTween("winwinY")
-			
-			doTweenFromClass("winwinY", "openfl.Lib", "application.window", {y = windowYORIGIN}, 1.7 / playbackRate, 'quadOut')
-		end
-	end
 end
 
 local change = false
@@ -175,13 +160,6 @@ function onBeatHit()
 			end
 			setProperty('moreClones.x', -900)
 			doTweenX('moreClonesMove', 'moreClones', -1800, 1.71 / playbackRate, 'linear')
-	
-			if curBeat >= 352 and curBeat < 480 then
-				doTweenFromClass("winwinY", "openfl.Lib", "application.window", {y = windowYORIGIN - wobbleSpeed}, 0.7 / playbackRate, 'quadInOut')
-				if wobbleSpeed < maxWobbleSpeed then
-					wobbleSpeed = wobbleSpeed + 2
-				end
-			end
 			
 			if curBeat >= 160 and curBeat <= 480 then
 				triggerEvent('Add Camera Zoom', '0.060', '0.025')
@@ -190,11 +168,6 @@ function onBeatHit()
 		if curBeat % 4 == 2 then
 			if curBeat >= 352 and curBeat < 480 then
 				doTweenY('moreClonesMoveY', 'moreClones', -170, 0.7 / playbackRate, 'quadInOut')
-				doTweenFromClass("winwinY", "openfl.Lib", "application.window", {y = windowYORIGIN + wobbleSpeed}, 0.7 / playbackRate, 'quadInOut')
-				
-				if wobbleSpeed < maxWobbleSpeed then
-					wobbleSpeed = wobbleSpeed + 2
-				end
 			end
 		end
 		if (curBeat >= 160 and curBeat < 224) or (curBeat >= 352 and curBeat < 480) then
@@ -229,16 +202,6 @@ function onTweenCompleted(tag)
 	if tag == 'beginZoomAgain' then
 		setProperty('defaultCamZoom', 0.8)
 	end
-end
-
-function onPause()
-	setPropertyFromClass('openfl.Lib','application.window.x', windowXORIGIN)
-	setPropertyFromClass('openfl.Lib','application.window.y', windowYORIGIN)
-end
-
-function onDestroy()
-	setPropertyFromClass('openfl.Lib','application.window.x', windowXORIGIN)
-	setPropertyFromClass('openfl.Lib','application.window.y', windowYORIGIN)
 end
 
 function doTweenFromClass(tag, classVar, vars, values, duration, ease)

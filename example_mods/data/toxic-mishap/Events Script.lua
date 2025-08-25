@@ -56,21 +56,13 @@ function onUpdate()
 	if curStep == 294 then
 		doTweenAlpha('blackBg', 'blackBG', 0.7, 0.3 / playbackRate, 'cubeInOut')
 		triggerEvent('Play Animation', 'laugh', 'dad')
-		noteTweenX('NoteMove1', 0, 400, 1 / playbackRate, 'cubeInOut')
-		noteTweenX('NoteMove2', 1, 520, 1 / playbackRate, 'cubeInOut')
-		noteTweenX('NoteMove3', 2, 640, 1 / playbackRate, 'cubeInOut')
-		noteTweenX('NoteMove4', 3, 760, 1 / playbackRate, 'cubeInOut')
-		noteTweenX('NoteMove5', 4, 400, 1 / playbackRate, 'cubeInOut')
-		noteTweenX('NoteMove6', 5, 520, 1 / playbackRate, 'cubeInOut')
-		noteTweenX('NoteMove7', 6, 640, 1 / playbackRate, 'cubeInOut')
-		noteTweenX('NoteMove8', 7, 760, 1 / playbackRate, 'cubeInOut')
 	end
 	if curStep == 312 then
 		doTweenAlpha('blackBg', 'blackBG', 1, 0.3 / playbackRate, 'cubeInOut')
 		doTweenAlpha('hud', 'camHUD', 1, 0.9 / playbackRate, 'linear')
 	end
 	if curStep == 320 then
-		setProperty('defaultCamZoom', 0.9)
+		setProperty('defaultCamZoom', 1)
 		cameraFlash('game', 'FFFFFF', 0.5 / playbackRate, false)
 		
 		setProperty('blackBG.alpha', 0)

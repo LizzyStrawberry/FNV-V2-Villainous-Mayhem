@@ -8,6 +8,8 @@ function onCreate()
 		setProperty('static.alpha', 0)
 		addLuaSprite('static', true)
 	end
+	
+	setProperty("legacyPosition", true)
 end
 
 function onSongStart()

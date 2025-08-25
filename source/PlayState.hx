@@ -50,7 +50,10 @@ class PlayState extends MusicBeatState
 	public static var inPlayState:Bool = false;
 	public static var STRUM_X = 42;
 	public static var STRUM_X_MIDDLESCROLL = -278;
-	public static var playerNotePositions:Array<Float> = [260, 440, 710, 890];
+
+	// Mobile Settings
+	public var playerNotePositions:Array<Float> = [260, 440, 710, 890];
+	public var legacyPosition:Bool = #if mobile false #else true #end; // To use positions from PC
 
 	public static var ratingStuff:Array<Dynamic> = [
 		['You Suck Ass.', 0.2], //From 0% to 19%
@@ -1622,26 +1625,18 @@ class PlayState extends MusicBeatState
 			generateStaticArrows(0);
 			generateStaticArrows(1);
 			for (i in 0...playerStrums.length) {
-				#if mobile
-				// GenerateStaticArrows is a bitch :( )
-				playerStrums.members[i].x = MobileUtil.fixX(playerNotePositions[i]);
-				playerStrums.members[i].y = ClientPrefs.downScroll ? MobileUtil.fixY(550) : MobileUtil.fixY(70);
-				#end
 				setOnLuas('defaultPlayerStrumX' + i, playerStrums.members[i].x);
 				setOnLuas('defaultPlayerStrumY' + i, playerStrums.members[i].y);
 			}
 			for (i in 0...opponentStrums.length) {
-				#if mobile
-				// GenerateStaticArrows is a bitch :( )
-				opponentStrums.members[i].x = 10 + (i * 65);
-				opponentStrums.members[i].y = ClientPrefs.downScroll ? MobileUtil.fixY(70) : MobileUtil.fixY(590);
-				opponentStrums.members[i].scale.x /= 1.75;
-				opponentStrums.members[i].scale.y /= 1.75;
-				#end
 				setOnLuas('defaultOpponentStrumX' + i, opponentStrums.members[i].x);
 				setOnLuas('defaultOpponentStrumY' + i, opponentStrums.members[i].y);
-				//if(ClientPrefs.middleScroll) opponentStrums.members[i].visible = false;
 			}
+			#if mobile
+			// All opp notes have the same scale
+			setOnLuas('oppStrumScaleX', opponentStrums.members[0].scale.x);
+			setOnLuas('oppStrumScaleY', opponentStrums.members[0].scale.y);
+			#end
 
 			var typeOfCountdown:String = null;
 			switch (Paths.formatToSongPath(SONG.song))
@@ -1661,8 +1656,6 @@ class PlayState extends MusicBeatState
 
 			#if mobile
 			hitbox.instance.visible = (!cpuControlled) ? true : false;
-			touchPad.visible = touchPad.active = true;
-			touchPad.buttonPAUSE.active = false;
 			#end
 
 			Conductor.songPosition = -Conductor.crochet * 5;
@@ -1776,7 +1769,7 @@ class PlayState extends MusicBeatState
 							defaultCountDownOne.pitch = playbackRate;
 							defaultCountDownOne.play(false);
 						case 3:
-							canPause = #if mobile touchPad.buttonPAUSE.active = #end true;
+							canPause = #if mobile touchPad.visible = touchPad.active = #end true;
 							if (boyfriend.animOffsets.exists('hey'))
 								boyfriend.playAnim('hey', true);
 							if (dad.animOffsets.exists('hey'))
@@ -1938,7 +1931,7 @@ class PlayState extends MusicBeatState
 								//-----------------------------------------
 								case 3:
 									new FlxTimer().start(0.2 / playbackRate, function (tmr:FlxTimer) {
-										canPause = #if mobile touchPad.buttonPAUSE.active = #end true; // Allow Pausing
+										canPause = #if mobile touchPad.visible = touchPad.active = #end true; // Allow Pausing
 									});
 							}
 
@@ -2016,7 +2009,7 @@ class PlayState extends MusicBeatState
 									}
 								});
 								new FlxTimer().start(0.2 / playbackRate, function (tmr:FlxTimer) {
-									canPause = #if mobile touchPad.buttonPAUSE.active = #end true;
+									canPause = #if mobile touchPad.visible = touchPad.active = #end true;
 								});
 							});
 						});
@@ -2327,12 +2320,12 @@ class PlayState extends MusicBeatState
 						sustainNote.parent = swagNote;
 						unspawnNotes.push(sustainNote);
 						
-						if (!sustainNote.mustPress)
+						if (!sustainNote.mustPress && !legacyPosition)
 							sustainNote.visible = false;
 					}
 				}
 
-				if (!swagNote.mustPress)
+				if (!swagNote.mustPress && !legacyPosition)
 					swagNote.visible = false;
 
 				if(!noteTypeMap.exists(swagNote.noteType)) {
@@ -2484,37 +2477,51 @@ class PlayState extends MusicBeatState
 				else if(ClientPrefs.middleScroll) targetAlpha = 0.35;
 			}
 
-			var babyArrow:StrumNote = new StrumNote(ClientPrefs.middleScroll ? STRUM_X_MIDDLESCROLL : STRUM_X, strumLine.y, i, player);
+			var babyArrow:StrumNote = new StrumNote(ClientPrefs.middleScroll ? STRUM_X_MIDDLESCROLL : MobileUtil.rawX(STRUM_X), strumLine.y, i, player);
 			babyArrow.downScroll = ClientPrefs.downScroll;
 			if (!isStoryMode && !skipArrowStartTween)
 			{
-				//babyArrow.y -= 10;
 				babyArrow.alpha = 0;
 				FlxTween.tween(babyArrow, {/*y: babyArrow.y + 10,*/ alpha: targetAlpha}, 1, {ease: FlxEase.circOut, startDelay: 0.5 + (0.2 * i)});
 			}
 			else
-			{
 				babyArrow.alpha = targetAlpha;
-			}
 
 			if (player == 1)
 			{
+				if (!legacyPosition)
+				{
+					babyArrow.x = MobileUtil.fixX(playerNotePositions[i]);
+					babyArrow.y = ClientPrefs.downScroll ? MobileUtil.fixY(550) : MobileUtil.fixY(70);
+				}
+				
 				playerStrums.add(babyArrow);
 			}
 			else
 			{
-				if(ClientPrefs.middleScroll)
+				if (!legacyPosition)
 				{
-					babyArrow.x += 310;
-					if(i > 1) { //Up and Right
-						babyArrow.x += FlxG.width / 2 + 25;
+					babyArrow.x = 10 + (i * 65);
+					babyArrow.y = ClientPrefs.downScroll ? MobileUtil.fixY(70) : MobileUtil.fixY(590);
+					babyArrow.scale.x /= 1.75;
+					babyArrow.scale.y /= 1.75;
+				}
+				else
+				{
+					if(ClientPrefs.middleScroll)
+					{
+						babyArrow.x += 310;
+						if(i > 1) { //Up and Right
+							babyArrow.x += FlxG.width / 2 + 25;
+						}
 					}
 				}
+				
 				opponentStrums.add(babyArrow);
 			}
 
 			strumLineNotes.add(babyArrow);
-			babyArrow.postAddedToGroup();
+			babyArrow.postAddedToGroup(legacyPosition);
 		}
 	}
 

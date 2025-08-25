@@ -22,15 +22,11 @@ function onCreate()
 	precacheSound('matpatRamble')
 	
 	setPropertyFromClass('GameOverSubstate', 'loopSoundName', '')
+	setProperty("legacyPosition", true)
 end
 
 function onCreatePost()
-	for i = 0,7 do
-		x = getPropertyFromGroup('strumLineNotes', i, 'x')
-		table.insert(notePosX, x)
-	end
-	
-	makeLuaText('MorkyText', " ", 1000, 120, 520)
+	makeLuaText('MorkyText', " ", 1000, mobileFix("X", 120), 520)
 	setTextSize('MorkyText', 35)
 	setObjectCamera('MorkyText', 'game')
 	setScrollFactor('MorkyText', 0, 0)
@@ -40,13 +36,14 @@ function onCreatePost()
 	makeLuaSprite('morkyJumpscare', 'effects/morkyJumpscare', 0, 0)
 	setProperty('morkyJumpscare.alpha', 0)
 	setObjectCamera('morkyJumpscare', 'hud')
+	setGraphicSize("morkyJumpscare", screenWidth, screenHeight)
 	addLuaSprite('morkyJumpscare', true)
 	
 	makeLuaSprite('mcdonnies', 'effects/mcdonnies', 350, 350)
 	setProperty('mcdonnies.alpha', 0)
 	addLuaSprite('mcdonnies', true)
 	
-	makeLuaSprite('gameTHEORY', 'effects/gaemTheoreh', 350, 0)
+	makeLuaSprite('gameTHEORY', 'effects/gaemTheoreh', mobileFix("X", 350), 0)
 	setProperty('gameTHEORY.alpha', 0)
 	setObjectCamera('gameTHEORY', 'hud')
 	if mechanics then
@@ -72,6 +69,9 @@ function onSongStart()
 	for i = 0,7 do 
 		y = getPropertyFromGroup('strumLineNotes', i, 'y')
 		table.insert(notePos, y)
+		
+		x = getPropertyFromGroup('strumLineNotes', i, 'x')
+		table.insert(notePosX, x)
 	end
 end
 
@@ -144,6 +144,7 @@ function onStepHit()
 	if curStep == 256 then
 		cancelTween('camGameGoSpeen')
 		cancelTween('camGameZoom')
+		setProperty("mainCamZoom", true)
 		
 		setProperty('camGame.angle', 0)
 		
@@ -363,6 +364,10 @@ function onBeatHit()
 	if (curBeat >= 512 and curBeat < 640) then
 		if curBeat % 1 == 0 then
 			for i = 0, 7 do
+				cancelTween("noteGoUp"..i)
+				cancelTween("noteXSCALE"..i)
+				cancelTween("noteYSCALE"..i)
+				
 				setPropertyFromGroup('strumLineNotes', i, 'y', notePos[i + 1])
 				setPropertyFromGroup('strumLineNotes', i, 'scale.x', 1.0)
 				setPropertyFromGroup('strumLineNotes', i, 'scale.y', 0.35)

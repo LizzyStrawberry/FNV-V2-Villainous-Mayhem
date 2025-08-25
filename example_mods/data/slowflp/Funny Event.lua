@@ -13,14 +13,16 @@ function onCreate()
 	
 	doTweenX('scaleX', 'NicJumpscare.scale', 0.01, 0.5, 'circOut')
 	doTweenY('scaleY', 'NicJumpscare.scale', 0.01, 0.5, 'circOut')
+	
+	setProperty("legacyPosition", true)
 end
 
 function onCreatePost()	
 	if difficulty == 1 then
-		setPropertyFromGroup('strumLineNotes', 0, 'x', 732)
-		setPropertyFromGroup('strumLineNotes', 1, 'x', 844)
-		setPropertyFromGroup('strumLineNotes', 4, 'x', 92)
-		setPropertyFromGroup('strumLineNotes', 5, 'x', 204)
+		setPropertyFromGroup('strumLineNotes', 0, 'x', mobileFix("X", 732))
+		setPropertyFromGroup('strumLineNotes', 1, 'x', mobileFix("X", 844))
+		setPropertyFromGroup('strumLineNotes', 4, 'x', mobileFix("X", 92))
+		setPropertyFromGroup('strumLineNotes', 5, 'x', mobileFix("X", 204))
 	end
 	for i = 0,7 do
 		x = getPropertyFromGroup('strumLineNotes', i, 'x')

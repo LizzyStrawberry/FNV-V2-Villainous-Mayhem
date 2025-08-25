@@ -41,7 +41,7 @@ function onUpdate()
 		doTweenAlpha('hud', 'camHUD', 1, 0.9 / playbackRate, 'linear')
 	end
 	if curStep == 288 then
-		setProperty('defaultCamZoom', 0.9)
+		setProperty('defaultCamZoom', 1)
 		cameraFlash('game', 'FFFFFF', 0.5 / playbackRate, false)
 		
 		setProperty('blackBG.alpha', 0)
@@ -55,7 +55,7 @@ function onUpdate()
 	end
 	if curStep == 800 then
 		cameraFlash('game', 'FFFFFF', 0.5 / playbackRate, false)
-		setProperty('defaultCamZoom', 0.9)
+		setProperty('defaultCamZoom', 1)
 		setProperty('blackBG.alpha', 0)
 	end
 
@@ -66,12 +66,8 @@ function onUpdate()
 
 	if curStep == 1311 then
 		triggerEvent('Change Character', 'bf', 'TCAlt')
-		setProperty('defaultCamZoom', 0.9)
+		setProperty('defaultCamZoom', 1)
 		cameraFlash('game', 'FFFFFF', 0.5 / playbackRate, false)
-		noteTweenX('NoteMove5', 4, 400, 0.25 / playbackRate, 'cubeInOut')
-		noteTweenX('NoteMove6', 5, 520, 0.25 / playbackRate, 'cubeInOut')
-		noteTweenX('NoteMove7', 6, 640, 0.25 / playbackRate, 'cubeInOut')
-		noteTweenX('NoteMove8', 7, 760, 0.25 / playbackRate, 'cubeInOut')
 		for i = 0, 3 do
 			noteTweenAlpha('dadnotes'..i, i, 0, 0.25 / playbackRate, 'cubeInOut')
 		end

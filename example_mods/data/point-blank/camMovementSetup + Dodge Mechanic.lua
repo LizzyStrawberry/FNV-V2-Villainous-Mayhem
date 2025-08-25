@@ -2,7 +2,7 @@ local camVariables = {
 	camOffsets = "1020, 220, 360, -70, 0, 0",
 	ofs = 35,
 	noMove = "650, 40",
-	camZooms = "0.6, 0.8, 0.9"
+	camZooms = "0.7, 0.95, 0.9"
 }
 
 local beatsAllowed = {3, 7, 15, 23, 31, 63}
@@ -26,7 +26,7 @@ function onCreate()
 	if mechanics then
 		beatSelected = getRandomInt(1, #(beatsAllowed))
 		
-		makeLuaSprite('qteGoal', 'effects/qteGoal', -165, -100)
+		makeLuaSprite('qteGoal', 'effects/qteGoal', mobileFix('X', -165), -100)
 		setScrollFactor('qteGoal', 0, 0)
 		setObjectCamera('qteGoal', 'hud')
 		setProperty('qteGoal.color', getColorFromHex('FF0000'))
@@ -34,7 +34,7 @@ function onCreate()
 		addLuaSprite('qteGoal', true)
 
 		
-		makeLuaSprite('qte', 'effects/qte', -165, -100)
+		makeLuaSprite('qte', 'effects/qte', mobileFix('X', -165), -100)
 		setScrollFactor('qte', 0, 0)
 		setObjectCamera('qte', 'hud')
 		setProperty('qte.color', getColorFromHex('00FF00'))

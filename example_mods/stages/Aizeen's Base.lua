@@ -1,12 +1,12 @@
 function onCreate()
 	-- background shit
 	if not optimizationMode then
-		makeLuaSprite('bg', 'bgs/aizeen/background', -410, -200);
+		makeLuaSprite('bg', 'bgs/aizeen/background', -490, -200);
 		setScrollFactor('bg', 0.95, 0.95);
-		scaleObject('bg', 1.15, 1.1)
+		scaleObject('bg', 1.3, 1.1)
 	
 		if not songName == 'Cheque' then
-			setProperty('defaultCamZoom', 0.9)
+			setProperty('defaultCamZoom', 1.05)
 		end
 
 		addLuaSprite('bg', false);
