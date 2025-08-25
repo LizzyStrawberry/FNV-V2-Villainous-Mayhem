@@ -2320,12 +2320,12 @@ class PlayState extends MusicBeatState
 						sustainNote.parent = swagNote;
 						unspawnNotes.push(sustainNote);
 						
-						if (!sustainNote.mustPress && !legacyPosition)
+						if (!sustainNote.mustPress && legacyPosition)
 							sustainNote.visible = false;
 					}
 				}
 
-				if (!swagNote.mustPress && !legacyPosition)
+				if (!swagNote.mustPress && legacyPosition)
 					swagNote.visible = false;
 
 				if(!noteTypeMap.exists(swagNote.noteType)) {

@@ -17,7 +17,7 @@ function onSongStart()
 		for i = 0,7 do 
 			x = getPropertyFromGroup('strumLineNotes', i, 'x')
 			y = getPropertyFromGroup('strumLineNotes', i, 'y')
-			table.insert(notePos, {x, y})
+			table.insert(notePos, {mobileFix("X", x), y})
 		end
 	end
 end
@@ -38,15 +38,15 @@ end
 function onUpdatePost()
 	if mechanics then
 		if curBeat == 159 then
-			noteTweenX('noteTween1X', 0, 400, 0.8 / playbackRate, 'cubeInOut')
-			noteTweenX('noteTween2X', 1, 520, 0.8 / playbackRate, 'cubeInOut')	
-			noteTweenX('noteTween3X', 2, 640, 0.8 / playbackRate, 'cubeInOut')
-			noteTweenX('noteTween4X', 3, 760, 0.8 / playbackRate, 'cubeInOut')
+			noteTweenX('noteTween1X', 0, mobileFix("X", 400), 0.8 / playbackRate, 'cubeInOut')
+			noteTweenX('noteTween2X', 1, mobileFix("X", 520), 0.8 / playbackRate, 'cubeInOut')	
+			noteTweenX('noteTween3X', 2, mobileFix("X", 640), 0.8 / playbackRate, 'cubeInOut')
+			noteTweenX('noteTween4X', 3, mobileFix("X", 760), 0.8 / playbackRate, 'cubeInOut')
 		
-			noteTweenX('noteTween5X', 4, 400, 0.8 / playbackRate, 'cubeInOut')
-			noteTweenX('noteTween6X', 5, 520, 0.8 / playbackRate, 'cubeInOut')	
-			noteTweenX('noteTween7X', 6, 640, 0.8 / playbackRate, 'cubeInOut')
-			noteTweenX('noteTween8X', 7, 760, 0.8 / playbackRate, 'cubeInOut')
+			noteTweenX('noteTween5X', 4, mobileFix("X", 400), 0.8 / playbackRate, 'cubeInOut')
+			noteTweenX('noteTween6X', 5, mobileFix("X", 520), 0.8 / playbackRate, 'cubeInOut')	
+			noteTweenX('noteTween7X', 6, mobileFix("X", 640), 0.8 / playbackRate, 'cubeInOut')
+			noteTweenX('noteTween8X', 7, mobileFix("X", 760), 0.8 / playbackRate, 'cubeInOut')
 		
 			noteTweenY('noteTween5Y', 4, 760, 0.8 / playbackRate, 'cubeInOut')
 			noteTweenY('noteTween6Y', 5, 760, 0.8 / playbackRate, 'cubeInOut')
@@ -62,15 +62,15 @@ function onUpdatePost()
 			end
 		end
 		if curBeat == 288 then
-			noteTweenX('noteTween1X', 0, 400, 0.8 / playbackRate, 'circOut')
-			noteTweenX('noteTween2X', 1, 520, 0.8 / playbackRate, 'circOut')	
-			noteTweenX('noteTween3X', 2, 640, 0.8 / playbackRate, 'circOut')
-			noteTweenX('noteTween4X', 3, 760, 0.8 / playbackRate, 'circOut')
+			noteTweenX('noteTween1X', 0, mobileFix("X", 400), 0.8 / playbackRate, 'circOut')
+			noteTweenX('noteTween2X', 1, mobileFix("X", 520), 0.8 / playbackRate, 'circOut')	
+			noteTweenX('noteTween3X', 2, mobileFix("X", 640), 0.8 / playbackRate, 'circOut')
+			noteTweenX('noteTween4X', 3, mobileFix("X", 760), 0.8 / playbackRate, 'circOut')
 		
-			noteTweenX('noteTween5X', 4, 400, 0.8 / playbackRate, 'circOut')
-			noteTweenX('noteTween6X', 5, 520, 0.8 / playbackRate, 'circOut')	
-			noteTweenX('noteTween7X', 6, 640, 0.8 / playbackRate, 'circOut')
-			noteTweenX('noteTween8X', 7, 760, 0.8 / playbackRate, 'circOut')
+			noteTweenX('noteTween5X', 4, mobileFix("X", 400), 0.8 / playbackRate, 'circOut')
+			noteTweenX('noteTween6X', 5, mobileFix("X", 520), 0.8 / playbackRate, 'circOut')	
+			noteTweenX('noteTween7X', 6, mobileFix("X", 640), 0.8 / playbackRate, 'circOut')
+			noteTweenX('noteTween8X', 7, mobileFix("X", 760), 0.8 / playbackRate, 'circOut')
 			
 			doTweenAlpha('healthBar', 'healthBar', 0, 1.4 / playbackRate, 'circOut')
 			doTweenAlpha('healthBarBG', 'healthBarBG', 0, 1.4 / playbackRate, 'circOut')
