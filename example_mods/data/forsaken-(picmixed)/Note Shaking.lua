@@ -1,13 +1,9 @@
 local defaultNotePos = {};
 local shake = 2.5;
 local missedNotes = 0;
-local windowX = 0;
-local windowY = 0;
 
 function onCreate()
 	setProperty('gf.alpha', 0)
-	windowX = getPropertyFromClass('openfl.Lib', 'application.window.x')
-	windowY = getPropertyFromClass('openfl.Lib', 'application.window.y')
 end
  
 function onSongStart()
@@ -42,20 +38,6 @@ function onUpdate(elapsed)
 	if curStep == 308 then
 		shake = 3.5
 	end
-	if curBeat >= 308 and curBeat <= 403 then
-		setPropertyFromClass('openfl.Lib','application.window.x',windowX + math.random(-shake, shake))
-		setPropertyFromClass('openfl.Lib','application.window.y',windowY + math.random(-shake, shake))	
-	end
-	if curBeat == 404 then
-		setPropertyFromClass('openfl.Lib','application.window.x', windowX)
-		setPropertyFromClass('openfl.Lib','application.window.y', windowY)
-	end
-    --if curStep == 80 then
-      --  for i = 0,7 do 
-        --    setPropertyFromGroup('strumLineNotes', i, 'x', defaultNotePos[i + 1][1])
-         --   setPropertyFromGroup('strumLineNotes', i, 'y', defaultNotePos[i + 1][2])
-        --end
-    --end
 end
 
 function noteMiss(id, direction, noteType, isSustainNote)
@@ -64,14 +46,4 @@ function noteMiss(id, direction, noteType, isSustainNote)
 			setProperty('songMisses', missedNotes + 0)
 		end
 	end
-end
-
-function onPause()
-	setPropertyFromClass('openfl.Lib','application.window.x', windowX)
-	setPropertyFromClass('openfl.Lib','application.window.y', windowY)
-end
-
-function onDestroy()
-	setPropertyFromClass('openfl.Lib','application.window.x', windowX)
-	setPropertyFromClass('openfl.Lib','application.window.y', windowY)
 end

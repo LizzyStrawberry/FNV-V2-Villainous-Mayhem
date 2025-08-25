@@ -7,13 +7,13 @@ function onCreate()
 	setObjectCamera('blackBG', 'game')
 	addLuaSprite('blackBG', true)
 	
-	makeLuaSprite('cutBG', 'bgs/DV/cutBG', 1305, 350)
+	makeLuaSprite('cutBG', 'bgs/DV/cutBG', screenWidth + 25, 350)
 	setScrollFactor('cutBG', 0, 0)
 	setObjectCamera('cutBG', 'hud')
 	scaleObject("cutBG", 0.5, 0.5)
 	addLuaSprite('cutBG', true)
 	
-	makeLuaText('contextText', 'Context:\n'..context, 900, 185, 480)
+	makeLuaText('contextText', 'Context:\n'..context, 900, mobileFix("X", 185), 480)
 	setTextAlignment('contextText', 'Center')
 	setProperty('contextText.alpha', 0)
 	setTextSize('contextText', 20)
@@ -92,7 +92,6 @@ function onUpdate()
 		noteTweenAlpha('noteTween2', 5, 1, 1.6, 'circOut')
 	end
 	if curBeat == 24 then
-		doTweenAlpha('watermark2', 'watermark2', 1, 1.6, 'circOut')
 		noteTweenAlpha('noteTween3', 6, 1, 1.6, 'circOut')
 	end
 	if curBeat == 28 then
@@ -141,7 +140,7 @@ function onUpdate()
 	if curBeat == 382 then
 		doTweenZoom('gamegoWOOO', 'camGame', 1.2, 0.8 / playbackRate, 'elasticIn')
 		addHaxeLibrary('flixel.FlxG')
-        addHaxeLibrary('flixel.system.FlxSound')
+        addHaxeLibrary('flixel.sound.FlxSound')
 		runHaxeCode([[
             FlxTween.tween(game, {songLength: FlxG.sound.music.length}, 5, {ease: FlxEase.expoInOut})
         ]])
@@ -151,7 +150,7 @@ function onUpdate()
 		triggerEvent('Change Character', 'dad', 'DV Phase 2')
 		triggerEvent('Change Character', 'bf', 'PicoFNVP3')
 		setObjectCamera("boyfriend", 'hud')
-		setProperty("boyfriend.x", 1280)
+		setProperty("boyfriend.x", screenWidth)
 		setObjectOrder("boyfriend", getObjectOrder("cutBG") + 1)
 		
 		cameraFlash('game', 'FFFFFF', 0.8, false)
@@ -176,12 +175,12 @@ function onUpdate()
 	end
 	if curBeat >= 384 and curBeat < 464 then -- Stop before duet
 		if curBeat % 32 == 13 then
-			doTweenX("boyfriendOnScreen", "boyfriend", 800, 0.75 / playbackRate, "cubeInOut")
-			doTweenX("bgOnScreen", "cutBG", 825, 0.75 / playbackRate, "cubeInOut")
+			doTweenX("boyfriendOnScreen", "boyfriend", screenWidth - 420, 0.75 / playbackRate, "cubeInOut")
+			doTweenX("bgOnScreen", "cutBG", (screenWidth - 420) + 25, 0.75 / playbackRate, "cubeInOut")
 		end
 		if curBeat % 32 == 31 then
-			doTweenX("boyfriendOffScreen", "boyfriend", 1280, 1.25 / playbackRate, "cubeInOut")
-			doTweenX("bgOnScreen", "cutBG", 1305, 1.25 / playbackRate, "cubeInOut")
+			doTweenX("boyfriendOffScreen", "boyfriend", screenWidth, 1.25 / playbackRate, "cubeInOut")
+			doTweenX("bgOnScreen", "cutBG", screenWidth + 25, 1.25 / playbackRate, "cubeInOut")
 		end
 	end
 	if curBeat == 512 then

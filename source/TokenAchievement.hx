@@ -25,11 +25,11 @@ class TokenAchievement extends MusicBeatState
 
 		if (tokenSub < 0)
 			tokenSub = 0;
-		currentTokens = new FlxText(370, 150, FlxG.width, "Current Tokens: " + tokenSub, 48);
+		currentTokens = new FlxText(MobileUtil.fixX(370), 150, FlxG.width, "Current Tokens: " + tokenSub, 48);
 
 		currentTokens.alpha = 0;
 		
-		tokenIcon = new FlxSprite(450, 500).loadGraphic(Paths.image('tokensAchieved'));//put your cords and image here
+		tokenIcon = new FlxSprite(MobileUtil.fixX(450), 500).loadGraphic(Paths.image('tokensAchieved'));//put your cords and image here
 		tokenIcon.frames = Paths.getSparrowAtlas('tokensAchieved');//here put the name of the xml
 		tokenIcon.y -= 300;
 		tokenIcon.scale.set(0.8, 0.8);
@@ -41,16 +41,14 @@ class TokenAchievement extends MusicBeatState
 
 		if (!PlayState.checkForPowerUp)
 		{
-			bonusTokens = new FlxText(340, 130, FlxG.width, "No Power Up Bonus! -> +3", 40);
+			bonusTokens = new FlxText(MobileUtil.fixX(340), 130, FlxG.width, "No Power Up Bonus! -> +3", 40);
 			bonusTokens.alpha = 0;
 			bonusTokens.color = FlxColor.YELLOW;
 		}
 
-		bgGradient = new FlxSprite(0, 0).loadGraphic(Paths.image('pauseGradient/gradient_Null'));
+		bgGradient = new FlxSprite(MobileUtil.fixX(100), 0).loadGraphic(Paths.image('pauseGradient/gradient_Null'));
 		bgGradient.color = 0xFF00a800;
-		bgGradient.x = 100;
-		bgGradient.scale.x = 1.3;
-		bgGradient.scale.y = 1.1;
+		bgGradient.setGraphicSize(FlxG.width, FlxG.height);
 		bgGradient.alpha = 0.6;
 		bgGradient.scrollFactor.set();
 		

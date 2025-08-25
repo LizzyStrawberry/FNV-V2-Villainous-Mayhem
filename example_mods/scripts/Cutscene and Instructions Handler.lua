@@ -112,7 +112,7 @@ function onStartCountdown()
 			runTimer('playDialogue', 0.8)
 			viewedDialogue = true
 			return Function_Stop
-		elseif instructionsData.hasMechanic and not showMechanic then -- If there are mechanics
+		elseif instructionsData.hasMechanic and not showMechanic and not botPlay then -- If there are mechanics
 			showMechanic = true
 			runTimer('warningAppear', 0.01)
 
@@ -127,7 +127,7 @@ function onStartCountdown()
 end
 
 function onCreatePost()    
-	if instructionsData.hasMechanic then
+	if instructionsData.hasMechanic and not botPlay then
 		if backdropColor == nil then backdropColor = rgbToHex(getProperty('dad.healthColorArray')) end
 		
 		makeLuaSprite('overlay', '', 0, 0)
@@ -300,7 +300,7 @@ end
 
 function onTweenCompleted(tag)
 	if tag == "disableBackdrop" then
-		removeLuaSprite('backdrop', true)
+		setProperty('backdrop.visible', false) -- Don't remove for reasons
 		removeLuaSprite('gimmickTitle', true)
 		for i = 1, tipData.numOfTips do
 			removeLuaSprite('tipTitle'..i, true)

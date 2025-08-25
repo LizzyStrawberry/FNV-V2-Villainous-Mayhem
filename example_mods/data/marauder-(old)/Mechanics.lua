@@ -17,7 +17,7 @@ function onSongStart()
 		for i = 0,7 do 
 			x = getPropertyFromGroup('strumLineNotes', i, 'x')
 			y = getPropertyFromGroup('strumLineNotes', i, 'y')
-			table.insert(notePos, {x, y})
+			table.insert(notePos, {mobileFix("X", x), y})
 		end
 	end
 end

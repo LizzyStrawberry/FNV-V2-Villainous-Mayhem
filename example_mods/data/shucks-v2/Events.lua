@@ -36,14 +36,14 @@ function onCreate()
 		setProperty(hudThings[i]..'.alpha', 0)
 	end
 	
-	makeLuaText('Lyrics', 'Hi', 1250, 0, 480)
+	makeLuaText('Lyrics', 'Hi', screenWidth - 30, 0, 480)
 	setTextAlignment('Lyrics', 'Center')
 	setTextColor('Lyrics', 'FF0000')
 	setProperty('Lyrics.alpha', 0)
 	setTextSize('Lyrics', 28)
 	addLuaText('Lyrics')
 	
-	makeLuaText('contextText', 'Context:\n'..context, 900, 185, 480)
+	makeLuaText('contextText', 'Context:\n'..context, 900, mobileFix("X", 185), 480)
 	setTextAlignment('contextText', 'Center')
 	setProperty('contextText.alpha', 0)
 	setTextSize('contextText', 20)

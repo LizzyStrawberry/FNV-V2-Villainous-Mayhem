@@ -43,7 +43,7 @@ function onUpdatePost()
 	end
 end
 
-local hudThings = {'bar', 'barBack', 'iconP1', 'iconP2', 'watermark', 'watermark2', 'scoreTxt', 'healthBar', 'mayhembackBar', 'charmSocket'}
+local hudThings = {'bar', 'barBack', 'iconP1', 'iconP2', 'watermark', 'scoreTxt', 'healthBar', 'mayhembackBar', 'charmSocket'}
 local soundPlayed = false
 function onUpdate()
 	if curBeat == 16 then
@@ -65,9 +65,6 @@ function onUpdate()
 	end
 	if curBeat == 20 then
 		doTweenAlpha('watermark', 'watermark', 1, 1.6, 'circOut')
-	end
-	if curBeat == 24 then
-		doTweenAlpha('watermark2', 'watermark2', 1, 1.6, 'circOut')
 	end
 	if curBeat == 28 then
 		doTweenAlpha('scoreTxt', 'scoreTxt', 1, 1.6, 'circOut')
@@ -132,7 +129,7 @@ function onUpdate()
 	end
 	if curStep == 1216 then
 		addHaxeLibrary('flixel.FlxG')
-        addHaxeLibrary('flixel.system.FlxSound')
+        addHaxeLibrary('flixel.sound.FlxSound')
 		runHaxeCode([[
             FlxTween.tween(game, {songLength: FlxG.sound.music.length}, 5, {ease: FlxEase.expoInOut})
         ]])

@@ -11,6 +11,8 @@ function onCreate()
 			FlxG.game.setFilters([]);
 		]])
 	end
+	
+	setProperty("legacyPosition", true)
 end
 
 function onCreatePost()
@@ -21,7 +23,7 @@ function onCreatePost()
 	setTextFont('watermark', 'ourpleFont.ttf')
 	setTextFont('watermark2', 'ourpleFont.ttf')
 	
-	makeLuaText('tip', 'Your Notes are here!', 1000, 550, 170)
+	makeLuaText('tip', 'Your Notes are here!', 1000, mobileFix("X", 550), 170)
 	setTextFont('tip', 'ourpleFont.ttf')
 	setTextSize('tip', 30)
 	setProperty('tip.alpha', 0)
@@ -31,7 +33,7 @@ function onCreatePost()
 		setProperty('tip.y', 540)
 	end
 	
-	makeLuaSprite('extraCharBG', 'bgs/ourple/extraCharBG', 100, 60)
+	makeLuaSprite('extraCharBG', 'bgs/ourple/extraCharBG', mobileFix("X", 100), 60)
 	setObjectCamera('extraCharBG', 'hud')
 	scaleObject('extraCharBG', 0.95, 0.95)
 	setScrollFactor('extraCharBG', 1, 1)
@@ -42,8 +44,8 @@ function onCreatePost()
 	setScrollFactor('aileen', 1, 1)
 	addLuaSprite('aileen', false)
 	
-	setProperty('extraCharBG.x', getProperty('extraCharBG.x') + 500)
-	setProperty('gf.x', getProperty('boyfriend.x') + 500)
+	setProperty('extraCharBG.x', mobileFix("X", getProperty('extraCharBG.x') + 500))
+	setProperty('gf.x', mobileFix("X", getProperty('boyfriend.x') + 500))
 	
 	mainY = getProperty('iconP1.y')
 end
@@ -65,14 +67,14 @@ function onUpdatePost()
 	-- I have to use these to make things work lmao
 	
 	if curBeat == 0 then
-		setPropertyFromGroup('strumLineNotes', 0, 'x', 24)
-		setPropertyFromGroup('strumLineNotes', 1, 'x', 127)
-		setPropertyFromGroup('strumLineNotes', 2, 'x', 1024)
-		setPropertyFromGroup('strumLineNotes', 3, 'x', 1127)
-		setPropertyFromGroup('strumLineNotes', 4, 'x', 432)
-		setPropertyFromGroup('strumLineNotes', 5, 'x', 535)
-		setPropertyFromGroup('strumLineNotes', 6, 'x', 638)
-		setPropertyFromGroup('strumLineNotes', 7, 'x', 741)
+		setPropertyFromGroup('strumLineNotes', 0, 'x', mobileFix("X", 24))
+		setPropertyFromGroup('strumLineNotes', 1, 'x', mobileFix("X", 127))
+		setPropertyFromGroup('strumLineNotes', 2, 'x', mobileFix("X", 1024))
+		setPropertyFromGroup('strumLineNotes', 3, 'x', mobileFix("X", 1127))
+		setPropertyFromGroup('strumLineNotes', 4, 'x', mobileFix("X", 432))
+		setPropertyFromGroup('strumLineNotes', 5, 'x', mobileFix("X", 535))
+		setPropertyFromGroup('strumLineNotes', 6, 'x', mobileFix("X", 638))
+		setPropertyFromGroup('strumLineNotes', 7, 'x', mobileFix("X", 741))
 		for i = 8, 11 do
 			setPropertyFromGroup('strumLineNotes', i, 'alpha', 0)
 			if downscroll then
@@ -84,15 +86,16 @@ function onUpdatePost()
 	end
 	
 	if curStep == 390 then
-		noteTweenX('noteTween0', 0, 12, 0.7 / playbackRate, 'cubeInOut')
-		noteTweenX('noteTween1', 1, 115, 0.7 / playbackRate, 'cubeInOut')
-		noteTweenX('noteTween2', 2, 218, 0.7 / playbackRate, 'cubeInOut')
-		noteTweenX('noteTween3', 3, 321, 0.7 / playbackRate, 'cubeInOut')
-		noteTweenX('noteTween4', 4, 850, 0.7 / playbackRate, 'cubeInOut')
-		noteTweenX('noteTween5', 5, 953, 0.7 / playbackRate, 'cubeInOut')
-		noteTweenX('noteTween6', 6, 1056, 0.7 / playbackRate, 'cubeInOut')
-		noteTweenX('noteTween7', 7, 1159, 0.7 / playbackRate, 'cubeInOut')
+		noteTweenX('noteTween0', 0, mobileFix("X", 12), 0.7 / playbackRate, 'cubeInOut')
+		noteTweenX('noteTween1', 1, mobileFix("X", 115), 0.7 / playbackRate, 'cubeInOut')
+		noteTweenX('noteTween2', 2, mobileFix("X", 218), 0.7 / playbackRate, 'cubeInOut')
+		noteTweenX('noteTween3', 3, mobileFix("X", 321), 0.7 / playbackRate, 'cubeInOut')
+		noteTweenX('noteTween4', 4, mobileFix("X", 850), 0.7 / playbackRate, 'cubeInOut')
+		noteTweenX('noteTween5', 5, mobileFix("X", 953), 0.7 / playbackRate, 'cubeInOut')
+		noteTweenX('noteTween6', 6, mobileFix("X", 1056), 0.7 / playbackRate, 'cubeInOut')
+		noteTweenX('noteTween7', 7, mobileFix("X", 1159), 0.7 / playbackRate, 'cubeInOut')
 		for i = 8, 11 do
+			setPropertyFromGroup("strumLineNotes", i, "x", mobileFix("X", getPropertyFromGroup("strumLineNotes", i, "x"))
 			noteTweenAlpha('noteTweenAlpha'..i, i, 1, (0.5 + ((i - 7) * 0.2)) / playbackRate, 'cubeInOut')
 			if downscroll then
 				noteTweenY('noteTweenY'..i, i, 570, (0.5 + ((i - 7) * 0.2)) / playbackRate, 'cubeInOut')
@@ -300,22 +303,22 @@ function onUpdate(elapsed)
 		end
 	end
 	if curStep == 420 then
-		doTweenX('extraCharBG', 'extraCharBG', 100, 0.7 / playbackRate, 'circOut')
-		doTweenX('gfMove', 'gf', 800, 0.7, 'circOut')
+		doTweenX('extraCharBG', 'extraCharBG', screenWidth - 1180, 0.7 / playbackRate, 'circOut')
+		doTweenX('gfMove', 'gf', screenWidth - 480, 0.7, 'circOut')
 	end
 	if curStep == 459 then
-		doTweenX('gfMovePG', 'gf', 1400, 0.7 / playbackRate, 'cubeInOut')
+		doTweenX('gfMovePG', 'gf', screenWidth + 120, 0.7 / playbackRate, 'cubeInOut')
 	end
 	if curStep == 528 then
-		doTweenX('gfMoveMP', 'gf', 1400, 2.2 / playbackRate, 'cubeInOut')
+		doTweenX('gfMoveMP', 'gf', screenWidth + 120, 2.2 / playbackRate, 'cubeInOut')
 	end
 	if curStep == 557 then
-		doTweenX('gfMovePG', 'gf', 1400, 1.7 / playbackRate, 'cubeInOut')
+		doTweenX('gfMovePG', 'gf', screenWidth + 120, 1.7 / playbackRate, 'cubeInOut')
 	end
 	if curStep == 592 then
 		cameraFlash('hud', 'ffffff', 0.7, false)
-		doTweenX('gfMoveEnd', 'gf', 1400, 2.5 / playbackRate, 'cubeInOut')
-		doTweenX('extraCharBG', 'extraCharBG', 600, 2.5 / playbackRate, 'cubeInOut')
+		doTweenX('gfMoveEnd', 'gf', screenWidth + 120, 2.5 / playbackRate, 'cubeInOut')
+		doTweenX('extraCharBG', 'extraCharBG', screenWidth - 680, 2.5 / playbackRate, 'cubeInOut')
 	end
 end
 
@@ -348,13 +351,13 @@ end
 function onTweenCompleted(tag)
 	if tag == 'gfMovePG' then
 		triggerEvent('Change Character', 'gf', 'matpat')
-		setProperty('gf.x', 1400)
-		doTweenX('gfMove', 'gf', 850, 0.7 / playbackRate, 'circOut')
+		setProperty('gf.x', screenWidth + 120)
+		doTweenX('gfMove', 'gf', screenWidth - 430, 0.7 / playbackRate, 'circOut')
 	end
 	if tag == 'gfMoveMP' then
 		triggerEvent('Change Character', 'gf', 'phoneGuy')
-		setProperty('gf.x', 1400)
-		doTweenX('gfMove', 'gf', 800, 0.7 / playbackRate, 'circOut')
+		setProperty('gf.x', screenWidth + 120)
+		doTweenX('gfMove', 'gf', screenWidth - 430, 0.7 / playbackRate, 'circOut')
 	end
 	if tag == 'ourpleEnd' then
 		triggerEvent('Play Animation', 'idle', 'bf')

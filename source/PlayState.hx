@@ -53,7 +53,7 @@ class PlayState extends MusicBeatState
 
 	// Mobile Settings
 	public var playerNotePositions:Array<Float> = [260, 440, 710, 890];
-	public var legacyPosition:Bool = #if mobile false #else true #end; // To use positions from PC
+	public var legacyPosition:Bool = false; // To use positions from PC
 
 	public static var ratingStuff:Array<Dynamic> = [
 		['You Suck Ass.', 0.2], //From 0% to 19%
@@ -2320,12 +2320,12 @@ class PlayState extends MusicBeatState
 						sustainNote.parent = swagNote;
 						unspawnNotes.push(sustainNote);
 						
-						if (!sustainNote.mustPress && legacyPosition)
+						if (!sustainNote.mustPress && !legacyPosition)
 							sustainNote.visible = false;
 					}
 				}
 
-				if (!swagNote.mustPress && legacyPosition)
+				if (!swagNote.mustPress && !legacyPosition)
 					swagNote.visible = false;
 
 				if(!noteTypeMap.exists(swagNote.noteType)) {
@@ -3806,7 +3806,7 @@ class PlayState extends MusicBeatState
 		timeBarBG.visible = false;
 		timeBar.visible = false;
 		timeTxt.visible = false;
-		canPause = false;
+		canPause = legacyPosition = false;
 		endingSong = true;
 		camZooming = false;
 		inCutscene = false;

@@ -1311,11 +1311,11 @@ class PulseShader extends FlxShader
     vec4 sineWave(vec4 pt, vec2 pos)
     {
         float offsetX = sin(pt.y * uFrequency + uTime * uSpeed);
-        float offsetY = sin(pt.x * (uFrequency * 2) - (uTime / 2) * uSpeed);
-        float offsetZ = sin(pt.z * (uFrequency / 2) + (uTime / 3) * uSpeed);
-        pt.x = mix(pt.x,sin(pt.x / 2 * pt.y + (5 * offsetX) * pt.z),uWaveAmplitude * uampmul);
-        pt.y = mix(pt.y,sin(pt.y / 3 * pt.z + (2 * offsetZ) - pt.x),uWaveAmplitude * uampmul);
-        pt.z = mix(pt.z,sin(pt.z / 6 * (pt.x * offsetY) - (50 * offsetZ) * (pt.z * offsetX)),uWaveAmplitude * uampmul);
+        float offsetY = sin(pt.x * (uFrequency * float(2)) - (uTime / float(2)) * uSpeed);
+        float offsetZ = sin(pt.z * (uFrequency / float(2)) + (uTime / float(3)) * uSpeed);
+        pt.x = mix(pt.x,sin(pt.x / float(2) * pt.y + (float(5) * offsetX) * pt.z),uWaveAmplitude * uampmul);
+        pt.y = mix(pt.y,sin(pt.y / float(3) * pt.z + (float(2) * offsetZ) - pt.x),uWaveAmplitude * uampmul);
+        pt.z = mix(pt.z,sin(pt.z / float(6) * (pt.x * offsetY) - (float(50) * offsetZ) * (pt.z * offsetX)),uWaveAmplitude * uampmul);
 
         return vec4(pt.x, pt.y, pt.z, pt.w);
     }

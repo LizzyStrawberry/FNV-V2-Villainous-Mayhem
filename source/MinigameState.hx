@@ -88,11 +88,12 @@ class MinigameState extends MusicBeatState
 			trace('Number: ' + flipnum);
 	
 			background = new FlxSprite(0, 0).loadGraphic(Paths.image('minigames/CFBG'));
+			background.setGraphicSize(FlxG.width, FlxG.height);
 			background.antialiasing = ClientPrefs.globalAntialiasing;
 			add(background);
 	
 			//Coin Flip
-			coin = new FlxSprite(0, 0).loadGraphic(Paths.image('minigames/Coin Flip'));
+			coin = new FlxSprite(MobileUtil.fixX(0), 0).loadGraphic(Paths.image('minigames/Coin Flip'));
 			coin.frames = Paths.getSparrowAtlas('minigames/Coin Flip');
 			coin.antialiasing = ClientPrefs.globalAntialiasing;
 			coin.animation.addByPrefix('flip', 'coinflip', 24, true);
@@ -114,7 +115,7 @@ class MinigameState extends MusicBeatState
 			tipText.borderSize = 3;
 			add(tipText);
 	
-			answer = new Alphabet(645, 560, "", true);
+			answer = new Alphabet(MobileUtil.fixX(645), 560, "", true);
 			answer.setAlignmentFromString('center');
 			answer.scaleX = 0.5;
 			answer.scaleY = 0.5;
@@ -128,19 +129,19 @@ class MinigameState extends MusicBeatState
 				}	
 			});
 			
-			minigameTitle = new Alphabet(420, 10, "Coin Flip!", true);
+			minigameTitle = new Alphabet(MobileUtil.fixX(420), 10, "Coin Flip!", true);
 			minigameTitle.alpha = 0;
 			add(minigameTitle);
 	
 			changeSelection();
+
+			addTouchPad("LEFT_RIGHT", "NONE");
 		}
 		else if (minigame == 2)
 		{
-			//Mouse Support for this
-			FlxG.mouse.visible = true;
-
 			background = new FlxSprite(0, 0).loadGraphic(Paths.image('minigames/FTTBG'));
 			background.antialiasing = ClientPrefs.globalAntialiasing;
+			background.setGraphicSize(FlxG.width, FlxG.height);
 			add(background);
 
 			token = new FlxSprite(0, 0).loadGraphic(Paths.image('minigames/token'));
@@ -155,7 +156,7 @@ class MinigameState extends MusicBeatState
 			{
 				var cup = new FlxSprite(0, 0).loadGraphic(Paths.image('minigames/cup'));
 				cup.screenCenter();
-				cup.x = cupX[i];
+				cup.x = MobileUtil.fixX(cupX[i]);
 				cup.ID = i;
 				cup.y += 40;
 				cup.antialiasing = ClientPrefs.globalAntialiasing;
@@ -174,7 +175,7 @@ class MinigameState extends MusicBeatState
 			tipText.alpha = 0;
 			add(tipText);
 
-			minigameTitle = new Alphabet(320, 10, "Find the Token!", true);
+			minigameTitle = new Alphabet(MobileUtil.fixX(320), 10, "Find the Token!", true);
 			minigameTitle.alpha = 0;
 			add(minigameTitle);
 			
@@ -182,11 +183,9 @@ class MinigameState extends MusicBeatState
 		}
 		else if (minigame == 3)
 		{
-			//Mouse Support for this
-			FlxG.mouse.visible = true;
-			
 			background = new FlxSprite(0, 0).loadGraphic(Paths.image('minigames/CFBG'));
 			background.antialiasing = ClientPrefs.globalAntialiasing;
+			background.setGraphicSize(FlxG.width, FlxG.height);
 			add(background);
 
 			var num:Int = FlxG.random.int(0, 4);
@@ -233,6 +232,7 @@ class MinigameState extends MusicBeatState
 				else
 					card.y += 210;
 
+				card.x = MobileUtil.fixX(card.x);
 				card.antialiasing = ClientPrefs.globalAntialiasing;
 				cards.add(card);
 				add(card);
@@ -267,6 +267,7 @@ class MinigameState extends MusicBeatState
 				else
 					card.y += 210;
 
+				card.x = MobileUtil.fixX(card.x);
 				card.antialiasing = ClientPrefs.globalAntialiasing;
 				cardsHidden.add(card);
 				add(card);
@@ -314,7 +315,7 @@ class MinigameState extends MusicBeatState
         	gameTimer = new FlxTimer();
 			var sound:Int = FlxG.random.int(1, 3);
 
-			minigameTitle = new Alphabet(280, 10, "Match the Cards!", true);
+			minigameTitle = new Alphabet(MobileUtil.fixX(280), 10, "Match the Cards!", true);
 			minigameTitle.alpha = 0;
 			add(minigameTitle);
 
@@ -416,11 +417,11 @@ class MinigameState extends MusicBeatState
 				{
 					cups.forEach(function(spr:FlxSprite)
 					{
-						if (FlxG.mouse.overlaps(spr))
+						if (TouchUtil.overlaps(spr))
 							changeSelection(spr.ID);	
 					});
 			
-					if (FlxG.mouse.justPressed)
+					if (TouchUtil.pressAction(cups.members[selection]))
 					{
 						selectedSomethin = true;
 						token.alpha = 1;
@@ -461,7 +462,6 @@ class MinigameState extends MusicBeatState
 						FlxTween.tween(tipText, {alpha: 1}, 0.7, {ease: FlxEase.cubeInOut, type: PERSIST});
 
 						new FlxTimer().start(3, function (tmr:FlxTimer) {
-							FlxG.mouse.visible = false;
 							FlxG.sound.music.fadeOut(1);
 							LoadingState.loadAndSwitchState(new PlayState());
 						});
@@ -479,11 +479,11 @@ class MinigameState extends MusicBeatState
 				{
 					cardsHidden.forEach(function(spr:FlxSprite)
 					{
-						if (FlxG.mouse.overlaps(spr))
+						if (TouchUtil.overlaps(spr))
 							changeSelection(spr.ID);
 					});
 					
-					if (FlxG.mouse.justPressed)
+					if (TouchUtil.pressAction(cardsHidden.members[selection]))
 					{
 						selectedSomethin = true;
 						FlxG.sound.play(Paths.sound('minigames/flipCard'));
@@ -532,7 +532,6 @@ class MinigameState extends MusicBeatState
 		FlxTween.tween(tipText, {alpha: 1}, 1, {ease: FlxEase.cubeInOut, type: PERSIST});
 
 		new FlxTimer().start(3, function (tmr:FlxTimer) {
-			FlxG.mouse.visible = false;
 			FlxG.sound.music.fadeOut(1);
 			LoadingState.loadAndSwitchState(new PlayState());
 		});
@@ -727,7 +726,6 @@ class MinigameState extends MusicBeatState
 				ClientPrefs.tokensAchieved += 1;
 
 			new FlxTimer().start(3, function (tmr:FlxTimer) {
-				FlxG.mouse.visible = false;
 				FlxG.sound.music.fadeOut(1);
 				LoadingState.loadAndSwitchState(new PlayState());
 			});
@@ -765,7 +763,6 @@ class MinigameState extends MusicBeatState
 		FlxTween.tween(tipText, {alpha: 1}, 1, {ease: FlxEase.cubeInOut, type: PERSIST});
 		
 		new FlxTimer().start(3, function (tmr:FlxTimer) {
-			FlxG.mouse.visible = false;
 			FlxG.sound.music.fadeOut(1);
 			LoadingState.loadAndSwitchState(new PlayState());
 		});

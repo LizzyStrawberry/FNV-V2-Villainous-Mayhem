@@ -12,8 +12,8 @@ end
 
 function onBeatHit()
 	if curBeat == 176 then
-		callScript("scripts/Camera Movement", "setCameraProperty", {"dadCamera", "260, 180"})
-		callScript("scripts/Camera Movement", "setCameraProperty", {"camZooms", "0.6, 1.1, 0.9"})
+		callScript("scripts/Camera Movement", "setCameraProperty", {"dadCamera", "360, 180"})
+		callScript("scripts/Camera Movement", "setCameraProperty", {"camZooms", "0.75, 1.1, 0.9"})
 	end
 	if curBeat == 384 then
 		callScript("scripts/Camera Movement", "setCameraProperty", {"dadCamera", "80, 330"})
@@ -22,9 +22,9 @@ function onBeatHit()
 		callScript("scripts/Camera Movement", "setCameraProperty", {"camZooms", "0.6, 0.6, 0.9"})
 	end
 	if curBeat == 512 then
-		callScript("scripts/Camera Movement", "setCameraProperty", {"dadCamera", "260, 180"})
+		callScript("scripts/Camera Movement", "setCameraProperty", {"dadCamera", "360, 180"})
 		callScript("scripts/Camera Movement", "setCameraProperty", {"bfCamera", "1060, 510"})
 		callScript("scripts/Camera Movement", "setCameraProperty", {"camOffsets", "35"})
-		callScript("scripts/Camera Movement", "setCameraProperty", {"camZooms", "0.6, 1.1, 0.9"})
+		callScript("scripts/Camera Movement", "setCameraProperty", {"camZooms", "0.75, 1.1, 0.9"})
 	end
 end

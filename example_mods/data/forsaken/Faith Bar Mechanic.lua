@@ -5,12 +5,12 @@ local daSongLength = 0
 
 function onCreate()
 	if mechanics then
-		makeLuaSprite('barBack', 'effects/faithBarBack', 1100, 170)
+		makeLuaSprite('barBack', 'effects/faithBarBack', screenWidth - 170, 170)
 		setObjectCamera('barBack', 'hud')
 		setProperty('barBack.origin.y', 365)
 		addLuaSprite('barBack', true)
 		
-		makeLuaSprite('bar', 'effects/faithBar', 1100, 170)
+		makeLuaSprite('bar', 'effects/faithBar', screenWidth - 170, 170)
 		setObjectCamera('bar', 'hud')
 		addLuaSprite('bar', true)
 		
@@ -33,17 +33,6 @@ function onSongStart()
 			]])
 		end
 	end
-end
-
-function onUpdatePost()
-	for i = 0, 3 do
-		setPropertyFromGroup('opponentStrums', i, 'alpha', 0)
-	end
-
-	setPropertyFromGroup('strumLineNotes', 4, 'x', 290)
-	setPropertyFromGroup('strumLineNotes', 5, 'x', 410)
-	setPropertyFromGroup('strumLineNotes', 6, 'x', 760)
-	setPropertyFromGroup('strumLineNotes', 7, 'x', 890)
 end
 
 function noteMiss(id, direction, noteType, isSustainNote)

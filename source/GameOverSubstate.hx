@@ -139,6 +139,9 @@ class GameOverSubstate extends MusicBeatSubstate
 			blackOut.alpha = 0;
 			add(blackOut);
 		}
+
+		addTouchPad("NONE", "B");
+		addTouchPadCamera();
 	}
 
 	var isFollowingAlready:Bool = false;
@@ -153,7 +156,7 @@ class GameOverSubstate extends MusicBeatSubstate
 			camFollowPos.setPosition(FlxMath.lerp(camFollowPos.x, camFollow.x, lerpVal), FlxMath.lerp(camFollowPos.y, camFollow.y, lerpVal));
 		}
 
-		if (controls.ACCEPT)
+		if (controls.ACCEPT || TouchUtil.pressAction(boyfriend))
 		{
 			if (!(initializedVideo || PlayState.isInjectionMode || PlayState.isMayhemMode))
 				endBullshit();
