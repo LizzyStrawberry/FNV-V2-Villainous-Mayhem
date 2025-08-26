@@ -60,7 +60,7 @@
 	"image": "characters/concertChaos/aileen phase 1",
 	"position": [
 		0,
-		0
+		180
 	],
 	"healthicon": "aileencc",
 	"flip_x": false,

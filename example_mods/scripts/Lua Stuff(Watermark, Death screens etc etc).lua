@@ -77,7 +77,7 @@ function onCreate()
 		else
 			text = "Freeplay | " ..difficultyName
 		end
-		makeLuaText('watermark', text.."\n\nFriday Night Villainy", 1000, 0, 660)
+		makeLuaText('watermark', text.."\n\nFriday Night Villainy", 1000, 10, 660)
 		setTextSize('watermark', 17)
 		setTextAlignment('watermark', 'LEFT')
 		setScrollFactor('watermark', 0, 0)

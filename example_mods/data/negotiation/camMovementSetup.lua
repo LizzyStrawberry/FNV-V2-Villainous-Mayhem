@@ -10,3 +10,7 @@ function onCreate()
 	setGlobalFromScript("scripts/Camera Movement", 'flipPlayerMovement', true)
 	callScript("scripts/Camera Movement", "setCameraMovement", {camVariables.camOffsets, camVariables.ofs, camVariables.noMove, camVariables.camZooms})
 end
+
+function onCreatePost()
+	setProperty("iconGF.visible", false)
+end

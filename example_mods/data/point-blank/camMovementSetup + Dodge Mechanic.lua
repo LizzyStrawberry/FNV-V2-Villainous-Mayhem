@@ -1,8 +1,8 @@
 local camVariables = {
-	camOffsets = "1020, 220, 360, -70, 0, 0",
+	camOffsets = "1020, 220, 360, -70",
 	ofs = 35,
 	noMove = "650, 40",
-	camZooms = "0.6, 0.8, 0.9"
+	camZooms = "0.6, 0.8"
 }
 
 local beatsAllowed = {3, 7, 15, 23, 31, 63}
@@ -16,7 +16,7 @@ local botPlayOn = false
 
 function onCreate()
 	if boyfriendName == 'amongGF' then
-		camVariables.camOffsets = "1020, 320, 360, -70, 0, 0"
+		camVariables.camOffsets = "1020, 320, 360, -70"
 		camVariables.noMove = "650, 140"
 	end
 	setProperty('gf.visible', false)

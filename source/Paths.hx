@@ -250,26 +250,26 @@ class Paths
 		var file:String = null;
 	
 		#if MODS_ALLOWED
-		file = modsImages(key);
-		if (currentTrackedAssets.exists(file))
-		{
-			localTrackedAssets.push(file);
-			return currentTrackedAssets.get(file);
-		}
-		else if (FileSystem.exists(file))
-			bitmap = BitmapData.fromFile(file);
-		else
-		#end
-		{
-			file = getPath('images/$key.png', IMAGE, library);
+			file = modsImages(key);
 			if (currentTrackedAssets.exists(file))
 			{
 				localTrackedAssets.push(file);
 				return currentTrackedAssets.get(file);
 			}
-			else if (OpenFlAssets.exists(file, IMAGE))
-				bitmap = OpenFlAssets.getBitmapData(file);
-		}
+			else if (FileSystem.exists(file))
+				bitmap = BitmapData.fromFile(file);
+			else
+		#end
+			{
+				file = getPath('images/$key.png', IMAGE, library);
+				if (currentTrackedAssets.exists(file))
+				{
+					localTrackedAssets.push(file);
+					return currentTrackedAssets.get(file);
+				}
+				else if (OpenFlAssets.exists(file, IMAGE))
+					bitmap = OpenFlAssets.getBitmapData(file);
+			}
 	
 		if (bitmap != null)
 		{
@@ -290,7 +290,7 @@ class Paths
 			//trace('$file has been cached to GPU.');
 			return newGraphic;
 		}
-	
+		trace('oh no its returning null NOOOO ($file)');
 		return null;
 	}
 

@@ -6,6 +6,7 @@ local camVariables = {
 }
 
 function onCreate()
+	setGlobalFromScript("scripts/Camera Movement", 'gfSide', "player")
 	callScript("scripts/Camera Movement", "setCameraMovement", {camVariables.camOffsets, camVariables.ofs, camVariables.noMove, camVariables.camZooms})
 end
 
