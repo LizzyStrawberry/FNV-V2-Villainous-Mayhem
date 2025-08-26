@@ -1,8 +1,8 @@
 local camVariables = {
-	camOffsets = "800, 960, 385, 410, 0, 0",
+	camOffsets = "800, 960, 385, 410",
 	ofs = 35,
 	noMove = "430, 550",
-	camZooms = "0.4, 0.7, 0.9"
+	camZooms = "0.4, 0.7"
 }
 
 function onCreate()

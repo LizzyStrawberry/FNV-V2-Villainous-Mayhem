@@ -1,4 +1,4 @@
-local hudThings = {'watermark', 'healthBar', 'healthBarBG', 'iconP1', 'iconP2', 'scoreTxt'}
+local hudThings = {'watermark', 'watermark2', 'healthBar', 'healthBarBG', 'iconP1', 'iconP2', "iconGF", 'scoreTxt'}
 local scrollSpeed = 1.2
 local dur = 1
 local videoPlayed = false
@@ -32,10 +32,6 @@ function onCreate()
 	setProperty('gf.x', getProperty('gf.x') + 150)
 	setProperty('gf.y', getProperty('gf.y') - 180)
 	
-	for i = 1, #(hudThings) do
-		setProperty(hudThings[i]..'.alpha', 0)
-	end
-	
 	makeLuaText('Lyrics', 'Hi', screenWidth - 30, 0, 480)
 	setTextAlignment('Lyrics', 'Center')
 	setTextColor('Lyrics', 'FF0000')
@@ -51,6 +47,10 @@ function onCreate()
 end
 
 function onCreatePost()
+	for i = 1, #(hudThings) do
+		setProperty(hudThings[i]..'.alpha', 0)
+	end
+	setObjectOrder("iconGF", getObjectOrder("iconP2") + 1)
 	runHaxeCode([[
 		game.dad.setColorTransform(1,1,1,1,255,255,255,0);
 		game.boyfriend.setColorTransform(1,1,1,1,255,10,30,0);
@@ -66,7 +66,8 @@ end
 function onSongStart()
 	doTweenZoom('camGame', 'camGame', 1.4, 9.5 / playbackRate, 'easeOut')
 	doTweenAlpha('blackBG', 'blackBG', 0, 7.2 / playbackRate, 'cubeInOut')
-	doTweenAlpha(hudThings[4], hudThings[4], 1, 14 / playbackRate, 'cubeInOut')
+	doTweenAlpha(hudThings[5], hudThings[5], 1, 14 / playbackRate, 'cubeInOut')
+	doTweenAlpha(hudThings[7], hudThings[7], 1, 14 / playbackRate, 'cubeInOut')
 	
 	doTweenAlpha('contextAppear', 'contextText', 1, 1 / playbackRate, 'cubeInOut')
 end

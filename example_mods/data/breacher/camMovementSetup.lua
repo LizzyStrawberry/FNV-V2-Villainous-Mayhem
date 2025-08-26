@@ -9,6 +9,10 @@ function onCreate()
 	callScript("scripts/Camera Movement", "setCameraMovement", {camVariables.camOffsets, camVariables.ofs, camVariables.noMove, camVariables.camZooms})
 end
 
+function onCreatePost()
+	setProperty("iconGF.alpha", 0)
+end
+
 function onSongStart()
 	setGlobalFromScript("scripts/Camera Movement", 'followChars', false)
 end
@@ -21,6 +25,7 @@ function onBeatHit()
 		setGlobalFromScript("scripts/Camera Movement", 'followChars', false)
 	end
 	if curBeat == 302 then
+		doTweenAlpha("iconGF", "iconGF", 1, 0.75 / playbackRate, "cubeInOut")
 		setGlobalFromScript("scripts/Camera Movement", 'followChars', true)
 		callScript("scripts/Camera Movement", "setCameraProperty", {"dadCamera", "1000, 360"})
 	end

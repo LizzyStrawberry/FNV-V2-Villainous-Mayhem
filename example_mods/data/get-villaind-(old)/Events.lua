@@ -114,20 +114,20 @@ function onUpdate()
 			objectPlayAnimation('static', 'fuck you', true)	
 		end
 		if curBeat % 8 == 0 then
-			doTweenX('bfw i d e', 'boyfriend.scale', 2.1, 1.4 / playbackRate, 'linear')
-			doTweenX('dadw i d e', 'dad.scale', 1, 1.4 / playbackRate, 'linear')
-			doTweenAngle('hudGoWeeee', 'camHUD', 5, 2.5 / playbackRate, 'cubeOut')
+			doTweenX('bfw i d e', 'boyfriend.scale', 2.1, 1.4 / playbackRate / playbackRate, 'linear')
+			doTweenX('dadw i d e', 'dad.scale', 1, 1.4 / playbackRate / playbackRate, 'linear')
+			doTweenAngle('hudGoWeeee', 'camHUD', 5, 2.5 / playbackRate / playbackRate, 'cubeOut')
 		end
 		if curBeat % 8 == 4 then
-			doTweenX('bfw i d e', 'boyfriend.scale', 1, 1.4 / playbackRate, 'linear')
-			doTweenX('dadw i d e', 'dad.scale', 2.1, 1.4 / playbackRate, 'linear')
-			doTweenAngle('hudGoWeeee', 'camHUD', -5, 2.5 / playbackRate, 'cubeOut')
+			doTweenX('bfw i d e', 'boyfriend.scale', 1, 1.4 / playbackRate / playbackRate, 'linear')
+			doTweenX('dadw i d e', 'dad.scale', 2.1, 1.4 / playbackRate / playbackRate, 'linear')
+			doTweenAngle('hudGoWeeee', 'camHUD', -5, 2.5 / playbackRate / playbackRate, 'cubeOut')
 		end
 		if curBeat % 4 == 0 then
-			doTweenAlpha('helloHypno', 'static', 1, 0.4 / playbackRate, 'cubeInOut')
+			doTweenAlpha('helloHypno', 'static', 1, 0.4 / playbackRate / playbackRate, 'cubeInOut')
 		end
 		if curBeat % 4 == 2 then
-			doTweenAlpha('helloHypno', 'static', 0.3, 0.4 / playbackRate, 'cubeInOut')
+			doTweenAlpha('helloHypno', 'static', 0.3, 0.4 / playbackRate / playbackRate, 'cubeInOut')
 		end
 		if curStep % 6 == 0 then
 			playSound('hypnoGoBrrrrrr', 0.25)
@@ -138,9 +138,9 @@ function onUpdate()
 			objectPlayAnimation('static', 'fuck you', true)	
 		end
 		if curBeat % 8 == 0 then
-			doTweenX('bfw i d e', 'boyfriend.scale', 2.1, 1.4 / playbackRate, 'linear')
-			doTweenX('dadw i d e', 'dad.scale', 1, 1.4 / playbackRate, 'linear')
-			doTweenAngle('hudGoWeeee', 'camHUD', 45, 2.5 / playbackRate, 'cubeOut')
+			doTweenX('bfw i d e', 'boyfriend.scale', 2.1, 1.4 / playbackRate / playbackRate, 'linear')
+			doTweenX('dadw i d e', 'dad.scale', 1, 1.4 / playbackRate / playbackRate, 'linear')
+			doTweenAngle('hudGoWeeee', 'camHUD', 45, 2.5 / playbackRate / playbackRate, 'cubeOut')
 		end
 		if curBeat % 8 == 4 then
 			doTweenX('bfw i d e', 'boyfriend.scale', 1, 1.4 / playbackRate, 'linear')
@@ -163,10 +163,10 @@ function onBeatHit()
 	if curBeat >= 512 and curBeat <= 672 then
 		if not botPlay then
 			if curBeat % 8 == 0 then
-				doTweenAlpha('FakeBotplay', 'botPlayFake', 1, 0.7, 'easeIn')
+				doTweenAlpha('FakeBotplay', 'botPlayFake', 1, 0.7 / playbackRate, 'easeIn')
 			end
 			if curBeat % 8 == 4 then
-				doTweenAlpha('FakeBotplay', 'botPlayFake', 0, 0.7, 'easeIn')
+				doTweenAlpha('FakeBotplay', 'botPlayFake', 0, 0.7 / playbackRate, 'easeIn')
 			end
 		end
 	end
@@ -174,13 +174,13 @@ function onBeatHit()
 	if curBeat == 498 then
 		doTweenAlpha('hudgobye', 'camHUD', 0, 0.5, 'linear')
 		addHaxeLibrary('flixel.FlxG')
-        addHaxeLibrary('flixel.system.FlxSound')
+        addHaxeLibrary('flixel.sound.FlxSound')
 		runHaxeCode([[
             FlxTween.tween(game, {songLength: FlxG.sound.music.length}, 5, {ease: FlxEase.expoInOut})
         ]])
 	end
 	if curBeat == 500 then
-		doTweenAlpha('MorkyText', 'MorkyText', 1, 0.07, 'cubeIn')
+		doTweenAlpha('MorkyText', 'MorkyText', 1, 0.07 / playbackRate, 'cubeIn')
 		setProperty('defaultCamZoom', 1.4)
 		setTextString('MorkyText', "Mor")
 	end
@@ -221,10 +221,10 @@ function onBeatHit()
 	if curBeat >= 512 and curBeat <= 672 then
 		if not botPlay then
 			if curBeat % 8 == 0 then
-				doTweenAlpha('FakeBotplay', 'botPlayFake', 1, 0.7, 'easeIn')
+				doTweenAlpha('FakeBotplay', 'botPlayFake', 1, 0.7 / playbackRate, 'easeIn')
 			end
 			if curBeat % 8 == 4 then
-				doTweenAlpha('FakeBotplay', 'botPlayFake', 0, 0.7, 'easeIn')
+				doTweenAlpha('FakeBotplay', 'botPlayFake', 0, 0.7 / playbackRate, 'easeIn')
 			end
 		end
 	end
@@ -235,9 +235,9 @@ function onBeatHit()
 		triggerEvent('Change Character', 'dad', 'Morky')
 	end
 	if curBeat == 672 then
-		cameraFlash('game', 'FFFFFF', 1.7, false)
+		cameraFlash('game', 'FFFFFF', 1.7 / playbackRate, false)
 		if not botPlay then
-			doTweenAlpha('FakeBotplay', 'botPlayFake', 0, 0.7, 'easeIn')
+			doTweenAlpha('FakeBotplay', 'botPlayFake', 0, 0.7 / playbackRate, 'easeIn')
 		end
 		clearEffects('game')
 		clearEffects('hud')
@@ -298,10 +298,10 @@ function onStepHit()
 		setTextString('MorkyText', "And I am a Villain!")
 	end
 	if curStep == 240 then
-		doTweenAlpha('MorkyText', 'MorkyText', 0, 1.6, 'cubeInOut')
+		doTweenAlpha('MorkyText', 'MorkyText', 0, 1.6 / playbackRate, 'cubeInOut')
 	end
 	if curStep == 248 then
-		doTweenAlpha('hudgobye', 'camHUD', 1, 1.6, 'cubeInOut')
+		doTweenAlpha('hudgobye', 'camHUD', 1, 1.6 / playbackRate, 'cubeInOut')
 	end
 	if curStep == 256 then
 		setProperty('defaultCamZoom', 0.9)
@@ -333,7 +333,7 @@ function onStepHit()
 		triggerEvent('Change Character', 'dad', 'MorkyHypno')
 	end
 	if curStep == 1401 then
-		doTweenY('Pendelum', 'Pendelum', 0, 0.3, 'cubeInOut')
+		doTweenY('Pendelum', 'Pendelum', 0, 0.3 / playbackRate, 'cubeInOut')
 	end
 	if curStep == 1406 then
 		cameraFlash('game', 'FFFFFF', 1.7, false)
@@ -350,11 +350,11 @@ function onStepHit()
 		triggerEvent('Change Character', 'boyfriend', 'lulababegf')
 	end
 	if curStep == 1664 then
-		cameraFlash('game', 'FFFFFF', 0.7, false)
-		doTweenAlpha('hellofakeBar', 'fakespace', 0, 5.3 / playbackRate, 'linear')
-		doTweenAngle('hudGoWeeee', 'camHUD', 0, 0.6 / playbackRate, 'circOut')
-		doTweenY('Pendelum', 'Pendelum', -600, 0.3 / playbackRate, 'cubeInOut')
-		doTweenAlpha('helloHypno', 'static', 0, 0.13 / playbackRate, 'circOut')
+		cameraFlash('game', 'FFFFFF', 0.7 / playbackRate, false)
+		doTweenAlpha('hellofakeBar', 'fakespace', 0, 5.3 / playbackRate / playbackRate, 'linear')
+		doTweenAngle('hudGoWeeee', 'camHUD', 0, 0.6 / playbackRate / playbackRate, 'circOut')
+		doTweenY('Pendelum', 'Pendelum', -600, 0.3 / playbackRate / playbackRate, 'cubeInOut')
+		doTweenAlpha('helloHypno', 'static', 0, 0.13 / playbackRate / playbackRate, 'circOut')
 		triggerEvent('Change Character', 'dad', 'Morky')
 		if character == 1 then
 			triggerEvent('Change Character', 'bf', 'GFwav')

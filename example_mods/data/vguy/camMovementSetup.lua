@@ -8,7 +8,7 @@ local del = 0;
 local del2 = 0;
 
 local camVariables = {
-	camOffsets = "980, 460, 520, 330, 0, 0",
+	camOffsets = "980, 460, 520, 330",
 	ofs = 35,
 	noMove = "700, 350",
 	camZooms = nil

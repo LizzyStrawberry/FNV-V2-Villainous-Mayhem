@@ -86,6 +86,7 @@ function onUpdate()
 		triggerEvent('Screen Shake', '0.1, 0.03', '')
 		doTweenX('gfMove', 'gf', GFX, 0.5, 'circOut')
 		setProperty('gf.visible', true)
+		setProperty("iconGF.alpha", 1)
 	end
 	
 	if curStep == 534 then

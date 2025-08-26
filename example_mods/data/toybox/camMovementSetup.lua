@@ -1,5 +1,5 @@
 local camVariables = {
-	camOffsets = "1100, 450, 300, 550, 0, 0",
+	camOffsets = "1100, 450, 300, 550",
 	ofs = 35,
 	noMove = nil,
 	camZooms = nil

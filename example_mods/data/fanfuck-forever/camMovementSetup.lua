@@ -10,6 +10,10 @@ function onCreate()
 	callScript("scripts/Camera Movement", "setCameraMovement", {camVariables.camOffsets, camVariables.ofs, camVariables.noMove, camVariables.camZooms})
 end
 
+function onCreatePost()
+	setProperty("iconGF.alpha", 0)
+end
+
 function onSongStart()
 	setGlobalFromScript("scripts/Camera Movement", "followChars", false)
 end

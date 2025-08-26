@@ -87,6 +87,7 @@ function onCreate()
 end
 
 function onUpdate()
+	-- Beginning sequence
 	if curBeat == 4 then
 		setProperty('floorLight.alpha', 1)
 		setProperty('light1.alpha', 1)
@@ -118,7 +119,8 @@ function onUpdate()
 		setProperty('dad.alpha', 1)
 		setProperty('stageConfront.alpha', 1)
 	end
-
+	
+	-- Phase 2: Stage Confrontation (Lily / Marco)
 	if curStep == 336 then
 		removeLuaSprite('stageConfront', true)
 		setProperty('healthBar.alpha', 1);
@@ -176,6 +178,7 @@ function onUpdate()
 		end
 	end
 	
+	-- Phase 2.5: Stage Confrontation (Manager / Aileen)
 	if curStep == 848 then
 		setProperty('camGame.alpha', 0)
 		triggerEvent('Change Character', 'bf', 'managerChanP1')
@@ -197,6 +200,7 @@ function onUpdate()
 		doTweenAlpha('camGame','camGame', 1, 0.3, 'cubeInOut')
 	end
 
+	-- Phase 3: Full Stage Confrontation
 	if curStep == 1360 then
 		cameraFlash('game', 'FFFFFF', 0.5, false)
 		removeLuaSprite('stageLilyP1', true)
@@ -223,6 +227,7 @@ function onUpdate()
 		doTweenAlpha('Aileen', 'aileenCCP2', 1, 0.001, 'linear');
 	end
 
+	-- Phase 4: Debug Intervention
 	if curStep == 1872 then
 		cameraFlash('game', '8BD46D', 0.5, false)
 		setProperty('camGame.alpha', 0)
@@ -258,9 +263,6 @@ function onUpdate()
 		setProperty('dad.y', 140)
 		
 		setProperty('defaultCamZoom', 0.8)
-		
-		doTweenAlpha('managerChan', 'managerChanP2', 0, 0.001, 'linear');
-		doTweenAlpha('Aileen', 'aileenCCP2', 0, 0.001, 'linear');	
 	end
 	
 	if curStep == 1880 then
@@ -277,6 +279,7 @@ function onUpdate()
 		doTweenX('GFBaseMove', 'gfCover', 1158, 1, 'cubeInOut')
 	end
 	
+	-- Phase 5: Debug Confrontation
 	if curStep == 2384 then
 		setProperty('camGame.alpha', 0)
 	
@@ -299,7 +302,7 @@ function onUpdate()
 		
 		setProperty('defaultCamZoom', 1.2)
 		
-		if addShaders == false and shadersEnabled == true then
+		if not addShaders and shadersEnabled then
 			addBloomEffect('game', 0.15, 1.0)
 			addBloomEffect('hud', 0.15, 1.0)
 			addScanlineEffect('game', false)
@@ -316,6 +319,7 @@ function onUpdate()
 		doTweenY('fadeOut', 'fade', -2000, 1.3 / playbackRate, 'cubeInOut')
 	end
 	
+	-- Phase 6: Marauder
 	if curStep == 2640 then
 		removeLuaSprite('kaizokuSplit', true)
 		setProperty('kaizokuBG.alpha', 1)
@@ -343,6 +347,7 @@ function onUpdate()
 		setProperty('defaultCamZoom', 0.4)
 	end
 
+	-- Phase 7: Back to Stage with everyone
 	if curStep == 2896 then	
 		doTweenAlpha('whiteBGFadeOut', 'whiteBG', 0, 1, 'easeIn')
 		removeLuaSprite('kaizokuBG', true)
@@ -370,12 +375,11 @@ function onUpdate()
 		setScrollFactor('aileenCCP2', 0.9, 0.9)
 		
 		setProperty('defaultCamZoom', 1.4)
-
-		doTweenAlpha('managerChan', 'managerChanP2', 1, 0.001, 'linear');
-		doTweenAlpha('Aileen', 'aileenCCP2', 1, 0.001, 'linear');
 			
-		clearEffects('game');
-		clearEffects('hud');
+		if shadersEnabled then
+			clearEffects('game')
+			clearEffects('hud')
+		end
 	end
 	
 	if curStep == 3152 then

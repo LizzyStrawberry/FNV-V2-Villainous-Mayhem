@@ -1,5 +1,5 @@
-local Spacing=100
-local SPACING=100
+local Spacing = 100
+local SPACING = 100
 function onCreatePost()
     runHaxeCode([[
         for (i in 0...4)
@@ -41,7 +41,9 @@ function onCreatePost()
 
         game.singAnimations = ['singLEFT', 'singDOWN', 'singUP', 'singRIGHT', 'singLEFT', 'singDOWN', 'singUP', 'singRIGHT', 'singLEFT', 'singDOWN', 'singUP', 'singRIGHT', 'singLEFT', 'singDOWN', 'singUP', 'singRIGHT'];
     ]])
-    DefaultSize=getPropertyFromGroup('strumLineNotes', 0, 'scale.x')
+	
+    DefaultSize = getPropertyFromGroup('strumLineNotes', 0, 'scale.x')
+	
     for i=0,3 do
         setProperty('third'..i..'.scale.x', getPropertyFromGroup('strumLineNotes', 0, 'scale.x'))
         setProperty('third'..i..'.scale.y', getPropertyFromGroup('strumLineNotes', 0, 'scale.y'))
@@ -65,20 +67,21 @@ function onCreatePost()
     setProperty('fifth1.x', getProperty('fifth0.x')+Spacing)
     setProperty('fifth2.x', getProperty('fifth1.x')+Spacing)
     setProperty('fifth3.x', getProperty('fifth2.x')+Spacing)
+	
     for i=0,getProperty('unspawnNotes.length')-1 do
-        if getPropertyFromGroup('unspawnNotes', i, 'noteType')=='yuri' and getPropertyFromGroup('unspawnNotes', i, 'strumTime')>270202 then
+        if getPropertyFromGroup('unspawnNotes', i, 'noteType') == 'aileenSoloNotes' then
             setPropertyFromGroup('unspawnNotes', i, 'mustPress', false)
             setPropertyFromGroup('unspawnNotes', i, 'noteData', getPropertyFromGroup('unspawnNotes', i, 'noteData')+4)
         end
-    end
-    for i=0,getProperty('unspawnNotes.length')-1 do
-        if getPropertyFromGroup('unspawnNotes', i, 'noteType')=='GF Sing' then
+	end
+	for i=0,getProperty('unspawnNotes.length')-1 do
+        if getPropertyFromGroup('unspawnNotes', i, 'noteType') == 'GF Sing' then
             setPropertyFromGroup('unspawnNotes', i, 'mustPress', false)
             setPropertyFromGroup('unspawnNotes', i, 'noteData', getPropertyFromGroup('unspawnNotes', i, 'noteData')+8)
         end
-    end
-    for i=0,getProperty('unspawnNotes.length')-1 do
-        if getPropertyFromGroup('unspawnNotes', i, 'noteType')=='protag' then
+	end
+	for i=0,getProperty('unspawnNotes.length')-1 do
+        if getPropertyFromGroup('unspawnNotes', i, 'noteType') == 'managerSoloNotes' then
             if not getPropertyFromGroup('unspawnNotes', i, 'mustPress') then
                 setPropertyFromGroup('unspawnNotes', i, 'noteData', getPropertyFromGroup('unspawnNotes', i, 'noteData')+12)
             end
@@ -89,7 +92,7 @@ function onCreatePost()
         setProperty('fourth'..i..'.alpha', 0)
         setProperty('fifth'..i..'.alpha', 0)
     end
-	if getPropertyFromClass('ClientPrefs', 'optimizationMode') == false then
+	if not getPropertyFromClass('ClientPrefs', 'optimizationMode') then
 		for i = 0, 3 do
 			setPropertyFromGroup('opponentStrums', i + 4, 'texture', 'notes/AileenNOTE_assets');
 			setPropertyFromGroup('opponentStrums', i + 8, 'texture', 'notes/MarcoNOTE_assets');
@@ -103,6 +106,7 @@ end
 function TweenLinear(t, b, c, d)
     return c*t/d+b
 end
+
 function onUpdatePost()
     for i=0,getProperty('notes.length')-1 do
         if getPropertyFromGroup('notes', i, 'mustPress')==false then
@@ -118,6 +122,7 @@ function onUpdatePost()
         end
     end
 end
+
 local ThirdTweening=true
 local FourthTweening=false
 local FifthTweening=false
