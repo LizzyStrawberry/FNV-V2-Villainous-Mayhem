@@ -19,14 +19,16 @@ function onCreate()
 end
 
 function onSongStart()
-	doTweenZoom('camGame', 'camGame', 1.0, 11.79 / playbackRate, 'easeInOut')
-	doTweenAlpha('camGame', 'camGame', 1, 9.79 / playbackRate, 'easeInOut')
+	doTweenZoom('camGameZoom', 'camGame', 0.8, 11.79 / playbackRate, 'easeInOut')
+	doTweenAlpha('camGameAlpha', 'camGame', 1, 9.79 / playbackRate, 'easeInOut')
 	doTweenAlpha('tipAlpha', 'tip', 1, 0.7 / playbackRate, 'easeInOut')
 	runTimer('tipOut', 2.5 / playbackRate)
 end
 
 function onUpdate()
 	if curBeat == 32 then
+		cancelTween("camGameZoom")
+		setProperty("mainCamZoom", true)
 		cameraFlash('camGame', 'FFFFFF', 0.6 / playbackRate, false)
 		setProperty('defaultCamZoom', 1.3)
 		setProperty('camZooming', true)
@@ -53,9 +55,11 @@ function onUpdate()
 		setProperty('camZooming', false)
 	end
 	if curBeat == 300 then
-		doTweenZoom('camGame', 'camGame', 1.3, 0.7 / playbackRate, 'bounceInOut')
+		doTweenZoom('camGameZoom', 'camGame', 1.3, 0.7 / playbackRate, 'bounceInOut')
 	end
 	if curBeat == 302 then
+		cancelTween("camGameZoom")
+		setProperty("mainCamZoom", true)
 		setProperty('camZooming', true)
 		cameraFlash('camGame', 'FFFFFF', 1.6 / playbackRate, false)
 		setProperty('gf.alpha', 1)

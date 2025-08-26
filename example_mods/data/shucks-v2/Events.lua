@@ -1,4 +1,4 @@
-local hudThings = {'watermark', 'watermark2', 'healthBar', 'healthBarBG', 'iconP1', 'iconP2', "iconGF", 'scoreTxt'}
+local hudThings = {'watermark', 'healthBar', 'healthBarBG', 'iconP1', 'iconP2', "iconGF", 'scoreTxt'}
 local scrollSpeed = 1.2
 local dur = 1
 local videoPlayed = false
@@ -66,8 +66,8 @@ end
 function onSongStart()
 	doTweenZoom('camGame', 'camGame', 1.4, 9.5 / playbackRate, 'easeOut')
 	doTweenAlpha('blackBG', 'blackBG', 0, 7.2 / playbackRate, 'cubeInOut')
-	doTweenAlpha(hudThings[5], hudThings[5], 1, 14 / playbackRate, 'cubeInOut')
-	doTweenAlpha(hudThings[7], hudThings[7], 1, 14 / playbackRate, 'cubeInOut')
+	doTweenAlpha(hudThings[4], hudThings[4], 1, 14 / playbackRate, 'cubeInOut')
+	doTweenAlpha(hudThings[6], hudThings[6], 1, 14 / playbackRate, 'cubeInOut')
 	
 	doTweenAlpha('contextAppear', 'contextText', 1, 1 / playbackRate, 'cubeInOut')
 end
@@ -93,9 +93,7 @@ function onUpdate()
 		setProperty(hudThings[5]..'.alpha', 1)
 		doTweenAlpha('bf', 'bf', 1, 10 / playbackRate, 'cubeInOut')
 		doTweenAlpha(hudThings[1], hudThings[1], 1, 10 / playbackRate, 'cubeInOut')
-		doTweenAlpha(hudThings[2], hudThings[2], 1, 10 / playbackRate, 'cubeInOut')
-		doTweenAlpha(hudThings[3], hudThings[3], 1, 10 / playbackRate, 'cubeInOut')
-		doTweenAlpha(hudThings[6], hudThings[6], 1, 10 / playbackRate, 'cubeInOut')
+		doTweenAlpha(hudThings[7], hudThings[7], 1, 10 / playbackRate, 'cubeInOut')
 	end
 	if curStep == 704 then
 		cameraFlash('hud', 'FFFFFF', 7.5 / playbackRate, false)
@@ -155,7 +153,7 @@ function onUpdate()
 		videoPlayed = true
 	end
 	if curStep == 2380 then
-		hudThings = {'watermark', 'healthBar', 'healthBarBG', 'iconP1', 'iconP2', 'scoreTxt', 'timeBar', 'timeBarBG', 'timeTxt'}
+		hudThings = {'watermark', 'healthBar', 'healthBarBG', 'iconP1', 'iconP2', "iconGF", 'scoreTxt', 'timeBar', 'timeBarBG', 'timeTxt'}
 		for i = 1, #(hudThings) do
 			doTweenAlpha(hudThings[i], hudThings[i], 0, 0.8 / playbackRate, 'cubeInOut')
 		end

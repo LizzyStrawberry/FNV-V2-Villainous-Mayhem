@@ -8,6 +8,10 @@ local properties = {
 }
 local iconP1X, iconP2X
 
+function onCreate()
+	setVar("flippedIcons", false)
+end
+
 function onCreatePost()
 	if not optimizationMode then
 		bfColor = rgbToHex(getProperty('boyfriend.healthColorArray'))
@@ -283,6 +287,7 @@ function onCreatePost()
 		addLuaSprite('iconOpponent', true)
 		
 		if properties.flipIcons then
+			setVar("flippedIcons", true)
 			local circX = {getProperty("iconPlayer.x"), getProperty("coloredPlayerCircle.x"), getProperty("iconOpponent.x"), getProperty("coloredOpponentCircle.x")}
 			setProperty("iconPlayer.x", circX[3])
 			setProperty("coloredPlayerCircle.x", circX[4])
