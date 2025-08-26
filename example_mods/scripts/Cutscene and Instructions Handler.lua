@@ -102,7 +102,7 @@ local showMechanic = false
 local confirmMechanic = false
 
 function onStartCountdown()
-	if enabled then
+	if not seenCutscene and enabled then
 		if cutsceneData.hasStartupVideo and not viewedVideo then -- In Case of Start Up Video
 			startVideo(cutsceneData.videoPath)
 			viewedVideo = true

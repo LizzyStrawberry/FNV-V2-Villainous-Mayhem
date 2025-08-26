@@ -767,7 +767,7 @@ class PauseSubState extends MusicBeatSubstate
 			huh = 1;
 		if (huh < 0)
 			huh = 0;
-		FlxG.sound.play(Paths.sound('ConfirmMenu'), 0.2);
+		FlxG.sound.play(Paths.sound('confirmMenu'), 0.2);
 
 		if ((PlayState.isStoryMode && !PlayState.isIniquitousMode)
 		|| (!PlayState.isStoryMode && !PlayState.isIniquitousMode && !PlayState.isInjectionMode && !PlayState.isMayhemMode)) //STORY MODE OR FREEPLAY

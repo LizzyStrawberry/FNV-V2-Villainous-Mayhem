@@ -194,7 +194,7 @@ function onUpdate(elapsed)
 end
 
 local addedShader = false
-local hudThings = {'healthBar', 'healthBarBG', 'iconP1', 'iconP2', 'coloredPlayerCircle', 'coloredOpponentCircle', 'charmSocket', 'iconPlayer',
+local hudThings = {'healthBar', 'healthBarBG', 'iconP1', 'iconP2', 'iconGF', 'coloredPlayerCircle', 'coloredOpponentCircle', 'charmSocket', 'iconPlayer',
 				'iconOpponent', 'timeBar', 'timeBarBG', 'reloadBar', 'mayhembackBar', 'mayhemPads', 'mayhemBar', 'mayhemText'}
 function onStepHit()
 	if curStep == 704 and songName == 'Shucks V2' and not addedShader and shadedSong then

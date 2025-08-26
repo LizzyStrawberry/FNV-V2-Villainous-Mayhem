@@ -103,10 +103,14 @@ end
 function onCreatePost() -- Set Camera to middle of screen
 	setVar("gfSide", gfSide)
 	
-	if addGFIcon then  addNewIcon("GF", "gf", gfSide, true) end
-	
 	if allowCameraMove then
 		triggerEvent('Camera Follow Pos', (charOffsets.bfX + charOffsets.dadX) / 2, (charOffsets.bfY + charOffsets.dadY) / 2)
+	end
+	
+	if addGFIcon then 
+		local side = ((gfSide == "player" and not getVar("flippedIcons")) and "1" or "2")
+		setObjectOrder("iconGF", getObjectOrder("iconP"..side) + 1)
+		addNewIcon("GF", "gf", gfSide, true) 
 	end
 end
 
@@ -559,10 +563,11 @@ end
 
 -- lay out all extras on a given side to follow the main icon
 function setIconLayout(side)
-	local baseX = getProperty(side == "player" and "iconP1.x" or "iconP2.x")
-	local baseY = getProperty(side == "player" and "iconP1.y" or "iconP2.y")
+	local baseX = getProperty((side == "player" and not getVar("flippedIcons")) and "iconP1.x" or "iconP2.x")
+	local baseY = getProperty((side == "player" and not getVar("flippedIcons")) and "iconP1.y" or "iconP2.y")
 	local dir = (side == "player") and 1 or -1
 	local k = 0
+
 	for i = 1, #exIcons do
 		if exIconsSides[i] == side then
 			k = k + 1 
@@ -598,7 +603,6 @@ function addNewIcon(tag, char, isPlayer, visible)
 
 	-- Set Icon Properties Immediately
 	scaleObject(iconName, getProperty("iconP"..iconNum..".scale.x") - iconSizeDecrease, getProperty("iconP"..iconNum..".scale.y") - iconSizeDecrease)
-	setProperty(iconName..".alpha", 0)
 
 	-- Position everything and start
 	setIconLayout(side)
