@@ -1436,7 +1436,7 @@ class PlayState extends MusicBeatState
 	{
 		#if VIDEOS_ALLOWED
 		inCutscene = !forMidSong;
-		canPause = false;
+		canPause = forMidSong;
 
 		var foundFile:Bool = false;
 		var fileName:String = Paths.video(name);
@@ -2598,6 +2598,7 @@ class PlayState extends MusicBeatState
 			if (chartingMode)
 				startedCountdown = canPause = true; // In case you are on charting mode and need to skip
 
+			if (videoCutscene != null) videoCutscene.resume();
 			#if mobile
 			if (padPauseTween != null)
 				padPauseTween.cancel();
@@ -3173,12 +3174,12 @@ class PlayState extends MusicBeatState
 		padPauseTween = FlxTween.tween(touchPad, {alpha: 0}, 0.7 / playbackRate, {ease: FlxEase.linear, type: PERSIST});
 		#end
 
+		if (videoCutscene != null) videoCutscene.pause();
 		if(FlxG.sound.music != null) {
 			FlxG.sound.music.pause();
 			vocals.pause();
 		}
 		openSubState(new PauseSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
-		//}
 
 		#if DISCORD_ALLOWED
 			#if DEBUG_ALLOWED
