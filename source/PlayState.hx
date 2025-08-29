@@ -1366,7 +1366,7 @@ class PlayState extends MusicBeatState
 	{
 		#if VIDEOS_ALLOWED
 		inCutscene = !forMidSong;
-		canPause = false;
+		canPause = forMidSong;
 
 		var foundFile:Bool = false;
 		var fileName:String = Paths.video(name);
@@ -1396,7 +1396,6 @@ class PlayState extends MusicBeatState
 						FlxG.camera.snapToTarget();
 					}
 					videoCutscene = null;
-					canPause = true;
 					inCutscene = false;
 					startAndEnd();
 				}
@@ -2524,6 +2523,7 @@ class PlayState extends MusicBeatState
 			if (chartingMode)
 				startedCountdown = canPause = true; // In case you are on charting mode and need to skip
 
+			if (videoCutscene != null) videoCutscene.resume();
 			callOnLuas('onResume', []);
 
 			#if DISCORD_ALLOWED
@@ -3085,20 +3085,12 @@ class PlayState extends MusicBeatState
 		persistentDraw = true;
 		paused = true;
 
-		// 1 / 1000 chance for Gitaroo Man easter egg
-		/*if (FlxG.random.bool(0.1))
-		{
-			// gitaroo man easter egg
-			cancelMusicFadeTween();
-			MusicBeatState.switchState(new GitarooPause());
-		}
-		else {*/
+		if (videoCutscene != null) videoCutscene.pause();
 		if(FlxG.sound.music != null) {
 			FlxG.sound.music.pause();
 			vocals.pause();
 		}
 		openSubState(new PauseSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
-		//}
 
 		#if DISCORD_ALLOWED
 			#if DEBUG_ALLOWED
