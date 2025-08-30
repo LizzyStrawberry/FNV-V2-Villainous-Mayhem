@@ -48,6 +48,8 @@ function onCreatePost()
 	setProperty('gf.x', mobileFix("X", getProperty('boyfriend.x') + 500))
 	
 	mainY = getProperty('iconP1.y')
+	
+	setProperty("legacyPosition", true)
 end
 
 function opponentNoteHit() -- health draining mechanic
@@ -95,7 +97,6 @@ function onUpdatePost()
 		noteTweenX('noteTween6', 6, mobileFix("X", 1056), 0.7 / playbackRate, 'cubeInOut')
 		noteTweenX('noteTween7', 7, mobileFix("X", 1159), 0.7 / playbackRate, 'cubeInOut')
 		for i = 8, 11 do
-			setPropertyFromGroup("strumLineNotes", i, "x", mobileFix("X", getPropertyFromGroup("strumLineNotes", i, "x"))
 			noteTweenAlpha('noteTweenAlpha'..i, i, 1, (0.5 + ((i - 7) * 0.2)) / playbackRate, 'cubeInOut')
 			if downscroll then
 				noteTweenY('noteTweenY'..i, i, 570, (0.5 + ((i - 7) * 0.2)) / playbackRate, 'cubeInOut')
@@ -195,7 +196,7 @@ function onUpdate(elapsed)
 				]])
 			end
 			triggerEvent('Play Animation', 'jumpscare', 'bf')
-			setProperty('camGame.zoom', 1.2)
+			setProperty('camGame.zoom', 1.2 * zoomMult)
 		end
 		if curStep == 261 then
 			if shadersEnabled then
@@ -204,7 +205,7 @@ function onUpdate(elapsed)
 				]])
 			end
 			triggerEvent('Play Animation', 'danceLeft', 'bf')
-			setProperty('camGame.zoom', 0.9)	
+			setProperty('camGame.zoom', 0.9 * zoomMult)	
 		end
 		if curStep == 262 then
 			if shadersEnabled then
@@ -216,7 +217,7 @@ function onUpdate(elapsed)
 				]])
 			end
 			triggerEvent('Play Animation', 'jumpscare', 'bf')
-			setProperty('camGame.zoom', 1.2)
+			setProperty('camGame.zoom', 1.2 * zoomMult)
 		end
 		if curDecBeat == 65.7 then
 			if shadersEnabled then
@@ -225,7 +226,7 @@ function onUpdate(elapsed)
 				]])
 			end
 			triggerEvent('Play Animation', 'danceLeft', 'bf')
-			setProperty('camGame.zoom', 0.9)	
+			setProperty('camGame.zoom', 0.9 * zoomMult)	
 		end
 		if curStep == 263 then
 			if shadersEnabled then
@@ -237,7 +238,7 @@ function onUpdate(elapsed)
 				]])
 			end
 			triggerEvent('Play Animation', 'jumpscare', 'bf')
-			setProperty('camGame.zoom', 1.2)
+			setProperty('camGame.zoom', 1.2 * zoomMult)
 		end
 		if curBeat == 66 then
 			if shadersEnabled then
@@ -246,7 +247,7 @@ function onUpdate(elapsed)
 				]])
 			end
 			triggerEvent('Play Animation', 'danceLeft', 'bf')
-			setProperty('camGame.zoom', 0.9)	
+			setProperty('camGame.zoom', 0.9 * zoomMult)	
 		end
 		if curStep == 265 then
 			if shadersEnabled then
@@ -258,7 +259,7 @@ function onUpdate(elapsed)
 				]])
 			end
 			triggerEvent('Play Animation', 'jumpscare', 'bf')
-			setProperty('camGame.zoom', 1.2)
+			setProperty('camGame.zoom', 1.2 * zoomMult)
 		end
 		if curDecBeat == 66.5 then
 			if shadersEnabled then
@@ -267,7 +268,7 @@ function onUpdate(elapsed)
 				]])
 			end
 			triggerEvent('Play Animation', 'danceLeft', 'bf')
-			setProperty('camGame.zoom', 0.9)	
+			setProperty('camGame.zoom', 0.9 * zoomMult)	
 		end
 		if curStep == 267 then
 			if shadersEnabled then
@@ -279,7 +280,7 @@ function onUpdate(elapsed)
 				]])
 			end
 			triggerEvent('Play Animation', 'jumpscare', 'bf')
-			setProperty('camGame.zoom', 1.2)
+			setProperty('camGame.zoom', 1.2 * zoomMult)
 		end
 		if curStep == 268 then
 			runTimer('bye', 0.02)
@@ -295,7 +296,7 @@ function onUpdate(elapsed)
 		cancelTimer('hello')
 		cancelTimer('bye')
 		setProperty('camZooming', true)
-		setProperty('camGame.zoom', 0.9)
+		setProperty('camGame.zoom', 0.9 / playbackRate)
 	end
 	if curStep >= 390 and curStep < 400 then
 		if curBeat % 2 == 0 then
@@ -316,7 +317,7 @@ function onUpdate(elapsed)
 		doTweenX('gfMovePG', 'gf', screenWidth + 120, 1.7 / playbackRate, 'cubeInOut')
 	end
 	if curStep == 592 then
-		cameraFlash('hud', 'ffffff', 0.7, false)
+		cameraFlash('hud', 'ffffff', 0.7 / playbackRate, false)
 		doTweenX('gfMoveEnd', 'gf', screenWidth + 120, 2.5 / playbackRate, 'cubeInOut')
 		doTweenX('extraCharBG', 'extraCharBG', screenWidth - 680, 2.5 / playbackRate, 'cubeInOut')
 	end
@@ -333,7 +334,7 @@ function onTimerCompleted(tag)
 			]])
 		end
 		triggerEvent('Play Animation', 'jumpscare', 'bf')
-		setProperty('camGame.zoom', 1.2)
+		setProperty('camGame.zoom', 1.2 * zoomMult)
 		runTimer('bye', 0.04)
 	end
 	if tag == 'bye' then
@@ -343,7 +344,7 @@ function onTimerCompleted(tag)
 			]])
 		end
 		triggerEvent('Play Animation', 'danceLeft', 'bf')
-		setProperty('camGame.zoom', 0.9)
+		setProperty('camGame.zoom', 0.9 * zoomMult)
 		runTimer('hello', 0.04)
 	end
 end

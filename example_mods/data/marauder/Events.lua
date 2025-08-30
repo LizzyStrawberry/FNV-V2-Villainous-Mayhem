@@ -51,7 +51,7 @@ end
 
 local allowTween = false
 function onSongStart()
-	doTweenZoom('beginZoom', 'camGame', 1.3, 11 / playbackRate, 'quadIn')
+	doTweenZoom('beginZoom', 'camGame', 1.3 * zoomMult, 11 / playbackRate, 'quadIn')
     runHaxeCode([[
         game.songLength = (55 * 1000);
     ]])
@@ -80,7 +80,7 @@ function onUpdate()
 		doTweenAlpha('showUp', 'headRight2', 1, 1.4 / playbackRate, 'cubeInOut')
 	end
 	if curBeat == 156 then
-		setProperty('defaultCamZoom', 1.6)
+		setProperty('defaultCamZoom', 1.6 * zoomMult)
 	end
 	if curBeat == 159 then
 		doTweenAlpha('showUp', 'clones', 1, 2 / playbackRate, 'cubeInOut')
@@ -89,7 +89,7 @@ function onUpdate()
 	end
 	if curBeat == 160 then
 		cameraFlash('game', 'FFFFFF', 0.8 / playbackRate, false)
-		setProperty('defaultCamZoom', 0.8)
+		setProperty('defaultCamZoom', 0.8 * zoomMult)
 		
 		doTweenAlpha('dadReveal', 'dad', 1, 0.4 / playbackRate, 'circOut')
 		doTweenX('dadMove', 'dad', dadX, 0.7 / playbackRate, 'circOut')
@@ -110,30 +110,30 @@ function onUpdate()
 			doTweenAlpha('hello', 'moreClones', 1, 20 / playbackRate, 'easeInOut')
 		end
 		setProperty('camGame.alpha', 0)
-		setProperty('defaultCamZoom', 1.2)
+		setProperty('defaultCamZoom', 1.2 * zoomMult)
 	end
 	if curBeat == 226 then
 		doTweenAlpha('camGame', 'camGame', 1, 0.7 / playbackRate, 'easeInOut')
 	end
 	if curBeat == 352 then
 		cameraFlash('game', 'FFFFFF', 0.8 / playbackRate, false)
-		setProperty('defaultCamZoom', 0.8)
+		setProperty('defaultCamZoom', 0.8 * zoomMult)
 	end
 	if curBeat == 384 then
-		setProperty('defaultCamZoom', 1.0)
+		setProperty('defaultCamZoom', 1.0 * zoomMult)
 	end
 	if curBeat == 385 then
-		setProperty('defaultCamZoom', 1.2)
+		setProperty('defaultCamZoom', 1.2 * zoomMult)
 	end
 	if curBeat == 386 then
-		setProperty('defaultCamZoom', 1.4)
+		setProperty('defaultCamZoom', 1.4 * zoomMult)
 	end
 	if curBeat == 387 then
-		setProperty('defaultCamZoom', 1.6)
+		setProperty('defaultCamZoom', 1.6 * zoomMult)
 	end
 	if curBeat == 388 then
 		cameraFlash('game', 'FFFFFF', 0.8 / playbackRate, false)
-		setProperty('defaultCamZoom', 0.8)
+		setProperty('defaultCamZoom', 0.8 * zoomMult)
 	end
 end
 
@@ -197,10 +197,10 @@ end
 
 function onTweenCompleted(tag)
 	if tag == 'beginZoom' then
-		setProperty('defaultCamZoom', 1.3)
+		setProperty('defaultCamZoom', 1.3 * zoomMult)
 	end
 	if tag == 'beginZoomAgain' then
-		setProperty('defaultCamZoom', 0.8)
+		setProperty('defaultCamZoom', 0.8 * zoomMult)
 	end
 end
 

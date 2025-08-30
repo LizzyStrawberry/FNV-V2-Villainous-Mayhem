@@ -38,44 +38,44 @@ end
 local hudThings = {'healthBar', 'healthBarBG', 'scoreTxt', 'timeTxt', 'timeBar', 'timeBarBG', 'iconP1', 'iconP2', 'charmSocket'}
 function onUpdate()
 	if curBeat == 16 then
-		setProperty('defaultCamZoom', 0.9)
+		setProperty('defaultCamZoom', 0.9 * zoomMult)
 	end
 	if curBeat == 78 then
-		setProperty('defaultCamZoom', 1.4)
+		setProperty('defaultCamZoom', 1.4 * zoomMult)
 	end
 	if curBeat == 79 then
-		setProperty('defaultCamZoom', 1.7)
+		setProperty('defaultCamZoom', 1.7 * zoomMult)
 	end
 	if curBeat == 80 then
-		cameraFlash('game', 'ffffff', 0.7, false)
-		setProperty('defaultCamZoom', 1.3)
+		cameraFlash('game', 'ffffff', 0.7 / playbackRate, false)
+		setProperty('defaultCamZoom', 1.3 * zoomMult)
 		setProperty('gf.visible', true)
 	end
 	if curBeat == 144 then
-		setProperty('defaultCamZoom', 0.9)
+		setProperty('defaultCamZoom', 0.9 * zoomMult)
 	end
 	if curBeat == 207 then
-		setProperty('defaultCamZoom', 1.4)
+		setProperty('defaultCamZoom', 1.4 * zoomMult)
 	end
 	if curBeat == 208 then
-		cameraFlash('game', 'ffffff', 0.7, false)
-		setProperty('defaultCamZoom', 1.2)
+		cameraFlash('game', 'ffffff', 0.7 / playbackRate, false)
+		setProperty('defaultCamZoom', 1.2 * zoomMult)
 	end
 	if curBeat == 272 then
-		setProperty('defaultCamZoom', 0.9)
-		doTweenAngle('camHudAngle', 'camHUD', 0, 0.6, 'circOut')
-		doTweenAngle('camGameAngle', 'camGame', 0, 0.6, 'circOut')
+		setProperty('defaultCamZoom', 0.9 * zoomMult)
+		doTweenAngle('camHudAngle', 'camHUD', 0, 0.6 / playbackRate, 'circOut')
+		doTweenAngle('camGameAngle', 'camGame', 0, 0.6 / playbackRate, 'circOut')
 	end
 	if curBeat == 336 then
-		setProperty('defaultCamZoom', 1.3)
+		setProperty('defaultCamZoom', 1.3 * zoomMult)
 	end
 	if curBeat == 368 then
-		doTweenAlpha('blackBg', 'blackBG', 1, 0.7, 'circOut')
+		doTweenAlpha('blackBg', 'blackBG', 1, 0.7 / playbackRate, 'circOut')
 		for i = 0, 7 do
-			noteTweenAlpha('noteBye'..i, i, 0, 1.7, 'linear')
+			noteTweenAlpha('noteBye'..i, i, 0, 1.7 / playbackRate, 'linear')
 		end
 		for i = 1, #(hudThings) do
-			doTweenAlpha(hudThings[i], hudThings[i], 0, 1.7, 'linear')
+			doTweenAlpha(hudThings[i], hudThings[i], 0, 1.7 / playbackRate, 'linear')
 		end
 	end
 end
@@ -85,21 +85,21 @@ function onBeatHit()
 	if curBeat >= 80 and curBeat < 144 then
 		if curBeat % 1 == 0 then
 			setProperty('camHUD.y', cameraHudY + 10)
-			doTweenY('canHud', 'camHUD', cameraHudY, 0.4, 'circOut')
+			doTweenY('canHud', 'camHUD', cameraHudY, 0.4 / playbackRate, 'circOut')
 		end
 	end
 	if curBeat >= 208 and curBeat < 272 then
 		if curBeat % 1 == 0 then
 			setProperty('camHUD.y', cameraHudY + 10)
-			doTweenY('canHud', 'camHUD', cameraHudY, 0.4, 'circOut')
+			doTweenY('canHud', 'camHUD', cameraHudY, 0.4 / playbackRate, 'circOut')
 		end
 		if curBeat % 4 == 0 then
-			doTweenAngle('camHudAngle', 'camHUD', 5, 0.6, 'circOut')
-			doTweenAngle('camGameAngle', 'camGame', 5, 0.6, 'circOut')
+			doTweenAngle('camHudAngle', 'camHUD', 5, 0.6 / playbackRate, 'circOut')
+			doTweenAngle('camGameAngle', 'camGame', 5, 0.6 / playbackRate, 'circOut')
 		end
 		if curBeat % 4 == 2 then
-			doTweenAngle('camHudAngle', 'camHUD', -5, 0.6, 'circOut')
-			doTweenAngle('camGameAngle', 'camGame', -5, 0.6, 'circOut')
+			doTweenAngle('camHudAngle', 'camHUD', -5, 0.6 / playbackRate, 'circOut')
+			doTweenAngle('camGameAngle', 'camGame', -5, 0.6 / playbackRate, 'circOut')
 		end
 	end
 end

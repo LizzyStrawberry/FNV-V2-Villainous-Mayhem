@@ -129,27 +129,63 @@ class ResultsScreenState extends MusicBeatState
         ratingText.angle = -90;
         add(ratingText);
 
-        var mode:String = "";
-        if (PlayState.isInjectionMode) mode = "injection"; else if (PlayState.isMayhemMode) mode = "mayhem"; else mode = "campaign";
-        var reflectedRating = Reflect.field(PlayState, mode + "Rating");
-        var reflectedSongsPlayed = Reflect.field(PlayState, mode + "SongsPlayed");
-
-        if (FlxMath.roundDecimal((reflectedRating / reflectedSongsPlayed) * 100, 2) == 100.00)
-            ratingText.text = "PERFECT!   PERFECT!   PERFECT!   PERFECT!   PERFECT!   PERFECT!   PERFECT!   PERFECT!";
-        else if ((FlxMath.roundDecimal((reflectedRating / reflectedSongsPlayed) * 100, 2) >= 90.00) && (FlxMath.roundDecimal((reflectedRating / reflectedSongsPlayed) * 100, 2) <= 99.99))
-            ratingText.text = "Wahoohie!   Wahoohie!   Wahoohie!   Wahoohie!   Wahoohie!   Wahoohie!   Wahoohie!   Wahoohie!";   
-        else if ((FlxMath.roundDecimal((reflectedRating / reflectedSongsPlayed) * 100, 2)>= 80.00) && (FlxMath.roundDecimal((reflectedRating / reflectedSongsPlayed) * 100, 2) <= 89.99))
-            ratingText.text = "Great!   Great!   Great!   Great!   Great!   Great!   Great!   Great!   Great!";
-        else if ((FlxMath.roundDecimal((reflectedRating / reflectedSongsPlayed) * 100, 2)>= 70.00) && (FlxMath.roundDecimal((reflectedRating / reflectedSongsPlayed) * 100, 2) <= 79.99))
-            ratingText.text = "Good!   Good!   Good!   Good!   Good!   Good!   Good!   Good!   Good!";
-        else if ((FlxMath.roundDecimal((reflectedRating / reflectedSongsPlayed) * 100, 2)>= 69.00) && (FlxMath.roundDecimal((reflectedRating / reflectedSongsPlayed) * 100, 2) <= 69.99))
-            ratingText.text = "Sussy~   Sussy~   Sussy~   Sussy~   Sussy~   Sussy~   Sussy~   Sussy~";
-        else if ((FlxMath.roundDecimal((reflectedRating / reflectedSongsPlayed) * 100, 2) >= 60.00) && (FlxMath.roundDecimal((reflectedRating / reflectedSongsPlayed) * 100, 2)<= 68.99))
-            ratingText.text = "Okay..?   Okay..?   Okay..?   Okay..?   Okay..?   Okay..?   Okay..?   Okay..?";
-        else if ((FlxMath.roundDecimal((reflectedRating / reflectedSongsPlayed) * 100, 2) >= 50.00) && (FlxMath.roundDecimal((reflectedRating / reflectedSongsPlayed) * 100, 2) <= 59.99))
-            ratingText.text = "Passable..   Passable..   Passable..   Passable..   Passable..   Passable..   Passable..   Passable..";
+        if (PlayState.isInjectionMode)
+        {
+            if (FlxMath.roundDecimal((PlayState.injectionRating / PlayState.injectionSongsPlayed) * 100, 2) == 100.00)
+                ratingText.text = "PERFECT!   PERFECT!   PERFECT!   PERFECT!   PERFECT!   PERFECT!   PERFECT!   PERFECT!";
+            else if ((FlxMath.roundDecimal((PlayState.injectionRating / PlayState.injectionSongsPlayed) * 100, 2) >= 90.00) && (FlxMath.roundDecimal((PlayState.injectionRating / PlayState.injectionSongsPlayed) * 100, 2) <= 99.99))
+                ratingText.text = "Wahoohie!   Wahoohie!   Wahoohie!   Wahoohie!   Wahoohie!   Wahoohie!   Wahoohie!   Wahoohie!";   
+            else if ((FlxMath.roundDecimal((PlayState.injectionRating / PlayState.injectionSongsPlayed) * 100, 2)>= 80.00) && (FlxMath.roundDecimal((PlayState.injectionRating / PlayState.injectionSongsPlayed) * 100, 2) <= 89.99))
+                ratingText.text = "Great!   Great!   Great!   Great!   Great!   Great!   Great!   Great!   Great!";
+            else if ((FlxMath.roundDecimal((PlayState.injectionRating / PlayState.injectionSongsPlayed) * 100, 2)>= 70.00) && (FlxMath.roundDecimal((PlayState.injectionRating / PlayState.injectionSongsPlayed) * 100, 2) <= 79.99))
+                ratingText.text = "Good!   Good!   Good!   Good!   Good!   Good!   Good!   Good!   Good!";
+            else if ((FlxMath.roundDecimal((PlayState.injectionRating / PlayState.injectionSongsPlayed) * 100, 2)>= 69.00) && (FlxMath.roundDecimal((PlayState.injectionRating / PlayState.injectionSongsPlayed) * 100, 2) <= 69.99))
+                ratingText.text = "Sussy~   Sussy~   Sussy~   Sussy~   Sussy~   Sussy~   Sussy~   Sussy~";
+            else if ((FlxMath.roundDecimal((PlayState.injectionRating / PlayState.injectionSongsPlayed) * 100, 2) >= 60.00) && (FlxMath.roundDecimal((PlayState.injectionRating / PlayState.injectionSongsPlayed) * 100, 2)<= 68.99))
+                ratingText.text = "Okay..?   Okay..?   Okay..?   Okay..?   Okay..?   Okay..?   Okay..?   Okay..?";
+            else if ((FlxMath.roundDecimal((PlayState.injectionRating / PlayState.injectionSongsPlayed) * 100, 2) >= 50.00) && (FlxMath.roundDecimal((PlayState.injectionRating / PlayState.injectionSongsPlayed) * 100, 2) <= 59.99))
+                ratingText.text = "Passable..   Passable..   Passable..   Passable..   Passable..   Passable..   Passable..   Passable..";
+            else
+                ratingText.text = "Fail..   Fail..   Fail..   Fail..   Fail..   Fail..   Fail..   Fail..";
+        }
+        else if (PlayState.isMayhemMode)
+        {
+            if (FlxMath.roundDecimal((PlayState.mayhemRating / PlayState.mayhemSongsPlayed) * 100, 2) == 100.00)
+                ratingText.text = "PERFECT!   PERFECT!   PERFECT!   PERFECT!   PERFECT!   PERFECT!   PERFECT!   PERFECT!";
+            else if ((FlxMath.roundDecimal((PlayState.mayhemRating / PlayState.mayhemSongsPlayed) * 100, 2) >= 90.00) && (FlxMath.roundDecimal((PlayState.mayhemRating / PlayState.mayhemSongsPlayed) * 100, 2) <= 99.99))
+                ratingText.text = "Wahoohie!   Wahoohie!   Wahoohie!   Wahoohie!   Wahoohie!   Wahoohie!   Wahoohie!   Wahoohie!";   
+            else if ((FlxMath.roundDecimal((PlayState.mayhemRating / PlayState.mayhemSongsPlayed) * 100, 2) >= 80.00) && (FlxMath.roundDecimal((PlayState.mayhemRating / PlayState.mayhemSongsPlayed) * 100, 2) <= 89.99))
+                ratingText.text = "Great!   Great!   Great!   Great!   Great!   Great!   Great!   Great!   Great!";
+            else if ((FlxMath.roundDecimal((PlayState.mayhemRating / PlayState.mayhemSongsPlayed) * 100, 2) >= 70.00) && (FlxMath.roundDecimal((PlayState.mayhemRating / PlayState.mayhemSongsPlayed) * 100, 2) <= 79.99))
+                ratingText.text = "Good!   Good!   Good!   Good!   Good!   Good!   Good!   Good!   Good!";
+            else if ((FlxMath.roundDecimal((PlayState.mayhemRating / PlayState.mayhemSongsPlayed) * 100, 2) >= 69.00) && (FlxMath.roundDecimal((PlayState.mayhemRating / PlayState.mayhemSongsPlayed) * 100, 2) <= 69.99))
+                ratingText.text = "Sussy~   Sussy~   Sussy~   Sussy~   Sussy~   Sussy~   Sussy~   Sussy~";
+            else if ((FlxMath.roundDecimal((PlayState.mayhemRating / PlayState.mayhemSongsPlayed) * 100, 2) >= 60.00) && (FlxMath.roundDecimal((PlayState.mayhemRating / PlayState.mayhemSongsPlayed) * 100, 2) <= 68.99))
+                ratingText.text = "Okay..?   Okay..?   Okay..?   Okay..?   Okay..?   Okay..?   Okay..?   Okay..?";
+            else if ((FlxMath.roundDecimal((PlayState.mayhemRating / PlayState.mayhemSongsPlayed) * 100, 2) >= 50.00) && (FlxMath.roundDecimal((PlayState.mayhemRating / PlayState.mayhemSongsPlayed) * 100, 2) <= 59.99))
+                ratingText.text = "Passable..   Passable..   Passable..   Passable..   Passable..   Passable..   Passable..   Passable..";
+            else
+                ratingText.text = "Fail..   Fail..   Fail..   Fail..   Fail..   Fail..   Fail..   Fail..";
+        }
         else
-            ratingText.text = "Fail..   Fail..   Fail..   Fail..   Fail..   Fail..   Fail..   Fail..";
+        {
+            if (FlxMath.roundDecimal((ClientPrefs.campaignRating / ClientPrefs.campaignSongsPlayed) * 100, 2) == 100.00)
+                ratingText.text = "PERFECT!   PERFECT!   PERFECT!   PERFECT!   PERFECT!   PERFECT!   PERFECT!   PERFECT!";
+            else if ((FlxMath.roundDecimal((ClientPrefs.campaignRating / ClientPrefs.campaignSongsPlayed) * 100, 2) >= 90.00) && (FlxMath.roundDecimal((ClientPrefs.campaignRating / ClientPrefs.campaignSongsPlayed) * 100, 2) <= 99.99))
+                ratingText.text = "Wahoohie!   Wahoohie!   Wahoohie!   Wahoohie!   Wahoohie!   Wahoohie!   Wahoohie!   Wahoohie!";   
+            else if ((FlxMath.roundDecimal((ClientPrefs.campaignRating / ClientPrefs.campaignSongsPlayed) * 100, 2) >= 80.00) && (FlxMath.roundDecimal((ClientPrefs.campaignRating / ClientPrefs.campaignSongsPlayed) * 100, 2) <= 89.99))
+                ratingText.text = "Great!   Great!   Great!   Great!   Great!   Great!   Great!   Great!   Great!";
+            else if ((FlxMath.roundDecimal((ClientPrefs.campaignRating / ClientPrefs.campaignSongsPlayed) * 100, 2) >= 70.00) && (FlxMath.roundDecimal((ClientPrefs.campaignRating / ClientPrefs.campaignSongsPlayed) * 100, 2) <= 79.99))
+                ratingText.text = "Good!   Good!   Good!   Good!   Good!   Good!   Good!   Good!   Good!";
+            else if ((FlxMath.roundDecimal((ClientPrefs.campaignRating / ClientPrefs.campaignSongsPlayed) * 100, 2) >= 69.00) && (FlxMath.roundDecimal((ClientPrefs.campaignRating / ClientPrefs.campaignSongsPlayed) * 100, 2) <= 69.99))
+                ratingText.text = "Sussy~   Sussy~   Sussy~   Sussy~   Sussy~   Sussy~   Sussy~   Sussy~";
+            else if ((FlxMath.roundDecimal((ClientPrefs.campaignRating / ClientPrefs.campaignSongsPlayed) * 100, 2) >= 60.00) && (FlxMath.roundDecimal((ClientPrefs.campaignRating / ClientPrefs.campaignSongsPlayed) * 100, 2) <= 68.99))
+                ratingText.text = "Okay..?   Okay..?   Okay..?   Okay..?   Okay..?   Okay..?   Okay..?   Okay..?";
+            else if ((FlxMath.roundDecimal((ClientPrefs.campaignRating / ClientPrefs.campaignSongsPlayed) * 100, 2) >= 50.00) && (FlxMath.roundDecimal((ClientPrefs.campaignRating / ClientPrefs.campaignSongsPlayed) * 100, 2) <= 59.99))
+                ratingText.text = "Passable..   Passable..   Passable..   Passable..   Passable..   Passable..   Passable..   Passable..";
+            else
+                ratingText.text = "Fail..   Fail..   Fail..   Fail..   Fail..   Fail..   Fail..   Fail..";
+        }
 
         if (PlayState.isInjectionMode || PlayState.isStoryMode)
         {

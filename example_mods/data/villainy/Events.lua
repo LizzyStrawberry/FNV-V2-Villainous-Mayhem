@@ -84,17 +84,17 @@ function onUpdatePost()
 	end
 	
 	if curStep == 288 then
-		setProperty('defaultCamZoom', 1.4)
+		setProperty('defaultCamZoom', 1.4 * zoomMult)
 	end
 	
 	if curStep == 304 then
 		cameraFlash('game', 'FFFFFF', 0.7 / playbackRate, false)
 		triggerEvent('Change Character', 'dad', 'marcophase3')
-		setProperty('defaultCamZoom', 0.9)
+		setProperty('defaultCamZoom', 0.9 * zoomMult)
 	end
 	
 	if curStep == 920 then
-		setProperty('defaultCamZoom', 1.4)
+		setProperty('defaultCamZoom', 1.4 * zoomMult)
 		doTweenAlpha('bgBye', 'bg', 0, 0.4 / playbackRate, 'easeOut')
 		doTweenAlpha('fgBye', 'fg', 0, 0.4 / playbackRate, 'easeOut')
 		doTweenAlpha('neonBG', 'neonBG', 1, 0.4 / playbackRate, 'sineOut')
@@ -107,7 +107,7 @@ function onUpdatePost()
 	end
 	
 	if curStep == 927 then
-		setProperty('defaultCamZoom', 1.0)
+		setProperty('defaultCamZoom', 1.0 * zoomMult)
 		triggerEvent('Play Animation', 'chuckletits', 'dad')
 	end
 	
@@ -116,7 +116,7 @@ function onUpdatePost()
 		setProperty('boyfriend.alpha', 1)
 		setProperty('neonBG.alpha', 1)
 		cameraFlash('hud', 'FFFFFF', 0.7 / playbackRate, false)
-		setProperty('defaultCamZoom', 0.9)
+		setProperty('defaultCamZoom', 0.9 * zoomMult)
 		
 		if shadersEnabled then
 			triggerEvent('Set RTX Data', '0,0,0,0,0,0,0,0,0,0,0,0,0,20', '')
@@ -130,7 +130,7 @@ function onUpdatePost()
 	if curStep == 1232 then
 		triggerEvent('Change Character', 'dad', 'marcophase3')
 		triggerEvent('Change Character', 'bf', 'playablegf')
-		setProperty('defaultCamZoom', 0.9)
+		setProperty('defaultCamZoom', 0.9 * zoomMult)
 	end
 	
 	if curStep == 1248 then
@@ -150,7 +150,7 @@ function onUpdatePost()
 		triggerEvent('Change Character', 'dad', 'marcophase3_5')
 		doTweenAlpha('blackBG', 'blackBG', 1, 0.4 / playbackRate, 'circOut')
 		doTweenAlpha('hud', 'camHUD', 0, 0.4 / playbackRate, 'circOut')
-		setProperty('defaultCamZoom', 1.1)
+		setProperty('defaultCamZoom', 1.1 * zoomMult)
 	end
 	
 	if curStep == 1668 then
@@ -165,7 +165,7 @@ function onUpdatePost()
 	if curStep == 1688 then
 		cameraFlash('game', 'FFFFFF', 0.7 / playbackRate, false)
 		setProperty('blackBG.alpha', 0)
-		setProperty('defaultCamZoom', 0.9)
+		setProperty('defaultCamZoom', 0.9 * zoomMult)
 	end
 	
 	if curStep == 1976 then

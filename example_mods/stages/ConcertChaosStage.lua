@@ -53,7 +53,7 @@ function onCreate()
 		addLuaSprite('kaizokuBG', false)
 		addLuaSprite('kaizokuSplit', false)
 		
-		setProperty('defaultCamZoom', 0.4)
+		setProperty('defaultCamZoom', 0.4 * zoomMult)
 	end
 
 	close(true); --For performance reasons, close this script once the stage is fully loaded, as this script won't be used anymore after loading the stage

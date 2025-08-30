@@ -17,7 +17,7 @@ function onCreate()
 		addLuaSprite('seerBG', false);
 	end
 	
-	setProperty("defaultCamZoom", 0.8)
+	setProperty("defaultCamZoom", 0.75 * zoomMult)
 end
 
 function onCreatePost()

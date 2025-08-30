@@ -159,7 +159,7 @@ function onUpdate()
 	
 	if curBeat == 96 then
 		cameraFlash('game', 'FFFFFF', 0.7 / playbackRate, false)
-		setProperty('defaultCamZoom', 1.3)
+		setProperty('defaultCamZoom', 1.3 * zoomMult)
 	end
 	if curBeat == 140 or curBeat == 156 then
 		doTweenAlpha('blackBG', 'blackBG', 0.6, 0.4 / playbackRate, 'sineOut')
@@ -224,15 +224,15 @@ function onUpdate()
 			doTweenAlpha('tip', 'tip', 0, 0.4 / playbackRate, 'sineOut')
 		end
 		cameraFlash('game', 'FFFFFF', 0.7 / playbackRate, false)
-		setProperty('defaultCamZoom', 0.9)
+		setProperty('defaultCamZoom', 0.9 * zoomMult)
 		setProperty('blackBG.alpha', 0)
 	end
 	if curBeat == 224 then
-		setProperty('defaultCamZoom', 1.3)
+		setProperty('defaultCamZoom', 1.3 * zoomMult)
 	end
 	if curBeat == 256 then
 		cameraFlash('game', 'FFFFFF', 0.5 / playbackRate, false)
-		setProperty('defaultCamZoom', 0.9)
+		setProperty('defaultCamZoom', 0.9 * zoomMult)
 	end
 end
 

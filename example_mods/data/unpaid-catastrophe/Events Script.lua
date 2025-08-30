@@ -27,63 +27,63 @@ end
 
 function onUpdate()
 	if curBeat == 64 then
-		doTweenAlpha('blackBg', 'blackBG', 1, 0.7, 'circOut')
-		doTweenAlpha('hudAppear', 'camHUD', 0, 0.8, 'cubeInOut')
+		doTweenAlpha('blackBg', 'blackBG', 1, 0.7 / playbackRate, 'circOut')
+		doTweenAlpha('hudAppear', 'camHUD', 0, 0.8 / playbackRate, 'cubeInOut')
 	end
 	if curBeat == 67 then
 		triggerEvent('Change Character', 'dad', 'aizeenPhase2')
 	end
 	if curStep == 280 then
-		doTweenAlpha('hud', 'camHUD', 1, 0.9, 'linear')
+		doTweenAlpha('hud', 'camHUD', 1, 0.9 / playbackRate, 'linear')
 	end
 	if curStep == 288 then
 		setProperty('blackBG.alpha', 0)
-		cameraFlash('game', 'FFFFFF', 0.5, false)
-		setProperty('defaultCamZoom', 1.4)
+		cameraFlash('game', 'FFFFFF', 0.5 / playbackRate, false)
+		setProperty('defaultCamZoom', 1.4 * zoomMult)
 	end
 	if curStep == 408 then
-		setProperty('defaultCamZoom', 1.2)
+		setProperty('defaultCamZoom', 1.2 * zoomMult)
 	end
 	if curBeat == 96 then
-		setProperty('defaultCamZoom', 1)
+		setProperty('defaultCamZoom', 0.8 * zoomMult)
 	end
 	if curStep == 408 then
-		setProperty('defaultCamZoom', 1.2)
+		setProperty('defaultCamZoom', 1.2 * zoomMult)
 	end
 	if curStep == 410 then
-		setProperty('defaultCamZoom', 1.4)
+		setProperty('defaultCamZoom', 1.4 * zoomMult)
 	end
 	if curStep == 412 then
-		setProperty('defaultCamZoom', 1.6)
+		setProperty('defaultCamZoom', 1.6 * zoomMult)
 	end
 	if curStep == 414 then
-		setProperty('defaultCamZoom', 1.8)
+		setProperty('defaultCamZoom', 1.8 * zoomMult)
 	end
 	if curStep == 416 then
-		cameraFlash('game', 'FFFFFF', 0.5, false)
-		setProperty('defaultCamZoom', 1)
+		cameraFlash('game', 'FFFFFF', 0.5 / playbackRate, false)
+		setProperty('defaultCamZoom', 0.8 * zoomMult)
 	end
 	if curBeat == 248 then
-		cameraFlash('game', 'FFFFFF', 0.5, false)
+		cameraFlash('game', 'FFFFFF', 0.5 / playbackRate, false)
 	end
 	if curBeat == 312 then
-		cameraFlash('game', 'FFFFFF', 0.5, false)
+		cameraFlash('game', 'FFFFFF', 0.5 / playbackRate, false)
 	end
 	if curBeat == 376 then
-		setProperty('defaultCamZoom', 1.4)
+		setProperty('defaultCamZoom', 1.4 * zoomMult)
 	end
 	if curBeat == 392 then
-		setProperty('defaultCamZoom', 1.4)
+		setProperty('defaultCamZoom', 1.4 * zoomMult)
 	end
 	if curBeat == 400 then
-		setProperty('defaultCamZoom', 1)
+		setProperty('defaultCamZoom', 0.8 * zoomMult)
 	end
 	if curBeat == 408 then
-		cameraFlash('game', 'FFFFFF', 0.5, false)
+		cameraFlash('game', 'FFFFFF', 0.5 / playbackRate, false)
 	end
 	if curStep == 2000 then
-		cameraFlash('game', 'FFFFFF', 0.6, false)
-		cameraFade('game', '000000', 0.8, false)
+		cameraFlash('game', 'FFFFFF', 0.6 / playbackRate, false)
+		cameraFade('game', '000000', 0.8 / playbackRate, false)
 	end
 end
 
@@ -121,52 +121,52 @@ end
 function onTimerCompleted(tag)
 	if tag == 'woop' then
 		setPropertyFromGroup('strumLineNotes', 0, 'x', getPropertyFromGroup('strumLineNotes', 0, 'x') - 15)
-		noteTweenX('noteTweenO0', 0, getPropertyFromGroup('strumLineNotes', 0, 'x') + 15, 0.6, 'sineOut')
+		noteTweenX('noteTweenO0', 0, getPropertyFromGroup('strumLineNotes', 0, 'x') + 15, 0.6 / playbackRate, 'sineOut')
 		
 		setPropertyFromGroup('strumLineNotes', 1, 'x', getPropertyFromGroup('strumLineNotes', 1, 'x') - 10)
-		noteTweenX('noteTweenO1', 1, getPropertyFromGroup('strumLineNotes', 1, 'x') + 10, 0.6, 'sineOut')
+		noteTweenX('noteTweenO1', 1, getPropertyFromGroup('strumLineNotes', 1, 'x') + 10, 0.6 / playbackRate, 'sineOut')
 		
 		setPropertyFromGroup('strumLineNotes', 2, 'x', getPropertyFromGroup('strumLineNotes', 2, 'x') + 10)
-		noteTweenX('noteTweenO2', 2, getPropertyFromGroup('strumLineNotes', 2, 'x') - 10, 0.6, 'sineOut')
+		noteTweenX('noteTweenO2', 2, getPropertyFromGroup('strumLineNotes', 2, 'x') - 10, 0.6 / playbackRate, 'sineOut')
 		
 		setPropertyFromGroup('strumLineNotes', 3, 'x', getPropertyFromGroup('strumLineNotes', 3, 'x') + 15)
-		noteTweenX('noteTweenO3', 3, getPropertyFromGroup('strumLineNotes', 3, 'x') - 15, 0.6, 'sineOut')
+		noteTweenX('noteTweenO3', 3, getPropertyFromGroup('strumLineNotes', 3, 'x') - 15, 0.6 / playbackRate, 'sineOut')
 		
 		setPropertyFromGroup('strumLineNotes', 4, 'x', getPropertyFromGroup('strumLineNotes', 4, 'x') - 15)
-		noteTweenX('noteTweenO4', 4, getPropertyFromGroup('strumLineNotes', 4, 'x') + 15, 0.6, 'sineOut')
+		noteTweenX('noteTweenO4', 4, getPropertyFromGroup('strumLineNotes', 4, 'x') + 15, 0.6 / playbackRate, 'sineOut')
 		
 		setPropertyFromGroup('strumLineNotes', 5, 'x', getPropertyFromGroup('strumLineNotes', 5, 'x') - 10)
-		noteTweenX('noteTweenO5', 5, getPropertyFromGroup('strumLineNotes', 5, 'x') + 10, 0.6, 'sineOut')
+		noteTweenX('noteTweenO5', 5, getPropertyFromGroup('strumLineNotes', 5, 'x') + 10, 0.6 / playbackRate, 'sineOut')
 		
 		setPropertyFromGroup('strumLineNotes', 6, 'x', getPropertyFromGroup('strumLineNotes', 6, 'x') + 10)
-		noteTweenX('noteTweenO6', 6, getPropertyFromGroup('strumLineNotes', 6, 'x') - 10, 0.6, 'sineOut')
+		noteTweenX('noteTweenO6', 6, getPropertyFromGroup('strumLineNotes', 6, 'x') - 10, 0.6 / playbackRate, 'sineOut')
 		
 		setPropertyFromGroup('strumLineNotes', 7, 'x', getPropertyFromGroup('strumLineNotes', 7, 'x') + 15)
-		noteTweenX('noteTweenO7', 7, getPropertyFromGroup('strumLineNotes', 7, 'x') - 15, 0.6, 'sineOut')
+		noteTweenX('noteTweenO7', 7, getPropertyFromGroup('strumLineNotes', 7, 'x') - 15, 0.6 / playbackRate, 'sineOut')
 	end	
 	if tag == 'woop2' then
 		setPropertyFromGroup('strumLineNotes', 0, 'x', getPropertyFromGroup('strumLineNotes', 0, 'x') - 35)
 		noteTweenX('noteTweenO0', 0, getPropertyFromGroup('strumLineNotes', 0, 'x') + 35, 0.6, 'sineOut')
 		
 		setPropertyFromGroup('strumLineNotes', 1, 'x', getPropertyFromGroup('strumLineNotes', 1, 'x') - 30)
-		noteTweenX('noteTweenO1', 1, getPropertyFromGroup('strumLineNotes', 1, 'x') + 30, 0.6, 'sineOut')
+		noteTweenX('noteTweenO1', 1, getPropertyFromGroup('strumLineNotes', 1, 'x') + 30, 0.6 / playbackRate, 'sineOut')
 		
 		setPropertyFromGroup('strumLineNotes', 2, 'x', getPropertyFromGroup('strumLineNotes', 2, 'x') + 30)
-		noteTweenX('noteTweenO2', 2, getPropertyFromGroup('strumLineNotes', 2, 'x') - 30, 0.6, 'sineOut')
+		noteTweenX('noteTweenO2', 2, getPropertyFromGroup('strumLineNotes', 2, 'x') - 30, 0.6 / playbackRate, 'sineOut')
 		
 		setPropertyFromGroup('strumLineNotes', 3, 'x', getPropertyFromGroup('strumLineNotes', 3, 'x') + 35)
-		noteTweenX('noteTweenO3', 3, getPropertyFromGroup('strumLineNotes', 3, 'x') - 35, 0.6, 'sineOut')
+		noteTweenX('noteTweenO3', 3, getPropertyFromGroup('strumLineNotes', 3, 'x') - 35, 0.6 / playbackRate, 'sineOut')
 		
 		setPropertyFromGroup('strumLineNotes', 4, 'x', getPropertyFromGroup('strumLineNotes', 4, 'x') - 35)
-		noteTweenX('noteTweenO4', 4, getPropertyFromGroup('strumLineNotes', 4, 'x') + 35, 0.6, 'sineOut')
+		noteTweenX('noteTweenO4', 4, getPropertyFromGroup('strumLineNotes', 4, 'x') + 35, 0.6 / playbackRate, 'sineOut')
 		
 		setPropertyFromGroup('strumLineNotes', 5, 'x', getPropertyFromGroup('strumLineNotes', 5, 'x') - 30)
-		noteTweenX('noteTweenO5', 5, getPropertyFromGroup('strumLineNotes', 5, 'x') + 30, 0.6, 'sineOut')
+		noteTweenX('noteTweenO5', 5, getPropertyFromGroup('strumLineNotes', 5, 'x') + 30, 0.6 / playbackRate, 'sineOut')
 		
 		setPropertyFromGroup('strumLineNotes', 6, 'x', getPropertyFromGroup('strumLineNotes', 6, 'x') + 30)
-		noteTweenX('noteTweenO6', 6, getPropertyFromGroup('strumLineNotes', 6, 'x') - 30, 0.6, 'sineOut')
+		noteTweenX('noteTweenO6', 6, getPropertyFromGroup('strumLineNotes', 6, 'x') - 30, 0.6 / playbackRate, 'sineOut')
 		
 		setPropertyFromGroup('strumLineNotes', 7, 'x', getPropertyFromGroup('strumLineNotes', 7, 'x') + 35)
-		noteTweenX('noteTweenO7', 7, getPropertyFromGroup('strumLineNotes', 7, 'x') - 35, 0.6, 'sineOut')
+		noteTweenX('noteTweenO7', 7, getPropertyFromGroup('strumLineNotes', 7, 'x') - 35, 0.6 / playbackRate, 'sineOut')
 	end
 end

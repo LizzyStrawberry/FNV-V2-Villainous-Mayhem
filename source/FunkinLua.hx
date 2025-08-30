@@ -194,6 +194,11 @@ class FunkinLua {
 		set('scriptName', scriptName);
 		set('currentModDirectory', Paths.currentModDirectory);
 
+		var base = Math.max(FlxG.width / 1280, FlxG.height / 720);
+		var k = 0.9; // 0 < k < 1 → how much to keep above 1 (e.g. 0.9 = 10% Reduction)
+		var zoomMult = (base > 1) ? 1 + (base - 1) * k : base;
+		set('zoomMult', zoomMult);
+
 		#if windows
 		set('buildTarget', 'windows');
 		#elseif linux

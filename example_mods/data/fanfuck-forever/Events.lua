@@ -60,37 +60,37 @@ end
 
 function onUpdate()
 	if curBeat == 4 then
-		doTweenAlpha('marcoAppear', 'boyfriend', 1, 4, 'cubeInOut')
-		doTweenZoom('gameZoom', 'camGame', 1, 11.4, 'cubeInOut')
+		doTweenAlpha('marcoAppear', 'boyfriend', 1, 4 / playbackRate, 'cubeInOut')
+		doTweenZoom('gameZoom', 'camGame', 1, 11.4 / playbackRate, 'cubeInOut')
 	end
 	
 	if curBeat == 15 then
-		doTweenAlpha('dadAppear', 'dad', 1, 6, 'cubeInOut')
+		doTweenAlpha('dadAppear', 'dad', 1, 6 / playbackRate, 'cubeInOut')
 	end
 	if curBeat == 35 then
 		removeLuaSprite('BlackBack', true)
 		triggerEvent('Change Character', 'dad', 'FangirlP1')
-		doTweenAlpha('hudHi', 'camHUD', 1, 0.4, 'circOut')
+		doTweenAlpha('hudHi', 'camHUD', 1, 0.4 / playbackRate, 'circOut')
 		setObjectOrder('boyfriendGroup', 6)
 		setObjectOrder('gfGroup', 5)
 	end
 	if curBeat == 132 then
 		triggerEvent('Play Animation', 'turn', 'dad')
 		triggerEvent('Play Animation', 'turn', 'bf')
-		doTweenAlpha('hudGoAway', 'camHUD', 0, 0.4, 'circOut')
+		doTweenAlpha('hudGoAway', 'camHUD', 0, 0.4 / playbackRate, 'circOut')
 	end
 	
 	if curBeat == 133 then
 		setProperty('BGP2.alpha', 1)
 		removeLuaSprite('BGP1', true)
 		triggerEvent('Screen Shake', '0.1, 0.03', '')
-		doTweenX('gfMove', 'gf', GFX, 0.5, 'circOut')
+		doTweenX('gfMove', 'gf', GFX, 0.5 / playbackRate, 'circOut')
 		setProperty('gf.visible', true)
 		setProperty("iconGF.alpha", 1)
 	end
 	
 	if curStep == 534 then
-		doTweenAlpha('hudComeBack', 'camHUD', 1, 0.4, 'circOut')
+		doTweenAlpha('hudComeBack', 'camHUD', 1, 0.4 / playbackRate, 'circOut')
 	end
 	
 	if curStep == 546 then

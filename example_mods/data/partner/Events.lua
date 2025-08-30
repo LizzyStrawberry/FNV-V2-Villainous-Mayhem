@@ -72,37 +72,37 @@ function onUpdate()
 	if curBeat == 16 then
 		doTweenAlpha('fadeOut', 'blackBG', 0, 10 / playbackRate, 'cubeInOut')
 		if mechanics then
-			doTweenAlpha('bar', 'bar', 1, 1.6, 'circOut')
-			doTweenAlpha('barBack', 'barBack', 1, 1.6, 'circOut')
-			doTweenAlpha('healthBar', 'healthBar', 1, 1.6, 'circOut')
-			doTweenAlpha('healthBarBG', 'healthBarBG', 1, 1.6, 'circOut')
+			doTweenAlpha('bar', 'bar', 1, 1.6 / playbackRate, 'circOut')
+			doTweenAlpha('barBack', 'barBack', 1, 1.6 / playbackRate, 'circOut')
+			doTweenAlpha('healthBar', 'healthBar', 1, 1.6 / playbackRate, 'circOut')
+			doTweenAlpha('healthBarBG', 'healthBarBG', 1, 1.6 / playbackRate, 'circOut')
 			if not isMayhemMode then
-				doTweenAlpha('mayhembackBar', 'mayhembackBar', 1, 1.6, 'circOut')
+				doTweenAlpha('mayhembackBar', 'mayhembackBar', 1, 1.6 / playbackRate, 'circOut')
 			end
 		else
-			doTweenAlpha('healthBar', 'healthBar', 1, 1.6, 'circOut')
-			doTweenAlpha('healthBarBG', 'healthBarBG', 1, 1.6, 'circOut')
+			doTweenAlpha('healthBar', 'healthBar', 1, 1.6 / playbackRate, 'circOut')
+			doTweenAlpha('healthBarBG', 'healthBarBG', 1, 1.6 / playbackRate, 'circOut')
 		end
-		doTweenAlpha('iconP1', 'iconP1', 1, 1.6, 'circOut')
-		doTweenAlpha('iconP2', 'iconP2', 1, 1.6, 'circOut')
-		noteTweenAlpha('noteTween1', 4, 1, 1.6, 'circOut')
+		doTweenAlpha('iconP1', 'iconP1', 1, 1.6 / playbackRate, 'circOut')
+		doTweenAlpha('iconP2', 'iconP2', 1, 1.6 / playbackRate, 'circOut')
+		noteTweenAlpha('noteTween1', 4, 1, 1.6 / playbackRate, 'circOut')
 	end
 	if curBeat == 20 then
-		doTweenAlpha('watermark', 'watermark', 1, 1.6, 'circOut')
-		noteTweenAlpha('noteTween2', 5, 1, 1.6, 'circOut')
+		doTweenAlpha('watermark', 'watermark', 1, 1.6 / playbackRate, 'circOut')
+		noteTweenAlpha('noteTween2', 5, 1, 1.6 / playbackRate, 'circOut')
 	end
 	if curBeat == 24 then
-		noteTweenAlpha('noteTween3', 6, 1, 1.6, 'circOut')
+		noteTweenAlpha('noteTween3', 6, 1, 1.6 / playbackRate, 'circOut')
 	end
 	if curBeat == 28 then
-		doTweenAlpha('scoreTxt', 'scoreTxt', 1, 1.6, 'circOut')
-		noteTweenAlpha('noteTween4', 7, 1, 1.6, 'circOut')
+		doTweenAlpha('scoreTxt', 'scoreTxt', 1, 1.6 / playbackRate, 'circOut')
+		noteTweenAlpha('noteTween4', 7, 1, 1.6 / playbackRate, 'circOut')
 	end
 	if curBeat == 32 then
-		cameraFlash('game', 'FFFFFF', 0.8, false)
+		cameraFlash('game', 'FFFFFF', 0.8 / playbackRate, false)
 	end
 	if curStep == 641 and soundPlayed == false then
-		setProperty('defaultCamZoom', 1.4)
+		setProperty('defaultCamZoom', 1.4 * zoomMult)
 		runTimer('soundOn', 0.01)
 		soundPlayed = true
 		doTweenAlpha('fadeOut', 'blackBG', 1, 0.6 / playbackRate, 'circOut')
@@ -135,7 +135,7 @@ function onUpdate()
 	end
 	if curBeat == 176 then
 		setProperty('blackBG.alpha', 0)
-		cameraFlash('game', 'FFFFFF', 0.8, false)
+		cameraFlash('game', 'FFFFFF', 0.8 / playbackRate, false)
 	end
 	if curBeat == 382 then
 		doTweenZoom('gamegoWOOO', 'camGame', 1.2, 0.8 / playbackRate, 'elasticIn')
@@ -153,24 +153,24 @@ function onUpdate()
 		setProperty("boyfriend.x", screenWidth)
 		setObjectOrder("boyfriend", getObjectOrder("cutBG") + 1)
 		
-		cameraFlash('game', 'FFFFFF', 0.8, false)
+		cameraFlash('game', 'FFFFFF', 0.8 / playbackRate, false)
 		removeLuaSprite('blackBG', false)
 		
-		doTweenAlpha('scoreTxt', 'scoreTxt', 1, 0.2, 'linear')
-		doTweenAlpha('watermark', 'watermark', 1, 0.2, 'linear')
-		doTweenAlpha('watermark2', 'watermark2', 1, 0.2, 'linear')
+		doTweenAlpha('scoreTxt', 'scoreTxt', 1, 0.2 / playbackRate, 'linear')
+		doTweenAlpha('watermark', 'watermark', 1, 0.2 / playbackRate, 'linear')
+		doTweenAlpha('watermark2', 'watermark2', 1, 0.2 / playbackRate, 'linear')
 		if mechanics then
-			doTweenAlpha('bar', 'bar', 1, 0.2, 'linear')
-			doTweenAlpha('barBack', 'barBack', 1, 0.2, 'linear')
-			doTweenAlpha('healthBar', 'healthBar', 1, 0.2, 'linear')
-			doTweenAlpha('healthBarBG', 'healthBarBG', 1, 0.2, 'linear')
-			doTweenAlpha('iconP1', 'iconP1', 1, 0.2, 'linear')
-			doTweenAlpha('iconP2', 'iconP2', 1, 0.2, 'linear')
+			doTweenAlpha('bar', 'bar', 1, 0.2 / playbackRate, 'linear')
+			doTweenAlpha('barBack', 'barBack', 1, 0.2 / playbackRate, 'linear')
+			doTweenAlpha('healthBar', 'healthBar', 1, 0.2 / playbackRate, 'linear')
+			doTweenAlpha('healthBarBG', 'healthBarBG', 1, 0.2 / playbackRate, 'linear')
+			doTweenAlpha('iconP1', 'iconP1', 1, 0.2 / playbackRate, 'linear')
+			doTweenAlpha('iconP2', 'iconP2', 1, 0.2 / playbackRate, 'linear')
 		else
-			doTweenAlpha('healthBar', 'healthBar', 1, 0.2, 'linear')
-			doTweenAlpha('healthBarBG', 'healthBarBG', 1, 0.2, 'linear')
-			doTweenAlpha('iconP1', 'iconP1', 1, 0.2, 'linear')
-			doTweenAlpha('iconP2', 'iconP2', 1, 0.2, 'linear')
+			doTweenAlpha('healthBar', 'healthBar', 1, 0.2 / playbackRate, 'linear')
+			doTweenAlpha('healthBarBG', 'healthBarBG', 1, 0.2 / playbackRate, 'linear')
+			doTweenAlpha('iconP1', 'iconP1', 1, 0.2 / playbackRate, 'linear')
+			doTweenAlpha('iconP2', 'iconP2', 1, 0.2 / playbackRate, 'linear')
 		end
 	end
 	if curBeat >= 384 and curBeat < 464 then -- Stop before duet

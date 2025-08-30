@@ -8,6 +8,6 @@ function onCreate()
 		addLuaSprite('bg', false);
 	end
 	
-	setProperty('defaultCamZoom', 1.3)
+	setProperty('defaultCamZoom', 1.3 * zoomMult)
 	close(true); --For performance reasons, close this script once the stage is fully loaded, as this script won't be used anymore after loading the stage
 end

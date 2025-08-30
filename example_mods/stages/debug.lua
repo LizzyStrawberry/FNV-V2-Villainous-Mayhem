@@ -29,7 +29,7 @@ function onCreate()
 		setProperty('moreClones.alpha', 0)
 		scaleObject('moreClones', 1.7, 1.7)
 	
-		setProperty('defaultCamZoom', 0.5)
+		setProperty('defaultCamZoom', 0.5 * zoomMult)
 
 		addLuaSprite('moreClones', false);
 		addLuaSprite('clones', false);

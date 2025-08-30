@@ -45,7 +45,7 @@ function onCreate()
 		luaSpritePlayAnimation('MDL', 'twitch');
 		setLuaSpriteScrollFactor('MDL', 0.95, 0.98);
 		
-		setProperty('defaultCamZoom', 0.9)
+		setProperty('defaultCamZoom', 0.9 * zoomMult)
 
 		addLuaSprite('bgSpook', false);
 		addLuaSprite('eyes1', false);

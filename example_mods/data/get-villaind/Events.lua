@@ -133,13 +133,13 @@ function onStepHit()
 	if curStep == 214 then
 		doTweenAlpha('MorkyText', 'MorkyText', 0, 0.6 / playbackRate, 'cubeInOut')
 		triggerEvent('Play Animation', 'pomnify', 'dad')
-		setProperty('defaultCamZoom', 1.1)
+		setProperty('defaultCamZoom', 1.1 * zoomMult)
 	end
 	if curStep == 243 then
 		doTweenAngle('camGameGoSpeen', 'camGame', 360 * 3, 1.7 / playbackRate, 'cubeInOut')
 	end
 	if curStep == 252 then
-		doTweenZoom('camGameZoom', 'camGame', 1.6, 0.4 / playbackRate, 'elasticInOut')
+		doTweenZoom('camGameZoom', 'camGame', 1.6 * zoomMult, 0.4 / playbackRate, 'elasticInOut')
 	end
 	if curStep == 256 then
 		cancelTween('camGameGoSpeen')
@@ -149,14 +149,14 @@ function onStepHit()
 		setProperty('camGame.angle', 0)
 		
 		doTweenAlpha('hudgobye', 'camHUD', 1, 1.6 / playbackRate, 'circOut')
-		setProperty('defaultCamZoom', 0.9)
+		setProperty('defaultCamZoom', 0.9 * zoomMult)
 		cameraFlash('game', 'ffffff', 0.8 / playbackRate, false)
 	end
 	if curStep == 384 then
-		setProperty('defaultCamZoom', 1.6)
+		setProperty('defaultCamZoom', 1.6 * zoomMult)
 	end
 	if curStep == 388 then
-		setProperty('defaultCamZoom', 0.9)
+		setProperty('defaultCamZoom', 0.9 * zoomMult)
 		cameraFlash('game', 'ffffff', 0.8 / playbackRate, false)
 	end
 	if curStep == 512 then
@@ -168,28 +168,28 @@ function onStepHit()
 		end
 	end
 	if curStep == 752 then
-		setProperty('defaultCamZoom', 1.3)
+		setProperty('defaultCamZoom', 1.3 * zoomMult)
 		doTweenAlpha('gaemTheoreh', 'gameTHEORY', 0, 0.5 / playbackRate, 'circOut')
 	end
 	if curStep == 768 then
-		setProperty('defaultCamZoom', 0.9)
+		setProperty('defaultCamZoom', 0.9 * zoomMult)
 		cameraFlash('game', 'ffffff', 0.8 / playbackRate, false)
 	end
 	if curStep == 1280 then
 		triggerEvent("Change Character", 'dad', 'Justky')
-		setProperty('defaultCamZoom', 1.3)
+		setProperty('defaultCamZoom', 1.3 * zoomMult)
 	end
 	if curStep == 1296 then
 		triggerEvent("Change Character", 'bf', 'adamfriend')
 	end
 	if curStep == 1408 then
-		setProperty('defaultCamZoom', 1.1)
+		setProperty('defaultCamZoom', 1.1 * zoomMult)
 	end
 	if curStep == 1414 then
 		doTweenAlpha('mcdonnies', 'mcdonnies', 1, 1.5 / playbackRate, 'cubeInOut')
 	end
 	if curStep == 1520 then
-		setProperty('defaultCamZoom', 0.7)
+		setProperty('defaultCamZoom', 0.7 * zoomMult)
 	end
 	if curStep == 1528 then
 		doTweenAngle('morkSpin', 'dad', 360 * 100, 2, 'circOut')
@@ -205,7 +205,7 @@ function onStepHit()
 		setProperty('dad.scale.x', 1)
 		setProperty('dad.angle', 0)
 		
-		setProperty('defaultCamZoom', 0.9)
+		setProperty('defaultCamZoom', 0.9 * zoomMult)
 		cameraFlash('game', 'ffffff', 0.8 / playbackRate, false)
 		
 		removeLuaSprite('mcdonnies', true)
@@ -228,10 +228,10 @@ function onStepHit()
 		addGlitchEffect('bg', 1.5, 0.6, 0.3)
 	end
 	if curStep == 1784 then
-		setProperty('defaultCamZoom', 1.7)
+		setProperty('defaultCamZoom', 1.7 * zoomMult)
 	end
 	if curStep == 1792 then
-		setProperty('defaultCamZoom', 0.9)
+		setProperty('defaultCamZoom', 0.9 * zoomMult)
 		
 		if mechanics then
 			noteTweenX('noteTweenX0', 0, defaultPlayerStrumX0, 0.7 / playbackRate, 'cubeInOut')
@@ -261,10 +261,10 @@ function onStepHit()
 			noteTweenX('noteTweenX6End', 6, defaultPlayerStrumX2, 0.74 / playbackRate, 'cubeInOut')
 			noteTweenX('noteTweenX7End', 7, defaultPlayerStrumX3, 0.76 / playbackRate, 'cubeInOut')
 		end
-		setProperty('defaultCamZoom', 1.7)
+		setProperty('defaultCamZoom', 1.7 * zoomMult)
 	end
 	if curStep == 2048 then
-		setProperty('defaultCamZoom', 0.9)
+		setProperty('defaultCamZoom', 0.9 * zoomMult)
 		cameraFlash('game', 'ffffff', 0.8 / playbackRate, false)
 		
 		callScript('scripts/VideoSpriteHandler', 'makeVideoSprite', {'flamies', 'flames', -20, 175, 'camGame', 0})
@@ -301,12 +301,12 @@ function onStepHit()
 		doTweenY('backgroundZoomY', 'bg.scale', 3, 0.6 / playbackRate, 'circOut')
 		
 		doTweenAlpha('theSilly, please show up', 'videoCutscene', 0.5, 21 / playbackRate, 'cubeInOut')
-		setProperty('defaultCamZoom', 0.5)
+		setProperty('defaultCamZoom', 0.5 * zoomMult)
 	end
 	if curStep == 2560 then
 		doTweenX('backgroundZoomX', 'bg.scale', 1.5, 0.6 / playbackRate, 'circOut')
 		doTweenY('backgroundZoomY', 'bg.scale', 1.5, 0.6 / playbackRate, 'circOut')
-		setProperty('defaultCamZoom', 0.9)
+		setProperty('defaultCamZoom', 0.9 * zoomMult)
 		cameraFlash('game', 'ffffff', 0.8 / playbackRate, false)
 		setProperty('videoCutscene.alpha', 0)
 		

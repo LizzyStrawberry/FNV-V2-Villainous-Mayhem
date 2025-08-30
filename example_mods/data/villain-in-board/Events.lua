@@ -17,11 +17,11 @@ end
 
 function onBeatHit()
 	if curBeat % 4 == 0 and (curBeat >= 80 and curBeat <= 108) then
-		doTweenAlpha('sabotage', 'sabotage', 0.8, 0.06, 'circOut')
+		doTweenAlpha('sabotage', 'sabotage', 0.8, 0.06 / playbackRate, 'circOut')
 	end
 	
 	if curBeat % 4 == 2 and (curBeat >= 109 and curBeat <= 142) then
-		doTweenAlpha('sabotage', 'sabotage', 0.8, 0.06, 'circOut')
+		doTweenAlpha('sabotage', 'sabotage', 0.8, 0.06 / playbackRate, 'circOut')
 	end
 end
 
@@ -40,13 +40,13 @@ end
 
 function onTweenCompleted(tag)
 	if tag == 'sabotage' then
-		doTweenAlpha('sabotageEnd', 'sabotage', 0, 0.7, 'easeOut')
+		doTweenAlpha('sabotageEnd', 'sabotage', 0, 0.7 / playbackRate 'easeOut')
 	end
 end
 
 function onTimerCompleted(tag)
 	if tag == 'bfDiesTime' then
-		doTweenX('bfgoesweee', 'beef', 1840, 40, 'linear')
-		doTweenAngle('bfgoeswooo', 'beef', 360, 46, 'linear')
+		doTweenX('bfgoesweee', 'beef', 1840, 40 / playbackRate, 'linear')
+		doTweenAngle('bfgoeswooo', 'beef', 360, 46 / playbackRate, 'linear')
 	end
 end

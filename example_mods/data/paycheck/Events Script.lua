@@ -14,7 +14,7 @@ end
 
 function onSongStart()
 	doTweenAlpha('fadeOut', 'blackBG', 0, 17 / playbackRate, 'cubeInOut')
-	doTweenZoom('gamegoWOOO', 'camGame', 1.3, 21.2 / playbackRate, 'cubeIn')
+	doTweenZoom('gamegoWOOO', 'camGame', 1.3 * zoomMult, 21.2 / playbackRate, 'cubeIn')
 end
 
 function onUpdatePost()
@@ -94,7 +94,7 @@ function onUpdate()
 		setProperty('iconP1.alpha', 1)
 		setProperty('iconP2.alpha', 1)
 		setProperty('scoreTxt.alpha', 1)
-		cameraFlash('hud', 'FFFFFF', 1, false)
+		cameraFlash('hud', 'FFFFFF', 1 / playbackRate, false)
 	end
 end
 

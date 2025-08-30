@@ -6,7 +6,7 @@ function onCreate()
 		scaleObject('bg', 1.3, 1.1)
 	
 		if not songName == 'Cheque' then
-			setProperty('defaultCamZoom', 1.05)
+			setProperty('defaultCamZoom', 0.9 * zoomMult)
 		end
 
 		addLuaSprite('bg', false);

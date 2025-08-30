@@ -16,7 +16,7 @@ function onCreate()
 		addLuaSprite('waterOnWindow', false);
 	end
 	
-	setProperty('defaultCamZoom', 1.3)
+	setProperty('defaultCamZoom', 1.3 * zoomMult)
 	
 	runTimer('rainOnWindow', 6.4)
 	doTweenY('waterOnWindowMove', 'waterOnWindow', -50, 9, 'easeIn')

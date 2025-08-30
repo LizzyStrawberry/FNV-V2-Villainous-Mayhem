@@ -2958,6 +2958,8 @@ class PlayState extends MusicBeatState
 					strumY += daNote.offsetY;
 					strumAngle += daNote.offsetAngle;
 					strumAlpha *= daNote.multAlpha;
+					if (!daNote.mustPress)
+						daNote.visible = legacyPosition;
 
 					if (strumScroll) //Downscroll
 					{
@@ -2976,6 +2978,9 @@ class PlayState extends MusicBeatState
 					
 					// This fixes the issue with rotating the sustains, idc if it still looks a bit off | EDIT: with the other rotation code I got from emi3_, it looks even better ong
 					if (daNote.isSustainNote) {
+						if (!daNote.mustPress)
+							daNote.visible = legacyPosition;
+						
 						var strumDirection:Float = strumGroup.members[daNote.noteData].direction;
 						daNote.angle = strumDirection - 90;
 						

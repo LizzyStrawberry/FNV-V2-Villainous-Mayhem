@@ -83,7 +83,7 @@ function onUpdate()
 		doTweenAngle('camAngle', 'camGame', 15, 24 / playbackRate, 'cubeInOut')
 		doTweenAngle('camAngleHUD', 'camHUD', 15, 24 / playbackRate, 'cubeInOut')
 		
-		doTweenZoom('camGame', 'camGame', 1.4, 24 / playbackRate, 'cubeInOut')
+		doTweenZoom('camGame', 'camGame', 1.4 * zoomMult, 24 / playbackRate, 'cubeInOut')
 		
 		noteTweenDirection('GFDirectionChange', 5, 360 * 100, 24 / playbackRate, 'cubeInOut')
 		noteTweenAngle('GFAngleChange', 5, 360 * 100, 24 / playbackRate, 'cubeInOut')
@@ -101,7 +101,7 @@ function onUpdate()
 	
 	if curBeat == 144 then
 		doTweenColor('whiteBG', 'whiteBG', 'FFFFFF', 0.01 / playbackRate, 'linear')
-		cameraFlash('game', 'FFFFFF', 0.7, false)
+		cameraFlash('game', 'FFFFFF', 0.7 / playbackRate, false)
 	end
 	
 	if curBeat == 172 then

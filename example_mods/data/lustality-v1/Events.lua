@@ -26,7 +26,7 @@ function onUpdate()
 		for i = 0, 15 do
 			setProperty('heart'..i..'.alpha', 0)
 		end
-		cameraFlash('game', 'FFFFFF', 0.55, false)
+		cameraFlash('game', 'FFFFFF', 0.55 / playbackRate, false)
 		removeLuaSprite('BG', true);
 	end
 	if curBeat == 284 then

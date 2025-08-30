@@ -35,48 +35,48 @@ end
 
 function onUpdate()
 	if curBeat == 64 then
-		doTweenAlpha('blackBg', 'blackBG', 1, 0.7, 'circOut')
-		doTweenAlpha('hudAppear', 'camHUD', 0, 0.8, 'cubeInOut')
+		doTweenAlpha('blackBg', 'blackBG', 1, 0.7 / playbackRate, 'circOut')
+		doTweenAlpha('hudAppear', 'camHUD', 0, 0.8 / playbackRate, 'cubeInOut')
 		for i = 0, 3 do
-			noteTweenAlpha('dadnotes'..i, i, 0.3, 1, 'cubeInOut')
+			noteTweenAlpha('dadnotes'..i, i, 0.3, 1 / playbackRate, 'cubeInOut')
 		end
 	end
 	if curBeat == 67 then
 		triggerEvent('Change Character', 'dad', 'marcophase2')
-		setProperty('defaultCamZoom', 1.5)
+		setProperty('defaultCamZoom', 1.5 * zoomMult)
 	end
 	if curStep == 275 then
-		doTweenAlpha('blackBg', 'blackBG', 0.7, 0.3, 'cubeInOut')
+		doTweenAlpha('blackBg', 'blackBG', 0.7, 0.3 / playbackRate, 'cubeInOut')
 		triggerEvent('Play Animation', 'laugh', 'dad')
 	end
 	if curStep == 295 then
-		doTweenAlpha('blackBg', 'blackBG', 1, 0.3, 'cubeInOut')
-		doTweenAlpha('hud', 'camHUD', 1, 0.9, 'linear')
+		doTweenAlpha('blackBg', 'blackBG', 1, 0.3 / playbackRate, 'cubeInOut')
+		doTweenAlpha('hud', 'camHUD', 1, 0.9 / playbackRate, 'linear')
 	end
 	if curStep == 305 then
-		setProperty('defaultCamZoom', 1)
-		cameraFlash('game', 'FFFFFF', 0.5, false)
+		setProperty('defaultCamZoom', 0.9 * zoomMult)
+		cameraFlash('game', 'FFFFFF', 0.5 / playbackRate, false)
 		
 		setProperty('blackBG.alpha', 0)
 	end
 	if curStep == 622 then
-		setProperty('defaultCamZoom', 1.5)
+		setProperty('defaultCamZoom', 1.5 * zoomMult)
 	end
 	if curStep == 625 then
 		cameraFlash('game', 'FFFFFF', 0.5, false)
-		setProperty('defaultCamZoom', 1)
+		setProperty('defaultCamZoom', 0.9 * zoomMult)
 	end
 	if curStep == 1713 then
-		cameraFlash('game', 'FFFFFF', 0.5, false)
+		cameraFlash('game', 'FFFFFF', 0.5 / playbackRate, false)
 	end
 	if curStep == 1776 then
-		doTweenZoom('gameWOOOOOOOO', 'camGame', 1.2, 26 / playbackRate, 'cubeInOut')
+		doTweenZoom('gameWOOOOOOOO', 'camGame', 1.2 * zoomMult, 26 / playbackRate, 'cubeInOut')
 	end
 	if curStep == 1840 then
-		doTweenAlpha('hudAppear', 'camHUD', 0, 0.8, 'cubeInOut')
+		doTweenAlpha('hudAppear', 'camHUD', 0, 0.8 / playbackRate, 'cubeInOut')
 	end
 	if curStep == 2080 then
-		doTweenAlpha('blackBg', 'blackBG', 1, 0.7, 'circOut')
+		doTweenAlpha('blackBg', 'blackBG', 1, 0.7 / playbackRate, 'circOut')
 	end
 end
 

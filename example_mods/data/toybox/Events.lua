@@ -41,12 +41,12 @@ function onUpdate()
 		cancelTween('camGame')
 		cameraFlash('game', 'FFFFFF', 0.6 / playbackRate, false)
 		setProperty('camZooming', true)
-		setProperty('defaultCamZoom', 1.1)
+		setProperty('defaultCamZoom', 1.1 * zoomMult)
 	end
 	if curBeat == 96 then
 		setProperty('bg.alpha', 0)
 		setProperty('boyfriend.alpha', 0)
-		setProperty('defaultCamZoom', 0.9)
+		setProperty('defaultCamZoom', 0.9 * zoomMult)
 	end
 	if curBeat == 98 then
 		doTweenAlpha('dad', 'dad', 1, 10 / playbackRate, 'cubeInOut')
@@ -58,16 +58,16 @@ function onUpdate()
 	if curBeat == 136 then
 		setProperty('bg.alpha', 1)
 		setProperty('boyfriend.alpha', 1)
-		setProperty('defaultCamZoom', 0.95)
+		setProperty('defaultCamZoom', 0.95 * zoomMult)
 		cameraFlash('game', 'FFFFFF', 0.6 / playbackRate, false)
 		triggerEvent('Change Character', 'dad', 'Narrin Side')
 	end
 	if curBeat == 391 then
-		setProperty('defaultCamZoom', 1.5)
+		setProperty('defaultCamZoom', 1.5 * zoomMult)
 	end
 	if curBeat == 392 then
 		cameraFlash('game', 'FFFFFF', 0.6 / playbackRate, false)
-		setProperty('defaultCamZoom', 0.8)
+		setProperty('defaultCamZoom', 0.8 * zoomMult)
 	end
 	if curStep == 1584 then
 		doTweenY('dollAppear', 'dancer1', dollLocations[1][2], 1.15 / playbackRate, 'cubeInOut')

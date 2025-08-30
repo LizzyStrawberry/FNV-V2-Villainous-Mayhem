@@ -51,7 +51,7 @@ function onUpdate()
 	end
 	if curBeat == 67 then
 		triggerEvent('Change Character', 'dad', 'marcophase2')
-		setProperty('defaultCamZoom', 1.3)
+		setProperty('defaultCamZoom', 1.3 * zoomMult)
 	end
 	if curStep == 294 then
 		doTweenAlpha('blackBg', 'blackBG', 0.7, 0.3 / playbackRate, 'cubeInOut')
@@ -62,17 +62,17 @@ function onUpdate()
 		doTweenAlpha('hud', 'camHUD', 1, 0.9 / playbackRate, 'linear')
 	end
 	if curStep == 320 then
-		setProperty('defaultCamZoom', 1)
+		setProperty('defaultCamZoom', 0.9 * zoomMult)
 		cameraFlash('game', 'FFFFFF', 0.5 / playbackRate, false)
 		
 		setProperty('blackBG.alpha', 0)
 	end
 	if curStep == 700 then
-		setProperty('defaultCamZoom', 1.3)
+		setProperty('defaultCamZoom', 1.3 * zoomMult)
 	end
 	if curStep == 704 or curStep == 1472 then
 		cameraFlash('game', 'FFFFFF', 0.5 / playbackRate, false)
-		setProperty('defaultCamZoom', 0.9)
+		setProperty('defaultCamZoom', 0.9 * zoomMult)
 		
 		if shadersEnabled and shadersOn == false then
 			addBloomEffect('game', 0.35, 1.0)
@@ -103,7 +103,7 @@ function onUpdate()
 		end
 	end
 	if curStep == 1464 then
-		setProperty('defaultCamZoom', 1.3)
+		setProperty('defaultCamZoom', 1.3 * zoomMult)
 		doTweenAlpha('bg', 'bg', 1, 0.7 / playbackRate, 'circOut')
 		doTweenAlpha('fg', 'fg', 1, 0.7 / playbackRate, 'circOut')
 		doTweenColor('dad', 'dad', 'FFFFFF', 0.7 / playbackRate, 'circOut')

@@ -19,21 +19,21 @@ end
 
 function onBeatHit()
 	if curBeat == 92 then
-		doTweenAlpha('sabotage', 'sabotage', 0.8, 0.06, 'circOut')
+		doTweenAlpha('sabotage', 'sabotage', 0.8, 0.06 / playbackRate, 'circOut')
 	end
 	if curBeat == 94 then
-		doTweenAlpha('sabotage', 'sabotage', 0.8, 0.06, 'circOut')
+		doTweenAlpha('sabotage', 'sabotage', 0.8, 0.06 / playbackRate, 'circOut')
 	end
 	if curBeat == 95 then
 		cancelTween('sabotageEnd')
-		doTweenAlpha('sabotage', 'sabotage', 0.8, 0.06, 'circOut')
+		doTweenAlpha('sabotage', 'sabotage', 0.8, 0.06 / playbackRate, 'circOut')
 	end
 	if curBeat % 4 == 2 and ((curBeat >= 96 and curBeat <= 160) or (curBeat >= 256 and curBeat <= 352)) then
-		doTweenAlpha('sabotage', 'sabotage', 0.8, 0.06, 'circOut')
+		doTweenAlpha('sabotage', 'sabotage', 0.8, 0.06 / playbackRate, 'circOut')
 	end
 	if curBeat % 4 == 0 then
 		setProperty('beef.scale.y', beefOriginScaleY - 0.05)
-		doTweenY('beefY', 'beef.scale', beefOriginScaleY, 0.26, 'sineOut')
+		doTweenY('beefY', 'beef.scale', beefOriginScaleY, 0.26 / playbackRate, 'sineOut')
 	end
 end
 
@@ -52,6 +52,6 @@ end
 
 function onTweenCompleted(tag)
 	if tag == 'sabotage' then
-		doTweenAlpha('sabotageEnd', 'sabotage', 0, 0.7, 'easeOut')
+		doTweenAlpha('sabotageEnd', 'sabotage', 0, 0.7 / playbackRate, 'easeOut')
 	end
 end

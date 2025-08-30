@@ -40,7 +40,7 @@ function onCreate()
 			setProperty('beef.scale.y', 0.2)
 			setObjectOrder('dadGroup', getObjectOrder('mg') - 1)
 			setObjectOrder('beef', getObjectOrder('dadGroup') - 1)
-			setProperty('defaultCamZoom', 1.04)
+			setProperty('defaultCamZoom', 1.04 * zoomMult)
 		end
 	end
 	

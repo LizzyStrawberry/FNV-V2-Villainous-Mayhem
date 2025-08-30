@@ -66,11 +66,11 @@ function onCreate()
 	
 	makeLuaSprite('fade', 'effects/fade', 0, 2000)
 	setProperty('fade.alpha', 1)
-	scaleObject('fade', 3, 3)
+	setGraphicSize("fade", screenWidth, screenHeight)
 	addLuaSprite('fade', true)
 	
 	makeLuaSprite('whiteBG', '', 0, 0)
-	makeGraphic('whiteBG', 1280, 720, 'FFFFFF')
+	makeGraphic('whiteBG', screenWidth, screenHeight, 'FFFFFF')
 	setScrollFactor('whiteBG', 0, 0)
 	setProperty('whiteBG.alpha', 0)
 	setObjectCamera('whiteBG', 'hud')
@@ -84,6 +84,8 @@ function onCreate()
 	setProperty('boyfriend.alpha', 0)
 	
 	clonesOriginScaleY = getProperty('clones.scale.y')
+	
+	setProperty("legacyPosition", true)
 end
 
 function onUpdate()
@@ -103,7 +105,7 @@ function onUpdate()
 		removeLuaSprite('floorLight', true)
 		removeLuaSprite('light1', true)
 		setProperty('light2.alpha', 1)
-		setProperty('defaultCamZoom', 1.3)
+		setProperty('defaultCamZoom', 1.3 * zoomMult)
 		triggerEvent('Change Character', 'bf', 'lilyIntroP2')
 		doTweenAlpha('camGame', 'camGame', 1, 0.65, 'cubeInOut')
 		doTweenAlpha('light2', 'light2', 1, 0.65, 'cubeInOut')
@@ -140,7 +142,7 @@ function onUpdate()
 		setProperty('dad.y', 230)
 		scaleObject('dad', 1, 1)
 		
-		setProperty('defaultCamZoom', 1.2)
+		setProperty('defaultCamZoom', 1.2* zoomMult)
 		cameraFlash('game', 'FFFFFF', 0.5, false)
 	end
 	
@@ -221,7 +223,7 @@ function onUpdate()
 		
 		setProperty('gf.alpha', 0)
 		
-		setProperty('defaultCamZoom', 0.9)
+		setProperty('defaultCamZoom', 0.9 * zoomMult)
 
 		doTweenAlpha('managerChan', 'managerChanP2', 1, 0.001, 'linear');
 		doTweenAlpha('Aileen', 'aileenCCP2', 1, 0.001, 'linear');
@@ -262,7 +264,7 @@ function onUpdate()
 		setProperty('dad.x', 485)
 		setProperty('dad.y', 140)
 		
-		setProperty('defaultCamZoom', 0.8)
+		setProperty('defaultCamZoom', 0.8 * zoomMult)
 	end
 	
 	if curStep == 1880 then
@@ -300,7 +302,7 @@ function onUpdate()
 		setProperty('dad.x', 240)
 		setProperty('dad.y', 240)
 		
-		setProperty('defaultCamZoom', 1.2)
+		setProperty('defaultCamZoom', 1.2 * zoomMult)
 		
 		if not addShaders and shadersEnabled then
 			addBloomEffect('game', 0.15, 1.0)
@@ -335,16 +337,16 @@ function onUpdate()
 		
 		doTweenAlpha('clones', 'clones', 1, 5 / playbackRate, 'cubeInOut')
 		
-		setProperty('defaultCamZoom', 1)
+		setProperty('defaultCamZoom', 1 * zoomMult)
 	end
 	
 	if curStep == 2836 then
-		setProperty('defaultCamZoom', 1.3)
+		setProperty('defaultCamZoom', 1.3 * zoomMult)
 	end
 	
 	if curStep == 2880 then
 		doTweenAlpha('whiteBGFade', 'whiteBG', 1, 0.6, 'easeIn')
-		setProperty('defaultCamZoom', 0.4)
+		setProperty('defaultCamZoom', 0.4 * zoomMult)
 	end
 
 	-- Phase 7: Back to Stage with everyone
@@ -374,7 +376,7 @@ function onUpdate()
 		setScrollFactor('managerChanP2', 0.9, 0.9)
 		setScrollFactor('aileenCCP2', 0.9, 0.9)
 		
-		setProperty('defaultCamZoom', 1.4)
+		setProperty('defaultCamZoom', 1.4 * zoomMult)
 			
 		if shadersEnabled then
 			clearEffects('game')
@@ -383,17 +385,17 @@ function onUpdate()
 	end
 	
 	if curStep == 3152 then
-		setProperty('defaultCamZoom', 0.6)
+		setProperty('defaultCamZoom', 0.6 * zoomMult)
 	end
 	if curStep == 3408 or curStep == 3728 then
-		setProperty('defaultCamZoom', 0.8)
+		setProperty('defaultCamZoom', 0.8 * zoomMult)
 	end
 	if curStep == 3664 then
-		setProperty('defaultCamZoom', 0.55)
+		setProperty('defaultCamZoom', 0.55 * zoomMult)
 		doTweenAlpha('Audience', 'Audience', 1, 0.6, 'cubeInOut')
 	end
 	if curStep == 3856 then
-		setProperty('defaultCamZoom', 0.55)
+		setProperty('defaultCamZoom', 0.55 * zoomMult)
 	end
 	if curStep == 3952 then
 		setProperty('camGame.visible', false)

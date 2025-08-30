@@ -36,7 +36,7 @@ function onUpdate()
 		triggerEvent('Change Character', 'bf', 'Kyu')
 	end
 	if curBeat == 156 then
-		cameraFlash('game', 'FFFFFF', 0.7, false)
+		cameraFlash('game', 'FFFFFF', 0.7 / playbackRate, false)
 		triggerEvent('Change Character', 'dad', 'MichaelFAalt')
 	end
 	if curBeat == 157 then
@@ -46,7 +46,7 @@ function onUpdate()
 		triggerEvent('Change Character', 'bf', 'KyuAlt')
 	end
 	if curBeat == 188 then
-		cameraFlash('game', 'FFFFFF', 0.7, false)
+		cameraFlash('game', 'FFFFFF', 0.7 / playbackRate, false)
 	end
 end
 

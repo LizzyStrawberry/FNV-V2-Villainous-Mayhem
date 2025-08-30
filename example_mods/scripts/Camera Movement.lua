@@ -280,7 +280,7 @@ end
 
 -- Zooming
 function setZoom(charNum)
-	setProperty('defaultCamZoom', camZooms[charNum])
+	setProperty('defaultCamZoom', camZooms[charNum] * zoomMult)
 end
 
 function checkGFNoteTypes(noteType)

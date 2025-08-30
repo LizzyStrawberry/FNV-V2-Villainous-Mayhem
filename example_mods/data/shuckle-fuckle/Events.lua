@@ -113,7 +113,7 @@ function onUpdate()
 		end
 	end
 	if curBeat == 366 then
-		setProperty('defaultCamZoom', 2)
+		setProperty('defaultCamZoom', 2 * zoomMult)
 	end
 	if curBeat == 432 then
 		setProperty('camGame.alpha', 0)
@@ -123,7 +123,7 @@ function onUpdate()
 	end
 	if curBeat == 440 then
 		cameraFlash('game', 'FFFFFF', 0.6 / playbackRate, false)
-		setProperty('camGame.alpha', 1)
+		setProperty('camGame.alpha', 1 * zoomMult)
 	end
 	if curBeat == 504 then
 		setProperty('bg.alpha', 1)
@@ -380,7 +380,7 @@ function onBeatHit()
 	if curBeat == 984 then
 		cameraFlash('game', 'FFFFFF', 0.6 / playbackRate, false)
 		triggerEvent('Add Camera Zoom', '0.145', '0.145')
-		setProperty('defaultCamZoom', 0.8)
+		setProperty('defaultCamZoom', 0.8 * zoomMult)
 		doTweenAlpha('blackBG', 'blackBG', 1, 1.6 / playbackRate, 'cubeInOut')
 		doTweenAlpha('camHUD', 'camHUD', 0, 1.6 / playbackRate, 'cubeInOut')
 	end
@@ -446,6 +446,6 @@ function onTweenCompleted(tag)
 		runTimer('swingFix', getRandomFloat(0.01, 0.6))
 	end
 	if tag == 'camGame' then
-		doTweenZoom('camGameAgain', 'camGame', 1.9, 1.2 / playbackRate, 'elasticInOut')
+		doTweenZoom('camGameAgain', 'camGame', 1.9 * zoomMult, 1.2 / playbackRate, 'elasticInOut')
 	end
 end

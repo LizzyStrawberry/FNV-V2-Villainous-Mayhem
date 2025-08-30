@@ -92,7 +92,7 @@ function onBeatHit()
 			removeLuaSprite('bgIntro', true)
 		end
 		if curBeat == 384 then
-			doTweenZoom('camGame', 'camGame', 1.4, 24 / playbackRate, 'cubeInOut')
+			doTweenZoom('camGame', 'camGame', 1.4 * zoomMult, 24 / playbackRate, 'cubeInOut')
 		end
 		if curBeat == 448 then
 			cancelTween('camGame')

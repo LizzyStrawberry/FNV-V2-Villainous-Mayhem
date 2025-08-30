@@ -212,7 +212,7 @@ function onBeatHit()
 		runTimer('MorkyGlitching', 0.01)
 	end
 	if curBeat == 512 then
-		cameraFlash('game', 'FFFFFF', 1.7, false)
+		cameraFlash('game', 'FFFFFF', 1.7 / playbackRate, false)
 		doTweenAlpha('hudgoHello', 'camHUD', 1, 0.5 / playbackRate, 'linear')
 		doTweenAlpha('MorkyText', 'MorkyText', 0, 0.07 / playbackRate, 'cubeIn')
 		
@@ -304,7 +304,7 @@ function onStepHit()
 		doTweenAlpha('hudgobye', 'camHUD', 1, 1.6 / playbackRate, 'cubeInOut')
 	end
 	if curStep == 256 then
-		setProperty('defaultCamZoom', 0.9)
+		setProperty('defaultCamZoom', 0.9 * zoomMult)
 		cameraFlash('game', 'ffffff', 0.8 / playbackRate, false)
 	end
 	
@@ -336,7 +336,7 @@ function onStepHit()
 		doTweenY('Pendelum', 'Pendelum', 0, 0.3 / playbackRate, 'cubeInOut')
 	end
 	if curStep == 1406 then
-		cameraFlash('game', 'FFFFFF', 1.7, false)
+		cameraFlash('game', 'FFFFFF', 1.7 / playbackRate, false)
 		doTweenAngle('PendelumSpin', 'Pendelum', 360 * 1000, 24.5 / playbackRate, 'circOut')
 		doTweenAngle('gameGoWeeee', 'camGame', 720, 24.5 / playbackRate, 'cubeInOut')
 		doTweenAlpha('helloHypno', 'static', 1, 2.3 / playbackRate, 'cubeInOut')

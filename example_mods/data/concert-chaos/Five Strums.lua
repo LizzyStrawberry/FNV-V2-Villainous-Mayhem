@@ -123,7 +123,11 @@ function onUpdatePost()
     end
 end
 
-local ThirdTweening=true
+function onSongStart()
+    ThirdTweening = true
+end
+
+local ThirdTweening=false
 local FourthTweening=false
 local FifthTweening=false
 function onUpdate()

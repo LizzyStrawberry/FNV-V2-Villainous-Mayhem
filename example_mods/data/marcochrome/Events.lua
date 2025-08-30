@@ -53,10 +53,10 @@ function onSongStart()
 		setPropertyFromGroup('opponentStrums', i, 'y', 360);
 	end
 	
-	setPropertyFromGroup('opponentStrums', 0, 'x', 120)
-	setPropertyFromGroup('opponentStrums', 1, 'x', 120)
-	setPropertyFromGroup('opponentStrums', 2, 'x', 1000)
-	setPropertyFromGroup('opponentStrums', 3, 'x', 1000)
+	setPropertyFromGroup('opponentStrums', 0, 'x', mobileFix("X", 120))
+	setPropertyFromGroup('opponentStrums', 1, 'x', mobileFix("X", 120))
+	setPropertyFromGroup('opponentStrums', 2, 'x', mobileFix("X", 1000))
+	setPropertyFromGroup('opponentStrums', 3, 'x', mobileFix("X", 1000))
 end
 
 local heightCheck
@@ -172,7 +172,7 @@ function opponentNoteHit(id, direction, noteType, isSustainNote, noteData)
 		if noteType == 'GF Sing' then
 			if direction == 0 then
 				setPropertyFromGroup('opponentStrums', 0, 'alpha', 1)
-				setPropertyFromGroup('opponentStrums', 0, 'x', 20)
+				setPropertyFromGroup('opponentStrums', 0, 'x', mobileFix("X", 20))
 				noteTweenAlpha('noteAlpha0', 0, 0, 0.6 / playbackRate, 'circOut')
 				noteTweenX('noteY0', 0, 120, 0.6 / playbackRate, 'circOut')
 			end
@@ -190,7 +190,7 @@ function opponentNoteHit(id, direction, noteType, isSustainNote, noteData)
 			end
 			if direction == 3 then
 				setPropertyFromGroup('opponentStrums', 3, 'alpha', 1)
-				setPropertyFromGroup('opponentStrums', 3, 'x', 1100)
+				setPropertyFromGroup('opponentStrums', 3, 'x', mobileFix("X", 1100))
 				noteTweenAlpha('noteAlpha3', 3, 0, 0.6 / playbackRate, 'circOut')
 				noteTweenX('noteX3', 3, 1000, 0.6 / playbackRate, 'circOut')
 			end
@@ -242,7 +242,7 @@ function onUpdate()
 		setProperty('gf.y', getProperty('dad.y'))
 		triggerEvent('Change Character', 'gf', 'MichaelPhase3')
 		triggerEvent('Change Character', 'dad', 'MichaelPhase4')
-		cameraFlash('game', '769469', 1, false)
+		cameraFlash('game', '769469', 1 / playbackRate, false)
 		
 		triggerEvent('Change Scroll Speed', '1.4', '0.01')
 	end
@@ -261,6 +261,6 @@ end
 function onTimerCompleted(tag)
 	if tag == 'waityoudumbshit' then
 		triggerEvent('Change Character', 'dad', 'MichaelPhase2')
-		cameraFlash('game', '769469', 1, false)
+		cameraFlash('game', '769469', 1 / playbackRate, false)
 	end
 end

@@ -22,7 +22,7 @@ function onCreate()
 			makeLuaSprite('fg', 'bgs/spendthrift/foreground', -240, -40);
 			setScrollFactor('fg', 0.95, 0.95);
 			
-		elseif songName == 'Shucks V2' then
+		elseif songName == 'Shuckle Fuckle' then
 			makeLuaSprite('bg', 'bgs/marco/background-new', -240, -100)
 			setScrollFactor('bg', 0.95, 0.95)
 		
@@ -50,13 +50,13 @@ function onCreate()
 			
 		end
 		
-		setProperty('defaultCamZoom', 1.05)
+		setProperty('defaultCamZoom', 0.9 * zoomMult)
 
 		addLuaSprite('bg', false)
 		addLuaSprite('fg', false)
 		
 		if songName == 'Shuckle Fuckle' then
-			setProperty('defaultCamZoom', 2)
+			setProperty('defaultCamZoom', 2 * zoomMult)
 			addLuaSprite('ded', false)
 			addLuaSprite('stabbed', false)
 			addLuaSprite('hand', false)
@@ -69,7 +69,7 @@ function onCreate()
 end
 
 function onUpdate()
-	if songName == "Shucks V2" then
+	if songName == "Shuckle Fuckle" then
 		setProperty("stabbed.alpha", getProperty("fg.alpha"))
 		setProperty("hand.alpha", getProperty("fg.alpha"))
 	end

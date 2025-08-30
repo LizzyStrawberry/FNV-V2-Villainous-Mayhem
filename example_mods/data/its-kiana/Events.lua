@@ -13,24 +13,26 @@ function onCreate()
 	setObjectCamera('blackBG', 'game')
 	addLuaSprite('blackBG', true)
 	
-	makeLuaText('dialogue', "TEST", 2000, -370, 520)
+	makeLuaText('dialogue', "TEST", 2000, mobileFix("X", -370), 520)
 	setTextSize('dialogue', 22)
 	setProperty('dialogue.alpha', 0)
 	setObjectCamera('dialogue', 'other')
 	addLuaText('dialogue')
+	
+	setProperty("legacyPosition", true)
 end
 
 function onUpdate()
 	if curBeat == 94 then
-		setProperty('camGame.zoom', 1.0)
+		setProperty('camGame.zoom', 1.0 * zoomMult)
 	end
 	
 	if curBeat == 95 then
-		setProperty('camGame.zoom', 1.3)
+		setProperty('camGame.zoom', 1.3 * zoomMult))
 	end
 	
 	if curBeat == 96 then
-		setProperty('camGame.zoom', 1.6)
+		setProperty('camGame.zoom', 1.6 * zoomMult))
 		doTweenAlpha('blackBG', 'blackBG', 1, 0.3 / playbackRate, 'circOut')
 		triggerEvent('Change Scroll Speed', '1.3', '0.4')
 		
@@ -54,7 +56,7 @@ function onUpdate()
 		setProperty('fuckyouhaveanotherbridge.alpha', 1)
 		setProperty('BGP2.alpha', 1)
 		setProperty('fuckinPillars.alpha', 1)
-		setProperty('defaultCamZoom', 0.7)
+		setProperty('defaultCamZoom', 0.7 * zoomMult))
 		
 		triggerEvent('Change Character', 'dad', 'AsulP2')
 	
@@ -66,7 +68,7 @@ function onUpdate()
 	end
 	
 	if curBeat == 138 then
-		setProperty('defaultCamZoom', 0.35)
+		setProperty('defaultCamZoom', 0.35 * zoomMult))
 		cameraFlash('game', 'FFFFFF', 0.7 / playbackRate, false)
 		doTweenY('BGP2BackY', 'BGP2Back.scale', 3, 0.3 / playbackRate, 'circOut')
 		doTweenX('BGP2BackX', 'BGP2Back.scale', 3, 0.3 / playbackRate, 'circOut')
@@ -74,7 +76,7 @@ function onUpdate()
 	
 	if curBeat == 200 then
 		triggerEvent('Change Scroll Speed', '1', '0.2')
-		setProperty('defaultCamZoom', 0.7)
+		setProperty('defaultCamZoom', 0.7 * zoomMult))
 		doTweenY('BGP2BackY', 'BGP2Back.scale', 1.7, 0.3 / playbackRate, 'circOut')
 		doTweenX('BGP2BackX', 'BGP2Back.scale', 1.7, 0.3 / playbackRate, 'circOut')
 	end
@@ -84,14 +86,14 @@ function onUpdate()
 	end
 	
 	if curBeat == 264 then
-		setProperty('defaultCamZoom', 0.5)
+		setProperty('defaultCamZoom', 0.5 * zoomMult))
 		cameraFlash('game', 'FFFFFF', 0.7 / playbackRate, false)
 		doTweenY('BGP2BackY', 'BGP2Back.scale', 2, 0.3 / playbackRate, 'circOut')
 		doTweenX('BGP2BackX', 'BGP2Back.scale', 2, 0.3 / playbackRate, 'circOut')
 	end
 	
 	if curBeat == 296 then
-		setProperty('defaultCamZoom', 0.7)
+		setProperty('defaultCamZoom', 0.7 * zoomMult))
 		doTweenY('BGP2BackY', 'BGP2Back.scale', 1.7, 0.3 / playbackRate, 'circOut')
 		doTweenX('BGP2BackX', 'BGP2Back.scale', 1.7, 0.3 / playbackRate, 'circOut')
 		
@@ -110,13 +112,13 @@ function onUpdate()
 		end
 	end
 	if curBeat == 297 then
-		noteTweenX('note2', 5, 410, 0.5, 'expoOut')
+		noteTweenX('note2', 5, 410, 0.5 / playbackRate, 'expoOut')
 	end
 	if curBeat == 298 then
-		noteTweenX('note3', 6, 760, 0.5, 'expoOut')
+		noteTweenX('note3', 6, 760, 0.5 / playbackRate, 'expoOut')
 	end
 	if curBeat == 299 then
-		noteTweenX('note1', 7, 890, 0.5, 'expoOut')
+		noteTweenX('note1', 7, 890, 0.5 / playbackRate, 'expoOut')
 		
 		setTextString('dialogue', "I'LL SHOW YOU KIANA!")
 	end
@@ -141,7 +143,7 @@ function onUpdate()
 		setProperty('BGP2.x', -750)
 		setProperty('BGP2.y', -220)
 		
-		setProperty('defaultCamZoom', 0.7)
+		setProperty('defaultCamZoom', 0.7 * zoomMult)
 		setProperty('boyfriend.visible', false)
 		
 		triggerEvent('Change Character', 'dad', 'AsulP3')

@@ -5,7 +5,7 @@ function onCreate()
 		setScrollFactor('bg', 0.9, 0.9);
 		scaleObject('bg', 1.7, 1.7)
 	
-		setProperty('defaultCamZoom', 0.9)
+		setProperty('defaultCamZoom', 0.9 * zoomMult)
 
 		addLuaSprite('bg', false);
 	end

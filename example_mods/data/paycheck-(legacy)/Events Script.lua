@@ -16,7 +16,7 @@ end
 
 function onSongStart()
 	doTweenAlpha('fadeOut', 'blackBG', 0, 11.7 / playbackRate, 'cubeInOut')
-	doTweenZoom('gamegoWOOO', 'camGame', 1.3, 11.7 / playbackRate, 'cubeIn')
+	doTweenZoom('gamegoWOOO', 'camGame', 1.3 * zoomMult, 11.7 / playbackRate, 'cubeIn')
 end
 
 function onUpdatePost()
@@ -89,14 +89,14 @@ end
 function onUpdate()	
 	if curBeat == 32 then
 		for i = 0, 7 do
-			noteTweenAlpha('noteAlpha'..i, i, 1, 0.01, 'cubeInOut')
+			noteTweenAlpha('noteAlpha'..i, i, 1, 0.01 / playbackRate, 'cubeInOut')
 		end
 		setProperty('healthBar.alpha', 1)
 		setProperty('healthBarBG.alpha', 1)
 		setProperty('iconP1.alpha', 1)
 		setProperty('iconP2.alpha', 1)
 		setProperty('scoreTxt.alpha', 1)
-		cameraFlash('hud', 'FFFFFF', 0.5, false)
+		cameraFlash('hud', 'FFFFFF', 0.5 / playbackRate, false)
 	end
 end
 

@@ -46,7 +46,7 @@ function onCreate()
 		addLuaSprite('fuckinPillarsInFrontOfYouBitch', true);
 	end
 	
-	setProperty('defaultCamZoom', 0.7)
+	setProperty('defaultCamZoom', 0.7 * zoomMult)
 	
 	runTimer('pillarMOVEEEEE', 0.01)
 end

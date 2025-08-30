@@ -71,9 +71,9 @@ function onUpdate()
         setProperty('seizureMorky.y', getProperty('seizureMorky.y') + getRandomFloat(-shake, shake) + math.sin((currentBeat + 0.75) * math.pi))
 	end
 	if curBeat == 160 then
-		doTweenAngle('seizureMorkySpin', 'seizureMorky', 360 * 10000, 24, 'cubeIn')
-		doTweenZoom('camGameZoom', 'camGame', 1.6, 21, 'cubeInOut')
-		doTweenAlpha('camHud', 'camHUD', 0, 15, 'cubeInOut')
+		doTweenAngle('seizureMorkySpin', 'seizureMorky', 360 * 10000, 24 / playbackRate, 'cubeIn')
+		doTweenZoom('camGameZoom', 'camGame', 1.6, 21 / playbackRate, 'cubeInOut')
+		doTweenAlpha('camHud', 'camHUD', 0, 15 / playbackRate, 'cubeInOut')
 		setProperty('dad.alpha', 0)
 		setProperty('seizureMorky.alpha', 1)
 	end
@@ -84,11 +84,11 @@ function onUpdate()
 		setProperty('seizureMorky.alpha', 0)
 		setProperty('ripMorky.alpha', 1)
 		
-		doTweenY('ripMorkyMove', 'ripMorky', ripMorkyY + 10, 0.7, 'circOut')
+		doTweenY('ripMorkyMove', 'ripMorky', ripMorkyY + 10, 0.7 / playbackRate, 'circOut')
 	end
 	if curBeat == 196 then
-		cameraFlash('game', 'FFFFFF', 0.6, false)
-		setProperty('defaultCamZoom', 0.9)
+		cameraFlash('game', 'FFFFFF', 0.6 / playbackRate, false)
+		setProperty('defaultCamZoom', 0.9 * zoomMult)
 		setProperty('dad.alpha', 1)
 		setProperty('dad.x', -550)
 		setProperty('dad.y', 480)
@@ -96,14 +96,14 @@ function onUpdate()
 		
 		cancelTween('camGameZoom')
 		
-		doTweenX('dadMove', 'dad', 50, 0.8, 'circOut')
-		doTweenZoom('camGameZoom', 'camGame', 1.2, 18, 'cubeInOut')
+		doTweenX('dadMove', 'dad', 50, 0.8 / playbackRate, 'circOut')
+		doTweenZoom('camGameZoom', 'camGame', 1.2 * zoomMult, 18 / playbackRate, 'cubeInOut')
 		triggerEvent('Change Character', 'bf', 'cassetteGoonFlipped')
 	end
 	if curStep == 955 then
-		cameraFlash('hud', 'FFFFFF', 0.6, false)
+		cameraFlash('hud', 'FFFFFF', 0.6 / playbackRate, false)
 		setProperty('camHUD.alpha', 1)
-		setProperty('defaultCamZoom', 0.9)
+		setProperty('defaultCamZoom', 0.9 * zoomMult)
 	end
 	if curStep == 1126 then
 		removeLuaSprite('seizureMorky', true)
@@ -126,14 +126,14 @@ function onUpdate()
 	or curStep == 1520 or curStep == 1542 or curStep == 1564 
 	or curStep == 1585 or curStep == 1606 or curStep == 1627 
 	or curStep == 1648 or curStep == 1670 or curStep == 1692 or curStep == 1713 then
-		doTweenAlpha('sabotage', 'sabotage', 0.8, 0.06, 'circOut')
+		doTweenAlpha('sabotage', 'sabotage', 0.8, 0.06 / playbackRate, 'circOut')
 	end
 	if curBeat == 409 then
-		cameraFlash('hud', 'FFFFFF', 0.6, false)
-		doTweenAlpha('camHud', 'camHUD', 0, 15, 'cubeIn')
+		cameraFlash('hud', 'FFFFFF', 0.6 / playbackRate, false)
+		doTweenAlpha('camHud', 'camHUD', 0, 15 / playbackRate, 'cubeIn')
 	end
 	if curBeat == 456 then
-		setProperty('defaultCamZoom', 1.5)
+		setProperty('defaultCamZoom', 1.5 * zoomMult)
 	end
 	if curStep == 1831 then
 		triggerEvent('Play Animation', 'singUPmiss', 'boyfriend')
@@ -145,12 +145,12 @@ function onUpdate()
 	if curStep == 1854 then
 		removeLuaSprite('shootMorky', true)
 		setProperty('morky!.alpha', 1)
-		doTweenY('Morky!', 'morky!', MorkyY + 60, 0.7,'circInOut')
+		doTweenY('Morky!', 'morky!', MorkyY + 60, 0.7 / playbackRate,'circInOut')
 	end
 	if curBeat == 465 then
-		doTweenX('morkZoomX', 'morky!.scale', 3, 0.4, 'circOut')
-		doTweenY('morkZoomY', 'morky!.scale', 3, 0.4, 'circOut')
-		doTweenAngle('morkSpin', 'morky!', 360 * 10000, 0.4, 'circOut')
+		doTweenX('morkZoomX', 'morky!.scale', 3, 0.4 / playbackRate, 'circOut')
+		doTweenY('morkZoomY', 'morky!.scale', 3, 0.4 / playbackRate, 'circOut')
+		doTweenAngle('morkSpin', 'morky!', 360 * 10000, 0.4 / playbackRate, 'circOut')
 	end
 	if curStep == 1862 and getPropertyFromClass('ClientPrefs', 'itsameDsidesUnlocked') == false then
 		setProperty('unlockText.alpha', 1)
@@ -159,13 +159,13 @@ end
 
 function onBeatHit()
 	if curBeat % 4 == 0 and (curBeat >= 64 and curBeat <= 188) then
-		doTweenAlpha('sabotage', 'sabotage', 0.8, 0.06, 'circOut')
+		doTweenAlpha('sabotage', 'sabotage', 0.8, 0.06 / playbackRate, 'circOut')
 	end
 end
 
 function onTweenCompleted(tag)
 	if tag == 'sabotage' then
-		doTweenAlpha('sabotageEnd', 'sabotage', 0, 0.7, 'easeOut')
+		doTweenAlpha('sabotageEnd', 'sabotage', 0, 0.7 / playbackRate, 'easeOut')
 	end
 end
 

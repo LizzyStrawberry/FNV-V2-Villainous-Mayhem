@@ -50,31 +50,31 @@ local hudThings = {'iconP1', 'iconP2', 'charmSocket', 'scoreTxt', 'watermark', '
 
 function onUpdate()
 	if curBeat == 0 then
-		doTweenAlpha('blackBG', 'blackBG', 0, 7, 'cubeInOut')
+		doTweenAlpha('blackBG', 'blackBG', 0, 7 / playbackRate, 'cubeInOut')
 	end
 	if curBeat == 32 then
-		doTweenAlpha('intro2', 'intro2', 1, 4, 'cubeInOut')
+		doTweenAlpha('intro2', 'intro2', 1, 4 / playbackRate, 'cubeInOut')
 	end
 	if curBeat == 44 then
 		setObjectOrder('intro', getObjectOrder('intro') + 2)
 		setProperty('intro.alpha', 0)
 		setProperty('blackBG.color', getColorFromHex('0xF000000'))
-		doTweenAlpha('blackBG', 'blackBG', 1, 6, 'cubeInOut')
+		doTweenAlpha('blackBG', 'blackBG', 1, 6 / playbackRate, 'cubeInOut')
 	end
 	if curBeat == 62 then
 		setProperty('intro.alpha', 1)
 		loadGraphic('intro', 'bgs/iniquitous/intro3')
-		cameraFlash('game', 'FF0000', 0.4, false)
+		cameraFlash('game', 'FF0000', 0.4 / playbackRate, false)
 	end
 	if curBeat == 63 then
 		loadGraphic('intro', 'bgs/iniquitous/intro4')
-		cameraFlash('game', 'FF0000', 0.4, false)
+		cameraFlash('game', 'FF0000', 0.4 / playbackRate, false)
 	end
 	if curBeat == 64 then
 		removeLuaSprite('intro', true)
 		removeLuaSprite('intro2', true)
-		cameraFlash('game', 'FFFFFF', 0.6, false)
-		doTweenAlpha('blackBG', 'blackBG', 0, 21, 'cubeInOut')
+		cameraFlash('game', 'FFFFFF', 0.6 / playbackRate, false)
+		doTweenAlpha('blackBG', 'blackBG', 0, 21 / playbackRate, 'cubeInOut')
 	end
 	if curBeat == 96 then
 		runTimer('change', 0.01)
@@ -83,7 +83,7 @@ function onUpdate()
 		callScript("scripts/OpeningCards", "setUpCard", false)
 		setGlobalFromScript('scripts/OpeningCards', 'allowIntroCard', true)
 
-		doTweenAlpha('hud', 'camHUD', 1, 0.8, 'circOut')
+		doTweenAlpha('hud', 'camHUD', 1, 0.8 / playbackRate, 'circOut')
 		runTimer('change', 0.01)
 	end
 	if curBeat >= 129 and curBeat < 240 then
@@ -92,11 +92,11 @@ function onUpdate()
 		end
 	end
 	if curBeat == 240 then
-		doTweenAlpha('gfAppear', 'boyfriend', 1, 0.7, 'circOut')
-		doTweenAlpha('gfBGAppear', 'GFPart', 1, 0.7, 'circOut')
+		doTweenAlpha('gfAppear', 'boyfriend', 1, 0.7 / playbackRate, 'circOut')
+		doTweenAlpha('gfBGAppear', 'GFPart', 1, 0.7 / playbackRate, 'circOut')
 	end
 	if curBeat == 336 then
-		cameraFlash('game', 'FFFFFF', 0.6, false)
+		cameraFlash('game', 'FFFFFF', 0.6 / playbackRate, false)
 		
 		removeLuaSprite('BGP0', true)
 		removeLuaSprite('BGP1', true)
@@ -255,13 +255,13 @@ function onUpdate()
 	end
 	
 	if curBeat == 544 then
-		doTweenAlpha('dialogue', 'dialogue', 0, 0.8, 'cubeInOut')
-		doTweenAlpha('camHUD', 'camHUD', 1, 0.8, 'cubeInOut')
-		doTweenAlpha('blackBG', 'blackBG', 0, 8, 'cubeInOut')
+		doTweenAlpha('dialogue', 'dialogue', 0, 0.8 / playbackRate, 'cubeInOut')
+		doTweenAlpha('camHUD', 'camHUD', 1, 0.8 / playbackRate, 'cubeInOut')
+		doTweenAlpha('blackBG', 'blackBG', 0, 8 / playbackRate, 'cubeInOut')
 	end
 	
 	if curBeat == 608 then
-		cameraFlash('hud', 'ff0000', 0.6, false)
+		cameraFlash('hud', 'ff0000', 0.6 / playbackRate, false)
 		triggerEvent('Change Character', 'dad', 'iniquitousP3')
 		setProperty('dad.x', bfX + 100)
 		setProperty('dad.y', getProperty('boyfriend.y') - 550)

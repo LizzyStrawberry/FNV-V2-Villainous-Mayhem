@@ -44,7 +44,7 @@ function onUpdate()
 		end
 	end
 	if curBeat == 16 then
-		cameraFlash('game', 'FFFFFF', 0.8, false)
+		cameraFlash('game', 'FFFFFF', 0.8 / playbackRate, false)
 	end
 	if curBeat == 112 then
 		triggerEvent('Change Scroll Speed', '0.8', '0.4')
@@ -53,18 +53,18 @@ function onUpdate()
 		triggerEvent('Change Scroll Speed', '1', '0.4')
 	end
 	if curBeat == 144 then
-		cameraFlash('game', 'FFFFFF', 0.8, false)
+		cameraFlash('game', 'FFFFFF', 0.8 / playbackRate, false)
 		triggerEvent('Toggle Trail', '1', '1')
 	end
 	if curStep == 832 then
-		setProperty('defaultCamZoom', 1.2)
+		setProperty('defaultCamZoom', 1.2 * zoomMult)
 	end
 	if curStep == 835 then
-		setProperty('defaultCamZoom', 1.4)
+		setProperty('defaultCamZoom', 1.4 * zoomMult)
 	end
 	if curStep == 838 then
-		setProperty('defaultCamZoom', 0.9)
-		cameraFlash('game', 'FFFFFF', 0.8, false)
+		setProperty('defaultCamZoom', 0.9 * zoomMult)
+		cameraFlash('game', 'FFFFFF', 0.8 / playbackRate, false)
 	end
 	if curBeat == 212 then
 		triggerEvent('Toggle Trail', '0', '0')

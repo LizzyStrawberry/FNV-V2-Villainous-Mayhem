@@ -6,23 +6,13 @@ function onCreate()
 	setProperty('whiteBG.alpha', 0)
 	addLuaSprite('whiteBG', false)
 	
-	makeLuaText('tip', "Your notes are here!", 1000, -180, 170)
-	if downscroll then
-		setProperty('tip.y', 520)
-	end
-	setTextSize('tip', 34)
-	setProperty('tip.alpha', 0)
-	addLuaText('tip')
-	
 	setProperty('camGame.alpha', 0)
 	setProperty('gf.alpha', 0)
 end
 
 function onSongStart()
-	doTweenZoom('camGameZoom', 'camGame', 0.8, 11.79 / playbackRate, 'easeInOut')
+	doTweenZoom('camGameZoom', 'camGame', 0.8 * zoomMult, 11.79 / playbackRate, 'easeInOut')
 	doTweenAlpha('camGameAlpha', 'camGame', 1, 9.79 / playbackRate, 'easeInOut')
-	doTweenAlpha('tipAlpha', 'tip', 1, 0.7 / playbackRate, 'easeInOut')
-	runTimer('tipOut', 2.5 / playbackRate)
 end
 
 function onUpdate()
@@ -30,28 +20,28 @@ function onUpdate()
 		cancelTween("camGameZoom")
 		setProperty("mainCamZoom", true)
 		cameraFlash('camGame', 'FFFFFF', 0.6 / playbackRate, false)
-		setProperty('defaultCamZoom', 1.3)
+		setProperty('defaultCamZoom', 1.3 * zoomMult)
 		setProperty('camZooming', true)
 	end
 	if curBeat == 80 or curBeat == 308 then
-		setProperty('defaultCamZoom', 0.7)
+		setProperty('defaultCamZoom', 0.7 * zoomMult)
 	end
 	if curBeat == 176 then
 		setProperty('camGame.alpha', 0)
 		doTweenAlpha('camGame', 'camGame', 1, 0.8, 'quartOut')
-		setProperty('defaultCamZoom', 1.3)
+		setProperty('defaultCamZoom', 1.3 * zoomMult)
 	end
 	if curBeat == 208 then
-		setProperty('defaultCamZoom', 0.9)
+		setProperty('defaultCamZoom', 0.9 * zoomMult)
 	end
 	if curBeat == 272 then
-		setProperty('defaultCamZoom', 1.3)
+		setProperty('defaultCamZoom', 1.3 * zoomMult)
 	end
 	if curBeat == 292 then
-		setProperty('defaultCamZoom', 1.3)
+		setProperty('defaultCamZoom', 1.3 * zoomMult)
 	end
 	if curBeat == 298 then
-		setProperty('defaultCamZoom', 0.6)
+		setProperty('defaultCamZoom', 0.6 * zoomMult)
 		setProperty('camZooming', false)
 	end
 	if curBeat == 300 then
@@ -65,7 +55,7 @@ function onUpdate()
 		setProperty('gf.alpha', 1)
 		cameraShake('camGame', 0.015, 1.2 / playbackRate)
 		cameraShake('camHUD', 0.02, 1.2 / playbackRate)
-		setProperty('defaultCamZoom', 1.3)
+		setProperty('defaultCamZoom', 1.3 * zoomMult)
 	end
 	if curBeat == 500 then
 		cameraFlash('camGame', 'FFFFFF', 1.6 / playbackRate, false)
@@ -93,9 +83,6 @@ function onTimerCompleted(tag)
 		setProperty('camGame.alpha', 0)
 		setProperty('camHUD.alpha', 0)
 		doTweenY('whiteBGScaleYOut', 'whiteBG.scale', 0.02, 0.6 / playbackRate, 'quartIn')
-	end
-	if tag == 'tipOut' then
-		doTweenAlpha('tipAlpha', 'tip', 0, 0.7 / playbackRate, 'easeInOut')
 	end
 end
 

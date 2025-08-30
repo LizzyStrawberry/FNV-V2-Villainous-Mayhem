@@ -10,17 +10,9 @@ local dadX
 local glitchText = {'??????', 'ERR0R', 'D3BUG', '!*&%^(', '?!?!#&$', '??<:"{|}?', '!@#$%&^((&!^', 'BUGDEB', 'KAIZOKU', '?>_+!#@('}
 local curNum
 
-local windowXORIGIN = 0
-local windowYORIGIN = 0
-local wobbleSpeed = 1  -- Initial wobble speed
-local maxWobbleSpeed = 100  -- Maximum wobble speed
-
 function onCreate()
 	setProperty('gf.visible', false)
-	
-	windowXORIGIN = getPropertyFromClass('openfl.Lib', 'application.window.x')
-	windowYORIGIN = getPropertyFromClass('openfl.Lib', 'application.window.y')
-	
+
 	headLeftOriginY1 = getProperty('headLeft.y')
 	headLeftOriginY2 = getProperty('headLeft2.y')
 	headRightOriginY1 = getProperty('headRight.y')
@@ -75,7 +67,7 @@ end
 
 local allowTween = false
 function onSongStart()
-	doTweenZoom('beginZoom', 'camGame', 1.3, 11, 'quadIn')
+	doTweenZoom('beginZoom', 'camGame', 1.3 * zoomMult, 11 / playbackRate, 'quadIn')
     runHaxeCode([[
         game.songLength = (46 * 1000);
     ]])
@@ -85,20 +77,20 @@ end
 
 function onUpdate()
 	if curBeat == 32 then
-		doTweenAlpha('dadReveal', 'dad', 1, 1.4, 'quadIn')
-		doTweenAlpha('showUp', 'headLeft', 1, 1.4, 'cubeInOut')
+		doTweenAlpha('dadReveal', 'dad', 1, 1.4 / playbackRate, 'quadIn')
+		doTweenAlpha('showUp', 'headLeft', 1, 1.4 / playbackRate, 'cubeInOut')
 	end
 	if curBeat == 64 then
-		doTweenAlpha('showUp', 'headLeft2', 1, 1.4, 'cubeInOut')
+		doTweenAlpha('showUp', 'headLeft2', 1, 1.4 / playbackRate, 'cubeInOut')
 	end
 	if curBeat == 94 then
-		doTweenAlpha('dadRevealOff', 'dad', 0, 0.6, 'quadIn')
+		doTweenAlpha('dadRevealOff', 'dad', 0, 0.6 / playbackRate, 'quadIn')
 	end
 	if curBeat == 96 then
-		doTweenAlpha('gfReveal', 'boyfriend', 1, 1.4, 'quadIn')
-		doTweenAlpha('showUp', 'headRight', 1, 1.4, 'cubeInOut')
+		doTweenAlpha('gfReveal', 'boyfriend', 1, 1.4 / playbackRate, 'quadIn')
+		doTweenAlpha('showUp', 'headRight', 1, 1.4 / playbackRate, 'cubeInOut')
 		
-		doTweenZoom('beginZoomAgain', 'camGame', 0.8, 13, 'quadIn')
+		doTweenZoom('beginZoomAgain', 'camGame', 0.8 * zoomMult, 13 / playbackRate, 'quadIn')
 	end
 	if curBeat == 128 then
 		doTweenAlpha('showUp', 'headRight2', 1, 1.4, 'cubeInOut')
@@ -109,31 +101,25 @@ function onUpdate()
 		doTweenX('timeBarScale', 'timeBar.scale', 5, 0.7 / playbackRate, 'cubeInOut')
 	end
 	if curBeat == 136 then
-		cameraFlash('game', 'FFFFFF', 0.8, false)
+		cameraFlash('game', 'FFFFFF', 0.8 / playbackRate, false)
 		
-		doTweenAlpha('dadReveal', 'dad', 1, 0.4, 'circOut')
-		doTweenX('dadMove', 'dad', dadX, 0.7, 'circOut')
-		doTweenX('GFMove', 'boyfriend', gfX, 1.4, 'circOut')
+		doTweenAlpha('dadReveal', 'dad', 1, 0.4 / playbackRate, 'circOut')
+		doTweenX('dadMove', 'dad', dadX, 0.7 / playbackRate, 'circOut')
+		doTweenX('GFMove', 'boyfriend', gfX, 1.4 / playbackRate, 'circOut')
 		
 		if getPropertyFromClass('ClientPrefs', 'trampolineMode', true) then
-			doTweenX('trampoline', 'trampoline', gfX, 0.7, 'circOut')		
+			doTweenX('trampoline', 'trampoline', gfX, 0.7 / playbackRate, 'circOut')		
 		end
 		
-		doTweenAlpha('healthBar', 'healthBar', 1, 1.4, 'circOut')
-		doTweenAlpha('healthBarBG', 'healthBarBG', 1, 1.4, 'circOut')
+		doTweenAlpha('healthBar', 'healthBar', 1, 1.4 / playbackRate, 'circOut')
+		doTweenAlpha('healthBarBG', 'healthBarBG', 1, 1.4 / playbackRate, 'circOut')
 		for i = 1, 2 do
-			doTweenAlpha('iconP'..i..'alpha', 'iconP'..i, 1, 1.4, 'circOut')
+			doTweenAlpha('iconP'..i..'alpha', 'iconP'..i, 1, 1.4 / playbackRate, 'circOut')
 		end
 	end
 	if curBeat == 232 then
 		if shadersEnabled == true then
-			doTweenAlpha('hello', 'moreClones', 1, 20, 'easeInOut')
-		end
-	end
-	if curBeat == 400 then
-		if shadersEnabled == true then
-			cancelTween('winwin')
-			doTweenFromClass("winwin", "openfl.Lib", "application.window", {y = windowYORIGIN}, 0.7, 'circOut')
+			doTweenAlpha('hello', 'moreClones', 1, 20 / playbackRate, 'easeInOut')
 		end
 	end
 end
@@ -156,36 +142,21 @@ end
 function onBeatHit()
 	if shadersEnabled == true then
 		if curBeat % 4 == 0 then
-			doTweenY('moreClonesMoveY', 'moreClones', -340, 0.7, 'quadInOut')
+			doTweenY('moreClonesMoveY', 'moreClones', -340, 0.7 / playbackRate, 'quadInOut')
 			setProperty('moreClones.x', -900)
-			doTweenX('moreClonesMove', 'moreClones', -1800, 1.71, 'linear')
-	
-			if curBeat >= 232 and curBeat < 400 then
-				doTweenFromClass("winwin", "openfl.Lib", "application.window", {y = windowYORIGIN - wobbleSpeed}, 0.7, 'quadInOut')
-				if wobbleSpeed < 100 then
-					wobbleSpeed = wobbleSpeed + 2
-				end
-			end
+			doTweenX('moreClonesMove', 'moreClones', -1800, 1.71 / playbackRate, 'linear')
 			
 			if curBeat >= 136 and curBeat <= 400 then
 				triggerEvent('Add Camera Zoom', '0.060', '0.025')
 			end
 		end
 		if curBeat % 4 == 2 then
-			doTweenY('moreClonesMoveY', 'moreClones', -170, 0.7, 'quadInOut')
-			
-			if curBeat >= 232 and curBeat < 400 then
-				doTweenFromClass("winwin", "openfl.Lib", "application.window", {y = windowYORIGIN + wobbleSpeed}, 0.7, 'quadInOut')
-				
-				if wobbleSpeed < 100 then
-					wobbleSpeed = wobbleSpeed + 2
-				end
-			end
+			doTweenY('moreClonesMoveY', 'moreClones', -170, 0.7 / playbackRate, 'quadInOut')
 		end
 		if curBeat >= 136 then
 			if curBeat % 1 == 0 then
 				setProperty('camHUD.y', cameraHudY + 28)
-				doTweenY('canHud', 'camHUD', cameraHudY, 0.4, 'circOut')
+				doTweenY('canHud', 'camHUD', cameraHudY, 0.4 / playbackRate, 'circOut')
 			end
 		end
 	end
@@ -199,59 +170,19 @@ function onStepHit()
 		setProperty('headRight2.y', headRightOriginY2 + 20)
 		setProperty('clones.scale.y', clonesOriginScaleY - 0.08)
 		
-		doTweenY('headLeft1Bop', 'headLeft', headLeftOriginY1, 0.26, 'sineOut')
-		doTweenY('headLeft2Bop', 'headLeft2', headLeftOriginY2, 0.26, 'sineOut')
-		doTweenY('headRight1Bop', 'headRight', headRightOriginY1, 0.26, 'sineOut')
-		doTweenY('headRight2Bop', 'headRight2', headRightOriginY2, 0.26, 'sineOut')
-		doTweenY('clonesBop', 'clones.scale', clonesOriginScaleY, 0.26, 'sineOut')
+		doTweenY('headLeft1Bop', 'headLeft', headLeftOriginY1, 0.26 / playbackRate, 'sineOut')
+		doTweenY('headLeft2Bop', 'headLeft2', headLeftOriginY2, 0.26 / playbackRate, 'sineOut')
+		doTweenY('headRight1Bop', 'headRight', headRightOriginY1, 0.26 / playbackRate, 'sineOut')
+		doTweenY('headRight2Bop', 'headRight2', headRightOriginY2, 0.26 / playbackRate, 'sineOut')
+		doTweenY('clonesBop', 'clones.scale', clonesOriginScaleY, 0.26 / playbackRate, 'sineOut')
 	end
 end
 
 function onTweenCompleted(tag)
 	if tag == 'beginZoom' then
-		setProperty('defaultCamZoom', 1.3)
+		setProperty('defaultCamZoom', 1.3 * zoomMult)
 	end
 	if tag == 'beginZoomAgain' then
-		setProperty('defaultCamZoom', 0.8)
+		setProperty('defaultCamZoom', 0.8 * zoomMult)
 	end
-end
-
-function onPause()
-	setPropertyFromClass('openfl.Lib','application.window.x', windowXORIGIN)
-	setPropertyFromClass('openfl.Lib','application.window.y', windowYORIGIN)
-end
-
-function onDestroy()
-	setPropertyFromClass('openfl.Lib','application.window.x', windowXORIGIN)
-	setPropertyFromClass('openfl.Lib','application.window.y', windowYORIGIN)
-end
-
-function doTweenFromClass(tag, classVar, vars, values, duration, ease)
-    local newValue = "{"
-    if ease == nil then ease = "" end
-    for var, val in pairs(values) do newValue = newValue..var..":"..val.."," end
-    values = string.sub(newValue, 1, #newValue - 1).."}"
-    addHaxeLibrary("FunkinLua")
-    addHaxeLibrary("Type")
-    runHaxeCode([[
-        var penisExam = null;
-        var killMe = ']]..vars..[['.split('.');
-        if(killMe.length > 1) {
-            var coverMeInPiss = FunkinLua.getVarInArray(Type.resolveClass(']]..classVar..[['), killMe[0]);
-            for (i in 1...killMe.length-1) {
-                coverMeInPiss = FunkinLua.getVarInArray(coverMeInPiss, killMe[i]);
-            }
-            penisExam = FunkinLua.getVarInArray(coverMeInPiss, killMe[killMe.length-1]);
-        }
-        else
-            penisExam = FunkinLua.getVarInArray(Type.resolveClass(']]..classVar..[['), ']]..vars..[[');
-        if(penisExam != null) {
-            game.modchartTweens.set(']]..tag..[[', FlxTween.tween(penisExam, ]]..values..[[, ]]..duration..[[, {ease: game.luaArray[0].getFlxEaseByString(']]..ease..[['),
-                onComplete: function(twn:FlxTween) {
-                    game.callOnLuas('onTweenCompleted', [']]..tag..[[']);
-                    game.modchartTweens.remove(']]..tag..[[');
-                }
-            }));
-        }
-    ]])
 end

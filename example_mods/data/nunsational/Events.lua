@@ -12,14 +12,14 @@ function onUpdate()
 	health = getProperty('health')
 
 	if curStep == 28 then
-		doTweenAlpha('blackbg', 'blackbg', 0, 0.2, 'cubeInOut')
+		doTweenAlpha('blackbg', 'blackbg', 0, 0.2 / playbackRate, 'cubeInOut')
 	end
 	if curStep == 33 then
 		removeLuaSprite('blackbg', true)
-		setProperty('defaultCamZoom', 0.9)
+		setProperty('defaultCamZoom', 0.9 * zoomMult)
 	end
 	if curBeat == 100 then
-		doTweenZoom('gamegoBRRRR', 'camGame', 3, 1.5, 'sineIn')
+		doTweenZoom('gamegoBRRRR', 'camGame', 3, 1.5 / playbackRate, 'sineIn')
 	end
 	if curBeat == 104 then
 		setProperty('gf.alpha', 1)

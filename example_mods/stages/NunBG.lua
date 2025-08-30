@@ -9,9 +9,9 @@ function onCreate()
 	end
 	
 	if songName == 'Point Blank' then
-		setProperty('defaultCamZoom', 0.7)
+		setProperty('defaultCamZoom', 0.7 * zoomMult)
 	else
-		setProperty('defaultCamZoom', 1.2)
+		setProperty('defaultCamZoom', 1.2 * zoomMult)
 	end
 	close(true); --For performance reasons, close this script once the stage is fully loaded, as this script won't be used anymore after loading the stage
 end

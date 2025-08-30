@@ -21,8 +21,8 @@ function onCreatePost()
 	if difficulty == 1 then
 		setPropertyFromGroup('strumLineNotes', 0, 'x', mobileFix("X", 732))
 		setPropertyFromGroup('strumLineNotes', 1, 'x', mobileFix("X", 844))
-		setPropertyFromGroup('strumLineNotes', 4, 'x', mobileFix("X", 92))
-		setPropertyFromGroup('strumLineNotes', 5, 'x', mobileFix("X", 204))
+		setPropertyFromGroup('strumLineNotes', 4, 'x', 92)
+		setPropertyFromGroup('strumLineNotes', 5, 'x', 204)
 	end
 	for i = 0,7 do
 		x = getPropertyFromGroup('strumLineNotes', i, 'x')
@@ -42,7 +42,7 @@ end
 function onBeatHit()	
 	if curBeat % 2 == 0 then
 		setProperty('tail.scale.y', tailOriginScaleY - 0.08)
-		doTweenY('tail', 'tail.scale', tailOriginScaleY, 0.26, 'sineOut')
+		doTweenY('tail', 'tail.scale', tailOriginScaleY, 0.26 / playbackRate, 'sineOut')
 	end
 	
 	if (curBeat >= 32 and curBeat < 96) or (curBeat >= 98 and curBeat < 128) or (curBeat >= 136 and curBeat < 144) or (curBeat >= 152 and curBeat < 288) then
@@ -148,24 +148,24 @@ end
 
 function onUpdate()
 	if curBeat == 30 then
-		doTweenZoom('camZoom', 'camGame', 1.4, 0.4 / playbackRate, 'quintIn')
+		doTweenZoom('camZoom', 'camGame', 1.4 * zoomMult, 0.4 / playbackRate, 'quintIn')
 		setProperty('camZooming', true)
 	end
 	
 	if curBeat == 32 then
 		cancelTween('camZoom')
-		doTweenZoom('camZoom', 'camGame', 0.7, 0.7 / playbackRate, 'sineOut')
+		doTweenZoom('camZoom', 'camGame', 0.7 * zoomMult, 0.7 / playbackRate, 'sineOut')
 		cameraFlash('game', 'FFFFFF', 0.6 / playbackRate, false)
-		setProperty('defaultCamZoom', 0.7)
+		setProperty('defaultCamZoom', 0.7 * zoomMult)
 	end
 	
 	if curBeat == 96 or curBeat == 128 or curBeat == 144 then
-		setProperty('defaultCamZoom', 1.4)
+		setProperty('defaultCamZoom', 1.4 * zoomMult)
 	end
 	
 	if curBeat == 97 or curBeat == 136 or curBeat == 152 then
 		cameraFlash('game', 'FFFFFF', 0.6 / playbackRate, false)
-		setProperty('defaultCamZoom', 0.7)
+		setProperty('defaultCamZoom', 0.7 * zoomMult)
 	end
 	
 	if curBeat == 200 then
@@ -182,7 +182,7 @@ function onUpdate()
 		doTweenAngle('camAngle', 'camGame', 25, 36 / playbackRate, 'cubeInOut')
 		doTweenAngle('camAngleHUD', 'camHUD', 25, 36 / playbackRate, 'cubeInOut')
 		
-		doTweenZoom('camGame', 'camGame', 1.4, 34 / playbackRate, 'cubeInOut')
+		doTweenZoom('camGame', 'camGame', 1.4 * zoomMult, 34 / playbackRate, 'cubeInOut')
 		
 		noteTweenDirection('GFDirectionChange', 6, 360 * 100, 34 / playbackRate, 'cubeInOut')
 		noteTweenAngle('GFAngleChange', 6, 360 * 100, 34 / playbackRate, 'cubeInOut')

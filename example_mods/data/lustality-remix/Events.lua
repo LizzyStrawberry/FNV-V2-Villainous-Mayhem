@@ -40,7 +40,7 @@ function onUpdate()
 		for i = 0, maxHearts do
 			setProperty('heart'..i..'.alpha', 0)
 		end
-		cameraFlash('game', 'FFFFFF', 0.55, false)
+		cameraFlash('game', 'FFFFFF', 0.55 / playbackRate, false)
 		removeLuaSprite('BG', true);
 		setProperty('CFront.visible', true)
 	end
@@ -48,7 +48,7 @@ function onUpdate()
 		for i = 0, maxHearts do
 			numberX = getRandomInt(-100, 700)
 			numberY = getRandomInt(-100, 700)
-			setProperty('heart'..i..'.x', numberX)
+			setProperty('heart'..i..'.x', mobileFix("X", numberX))
 			setProperty('heart'..i..'.y', numberY)
 			
 			setProperty('heart'..i..'.alpha', 1)
@@ -111,6 +111,6 @@ function onUpdate()
 	end
 	if curBeat == 296 then
 		triggerEvent('Change Character', 'dad', 'kianaPhase3')
-		setProperty("defaultCamZoom", 0.7)
+		setProperty("defaultCamZoom", 0.7 * zoomMult)
 	end
 end

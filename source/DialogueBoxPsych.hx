@@ -193,7 +193,7 @@ class DialogueBoxPsych extends FlxSpriteGroup
 			FlxG.sound.music.fadeIn(2, 0, 1);
 		}
 		
-		bgFade = new FlxSprite(-500, -500).makeGraphic(1280, 720, FlxColor.WHITE);
+		bgFade = new FlxSprite(-500, -500).makeGraphic(FlxG.width, FlxG.height, FlxColor.WHITE);
 		bgFade.scrollFactor.set();
 		bgFade.visible = true;
 		bgFade.alpha = 0;
@@ -238,6 +238,7 @@ class DialogueBoxPsych extends FlxSpriteGroup
 		arrowThingy = new FlxSprite(0, 0).loadGraphic(Paths.image('dialogueBackground/dialogueArrow'));
 		arrowThingy.screenCenter(XY);
 		arrowThingy.x += 500;
+		arrowThingy.x = MobileUtil.fixX(arrowThingy.x);
 		arrowThingy.y += 305;
 		arrowThingy.alpha = 0;
 		add(arrowThingy);
@@ -305,7 +306,7 @@ class DialogueBoxPsych extends FlxSpriteGroup
 		}
 	}
 
-	public static var DEFAULT_TEXT_X = 175;
+	public static var DEFAULT_TEXT_X:Float = 175;
 	public static var DEFAULT_TEXT_Y = 210;
 	public static var LONG_TEXT_ADD = 20;
 	var scrollSpeed = 4000;
@@ -531,7 +532,7 @@ class DialogueBoxPsych extends FlxSpriteGroup
 		if(curDialogue.speed == null || Math.isNaN(curDialogue.speed)) curDialogue.speed = 0.05;
 		if (curDialogue.image == null || curDialogue.image == ' ' || curDialogue.image == '')
 		{
-			bgFade.makeGraphic(1280, 720, FlxColor.WHITE);
+			bgFade.makeGraphic(FlxG.width, FlxG.height, FlxColor.WHITE);
 			bgFade.screenCenter(XY);
 			bgFade.scale.set(curDialogue.imageScale, curDialogue.imageScale);
 			bgFade.alpha = curDialogue.imageAlpha;
@@ -540,7 +541,7 @@ class DialogueBoxPsych extends FlxSpriteGroup
 		{
 			bgFade.loadGraphic(Paths.image('dialogueBackground/' + curDialogue.image));
 			bgFade.screenCenter(XY);
-			bgFade.scale.set(curDialogue.imageScale, curDialogue.imageScale);
+			bgFade.setGraphicSize(FlxG.width, FlxG.height);
 			bgFade.alpha = curDialogue.imageAlpha;
 		}
 
@@ -621,10 +622,10 @@ class DialogueBoxPsych extends FlxSpriteGroup
 		{
 			case 'left':
 				box.x += 150;
-				DEFAULT_TEXT_X = 465;
+				DEFAULT_TEXT_X = MobileUtil.fixX(465);
 			default:
 				box.x -= 150;
-				DEFAULT_TEXT_X = 145;
+				DEFAULT_TEXT_X = MobileUtil.fixX(145);
 		}
 		box.updateHitbox();
 	}

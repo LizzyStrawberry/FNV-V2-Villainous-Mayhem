@@ -43,7 +43,7 @@ function onUpdate()
 		doTweenAlpha('blackBGFadeOut', 'blackBG', 0, 4.5 / playbackRate, 'cubeInOut')
 	end
 	if curBeat == 16 then
-		setProperty('defaultCamZoom', 0.9)
+		setProperty('defaultCamZoom', 0.9 * zoomMult)
 	end
 	if curBeat == 255 then
 		doTweenAlpha('BGMagic', 'WhiteBG', 1, 0.8 / playbackRate, 'cubeInOut')
