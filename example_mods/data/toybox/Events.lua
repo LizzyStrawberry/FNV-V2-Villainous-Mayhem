@@ -5,7 +5,7 @@ local dollsDeployed = 0
 function onCreate()
 	addCharacterToList('Narrin Side', 'dad')
 	setProperty('dad.alpha', 0)
-	--setProperty('camGame.alpha', 0)
+	setProperty('camGame.alpha', 0)
 	
 	for i = 1, 4 do
 		makeAnimatedLuaSprite('dancer'..i, 'bgs/narrin/Dancers', dollLocations[i][1], dollLocations[i][2] - 1000);
