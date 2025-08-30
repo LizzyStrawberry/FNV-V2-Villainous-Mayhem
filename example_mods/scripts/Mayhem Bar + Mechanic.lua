@@ -483,7 +483,6 @@ function onTweenCompleted(tag)
 				elseif songName == 'Toybox' and mechanics then
 					if curBeat >= 136 and curBeat < 456 then
 						callScript("data/toybox/Narrin Mechanic", "setUpTime", {})
-						runTimer('drainDelay', 0.3 / playbackRate)
 					end
 				end
 			end
