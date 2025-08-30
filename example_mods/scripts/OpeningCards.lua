@@ -117,17 +117,17 @@ function onCreatePost()
 	end
 
 	if songName == 'Lustality' or songName == 'Lustality V1' then
-		setUpCardDetails(true, 1.50, 30, "Cover By: Strawberry | OG By: Saster")
+		setUpCardDetails(true, 1.75, 30, "Cover By: Lizzy Strawberry | OG By: Saster")
 	end
 	
 	if songName == 'Nunsational' then
-		setUpCardDetails(true, 1.50, 30, "Cover By: Strawberry | OG By: Tenzalt")
+		setUpCardDetails(true, 1.75, 30, "Cover By: Lizzy Strawberry | OG By: Tenzalt")
 	end
 	if songName == 'Tofu' then
-		setUpCardDetails(true, 1.50, 28, "Cover By: Strawberry | OG By: SuperiorFox")
+		setUpCardDetails(true, 1.75, 28, "Cover By: Lizzy Strawberry | OG By: SuperiorFox")
 	end
 	if songName == 'Marcochrome' then
-		setUpCardDetails(true, 1.50, 28, "Cover By: Strawberry | Remix By: Aruichi Rui")
+		setUpCardDetails(true, 1.75, 28, "Cover By: Lizzy Strawberry | Remix By: Aruichi Rui")
 	end
 	if songName == 'Slow.FLP' then
 		setUpCardDetails(true, 1.05, 28, "Composed By: TheRealOscamon")
@@ -171,16 +171,16 @@ function onCreatePost()
 	end
 	
 	if songName == "It's Kiana" then
-		setUpCardDetails(true, 1.50, 28, "Cover by: Strawberry | Composed by: Sandi")
+		setUpCardDetails(true, 1.75, 28, "Cover by: Lizzy Strawberry | Composed by: Sandi")
 	end
 	if songName == 'Partner' then
-		setUpCardDetails(true, 1.50, 28, "Cover by: Strawberry | Composed by: Sturm")
+		setUpCardDetails(true, 1.75, 28, "Cover by: Lizzy Strawberry | Composed by: Sturm")
 	end
 	if songName == "Get Villain'd (Old)" then
 		setUpCardDetails(false, 1, 32, "Composed By: Zuyu")
 	end
-	if songName == 'Shucks V2' then
-		setUpCardDetails(true, 1.75, 24, "Done by: Strawberry | Voice by: Akira | Composed by: Ezzythecat")
+	if songName == 'Shuckle Fuckle' then
+		setUpCardDetails(true, 2, 24, "Cover by: Lizzy Strawberry | Voice by: Akira | Composed by: Ezzythecat")
 	end
 end
 

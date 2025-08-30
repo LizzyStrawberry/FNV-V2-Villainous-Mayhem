@@ -233,7 +233,7 @@ function onCreate()
 			setPropertyFromClass('GameOverSubstate', 'deathSoundName', 'lilyDed')
 		end
 		
-		if songName == 'Shucks V2' then
+		if songName == 'Shuckle Fuckle' then
 			addCharacterToList('gfshucksDeath', 'boyfriend')
 			setPropertyFromClass('GameOverSubstate', 'characterName', 'gfshucksDeath')
 			setPropertyFromClass('GameOverSubstate', 'loopSoundName', 'staticDeath')

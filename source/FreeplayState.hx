@@ -319,7 +319,7 @@ class FreeplayState extends MusicBeatState
 				addSong("Get Pico'd", 3, FlxColor.fromRGB(20, 153, 255));
 				addSong('Forsaken (Picmixed)', 3, FlxColor.fromRGB(39, 0, 87));
 				addSong('Partner', 3, FlxColor.fromRGB(39, 0, 87));
-				if (ClientPrefs.shucksUnlocked) addSong('Shucks V2', 3, FlxColor.fromRGB(0 ,0, 0));
+				if (ClientPrefs.shucksUnlocked) addSong('Shuckle Fuckle', 3, FlxColor.fromRGB(0 ,0, 0));
 		}
 	}
 
@@ -660,7 +660,7 @@ class FreeplayState extends MusicBeatState
 				unlockedSelection.x += 20;
 				unlockedSelection.y -= 60;
 				
-			case "Shucks V2": unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_ShucksV2'));
+			case "Shuckle Fuckle": unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_ShucksV2'));
 
 			default:
 				lockedSelection.alpha = 1;
@@ -1076,7 +1076,7 @@ class FreeplayState extends MusicBeatState
 				"Forsaken (Picmixed)", "Partner":
 				CoolUtil.difficulties = CoolUtil.mainWeekDifficulties.copy();
 
-			case "Couple Clash", "Excrete", "FNV", "Rainy Daze", "Jerry", "Marauder", "It's Kiana", "Shucks V2":
+			case "Couple Clash", "Excrete", "FNV", "Rainy Daze", "Jerry", "Marauder", "It's Kiana", "Shuckle Fuckle":
 				CoolUtil.difficulties = CoolUtil.tcDifficulties.copy();
 			
 			case "Villainy", "Point Blank", "Libidinousness":

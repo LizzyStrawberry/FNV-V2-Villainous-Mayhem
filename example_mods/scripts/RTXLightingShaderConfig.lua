@@ -197,7 +197,7 @@ local addedShader = false
 local hudThings = {'healthBar', 'healthBarBG', 'iconP1', 'iconP2', 'iconGF', 'coloredPlayerCircle', 'coloredOpponentCircle', 'charmSocket', 'iconPlayer',
 				'iconOpponent', 'timeBar', 'timeBarBG', 'reloadBar', 'mayhembackBar', 'mayhemPads', 'mayhemBar', 'mayhemText'}
 function onStepHit()
-	if curStep == 704 and songName == 'Shucks V2' and not addedShader and shadedSong then
+	if curStep == 704 and songName == 'Shuckle Fuckle' and not addedShader and shadedSong then
 		runHaxeCode([[
 			for (note in game.opponentStrums) note.shader = game.createRuntimeShader("RTXLighting");
 			for (note in game.playerStrums) note.shader = game.createRuntimeShader("RTXLighting");
