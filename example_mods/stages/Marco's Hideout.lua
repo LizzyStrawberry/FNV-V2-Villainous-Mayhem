@@ -55,7 +55,7 @@ function onCreate()
 		addLuaSprite('bg', false)
 		addLuaSprite('fg', false)
 		
-		if songName == 'Shucks V2' then
+		if songName == 'Shuckle Fuckle' then
 			setProperty('defaultCamZoom', 2)
 			addLuaSprite('ded', false)
 			addLuaSprite('stabbed', false)
@@ -63,7 +63,7 @@ function onCreate()
 		end
 	end
 
-	if songName ~= "Shucks V2" then
+	if songName ~= "Shuckle Fuckle" then
 		close(true)
 	end
 end

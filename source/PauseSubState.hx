@@ -240,9 +240,9 @@ class PauseSubState extends MusicBeatSubstate
 			case "It's Kiana":
 				bgGradient.color = 0xFF03d5ff;
 				pauseCard.color = 0xFF03d5ff;
-			case "Shucks V2":
+			case "Shuckle Fuckle":
 				bgGradient.color = 0xFF00a800;
-				pauseCard.color = 0xFF00a800;
+				pauseCard.color = 0xff5e8503;
 
 			default:
 				bgGradient.loadGraphic(Paths.image('pauseGradient/gradient_Null'));
