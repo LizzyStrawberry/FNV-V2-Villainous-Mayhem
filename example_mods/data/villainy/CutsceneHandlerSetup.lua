@@ -47,7 +47,7 @@ function onCreatePost()
         setObjectCamera('endingTXT', 'other')
         addLuaText('endingTXT')
 		
-		makeLuaText('progressThing', 'Press ENTER to Continue.', 900, 0, 650)
+		makeLuaText('progressThing', 'TAP to Continue.', 900, 0, 650)
 		setTextAlignment('progressThing', 'LEFT')
 		setTextSize('progressThing', 40)
 		setProperty('progressThing.alpha', 0)
@@ -59,7 +59,7 @@ end
 local endingSequence = 0
 local ending = false
 function onUpdate()
-	if endingSequence == 1 and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then
+	if endingSequence == 1 and pressAction() then
 		endingSequence = 2;
 		setProperty('progressThing.alpha', 0)
 		setProperty('camHUD.visible', false)
