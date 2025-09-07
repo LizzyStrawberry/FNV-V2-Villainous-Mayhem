@@ -30,7 +30,7 @@ function onCreate()
 		precacheSound('CrystalAlarm')
 		precacheSound('CrystalHit')
 		precacheSound('gfMove')
-		if not lowQuality then
+		if not performanceWarn then
 			spikeSelected = getRandomInt(1, 3)
 			----debugPrint('First Spike: '..spikeSelected)
 			
@@ -166,7 +166,7 @@ function onSongStart()
 end
 
 function onUpdate()
-	if not lowQuality then
+	if not performanceWarn then
 		if mechanics and curBeat == 96 then
 			enable = true
 		end
@@ -340,7 +340,7 @@ function onUpdate()
 end
 
 function onStepHit()
-	if not lowQuality then
+	if not performanceWarn then
 		if mechanics and enable then
 			if attack == true and (not mustHitSection) and allowAttack == true then
 				if curStep % 4 == 0 and sickBeat == 1 and (getPropertyFromClass('ClientPrefs', 'autoCharm') == 1 or botPlay) then -- THIS IS ONLY FOR THE AUTO PLAY CHARM AND botPlay
@@ -519,7 +519,7 @@ end
 
 function onTimerCompleted(tag)
 	if tag == 'getHit' then
-		if not lowQuality then
+		if not performanceWarn then
 			triggerEvent('Play Animation', 'hit', 'bf')
 		end
 		if ((isStoryMode and difficulty == 1) or (not isStoryMode and difficulty == 0)) and getPropertyFromClass('ClientPrefs', 'buff3Active') == false then
@@ -554,7 +554,7 @@ function onTimerCompleted(tag)
 	end
 	if tag == 'flashDamage' then
 		flash = false
-		if not lowQuality then
+		if not performanceWarn then
 			setProperty('boyfriend.alpha', 1)
 		else
 			setProperty('gfOptimized.alpha', 1)

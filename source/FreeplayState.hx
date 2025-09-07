@@ -34,8 +34,6 @@ class FreeplayState extends MusicBeatState
 	var blackOut:FlxSprite;
 	var messageNumber:Int = 0;
 
-	var libidiWarning:FlxText;
-
 	var newBG:FlxSprite;
 	var intendedColor:Int;
 
@@ -51,8 +49,7 @@ class FreeplayState extends MusicBeatState
 	var getLeftArrowX:Float = 0;
 	var getRightArrowX:Float = 0;
 
-	var songText:Alphabet;
-	var icon:HealthIcon;
+	var warnTxt:FlxText;
 
 	override function create()
 	{
@@ -160,18 +157,12 @@ class FreeplayState extends MusicBeatState
 
 		messageNumber = FlxG.random.int(1, 4);
 
-		if (ClientPrefs.performanceWarning)
-		{
-			libidiWarning = new FlxText(700, 100, 1000, "<R>Warning:<R>\n<DP>'Libidinousness'<DP> takes a lot of juice off of your PC.\nCan it handle it?\n<R>(It is recommended to atleast have a graphics card installed)<R>\n----------------------------
-			\n<G>Y:<G> <G>Yes<G> | <r>N:<r> <r>No<r>", 32);
-			libidiWarning.setFormat("VCR OSD Mono", 50, FlxColor.WHITE, CENTER);
-			libidiWarning.screenCenter(XY);
-			libidiWarning.alpha = 0;
-
-			CustomFontFormats.addMarkers(libidiWarning);
-
-			add(libidiWarning);
-		}
+		warnTxt = new FlxText(700, selectionText.y + 400, FlxG.width, "TEST WARNING!.", 16);
+		warnTxt.setFormat("VCR OSD Mono", 20, FlxColor.RED, CENTER);
+		warnTxt.screenCenter(XY);
+		warnTxt.y += 290;
+		warnTxt.visible = false;
+		add(warnTxt);
 		
 		var textBG:FlxSprite = new FlxSprite(0, FlxG.height - 26).makeGraphic(FlxG.width, 26, 0xFF000000);
 		textBG.alpha = 0.6;
@@ -680,13 +671,9 @@ class FreeplayState extends MusicBeatState
 	var instPlaying:Int = -1;
 	public static var vocals:FlxSound = null;
 	var holdTime:Float = 0;
-	var warning:Bool = false;
 	override function update(elapsed:Float)
 	{
-		if (FlxG.sound.music.volume < 0.7)
-		{
-			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
-		}
+		if (FlxG.sound.music.volume < 0.7) FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
 
 		lerpScore = Math.floor(FlxMath.lerp(lerpScore, intendedScore, CoolUtil.boundTo(elapsed * 24, 0, 1)));
 		lerpRating = FlxMath.lerp(lerpRating, intendedRating, CoolUtil.boundTo(elapsed * 12, 0, 1));
@@ -717,34 +704,33 @@ class FreeplayState extends MusicBeatState
 		var shiftMult:Int = 1;
 		if(FlxG.keys.pressed.SHIFT) shiftMult = 3;
 
-		if (!warning)
+		if(songs.length > 1)
 		{
-			if(songs.length > 1)
+			if (!accepted) checkForWarning(songs[curSelected].songName);
+
+			if (upP || (FlxG.mouse.overlaps(arrowSelectorLeft) && FlxG.mouse.justPressed))
 			{
-				if (upP || (FlxG.mouse.overlaps(arrowSelectorLeft) && FlxG.mouse.justPressed))
-				{
-					changeSelection(-shiftMult);
-					changeDiff();
-					holdTime = 0;
-				}
-				if (downP || (FlxG.mouse.overlaps(arrowSelectorRight) && FlxG.mouse.justPressed))
-				{
-					changeSelection(shiftMult);
-					changeDiff();
-					holdTime = 0;
-				}
+				changeSelection(-shiftMult);
+				changeDiff();
+				holdTime = 0;
+			}
+			if (downP || (FlxG.mouse.overlaps(arrowSelectorRight) && FlxG.mouse.justPressed))
+			{
+				changeSelection(shiftMult);
+				changeDiff();
+				holdTime = 0;
+			}
 
-				if(controls.UI_DOWN || controls.UI_UP)
-				{
-					var checkLastHold:Int = Math.floor((holdTime - 0.5) * 10);
-					holdTime += elapsed;
-					var checkNewHold:Int = Math.floor((holdTime - 0.5) * 10);
+			if(controls.UI_DOWN || controls.UI_UP)
+			{
+				var checkLastHold:Int = Math.floor((holdTime - 0.5) * 10);
+				holdTime += elapsed;
+				var checkNewHold:Int = Math.floor((holdTime - 0.5) * 10);
 
-					if(holdTime > 0.5 && checkNewHold - checkLastHold > 0)
-					{
-						changeSelection((checkNewHold - checkLastHold) * (controls.UI_UP ? -shiftMult : shiftMult));
-						changeDiff();
-					}
+				if(holdTime > 0.5 && checkNewHold - checkLastHold > 0)
+				{
+					changeSelection((checkNewHold - checkLastHold) * (controls.UI_UP ? -shiftMult : shiftMult));
+					changeDiff();
 				}
 			}
 
@@ -767,33 +753,20 @@ class FreeplayState extends MusicBeatState
 
 		if (controls.BACK || FlxG.mouse.justPressedRight)
 		{
-			if (warning)
+			persistentUpdate = false;
+			if(colorTween != null) colorTween.cancel();
+
+			ClientPrefs.optionsFreeplay = false;
+			FlxG.sound.play(Paths.sound('cancelMenu'));
+			if (ClientPrefs.inShop)
 			{
-				warning = false;
-				FlxTween.tween(blackOut, {alpha: 0}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
-				if (ClientPrefs.performanceWarning)
-					FlxTween.tween(libidiWarning, {alpha: 0}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
+				FlxG.sound.music.fadeOut(0.7); 
+				MusicBeatState.switchState(new ShopState());
 			}
 			else
 			{
-				persistentUpdate = false;
-				if(colorTween != null) {
-					colorTween.cancel();
-				}
-				ClientPrefs.optionsFreeplay = false;
-				FlxG.sound.play(Paths.sound('cancelMenu'));
-				if (ClientPrefs.inShop)
-				{
-					FlxG.sound.music.fadeOut(0.7); 
-					MusicBeatState.switchState(new ShopState());
-				}
-				else
-				{
-					if (songCategory.toLowerCase().startsWith("xtra"))
-						MusicBeatState.switchState(new FreeplayCategoryXtraState(), "stickers");
-					else
-						MusicBeatState.switchState(new FreeplayCategoryState(), "stickers");
-				}
+				if (songCategory.toLowerCase().startsWith("xtra")) MusicBeatState.switchState(new FreeplayCategoryXtraState(), "stickers");
+				else MusicBeatState.switchState(new FreeplayCategoryState(), "stickers");
 			}
 		}
 		if(FlxG.keys.justPressed.TAB)	
@@ -832,7 +805,7 @@ class FreeplayState extends MusicBeatState
 				#end
 			}
 		}
-		else if ((accepted || (FlxG.mouse.overlaps(transparentButton) && FlxG.mouse.justPressed)) && !warning)
+		else if (accepted || (FlxG.mouse.overlaps(transparentButton) && FlxG.mouse.justPressed))
 		{
 			persistentUpdate = false;
 			if (songs[curSelected].songName == 'Slow.FLP')
@@ -891,14 +864,13 @@ class FreeplayState extends MusicBeatState
 
 				if (songs[curSelected].songName == 'Libidinousness' && !ClientPrefs.optimizationMode && ClientPrefs.performanceWarning)
 				{
-					warning = true;
-					FlxG.sound.play(Paths.sound('scrollMenu'));
-					trace('Loading Low Quality Warning!');
-					
-					FlxTween.tween(blackOut, {alpha: 0.7}, 1.2, {ease: FlxEase.circOut, type: PERSIST});
-					FlxTween.tween(libidiWarning, {alpha: 1}, 1.2, {ease: FlxEase.circOut, type: PERSIST});
+					trace ('Low Quality (For Libidinousness) has been turned on!');
+
+					if (curDifficulty == 0) PlayState.SONG = Song.loadFromJson('libidinousness-villainousoptimized', 'libidinousness');
+					else if (curDifficulty == 1) PlayState.SONG = Song.loadFromJson('libidinousness-iniquitousoptimized', 'libidinousness');
 				}
-				else if (loadCharSelector)
+
+				if (loadCharSelector)
 				{
 					MusicBeatState.switchState(new CharSelector());
 					FlxG.sound.music.volume = 1;
@@ -922,34 +894,6 @@ class FreeplayState extends MusicBeatState
 			FlxG.sound.play(Paths.sound('scrollMenu'));
 		}
 
-		if (warning)
-		{
-			if (FlxG.keys.justPressed.Y)
-			{
-				FlxG.sound.play(Paths.sound('confirmMenu'));
-				ClientPrefs.lowQuality = false;
-				ClientPrefs.saveSettings();
-
-				if (curDifficulty == 0)
-					PlayState.SONG = Song.loadFromJson('libidinousness-villainous', 'libidinousness');
-				else if (curDifficulty == 1)
-					PlayState.SONG = Song.loadFromJson('libidinousness-iniquitous', 'libidinousness');
-			}
-			else if (FlxG.keys.justPressed.N)
-			{
-				FlxG.sound.play(Paths.sound('confirmMenu'));
-				ClientPrefs.lowQuality = true;
-				ClientPrefs.saveSettings();
-
-				if (curDifficulty == 0)
-					PlayState.SONG = Song.loadFromJson('libidinousness-villainousoptimized', 'libidinousness');
-				else if (curDifficulty == 1)
-					PlayState.SONG = Song.loadFromJson('libidinousness-iniquitousoptimized', 'libidinousness');
-			}	
-			FlxG.mouse.visible = false;
-			LoadingState.loadAndSwitchState(new PlayState());
-			FlxG.sound.music.volume = 0;
-		}
 		super.update(elapsed);
 	}
 
@@ -961,7 +905,26 @@ class FreeplayState extends MusicBeatState
 		vocals = null;
 	}
 
-	function checkForCharSelector(songName:String)
+	private function checkForWarning(songName:String)
+	{
+		if (ClientPrefs.optimizationMode) return;
+			
+		switch(songName)
+		{
+			case "Get Villaind" | "Get Villaind (Old)":
+				warnTxt.text = "WARNING: This song contains shaders and flashing imagery that could potentially trigger sensitive people.\nIf you experience seizures, please disable both mechanics and shaders through the options menu.";
+				warnTxt.visible = true;
+			
+			case "Libidinousness":
+				warnTxt.text = "WARNING: This song can potentially fail to load certain sprites on lower-end hardware due to sprite sizes.\nIt is recommended to enable the \"Performance Warning\" Version through the options menu, unless you have decent+ hardware.";
+				warnTxt.visible = true;
+
+			default:
+				warnTxt.visible = false;
+		}
+	}
+
+	private function checkForCharSelector(songName:String)
 	{
 		if (ClientPrefs.optimizationMode) return false;
 		var charSelectorSongs:Array<String> = ['Scrouge','Toxic Mishap', 'Paycheck', 'Nunday Monday', 'Nunconventional', 'Point Blank', 'Lustality Remix',
@@ -974,7 +937,8 @@ class FreeplayState extends MusicBeatState
 
 		return false;
 	}
-	function checkForMechanics(songName:String)
+	
+	private function checkForMechanics(songName:String)
 	{
 		if (ClientPrefs.mechanics)
 		{

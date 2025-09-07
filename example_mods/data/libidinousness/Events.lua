@@ -5,7 +5,7 @@ function onCreate()
 	setProperty('BG.alpha', 0)
 	setProperty('CFront.alpha', 0)
 	
-	if lowQuality then
+	if performanceWarn then
 		setProperty('dad.visible', false)
 		setProperty('boyfriend.visible', false)
 		
@@ -15,7 +15,7 @@ function onCreate()
 end
 
 function onUpdatePost()
-	if lowQuality then
+	if performanceWarn then
 		setProperty('gfOptimized.angle', getProperty('boyfriend.angle'))
 	end
 	if curBeat < 92 then
@@ -41,7 +41,7 @@ function onBeatHit()
 		end
 	end
 
-	if not lowQuality then
+	if not performanceWarn then
 		if curBeat == 16 then
 			doTweenAlpha('boyfriend', 'boyfriend', 1, 0.9 / playbackRate, 'circOut')
 		end
