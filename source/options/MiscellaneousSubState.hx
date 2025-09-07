@@ -31,14 +31,14 @@ class MiscellaneousSubState extends BaseOptionsMenu
 			false); //Default value
 		addOption(option);
 
-		var option:Option = new Option('Libidinousness Warning', //Name
-			"Leave unchecked if you do not want to deal with Libidinousness's warning screen all the time.\nIf your PC can't handle the song though, or you want to try the low quality version, keep this option checked.", //Description
+		var option:Option = new Option('Libidinousness Quality', //Name
+			"Leave unchecked if you want to experience Libidinousness fully.\nIf your phone can't handle the song, or you want to try the low quality version, keep this option checked.", //Description
 			'performanceWarning', //Save data variable name
 			'bool', //Variable type
 			false); //Default value
 		addOption(option);
 
-		if (ClientPrefs.trampolineUnlocked == true)
+		if (ClientPrefs.trampolineUnlocked)
 		{
 			var option:Option = new Option('Trampoline Mode', //Name
 				'If Checked, you play with the cool trampoline on\nCREDITS TO AFLAC FOR MAKING THE TRAMPOLINE SCRIPT!', //Description

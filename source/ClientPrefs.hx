@@ -44,7 +44,7 @@ class ClientPrefs {
 	public static var customRating:String = 'FNV';
 	public static var noteSplashMode:String = 'Inwards';
 	public static var timeBarFlash:String = 'All Enabled';
-	public static var performanceWarning:Bool = true;
+	public static var performanceWarning:Bool = false;
 	public static var allowPCChanges:Bool = false;
 
 	public static var mainWeekBeaten:Bool = false;

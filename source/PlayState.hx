@@ -635,27 +635,6 @@ class PlayState extends MusicBeatState
 			gf.scrollFactor.set(0.95, 0.95);
 			gfGroup.add(gf);
 			startCharacterLua(gf.curCharacter);
-
-			if(gfVersion == 'pico-speaker')
-			{
-				if(!ClientPrefs.lowQuality)
-				{
-					var firstTank:TankmenBG = new TankmenBG(20, 500, true);
-					firstTank.resetShit(20, 600, true);
-					firstTank.strumTime = 10;
-					tankmanRun.add(firstTank);
-
-					for (i in 0...TankmenBG.animationNotes.length)
-					{
-						if(FlxG.random.bool(16)) {
-							var tankBih = tankmanRun.recycle(TankmenBG);
-							tankBih.strumTime = TankmenBG.animationNotes[i][0];
-							tankBih.resetShit(500, 200 + FlxG.random.int(50, 100), TankmenBG.animationNotes[i][1] < 2);
-							tankmanRun.add(tankBih);
-						}
-					}
-				}
-			}
 		}
 
 		dad = new Character(0, 0, SONG.player2);
@@ -3930,10 +3909,7 @@ class PlayState extends MusicBeatState
 					}
 					else
 						MusicBeatState.switchState(new TokenAchievement());
-
-					if (PlayState.storyDifficulty >= 1 && Paths.formatToSongPath(SONG.song) == 'libidinousness' && ClientPrefs.lowQuality)
-						ClientPrefs.lowQuality = false;
-
+					
 					ClientPrefs.ghostTapping = true;
 
 					//Reset the crash detector to 0, since it means you've beaten the week and it did not crash
@@ -4057,10 +4033,8 @@ class PlayState extends MusicBeatState
 					prevCamFollow = camFollow;
 					prevCamFollowPos = camFollowPos;
 					
-					if (PlayState.injectionPlaylist[0] == 'libidinousness' && ClientPrefs.lowQuality)
-						PlayState.SONG = Song.loadFromJson('libidinousness-villainousoptimized', 'libidinousness');
-					else
-						PlayState.SONG = Song.loadFromJson(PlayState.injectionPlaylist[0] + difficulty, PlayState.injectionPlaylist[0]);
+					if (PlayState.injectionPlaylist[0] == 'libidinousness' && ClientPrefs.performanceWarning) PlayState.SONG = Song.loadFromJson('libidinousness-villainousoptimized', 'libidinousness');
+					else PlayState.SONG = Song.loadFromJson(PlayState.injectionPlaylist[0] + difficulty, PlayState.injectionPlaylist[0]);
 
 					// Character Change
 					switch(PlayState.injectionPlaylist[0])
@@ -4135,10 +4109,8 @@ class PlayState extends MusicBeatState
 				prevCamFollow = camFollow;
 				prevCamFollowPos = camFollowPos;
 					
-				if (PlayState.mayhemPlaylist[songSelected] == "libidinousness" && ClientPrefs.lowQuality)
-					PlayState.SONG = Song.loadFromJson('libidinousness-villainousoptimized', 'libidinousness');
-				else
-					PlayState.SONG = Song.loadFromJson(PlayState.mayhemPlaylist[songSelected] + difficulty, PlayState.mayhemPlaylist[songSelected]);
+				if (PlayState.mayhemPlaylist[songSelected] == "libidinousness" && ClientPrefs.performanceWarning) PlayState.SONG = Song.loadFromJson('libidinousness-villainousoptimized', 'libidinousness');
+				else PlayState.SONG = Song.loadFromJson(PlayState.mayhemPlaylist[songSelected] + difficulty, PlayState.mayhemPlaylist[songSelected]);
 
 				// Character Change
 				switch(PlayState.mayhemPlaylist[songSelected])
@@ -4152,8 +4124,7 @@ class PlayState extends MusicBeatState
 				}
 
 				// Unlock Secret Song
-				if (!ClientPrefs.shucksUnlocked && PlayState.mayhemPlaylist[songSelected] == "shucks-v2")
-					ClientPrefs.shucksUnlocked = true;
+				if (!ClientPrefs.shucksUnlocked && PlayState.mayhemPlaylist[songSelected] == "shucks-v2") ClientPrefs.shucksUnlocked = true;
 					
 				FlxG.sound.music.stop();
 
@@ -4182,9 +4153,6 @@ class PlayState extends MusicBeatState
 				trace('WENT BACK TO FREEPLAY??');
 				WeekData.loadTheFirstEnabledMod();
 				cancelMusicFadeTween();
-				
-				if (Paths.formatToSongPath(SONG.song) == 'libidinousness' && ClientPrefs.lowQuality)
-					ClientPrefs.lowQuality = false;
 
 				var noHelp:Bool = !ClientPrefs.getGameplaySetting('practice', false) && !ClientPrefs.getGameplaySetting('botplay', false);
 				saveContents(noHelp);
@@ -4258,7 +4226,7 @@ class PlayState extends MusicBeatState
 		switch(loweredType)
 		{
 			case "optimization":
-				reflectType = Reflect.field(ClientPrefs, (type.toLowerCase() == "optimization") ? "optimizationMode" : "lowQuality");
+				reflectType = Reflect.field(ClientPrefs, "optimizationMode");
 				endType = "optimized";
 
 				if (reflectType && PlayState.storyPlaylist[0] == song && Song.loadFromJson(song + diff + endType, song) != null)
@@ -5183,7 +5151,7 @@ class PlayState extends MusicBeatState
 				if (Paths.formatToSongPath(SONG.song) == 'villainy' || Paths.formatToSongPath(SONG.song) == 'point-blank' || Paths.formatToSongPath(SONG.song) == 'libidinousness'
 					|| Paths.formatToSongPath(SONG.song) == 'excrete' || Paths.formatToSongPath(SONG.song) == 'iniquitous' || Paths.formatToSongPath(SONG.song) == 'marauder')
 				{
-					if (ClientPrefs.buff3Active != true)
+					if (!ClientPrefs.buff3Active)
 					{
 						health -= 0.075 * healthLoss;
 						healthCheck -= 0.075 * healthLoss;
@@ -5191,7 +5159,7 @@ class PlayState extends MusicBeatState
 				}
 				else
 				{
-					if (ClientPrefs.buff3Active != true)
+					if (!ClientPrefs.buff3Active)
 					{
 						health -= 0.05 * healthLoss;
 						healthCheck -= 0.05 * healthLoss;

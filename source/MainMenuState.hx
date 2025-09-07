@@ -138,8 +138,6 @@ class MainMenuState extends MusicBeatState
 		"get-villaind-(old)"
 	];
 
-	var libidiWarning:FlxText;
-
 	var lerpInjectedScore:Int = 0;
 	var intendedInjectedScore:Int = 0;
 	var lerpMayhemedScore:Int = 0;
@@ -159,7 +157,6 @@ class MainMenuState extends MusicBeatState
 	var getRightArrowX:Float = 0;
 
 	var blackOut:FlxSprite;
-	var blackOut2:FlxSprite;
 
 	var exclamationMark:FlxSprite;
 	var optionsButton:FlxSprite;
@@ -557,23 +554,6 @@ class MainMenuState extends MusicBeatState
 		leftDiffArrow.alpha = 0;
 		rightDiffArrow.alpha = 0;
 
-		blackOut2 = new FlxSprite(0, 0).makeGraphic(FlxG.width, FlxG.height, 0xFF000000);
-		blackOut2.alpha = 0;
-		add(blackOut2);
-
-		if (ClientPrefs.performanceWarning)
-		{
-			libidiWarning = new FlxText(700, 100, 1000, "<R>Warning:<R>\n<DP>'Libidinousness'<DP> takes a lot of juice off of your PC.\nCan it handle it?\n<R>(It is recommended to atleast have a graphics card installed)<R>\n----------------------------
-			\n<G>Y:<G> <G>Yes<G> | <r>N:<r> <r>No<r>", 32);
-			libidiWarning.setFormat("VCR OSD Mono", 50, FlxColor.WHITE, CENTER);
-			libidiWarning.screenCenter(XY);
-			libidiWarning.alpha = 0;
-
-			CustomFontFormats.addMarkers(libidiWarning);
-
-			add(libidiWarning);
-		}
-
 		BGchecker = new FlxBackdrop(Paths.image('promotion/BGgrid-' + FlxG.random.int(1, 8)), FlxAxes.XY, 0, 0); 
 		BGchecker.updateHitbox(); 
 		BGchecker.scrollFactor.set(0, 0); 
@@ -939,8 +919,7 @@ class MainMenuState extends MusicBeatState
 	var openingShit:Bool = false;
 	var applyStory:Bool = false;
 	var allowInteraction:Bool = true;
-	
-	var warning:Bool = false;
+
 	var warnMayhem:String = '';
 	override function update(elapsed:Float)
 	{
@@ -1170,13 +1149,7 @@ class MainMenuState extends MusicBeatState
 			{
 				if (controls.BACK)
 				{
-					if (warning)
-					{
-						warning = false;
-						FlxTween.tween(blackOut2, {alpha: 0}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
-						FlxTween.tween(libidiWarning, {alpha: 0}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
-					}
-					else if (storySelected)
+					if (storySelected)
 					{
 						allowInteraction = false;
 						storySelected = false;
@@ -1199,7 +1172,7 @@ class MainMenuState extends MusicBeatState
 					}
 				}
 		
-				if (!warning && askedForInfo == false)
+				if (!askedForInfo)
 				{
 					if (controls.UI_LEFT_P)
 						changeItem(-1);
@@ -1238,26 +1211,8 @@ class MainMenuState extends MusicBeatState
 					}
 				}
 
-				if ((controls.ACCEPT || TouchUtil.pressAction(storySelection)) && !warning && ((storyShit[curStorySelected] == 'injection' && curDifficulty == 1) || storyShit[curStorySelected] == 'mayhem'))
-				{
-					if (ClientPrefs.performanceWarning)
-					{
-						warning = true;
-						FlxG.sound.play(Paths.sound('scrollMenu'));
-						trace('Loading Low Quality Warning!');
-						
-						FlxTween.tween(blackOut2, {alpha: 0.7}, 1.2, {ease: FlxEase.circOut, type: PERSIST});
-						FlxTween.tween(libidiWarning, {alpha: 1}, 1.2, {ease: FlxEase.circOut, type: PERSIST});
-					}
-					else
-					{
-						loadExtraMode();
-					}
-				}
-				else if (warning && ((storyShit[curStorySelected] == 'injection' && curDifficulty == 1) || storyShit[curStorySelected] == 'mayhem') && (FlxG.keys.justPressed.Y || FlxG.keys.justPressed.N))
-				{
+				if ((controls.ACCEPT || TouchUtil.pressAction(storySelection)) && ((storyShit[curStorySelected] == 'injection' && curDifficulty == 1) || storyShit[curStorySelected] == 'mayhem'))
 					loadExtraMode();
-				}
 				else if ((controls.ACCEPT || TouchUtil.pressAction(storySelection)) && askedForInfo == false 
 					&& (storyShit[curStorySelected] == 'classic' || storyShit[curStorySelected] == 'iniquitous' || (storyShit[curStorySelected] == 'injection' && curDifficulty == 0)))
 				{
@@ -1533,22 +1488,11 @@ class MainMenuState extends MusicBeatState
 		{
 			if (ClientPrefs.haptics) Haptic.vibrateOneShot(1, 0.75, 0.5);
 			applyStory = true;
-			FlxG.sound.play(Paths.sound('confirmMenu'));
-			if (FlxG.keys.justPressed.Y)
-			{
-				trace ('Low Quality Off!');
-				ClientPrefs.lowQuality = false;
-			}	
-			else if (FlxG.keys.justPressed.N)
-			{
-				trace ('Low Quality On!');
-				ClientPrefs.lowQuality = true;
-			}
-			ClientPrefs.saveSettings();
 
-			FlxTween.tween(blackOut2, {alpha: 0}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
-			if (ClientPrefs.performanceWarning)
-				FlxTween.tween(libidiWarning, {alpha: 0}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
+			FlxG.sound.play(Paths.sound('confirmMenu'));
+			trace ('Low Quality (For Libidinousness) has been turned ' + ((ClientPrefs.performanceWarning) ? "On!" : "Off!"));
+
+			ClientPrefs.saveSettings();
 
 			if (storyShit[curStorySelected] == 'injection')
 			{
@@ -1623,19 +1567,18 @@ class MainMenuState extends MusicBeatState
 						if (PlayState.mayhemPlaylist[songSelected] == 'toybox' || PlayState.mayhemPlaylist[songSelected] == "its-kiana" || PlayState.mayhemPlaylist[songSelected] == 'villainy' || PlayState.mayhemPlaylist[songSelected] == 'point-blank'
 							|| PlayState.mayhemPlaylist[songSelected] == 'libidinousness' || PlayState.mayhemPlaylist[songSelected] == 'excrete' || PlayState.mayhemPlaylist[songSelected] == 'marauder' || PlayState.mayhemPlaylist[songSelected] == 'shucks-v2')
 						{
-							if (PlayState.mayhemPlaylist[songSelected] == 'libidinousness' && ClientPrefs.lowQuality == true)
+							if (PlayState.mayhemPlaylist[songSelected] == 'libidinousness' && ClientPrefs.lowQuality)
 								PlayState.SONG = Song.loadFromJson(PlayState.mayhemPlaylist[songSelected].toLowerCase() + '-villainousoptimized', PlayState.mayhemPlaylist[songSelected].toLowerCase());
-							else if (PlayState.mayhemPlaylist[songSelected] == 'toybox' && ClientPrefs.mechanics == false)
+							else if (PlayState.mayhemPlaylist[songSelected] == 'toybox' && !ClientPrefs.mechanics)
 								PlayState.SONG = Song.loadFromJson(PlayState.mayhemPlaylist[songSelected].toLowerCase() + '-villainousMechanicless', PlayState.mayhemPlaylist[songSelected].toLowerCase());
 							else
 								PlayState.SONG = Song.loadFromJson(PlayState.mayhemPlaylist[songSelected].toLowerCase() + '-villainous', PlayState.mayhemPlaylist[songSelected].toLowerCase());
 
-							
 							curDifficulty = 1;
 							diffic = CoolUtil.getDifficultyFilePath(curDifficulty);
 						}
-						else
-						PlayState.SONG = Song.loadFromJson(PlayState.mayhemPlaylist[songSelected].toLowerCase() + diffic, PlayState.mayhemPlaylist[songSelected].toLowerCase());
+						else PlayState.SONG = Song.loadFromJson(PlayState.mayhemPlaylist[songSelected].toLowerCase() + diffic, PlayState.mayhemPlaylist[songSelected].toLowerCase());
+
 						PlayState.campaignScore = 0;
 						PlayState.campaignMisses = 0;
 
@@ -1647,8 +1590,7 @@ class MainMenuState extends MusicBeatState
 							PlayState.SONG.player1 = 'd-side gf';
 							
 						// Unlock Secret Song
-						if (!ClientPrefs.shucksUnlocked && PlayState.mayhemPlaylist[songSelected] == "shucks-v2")
-							ClientPrefs.shucksUnlocked = true;
+						if (!ClientPrefs.shucksUnlocked && PlayState.mayhemPlaylist[songSelected] == "shucks-v2") ClientPrefs.shucksUnlocked = true;
 						
 						trace(Paths.formatToSongPath(PlayState.mayhemPlaylist[songSelected]) + diffic);
 
