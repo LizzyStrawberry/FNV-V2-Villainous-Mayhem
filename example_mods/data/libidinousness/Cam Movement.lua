@@ -8,14 +8,14 @@ local camVariables = {
 function onCreate()
 	setProperty('gf.visible', false)
 	
-	if not lowQuality then
+	if not performanceWarn then
 		setGlobalFromScript("scripts/Camera Movement", 'allowZoomShifts', true)
 		callScript("scripts/Camera Movement", "setCameraMovement", {camVariables.camOffsets, camVariables.ofs, camVariables.noMove, camVariables.camZooms})
 	end
 end
 
 function onUpdate()
-	if not lowQuality then
+	if not performanceWarn then
 		if curBeat == 96 then
 			callScript("scripts/Camera Movement", "setCameraProperty", {"bfCamera", "620, 900"})
 			setGlobalFromScript("scripts/Camera Movement", 'followChars', true)

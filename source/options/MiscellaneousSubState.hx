@@ -32,7 +32,7 @@ class MiscellaneousSubState extends BaseOptionsMenu
 		addOption(option);
 
 		var option:Option = new Option('Libidinousness Quality', //Name
-			"Leave unchecked if you want to experience Libidinousness fully.\nIf your phone can't handle the song, or you want to try the low quality version, keep this option checked.", //Description
+			"Leave unchecked if you want to experience Libidinousness fully.\nIf your PC can't handle the song, or you want to try the low quality version, keep this option checked.", //Description
 			'performanceWarning', //Save data variable name
 			'bool', //Variable type
 			false); //Default value
