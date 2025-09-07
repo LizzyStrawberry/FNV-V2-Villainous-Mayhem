@@ -1,7 +1,7 @@
 function onCreate()
 	-- background shit
 	if not optimizationMode then
-		if not lowQuality then
+		if not performanceWarn then
 			makeLuaSprite('BG', 'bgs/kiana/Final/Background', -1200, -600);
 			setScrollFactor('BG', 0.95, 0.95);
 			scaleObject('BG', 3.6, 3.6)
