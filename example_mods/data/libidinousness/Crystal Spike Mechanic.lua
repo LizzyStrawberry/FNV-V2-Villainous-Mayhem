@@ -119,35 +119,35 @@ function onCreate()
 			timerSelected = getRandomInt(3, 5)
 			
 			-- Create Spikes and Warning
-			makeAnimatedLuaSprite('Spike 1', 'effects/Spike 1', spikeTableX[1] + 10, spikeTableY[1] - 50);
+			makeAnimatedLuaSprite('Spike 1', 'effects/Spike 1', mobileFix("X", spikeTableX[1] + 10), spikeTableY[1] - 50);
 			addAnimationByPrefix('Spike 1', 'penetrate1', 'Spike 1 appear0', 24 / playbackRate, false);
 			setScrollFactor('Spike 1', 0, 0);
 			scaleObject('Spike 1', 0.5, 0.5)
 			setProperty('Spike 1.alpha', 0)
 			addLuaSprite('Spike 1', true)
 			
-			makeAnimatedLuaSprite('Spike 2', 'effects/Spike 2', spikeTableX[2] + 10, spikeTableY[2] - 30);
+			makeAnimatedLuaSprite('Spike 2', 'effects/Spike 2', mobileFix("X", spikeTableX[2] + 10), spikeTableY[2] - 30);
 			addAnimationByPrefix('Spike 2', 'penetrate2', 'Spike 2 appear0', 24 / playbackRate, false);
 			setScrollFactor('Spike 2', 0, 0);
 			scaleObject('Spike 2', 0.5, 0.5)
 			setProperty('Spike 2.alpha', 0)
 			addLuaSprite('Spike 2', true)
 			
-			makeAnimatedLuaSprite('Spike 3', 'effects/Spike 3', spikeTableX[3] + 10, spikeTableY[3] - 60);
+			makeAnimatedLuaSprite('Spike 3', 'effects/Spike 3', mobileFix("X", spikeTableX[3] + 10), spikeTableY[3] - 60);
 			addAnimationByPrefix('Spike 3', 'penetrate3', 'Spike 3 appear0', 24 / playbackRate, false);
 			setScrollFactor('Spike 3', 0, 0);
 			scaleObject('Spike 3', 0.5, 0.5)
 			setProperty('Spike 3.alpha', 0)
 			addLuaSprite('Spike 3', true)
 			
-			makeLuaSprite('warnCircle', 'effects/warn', spikeTableX[spikeSelected], spikeTableY[spikeSelected]);
+			makeLuaSprite('warnCircle', 'effects/warn', mobileFix("X", spikeTableX[spikeSelected]), spikeTableY[spikeSelected]);
 			setScrollFactor('warnCircle', 0, 0);
 			scaleObject('warnCircle', 0.5, 0.5)
 			setObjectOrder('warnCircle', getObjectOrder('gfOptimized') + 1)
 			setProperty('warnCircle.alpha', 0)
 			addLuaSprite('warnCircle', false)
 			
-			makeLuaSprite('secondaryWarnCircle', 'effects/warn', spikeTableX[spikeSelectedSecondary], spikeTableY[spikeSelectedSecondary]);
+			makeLuaSprite('secondaryWarnCircle', 'effects/warn', mobileFix("X", spikeTableX[spikeSelectedSecondary]), spikeTableY[spikeSelectedSecondary]);
 			setScrollFactor('secondaryWarnCircle', 0, 0);
 			scaleObject('secondaryWarnCircle', 0.5, 0.5)
 			setObjectOrder('secondaryWarnCircle', getObjectOrder('gfOptimized') + 1)
@@ -494,9 +494,9 @@ function onStepHit()
 					end
 					
 					timerSelected = getRandomInt(1, 5)
-					setProperty('warnCircle.x', spikeTableX[spikeSelected])
+					setProperty('warnCircle.x', mobileFix("X", spikeTableX[spikeSelected]))
 					setProperty('warnCircle.y', spikeTableY[spikeSelected])
-					setProperty('secondaryWarnCircle.x', spikeTableX[spikeSelectedSecondary])
+					setProperty('secondaryWarnCircle.x', mobileFix("X", spikeTableX[spikeSelectedSecondary]))
 					setProperty('secondaryWarnCircle.y', spikeTableY[spikeSelectedSecondary])
 
 					--debugPrint('New curBeat %: '..timer[timerSelected])
@@ -568,8 +568,13 @@ function onTimerCompleted(tag)
 	if tag == 'redoSecondarySpike' then
 		spikeSelectedSecondary = getRandomInt(1, 3)
 		--debugPrint('NEW Secondary Spike: '..spikeSelectedSecondary)
-		setProperty('secondaryWarnCircle.x', spikeTableX[spikeSelectedSecondary])
-		setProperty('secondaryWarnCircle.y', spikeTableY[spikeSelectedSecondary])
+		if performanceWarn then
+			setProperty('secondaryWarnCircle.x', mobileFix("X", spikeTableX[spikeSelectedSecondary]))
+			setProperty('secondaryWarnCircle.y', spikeTableY[spikeSelectedSecondary])
+		else
+			setProperty('secondaryWarnCircle.x', spikeTableX[spikeSelectedSecondary])
+			setProperty('secondaryWarnCircle.y', spikeTableY[spikeSelectedSecondary])
+		end
 		if spikeSelectedSecondary == spikeSelected then
 			runTimer('redoSecondarySpike', 0.01)
 		end

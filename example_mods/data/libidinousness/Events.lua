@@ -96,6 +96,7 @@ function onBeatHit()
 		end
 		if curBeat == 448 then
 			cancelTween('camGame')
+			setProperty("mainCamZoom", true)
 		end
 		if curBeat == 465 then
 			cameraFlash('game', 'ffffff', 0.6 / playbackRate, false)

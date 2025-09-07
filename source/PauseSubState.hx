@@ -51,6 +51,8 @@ class PauseSubState extends MusicBeatSubstate
 
 	public static var songName:String = '';
 
+	var accepted:Bool = false;
+	var onQuickSettings:Bool = false;
 	public function new(x:Float, y:Float)
 	{
 		super();
@@ -296,7 +298,7 @@ class PauseSubState extends MusicBeatSubstate
 
 		add(levelInfo);
 
-		var pad:Int = 25;
+		var pad:Int = 26;
 		var levelDifficulty:FlxText = new FlxText(pauseCard.x + pad, 15 + 48, 0, "", 32);
 		if (PlayState.isMayhemMode)
 			levelDifficulty.text += "Mayhem";
@@ -408,15 +410,13 @@ class PauseSubState extends MusicBeatSubstate
 		levelDifficulty.x = pauseCard.x + pauseCard.width - levelDifficulty.width - pad;
 		blueballedTxt.x = pauseCard.x + pauseCard.width - blueballedTxt.width - pad;
 
-		for (bar in [leftBar, rightBar])
-			FlxTween.tween(bar, {alpha: 1}, 0.4, {ease: FlxEase.quartInOut});
+		for (bar in [leftBar, rightBar]) FlxTween.tween(bar, {alpha: 1}, 0.4, {ease: FlxEase.quartInOut});
 
 		FlxTween.tween(bg, {alpha: 0.6}, 0.4, {ease: FlxEase.quartInOut});
 		FlxTween.tween(bgGradient, {alpha: 1}, 0.4, {ease: FlxEase.quartInOut});
 		FlxTween.tween(pauseCard, {alpha: 1}, 0.4, {ease: FlxEase.quartInOut});
 		FlxTween.tween(arrows, {alpha: 1}, 0.4, {ease: FlxEase.quartInOut});
-		if (showCharm == true)
-			FlxTween.tween(charmIcon, {alpha: 1}, 0.4, {ease: FlxEase.quartInOut});
+		if (showCharm) FlxTween.tween(charmIcon, {alpha: 1}, 0.4, {ease: FlxEase.quartInOut});
 		FlxTween.tween(levelInfo, {alpha: 1, y: levelInfo.y + 5}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.3});
 		FlxTween.tween(charmText, {alpha: 1, y: charmText.y + 5}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.3});
 		FlxTween.tween(levelDifficulty, {alpha: 1, y: levelDifficulty.y + 5}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.5});
@@ -437,15 +437,9 @@ class PauseSubState extends MusicBeatSubstate
 
 		regenMenu();
 
-		var button = new TouchZone(800, mainItem.y, 600, 95);
-		button.cameras = [pauseCam];
-		var scroll = new ScrollableObject(0.004, 50, 100, FlxG.width, FlxG.height, "Y", button);
+		var scroll = new ScrollableObject(0.004, 50, 100, FlxG.width, FlxG.height, "Y");
 		scroll.onFullScroll.add(delta -> {
 			changeSelection(delta);
-		});
-		scroll.onTap.add(() ->{
-			if (!onQuickSettings)
-				accepted = true;
 		});
 
 		var scrollOptions = new ScrollableObject(0.004, 50, 100, FlxG.width, FlxG.height, "Y");
@@ -460,9 +454,10 @@ class PauseSubState extends MusicBeatSubstate
 				applyOption(delta);
 		});
 		add(scroll);
-		add(button);
 		add(scrollOptions);
 		add(scrollOptions2);
+
+		addTouchPad("NONE", "A");
 	}
 
 	var holdTime:Float = 0;
@@ -475,7 +470,6 @@ class PauseSubState extends MusicBeatSubstate
 	var skipTimeTweenTitleFadeIn:FlxTween;
 	var skipTimeTweenTitleFadeOut:FlxTween;
 
-	var onQuickSettings:Bool = false;
 	var optionsBG:FlxSprite;
 	var quickSettingsTweenFadeIn:FlxTween;
 	var quickSettingsTweenFadeOut:FlxTween;
@@ -488,7 +482,6 @@ class PauseSubState extends MusicBeatSubstate
 	var botplayOn:Bool = false;
 	var huh = 0;
 	var delay:Bool = false;
-	var accepted:Bool = false;
 
 	override function update(elapsed:Float)
 	{
@@ -671,7 +664,7 @@ class PauseSubState extends MusicBeatSubstate
 			}
 		}
 
-		if ((accepted || controls.ACCEPT) && (cantUnpause <= 0 || !ClientPrefs.controllerMode) && (onSkipTime == false && onQuickSettings == false))
+		if ((TouchUtil.pressAction(mainItem, pauseCam) || controls.ACCEPT) && (cantUnpause <= 0 || !ClientPrefs.controllerMode) && (onSkipTime == false && onQuickSettings == false))
 		{
 			if (ClientPrefs.haptics) Haptic.vibrateOneShot(0.05, 0.35, 0.5);
 			if (menuItems == difficultyChoices)
@@ -812,6 +805,7 @@ class PauseSubState extends MusicBeatSubstate
 
 		changeOption();
 
+		removeTouchPad();
 		addTouchPad("NONE", "B");
 	}
 

@@ -14,16 +14,16 @@ function onCreate()
 			addLuaSprite('BG', false);
 			addLuaSprite('CFront', false);
 		else
-			makeLuaSprite('bgIntro', 'bgs/kiana/Final/kianaOptimized-intro', -120, -100)
+			makeLuaSprite('bgIntro', 'bgs/kiana/Final/kianaOptimized-intro', mobileFix("X", -120), -100)
 			scaleObject('bgIntro', 1.2, 1.2)
 			setScrollFactor('bgIntro', 0, 0)
 			
-			makeLuaSprite('kianaOptimized', 'bgs/kiana/Final/kianaOptimized', -120, -100)
+			makeLuaSprite('kianaOptimized', 'bgs/kiana/Final/kianaOptimized', mobileFix("X", -120), -100)
 			scaleObject('kianaOptimized', 1.2, 1.2)
 			setScrollFactor('kianaOptimized', 0, 0)
 			setProperty('kianaOptimized.alpha', 0)
 
-			makeLuaSprite('gfOptimized', 'bgs/kiana/Final/gfOptimized', 730, 420)
+			makeLuaSprite('gfOptimized', 'bgs/kiana/Final/gfOptimized', mobileFix("X", 730), 420)
 			setScrollFactor('gfOptimized', 0, 0)
 			
 			addLuaSprite('bgIntro', false)

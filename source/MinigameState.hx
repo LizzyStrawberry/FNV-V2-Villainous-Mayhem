@@ -165,7 +165,7 @@ class MinigameState extends MusicBeatState
 			}
 
 			tokenFollow = FlxG.random.int(0, 2);
-			token.x = cupX[tokenFollow] + 100;
+			token.x = MobileUtil.fixX(cupX[tokenFollow] + 100);
 
 			tipText = new FlxText(700, 960, FlxG.width, "Where did the token go?? You have a few seconds to memorize it's position, and then, select the cup that hides it!\nIf you win, you get 1 token EXTRA!", 24);
 			tipText.setFormat("VCR OSD Mono", 24, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, 0xFF000000);
@@ -296,14 +296,14 @@ class MinigameState extends MusicBeatState
 					totalTime = 40;
 			}
 			
-			timerTextLeft = new FlxText(10, 10, 200, "Time: " + totalTime);
+			timerTextLeft = new FlxText(MobileUtil.fixX(10), 10, 200, "Time: " + totalTime);
 			timerTextLeft.setFormat("VCR OSD Mono", 34, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			timerTextLeft.borderSize = 3;
 			timerTextLeft.screenCenter(XY);
 			timerTextLeft.x -= 520;
        		add(timerTextLeft);
 
-			timerTextRight = new FlxText(10, 10, 200, "Time: " + totalTime);
+			timerTextRight = new FlxText(MobileUtil.fixX(10), 10, 200, "Time: " + totalTime);
 			timerTextRight.setFormat("VCR OSD Mono", 34, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			timerTextRight.borderSize = 3;
 			timerTextRight.screenCenter(XY);
