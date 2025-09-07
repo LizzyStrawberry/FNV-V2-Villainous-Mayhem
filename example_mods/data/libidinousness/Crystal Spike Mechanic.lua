@@ -433,6 +433,11 @@ function onStepHit()
 					playSound('gfMove', 0.3)
 					doTweenX('PlayerMoveX', 'gfOptimized', boyfriendTableX[playerPosition], 0.4, 'cubeInOut')
 					doTweenY('PlayerMoveY', 'gfOptimized', boyfriendTableY[playerPosition], 0.4, 'cubeInOut')
+					if botMove == "LEFT" then
+						runTimer('gfLowQAnimationFixLeft', 0.1)
+					elseif botMove == "RIGHT" then
+						runTimer('gfLowQAnimationFixRight', 0.1)
+					end
 				end
 				
 				-- Manual Attack
