@@ -753,33 +753,21 @@ class FreeplayState extends MusicBeatState
 
 		if (controls.BACK #if mobile || FlxG.android.justReleased.BACK #end)
 		{
-			if (warning)
+			persistentUpdate = false;
+			if(colorTween != null) colorTween.cancel();
+			ClientPrefs.optionsFreeplay = false;
+			FlxG.sound.play(Paths.sound('cancelMenu'));
+			if (ClientPrefs.inShop)
 			{
-				warning = false;
-				FlxTween.tween(blackOut, {alpha: 0}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
-				if (ClientPrefs.performanceWarning)
-					FlxTween.tween(libidiWarning, {alpha: 0}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
+				FlxG.sound.music.fadeOut(0.7); 
+				MusicBeatState.switchState(new ShopState());
 			}
 			else
 			{
-				persistentUpdate = false;
-				if(colorTween != null) {
-					colorTween.cancel();
-				}
-				ClientPrefs.optionsFreeplay = false;
-				FlxG.sound.play(Paths.sound('cancelMenu'));
-				if (ClientPrefs.inShop)
-				{
-					FlxG.sound.music.fadeOut(0.7); 
-					MusicBeatState.switchState(new ShopState());
-				}
+				if (songCategory.toLowerCase().startsWith("xtra"))
+					MusicBeatState.switchState(new FreeplayCategoryXtraState(), "stickers");
 				else
-				{
-					if (songCategory.toLowerCase().startsWith("xtra"))
-						MusicBeatState.switchState(new FreeplayCategoryXtraState(), "stickers");
-					else
-						MusicBeatState.switchState(new FreeplayCategoryState(), "stickers");
-				}
+					MusicBeatState.switchState(new FreeplayCategoryState(), "stickers");
 			}
 		}
 		if(FlxG.keys.justPressed.TAB || touchPad.buttonE.justPressed)	
