@@ -1,20 +1,15 @@
 local playedOnce = false
-local funninumber = 0
-
-function onCreate()
-	funninumber = getRandomInt(1, 3)
-end
+local maxSounds = 3
 
 function onGameOver()
-		if not playedOnce then
-				playSound("Marco's Lines/Marco rekt you " ..funninumber, 1, 'funnivoice')
-				playedOnce = true
-			end
-	return Function_Continue;
+	if not playedOnce then
+		local soundPath = "voiceLines/marco/getRekt-"..getRandomInt(1, maxSounds)
+		playSound(soundPath, 1, 'deathVoiceLine')
+		playedOnce = true
+	end
+	return Function_Continue
 end
 
 function onGameOverConfirm(retry)
-	if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ESC') or getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') or getPropertyFromClass('flixel.FlxG', 'keys.justPressed.BACKSPACE') then
-		stopSound('funnivoice')
-	end
+	if keyJustPressed("back") then stopSound('deathVoiceLine') end
 end

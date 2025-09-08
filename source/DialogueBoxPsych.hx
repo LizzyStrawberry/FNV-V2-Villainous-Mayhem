@@ -218,18 +218,7 @@ class DialogueBoxPsych extends FlxSpriteGroup
 		box.visible = false;
 		updateBoxOffsets(box);
 		add(box);
-
-		box = new FlxSprite(70, 370);
-		box.frames = Paths.getSparrowAtlas('newDialogueBubbles');
-		box.animation.addByPrefix('normal', 'dialogueNormal', 24);
-		box.animation.addByPrefix('angry', 'dialogueAngry', 24);
-		box.screenCenter(XY);
-		box.scrollFactor.set();
-		box.antialiasing = ClientPrefs.globalAntialiasing;
-		box.visible = false;
-		updateBoxOffsets(box);
-		add(box);
-
+		
 		daText = new TypedAlphabet(DEFAULT_TEXT_X, DEFAULT_TEXT_Y, '');
 		daText.scaleX = 0.67;
 		daText.scaleY = 0.67;
