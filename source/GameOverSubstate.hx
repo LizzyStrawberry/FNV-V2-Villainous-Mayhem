@@ -262,10 +262,10 @@ class GameOverSubstate extends MusicBeatSubstate
 			checkForMechanics();
 			
 			isEnding = true;
-			if (Paths.formatToSongPath(PlayState.SONG.song) != 'shucks-v2') //Avoid playing the deathConfirm Animation
+			if (Paths.formatToSongPath(PlayState.SONG.song) != 'shuckle-fuckle') //Avoid playing the deathConfirm Animation
 				boyfriend.playAnim('deathConfirm', true);
 
-			if (PlayState.SONG.stage == 'TheFinale' || Paths.formatToSongPath(PlayState.SONG.song) == 'shucks-v2')
+			if (PlayState.SONG.stage == 'TheFinale' || Paths.formatToSongPath(PlayState.SONG.song) == 'shuckle-fuckle')
 				FlxG.sound.music.fadeOut(1.7);
 			else
 			{
