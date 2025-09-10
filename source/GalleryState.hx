@@ -825,6 +825,26 @@ class GalleryState extends MusicBeatState
 					{
 						imageText.text = "DV Fanart\nFanart by Akira";
 					}
+					case 38:
+					{
+						imageText.text = "Marco Fanart\nFanart by Rizmeko";
+					}
+					case 39:
+					{
+						imageText.text = "Aileen Fanart\nFanart by Rizmeko";
+					}
+					case 40:
+					{
+						imageText.text = "Marco Fanart\nFanart by Rizmeko";
+					}
+					case 41:
+					{
+						imageText.text = "Marco Fanart\nFanart by Rizmeko";
+					}
+					case 42:
+					{
+						imageText.text = "Marco Fanart\nFanart by Rizmeko";
+					}
 				}
 			}
 
