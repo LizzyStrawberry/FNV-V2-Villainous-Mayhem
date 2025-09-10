@@ -1,20 +1,15 @@
 local playedOnce = false
-local funninumber = 0
-
-function onCreate()
-	funninumber = getRandomInt(1, 6)
-end
+local maxSounds = 6
 
 function onGameOver()
-		if not playedOnce then
-				playSound("Aileen's Lines/Aileen beats you " ..funninumber, 1, 'funnivoice')
-				playedOnce = true
-			end
-	return Function_Continue;
+	if not playedOnce then
+		local soundPath = "voiceLines/aileen/getBeaten-"..getRandomInt(1, maxSounds)
+		playSound(soundPath, 1, 'deathVoiceLine')
+		playedOnce = true
+	end
+	return Function_Continue
 end
 
 function onGameOverConfirm(retry)
-	if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ESC') or getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') or getPropertyFromClass('flixel.FlxG', 'keys.justPressed.BACKSPACE') then
-		stopSound('funnivoice')
-	end
+	if keyJustPressed("back") then stopSound('deathVoiceLine') end
 end

@@ -1,9 +1,9 @@
 local playedOnce = false
-local maxSounds = 3
+local maxSounds = 6
 
 function onGameOver()
 	if not playedOnce then
-		local soundPath = "voiceLines/kiana/killed-"..getRandomInt(1, maxSounds)
+		local soundPath = "voiceLines/aileen/getBeaten-"..getRandomInt(1, maxSounds)
 		playSound(soundPath, 1, 'deathVoiceLine')
 		playedOnce = true
 	end
