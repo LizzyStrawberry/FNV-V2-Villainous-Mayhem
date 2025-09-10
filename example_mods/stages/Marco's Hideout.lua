@@ -64,12 +64,12 @@ function onCreate()
 	end
 
 	if songName ~= "Shuckle Fuckle" then
-		close(true)
+		close()
 	end
 end
 
 function onUpdate()
-	if songName == "Shucks V2" then
+	if songName == "Shuckle Fuckle" then
 		setProperty("stabbed.alpha", getProperty("fg.alpha"))
 		setProperty("hand.alpha", getProperty("fg.alpha"))
 	end

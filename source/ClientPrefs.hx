@@ -12,7 +12,7 @@ class ClientPrefs {
 	public static var screensaver:Bool = false;
 	public static var haptics:Bool = true;
 	#if android
-	public static var storageType:String = "EXTERNAL_DATA";
+	public static var storageType:String = "INTERNAL";
 	#end
 	public static var hitboxType:String = "Gradient";
 	public static var padRGB:Array<Array<FlxColor>> = [

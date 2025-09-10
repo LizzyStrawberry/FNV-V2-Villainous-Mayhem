@@ -27,6 +27,7 @@ class CrashAndLoadState extends MusicBeatState
 
         background = new FlxSprite(0, 0).loadGraphic(Paths.image('mainMenuBgs/menu-1'));
 		background.antialiasing = ClientPrefs.globalAntialiasing;
+        background.setGraphicSize(FlxG.width, FlxG.height);
         background.alpha = 0.4;
 		add(background);
 
@@ -89,6 +90,7 @@ class CrashAndLoadState extends MusicBeatState
             default: //Testing Value
                 songText = new Alphabet(540, 375, "Test Song", true); 
         }
+        songText.x = MobileUtil.fixX(songText.x);
 		songText.setAlignmentFromString('center');
         songText.scaleX = 0.8;
         songText.scaleY = 0.8;
@@ -98,6 +100,7 @@ class CrashAndLoadState extends MusicBeatState
             songDifficultyText = new Alphabet(600, 480, "Difficulty", true);
         else
             songDifficultyText = new Alphabet(600, 480, ClientPrefs.storyModeCrashDifficulty + '-', true);
+        songDifficultyText.x = MobileUtil.fixX(songDifficultyText.x);
 		songDifficultyText.setAlignmentFromString('center');
         songDifficultyText.scaleX = 0.8;
         songDifficultyText.scaleY = 0.8;
@@ -113,6 +116,7 @@ class CrashAndLoadState extends MusicBeatState
 		add(yes);
 
         no = new Alphabet(960, 530, "no", true);
+        no.x = MobileUtil.fixX(no.x);
 		no.setAlignmentFromString('center');
         no.scaleX = 1.1;
         no.scaleY = 1.1;
@@ -143,23 +147,23 @@ class CrashAndLoadState extends MusicBeatState
         if (controls.UI_RIGHT_P && !selectedSomething)
             changeSelection(1);
 
-        if (FlxG.mouse.overlaps(yes) && !selectedSomething && !overlapping && curSelected != 0)
+        if (TouchUtil.overlaps(yes) && !selectedSomething && !overlapping && curSelected != 0)
         {
             curSelected = 0;
             changeSelection();
             overlapping = true;
         }
-        if (FlxG.mouse.overlaps(no) && !selectedSomething && !overlapping && curSelected != 1)
+        if (TouchUtil.overlaps(no) && !selectedSomething && !overlapping && curSelected != 1)
         {
             curSelected = 1;
             changeSelection();
             overlapping = true;
         }
         
-        if (!(FlxG.mouse.overlaps(no) || FlxG.mouse.overlaps(yes)) && !selectedSomething && overlapping)
+        if (!(TouchUtil.overlaps(no) || TouchUtil.overlaps(yes)) && !selectedSomething && overlapping)
             overlapping = false;
 
-        if (((curSelected == 0 && controls.ACCEPT) || (FlxG.mouse.overlaps(yes) && FlxG.mouse.justPressed)) && !selectedSomething)
+        if ((curSelected == 0 && controls.ACCEPT) || TouchUtil.pressAction(yes) && !selectedSomething)
         {
             selectedSomething = true;
             FlxG.sound.play(Paths.sound('confirmMenu'), 0.4);
@@ -284,7 +288,7 @@ class CrashAndLoadState extends MusicBeatState
 			});
         }
     
-        if (((curSelected == 1 && controls.ACCEPT) || (FlxG.mouse.overlaps(no) && FlxG.mouse.justPressed)) && !selectedSomething)
+        if ((curSelected == 1 && controls.ACCEPT) || TouchUtil.pressAction(no) && !selectedSomething)
         {
             FlxG.sound.play(Paths.sound('confirmMenu'), 0.4);
             selectedSomething = true;

@@ -26,14 +26,15 @@ class FlashingState extends MusicBeatState
 	{
 		super.create();
 	
+		bg.screenCenter(X);
 		bg.alpha = 0;
 		FlxTween.tween(bg, { alpha: 0.4 }, 3);
 		add(bg);
 
 		warnText = new FlxText(0, 0, FlxG.width,
 			"Hey, warning!\n
-			This mod contains a lot of content that very low end PCS may struggle to play on!\n
-			The mod has been tested on lower end hardware, and although it works fine, you may encounter some small issues!\n
+			This mod contains a lot of content that Low-End Devices may struggle to play on!\n
+			There's a slight chance you might encounter accidental crashes on this android version, so beware!\n
 			We recommend you tamper around in the options menu and toy around with the options for the best experience possible!\n
 			Enjoy FNV's V2.0 Update!!\n
 			Press A to continue to Quick Settings.\n

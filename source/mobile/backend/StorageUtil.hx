@@ -1,3 +1,5 @@
+
+
 package mobile.backend;
 
 #if android
@@ -6,17 +8,20 @@ import android.os.Environment;
 import lime.system.System as LimeSystem;
 import haxe.io.Path;
 import haxe.Exception;
+import sys.FileSystem;
 
 import CoolUtil;
 
 /**
  * A storage class for mobile.
- * @author Karim Akra and Homura Akemi (HomuHomu833)
+ * @author Karim Akra and Lily Ross (mcagabe19)
+ * @author Mikolka9144
  */
-class StorageUtil {
+class StorageUtil
+{
 	#if sys
 	// root directory, used for handling the saved storage type and path
-	public static final rootDir:String = LimeSystem.applicationStorageDirectory;
+	private static final rootDir:String = LimeSystem.applicationStorageDirectory;
 
 	public static function getStorageDirectory(?force:Bool = false):String
 	{
@@ -32,7 +37,6 @@ class StorageUtil {
 		#else
 		daPath = Sys.getCwd();
 		#end
-
 		return daPath;
 	}
 
@@ -84,10 +88,8 @@ class StorageUtil {
 			AndroidPermissions.requestPermissions(['READ_EXTERNAL_STORAGE', 'WRITE_EXTERNAL_STORAGE']);
 		}
 
-		if (!AndroidEnvironment.isExternalStorageManager())
-			AndroidSettings.requestSetting('MANAGE_APP_ALL_FILES_ACCESS_PERMISSION');
-
-		var has_MANAGE_EXTERNAL_STORAGE = Environment.isExternalStorageManager();
+		if (!AndroidEnvironment.isExternalStorageManager()) AndroidSettings.requestSetting('MANAGE_APP_ALL_FILES_ACCESS_PERMISSION');
+		var has_MANAGE_EXTERNAL_STORAGE = AndroidEnvironment.isExternalStorageManager();
 		var has_READ_EXTERNAL_STORAGE = AndroidPermissions.getGrantedPermissions().contains('android.permission.READ_EXTERNAL_STORAGE');
 		//var has_READ_MEDIA_IMAGES = AndroidPermissions.getGrantedPermissions().contains('android.permission.READ_MEDIA_IMAGES');
 		if ((isAPI33 && !has_MANAGE_EXTERNAL_STORAGE)
@@ -127,18 +129,17 @@ enum abstract StorageType(String) from String to String
 	final packageNameLocal = 'com.lizzystrawberry.fnv';
 	final fileLocal = 'Funkin Villainy 2.0';
 
-	var EXTERNAL_DATA = "EXTERNAL_DATA";
+	var INTERNAL = "INTERNAL";
 	var EXTERNAL = "EXTERNAL";
 
 	public static function fromStr(str:String):StorageType
 	{
-		try
-		{
+		try{
 			return switch (str)
 			{
-				case "EXTERNAL_DATA": 
-					final EXTERNAL_DATA = AndroidContext.getExternalFilesDir();
-					EXTERNAL_DATA;
+				case "INTERNAL": 
+					final INTERNAL = AndroidContext.getExternalFilesDir();
+					INTERNAL;
 				case "EXTERNAL": 
 					final EXTERNAL = AndroidEnvironment.getExternalStorageDirectory() + '/.' + lime.app.Application.current.meta.get('file');
 					EXTERNAL;
@@ -154,12 +155,12 @@ enum abstract StorageType(String) from String to String
 
 	public static function fromStrForce(str:String):StorageType
 	{
-		final EXTERNAL_DATA = forcedPath + 'Android/data/' + packageNameLocal + '/files';
+		final INTERNAL = forcedPath + 'Android/data/' + packageNameLocal + '/files';
 		final EXTERNAL = forcedPath + '.' + fileLocal;
 
 		return switch (str)
 		{
-			case "EXTERNAL_DATA": EXTERNAL_DATA;
+			case "INTERNAL": INTERNAL;
 			case "EXTERNAL": EXTERNAL;
 			default: StorageUtil.getExternalDirectory(str) + '.' + fileLocal;
 		}

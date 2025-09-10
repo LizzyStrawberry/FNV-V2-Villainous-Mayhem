@@ -695,8 +695,8 @@ class FreeplayState extends MusicBeatState
 		scoreText.text = 'PERSONAL BEST: ' + lerpScore + ' (' + ratingSplit.join('.') + '%)';
 		positionHighscore();
 
-		var upP = controls.UI_UP_P;
-		var downP = controls.UI_DOWN_P;
+		var upP = controls.UI_UP_P || TouchUtil.pressAction(arrowSelectorLeft);
+		var downP = controls.UI_DOWN_P || TouchUtil.pressAction(arrowSelectorRight);
 		var accepted = controls.ACCEPT || TouchUtil.pressAction(transparentButton);
 		var space = FlxG.keys.justPressed.SPACE || touchPad.buttonS.justPressed;
 		var ctrl = FlxG.keys.justPressed.CONTROL || touchPad.buttonC.justPressed;
@@ -708,13 +708,13 @@ class FreeplayState extends MusicBeatState
 		{
 			if (!accepted) checkForWarning(songs[curSelected].songName);
 
-			if (upP || (FlxG.mouse.overlaps(arrowSelectorLeft) && FlxG.mouse.justPressed))
+			if (upP)
 			{
 				changeSelection(-shiftMult);
 				changeDiff();
 				holdTime = 0;
 			}
-			if (downP || (FlxG.mouse.overlaps(arrowSelectorRight) && FlxG.mouse.justPressed))
+			if (downP)
 			{
 				changeSelection(shiftMult);
 				changeDiff();

@@ -6,7 +6,7 @@ import options.Option;
 
 class MobileOptionsSubState extends BaseOptionsMenu {
 	#if android
-	var storageTypes:Array<String> = ["EXTERNAL_DATA", "EXTERNAL"];
+	var storageTypes:Array<String> = ["INTERNAL", "EXTERNAL"];
 	var externalPaths:Array<String> = StorageUtil.checkExternalPaths(true);
 	final lastStorageType:String = ClientPrefs.storageType;
 	#end
@@ -58,29 +58,26 @@ class MobileOptionsSubState extends BaseOptionsMenu {
 			true);
 		addOption(option);
 
-		if (MobileData.mode == 3)
-		{
-			var option:Option = new Option('Hitbox Design',
-				'Choose how your hitbox should look like.',
-				'hitboxType',
-				'string',
-				'Gradient',
-				hintOptions);
-			addOption(option);
+		var option:Option = new Option('Hitbox Design',
+			'Choose how your hitbox should look like.',
+			'hitboxType',
+			'string',
+			'Gradient',
+			hintOptions);
+		addOption(option);
 
-			var option:Option = new Option('Hitbox Position',
-				'If checked, the hitbox will be put at the bottom of the screen, otherwise will stay at the top.',
-				'hitboxPos',
-				'bool',
-				false);
-			addOption(option);
-		}
+		var option:Option = new Option('Hitbox Position',
+			'If checked, the hitbox will be put at the bottom of the screen, otherwise will stay at the top.',
+			'hitboxPos',
+			'bool',
+			false);
+		addOption(option);
 
 		#if android
 		option = new Option('Storage Type',
-			'Which folder Psych Engine should use?\nWARNING: YOU\'LL LOSE YOUR PROGRESS BY CHANGING THIS!', 'storageType',
+			'Which folder should Psych Engine use?', 'storageType',
 			'string',
-			'EXTERNAL_DATA',
+			'EXTERNAL',
 			storageTypes);
 		addOption(option);
 		#end

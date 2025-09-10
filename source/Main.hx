@@ -41,15 +41,17 @@ class Main extends Sprite
 
 		#if mobile
 		Sys.setCwd(StorageUtil.getStorageDirectory());
-		trace("CWD IS " + StorageUtil.getStorageDirectory());
+
+		#if sys
+		trace("CWD: " + StorageUtil.getStorageDirectory());
+		#end
 		#end
 
 		CrashHandler.init();
+		trace("Main.hx: Crash handler is up!");
 
-		if (stage != null)
-			init();
-		else
-			addEventListener(Event.ADDED_TO_STAGE, init);
+		if (stage != null) init();
+		else addEventListener(Event.ADDED_TO_STAGE, init);
 	}
 
 	private function init(?E:Event):Void
@@ -98,6 +100,10 @@ class Main extends Sprite
 
 		#if mobile
 		LimeSystem.allowScreenTimeout = ClientPrefs.screensaver;
+		#end
+
+		#if hxvlc
+		hxvlc.util.Handle.init(#if (hxvlc >= "1.8.0") ['--no-lua'] #end);
 		#end
 		
 		// shader coords fix
