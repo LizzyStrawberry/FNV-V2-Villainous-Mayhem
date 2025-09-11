@@ -25,13 +25,12 @@ class CrashAndLoadState extends MusicBeatState
     {
         PlayState.isStoryMode = true;
 
-        background = new FlxSprite(0, 0).loadGraphic(Paths.image('mainMenuBgs/menu-1'));
+        background = new FlxSprite().loadGraphic(Paths.image('mainMenuBgs/menu-1'));
 		background.antialiasing = ClientPrefs.globalAntialiasing;
-        background.setGraphicSize(FlxG.width, FlxG.height);
         background.alpha = 0.4;
 		add(background);
 
-        text = new Alphabet(200, 80, "Looks like your game closed!\n Would you like to continue\n   from where you left off?", true);
+        text = new Alphabet(MobileUtil.rawX(200), 80, "Looks like your game closed!\n Would you like to continue\n   from where you left off?", true);
 		text.setAlignmentFromString('center');
         text.scaleX = 0.8;
         text.scaleY = 0.8;
@@ -50,12 +49,11 @@ class CrashAndLoadState extends MusicBeatState
             default: //Testing Value
                 songName = ClientPrefs.crashSongName; 
         }
-        songText = new Alphabet(600, 375, "", true); 
+        songText = new Alphabet(MobileUtil.rawX(600), 375, "", true); 
         songText.text = songName + ((ClientPrefs.crashSongName == '') ? "\nDifficulty" : "\n" + ClientPrefs.crashDifficultyName + '-');
         songText.scaleX = 0.8;
         songText.scaleY = 0.8;
         songText.setAlignmentFromString('center');
-        songText.x = 830;
 		add(songText);
 
         yes = new Alphabet(340, 530, "yes", true);

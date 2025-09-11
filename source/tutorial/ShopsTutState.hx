@@ -66,6 +66,8 @@ class ShopsTutState extends MusicBeatState
 		add(currentImage);
 
         changeSelection();
+
+		addTouchPad('LEFT_RIGHT', 'B');
     }
 
     override function update(elapsed:Float)
@@ -109,7 +111,7 @@ class ShopsTutState extends MusicBeatState
         switch (curImageSelected)
         {
             case 1:
-                descText.text = "One of FNV's Main Attractions are the Shops!\nEach shop has its own Merchant and own shopping rules!\nClicking on each Merchan can activate dialogue,\nso keep that in mind!";
+                descText.text = "One of FNV's Main Attractions are the Shops!\nEach shop has its own Merchant and own shopping rules!\nTapping on each Merchant can activate dialogue,\nso keep that in mind!";
 				descText.size = 32;
             case 2:
                 descText.text = "The first shop is Mimiko's shop, the Main of the 3!\nHis shopping rules lean more to gambling\nwith each prize machine having access to a set of items you can gamble!";
@@ -118,7 +120,7 @@ class ShopsTutState extends MusicBeatState
                 descText.text = "Simply select whichever prize machine you want to access it!\nBeware, not all are unlocked at the start!\nEach main week you beat, a new prize machine is unlocked!";
 				descText.size = 32;
 			case 4:
-                descText.text = "When accessing a prize machine,\nyou have to press the button below to use 1 token and start the gambling process!\nWhilst items are being randomly selected,\npress SPACE when you feel lucky and you win whichever item is selected!\nWARNING: If you get an item you already purchased,\nit'll act as a miss!";
+                descText.text = "When accessing a prize machine,\nyou have to click the button below to use 1 token and start the gambling process!\nWhilst items are being randomly selected,\nTAP when you feel lucky and you win whichever item is selected!\nWARNING: If you get an item you already purchased,\nit'll act as a miss!";
 				descText.size = 22;
 			case 5:
 				descText.text = "To your left from Mimiko's shop, you have Zeel's Illegal Emporium!\nEach section she has here corresponds to what Mimiko's prize machines have, and a few extra items!!";

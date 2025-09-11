@@ -59,6 +59,7 @@ class TutorialState extends MusicBeatState
 
 		changeSelection();
 
+		addTouchPad('UP_DOWN', 'A_B');
 		super.create();
     }
 

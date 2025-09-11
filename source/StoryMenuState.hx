@@ -361,8 +361,8 @@ class StoryMenuState extends MusicBeatState
 		});
 
 		changeCategory();
-		changeWeek();
-		changeDifficulty();
+		changeWeek(0, false);
+		changeDifficulty(0, false);
 
 		if (ClientPrefs.iniquitousWeekBeaten == true && !Achievements.isAchievementUnlocked('weekIniquitous_Beaten'))
 		{
@@ -724,6 +724,7 @@ class StoryMenuState extends MusicBeatState
 	{
 		if (!weekIsLocked(loadedWeeks[curWeek].fileName))
 		{
+			if (ClientPrefs.haptics) Haptic.vibrateOneShot(1, 0.75, 0.5);
 			// We can't use Dynamic Array .copy() because that crashes HTML5, here's a workaround.
 			var songArray:Array<String> = [];
 			var leWeek:Array<Dynamic> = loadedWeeks[curWeek].songs;
@@ -887,8 +888,9 @@ class StoryMenuState extends MusicBeatState
 
 	var tweenDifficulty:FlxTween;
 	var tweenImage:FlxTween;
-	function changeDifficulty(change:Int = 0):Void
+	function changeDifficulty(change:Int = 0?allowHaptics:Bool = true):Void
 	{
+		if (ClientPrefs.haptics && allowHaptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
 		curDifficulty += change;
 
 		if (curWeek == 0 || curWeek == 8) //Check if the selected week is TUTORIAL or INIQUITOUS
@@ -971,8 +973,9 @@ class StoryMenuState extends MusicBeatState
 		}
 	}
 
-	function changeWeek(change:Int = 0):Void
+	function changeWeek(change:Int = 0, ?allowHaptics:Bool = true):Void
 	{
+		if (ClientPrefs.haptics && allowHaptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
 		curWeek += change;
 
 		switch(categorySelected)

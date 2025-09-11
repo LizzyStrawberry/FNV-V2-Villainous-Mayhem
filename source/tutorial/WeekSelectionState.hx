@@ -66,6 +66,7 @@ class WeekSelectionState extends MusicBeatState
 		add(currentImage);
 
         changeSelection();
+		addTouchPad('LEFT_RIGHT', 'B');
     }
 
     override function update(elapsed:Float)
@@ -109,13 +110,13 @@ class WeekSelectionState extends MusicBeatState
         switch (curImageSelected)
         {
 			case 1:
-                descText.text = "When you press Story Mode, you have 4 different gamemodes to choose from. Reminder, the more you progress ingame, the more modes you unlock!";
+                descText.text = "When you click on Story Mode, you have 4 different gamemodes to choose from. Reminder, the more you progress in-game, the more modes you unlock!";
             case 2:
-                descText.text = "To select a week category, select the category you want to play either by using your mouse or pressing the corresponding number on your keyboard.";
+                descText.text = "To select a week category, select the category you want to play either by tapping the corresponding number on screen.";
             case 3:
-                descText.text = "To change a week, use your mouse on the arrows or press UP / DOWN.";
+                descText.text = "To change a week, click on the arrows";
             case 4:
-                descText.text = "Lastly, choose the difficulty you want either by pressing the arrows with your mouse, or pressing LEFT / RIGHT, and then either click on the difficulty with your mouse or press ENTER to load the week!";
+                descText.text = "Lastly, choose the difficulty you want either by tapping the blue arrows, and then click on the difficulty to load the week!";
         } 
 		
 		descText.screenCenter(Y);

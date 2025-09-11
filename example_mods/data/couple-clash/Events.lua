@@ -5,16 +5,18 @@ function onCreate()
 	
 	setProperty('boyfriend.y', getProperty('boyfriend.y') + 50)
 	
-	makeLuaSprite('leftBGEffect', 'effects/bgEffect', -100, 0)
+	makeLuaSprite('leftBGEffect', 'effects/bgEffect')
 	setScrollFactor('leftBGEffect', 0, 0)
-	setObjectCamera('leftBGEffect', 'game')
+	setObjectCamera('leftBGEffect', 'hud')
+	setGraphicSize("leftBGEffect", screenWidth, screenHeight)
 	setProperty('leftBGEffect.alpha', 0)
 	addLuaSprite('leftBGEffect', true)
 	
-	makeLuaSprite('rightBGEffect', 'effects/bgEffect', 100, 0)
+	makeLuaSprite('rightBGEffect', 'effects/bgEffect')
 	setScrollFactor('rightBGEffect', 0, 0)
-	setObjectCamera('rightBGEffect', 'game')
+	setObjectCamera('rightBGEffect', 'hud')
 	setProperty('rightBGEffect.alpha', 0)
+	setGraphicSize("rightBGEffect", screenWidth, screenHeight)
 	setProperty('rightBGEffect.flipX', true)
 	addLuaSprite('rightBGEffect', true)
 end

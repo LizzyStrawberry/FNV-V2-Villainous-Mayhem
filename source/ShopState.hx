@@ -1797,6 +1797,7 @@ class ShopState extends MusicBeatState
 									FlxG.sound.play(Paths.sound('confirmMenu'));
 						
 									var video:VideoSprite = new VideoSprite(Paths.video('Zeels Naked Pics'), false, true, false);
+									add(video);
 									video.play();
 									initializedVideo = true;
 									video.finishCallback = function()

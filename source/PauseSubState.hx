@@ -439,19 +439,17 @@ class PauseSubState extends MusicBeatSubstate
 
 		var scroll = new ScrollableObject(0.004, 50, 100, FlxG.width, FlxG.height, "Y");
 		scroll.onFullScroll.add(delta -> {
-			changeSelection(delta);
+			if (!onQuickSettings) changeSelection(delta);
 		});
 
 		var scrollOptions = new ScrollableObject(0.004, 50, 100, FlxG.width, FlxG.height, "Y");
 		scrollOptions.onFullScroll.add(delta -> {
-			if (onQuickSettings)
-				changeOption(delta);
+			if (onQuickSettings) changeOption(delta);
 		});
 
 		var scrollOptions2 = new ScrollableObject(0.004, 50, 100, FlxG.width, FlxG.height, "X");
 		scrollOptions2.onFullScroll.add(delta -> {
-			if (onQuickSettings)
-				applyOption(delta);
+			if (onQuickSettings) applyOption(delta);
 		});
 		add(scroll);
 		add(scrollOptions);
@@ -808,7 +806,7 @@ class PauseSubState extends MusicBeatSubstate
 		changeOption();
 
 		removeTouchPad();
-		addTouchPad("NONE", "B");
+		addTouchPad("NONE", "A_B");
 	}
 
 	function applyOption(wah:Int = 0)

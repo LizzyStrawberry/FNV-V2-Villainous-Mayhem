@@ -66,6 +66,7 @@ class CoreMechanicsState extends MusicBeatState
 		add(currentImage);
 
         changeSelection();
+		addTouchPad('LEFT_RIGHT', 'B');
     }
 
     override function update(elapsed:Float)
@@ -115,13 +116,13 @@ class CoreMechanicsState extends MusicBeatState
                 descText.text = "To unlock the charms, you either win them by chance from Mimiko's Slot Machines, or you buy them off of Zeel's shop!";
 				descText.size = 32;
             case 3:
-                descText.text = "The Resistance charm reduces the amount of health drain, or any other damage gain you get from any of the opponent's attacks! It's default keybind is 1!\nThe Auto Dodge Charm lets you play your song peacefully without worrying about dodging, as it does it on it's own! It's default keybind is 2!\nThe Healing charm grants you health! You get 10 uses each time you activate it, and to heal, you have to manually press your healing charm button to use! It's default keybind is 3!\nRemember: You can only use ONE charm per song, and ONLY if you have more than 1 tokens!";
+                descText.text = "The Resistance charm reduces the amount of health drain, or any other damage gain you get from any of the opponent's attacks!\nThe Auto Dodge Charm lets you play your song peacefully without worrying about dodging, as it does it on it's own!\nThe Healing charm grants you health! You get 10 uses each time you activate it, and to heal, you have to manually press your healing charm button to use!\nRemember: You can only use ONE charm per song, and ONLY if you have more than 1 tokens!";
 				descText.size = 18;
 			case 4:
                 descText.text = "The other half of the core mechanics is your Mayhem Bar, and it's Buffs! This bar acts as a temporary power up for your character, and depending on what buff you use, it acts accordingly for a small amount of time before it needs to recharge!";
 				descText.size = 32;
 			case 5:
-				descText.text = "To use the bar ingame, you have to first select which buff you want to use for your gameplay session through your inventory!\nTo properly use the bar, make sure you don't miss your notes! Pressing them correctly fills your bar up, but if you miss, your bar decreases!\nUpon being full, the bar will flash, indicating you maxed it out! Press your MAYHEM button to activate it, and it'll grant you your power up, aswell as bonus score and cool lights!";
+				descText.text = "To use the bar ingame, you have to first select which buff you want to use for your gameplay session through your inventory!\nTo properly use the bar, make sure you don't miss your notes! Pressing them correctly fills your bar up, but if you miss, your bar decreases!\nUpon being full, the bar will flash, indicating you maxed it out! TAP your MAYHEM button to activate it, and it'll grant you your power up, aswell as bonus score and cool lights!";
 				descText.size = 18;
 			case 6:
 				descText.text = "Each buff gets unlocked by finishing each of the 3 main weeks of the mod (Weeks 1 - 3).\nThe Health Regeneration buff heals you periodically for a few seconds!\nThe Second Chance buff lets you continue playing with full health if you manage to lose all your health upon it's activation! BEWARE: it only works once per song, and it only grants you a second chance when you lose all your health before the bar depletes down!\nThe Immunity buff let's you miss as much as you want without losing health, either by the opponent, or you, or the mechanics given ingame!\nYou can only use 1 buff per song, aka the one you select from your inventory, and it's free of charge!";

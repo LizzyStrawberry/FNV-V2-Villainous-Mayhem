@@ -66,6 +66,7 @@ class MenuAndInventoryState extends MusicBeatState
 		add(currentImage);
 
         changeSelection();
+		addTouchPad('LEFT_RIGHT', 'B');
     }
 
     override function update(elapsed:Float)
@@ -111,13 +112,13 @@ class MenuAndInventoryState extends MusicBeatState
 			case 1:
                 descText.text = "This is your main menu. It's easy to navigate through with your mouse or by using your keyboard!";
             case 2:
-                descText.text = "To change your selection, press the arrows with your mouse or press LEFT / RIGHT to navigate through the menu. To access Options, press the Gear icon on the top-right corner.";
+                descText.text = "To change your selection, click the arrows to navigate through the menu. To access Options, click the Gear icon on the top-right corner.";
             case 3:
-                descText.text = "To access the shop, the tutorial section (where you are right now!) and the owner's discord server, press the icons with your mouse!";
+                descText.text = "To access the shop, the tutorial section (where you are right now!) and the owner's discord server, click the respective icons.";
             case 4:
-                descText.text = "To select your selection, press ENTER or click with your mouse. Simple so far, right?";
+                descText.text = "To select your selection, click on it. Simple so far, right?";
 			case 5:
-                descText.text = "How do you access the inventory though? Press I on your keyboard or the Bag Icon with your mouse while you're in the main menu to get in your Inventory!";
+                descText.text = "How do you access the inventory though? Click on the Bag Icon with your mouse while you're in the main menu to get in your Inventory!";
 			case 6:
                 descText.text = "Your inventory contains the buffs you collected, the charms you got AND the last character you played as. Clicking on the charms just gives you info on them.";
 			case 7:

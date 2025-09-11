@@ -32,7 +32,7 @@ function onCreate()
 		
 	if allowCharms then 
 		-- Creating the text for the Charms
-		makeLuaText('activationTxt', '', screenWidth, 0, 320)
+		makeLuaText('activationTxt', '', 1280, 0, 320)
 		setTextSize('activationTxt', 50)
 		setProperty('activationTxt.alpha', 0)
 		addLuaText('activationTxt')
