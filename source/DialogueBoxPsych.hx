@@ -211,7 +211,10 @@ class DialogueBoxPsych extends FlxSpriteGroup
 		bottomBar.alpha = 0;
 		add(bottomBar);
 
-		box = new FlxSprite(70, 370).loadGraphic(Paths.image('dialogueBackground/dialogueBubblenormal'));
+	 box = new FlxSprite(70, 370);
+		box.frames = Paths.getSparrowAtlas('newDialogueBubbles');
+		box.animation.addByPrefix('normal', 'dialogueNormal', 24);
+		box.animation.addByPrefix('angry', 'dialogueAngry', 24);
 		box.screenCenter(XY);
 		box.scrollFactor.set();
 		box.antialiasing = ClientPrefs.globalAntialiasing;
