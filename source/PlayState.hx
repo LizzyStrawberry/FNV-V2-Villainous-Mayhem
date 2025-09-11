@@ -1120,6 +1120,7 @@ class PlayState extends MusicBeatState
 
 	function fixTouchPadButtons()
 	{
+		var amountHidden:Int = 0;
 		// Certain conditions are met so this doesn't work
 		if ((PlayState.isIniquitousMode && WeekData.weeksList[PlayState.storyWeek] == 'mainweekkiana') || Paths.formatToSongPath(PlayState.SONG.song) == "couple-clash" 
 			|| !ClientPrefs.mechanics || ClientPrefs.optimizationMode || cpuControlled) return;
@@ -1137,14 +1138,14 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (ClientPrefs.resistanceCharm <= 1 || ClientPrefs.autoCharm <= 1 || ClientPrefs.healingCharm == 0)
-		{
-			touchPad.buttonResCharm.visible = touchPad.buttonResCharm.active = false;
-			touchPad.buttonAutoCharm.visible = touchPad.buttonAutoCharm.active = false;
-			touchPad.buttonHealCharm.visible = touchPad.buttonHealCharm.active = false;
+		if (ClientPrefs.resistanceCharm <= 1) touchPad.buttonResCharm.visible = touchPad.buttonResCharm.active = false;
+
+		if (ClientPrefs.autoCharm <= 1) touchPad.buttonAutoCharm.visible = touchPad.buttonAutoCharm.active = false;
+
+		if (ClientPrefs.healingCharm <= 0) touchPad.buttonHealCharm.visible = touchPad.buttonHealCharm.active = false;
+
+		if (amountHidden == 3)
 			touchPad.buttonMayhem.y = MobileUtil.rawY(0);
-			return;
-		}
 
 		if (ClientPrefs.healingCharm <= 9 && ClientPrefs.healingCharm > 0)
 		{
@@ -1153,6 +1154,8 @@ class PlayState extends MusicBeatState
 			touchPad.buttonHealCharm.x = touchPad.buttonResCharm.x; // Get the button to where the Resistance one is
 			return;
 		}
+
+		return;
 	}
 
 	function set_songSpeed(value:Float):Float

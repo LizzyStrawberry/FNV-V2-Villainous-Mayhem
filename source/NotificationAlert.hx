@@ -25,8 +25,8 @@ class NotificationAlert {
 		notification.updateHitbox();
 
         // Position notification on top of the target sprite
-        notification.x = MobileUtil.rawX(target.x + (targetX));
-        notification.y = MobileUtil.rawY(target.y + (targetY));
+        notification.x = target.x + (targetX);
+        notification.y = target.y + (targetY);
 
         return notification;
     }

@@ -565,7 +565,7 @@ class ShopState extends MusicBeatState
 	{
 		if (!ClientPrefs.shopUnlocked)
 		{
-			if (FlxG.keys.justPressed.BACKSPACE)
+			if (FlxG.keys.justPressed.BACKSPACE || controls.BACK)
 			{
 				FlxG.sound.play(Paths.sound('cancelMenu'));
 				FlxG.sound.music.fadeOut(0.4);
@@ -581,7 +581,7 @@ class ShopState extends MusicBeatState
 		}
 		else if (!ClientPrefs.shopShowcased)
 		{
-			if (FlxG.keys.justPressed.ENTER || TouchUtil.pressAction())
+			if (controls.ACCEPT || TouchUtil.pressAction())
 			{
 				trace ("Pressed Enter : " + pressedEnter);
 				switch (assistNum)
@@ -1556,7 +1556,7 @@ class ShopState extends MusicBeatState
 
 		if (!ClientPrefs.secretShopShowcased && changedShop && !gtfo)
 		{
-			if (FlxG.keys.justPressed.ENTER && !questionShow)
+			if ((controls.ACCEPT || TouchUtil.pressAction()) && !questionShow)
 			{
 				trace ("Pressed Enter : " + pressedEnter);
 				switch (pressedEnter)
