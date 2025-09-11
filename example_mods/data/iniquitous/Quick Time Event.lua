@@ -150,19 +150,6 @@ function onBeatHit()
 	end
 end
 
-function opponentNoteHit() -- health draining mechanic
-	health = getProperty('health')
-	if not isMayhemMode then
-		if getProperty('health') > 0.2 and mechanics and getPropertyFromClass('ClientPrefs', 'buff3Active') == false then
-			if getPropertyFromClass('ClientPrefs', 'resistanceCharm') == 1 then
-				setProperty('health', health- 0.012);
-			else
-				setProperty('health', health- 0.024);
-			end
-		end
-	end
-end
-
 function onTimerCompleted(tag)
 	if mechanics then
 		if tag == 'reset' then

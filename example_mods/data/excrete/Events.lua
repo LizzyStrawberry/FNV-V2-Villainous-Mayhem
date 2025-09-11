@@ -63,19 +63,6 @@ function onBeatHit()
 	end
 end
 
-function opponentNoteHit() -- health draining mechanic
-	health = getProperty('health')
-		if not isMayhemMode and mechanics and getPropertyFromClass('ClientPrefs', 'buff3Active') == false then
-			if ((isStoryMode and difficulty == 1) or (not isStoryMode and difficulty == 0)) and getProperty('health') > 0.2 then
-				if getPropertyFromClass('ClientPrefs', 'resistanceCharm') == 1 then
-					setProperty('health', health- 0.0065);
-				else
-					setProperty('health', health- 0.013);
-				end
-			end
-		end
-end
-
 function onTweenCompleted(tag)
 	if tag == 'sabotage' then
 		doTweenAlpha('sabotageEnd', 'sabotage', 0, 0.7, 'easeOut')

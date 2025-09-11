@@ -394,19 +394,6 @@ function onBeatHit()
 	end
 end
 
-function opponentNoteHit() -- health draining mechanic
-	health = getProperty('health')
-	if not isMayhemMode  then
-		if getProperty('health') > 0.2 and mechanics and getPropertyFromClass('ClientPrefs', 'buff3Active') == false then
-			if getPropertyFromClass('ClientPrefs', 'resistanceCharm') == 1 then
-				setProperty('health', health- 0.0075);
-			else
-				setProperty('health', health- 0.013);
-			end
-		end
-	end
-end
-
 function onTimerCompleted(tag)
 	if tag == 'swingAgain' then
 		doTweenAngle('bfbye', 'bf', -90, getRandomFloat(1.4, 2) / playbackRate, 'cubeInOut')

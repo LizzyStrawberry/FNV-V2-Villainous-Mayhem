@@ -170,17 +170,6 @@ function opponentNoteHit()
 		
 		setTextSize('dialogue', getTextSize('dialogue') + getRandomInt(1, 10))
 	end
-	
-	health = getProperty('health')
-	if not isMayhemMode then
-		if getProperty('health') > 0.2 and mechanics and getPropertyFromClass('ClientPrefs', 'buff3Active') == false then
-			if getPropertyFromClass('ClientPrefs', 'resistanceCharm') == 1 then
-				setProperty('health', health- 0.007);
-			else
-				setProperty('health', health- 0.014);
-			end
-		end
-	end
 end
 
 function onStepHit()

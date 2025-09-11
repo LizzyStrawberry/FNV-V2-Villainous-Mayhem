@@ -109,25 +109,6 @@ function onCountdownTick(counter)
 	end
 end
 
-function opponentNoteHit(id, direction, noteType, isSustainNote, noteData)
-	if mechanics and getPropertyFromClass('ClientPrefs', 'buff3Active') == false then
-		if not isMayhemMode and getProperty('health') > 0.4 and difficulty == 1 and mechanics then
-			if getPropertyFromClass('ClientPrefs', 'resistanceCharm') == 1 then
-				setProperty('health', health- 0.0025);
-			else
-				setProperty('health', health - 0.005)
-			end
-		end
-		if not isMayhemMode and getProperty('health') > 0.4 and difficulty == 2 and mechanics then
-			if getPropertyFromClass('ClientPrefs', 'resistanceCharm') == 1 then
-				setProperty('health', health- 0.00325);
-			else			
-				setProperty('health', health - 0.0065)
-			end
-		end
-	end
-end
-
 function noteMiss(id, direction, noteType, isSustainNote)
 	if mechanics then
 		if noteType == 'Lust Notes' then

@@ -87,17 +87,7 @@ function onSongStart() --set your time stuff ig
     ]])
 end
 
-function opponentNoteHit() -- health draining mechanic
-	health = getProperty('health')
-		if not isMayhemMode and difficulty == 1 and mechanics and getPropertyFromClass('ClientPrefs', 'buff3Active') == false then
-			if getProperty('health') > 0.2 then
-				if getPropertyFromClass('ClientPrefs', 'resistanceCharm') == 1 then
-					setProperty('health', health- 0.004);
-				else
-					setProperty('health', health- 0.008);
-				end
-			end
-		end
+function opponentNoteHit()
 	if curBeat >= 576 and curBeat <= 608 then
 		cameraShake('game', 0.02, 0.2)
 		cameraShake('hud', 0.02, 0.2)

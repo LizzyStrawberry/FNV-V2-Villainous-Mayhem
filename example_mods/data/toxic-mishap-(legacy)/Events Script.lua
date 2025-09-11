@@ -11,28 +11,6 @@ function onCreate()
 	addCharacterToList('marcophase2', 'dad')
 end
 
-function opponentNoteHit() -- health draining mechanic
-	health = getProperty('health')
-	if not isMayhemMode and difficulty == 1 then
-		if getProperty('health') > 0.2 and mechanics and getPropertyFromClass('ClientPrefs', 'buff3Active') == false then
-			if getPropertyFromClass('ClientPrefs', 'resistanceCharm') == 1 then
-				setProperty('health', health- 0.004);
-			else
-				setProperty('health', health- 0.008);
-			end
-		end
-	end
-	if not isMayhemMode and difficulty == 2 then
-		if getProperty('health') > 0.2 and mechanics and getPropertyFromClass('ClientPrefs', 'buff3Active') == false then
-			if getPropertyFromClass('ClientPrefs', 'resistanceCharm') == 1 then
-				setProperty('health', health- 0.014);
-			else
-				setProperty('health', health- 0.028);
-			end
-		end
-	end
-end
-
 function onUpdate()
 	if curBeat == 64 then
 		doTweenAlpha('blackBg', 'blackBG', 1, 0.7 / playbackRate, 'circOut')

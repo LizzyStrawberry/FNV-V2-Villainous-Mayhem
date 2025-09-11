@@ -192,28 +192,6 @@ function onBeatHit()
 	end
 end
 
-function opponentNoteHit() -- health draining mechanic
-	health = getProperty('health')
-	if not isMayhemMode and ((isStoryMode and difficulty == 1) or (not isStoryMode and difficulty == 0)) then
-		if getProperty('health') > 0.2 and mechanics and getPropertyFromClass('ClientPrefs', 'buff3Active') == false then
-			if getPropertyFromClass('ClientPrefs', 'resistanceCharm') == 1 then
-				setProperty('health', health- 0.006);
-			else
-				setProperty('health', health- 0.012);
-			end
-		end
-	end
-	if not isMayhemMode and ((isStoryMode and difficulty == 2) or (not isStoryMode and difficulty == 1)) then
-		if getProperty('health') > 0.2 and mechanics and getPropertyFromClass('ClientPrefs', 'buff3Active') == false then
-			if getPropertyFromClass('ClientPrefs', 'resistanceCharm') == 1 then
-				setProperty('health', health- 0.009);
-			else
-				setProperty('health', health- 0.018);
-			end
-		end
-	end
-end
-
 function onTimerCompleted(tag)
 	if tag == 'woop' then
 		setPropertyFromGroup('strumLineNotes', 0, 'x', getPropertyFromGroup('strumLineNotes', 0, 'x') - 20)

@@ -57,19 +57,6 @@ function onCountdownTick(counter)
 	end
 end
 
-function opponentNoteHit() -- health draining mechanic
-	health = getProperty('health')
-	if not isMayhemMode and difficulty == 1 and mechanics and not getPropertyFromClass('ClientPrefs', 'buff3Active') then
-		if getProperty('health') > 0.2 then
-			if getPropertyFromClass('ClientPrefs', 'resistanceCharm') == 1 then
-				setProperty('health', health- 0.006);
-			else
-				setProperty('health', health- 0.012);
-			end
-		end
-	end
-end
-
 function onSongStart()
 	doTweenAlpha("blackBGRemove", "blackBG", 0, 10 / playbackRate, "quirtInOut")
 	doTweenAlpha("hudFadeIn", "camHUD", 1, 5 / playbackRate, "quirtInOut")

@@ -21,23 +21,6 @@ function onSongStart()
 	end
 end
 
-function opponentNoteHit()
-	--Only for villainous lmao, it shows Aileen's Embarrassment
-	if not isMayhemMode and difficulty == 1 and health >= 0.2 and started == true and mechanics and getPropertyFromClass('ClientPrefs', 'buff3Active') == false then
-		if getPropertyFromClass('ClientPrefs', 'resistanceCharm') == 1 then
-			setProperty('health', health- 0.00125);
-		else
-			setProperty('health', health - 0.025)
-		end
-	end
-end
-
-function onUpdate()
-	if difficulty == 1 then
-		health = getProperty('health')
-	end
-end
-
 function onBeatHit()
 	if curBeat % 4 == 1 then
 		runTimer('woop', 0.01)
@@ -49,8 +32,8 @@ function onBeatHit()
 		triggerEvent('Add Camera Zoom', '0', '0.025')
 	end
 	
-	if not isMayhemMode and difficulty == 1 and health >= 0.2 and started == true and mustHitSection and getPropertyFromClass('ClientPrefs', 'buff3Active') == false then
-		setProperty('health', health - 0.019)
+	if not isMayhemMode and difficulty == 1 and health >= 0.25 and started and mustHitSection and getPropertyFromClass('ClientPrefs', 'buff3Active') == false then
+		setProperty('health', getHealth() - 0.019)
 	end
 end
 
