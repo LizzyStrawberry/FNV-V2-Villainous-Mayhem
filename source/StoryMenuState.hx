@@ -888,7 +888,7 @@ class StoryMenuState extends MusicBeatState
 
 	var tweenDifficulty:FlxTween;
 	var tweenImage:FlxTween;
-	function changeDifficulty(change:Int = 0?allowHaptics:Bool = true):Void
+	function changeDifficulty(change:Int = 0, ?allowHaptics:Bool = true):Void
 	{
 		if (ClientPrefs.haptics && allowHaptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
 		curDifficulty += change;
