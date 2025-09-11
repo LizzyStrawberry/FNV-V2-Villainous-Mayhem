@@ -1138,11 +1138,23 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (ClientPrefs.resistanceCharm <= 1) touchPad.buttonResCharm.visible = touchPad.buttonResCharm.active = false;
+		if (ClientPrefs.resistanceCharm <= 1) 
+		{
+			amountHidden += 1;
+			touchPad.buttonResCharm.visible = touchPad.buttonResCharm.active = false;
+		}
 
-		if (ClientPrefs.autoCharm <= 1) touchPad.buttonAutoCharm.visible = touchPad.buttonAutoCharm.active = false;
+		if (ClientPrefs.autoCharm <= 1)
+		{
+			amountHidden += 1; 
+			touchPad.buttonAutoCharm.visible = touchPad.buttonAutoCharm.active = false;
+		}
 
-		if (ClientPrefs.healingCharm <= 0) touchPad.buttonHealCharm.visible = touchPad.buttonHealCharm.active = false;
+		if (ClientPrefs.healingCharm <= 0)
+		{
+			amountHidden += 1;
+			touchPad.buttonHealCharm.visible = touchPad.buttonHealCharm.active = false;
+		}
 
 		if (amountHidden == 3)
 			touchPad.buttonMayhem.y = MobileUtil.rawY(0);

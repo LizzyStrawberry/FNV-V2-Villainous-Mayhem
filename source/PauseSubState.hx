@@ -659,6 +659,8 @@ class PauseSubState extends MusicBeatSubstate
 					ClientPrefs.tokensAchieved = 0;
 					restartSong();
 				}
+
+				addTouchPad("NONE", "A");
 					
 				ClientPrefs.saveSettings();
 			}
