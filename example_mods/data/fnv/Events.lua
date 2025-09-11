@@ -22,21 +22,19 @@ end
 
 function onSongStart()
 	daSongLength = getProperty('songLength') / 1000 / playbackRate
+	doTweenY('bgFall', 'bg', bgY - 50, 1 / playbackRate, 'linear')
 end
 
 function onUpdate()
 	songPos = getPropertyFromClass('Conductor', 'songPosition');
     currentBeat = (songPos / 1000) * (bpm / 130)
-	if curBeat == 0 and getPropertyFromClass('ClientPrefs', 'shaders') == true then
-		doTweenY('bgFall', 'bg', bgY - 50, 1.0, 'linear')
-	end
 	
 	if curBeat == 64 then
-		cameraFlash('game', 'FFFFFF', 0.7, false)
-		doTweenAlpha('bgAppear', 'bg', 1, 0.6, 'circOut')
+		cameraFlash('game', 'FFFFFF', 0.7 / playbackRate, false)
+		doTweenAlpha('bgAppear', 'bg', 1, 0.6 / playbackRate, 'circOut')
 		if shadersEnabled == true then
-			doTweenAngle('dadSpin', 'dad', getRandomInt(360, 3600), getRandomFloat(3, 10), 'cubeOut')
-			doTweenAngle('playerSpin', 'boyfriend', getRandomInt(360, 3600), getRandomFloat(3, 10), 'cubeOut')
+			doTweenAngle('dadSpin', 'dad', getRandomInt(360, 3600), getRandomFloat(3, 10) / playbackRate, 'cubeOut')
+			doTweenAngle('playerSpin', 'boyfriend', getRandomInt(360, 3600), getRandomFloat(3, 10) / playbackRate, 'cubeOut')
 			triggerEvent('Toggle Trail', '1', '1')
 		end
 	end
@@ -51,7 +49,7 @@ function onUpdate()
 	end
 	
 	if curBeat == 224 then
-		cameraFlash('hud', 'FFFFFF', 0.7, false)
+		cameraFlash('hud', 'FFFFFF', 0.7 / playbackRate, false)
 		setProperty('camGame.alpha', 0)
 	end
 end
@@ -59,16 +57,15 @@ end
 function onTweenCompleted(tag)
 	if tag == 'bgFall' then
 		setProperty('bg.y', bgY)
-		doTweenY('bgFall', 'bg', bgY - 500, 1.0, 'linear')
+		doTweenY('bgFall', 'bg', bgY - 500, 1 / playbackRate, 'linear')
 	end
 	if tag == 'bgAppear' then
 		doTweenAlpha('bgFade', 'bg', 0, daSongLength - 20, 'circOut')
 	end
 	if tag == 'dadSpin' then
-		doTweenAngle('dadSpin', 'dad', getRandomInt(360, 3600), getRandomFloat(3, 10), 'cubeInOut')
-		doTweenAngle('dadSpin', 'dad', getRandomInt(360, 3600), getRandomFloat(3, 10), 'cubeInOut')
+		doTweenAngle('dadSpin', 'dad', getRandomInt(360, 3600), getRandomFloat(3, 10) / playbackRate, 'cubeInOut')
 	end
 	if tag == 'playerSpin' then
-		doTweenAngle('playerSpin', 'boyfriend', getRandomInt(360, 3600), getRandomFloat(3, 10), 'cubeInOut')
+		doTweenAngle('playerSpin', 'boyfriend', getRandomInt(360, 3600), getRandomFloat(3, 10) / playbackRate, 'cubeInOut')
 	end
 end

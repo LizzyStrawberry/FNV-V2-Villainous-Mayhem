@@ -11,15 +11,6 @@ function onCreate()
 end
 
 function opponentNoteHit() -- health draining mechanic
-	health = getProperty('health')
-	if curStep >= 288 and not isMayhemMode and getProperty('health') > 0.2 and mechanics and getPropertyFromClass('ClientPrefs', 'buff3Active') == false then
-		if getPropertyFromClass('ClientPrefs', 'resistanceCharm') == 1 then
-			setProperty('health', health- 0.006);
-		else
-			setProperty('health', health- 0.012);
-		end
-	end
-	
 	if (curBeat >= 192 and curBeat <= 199) or (curBeat >= 280 and curBeat <= 311) or (curBeat >= 452 and curBeat <= 456) or (curBeat >= 468 and curBeat <= 472) then
 		triggerEvent('Add Camera Zoom', '0.02', '0.025')
 	end

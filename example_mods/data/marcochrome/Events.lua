@@ -41,7 +41,7 @@ function onCreatePost()
 	setProperty('green.alpha', 0)
 	addLuaSprite('green', true)
 	
-	if getPropertyFromClass('ClientPrefs', 'trampolineMode') == true then
+	if getPropertyFromClass('ClientPrefs', 'trampolineMode') then
 		removeLuaSprite('trampoline', true)
 	end
 end
@@ -209,17 +209,6 @@ function opponentNoteHit(id, direction, noteType, isSustainNote, noteData)
 		end
 		if direction == 3 then
 			triggerEvent('Play Animation', 'singLEFT', 'gf')
-		end
-	end
-	
-	health = getProperty('health')
-	if not isMayhemMode and difficulty == 1 then
-		if getProperty('health') > 0.2 and mechanics and getPropertyFromClass('ClientPrefs', 'buff3Active') == false then
-			if getPropertyFromClass('ClientPrefs', 'resistanceCharm') == 1 then
-				setProperty('health', health- 0.007);
-			else
-				setProperty('health', health- 0.014);
-			end
 		end
 	end
 end

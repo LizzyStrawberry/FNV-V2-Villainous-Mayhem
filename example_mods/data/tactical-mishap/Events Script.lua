@@ -10,19 +10,6 @@ function onCreate()
 	addLuaSprite('blackBG', true)
 end
 
-function opponentNoteHit() -- health draining mechanic
-	health = getProperty('health')
-	if not isMayhemMode and difficulty == 1 and getPropertyFromClass('ClientPrefs', 'buff3Active') == false then
-		if getProperty('health') > 0.2 and mechanics then
-			if getPropertyFromClass('ClientPrefs', 'resistanceCharm') == 1 then
-				setProperty('health', health- 0.007);
-			else
-				setProperty('health', health- 0.014);
-			end
-		end
-	end
-end
-
 function onUpdate()
 	if curBeat == 64 then
 		doTweenAlpha('blackBg', 'blackBG', 1, 0.7 / playbackRate, 'circOut')

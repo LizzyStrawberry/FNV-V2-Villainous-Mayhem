@@ -1,0 +1,5 @@
+Enable / Disable Health Drain at any point!
+
+Value 1: "true / 1" or "false / 0"
+
+You can also leave this blank to disable drain.

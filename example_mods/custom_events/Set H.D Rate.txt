@@ -1,0 +1,3 @@
+Set the health drain rate you want!
+
+Value 1: Drain Rate

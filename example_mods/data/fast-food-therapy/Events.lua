@@ -11,19 +11,6 @@ function onCreate()
 	addLuaText('tip')
 end
 
-function opponentNoteHit() -- health draining mechanic
-	health = getProperty('health')
-		if not isMayhemMode and difficulty == 1 and mechanics and getPropertyFromClass('ClientPrefs', 'buff3Active') == false then
-			if getProperty('health') > 0.2 then
-				if getPropertyFromClass('ClientPrefs', 'resistanceCharm') == 1 then
-					setProperty('health', health- 0.009);
-				else
-					setProperty('health', health- 0.018);
-				end
-			end
-		end
-end
-
 function onUpdate()
 	if curBeat == 0 then
 		doTweenAlpha('tip', 'tip', 1, 0.7, 'cubeInOut')

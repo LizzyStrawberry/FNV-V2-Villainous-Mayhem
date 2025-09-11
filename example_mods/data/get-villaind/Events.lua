@@ -75,19 +75,6 @@ function onSongStart()
 	end
 end
 
-function opponentNoteHit() -- health draining mechanic
-	health = getProperty('health')
-		if not isMayhemMode and difficulty == 1 and mechanics and getPropertyFromClass('ClientPrefs', 'buff3Active') == false then
-			if getProperty('health') > 0.2 then
-				if getPropertyFromClass('ClientPrefs', 'resistanceCharm') == 1 then
-					setProperty('health', health- 0.006);
-				else
-					setProperty('health', health- 0.012);
-				end
-			end
-		end
-end
-
 function onUpdate()
 	if curStep >= 512 and curStep < 768 and mechanics then
 		setProperty('gameTHEORY.angle', getProperty('gameTHEORY.angle') + 10)

@@ -599,7 +599,7 @@ function addNewIcon(tag, char, isPlayer, visible)
 	table.insert(exIcons, iconName)
 	table.insert(exIconsSides, side)
 	
-	if char == "gf" then setProperty("iconGF.flipX", true) end
+	if char == "gf" then setProperty("iconGF.flipX", isPlayer and true or false) end
 
 	-- Set Icon Properties Immediately
 	scaleObject(iconName, getProperty("iconP"..iconNum..".scale.x") - iconSizeDecrease, getProperty("iconP"..iconNum..".scale.y") - iconSizeDecrease)

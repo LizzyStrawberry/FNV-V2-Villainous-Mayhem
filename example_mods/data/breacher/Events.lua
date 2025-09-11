@@ -109,24 +109,3 @@ function onTweenCompleted(tag)
 		doTweenY('whiteBGScaleYOut3', 'whiteBG.scale', 0, 0.175 / playbackRate, 'quartOut')
 	end
 end
-
-function opponentNoteHit() -- health draining mechanic
-	health = getProperty('health')
-	if not isMayhemMode and mechanics and getPropertyFromClass('ClientPrefs', 'buff3Active') == false then
-		if getProperty('health') > 0.2 then
-			if getPropertyFromClass('ClientPrefs', 'resistanceCharm') == 1 then
-				if difficulty == 1 then
-					setProperty('health', health- 0.008);
-				else
-					setProperty('health', health- 0.006);
-				end
-			else
-				if difficulty == 1 then
-					setProperty('health', health- 0.016);
-				else
-					setProperty('health', health- 0.012);
-				end
-			end
-		end
-	end
-end

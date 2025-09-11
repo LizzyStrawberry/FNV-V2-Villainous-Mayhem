@@ -215,16 +215,3 @@ function onTweenCompleted(tag)
 		noteTweenAngle('GFNoteAngleFix3', 7, 0, 1 / playbackRate, 'cubeInOut')
 	end
 end
-
-function opponentNoteHit() -- health draining mechanic
-	health = getProperty('health')
-		if mechanics and getPropertyFromClass('ClientPrefs', 'buff3Active') == false then
-			if not isMayhemMode and getProperty('health') > 0.2 and difficulty == 1 then
-				if getPropertyFromClass('ClientPrefs', 'resistanceCharm') == 1 then
-					setProperty('health', health- 0.0085);
-				else
-					setProperty('health', health- 0.017);
-				end
-			end
-		end
-end

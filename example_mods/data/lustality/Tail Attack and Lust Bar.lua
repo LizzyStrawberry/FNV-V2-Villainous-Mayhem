@@ -80,18 +80,6 @@ if mechanics then
 end
 end
 
-function opponentNoteHit(id, direction, noteType, isSustainNote, noteData)
-if mechanics then
-	if not isMayhemMode and getProperty('health') > 0.4 and difficulty == 1 and mechanics and getPropertyFromClass('ClientPrefs', 'buff3Active') == false then
-		if getPropertyFromClass('ClientPrefs', 'resistanceCharm') == 1 then
-			setProperty('health', health- 0.006);
-		else
-			setProperty('health', health - 0.012)
-		end
-	end
-end
-end
-
 function noteMiss(id, direction, noteType, isSustainNote)
 	if mechanics then
 		if noteType == 'Lust Notes' then

@@ -1,0 +1,8 @@
+Want to disable certain note types from
+draining your health in your song?
+Use this event to set them up at any point!
+
+Value 1: Note Types (SEPERATE THEM VIA ,!!!)
+
+WARNING: The names of the note types MUST BE
+just how they're written! They're Case Sensitive!

@@ -1,7 +1,10 @@
-local marcoMainSongs = {'Scrouge', 'Toxic Mishap Remix', 'Villainy', 'Cheap Skate V1', 'Toxic Mishap', 'Shucks V2'}
 local mayhemEnabled = true
+
+local marcoMainSongs = {'Scrouge', 'Toxic Mishap Remix', 'Villainy', 'Cheap Skate V1', 'Toxic Mishap', 'Shucks V2'}
+
 local maxedOut = false
 local activated = false
+
 secondChanceGiven = false
 local secondChanceAllowed = false
 
@@ -14,19 +17,15 @@ local healthGainPerStep
 
 function onCreate()
 	if (not getPropertyFromClass('ClientPrefs', 'buff1Selected') and not getPropertyFromClass('ClientPrefs', 'buff2Selected')
-	and not getPropertyFromClass('ClientPrefs', 'buff3Selected')) or (not mechanics) or botPlay then
+	and not getPropertyFromClass('ClientPrefs', 'buff3Selected')) or not mechanics or botPlay then
 		mayhemEnabled = false
 	end
 	
 	--Resetting
-	if getPropertyFromClass('ClientPrefs', 'buff1Selected') then
-		setPropertyFromClass('ClientPrefs', 'buff1Active', false)
-	end
-	if getPropertyFromClass('ClientPrefs', 'buff2Selected') then
-		setPropertyFromClass('ClientPrefs', 'buff2Active', false)
-	end
-	if getPropertyFromClass('ClientPrefs', 'buff3Selected') then
-		setPropertyFromClass('ClientPrefs', 'buff3Active', false)
+	for i = 1, 3 do
+		if getPropertyFromClass('ClientPrefs', 'buff'..i..'Selected') then
+			setPropertyFromClass('ClientPrefs', 'buff'..i..'Active', false)
+		end
 	end
 	
 	-- Song Specifications and exceptions

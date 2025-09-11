@@ -22,19 +22,6 @@ function onSongStart()
 	cameraHudY = getProperty('camHUD.y')
 end
 
-function opponentNoteHit() -- health draining mechanic
-	health = getProperty('health')
-		if not isMayhemMode and difficulty >= 1 then
-			if getProperty('health') > 0.2 and mechanics and getPropertyFromClass('ClientPrefs', 'buff3Active') == false then
-				if getPropertyFromClass('ClientPrefs', 'resistanceCharm') == 1 then
-					setProperty('health', health- 0.009);
-				else
-					setProperty('health', health- 0.018);
-				end
-			end
-		end
-end
-
 local hudThings = {'healthBar', 'healthBarBG', 'scoreTxt', 'timeTxt', 'timeBar', 'timeBarBG', 'iconP1', 'iconP2', 'charmSocket'}
 function onUpdate()
 	if curBeat == 16 then

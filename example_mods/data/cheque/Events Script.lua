@@ -140,16 +140,3 @@ function onUpdate()
 		cameraFlash('hud', 'FFFFFF', 1, false)
 	end
 end
-
-function opponentNoteHit() -- health draining mechanic
-	health = getProperty('health')
-		if not isMayhemMode and difficulty >= 1 then
-			if getProperty('health') > 0.2 and mechanics and getPropertyFromClass('ClientPrefs', 'buff3Active') == false then
-				if getPropertyFromClass('ClientPrefs', 'resistanceCharm') == 1 then
-					setProperty('health', health- 0.007);
-				else
-					setProperty('health', health- 0.014);
-				end
-			end
-		end
-end
