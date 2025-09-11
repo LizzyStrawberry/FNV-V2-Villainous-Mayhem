@@ -48,14 +48,14 @@ class CrashAndLoadState extends MusicBeatState
                 songName = "Get Villain'd";
 
             default: //Testing Value
-                songName = "Test Song"; 
+                songName = ClientPrefs.crashSongName; 
         }
         songText = new Alphabet(600, 375, "", true); 
         songText.text = songName + ((ClientPrefs.crashSongName == '') ? "\nDifficulty" : "\n" + ClientPrefs.crashDifficultyName + '-');
         songText.scaleX = 0.8;
         songText.scaleY = 0.8;
         songText.setAlignmentFromString('center');
-        songText.x = 800;
+        songText.x = 830;
 		add(songText);
 
         yes = new Alphabet(340, 530, "yes", true);
