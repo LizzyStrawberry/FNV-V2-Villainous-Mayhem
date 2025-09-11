@@ -1,304 +1,275 @@
-local mayhemEnabled = true
+-- Check if enabled
+local mayhemEnabled = false
 
-local marcoMainSongs = {'Scrouge', 'Toxic Mishap Remix', 'Villainy', 'Cheap Skate V1', 'Toxic Mishap', 'Shucks V2'}
+local mayhemX, mayhemY = 450, 530
 
-local maxedOut = false
-local activated = false
+-- Mayhem Checks
+local maxedOut, activated, refill = false, false, false
+-- View onSectionHit to understand
+local alphaSectionSwitch = false 
 
+-- Buff 2 Checks
 secondChanceGiven = false
-local secondChanceAllowed = false
-
-local refill = false
 
 -- Health Calculations
-local stepsPerSecond
+local stepsPerSecond, healthGainPerStep
 local totalHealthGain = 0.75 -- Normally without Mayhem Mode
-local healthGainPerStep
+
+-- Pad, backBar and Pad color exceptions
+local padColor, backColor
+local marcoMainSongs = {'Scrouge', 'Toxic Mishap Remix', 'Villainy', 'Cheap Skate V1', 'Toxic Mishap', 'Shuckle Fuckle'}
+
+-- Used in Song Checks
+local holyTrinity = {'Forsaken', 'Forsaken (Picmixed)', 'Partner'}
+local holyTrinityChecked = false
+
+-- Buff Properties
+local curBuff = -1
+local locatedBuff = false
+
+-- Colors for effect
+local colArray = {"9700FF", "00FFFF", "00FF00", "FF0000"}
+
+-- Checking if mayhem is on + Creation
+function checkIfEnabled()
+	-- Check for buffs being disabled
+	local disabledBuffs = 0
+	for i = 1, 3 do
+		--debugPrint("Checking Buff Number "..i.."...")
+		if not getPropertyFromClass('ClientPrefs', 'buff'..i..'Selected') then disabledBuffs = disabledBuffs + 1 end
+	end
+	if disabledBuffs == 3 then return false end
+	
+	-- Check if botplay OR mechanics are on/off
+	--debugPrint("Checking Botplay and Mechanics..")
+	if botPlay or not mechanics then return false end
+	
+	-- User exceptions
+	--debugPrint("Checking User Specifications..")
+	if songName == "Iniquitous" or songName == "Couple Clash" or (isIniquitousMode and week == 'weekkiana') then return false end
+	
+	return true
+end
 
 function onCreate()
-	if (not getPropertyFromClass('ClientPrefs', 'buff1Selected') and not getPropertyFromClass('ClientPrefs', 'buff2Selected')
-	and not getPropertyFromClass('ClientPrefs', 'buff3Selected')) or not mechanics or botPlay then
-		mayhemEnabled = false
-	end
+	-- Set variable
+	mayhemEnabled = checkIfEnabled()
+	--debugPrint("Mayhem is "..(mayhemEnabled and "On!" or "Off!"))
 	
-	--Resetting
-	for i = 1, 3 do
-		if getPropertyFromClass('ClientPrefs', 'buff'..i..'Selected') then
-			setPropertyFromClass('ClientPrefs', 'buff'..i..'Active', false)
-		end
-	end
-	
-	-- Song Specifications and exceptions
-	if songName == 'Iniquitous' or songName == 'Couple Clash' or (isIniquitousMode and week == 'weekkiana') then
-		mayhemEnabled = false
-	end
+	-- Reset FIRSTLY before continuing
+	for i = 1, 3 do setPropertyFromClass('ClientPrefs', 'buff'..i..'Active', false) end
 end
 
 function onCreatePost()	
 	if mayhemEnabled then
 		-- Calculate Health Gain for buff 1
 		stepsPerSecond = (bpm / 60) * 4
-		if isMayhemMode then
-			totalHealthGain = 10 -- Gain 10 Health in Mayhem Mode
-		end
+		-- Gain 10 Health in Mayhem Mode instead of the usual
+		if isMayhemMode then totalHealthGain = 10 end
+		-- Calculate Health Gain per step
 		healthGainPerStep = ((totalHealthGain / 7) / stepsPerSecond) * 2 -- per 2 steps
 		
+		-- Set Pad and backBar Color
 		padColor = rgbToHex(getProperty('dad.healthColorArray'))
-		
 		for i = 1, #(marcoMainSongs) do
-			if songName == marcoMainSongs[i] then
-				padColor = '3ac331'
-			end
+			if songName == marcoMainSongs[i] then padColor = '3ac331' end
 		end
-		
 		backColor = rgbToHex(getProperty('boyfriend.healthColorArray'))
 		
-		makeLuaSprite('reloadBar', 'mayhemBar/mayhembackBar', 450, 530)
-		setProperty('reloadBar.color', getColorFromHex('737373'))
-		setObjectCamera('reloadBar', 'hud')
-		setObjectOrder('reloadBar', getObjectOrder('healthBarBG') + 1)
-		setProperty('reloadBar.origin.x', 80)
-		setProperty('reloadBar.scale.x', 1)
-		addLuaSprite('reloadBar', true)
+		-- Create Mayhem UI
+		createMayhemBar()
 		
-		makeLuaSprite('mayhembackBar', 'mayhemBar/mayhembackBar', 450, 530)
-		setProperty('mayhembackBar.color', getColorFromHex(backColor))
-		setObjectCamera('mayhembackBar', 'hud')
-		setObjectOrder('mayhembackBar', getObjectOrder('reloadBar') + 1)
-		setProperty('mayhembackBar.origin.x', 80)
-		setProperty('mayhembackBar.scale.x', 0)
-		addLuaSprite('mayhembackBar', true)
-		
-		makeLuaSprite('mayhemPads', 'mayhemBar/mayhemPads', 450, 530)
-		setObjectCamera('mayhemPads', 'hud')
-		setObjectOrder('mayhemPads', getObjectOrder('healthBar'))
-		setProperty('mayhemPads.color', getColorFromHex(padColor))
-		addLuaSprite('mayhemPads', true)
-		
-		makeLuaSprite('mayhemBar', 'mayhemBar/mayhemBar', 450, 530)
-		setObjectCamera('mayhemBar', 'hud')
-		setObjectOrder('mayhemBar', getObjectOrder('mayhembackBar') + 1)
-		addLuaSprite('mayhemBar', true)
-		
-		makeLuaSprite('mayhemText', 'mayhemBar/mayhemText', 450, 530)
-		setObjectCamera('mayhemText', 'hud')
-		setObjectOrder('mayhemText', getObjectOrder('mayhemBar') + 1)
-		setProperty('mayhemText.color', getColorFromHex(padColor))
-		addLuaSprite('mayhemText', true)
-		
-		makeLuaSprite('leftBGEffect', 'effects/bgEffect', -100, 0)
-		setScrollFactor('leftBGEffect', 0, 0)
-		setObjectCamera('leftBGEffect', 'hud')
-		setProperty('leftBGEffect.alpha', 0)
-		addLuaSprite('leftBGEffect', true)
-		
-		makeLuaSprite('rightBGEffect', 'effects/bgEffect', 100, 0)
-		setScrollFactor('rightBGEffect', 0, 0)
-		setObjectCamera('rightBGEffect', 'hud')
-		setProperty('rightBGEffect.alpha', 0)
-		setProperty('rightBGEffect.flipX', true)
-		addLuaSprite('rightBGEffect', true)
-		
-		if downscroll then
-			setProperty('reloadBar.y', 110)
-			setProperty('mayhembackBar.y', 110)
-			setProperty('mayhemPads.y', 110)
-			setProperty('mayhemBar.y', 110)
-			setProperty('mayhemText.y', 110)
-		end
-		
-		-- Song Specifications
-		if songName == 'Sussus Marcus' or songName == 'Villain In Board' or songName == 'Excrete' then
-			if downscroll then
-				setProperty('reloadBar.y', 110)
-				setProperty('mayhembackBar.y', 110)
-				setProperty('mayhemPads.y', 110)
-				setProperty('mayhemBar.y', 110)
-				setProperty('mayhemText.y', 110)
-			else
-				setProperty('reloadBar.y', 510)
-				setProperty('mayhembackBar.y', 510)
-				setProperty('mayhemPads.y', 510)
-				setProperty('mayhemBar.y', 510)
-				setProperty('mayhemText.y', 510)
-			end
-		end
-		if not isMayhemMode and (songName == 'Forsaken' or songName == 'Forsaken (Picmixed)' or songName == 'Partner') and mechanics then
-			if downscroll then
-				setProperty('reloadBar.y', 30)
-				setProperty('mayhembackBar.y', 30)
-				setProperty('mayhemPads.y', 30)
-				setProperty('mayhemBar.y', 30)
-				setProperty('mayhemText.y', 30)
-			else
-				setProperty('reloadBar.y', 600)
-				setProperty('mayhembackBar.y', 600)
-				setProperty('mayhemPads.y', 600)
-				setProperty('mayhemBar.y', 600)
-				setProperty('mayhemText.y', 600)
-			end
-			setProperty('mayhembackBar.alpha', 0)
-		end
-		if songName == 'Libidinousness' and mechanics then
-			if downscroll then
-				setProperty('reloadBar.y', 30)
-				setProperty('mayhembackBar.y', 30)
-				setProperty('mayhemPads.y', 30)
-				setProperty('mayhemBar.y', 30)
-				setProperty('mayhemText.y', 30)
-			else
-				setProperty('reloadBar.y', 600)
-				setProperty('mayhembackBar.y', 600)
-				setProperty('mayhemPads.y', 600)
-				setProperty('mayhemBar.y', 600)
-				setProperty('mayhemText.y', 600)
+		-- Locate Buff
+		if not locatedBuff then
+			for buff = 1, 3 do 
+				if getPropertyFromClass('ClientPrefs', 'buff'..buff..'Selected') then
+					curBuff = buff
+					locatedBuff = true
+					--debugPrint("Current Buff Active: "..curBuff)
+				end
 			end
 		end
 	end
 end
 
-local mayhemAlphaLower = false
-function onUpdatePost()
-	if mayhemEnabled then
-		healthLeft = getHealth();
+-- Creation, exception check and position fix for UI
+function createMayhemBar()
+	makeLuaSprite('reloadBar', 'mayhemBar/mayhembackBar', mayhemX, mayhemY)
+	setProperty('reloadBar.color', getColorFromHex('737373'))
+	setObjectCamera('reloadBar', 'hud')
+	setObjectOrder('reloadBar', getObjectOrder('healthBarBG') + 1)
+	setProperty('reloadBar.origin.x', 80)
+	setProperty('reloadBar.scale.x', 1)
+	addLuaSprite('reloadBar', true)
 		
-		-- Set Bar Position
-		if not isMayhemMode and songName == 'Forsaken' or songName == 'Forsaken (Picmixed)' or songName == 'Partner' then
-			setProperty('reloadBar.alpha', getProperty('mayhembackBar.alpha'))
-			setProperty('mayhemPads.alpha', getProperty('mayhembackBar.alpha'))
-			setProperty('mayhemBar.alpha', getProperty('mayhembackBar.alpha'))
-			setProperty('mayhemText.alpha', getProperty('mayhembackBar.alpha'))
-		elseif songName == 'Libidinousness' then
-			if not mustHitSection and not mayhemAlphaLower then
-				doTweenAlpha('mayhembackBar', 'mayhembackBar', 0.3, 0.5, 'sineOut')
-				doTweenAlpha('reloadBar', 'reloadBar', 0.3, 0.5, 'sineOut')
-				doTweenAlpha('mayhemPads', 'mayhemPads', 0.3, 0.5, 'sineOut')
-				doTweenAlpha('mayhemBar', 'mayhemBar', 0.3, 0.5, 'sineOut')
-				doTweenAlpha('mayhemText', 'mayhemText', 0.3, 0.5, 'sineOut')
-				mayhemAlphaLower = true
-			end
-			if mustHitSection and mayhemAlphaLower then
-				doTweenAlpha('mayhembackBar', 'mayhembackBar', 1, 0.5, 'sineOut')
-				doTweenAlpha('reloadBar', 'reloadBar', 1, 0.5, 'sineOut')
-				doTweenAlpha('mayhemPads', 'mayhemPads', 1, 0.5, 'sineOut')
-				doTweenAlpha('mayhemBar', 'mayhemBar', 1, 0.5, 'sineOut')
-				doTweenAlpha('mayhemText', 'mayhemText', 1, 0.5, 'sineOut')
-				mayhemAlphaLower = false
-			end
-		else
-			setProperty('mayhembackBar.alpha', getProperty('healthBar.alpha'))
-			setProperty('reloadBar.alpha', getProperty('mayhembackBar.alpha'))
-			setProperty('mayhemPads.alpha', getProperty('mayhembackBar.alpha'))
-			setProperty('mayhemBar.alpha', getProperty('mayhembackBar.alpha'))
-			setProperty('mayhemText.alpha', getProperty('mayhembackBar.alpha'))
-			
-			setProperty('mayhembackBar.visible', getProperty('healthBar.visible'))
-			setProperty('reloadBar.visible', getProperty('mayhembackBar.visible'))
-			setProperty('mayhemPads.visible', getProperty('mayhembackBar.visible'))
-			setProperty('mayhemBar.visible', getProperty('mayhembackBar.visible'))
-			setProperty('mayhemText.visible', getProperty('mayhembackBar.visible'))
-		end
+	makeLuaSprite('mayhembackBar', 'mayhemBar/mayhembackBar', mayhemX, mayhemY)
+	setProperty('mayhembackBar.color', getColorFromHex(backColor))
+	setObjectCamera('mayhembackBar', 'hud')
+	setObjectOrder('mayhembackBar', getObjectOrder('reloadBar') + 1)
+	setProperty('mayhembackBar.origin.x', 80)
+	setProperty('mayhembackBar.scale.x', 0)
+	addLuaSprite('mayhembackBar', true)
 		
-		-- Mayhem mechanics
-		-- 1) Health Increase on Step (Unlocked on Marco's main week)
-		-- 2) Second Chance (Unlocked on Beatrice's main week)
-		-- 3) Immunity (Unlocked on Kiana's main week / IT'S SHOWN ON HEALTH DRAINING SCRIPTS)
-		if getPropertyFromClass('ClientPrefs', 'buff1Unlocked') and getPropertyFromClass('ClientPrefs', 'buff1Selected') then
-			if keyJustPressed('mayhem') and maxedOut and not activated and not refill then
-				activated = true
-				doTweenX('mayhemBackBarScale', 'mayhembackBar.scale', 0, 7, 'linear')
-				
-				if not isMayhemMode then
-					if (songName == 'Forsaken' or songName == 'Forsaken (Picmixed)' or songName == 'Partner') and mechanics then
-						cancelTween('backBarfill')
-					elseif songName == 'Toybox' and mechanics then
-						if curBeat >= 136 and curBeat < 456 then
-							cancelTween('backBarfill')
-							cancelTimer('drainDelay')
-						end
-					end
-				end
-				
-				setPropertyFromClass('ClientPrefs', 'buff1Active', true)
-			end
-		end
+	makeLuaSprite('mayhemPads', 'mayhemBar/mayhemPads', mayhemX, mayhemY)
+	setObjectCamera('mayhemPads', 'hud')
+	setObjectOrder('mayhemPads', getObjectOrder('healthBar'))
+	setProperty('mayhemPads.color', getColorFromHex(padColor))
+	addLuaSprite('mayhemPads', true)
 		
-		if getPropertyFromClass('ClientPrefs', 'buff2Unlocked') and getPropertyFromClass('ClientPrefs', 'buff2Selected') then
-			if keyJustPressed('mayhem') and maxedOut and not activated and not secondChanceAllowed and not refill then
-				activated = true
-				secondChanceAllowed = true
-				doTweenX('mayhemBackBarScaleBuff2', 'mayhembackBar.scale', 0, 7, 'circOut')
+	makeLuaSprite('mayhemBar', 'mayhemBar/mayhemBar', mayhemX, mayhemY)
+	setObjectCamera('mayhemBar', 'hud')
+	setObjectOrder('mayhemBar', getObjectOrder('mayhembackBar') + 1)
+	addLuaSprite('mayhemBar', true)
+	
+	makeLuaSprite('mayhemText', 'mayhemBar/mayhemText', mayhemX, mayhemY)
+	setObjectCamera('mayhemText', 'hud')
+	setObjectOrder('mayhemText', getObjectOrder('mayhemBar') + 1)
+	setProperty('mayhemText.color', getColorFromHex(padColor))
+	addLuaSprite('mayhemText', true)
+		
+	for _, dir in ipairs({"left", "right"}) do
+		makeLuaSprite(dir..'BGEffect', 'effects/bgEffect')
+		setGraphicSize(dir.."BGEffect", screenWidth, screenHeight)
+		setObjectCamera(dir..'BGEffect', 'hud')
+		setProperty(dir..'BGEffect.alpha', 0)
+		setProperty('rightBGEffect.flipX', dir == "left" and false or true)
+		addLuaSprite(dir..'BGEffect', true)
+	end
+	
+	lookForExceptions()
+end
 
-				setPropertyFromClass('ClientPrefs', 'buff2Active', true)
-			end
-			if not secondChanceGiven and healthLeft <= 0 and activated then
-				cameraFlash('hud', 'FFFFFF', 0.6 / playbackRate, false)
-				secondChanceGiven = true
-				if isMayhemMode then
-					setProperty('health', 50)
-				else
-					if songName == "Toybox" and mechanics then
-						if curBeat >= 136 and curBeat < 456 then
-							setProperty('health', 1.5)
-							setProperty("barBack.scale.x", getHealth() / 2)
-							callScript("data/toybox/Narrin Mechanic", "setUpTime", {})
-						else
-							setProperty('health', 2)
-						end
-					else
-						setProperty('health', 2)
-					end
-				end
-				
-				setPropertyFromClass('ClientPrefs', 'buff2Active', false)
-			end
-		end
+function lookForExceptions()
+	-- Downscroll Check
+	if downscroll then mayhemY = 110 end
 		
-		if getPropertyFromClass('ClientPrefs', 'buff3Unlocked') and getPropertyFromClass('ClientPrefs', 'buff3Selected') then
-			if keyJustPressed('mayhem') and maxedOut and not activated and not refill then
-				activated = true
-				doTweenX('mayhemBackBarScaleBuff3', 'mayhembackBar.scale', 0, 7, 'linear')
-				setPropertyFromClass('ClientPrefs', 'buff3Active', true)
-				
-				-- Song Specifications
-				if not isMayhemMode then
-					if (songName == 'Forsaken' or songName == 'Forsaken (Picmixed)' or songName == 'Partner') and mechanics then
-						pauseTween('backBarfill')
-					elseif songName == 'Toybox' and mechanics then
-						if curBeat >= 136 and curBeat < 456 then
-							pauseTween('backBarfill')
-						end
-					end
-				end
-			end
-		end
+	if songName == 'Sussus Marcus' or songName == 'Villain In Board' or songName == 'Excrete' then
+		if not downscroll then mayhemY = 510 end
+		setProperty('reloadBar.y', mayhemY)
+	end
 		
-		-- Disable bonus
+	for i = 1, #holyTrinity do
+		if not isMayhemMode and songName == holyTrinity[i] then
+			mayhemY = downscroll and 30 or 600
+			setProperty('mayhembackBar.alpha', 0)
+			holyTrinityChecked = true
+		end
+	end
+		
+	if songName == 'Libidinousness' then 
+		mayhemY = downscroll and 30 or 600 
+		alphaSectionSwitch = true
+		--debugPrint("Libidinousness Check Found!")
+	end
+
+	setProperty('reloadBar.y', mayhemY)
+end
+
+function setBarProperties()
+	-- Song Specific check (to make sure we mess with the Alpha / Visibility of the mayhembackBar or not)
+	local alphaCheck
+	if holyTrinityChecked then alphaCheck = true
+	else alphaCheck = not isMayhemMode and songName == 'Libidinousness' end
+	
+	-- Alpha
+	if not alphaCheck then setProperty('mayhembackBar.alpha', getProperty('healthBar.alpha')) end
+	setProperty('reloadBar.alpha', getProperty('mayhembackBar.alpha'))
+	setProperty('mayhemPads.alpha', getProperty('mayhembackBar.alpha'))
+	setProperty('mayhemBar.alpha', getProperty('mayhembackBar.alpha'))
+	setProperty('mayhemText.alpha', getProperty('mayhembackBar.alpha'))
+	
+	-- Visibility
+	if not alphaCheck then setProperty('mayhembackBar.visible', getProperty('healthBar.visible')) end
+	setProperty('reloadBar.visible', getProperty('mayhembackBar.visible'))
+	setProperty('mayhemPads.visible', getProperty('mayhembackBar.visible'))
+	setProperty('mayhemBar.visible', getProperty('mayhembackBar.visible'))
+	setProperty('mayhemText.visible', getProperty('mayhembackBar.visible'))
+		
+	-- X
+	setProperty('mayhembackBar.x', getProperty('reloadBar.x'))
+	setProperty('mayhemPads.x', getProperty('reloadBar.x'))
+	setProperty('mayhemBar.x', getProperty('reloadBar.x'))
+	setProperty('mayhemText.x', getProperty('reloadBar.x'))
+			
+	-- Y
+	setProperty('mayhembackBar.y', getProperty('reloadBar.y'))
+	setProperty('mayhemPads.y', getProperty('reloadBar.y'))
+	setProperty('mayhemBar.y', getProperty('reloadBar.y'))
+	setProperty('mayhemText.y', getProperty('reloadBar.y'))
+end
+
+function onSectionHit()
+	if alphaSectionSwitch then
+		doTweenAlpha("mayhemBackBarAlphaSwitch", "mayhembackBar", mustHitSection and 1 or 0.3, 0.5 / playbackRate, 'sineOut')
+	end
+end
+
+-- Main Buff checker + Max Out check
+function onUpdatePost()
+	if mayhemEnabled then	
+		
+		-- Set Bar Properties
+		setBarProperties()
+		
+		-- Disable bonus if any buff is used!
 		if activated and not getPropertyFromClass('PlayState', 'checkForPowerUp') then
 			setPropertyFromClass('PlayState', 'checkForPowerUp', true)
 		end
-	end
-end
-
-function onStepHit()
-	if mayhemEnabled then
-		if activated and getPropertyFromClass('ClientPrefs', 'buff1Unlocked') and getPropertyFromClass('ClientPrefs', 'buff1Selected') then
-			if curStep % 2 == 0 then
-				if isMayhemMode then
-					setProperty('health', getHealth() + healthGainPerStep)
-				else
+		
+	--[[ 
+		Mayhem mechanics:
+		1) Health Increase on Step (Unlocked on Marco's main week)
+		2) Second Chance (Unlocked on Beatrice's main week)
+		3) Immunity (Unlocked on Kiana's main week / IT'S SHOWN ON HEALTH DRAINING SCRIPTS)
+		
+		We're gonna check what buff is selected, and activate properties accordingly
+	]]
+		
+		local buffCheck = getPropertyFromClass('ClientPrefs', 'buff'..curBuff..'Selected')
+		if buffCheck and not secondChanceGiven then -- Have the second chance check just in case
+			if keyJustPressed('mayhem') and maxedOut and not activated and not refill then
+				-- Activate and reduce bar
+				activated = true
+				setPropertyFromClass('ClientPrefs', 'buff'..curBuff..'Active', true)
+				doTweenX('barReduce', 'mayhembackBar.scale', 0, 7, curBuff == 2 and "circOut" or 'linear')
+				--debugPrint("Buff "..curBuff.." has been activated!")
+			end
+			
+			if activated then
+				-- Check what bar you have and do things
+				if curBuff == 1 then
 					-- Song Specifications
-					if (songName == 'Forsaken' or songName == 'Forsaken (Picmixed)' or songName == 'Partner') and mechanics
-						and getProperty('barBack.scale.y') < 1 then
-						setProperty('barBack.scale.y', getProperty('barBack.scale.y') + 0.0025)
-					elseif songName == 'Toybox' and mechanics then
-						if curBeat >= 136 and curBeat < 456 then
-							setProperty('barBack.scale.y', getProperty('barBack.scale.y') + 0.005)
+					if not isMayhemMode then
+						if songName == 'Toybox' and (curBeat >= 136 and curBeat < 456) then
+							cancelTween('backBarfill') cancelTimer('drainDelay')
 						else
-							setProperty('health', getHealth() + healthGainPerStep)
+							for i = 1, #holyTrinity do
+								if songName == holyTrinity[i] then cancelTween('backBarfill') end
+							end
 						end
-					else
-						setProperty('health', getHealth() + healthGainPerStep)
+					end
+				elseif curBuff == 2 then
+					-- In case you're dead, get revived
+					if getHealth() <= 0.0001 and activated then	
+						-- Song Specification
+						if songName == "Toybox" and (curBeat >= 136 and curBeat < 456) and not isMayhemMode then
+							setProperty('health', 1.5) setProperty("barBack.scale.x", getHealth() / 2)
+							callScript("data/toybox/Narrin Mechanic", "setUpTime", {})
+						else setHealth(isMayhemMode and 50 or 2) end -- Default happening
+						
+						secondChanceGiven = true -- Give second chance, stop this check for good
+						setPropertyFromClass('ClientPrefs', 'buff2Active', false) -- Deactivate
+						cameraFlash('hud', 'FFFFFF', 0.6 / playbackRate, false) -- Flash to show that you got revived
+					end
+				elseif curBuff == 3 then
+					-- Song Specifications
+					if not isMayhemMode then
+						if songName == 'Toybox' and (curBeat >= 136 and curBeat < 456) then pauseTween('backBarfill')
+						else
+							for i = 1, #holyTrinity do
+								if songName == holyTrinity[i] then pauseTween('backBarfill') end
+							end
+						end
 					end
 				end
 			end
@@ -306,101 +277,65 @@ function onStepHit()
 	end
 end
 
-function goodNoteHit(id, direction, noteType, isSustainNote)
+function onBeatHit()
+	if mayhemEnabled and maxedOut then
+		setProperty('mayhembackBar.color', getColorFromHex('FFFFFF'))
+		doTweenColor('fixMayhemColor', 'mayhembackBar', backColor, 0.8 / playbackRate, 'sineOut')
+	end
+end
+
+-- Buff 1: Heal Ability Set
+function onStepHit()
 	if mayhemEnabled then
-		if not secondChanceAllowed then
-			if not maxedOut then
-				if not isSustainNote then
-					setProperty('mayhembackBar.scale.x', getProperty('mayhembackBar.scale.x') + 0.012)
-				else
-					setProperty('mayhembackBar.scale.x', getProperty('mayhembackBar.scale.x') + 0.00115)
+		if activated and curBuff == 1 and curStep % 2 == 0 then
+			if isMayhemMode then setProperty('health', getHealth() + healthGainPerStep)
+			else
+				-- Song Specifications (NOT MAYHEM MODE)
+				for i = 1, #holyTrinity do
+					if songName == holyTrinity[i] and getProperty('barBack.scale.y') < 1 then
+						setProperty('barBack.scale.y', getProperty('barBack.scale.y') + 0.0025)
+					end
 				end
+				if songName == 'Toybox' and (curBeat >= 136 and curBeat < 456) then setProperty('barBack.scale.y', getProperty('barBack.scale.y') + 0.005)
+				else setHealth(getHealth() + healthGainPerStep) end
+			end
+			--debugPrint("Buff 1: Healing Player!")
+		end
+	end
+end
+
+-- Glow Effect Check + Mayhem Bar Increase / Decrease Checks
+function goodNoteHit(id, dir, nt, isSus)
+	if mayhemEnabled and not secondChanceGiven then -- Include a check for the second buff
+		-- Set Colors
+		colBasedOnChar()
+		
+		if not activated then
+			if not maxedOut then
+				setProperty('mayhembackBar.scale.x', getProperty('mayhembackBar.scale.x') + (not isSus and 0.012 or 0.00115))
+
 				if getProperty('mayhembackBar.scale.x') >= 1 then
 					setProperty('mayhembackBar.scale.x', 1)
 					setProperty('reloadBar.scale.x', 0)
 					maxedOut = true
 				end
 			end
-		end
-		
-		if activated then
-			addScore(450)
+		else
+			addScore(isSus and 225 or 450)
 			
-			if direction == 0 then
-				if boyfriendName == 'TC' or boyfriendName == 'TCAlt' then
-					setProperty('leftBGEffect.color', getColorFromHex('f65215'))
-				elseif boyfriendName == 'ourple' then
-					setProperty('leftBGEffect.color', getColorFromHex('fff31d'))
-				elseif boyfriendName == 'Kyu' or boyfriendName == 'KyuAlt' then
-					setProperty('leftBGEffect.color', getColorFromHex('d2fffb'))
-				elseif boyfriendName == 'aileenTofu' or boyfriendName == 'aileenTofuAlt' then
-					setProperty('leftBGEffect.color', getColorFromHex('dcdcdc'))
-				elseif boyfriendName == 'marcoFFFP1' or boyfriendName == 'marcoFFFP2' then
-					setProperty('leftBGEffect.color', getColorFromHex('4c9e64'))
-				else
-					setProperty('leftBGEffect.color', getColorFromHex('9700FF'))
-				end
-			end
-			if direction == 1 then
-				if boyfriendName == 'TC' or boyfriendName == 'TCAlt' then
-					setProperty('leftBGEffect.color', getColorFromHex('f4cabb'))
-				elseif boyfriendName == 'ourple' then
-					setProperty('leftBGEffect.color', getColorFromHex('327dff'))
-				elseif boyfriendName == 'Kyu' or boyfriendName == 'KyuAlt' then
-					setProperty('leftBGEffect.color', getColorFromHex('3bc2b2'))
-				elseif boyfriendName == 'aileenTofu' or boyfriendName == 'aileenTofuAlt' then
-					setProperty('leftBGEffect.color', getColorFromHex('729576'))
-				elseif boyfriendName == 'marcoFFFP1' or boyfriendName == 'marcoFFFP2' then
-					setProperty('leftBGEffect.color', getColorFromHex('288543'))
-				else
-					setProperty('leftBGEffect.color', getColorFromHex('00FFFF'))
-				end
-			end
-			if direction == 2 then
-				if boyfriendName == 'TC' or boyfriendName == 'TCAlt' then
-					setProperty('leftBGEffect.color', getColorFromHex('edbeec'))
-				elseif boyfriendName == 'ourple' then
-					setProperty('leftBGEffect.color', getColorFromHex('32ffab'))
-				elseif boyfriendName == 'Kyu' or boyfriendName == 'KyuAlt' then
-					setProperty('leftBGEffect.color', getColorFromHex('d2fffb'))
-				elseif boyfriendName == 'aileenTofu' or boyfriendName == 'aileenTofuAlt' then
-					setProperty('leftBGEffect.color', getColorFromHex('729576'))
-				elseif boyfriendName == 'marcoFFFP1' or boyfriendName == 'marcoFFFP2' then
-					setProperty('leftBGEffect.color', getColorFromHex('8bbd99'))
-				else
-					setProperty('leftBGEffect.color', getColorFromHex('00FF00'))
-				end
-			end
-			if direction == 3 then
-				if boyfriendName == 'TC' or boyfriendName == 'TCAlt' then
-					setProperty('leftBGEffect.color', getColorFromHex('ee25e8'))
-				elseif boyfriendName == 'ourple' then
-					setProperty('leftBGEffect.color', getColorFromHex('ff1dc0'))
-				elseif boyfriendName == 'Kyu' or boyfriendName == 'KyuAlt' then
-					setProperty('leftBGEffect.color', getColorFromHex('3bc2b2'))
-				elseif boyfriendName == 'aileenTofu' or boyfriendName == 'aileenTofuAlt' then
-					setProperty('leftBGEffect.color', getColorFromHex('565656'))
-				elseif boyfriendName == 'marcoFFFP1' or boyfriendName == 'marcoFFFP2' then
-					setProperty('leftBGEffect.color', getColorFromHex('23743a'))
-				else
-					setProperty('leftBGEffect.color', getColorFromHex('FF0000'))
-				end
-			end
-			
+			setProperty('leftBGEffect.color', getColorFromHex(colArray[dir + 1]))
 			setProperty('rightBGEffect.color', getProperty("leftBGEffect.color")) -- Same as left
 			
-			setProperty('leftBGEffect.alpha', 1)
-			cancelTween('leftBGEffect')
-			doTweenAlpha('leftBGEffect', 'leftBGEffect', 0, 0.4 / playbackRate, 'easeOut')
-				
-			setProperty('rightBGEffect.alpha', 1)
-			cancelTween('rightBGEffect')
-			doTweenAlpha('rightBGEffect', 'rightBGEffect', 0, 0.4 / playbackRate, 'easeOut')
+			for _, effect in ipairs({"left", "right"}) do
+				setProperty(effect..'BGEffect.alpha', 1)
+				cancelTween(effect..'SideGlow')
+				doTweenAlpha(effect..'SideGlow', effect..'BGEffect', 0, 0.4 / playbackRate, 'easeOut')
+			end
 		end
 	end
 end
 
-function noteMiss(id, direction, noteType, isSustainNote)
+function noteMiss()
 	if mayhemEnabled then
 		if not maxedOut and getProperty('mayhembackBar.scale.x') > 0 then
 			setProperty('mayhembackBar.scale.x', getProperty('mayhembackBar.scale.x') - 0.015)
@@ -408,7 +343,7 @@ function noteMiss(id, direction, noteType, isSustainNote)
 	end
 end
 
-function noteMissPress(direction)
+function noteMissPress()
 	if mayhemEnabled and not getPropertyFromClass('ClientPrefs', 'ghostTapping') then
 		if not maxedOut and getProperty('mayhembackBar.scale.x') > 0 then
 			setProperty('mayhembackBar.scale.x', getProperty('mayhembackBar.scale.x') - 0.015)
@@ -416,93 +351,71 @@ function noteMissPress(direction)
 	end
 end
 
-function onBeatHit()
-	if mayhemEnabled then
-		if maxedOut then
-			if curBeat % 1 == 0 then
-				setProperty('mayhembackBar.color', getColorFromHex('FFFFFF'))
-				doTweenColor('mayhemBackBarColor', 'mayhembackBar', backColor, 0.8 / playbackRate, 'sineOut')
-			end
-		end
-	end
-end
-
+-- Completion of tweens
 function onTweenCompleted(tag)
 	if mayhemEnabled then
-		if tag == 'mayhemBackBarScale' then -- Buff 1
-			doTweenX('reloading', 'reloadBar.scale', 1, 10, 'linear')
+		if tag == 'barReduce' then -- Buff 1
+			-- Reload, deactivate and fix color
+			if not secondChanceGiven then doTweenX('reloading', 'reloadBar.scale', 1, 10, 'linear') end
 			setProperty('mayhembackBar.color', getColorFromHex(backColor))
-			setPropertyFromClass('ClientPrefs', 'buff1Active', false)
-			
 			activated = false
 			
-			if not isMayhemMode then
-				if (songName == 'Forsaken' or songName == 'Forsaken (Picmixed)' or songName == 'Partner') and mechanics then
-					if difficulty == 0 and getProperty('songMisses') > 45 then
-						callScript("data/"..songPath.."/Faith Bar Mechanic", "setDrainBar", {true})
-					elseif difficulty == 1 and getProperty('songMisses') > 25 then
-						callScript("data/"..songPath.."/Faith Bar Mechanic", "setDrainBar", {true})
-					elseif difficulty == 2 and getProperty('songMisses') > 12 then
-						callScript("data/"..songPath.."/Faith Bar Mechanic", "setDrainBar", {true})
-					else
-						callScript("data/"..songPath.."/Faith Bar Mechanic", "setDrainBar", {false})
-					end
-				end
+			setPropertyFromClass('ClientPrefs', 'buff'..curBuff..'Active', false)
 			
-				if songName == 'Toybox' and mechanics then
-					if curBeat >= 136 and curBeat < 456 then
-						callScript("data/toybox/Narrin Mechanic", "setUpTime", {})
+			if curBuff == 1 then
+				if not isMayhemMode then
+					for i = 1, #holyTrinity do
+						if songName == holyTrinity[i] then
+							local missCheck = 45 -- Casual Default
+							if difficultyName == "Villainous" then missCheck = 25
+							elseif difficultyName == "Villainous" then missCheck = 12 end
+							
+							callScript("data/"..songPath.."/Faith Bar Mechanic", "setDrainBar", {getProperty("songMisses") > missCheck and true or false})
+						end
 					end
-				end
-			end
-		end
-		
-		if tag == 'mayhemBackBarScaleBuff2' then -- Buff 2
-			if not secondChanceGiven then
-				activated = false
-				secondChanceAllowed = false -- You didn't die yet, reset this
-				doTweenX('reloading', 'reloadBar.scale', 1, 10, 'linear')
-				setProperty('mayhembackBar.color', getColorFromHex(backColor))
 				
-				setPropertyFromClass('ClientPrefs', 'buff2Active', false)
-			else
-				activated = false
-			end
-		end
-		
-		if tag == 'mayhemBackBarScaleBuff3' then -- Buff 3
-			doTweenX('reloading', 'reloadBar.scale', 1, 10, 'linear')
-			activated = false
-			setProperty('mayhembackBar.color', getColorFromHex(backColor))
-			setPropertyFromClass('ClientPrefs', 'buff3Active', false)
-						
-			if not isMayhemMode then
-				if (songName == 'Forsaken' or songName == 'Forsaken (Picmixed)' or songName == 'Partner') and mechanics then
-					resumeTween('backBarfill')
-				elseif songName == 'Toybox' and mechanics then
-					if curBeat >= 136 and curBeat < 456 then
+					if songName == 'Toybox' and (curBeat >= 136 and curBeat < 456) then
 						callScript("data/toybox/Narrin Mechanic", "setUpTime", {})
+					end
+				end
+			elseif curBuff == 3 then -- No check for 2, everything happens onUpdate
+				if not isMayhemMode then
+					if songName == 'Toybox' and (curBeat >= 136 and curBeat < 456) then
+						callScript("data/toybox/Narrin Mechanic", "setUpTime", {})
+					else
+						for i = 1, #holyTrinity do
+							if songName == holyTrinity[i] then resumeTween('backBarfill') end
+						end
 					end
 				end
 			end
 		end
 		
 		if tag == 'reloading' then
-			maxedOut = false
-			refill = false
+			maxedOut = false refill = false
 		end
 	end
 end
 
 function onDestroy()
-	if getPropertyFromClass('ClientPrefs', 'buff1Selected') then
-		setPropertyFromClass('ClientPrefs', 'buff1Active', false)
-	end
-	if getPropertyFromClass('ClientPrefs', 'buff2Selected') then
-		setPropertyFromClass('ClientPrefs', 'buff2Active', false)
-	end
-	if getPropertyFromClass('ClientPrefs', 'buff3Selected') then
-		setPropertyFromClass('ClientPrefs', 'buff3Active', false)
+	-- Always reset at the end too.
+	for i = 1, 3 do setPropertyFromClass('ClientPrefs', 'buff'..i..'Active', false) end
+end
+
+-- Helper Functions
+function colBasedOnChar()
+	if boyfriendName == 'TC' or boyfriendName == 'TCAlt' then
+		colArray = {'f65215', 'f4cabb', 'edbeec', 'ee25e8'}
+	elseif boyfriendName == 'ourple' then
+		colArray = {'fff31d', '327dff', '32ffab', 'ff1dc0'}
+	elseif boyfriendName == 'Kyu' or boyfriendName == 'KyuAlt' then
+		colArray = {'d2fffb', '3bc2b2', 'd2fffb', '3bc2b2'}
+	elseif boyfriendName == 'aileenTofu' or boyfriendName == 'aileenTofuAlt' then
+		colArray = {'dcdcdc', '729576', '729576', '565656'}
+	elseif boyfriendName == 'marcoFFFP1' or boyfriendName == 'marcoFFFP2' then
+		colArray = {'4c9e64', '288543', '8bbd99', '23743a'}
+	else
+		colArray = {"9700FF", "00FFFF", "00FF00", "FF0000"}
 	end
 end
 

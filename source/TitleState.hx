@@ -158,10 +158,13 @@ class TitleState extends MusicBeatState
 			#end
 	
 			#if VIDEOS_ALLOWED
-			new FlxTimer().start(1, function(_)
-			{
-				if (isVideoDone) startIntro(); else startVideo();
-			});
+			if (isVideoDone) startIntro();
+			else
+				new FlxTimer().start(1, function(_)
+				{
+					startVideo();
+				});
+				
 			#else
 			isVideoSet = isVideoDone = true;
 			startIntro();
