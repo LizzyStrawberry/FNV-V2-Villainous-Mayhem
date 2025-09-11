@@ -56,13 +56,13 @@ class ClientPrefs {
 	public static var viewedDisclaimer:Bool = false;
 
 	//crash and save measure
-	public static var storyModeCrashMeasure:String = '';
-	public static var storyModeCrashWeek:Int = -1;
-	public static var storyModeCrashWeekName:String = '';
-	public static var storyModeCrashDifficulty:String = '';
-	public static var storyModeCrashDifficultyNum:Int = -1;
-	public static var storyModeCrashScore:Int = 0;
-	public static var storyModeCrashMisses:Int = 0;
+	public static var crashSongName:String = '';
+	public static var crashWeek:Int = -1;
+	public static var crashWeekName:String = '';
+	public static var crashDifficulty:Int = -1;
+	public static var crashDifficultyName:String = '';
+	public static var crashScore:Int = 0;
+	public static var crashMisses:Int = 0;
 
 	//TOKENS
 	public static var tokens:Int = 0;
@@ -410,13 +410,13 @@ class ClientPrefs {
 		FlxG.save.data.iniquitousUnlocked = iniquitousUnlocked;
 		FlxG.save.data.viewedDisclaimer = viewedDisclaimer;
 
-		FlxG.save.data.storyModeCrashMeasure = storyModeCrashMeasure;
-		FlxG.save.data.storyModeCrashWeek = storyModeCrashWeek;
-		FlxG.save.data.storyModeCrashWeekName = storyModeCrashWeekName;
-		FlxG.save.data.storyModeCrashDifficulty = storyModeCrashDifficulty;
-		FlxG.save.data.storyModeCrashDifficultyNum = storyModeCrashDifficultyNum;
-		FlxG.save.data.storyModeCrashScore = storyModeCrashScore;
-		FlxG.save.data.storyModeCrashMisses = storyModeCrashMisses;
+		FlxG.save.data.crashSongName = crashSongName;
+		FlxG.save.data.crashWeek = crashWeek;
+		FlxG.save.data.crashWeekName = crashWeekName;
+		FlxG.save.data.crashDifficulty = crashDifficulty;
+		FlxG.save.data.crashDifficultyName = crashDifficultyName;
+		FlxG.save.data.crashScore = crashScore;
+		FlxG.save.data.crashMisses = crashMisses;
 
 		FlxG.save.data.optionsFreeplay = optionsFreeplay;
 		FlxG.save.data.inMenu = inMenu;
@@ -860,26 +860,26 @@ class ClientPrefs {
 			campaignSongsPlayed = FlxG.save.data.campaignSongsPlayed;
 		}
 		
-		if(FlxG.save.data.storyModeCrashMeasure != null) {
-			storyModeCrashMeasure = FlxG.save.data.storyModeCrashMeasure;
+		if(FlxG.save.data.crashSongName != null) {
+			crashSongName = FlxG.save.data.crashSongName;
 		}
-		if(FlxG.save.data.storyModeCrashWeek != null) {
-			storyModeCrashWeek = FlxG.save.data.storyModeCrashWeek;
+		if(FlxG.save.data.crashWeek != null) {
+			crashWeek = FlxG.save.data.crashWeek;
 		}
-		if(FlxG.save.data.storyModeCrashWeekName != null) {
-			storyModeCrashWeekName = FlxG.save.data.storyModeCrashWeekName;
+		if(FlxG.save.data.crashWeekName != null) {
+			crashWeekName = FlxG.save.data.crashWeekName;
 		}
-		if(FlxG.save.data.storyModeCrashDifficulty != null) {
-			storyModeCrashDifficulty = FlxG.save.data.storyModeCrashDifficulty;
+		if(FlxG.save.data.crashDifficulty != null) {
+			crashDifficulty = FlxG.save.data.crashDifficulty;
 		}
-		if(FlxG.save.data.storyModeCrashDifficultyNum != null) {
-			storyModeCrashDifficultyNum = FlxG.save.data.storyModeCrashDifficultyNum;
+		if(FlxG.save.data.crashDifficultyName != null) {
+			crashDifficultyName = FlxG.save.data.crashDifficultyName;
 		}
-		if(FlxG.save.data.storyModeCrashScore != null) {
-			storyModeCrashScore = FlxG.save.data.storyModeCrashScore;
+		if(FlxG.save.data.crashScore != null) {
+			crashScore = FlxG.save.data.crashScore;
 		}
-		if(FlxG.save.data.storyModeCrashMisses != null) {
-			storyModeCrashMisses = FlxG.save.data.storyModeCrashMisses;
+		if(FlxG.save.data.crashMisses != null) {
+			crashMisses = FlxG.save.data.crashMisses;
 		}
 		
 		
@@ -1390,23 +1390,17 @@ class ClientPrefs {
 		}
 	}
 
-	public static function resetStoryModeProgress(resetTokens:Bool = false)
+	public static function resetProgress(resetTokens:Bool = false, showTrace:Bool = false)
 	{
-		ClientPrefs.storyModeCrashMeasure = ''; // Song
-		ClientPrefs.storyModeCrashWeek = -1; // Week Number
-		ClientPrefs.storyModeCrashWeekName = ''; //Week Name
-		ClientPrefs.storyModeCrashScore = 0; // Score
-		ClientPrefs.storyModeCrashMisses = 0; // Misses
-		ClientPrefs.storyModeCrashDifficulty = ''; // Difficulty Name
-		ClientPrefs.storyModeCrashDifficultyNum = -1; // Difficulty Number
+		ClientPrefs.crashSongName = ''; // Song
+		ClientPrefs.crashWeek = -1; // Week Number
+		ClientPrefs.crashWeekName = ''; //Week Name
+		ClientPrefs.crashScore = 0; // Score
+		ClientPrefs.crashMisses = 0; // Misses
+		ClientPrefs.crashDifficultyName = ''; // Difficulty Name
+		ClientPrefs.crashDifficulty = -1; // Difficulty Number
 
-		trace('Story Mode Settings:');
-		trace('Resetted Score to:' + ClientPrefs.storyModeCrashScore);
-		trace('Resetted Misses to: ' + ClientPrefs.storyModeCrashMisses);
-		trace('Resetted Week to: ' + ClientPrefs.storyModeCrashWeek);
-		trace('Resetted Week Name to: ' + ClientPrefs.storyModeCrashWeekName);
-		trace('Resetted Song to: ' + ClientPrefs.storyModeCrashMeasure);
-		trace('Resetted Difficulty to: ' + ClientPrefs.storyModeCrashDifficulty + " - " + ClientPrefs.storyModeCrashDifficultyNum + "\n");
+		if (showTrace) traceProgress("story");
 
 		if (resetTokens)
 		{
@@ -1417,8 +1411,31 @@ class ClientPrefs {
 		ClientPrefs.saveSettings();
 	}
 
+	public static function traceProgress(type:String = "Story")
+	{
+		switch(type.toLowerCase())
+		{
+			case "story":
+				trace('Story Mode Progress:');
+				trace('Current Saved Week: ' + ClientPrefs.crashWeekName + " | " + ClientPrefs.crashWeek);
+				trace('Current Saved Song: ' + ClientPrefs.crashSongName);
+				trace('Current Saved Difficulty: ' + ClientPrefs.crashDifficulty + " | " + ClientPrefs.crashDifficultyName);
+				trace('Current Saved Score: ' + ClientPrefs.crashScore);
+				trace('Current Saved Misses: ' + ClientPrefs.crashMisses + "\n");
+
+			case "campaign":
+				trace("Campaign Progress:");
+				trace('Current Saved High Score for Week: ' + ClientPrefs.campaignHighScore);
+				trace('Current Saved Total Rating for the Week: ' + ClientPrefs.campaignRating);
+				trace('Current Saved Best Combo for the Week so far: ' + ClientPrefs.campaignBestCombo);
+				trace('Current Saved Songs Played For Week: ' + ClientPrefs.campaignSongsPlayed + "\n");
+			default:
+				trace("Invalid Type -> Cannot Trace.");
+		}
+	}
+
 	inline public static function getGameplaySetting(name:String, defaultValue:Dynamic):Dynamic {
-		return /*PlayState.isStoryMode ? defaultValue : */ (gameplaySettings.exists(name) ? gameplaySettings.get(name) : defaultValue);
+		return (gameplaySettings.exists(name) ? gameplaySettings.get(name) : defaultValue);
 	}
 
 	public static function reloadControls() {

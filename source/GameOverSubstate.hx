@@ -188,7 +188,7 @@ class GameOverSubstate extends MusicBeatSubstate
 					if (PlayState.isStoryMode){
 						ClientPrefs.ghostTapping = true;
 						
-						ClientPrefs.resetStoryModeProgress(true);
+						ClientPrefs.resetProgress(true);
 
 						if (PlayState.isIniquitousMode)
 							MusicBeatState.switchState(new IniquitousMenuState());

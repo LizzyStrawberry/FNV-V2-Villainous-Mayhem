@@ -1107,13 +1107,12 @@ class MainMenuState extends MusicBeatState
 			#if desktop
 				#if DEBUG_ALLOWED
 					if (FlxG.keys.anyJustPressed(debugKeys))
-						MusicBeatState.switchState(new MasterEditorMenu());
+						MusicBeatState.switchState(new MasterEditorMenu());				
 				#else
 					if (FlxG.keys.anyJustPressed(debugKeys) && !initializedVideo)
 					{
 						selectedSomethin = true;
-						if (FlxG.sound.music != null)
-							FlxG.sound.music.stop();
+						if (FlxG.sound.music != null) FlxG.sound.music.stop();
 
 						var achieveFlashBangID:Int = Achievements.getAchievementIndex('flashbang');
 							if(!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveFlashBangID][2])) {
@@ -1124,13 +1123,14 @@ class MainMenuState extends MusicBeatState
 			
 						CppAPI.setOld();
 						CppAPI.setWallpaper(FileSystem.absolutePath("assets\\images\\thinkFastBitch.png"));
-						var video:VideoHandler = new VideoHandler();
-						video.playVideo(Paths.video('thinkFastChucklenuts'));
+						var video:VideoSprite = new VideoSprite(Paths.video('thinkFastChucklenuts'), false, false, false);
+						videoCutscene = new VideoSprite(fileName, forMidSong, canSkip, loop);
+						add(video);
+						video.play();
 						initializedVideo = true;
 						video.finishCallback = function()
 						{
-							if (ClientPrefs.allowPCChanges == false && Wallpaper.oldWallpaper != null)
-								CppAPI.setWallpaper("old");
+							if (!ClientPrefs.allowPCChange && Wallpaper.oldWallpaper != null) CppAPI.setWallpaper("old");
 
 							System.exit(0);
 						};
@@ -1268,7 +1268,7 @@ class MainMenuState extends MusicBeatState
 									ClientPrefs.inMenu = false;
 									MusicBeatState.switchState(new IniquitousMenuState(), 'stickers');
 								case 'injection':
-									ClientPrefs.resetStoryModeProgress(true);
+									ClientPrefs.resetProgress(true, true);
 									ClientPrefs.inMenu = false;
 									PlayState.isInjectionMode = true;
 									FlxG.mouse.visible = false;
@@ -1533,7 +1533,7 @@ class MainMenuState extends MusicBeatState
 				switch(storyShit[curStorySelected])
 				{
 					case 'injection':
-						ClientPrefs.resetStoryModeProgress(true);
+						ClientPrefs.resetProgress(true, true);
 						ClientPrefs.inMenu = false;
 						PlayState.isInjectionMode = true;
 						FlxG.mouse.visible = false;
@@ -1554,7 +1554,7 @@ class MainMenuState extends MusicBeatState
 						LoadingState.loadAndSwitchState(new PlayState(), true);
 						FreeplayState.destroyFreeplayVocals();
 					case 'mayhem':
-						ClientPrefs.resetStoryModeProgress(true);
+						ClientPrefs.resetProgress(true, true);
 						ClientPrefs.inMenu = false;
 						PlayState.isMayhemMode = true;
 						PlayState.mayhemHealth = 150;

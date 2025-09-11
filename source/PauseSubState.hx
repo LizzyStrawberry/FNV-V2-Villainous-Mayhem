@@ -682,7 +682,7 @@ class PauseSubState extends MusicBeatSubstate
 					if(PlayState.isStoryMode) {
 						//Reset the crash detector to 0, since it means you've returned back to the menu
 						PlayState.isStoryMode = false;
-						ClientPrefs.resetStoryModeProgress(true);
+						ClientPrefs.resetProgress(true);
 						if (PlayState.isIniquitousMode == true)
 						{
 							PlayState.isIniquitousMode = false;

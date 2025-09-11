@@ -297,19 +297,13 @@ class IniquitousMenuState extends MusicBeatState
 			});
 
 		//check the save feature
-		trace('Saved Score :' + ClientPrefs.storyModeCrashScore);
-		trace('Saved Misses: ' + ClientPrefs.storyModeCrashMisses);
-		trace('Saved Week: ' + ClientPrefs.storyModeCrashWeek);
-		trace('Saved Week Name: ' + ClientPrefs.storyModeCrashWeekName);
-		trace('Saved Song: ' + ClientPrefs.storyModeCrashMeasure);
-		trace('Saved Difficulty: ' + ClientPrefs.storyModeCrashDifficulty);
-		trace('Saved High Score for Week: ' + ClientPrefs.campaignHighScore);
-		trace('Saved Total Rating for the Week: ' + ClientPrefs.campaignRating);
-		trace('Saved Best Combo for the Week so far: ' + ClientPrefs.campaignBestCombo);
-		trace('Saved Songs Played For Week: ' + ClientPrefs.campaignSongsPlayed);
+		ClientPrefs.traceProgress("story");
+		ClientPrefs.traceProgress("campaign");
+		
+		if (ClientPrefs.crashSongName == '') ClientPrefs.resetProgress(true);
 		
 		new FlxTimer().start(2, function(tmr:FlxTimer){
-			if (ClientPrefs.storyModeCrashMeasure != '')
+			if (ClientPrefs.crashSongName != '')
 				selectWeek();
 		});
 
@@ -524,7 +518,7 @@ class IniquitousMenuState extends MusicBeatState
 
 			PlayState.storyDifficulty = curDifficulty;
 
-			if ((PlayState.storyDifficulty == 2 || ClientPrefs.storyModeCrashDifficultyNum == 2) && ClientPrefs.mechanics == false && (loadedWeeks[curWeek].storyName == 'Main Week' ||
+			if ((PlayState.storyDifficulty == 2 || ClientPrefs.crashDifficulty == 2) && ClientPrefs.mechanics == false && (loadedWeeks[curWeek].storyName == 'Main Week' ||
 				loadedWeeks[curWeek].storyName == 'Beatrice Week' || loadedWeeks[curWeek].storyName == 'Kiana Week'))
 				{
 					FlxG.sound.play(Paths.sound('confirmMenu'));
@@ -540,7 +534,7 @@ class IniquitousMenuState extends MusicBeatState
 						FreeplayState.destroyFreeplayVocals();
 					});
 				}
-			else if (ClientPrefs.storyModeCrashMeasure != '')
+			else if (ClientPrefs.crashSongName != '')
 			{
 				if (stopspamming == false)
 					{
@@ -603,31 +597,22 @@ class IniquitousMenuState extends MusicBeatState
 					PlayState.campaignMisses = 0;
 	
 					//Crash / Save detection reset
-					ClientPrefs.storyModeCrashDifficulty = diffic;
-					ClientPrefs.storyModeCrashWeek = curWeek;
-					ClientPrefs.storyModeCrashWeekName = WeekData.getWeekFileName();
-					ClientPrefs.storyModeCrashDifficultyNum = curDifficulty;
-					ClientPrefs.storyModeCrashMeasure = '';
-					ClientPrefs.storyModeCrashScore = 0;
-					ClientPrefs.storyModeCrashMisses = 0;
+					ClientPrefs.resetProgress(true, false); //Also reset tokens, no trace!
+
+					ClientPrefs.crashDifficultyName = diffic; //Difficulty Name
+					ClientPrefs.crashDifficulty = curDifficulty; //Difficulty Number
+					ClientPrefs.crashWeek = curWeek; //Week Number
+					ClientPrefs.crashWeekName = WeekData.getWeekFileName(); //Week Name
+				
 					ClientPrefs.campaignBestCombo = 0;
 					ClientPrefs.campaignRating = 0;
 					ClientPrefs.campaignHighScore = 0;
 					ClientPrefs.campaignSongsPlayed = 0;
 					ClientPrefs.saveSettings();
 
-					trace('Saved Score :' + ClientPrefs.storyModeCrashScore);
-					trace('Saved Misses: ' + ClientPrefs.storyModeCrashMisses);
-					trace('Saved Week: ' + ClientPrefs.storyModeCrashWeek);
-					trace('Saved Week Name: ' + ClientPrefs.storyModeCrashWeekName);
-					trace('Saved Song: ' + ClientPrefs.storyModeCrashMeasure);
-					trace('Saved Difficulty: ' + ClientPrefs.storyModeCrashDifficulty + " - " + ClientPrefs.storyModeCrashDifficultyNum);
-					trace('Saved High Score for Week: ' + ClientPrefs.campaignHighScore);
-					trace('Saved Total Rating for the Week: ' + ClientPrefs.campaignRating);
-					trace('Saved Best Combo for the Week so far: ' + ClientPrefs.campaignBestCombo);
-					trace('Saved Songs Played For Week: ' + ClientPrefs.campaignSongsPlayed);
-					trace('CURRENT WEEK: ' + WeekData.getWeekFileName() + ' - ' + ClientPrefs.storyModeCrashWeek);
-		
+					ClientPrefs.traceProgress("story");
+					ClientPrefs.traceProgress("campaign");
+
 					FlxG.camera.flash(FlxColor.WHITE, 1);
 					new FlxTimer().start(1, function(tmr:FlxTimer)
 					{

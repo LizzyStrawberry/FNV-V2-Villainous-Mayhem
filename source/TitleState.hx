@@ -176,7 +176,7 @@ class TitleState extends MusicBeatState
 		ClientPrefs.inShop = ClientPrefs.onCrossSection =  false;
 		ClientPrefs.ghostTapping = true;//Best to reset this honestly
 
-		if (ClientPrefs.storyModeCrashDifficultyNum >= 1 && ClientPrefs.storyModeCrashWeekName == "weekkiana")
+		if (ClientPrefs.crashDifficulty >= 1 && ClientPrefs.crashWeekName == "mainweekkiana")
 		{
 			ClientPrefs.lowQuality = true;
 			trace('Low Quality has been reset (Reason: Crashed on Kiana Week)');

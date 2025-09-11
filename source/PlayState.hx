@@ -3766,20 +3766,12 @@ class PlayState extends MusicBeatState
 
 				storyPlaylist.remove(storyPlaylist[0]);
 
-				ClientPrefs.storyModeCrashScore += campaignScore;
-				ClientPrefs.storyModeCrashMisses += campaignMisses;
-				ClientPrefs.storyModeCrashMeasure = PlayState.storyPlaylist[0];
+				ClientPrefs.crashScore += campaignScore;
+				ClientPrefs.crashMisses += campaignMisses;
+				ClientPrefs.crashSongName = PlayState.storyPlaylist[0];
 
-				trace('Saved Score :' + ClientPrefs.storyModeCrashScore);
-				trace('Saved Misses: ' + ClientPrefs.storyModeCrashMisses);
-				trace('Saved Week: ' + ClientPrefs.storyModeCrashWeek);
-				trace('Saved Week Name: ' + ClientPrefs.storyModeCrashWeekName);
-				trace('Saved Song: ' + ClientPrefs.storyModeCrashMeasure);
-				trace('Saved Difficulty: ' + ClientPrefs.storyModeCrashDifficulty + ' - ' + ClientPrefs.storyModeCrashDifficultyNum);
-				trace('Saved High Score for Week: ' + ClientPrefs.campaignHighScore);
-				trace('Saved Total Rating for the Week: ' + ClientPrefs.campaignRating);
-				trace('Saved Best Combo for the Week so far: ' + ClientPrefs.campaignBestCombo);
-				trace('Saved Songs Played For Week: ' + ClientPrefs.campaignSongsPlayed);
+				ClientPrefs.traceProgress("story");
+				ClientPrefs.traceProgress("campaign");
 
 				ClientPrefs.saveSettings();
 
@@ -3798,7 +3790,7 @@ class PlayState extends MusicBeatState
 						FlxG.sound.playMusic(Paths.music('freakyMenu'));
 						if (PlayState.isIniquitousMode)
 						{
-							if (ClientPrefs.storyModeCrashWeekName == 'weekbeatrice')
+							if (ClientPrefs.crashWeekName == 'weekbeatrice')
 								ClientPrefs.ghostTapping = true;
 							MusicBeatState.switchState(new IniquitousMenuState());
 						}
@@ -3807,7 +3799,7 @@ class PlayState extends MusicBeatState
 						
 						trace('TOKEN NUMBER WITH BOTPLAY OR PRACTICE MODE BEING ON: ' + ClientPrefs.tokens);						
 					}
-					else if (ClientPrefs.storyModeCrashWeekName == 'mainTutWeek')
+					else if (ClientPrefs.crashWeekName == 'mainTutWeek')
 					{
 						MusicBeatState.switchState(new ResultsScreenState());
 						ClientPrefs.tokensAchieved = 0;
@@ -3818,7 +3810,7 @@ class PlayState extends MusicBeatState
 					ClientPrefs.ghostTapping = true;
 
 					//Reset the crash detector to 0, since it means you've beaten the week and it did not crash
-					ClientPrefs.resetStoryModeProgress(false);
+					ClientPrefs.resetProgress(false, true);
 
 					var noHelp:Bool = !ClientPrefs.getGameplaySetting('practice', false) && !ClientPrefs.getGameplaySetting('botplay', false); // No help was used
 					if(noHelp)
@@ -3855,7 +3847,7 @@ class PlayState extends MusicBeatState
 					var checkedWeek:Bool = false;
 					for (week in 0...weeksToCheck.length)
 					{
-						if (ClientPrefs.storyModeCrashWeekName == weeksToCheck[week])
+						if (ClientPrefs.crashWeekName == weeksToCheck[week])
 						{
 							// Check all 3 fields. 2 Will be false most of the time.
 							checkedWeek = checkSongBeforeSwitching("LowQuality", PlayState.storyPlaylist[0], difficulty);
@@ -3874,9 +3866,9 @@ class PlayState extends MusicBeatState
 
 					FlxG.sound.music.stop();
 
-					if (ClientPrefs.storyModeCrashWeekName == 'weeklegacy')
+					if (ClientPrefs.crashWeekName == 'weeklegacy')
 						PlayState.SONG.player1 = 'playablegf-old'; //Change the player to the old version
-					else if (ClientPrefs.storyModeCrashWeekName == 'weekmorky')
+					else if (ClientPrefs.crashWeekName == 'weekmorky')
 					{
 						if (storyPlaylist[0] == 'spendthrift')
 							PlayState.SONG.player1 = 'Spendthrift GF'; //Change the player to the spendthrift version

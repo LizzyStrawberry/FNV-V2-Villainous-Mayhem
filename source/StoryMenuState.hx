@@ -1,5 +1,6 @@
 package;
 
+import haxe.macro.Type.ClassKind;
 import flixel.addons.transition.FlxTransitionableState;
 import flixel.graphics.frames.FlxAtlasFrames;
 import lime.net.curl.CURLCode;
@@ -343,31 +344,16 @@ class StoryMenuState extends MusicBeatState
 		mechanicMessage.alpha = 0;
 		add(mechanicMessage);
 
-		//check the save feature
-		trace('Current Saved Score :' + ClientPrefs.storyModeCrashScore);
-		trace('Current Saved Misses: ' + ClientPrefs.storyModeCrashMisses);
-		trace('Current Saved Week: ' + ClientPrefs.storyModeCrashWeek);
-		trace('Current Saved Week Name: ' + ClientPrefs.storyModeCrashWeekName);
-		trace('Current Saved Song: ' + ClientPrefs.storyModeCrashMeasure);
-		trace('Current Saved Difficulty: ' + ClientPrefs.storyModeCrashDifficulty);
-		trace('Current Saved High Score for Week: ' + ClientPrefs.campaignHighScore);
-		trace('Current Saved Total Rating for the Week: ' + ClientPrefs.campaignRating);
-		trace('Current Saved Best Combo for the Week so far: ' + ClientPrefs.campaignBestCombo);
-		trace('Current Saved Songs Played For Week: ' + ClientPrefs.campaignSongsPlayed);
+		// Check the save feature
+		ClientPrefs.traceProgress("story");
+		ClientPrefs.traceProgress("campaign");
 
-		if (ClientPrefs.storyModeCrashMeasure == '')
-		{
-			ClientPrefs.tokensAchieved = 0; //Reset token achieved Counter in case of nothing being saved, meaning there was no crashing, so no need to remember how many tokens you got in a week
-			ClientPrefs.saveSettings();
-		}
+		if (ClientPrefs.crashSongName == '') ClientPrefs.resetProgress(true);
 
-		if (NotificationAlert.sendTutorialNotification == true)
-		{
-			NotificationAlert.showMessage(this, 'Tutorial');
-		}
+		if (NotificationAlert.sendTutorialNotification == true) NotificationAlert.showMessage(this, 'Tutorial');
 		
 		new FlxTimer().start(2, function(tmr:FlxTimer){
-			if (ClientPrefs.storyModeCrashMeasure != '')
+			if (ClientPrefs.crashSongName != '')
 			{
 				selectWeek();
 			};
@@ -765,7 +751,7 @@ class StoryMenuState extends MusicBeatState
 
 			PlayState.storyDifficulty = curDifficulty;
 
-			if ((PlayState.storyDifficulty == 0 || ClientPrefs.storyModeCrashDifficultyNum == 0) && ClientPrefs.optimizationMode == true && !ClientPrefs.mechanics && loadedWeeks[curWeek].storyName == 'Iniquitous Week')
+			if ((PlayState.storyDifficulty == 0 || ClientPrefs.crashDifficulty == 0) && ClientPrefs.optimizationMode == true && !ClientPrefs.mechanics && loadedWeeks[curWeek].storyName == 'Iniquitous Week')
 			{
 				FlxG.sound.play(Paths.sound('confirmMenu'));
 				selectedWeek = true;
@@ -780,7 +766,7 @@ class StoryMenuState extends MusicBeatState
 					FreeplayState.destroyFreeplayVocals();
 				});
 			}
-			else if (ClientPrefs.storyModeCrashMeasure != '')
+			else if (ClientPrefs.crashSongName != '')
 			{
 				if (!stopspamming)
 				{
@@ -843,7 +829,7 @@ class StoryMenuState extends MusicBeatState
 				{
 					FlxG.camera.flash(FlxColor.WHITE, 1);
 					FlxG.sound.music.volume = 0;
-					ClientPrefs.storyModeCrashDifficultyNum = PlayState.storyDifficulty;
+					ClientPrefs.crashDifficulty = PlayState.storyDifficulty;
 					ClientPrefs.saveSettings();
 					ClientPrefs.onCrossSection = true;
 					PlayState.isStoryMode = false;
@@ -864,30 +850,21 @@ class StoryMenuState extends MusicBeatState
 						PlayState.SONG.player1 = 'Spendthrift GF'; //change the player to the Spendthrift version
 	
 					//Crash / Save detection reset
-					ClientPrefs.resetStoryModeProgress(true); //Also reset tokens!
+					ClientPrefs.resetProgress(true, false); //Also reset tokens, no trace!
 
-					ClientPrefs.storyModeCrashDifficulty = diffic; //Difficulty Name
-					ClientPrefs.storyModeCrashDifficultyNum = curDifficulty; //Difficulty Number
-					ClientPrefs.storyModeCrashWeek = curWeek; //Week Number
-					ClientPrefs.storyModeCrashWeekName = WeekData.getWeekFileName(); //Week Name
+					ClientPrefs.crashDifficultyName = diffic; //Difficulty Name
+					ClientPrefs.crashDifficulty = curDifficulty; //Difficulty Number
+					ClientPrefs.crashWeek = curWeek; //Week Number
+					ClientPrefs.crashWeekName = WeekData.getWeekFileName(); //Week Name
 				
 					ClientPrefs.campaignBestCombo = 0;
 					ClientPrefs.campaignRating = 0;
 					ClientPrefs.campaignHighScore = 0;
 					ClientPrefs.campaignSongsPlayed = 0;
 					ClientPrefs.saveSettings();
-	
-					trace('Loaded Story Mode Settings:');
-					trace('Saved Score :' + ClientPrefs.storyModeCrashScore);
-					trace('Saved Misses: ' + ClientPrefs.storyModeCrashMisses);
-					trace('Saved Week + Name: ' + ClientPrefs.storyModeCrashWeekName + ' - ' + ClientPrefs.storyModeCrashWeek);
-					trace('Saved Song: ' + ClientPrefs.storyModeCrashMeasure);
-					trace('Saved Difficulty: ' + ClientPrefs.storyModeCrashDifficulty + " - " + ClientPrefs.storyModeCrashDifficultyNum + "\n");
-					trace('Loaded Results Settings:');
-					trace('Saved High Score for Week: ' + ClientPrefs.campaignHighScore);
-					trace('Saved Total Rating for the Week: ' + ClientPrefs.campaignRating);
-					trace('Saved Best Combo for the Week so far: ' + ClientPrefs.campaignBestCombo);
-					trace('Saved Songs Played For Week: ' + ClientPrefs.campaignSongsPlayed);
+
+					ClientPrefs.traceProgress("story");
+					ClientPrefs.traceProgress("campaign");
 		
 					FlxG.camera.flash(FlxColor.WHITE, 1);
 					new FlxTimer().start(1, function(tmr:FlxTimer)
