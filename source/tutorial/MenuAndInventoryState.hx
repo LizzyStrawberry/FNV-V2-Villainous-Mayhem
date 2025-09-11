@@ -41,12 +41,12 @@ class MenuAndInventoryState extends MusicBeatState
 		descBox.alpha = 0.6;
 		add(descBox);
 
-        arrowSelectorLeft = new FlxSprite(80, 240).loadGraphic(Paths.image('freeplayStuff/arrowSelectorLeft'));
+        arrowSelectorLeft = new FlxSprite(MobileUtil.fixX(80), 240).loadGraphic(Paths.image('freeplayStuff/arrowSelectorLeft'));
 		arrowSelectorLeft.antialiasing = ClientPrefs.globalAntialiasing;
 		arrowSelectorLeft.scale.set(0.5, 0.5);
 		add(arrowSelectorLeft);
 
-		arrowSelectorRight = new FlxSprite(1060, 240).loadGraphic(Paths.image('freeplayStuff/arrowSelectorRight'));
+		arrowSelectorRight = new FlxSprite(MobileUtil.fixX(1060), 240).loadGraphic(Paths.image('freeplayStuff/arrowSelectorRight'));
 		arrowSelectorRight.antialiasing = ClientPrefs.globalAntialiasing;
 		arrowSelectorRight.scale.set(0.5, 0.5);
 		add(arrowSelectorRight);
@@ -54,18 +54,19 @@ class MenuAndInventoryState extends MusicBeatState
 		getRightArrowX = arrowSelectorRight.x;
 		getLeftArrowX = arrowSelectorLeft.x;
 
-		descText = new FlxText(50, 600, 1180, "", 32);
+		descText = new FlxText(MobileUtil.fixX(50), 600, 1180, "", 32);
 		descText.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		descText.scrollFactor.set();
 		descText.borderSize = 2.4;
 		add(descText);
 
-		currentImage = new FlxSprite(0, -50).loadGraphic(Paths.image('Gallery/image_1'));
+		currentImage = new FlxSprite(MobileUtil.fixX(0), -50).loadGraphic(Paths.image('Gallery/image_1'));
 		currentImage.antialiasing = ClientPrefs.globalAntialiasing;
 		currentImage.scale.set(0.7, 0.7);
 		add(currentImage);
 
         changeSelection();
+
 		addTouchPad('LEFT_RIGHT', 'B');
     }
 
@@ -110,7 +111,7 @@ class MenuAndInventoryState extends MusicBeatState
         switch (curImageSelected)
         {
 			case 1:
-                descText.text = "This is your main menu. It's easy to navigate through with your mouse or by using your keyboard!";
+                descText.text = "This is your main menu. It's easy to navigate through!";
             case 2:
                 descText.text = "To change your selection, click the arrows to navigate through the menu. To access Options, click the Gear icon on the top-right corner.";
             case 3:
