@@ -215,7 +215,7 @@ class ResultsScreenState extends MusicBeatState
 
             if (PlayState.isStoryMode)
             {
-                switch(ClientPrefs.storyModeCrashWeek)
+                switch(ClientPrefs.crashWeek)
                 {
                     case 0 | 1 | 2 | 3 | 7:
                         curChar = 0;
@@ -447,8 +447,7 @@ class ResultsScreenState extends MusicBeatState
 
         if (controls.ACCEPT || TouchUtil.pressAction())
         {
-            if (!ClientPrefs.onCrossSection)
-                ClientPrefs.resetStoryModeProgress(true);
+            if (!ClientPrefs.onCrossSection) ClientPrefs.resetProgress(true);
             FlxG.sound.music.fadeOut(0.2);
             FlxG.sound.play(Paths.sound('confirmMenu'));
 

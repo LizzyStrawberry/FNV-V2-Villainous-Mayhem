@@ -850,7 +850,7 @@ class FreeplayState extends MusicBeatState
 			}
 			else
 			{
-				ClientPrefs.resetStoryModeProgress(true);
+				ClientPrefs.resetProgress(true);
 				ClientPrefs.inMenu = ClientPrefs.lowQuality = PlayState.isStoryMode = false;
 				PlayState.SONG = Song.loadFromJson(poop, songLowercase);
 				PlayState.storyDifficulty = curDifficulty;

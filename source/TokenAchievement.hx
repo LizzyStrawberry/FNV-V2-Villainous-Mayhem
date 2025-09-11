@@ -140,7 +140,7 @@ class TokenAchievement extends MusicBeatState
 				new FlxTimer().start(0.7, function (tmr:FlxTimer) {
 					ClientPrefs.tokensAchieved = 0;
 					if (ClientPrefs.onCrossSection == false)
-						ClientPrefs.storyModeCrashDifficultyNum = -1;
+						ClientPrefs.crashDifficulty = -1;
 					ClientPrefs.saveSettings();
 					if (editors.MasterEditorMenu.debugCheck)
 					{

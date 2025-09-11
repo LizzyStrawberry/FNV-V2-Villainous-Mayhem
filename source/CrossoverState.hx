@@ -204,37 +204,37 @@ class CrossoverState extends MusicBeatState
 		switch(curSelected)
 		{
 			case 0:
-				if (ClientPrefs.storyModeCrashDifficultyNum == 0)
+				if (ClientPrefs.crashDifficulty == 0)
 					PlayState.SONG = Song.loadFromJson('vguy', 'vguy');
-				else if (ClientPrefs.storyModeCrashDifficultyNum == 1)
+				else if (ClientPrefs.crashDifficulty == 1)
 					PlayState.SONG = Song.loadFromJson('vguy-villainous', 'vguy');
 			case 1:
-				if (ClientPrefs.storyModeCrashDifficultyNum == 0)
+				if (ClientPrefs.crashDifficulty == 0)
 					PlayState.SONG = Song.loadFromJson('fast-food-therapy', 'fast-food-therapy');
-				else if (ClientPrefs.storyModeCrashDifficultyNum == 1)
+				else if (ClientPrefs.crashDifficulty == 1)
 					PlayState.SONG = Song.loadFromJson('fast-food-therapy-villainous', 'fast-food-therapy');
 			case 2:
-				if (ClientPrefs.storyModeCrashDifficultyNum == 0)
+				if (ClientPrefs.crashDifficulty == 0)
 					PlayState.SONG = Song.loadFromJson('tactical-mishap', 'tactical-mishap');
-				else if (ClientPrefs.storyModeCrashDifficultyNum == 1)
+				else if (ClientPrefs.crashDifficulty == 1)
 					PlayState.SONG = Song.loadFromJson('tactical-mishap-villainous', 'tactical-mishap');
 			case 3:
-				if (ClientPrefs.storyModeCrashDifficultyNum == 0)
+				if (ClientPrefs.crashDifficulty == 0)
 					PlayState.SONG = Song.loadFromJson('breacher', 'breacher');
-				else if (ClientPrefs.storyModeCrashDifficultyNum == 1)
+				else if (ClientPrefs.crashDifficulty == 1)
 					PlayState.SONG = Song.loadFromJson('breacher-villainous', 'breacher');
 			case 4:
-				if (ClientPrefs.storyModeCrashDifficultyNum == 0)
+				if (ClientPrefs.crashDifficulty == 0)
 					PlayState.SONG = Song.loadFromJson('negotiation', 'negotiation');
-				else if (ClientPrefs.storyModeCrashDifficultyNum == 1)
+				else if (ClientPrefs.crashDifficulty == 1)
 					PlayState.SONG = Song.loadFromJson('negotiation-villainous', 'negotiation');
 			case 5:
-				if (ClientPrefs.storyModeCrashDifficultyNum == 0)
+				if (ClientPrefs.crashDifficulty == 0)
 					PlayState.SONG = Song.loadFromJson('concert-chaos', 'concert-chaos');
-				else if (ClientPrefs.storyModeCrashDifficultyNum == 1)
+				else if (ClientPrefs.crashDifficulty == 1)
 					PlayState.SONG = Song.loadFromJson('concert-chaos-villainous', 'concert-chaos');
 		}
-		PlayState.storyDifficulty = ClientPrefs.storyModeCrashDifficultyNum;
+		PlayState.storyDifficulty = ClientPrefs.crashDifficulty;
 		FlxFlicker.flicker(selections.members[curSelected], 1, 0.04, false);
 
 		FlxG.camera.flash(FlxColor.WHITE, 1);
@@ -248,7 +248,7 @@ class CrossoverState extends MusicBeatState
 
 	function changeSelection()
 	{
-		if (ClientPrefs.storyModeCrashDifficultyNum == 1) //FOR VILLAINOUS MODE
+		if (ClientPrefs.crashDifficulty == 1) //FOR VILLAINOUS MODE
 		{
 			if (ClientPrefs.ourpleFound) //	FIRST SONG
 				curSelected = 0;
