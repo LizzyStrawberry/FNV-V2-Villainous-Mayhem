@@ -205,9 +205,13 @@ class DialogueBoxPsych extends FlxSpriteGroup
 		topBar.alpha = 0;
 		add(topBar);
 
+		bottomBar = new FlxSprite(0, FlxG.height - 108).makeGraphic(FlxG.width, 108, 0xFF000000);
+		bottomBar.alpha = 0;
+		add(bottomBar);
+
 		spawnCharacters();
 
-  box = new FlxSprite(70, 370);
+  		box = new FlxSprite(70, 370);
 		box.frames = Paths.getSparrowAtlas('newDialogueBubbles');
 		box.animation.addByPrefix('normal', 'dialogueNormal', 24);
 		box.animation.addByPrefix('angry', 'dialogueAngry', 24);
