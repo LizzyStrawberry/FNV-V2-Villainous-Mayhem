@@ -33,7 +33,7 @@ function createCharm()
 	setObjectCamera('resCharm', 'hud')
 	addLuaSprite('resCharm', true)
 	
-	makeLuaText('charmActivate', 'Resistance Charm Activated!', 1280, 0, 320)
+	makeLuaText('charmActivate', 'Resistance Charm Activated!', screenWidth, 0, 320)
 	setTextSize('charmActivate', 50)
 	setProperty('charmActivate.alpha', 0)
 	addLuaText('charmActivate')
