@@ -756,7 +756,7 @@ class MainMenuState extends MusicBeatState
 			&& Achievements.isAchievementUnlocked('weekIniquitous_Beaten')
 			// Shop Songs
 			&& Achievements.isAchievementUnlocked('tofu_Beaten') && Achievements.isAchievementUnlocked('marcochrome_Beaten') 
-			&& Achievements.isAchievementUnlocked('lustalityV1_Beaten')
+			&& Achievements.isAchievementUnlocked('lustality_Beaten')
 			&& Achievements.isAchievementUnlocked('nunsational_Beaten')
 			&& Achievements.isAchievementUnlocked('FNV_Beaten') && Achievements.isAchievementUnlocked('short_Beaten')
 			&& Achievements.isAchievementUnlocked('nic_Beaten') && Achievements.isAchievementUnlocked('fanfuck_Beaten')

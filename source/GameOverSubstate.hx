@@ -435,34 +435,6 @@ class GameOverSubstate extends MusicBeatSubstate
 					}
 				}
 
-			case "lustality-v1":
-				if (ClientPrefs.mechanics == false)
-				{
-					if (PlayState.storyDifficulty == 0)
-					{
-						trace('Its working! No mechanics for Lustality V1 in Casual!');
-						PlayState.SONG = Song.loadFromJson('lustality-v1-casualMechanicless', 'lustality-v1');
-					}
-					else if (PlayState.storyDifficulty == 1)
-					{
-						trace('Its working! No mechanics for Lustality V1 in Villainous!');
-						PlayState.SONG = Song.loadFromJson('lustality-v1-villainousMechanicless', 'lustality-v1');
-					}
-				}
-				else if (ClientPrefs.mechanics == true)
-				{
-					if (PlayState.storyDifficulty == 0)
-					{
-						trace('Its working! Mechanics for Lustality V1 in Casual!');
-						PlayState.SONG = Song.loadFromJson('lustality-v1', 'lustality-v1');
-					}
-					else if (PlayState.storyDifficulty == 1)
-					{
-						trace('Its working! Mechanics for Lustality V1 in Villainous!');
-						PlayState.SONG = Song.loadFromJson('lustality-v1-villainous', 'lustality-v1');
-					}
-				}
-
 			case "toxic-mishap-(legacy)":
 				if (PlayState.storyDifficulty == 1)
 				{
