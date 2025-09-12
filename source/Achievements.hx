@@ -25,7 +25,7 @@ class Achievements {
 		// Shop Songs
 		["Bets are gone!",		"Beat Tofu in Villainous Mode.",				'tofu_Beaten',			false],
 		["Lunacy.",		"Beat Marcochrome in Villainous Mode.",				'marcochrome_Beaten',			false],
-		["Legacy Retrolust!",		"Beat Lustality V1 in Villainous Mode.",				'lustalityV1_Beaten',			false],
+		["Retrolust!",		"Beat Lustality in Villainous Mode.",				'lustality_Beaten',			false],
 		["Nun of our problem!",		"Beat Nunsational in Villainous Mode.",				'nunsational_Beaten',			false],
 		["FNV",		"Beat FNV in Villainous Mode.",				'FNV_Beaten',			false],
 		["WORLD RECORD!",		"Play the shortest song in the entirety of FNF!",				'short_Beaten',			false],
@@ -65,7 +65,7 @@ class Achievements {
 	}
 
 	public static function debugUnlock() {
-		for (i in 0...44)
+		for (i in 0...achievementsStuff.length)
 		{
 			var name:String = achievementsStuff[i][2];
 			FlxG.log.add('Completed achievement "' + name +'"');

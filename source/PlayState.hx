@@ -3829,7 +3829,7 @@ class PlayState extends MusicBeatState
 			'WeekLegacy_Beaten', 'WeekLegacyVillainous_Beaten',
 			'WeekDside_Beaten', 'WeekDsideVillainous_Beaten',
 			'weekIniquitous_Beaten',
-			'tofu_Beaten',  'marcochrome_Beaten', 'lustalityV1_Beaten','nunsational_Beaten', 'FNV_Beaten',
+			'tofu_Beaten',  'marcochrome_Beaten', 'lustality_Beaten','nunsational_Beaten', 'FNV_Beaten',
 			'short_Beaten', 'nic_Beaten', 'fanfuck_Beaten', 'rainyDaze_Beaten', 'marauder_Beaten',
 			'vGuy_Beaten', 'fastFoodTherapy_Beaten', 'tacticalMishap_Beaten', 'breacher_Beaten', 'concertChaos_Beaten', 'crossover_Beaten',
 			'pervert', 'pervertX25',
@@ -5919,7 +5919,7 @@ class PlayState extends MusicBeatState
 							ClientPrefs.saveSettings();
 						}
 					case 'WeekNun_Beaten':
-						if(WeekData.getWeekFileName() == 'weekbeatrice' && isStoryMode && storyPlaylist.length <= 1 && !changedDifficulty && !usedPractice)
+						if(WeekData.getWeekFileName() == 'mainweekbeatrice' && isStoryMode && storyPlaylist.length <= 1 && !changedDifficulty && !usedPractice)
 						{
 							unlock = true;
 							ClientPrefs.eggs += 1;
@@ -5936,7 +5936,7 @@ class PlayState extends MusicBeatState
 							ClientPrefs.saveSettings();
 						}
 					case 'WeekNunVillainous_Beaten':
-						if(WeekData.getWeekFileName() == 'weekbeatrice' && isStoryMode && storyPlaylist.length <= 1 && !changedDifficulty && !usedPractice && CoolUtil.difficultyString() == 'VILLAINOUS')
+						if(WeekData.getWeekFileName() == 'mainweekbeatrice' && isStoryMode && storyPlaylist.length <= 1 && !changedDifficulty && !usedPractice && CoolUtil.difficultyString() == 'VILLAINOUS')
 						{
 							unlock = true;
 							ClientPrefs.eggs += 1;
@@ -5944,7 +5944,7 @@ class PlayState extends MusicBeatState
 							ClientPrefs.saveSettings();
 						}
 					case 'WeekNunIniquitous_Beaten':
-						if(WeekData.getWeekFileName() == 'weekbeatrice' && isStoryMode && storyPlaylist.length <= 1 && !changedDifficulty && CoolUtil.difficultyString() == 'INIQUITOUS' && !usedPractice)
+						if(WeekData.getWeekFileName() == 'mainweekbeatrice' && isStoryMode && storyPlaylist.length <= 1 && !changedDifficulty && CoolUtil.difficultyString() == 'INIQUITOUS' && !usedPractice)
 						{
 							unlock = true;
 							ClientPrefs.eggs += 1;
@@ -6043,7 +6043,7 @@ class PlayState extends MusicBeatState
 							ClientPrefs.saveSettings();
 						}
 					case 'WeekDside_Beaten':
-						if(WeekData.getWeekFileName() == 'week_d-side' && isStoryMode && storyPlaylist.length <= 1 && !changedDifficulty && !usedPractice)
+						if(WeekData.getWeekFileName() == 'weekd-side' && isStoryMode && storyPlaylist.length <= 1 && !changedDifficulty && !usedPractice)
 						{
 							unlock = true;
 							if (!Achievements.isAchievementUnlocked('WeekDsideVillainous_Beaten'))
@@ -6053,7 +6053,7 @@ class PlayState extends MusicBeatState
 							ClientPrefs.saveSettings();
 						}
 					case 'WeekDsideVillainous_Beaten':
-						if(WeekData.getWeekFileName() == 'week_d-side' && isStoryMode && storyPlaylist.length <= 1 && !changedDifficulty && CoolUtil.difficultyString() == 'VILLAINOUS' && !usedPractice)
+						if(WeekData.getWeekFileName() == 'weekd-side' && isStoryMode && storyPlaylist.length <= 1 && !changedDifficulty && CoolUtil.difficultyString() == 'VILLAINOUS' && !usedPractice)
 						{
 							unlock = true;
 							if (!Achievements.isAchievementUnlocked('WeekDside_Beaten'))
@@ -6063,7 +6063,7 @@ class PlayState extends MusicBeatState
 							ClientPrefs.saveSettings();
 						}
 					case 'weekIniquitous_Beaten':
-						if(WeekData.getWeekFileName() == 'week_iniquitous' && isStoryMode && storyPlaylist.length <= 1 && !changedDifficulty && !usedPractice)
+						if(WeekData.getWeekFileName() == 'week~iniquitous' && isStoryMode && storyPlaylist.length <= 1 && !changedDifficulty && !usedPractice)
 						{
 							ClientPrefs.iniquitousWeekBeaten = true;
 							ClientPrefs.weeksUnlocked += 1;
@@ -6092,8 +6092,8 @@ class PlayState extends MusicBeatState
 							
 							ClientPrefs.saveSettings();
 						}
-					case 'lustalityV1_Beaten':
-						if(Paths.formatToSongPath(SONG.song) == 'lustality-v1' && !changedDifficulty && !usedPractice && CoolUtil.difficultyString() == 'VILLAINOUS') {
+					case 'lustality_Beaten':
+						if(Paths.formatToSongPath(SONG.song) == 'lustality' && !changedDifficulty && !usedPractice && CoolUtil.difficultyString() == 'VILLAINOUS') {
 							unlock = true;
 							ClientPrefs.eggs += 1;
 							
@@ -6199,7 +6199,7 @@ class PlayState extends MusicBeatState
 							&& Achievements.isAchievementUnlocked('WeekDside_Beaten') && Achievements.isAchievementUnlocked('WeekDsideVillainous_Beaten') && Achievements.isAchievementUnlocked('weekIniquitous_Beaten')
 							&& Achievements.isAchievementUnlocked('tofu_Beaten') && Achievements.isAchievementUnlocked('marcochrome_Beaten') 
 							// Shop Songs
-							&& Achievements.isAchievementUnlocked('lustalityV1_Beaten') && Achievements.isAchievementUnlocked('nunsational_Beaten')
+							&& Achievements.isAchievementUnlocked('lustality_Beaten') && Achievements.isAchievementUnlocked('nunsational_Beaten')
 							&& Achievements.isAchievementUnlocked('FNV_Beaten') && Achievements.isAchievementUnlocked('short_Beaten')
 							&& Achievements.isAchievementUnlocked('nic_Beaten') && Achievements.isAchievementUnlocked('fanfuck_Beaten')
 							&& Achievements.isAchievementUnlocked('rainyDaze_Beaten') && Achievements.isAchievementUnlocked('marauder_Beaten')
