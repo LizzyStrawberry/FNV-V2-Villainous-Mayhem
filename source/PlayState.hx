@@ -1147,6 +1147,7 @@ class PlayState extends MusicBeatState
 				amountHidden = 3;
 				touchPad.buttonAutoCharm.visible = touchPad.buttonAutoCharm.active = false;
 				touchPad.buttonHealCharm.visible = touchPad.buttonHealCharm.active = false;
+				touchPad.buttonMayhem.y = MobileUtil.rawY(0);
 			}
 		}
 
@@ -1159,6 +1160,7 @@ class PlayState extends MusicBeatState
 				amountHidden = 3;
 				touchPad.buttonResCharm.visible = touchPad.buttonResCharm.active = false;
 				touchPad.buttonHealCharm.visible = touchPad.buttonHealCharm.active = false;
+				touchPad.buttonMayhem.y = MobileUtil.rawY(0);
 			}
 		}
 
@@ -1171,6 +1173,7 @@ class PlayState extends MusicBeatState
 				amountHidden = 3;
 				touchPad.buttonResCharm.visible = touchPad.buttonResCharm.active = false;
 				touchPad.buttonHealCharm.visible = touchPad.buttonHealCharm.active = false;
+				touchPad.buttonMayhem.y = MobileUtil.rawY(0);
 			}
 		}
 
