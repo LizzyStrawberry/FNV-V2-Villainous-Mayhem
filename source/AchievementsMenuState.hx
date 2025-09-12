@@ -74,7 +74,7 @@ class AchievementsMenuState extends MusicBeatState
 
 		super.create();
 
-		addTouchPad("NONE", "B");
+		addTouchPad("LEFT_FULL", "B");
 	}
 
 	var shiftMult:Int = 1;

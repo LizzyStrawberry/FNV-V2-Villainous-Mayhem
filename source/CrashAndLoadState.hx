@@ -26,6 +26,7 @@ class CrashAndLoadState extends MusicBeatState
         PlayState.isStoryMode = true;
 
         background = new FlxSprite().loadGraphic(Paths.image('mainMenuBgs/menu-1'));
+        background.screenCenter(X);
 		background.antialiasing = ClientPrefs.globalAntialiasing;
         background.alpha = 0.4;
 		add(background);

@@ -1142,18 +1142,36 @@ class PlayState extends MusicBeatState
 		{
 			amountHidden += 1;
 			touchPad.buttonResCharm.visible = touchPad.buttonResCharm.active = false;
+			if (ClientPrefs.resistanceCharm == 1) // AKA Active
+			{
+				amountHidden = 3;
+				touchPad.buttonAutoCharm.visible = touchPad.buttonAutoCharm.active = false;
+				touchPad.buttonHealCharm.visible = touchPad.buttonHealCharm.active = false;
+			}
 		}
 
 		if (ClientPrefs.autoCharm <= 1)
 		{
 			amountHidden += 1; 
 			touchPad.buttonAutoCharm.visible = touchPad.buttonAutoCharm.active = false;
+			if (ClientPrefs.autoCharm == 1) // AKA Active
+			{
+				amountHidden = 3;
+				touchPad.buttonResCharm.visible = touchPad.buttonResCharm.active = false;
+				touchPad.buttonHealCharm.visible = touchPad.buttonHealCharm.active = false;
+			}
 		}
 
 		if (ClientPrefs.healingCharm <= 0)
 		{
 			amountHidden += 1;
 			touchPad.buttonHealCharm.visible = touchPad.buttonHealCharm.active = false;
+			if (ClientPrefs.healingCharm == 0) // AKA Disabled
+			{
+				amountHidden = 3;
+				touchPad.buttonResCharm.visible = touchPad.buttonResCharm.active = false;
+				touchPad.buttonHealCharm.visible = touchPad.buttonHealCharm.active = false;
+			}
 		}
 
 		if (amountHidden == 3)
