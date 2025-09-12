@@ -3,7 +3,7 @@ local cutShit =
     hasDial = false,
     hasStartVid = true, vidPath = "Week3_Song1Cutscene",
     hasMidDialVid = false, midVidPath = nil, midPos = -1,
-    hasEndVid = true, endVidPath = "Week3_TrueEnd"
+    hasEndVid = false, endVidPath = nil
 }
 
 local instructShit = 

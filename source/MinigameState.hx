@@ -88,6 +88,7 @@ class MinigameState extends MusicBeatState
 			trace('Number: ' + flipnum);
 	
 			background = new FlxSprite(0, 0).loadGraphic(Paths.image('minigames/CFBG'));
+			background.screenCenter(X);
 			background.setGraphicSize(FlxG.width, FlxG.height);
 			background.antialiasing = ClientPrefs.globalAntialiasing;
 			add(background);
@@ -140,6 +141,7 @@ class MinigameState extends MusicBeatState
 		else if (minigame == 2)
 		{
 			background = new FlxSprite(0, 0).loadGraphic(Paths.image('minigames/FTTBG'));
+			background.screenCenter(X);
 			background.antialiasing = ClientPrefs.globalAntialiasing;
 			background.setGraphicSize(FlxG.width, FlxG.height);
 			add(background);
@@ -184,6 +186,7 @@ class MinigameState extends MusicBeatState
 		else if (minigame == 3)
 		{
 			background = new FlxSprite(0, 0).loadGraphic(Paths.image('minigames/CFBG'));
+			background.screenCenter(X);
 			background.antialiasing = ClientPrefs.globalAntialiasing;
 			background.setGraphicSize(FlxG.width, FlxG.height);
 			add(background);
@@ -232,7 +235,6 @@ class MinigameState extends MusicBeatState
 				else
 					card.y += 210;
 
-				card.x = MobileUtil.fixX(card.x);
 				card.antialiasing = ClientPrefs.globalAntialiasing;
 				cards.add(card);
 				add(card);
@@ -267,7 +269,6 @@ class MinigameState extends MusicBeatState
 				else
 					card.y += 210;
 
-				card.x = MobileUtil.fixX(card.x);
 				card.antialiasing = ClientPrefs.globalAntialiasing;
 				cardsHidden.add(card);
 				add(card);
