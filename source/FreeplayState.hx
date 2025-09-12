@@ -180,7 +180,7 @@ class FreeplayState extends MusicBeatState
 
 		super.create();
 
-		addTouchPad("NONE", "FREEPLAY");
+		addTouchPad("RIGHT_LEFT", "FREEPLAY");
 	}
 
 	override function closeSubState() {
@@ -188,7 +188,7 @@ class FreeplayState extends MusicBeatState
 		persistentUpdate = true;
 
 		removeTouchPad();
-		addTouchPad('NONE', 'FREEPLAY');
+		addTouchPad('RIGHT_LEFT', 'FREEPLAY');
 
 		super.closeSubState();
 	}
@@ -317,7 +317,7 @@ class FreeplayState extends MusicBeatState
 	function songSelector()
 	{
 		var customPosition:Bool = false;
-		
+		var songName = songs[curSelected].songName;
 		selectionText.text = songs[curSelected].songName;
 
 		switch(selectionText.text)
@@ -415,7 +415,7 @@ class FreeplayState extends MusicBeatState
 				unlockedSelection.y -= 107;
 				unlockedSelection.animation.play('idle');
 
-				selectionText.text = "Get Villain'd";
+				selectionText.text = songName = "Get Villain'd";
 				if (!ClientPrefs.morkyWeekPlayed)
 				{
 					selectionText.text = "??? ?????????";
@@ -625,6 +625,7 @@ class FreeplayState extends MusicBeatState
 			case 'Marauder (Old)': unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_Marauder'));
 			case 'Get Villaind (Old)':
 				customPosition = true;
+				selectionText.text = songName = "Get Villain'd (Old)";
 				unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_GetVillaind'));
 				unlockedSelection.frames = Paths.getSparrowAtlas('freeplayStuff/selection_GetVillaind');
 				unlockedSelection.animation.addByPrefix('idle', "mork mork0", 24);
@@ -658,7 +659,7 @@ class FreeplayState extends MusicBeatState
 				selectionText.text = "Unknown Song";
 		}
 
-		if (selectionText.text != songs[curSelected].songName)
+		if (selectionText.text != songName)
 		{
 			unlockedSelection.alpha = 0;
 			lockedSelection.alpha = 1;
@@ -752,10 +753,8 @@ class FreeplayState extends MusicBeatState
 			else
 				FlxTween.tween(arrowSelectorRight, {x: getRightArrowX}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
 	
-			if (controls.UI_LEFT_P || (SwipeUtil.swipeLeft && !TouchUtil.pressAction(transparentButton) && !TouchUtil.pressAction(arrowSelectorLeft)))
-				changeDiff(-1);
-			else if (controls.UI_RIGHT_P || (SwipeUtil.swipeRight && !TouchUtil.pressAction(transparentButton) && !TouchUtil.pressAction(arrowSelectorRight)))
-				changeDiff(1);
+			if (controls.UI_LEFT_P) changeDiff(-1);
+			else if (controls.UI_RIGHT_P) changeDiff(1);
 			else if (upP || downP) changeDiff();
 		}
 
@@ -969,30 +968,8 @@ class FreeplayState extends MusicBeatState
 	{
 		curDifficulty += change;
 
-		if (Achievements.isAchievementUnlocked('weekIniquitous_Beaten'))
-		{
-			if (curDifficulty < 0)
-				curDifficulty = CoolUtil.difficulties.length-1;
-			if (curDifficulty >= CoolUtil.difficulties.length)
-				curDifficulty = 0;
-		}
-		else
-		{
-			if (CoolUtil.difficulties.contains(CoolUtil.bossFightDifficulty))
-			{
-				if (curDifficulty < 0)
-					curDifficulty = CoolUtil.difficulties.length-2;
-				if (curDifficulty >= CoolUtil.difficulties.length - 1)
-					curDifficulty = 0;
-			}
-			else
-			{
-				if (curDifficulty < 0)
-					curDifficulty = CoolUtil.difficulties.length-1;
-				if (curDifficulty >= CoolUtil.difficulties.length)
-					curDifficulty = 0;
-			}
-		}
+		if (curDifficulty < 0) curDifficulty = CoolUtil.difficulties.length-1;
+		if (curDifficulty >= CoolUtil.difficulties.length) curDifficulty = 0;
 
 		lastDifficultyName = CoolUtil.difficulties[curDifficulty];
 
@@ -1046,30 +1023,33 @@ class FreeplayState extends MusicBeatState
 		{
 			case 'Scrouge', 'Toxic Mishap', 'Paycheck', 'Nunday Monday', 'Nunconventional', 'Forsaken', 'Toybox', 'Lustality Remix',
 				"Forsaken (Picmixed)", "Partner":
-				CoolUtil.difficulties = CoolUtil.mainWeekDifficulties.copy();
+				var iniquitousEnabled:Bool = Achievements.isAchievementUnlocked('weekIniquitous_Beaten');
+				CoolUtil.difficulties = (iniquitousEnabled) ? CoolUtil.mainWeekDifficulties.copy() : CoolUtil.defaultDifficulties.copy();
+				if(CoolUtil.difficulties.contains((iniquitousEnabled) ?CoolUtil.mainWeekDifficulty : CoolUtil.defaultDifficulty))
+				{
+					var maxVal:Int = (iniquitousEnabled) ? CoolUtil.mainWeekDifficulties.indexOf(CoolUtil.mainWeekDifficulty) : CoolUtil.defaultDifficulties.indexOf(CoolUtil.defaultDifficulty);
+					curDifficulty = Math.round(Math.max(0, maxVal));
+				}
 
 			case "Couple Clash", "Excrete", "FNV", "Rainy Daze", "Jerry", "Marauder", "It's Kiana", "Shuckle Fuckle":
 				CoolUtil.difficulties = CoolUtil.tcDifficulties.copy();
+				if(CoolUtil.difficulties.contains(CoolUtil.tcDifficulty)) curDifficulty = Math.round(Math.max(0, CoolUtil.tcDifficulties.indexOf(CoolUtil.tcDifficulty)));
+				else curDifficulty = 0;
 			
 			case "Villainy", "Point Blank", "Libidinousness":
 				CoolUtil.difficulties = CoolUtil.bossFightDifficulties.copy();
+				if(CoolUtil.difficulties.contains(CoolUtil.bossFightDifficulty)) curDifficulty = Math.round(Math.max(0, CoolUtil.bossFightDifficulties.indexOf(CoolUtil.bossFightDifficulty)));
+				else curDifficulty = 0;
 
 			default:
 				CoolUtil.difficulties = CoolUtil.defaultDifficulties.copy();
+				if(CoolUtil.difficulties.contains(CoolUtil.defaultDifficulty)) curDifficulty = Math.round(Math.max(0, CoolUtil.defaultDifficulties.indexOf(CoolUtil.defaultDifficulty)));
+				else curDifficulty = 0;
 		}
-
-		if(CoolUtil.difficulties.contains(CoolUtil.mainWeekDifficulty))
-		{
-			if (Achievements.isAchievementUnlocked('weekIniquitous_Beaten'))
-				curDifficulty = Math.round(Math.max(0, CoolUtil.mainWeekDifficulties.indexOf(CoolUtil.mainWeekDifficulty)));
-		}
-		else
-			curDifficulty = 0;
 
 		var newPos:Int = CoolUtil.difficulties.indexOf(lastDifficultyName);
 		//trace('Pos of ' + lastDifficultyName + ' is ' + newPos);
-		if(newPos > -1)
-			curDifficulty = newPos;
+		if(newPos > -1) curDifficulty = newPos;
 
 		if (curSelected != lastSelected)
 			songSelector();

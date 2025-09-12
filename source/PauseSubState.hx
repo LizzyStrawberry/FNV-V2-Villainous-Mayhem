@@ -455,7 +455,8 @@ class PauseSubState extends MusicBeatSubstate
 		add(scrollOptions);
 		add(scrollOptions2);
 
-		addTouchPad("NONE", "A");
+		addTouchPad("NONE", "A_B");
+		addTouchPadCamera();
 	}
 
 	var holdTime:Float = 0;
@@ -630,7 +631,6 @@ class PauseSubState extends MusicBeatSubstate
 
 			if (controls.BACK)
 			{
-				removeTouchPad();
 				onQuickSettings = accepted = false;
 					
 				if (optionsBGTweenFadeIn != null)
@@ -657,8 +657,6 @@ class PauseSubState extends MusicBeatSubstate
 					ClientPrefs.tokensAchieved = 0;
 					restartSong();
 				}
-
-				addTouchPad("NONE", "A");
 					
 				ClientPrefs.saveSettings();
 			}
@@ -804,9 +802,6 @@ class PauseSubState extends MusicBeatSubstate
 		}
 
 		changeOption();
-
-		removeTouchPad();
-		addTouchPad("NONE", "A_B");
 	}
 
 	function applyOption(wah:Int = 0)
