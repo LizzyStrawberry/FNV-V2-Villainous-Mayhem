@@ -71,7 +71,7 @@ function onUpdatePost()
 		setProperty('dad.x', 40)
 
 		setProperty('blackBG.alpha', 0)
-		setObjectOrder('blackBG', getObjectOrder('neonBG') + 5)
+		setObjectOrder('blackBG', getObjectOrder('boyfriendGroup') + 5)
 		
 		runHaxeCode([[
 			game.dad.setColorTransform(1,1,1,1,0,0,0,0);
