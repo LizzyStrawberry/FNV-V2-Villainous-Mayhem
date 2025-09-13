@@ -1546,7 +1546,7 @@ class PlayState extends MusicBeatState
 			var typeOfCountdown:String = null;
 			switch (Paths.formatToSongPath(SONG.song))
 			{
-				case "lustality-v1" | "lustality-remix":
+				case "lustality" | "lustality-remix":
 					typeOfCountdown = "kiana";
 				case "nunday-monday" | "nunconventional" | "nunsational":
 					typeOfCountdown = "beatrice";
@@ -4176,7 +4176,7 @@ class PlayState extends MusicBeatState
 				songVariable = "pointBlankBeaten";
 
 			// Played stuff check
-			case "lustality-v1":
+			case "lustality":
 				songVariable = "lustalityPlayed";
 			case "slowflp":
 				songVariable = "nicPlayed";
