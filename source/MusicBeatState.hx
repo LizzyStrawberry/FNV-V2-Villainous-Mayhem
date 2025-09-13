@@ -82,8 +82,7 @@ class MusicBeatState extends FlxUIState
 	{
 		if (!ClientPrefs.mechanics) return "NONE";
 		
-		var songsWithDodge:Array<String> = ["Breacher", "Excrete", "Iniquitous", "Lustality", "Lustality V1",
-		"Point Blank", "Viilain In Board"]; // Songs that only utilize Dodge
+		var songsWithDodge:Array<String> = ["Breacher", "Excrete", "Iniquitous", "Lustality", "Point Blank", "Viilain In Board"]; // Songs that only utilize Dodge
 		var songsWithAttack:Array<String> = ["Lustality Remix", "Toybox", "Paycheck", "Paycheck (Legacy)"]; // Songs that Utilize Both Dodge and Attack
 		
 		for (song in songsWithDodge) 
@@ -168,11 +167,15 @@ class MusicBeatState extends FlxUIState
 		#if mobile
 		new FlxTimer().start(0.1, function(_) // Always add this a bit later than normal
 		{
-			if (!isInvalidState())
+			try
 			{
-				tapManager = new TapCircleManager();
-				add(tapManager);
-			}	
+				if (!isInvalidState())
+				{
+					tapManager = new TapCircleManager();
+					add(tapManager);
+				}
+			}
+			catch {}	
 		});
 		#end
 	}
