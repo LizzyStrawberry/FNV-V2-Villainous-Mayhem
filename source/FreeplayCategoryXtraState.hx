@@ -67,7 +67,7 @@ class FreeplayCategoryXtraState extends MusicBeatState
 
         FlxTween.tween(Text, {x: textBG.x - 2500}, 20, {ease: FlxEase.linear, type: LOOPING});
 
-        borders = new FlxSprite(0, 0).loadGraphic(Paths.image('promotion/Borders'));
+        var borders:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image('promotion/Borders'));
         borders.setGraphicSize(FlxG.width, FlxG.height);
 		borders.antialiasing = ClientPrefs.globalAntialiasing;
 		add(borders);
