@@ -71,7 +71,7 @@ function onStepHit()
 		removeLuaSprite('intro', true)
 		removeLuaSprite('intro2', true)
 		
-		setProperty('camGame.alpha', 0)
+		setProperty('camGame.alpha', 0.0001) -- Avoid Lag
 		setProperty('blackBG.alpha', 0)
 		setProperty('blackBG.color', getColorFromHex('0xF000000'))
 		

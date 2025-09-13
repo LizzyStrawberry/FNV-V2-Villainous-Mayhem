@@ -1,9 +1,11 @@
 function onCreate()
-	setProperty('iconP2.alpha', 0)
-	setProperty('dad.alpha', 0)
 	setProperty('boyfriend.alpha', 0)
-	setProperty('BG.alpha', 0)
-	setProperty('CFront.alpha', 0)
+	
+	setProperty('iconP2.alpha', 0)
+	-- Avoid Lag
+	setProperty('dad.alpha', 0.0001)
+	setProperty('BG.alpha', 0.0001)
+	setProperty('CFront.alpha', 0.0001)
 	
 	if performanceWarn then
 		setProperty('dad.visible', false)

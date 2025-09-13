@@ -32,11 +32,11 @@ function onCreate()
 	
 	makeLuaSprite('floorLight', 'effects/floorLight', getProperty('boyfriend.x') - 135, getProperty('boyfriend.y') + 430)
 	scaleObject('floorLight', 0.65, 0.6)
-	setProperty('floorLight.alpha', 0)
+	setProperty('floorLight.alpha', 0.0001) -- Avoid Lag
 	addLuaSprite('floorLight', false)
 	
 	makeLuaSprite('light1', 'effects/light1', getProperty('boyfriend.x') - 530, getProperty('boyfriend.y') - 480)
-	setProperty('light1.alpha', 0)
+	setProperty('light1.alpha', 0.0001)
 	addLuaSprite('light1', true)
 	
 	makeLuaSprite('light2', 'effects/light2', getProperty('boyfriend.x') - 130, getProperty('boyfriend.y') - 120)

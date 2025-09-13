@@ -1,15 +1,18 @@
-local LustHit = false
-
+local indices = "24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47 ,48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62. 63, 64, 65, 66, 67, 68, 69, 70"
+stunned = false
+local curBF
 function onCreate()
-	if songName == 'Lustality V1' then
+	if songName == 'Lustality' then
+		if boyfriendName == 'playablegf' or boyfriendName == "playablegf-old" then
+			addCharacterToList("playablegf-stun", "boyfriend")
+		end
+		
+		curBF = boyfriendName
+		
 		makeAnimatedLuaSprite('time', 'effects/timer', getProperty('boyfriend.x') + 20 , getProperty('boyfriend.y') + 150)
-		if difficulty == 0 then
-			addAnimationByIndices('time', 'Stunned', 'timer rundown00', '24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47 ,48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62. 63, 64, 65, 66, 67, 68, 69, 70', 24)
-		end
-		if difficulty == 1 then
-			addAnimationByPrefix('time', 'Stunned', 'timer rundown0', 24, false)
-		end
-		setProperty('time.alpha', 0)
+		if difficulty == 0 then addAnimationByIndices('time', 'Stunned', 'timer rundown00', indices, 24)
+		else addAnimationByPrefix('time', 'Stunned', 'timer rundown0', 24, false) end
+		setProperty('time.alpha', 0.0001)
 		scaleObject('time', 0.5, 0.5)
 		setObjectCamera('time', 'game')
 		setScrollFactor('time', 1, 1)
@@ -18,82 +21,45 @@ function onCreate()
 	
 	--Iterate over all notes
 	for i = 0, getProperty('unspawnNotes.length')-1 do
-		--Check if the note is a Bullet Note
 		if getPropertyFromGroup('unspawnNotes', i, 'noteType') == 'Lust Notes' then
 			setPropertyFromGroup('unspawnNotes', i, 'texture', 'notes/Love Notes'); --Change texture
-			setPropertyFromGroup('unspawnNotes', i, 'hitCausesMiss', true);
-			setPropertyFromGroup('unspawnNotes', i, 'ignoreNote', true);
+			setPropertyFromGroup('unspawnNotes', i, 'hitCausesMiss', true)
+			setPropertyFromGroup('unspawnNotes', i, 'ignoreNote', true)
 		end
 	end
-	--debugPrint('Script started!')
 end
 
-function noteMiss(id, direction, noteType, isSustainNote)
-	if noteType == 'Lust Notes' then
-		--debugPrint('Timer Started!')
-		if songName == 'Lustality' then
-			health = getProperty('health')
-			cameraFlash('game', 'cd8b8b', 0.5, false)
-			LustHit = true;
-		end
+function onUpdate()
+	healthBefore = getHealth()
+end
+
+function noteMiss(id, direction, noteType, isSus)
+	if noteType == "" and stunned then setProperty("health", healthBefore) end
+	
+	if noteType == 'Lust Notes' and not isSus then
+		cameraFlash('game', 'cd8b8b', 0.5 / playbackRate, false)
 		
-		if songName == 'Lustality V1' then
-			health = getProperty('health')
+		if songName == 'Lustality' and not stunned then
 			setProperty('time.alpha', 1)
-			objectPlayAnimation('time','Stunned', true)
+			objectPlayAnimation('time', 'Stunned', true)
 			
-			cameraFlash('game', 'cd8b8b', 0.5, false)
-			
-			if boyfriendName == 'playablegf' then
-				triggerEvent('Change Character', 0, 'playablegf-stun');
-			end
+			if boyfriendName == 'playablegf' or boyfriendName == "playablegf-old" then triggerEvent('Change Character', 0, 'playablegf-stun') end
 			
 			setProperty('boyfriend.stunned', true)
-		
-			LustHit = true;
-		
-			if difficulty == 0 then
-				runTimer('StunnedEnd', 2)
-			end
-		
-			if difficulty == 1 then
-				runTimer('StunnedEnd', 3)
-			end	
+			stunned = true
+
+			runTimer('StunnedEnd', difficulty == 0 and 2 or 3)
 		end
-		
-		if songName == 'Lustality Remix' then
-			health = getProperty('health')
-			cameraFlash('game', 'cd8b8b', 0.5, false)
-			LustHit = true;
-		end
-	end
-	
-	if noteType == '' and LustHit and songName == 'Lustality' then
-		setProperty('health', health - 0)
-		LustHit = false
-	end
-	
-	if noteType == '' and LustHit and songName == 'Lustality V1' then
-		setProperty('health', health - 0)
-	end
-	
-	if noteType == '' and LustHit and songName == 'Lustality Remix' then
-		setProperty('health', health - 0)
-		LustHit = false
 	end
 end
 
 function onTimerCompleted(tag)
-	if tag == 'StunnedEnd' and songName == 'Lustality V1' then
-		--debugPrint('Timer Ended!')
+	if tag == 'StunnedEnd' then
 		setProperty('boyfriend.stunned', false)
+		stunned = false
 		
-		doTweenAlpha('TimerGoByeBye', 'time', 0, 0.3, 'linear')
+		doTweenAlpha('TimerGoByeBye', 'time', 0, 0.3 / playbackRate, 'linear')
 		
-		if boyfriendName == 'playablegf-stun' then
-			triggerEvent('Change Character', 0, 'playablegf');
-		end
-		
-		LustHit = false
+		triggerEvent('Change Character', 0, curBF)
 	end
 end

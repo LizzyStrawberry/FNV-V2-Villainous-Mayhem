@@ -8,13 +8,13 @@ function onCreate()
 		addCharacterToList('marcoElectric', 'dad')
 		addCharacterToList('gfElectric', 'boyfriend')
 	
-		makeLuaSprite('blackBG', '', -300, -300)
-		makeGraphic('blackBG', 3000, 3000, '000000')
-		setScrollFactor('blackBG', 0, 0)
+		makeLuaSprite('blackBG', nil, 0, 0)
+		makeGraphic('blackBG', screenWidth * 1.5, screenHeight * 1.5, '000000')
 		setObjectCamera('blackBG', 'game')
+		screenCenter("blackBG", "XY")
 		setObjectOrder('blackBG', getObjectOrder('boyfriendGroup') - 1)
 		setProperty('blackBG.alpha', 1)
-		addLuaSprite('blackBG', true)
+		addLuaSprite('blackBG', false)
 		
 		makeLuaSprite('neonBG', 'bgs/marco/foreground-neon', -240, -100);
 		setScrollFactor('neonBG', 0.9, 0.9);
@@ -25,8 +25,8 @@ function onCreate()
 		setProperty('boyfriend.x', 560)
 		setProperty('dad.x', 540)
 		runHaxeCode([[
-			game.dad.setColorTransform(0,0,0,0,255,255,255,0);
-			game.boyfriend.setColorTransform(0,0,0,0,255,255,255,0);
+			game.dad.setColorTransform(0,0,0,0,255,255,255,0.0001);
+			game.boyfriend.setColorTransform(0,0,0,0,255,255,255,0.0001);
 		]])
 	
 		for i = 1, #(hudThings) do

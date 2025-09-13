@@ -1,25 +1,26 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<TextureAtlas imagePath="heartPop.png">
-	<!-- Created with Adobe Animate version 21.0.5.40714 -->
-	<!-- http://www.adobe.com/products/animate.html -->
-	<SubTexture name="heart pop up0000" x="0" y="0" width="413" height="405" frameX="-58" frameY="-38" frameWidth="500" frameHeight="529"/>
-	<SubTexture name="heart pop up0001" x="413" y="0" width="413" height="405" frameX="-58" frameY="-38" frameWidth="500" frameHeight="529"/>
-	<SubTexture name="heart pop up0002" x="826" y="0" width="413" height="405" frameX="-58" frameY="-38" frameWidth="500" frameHeight="529"/>
-	<SubTexture name="heart pop up0003" x="1239" y="0" width="413" height="405" frameX="-58" frameY="-38" frameWidth="500" frameHeight="529"/>
-	<SubTexture name="heart pop up0004" x="1239" y="0" width="413" height="405" frameX="-58" frameY="-38" frameWidth="500" frameHeight="529"/>
-	<SubTexture name="heart pop up0005" x="1239" y="0" width="413" height="405" frameX="-58" frameY="-38" frameWidth="500" frameHeight="529"/>
-	<SubTexture name="heart pop up0006" x="0" y="405" width="428" height="374" frameX="-65" frameY="-66" frameWidth="500" frameHeight="529"/>
-	<SubTexture name="heart pop up0007" x="0" y="405" width="428" height="374" frameX="-65" frameY="-66" frameWidth="500" frameHeight="529"/>
-	<SubTexture name="heart pop up0008" x="428" y="405" width="483" height="491" frameX="-3" frameY="0" frameWidth="500" frameHeight="529"/>
-	<SubTexture name="heart pop up0009" x="911" y="405" width="500" height="360" frameX="0" frameY="-85" frameWidth="500" frameHeight="529"/>
-	<SubTexture name="heart pop up0010" x="911" y="405" width="500" height="360" frameX="0" frameY="-166" frameWidth="500" frameHeight="529"/>
-	<SubTexture name="heart pop up0011" x="911" y="405" width="500" height="360" frameX="0" frameY="-168" frameWidth="500" frameHeight="529"/>
-	<SubTexture name="heart pop up0012" x="911" y="405" width="500" height="360" frameX="0" frameY="-170" frameWidth="500" frameHeight="529"/>
-	<SubTexture name="heart pop up0013" x="911" y="405" width="500" height="360" frameX="0" frameY="-170" frameWidth="500" frameHeight="529"/>
-	<SubTexture name="heart pop up0014" x="911" y="405" width="500" height="360" frameX="0" frameY="-170" frameWidth="500" frameHeight="529"/>
-	<SubTexture name="heart pop up0015" x="911" y="405" width="500" height="360" frameX="0" frameY="-170" frameWidth="500" frameHeight="529"/>
-	<SubTexture name="heart pop up0016" x="1411" y="405" width="500" height="359" frameX="0" frameY="-170" frameWidth="500" frameHeight="529"/>
-	<SubTexture name="heart pop up0017" x="0" y="896" width="500" height="359" frameX="0" frameY="-170" frameWidth="500" frameHeight="529"/>
-	<SubTexture name="heart pop up0018" x="500" y="896" width="500" height="359" frameX="0" frameY="-170" frameWidth="500" frameHeight="529"/>
-	<SubTexture name="heart pop up0019" x="1000" y="896" width="500" height="359" frameX="0" frameY="-170" frameWidth="500" frameHeight="529"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Created with Funkin Packer v0.1.3 https://neeeoo.github.io/funkin-packer/
+-->
+<TextureAtlas imagePath="heartPop.png" width="2401" height="647">
+	<SubTexture name="heart pop up0000" x="368" y="325" width="363" height="320" frameX="-75" frameY="-90" frameWidth="500" frameHeight="530"/>
+	<SubTexture name="heart pop up0001" x="734" y="325" width="363" height="320" frameX="-75" frameY="-90" frameWidth="500" frameHeight="530"/>
+	<SubTexture name="heart pop up0002" x="1100" y="325" width="363" height="320" frameX="-75" frameY="-90" frameWidth="500" frameHeight="530"/>
+	<SubTexture name="heart pop up0003" x="1466" y="325" width="363" height="320" frameX="-75" frameY="-90" frameWidth="500" frameHeight="530"/>
+	<SubTexture name="heart pop up0004" x="1466" y="325" width="363" height="320" frameX="-75" frameY="-90" frameWidth="500" frameHeight="530"/>
+	<SubTexture name="heart pop up0005" x="1466" y="325" width="363" height="320" frameX="-75" frameY="-90" frameWidth="500" frameHeight="530"/>
+	<SubTexture name="heart pop up0006" x="1" y="325" width="364" height="321" frameX="-74" frameY="-90" frameWidth="500" frameHeight="530"/>
+	<SubTexture name="heart pop up0007" x="1" y="325" width="364" height="321" frameX="-74" frameY="-90" frameWidth="500" frameHeight="530"/>
+	<SubTexture name="heart pop up0008" x="1932" y="1" width="468" height="400" frameX="-18" frameY="-40" frameWidth="500" frameHeight="530"/>
+	<SubTexture name="heart pop up0009" x="1" y="1" width="480" height="321" frameX="-20" frameY="-112" frameWidth="500" frameHeight="530"/>
+	<SubTexture name="heart pop up0010" x="1" y="1" width="480" height="321" frameX="-20" frameY="-193" frameWidth="500" frameHeight="530"/>
+	<SubTexture name="heart pop up0011" x="1" y="1" width="480" height="321" frameX="-20" frameY="-195" frameWidth="500" frameHeight="530"/>
+	<SubTexture name="heart pop up0012" x="1" y="1" width="480" height="321" frameX="-20" frameY="-197" frameWidth="500" frameHeight="530"/>
+	<SubTexture name="heart pop up0013" x="1" y="1" width="480" height="321" frameX="-20" frameY="-197" frameWidth="500" frameHeight="530"/>
+	<SubTexture name="heart pop up0014" x="1" y="1" width="480" height="321" frameX="-20" frameY="-197" frameWidth="500" frameHeight="530"/>
+	<SubTexture name="heart pop up0015" x="1" y="1" width="480" height="321" frameX="-20" frameY="-197" frameWidth="500" frameHeight="530"/>
+	<SubTexture name="heart pop up0016" x="484" y="1" width="480" height="321" frameX="-20" frameY="-196" frameWidth="500" frameHeight="530"/>
+	<SubTexture name="heart pop up0017" x="1450" y="1" width="479" height="321" frameX="-21" frameY="-196" frameWidth="500" frameHeight="530"/>
+	<SubTexture name="heart pop up0018" x="967" y="1" width="480" height="321" frameX="-20" frameY="-196" frameWidth="500" frameHeight="530"/>
+	<SubTexture name="heart pop up0019" x="1832" y="325" width="1" height="1" frameX="-0" frameY="-0" frameWidth="500" frameHeight="530"/>
 </TextureAtlas>
