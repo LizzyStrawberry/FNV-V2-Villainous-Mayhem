@@ -84,11 +84,6 @@ function noteMiss(id, direction, noteType, isSustainNote)
 	if mechanics then
 		if noteType == 'Lust Notes' then
 			LustCount = LustCount + 1;
-			if not isMayhemMode then
-				setProperty('health', health - 0.08)
-			else
-				setProperty('health', health - 1)
-			end
 			if getProperty('barBack.scale.y') <= 1 then
 				setProperty('barBack.scale.y', bar + 0.1)
 			end

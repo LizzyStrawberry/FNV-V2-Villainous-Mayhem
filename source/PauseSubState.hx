@@ -186,7 +186,7 @@ class PauseSubState extends MusicBeatSubstate
 			case 'Marcochrome':
 				bgGradient.loadGraphic(Paths.image('pauseGradient/gradient_Null'));
 				pauseCard.loadGraphic(Paths.image('pauseMenu/pause_Default'));
-			case 'Lustality V1':
+			case 'Lustality':
 				bgGradient.color = 0xFFff04ed;
 				pauseCard.color = 0xFFff04ed;
 			case 'Tofu':

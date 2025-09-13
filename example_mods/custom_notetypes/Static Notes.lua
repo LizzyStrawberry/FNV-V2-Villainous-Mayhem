@@ -5,17 +5,16 @@ function onCreate()
 			precacheSound('Static Noises/Glitch-'..i)
 		end
 		
-		makeAnimatedLuaSprite('Static', 'effects/static', 0, 0)
-		addAnimationByPrefix('Static', 'Stun', 'static stun', 24, true)
-		setProperty('Static.alpha', 0)
-		scaleObject('Static', 2, 2)
-		setScrollFactor('Static', 0, 0)
-		setObjectCamera('Static', 'hud')
-		addLuaSprite('Static', true)
+		makeAnimatedLuaSprite('static', 'effects/static', 0, 0)
+		addAnimationByPrefix('static', 'stun', 'static stun0', 24 / playbackRate, true)
+		setProperty('static.alpha', 0.0001) -- Avoid Lag
+		scaleObject('static', 2, 2)
+		objectPlayAnimation('static', 'stun', true)
+		setObjectCamera('static', 'hud')
+		addLuaSprite('static', true)
 		
 		--Iterate over all notes
 		for i = 0, getProperty('unspawnNotes.length')-1 do
-			--Check if the note is a Bullet Note
 			if getPropertyFromGroup('unspawnNotes', i, 'noteType') == 'Static Notes' then
 				setPropertyFromGroup('unspawnNotes', i, 'texture', 'notes/staticNotes'); --Change texture
 				setPropertyFromGroup('unspawnNotes', i, 'ignoreNote', false);
@@ -24,78 +23,35 @@ function onCreate()
 	end
 end
 
-function onUpdate()
-	if mechanics then
-		health = getProperty('health')
+local songDir = {"LEFT", "DOWN", "UP", "RIGHT"}
+function noteMiss(id, dir, noteType, isSus)
+	local buff3 = getPropertyFromClass('ClientPrefs', 'buff3Active')
+	
+	if mechanics and not buff3 and noteType == "Static Notes" then
+		objectPlayAnimation('static', 'stun', true)
+		playSound('Static Noises/Glitch-'..getRandomInt(1,4), 1)
+		setProperty('static.alpha', 1)
+		
+		cancelTimer("StaticGoByeBye")
+		doTweenAlpha('StaticGoByeBye', 'static', 0, 1.4, 'linear')
+
+		setHealth(getHealth() - getHealthToDrain())
+		
+		playAnim('boyfriend', 'sing'..songDir[dir + 1]..'miss', true)
 	end
 end
 
-function noteMiss(id, direction, noteType, isSustainNote, noteData)
-	if mechanics then
-		if noteType == 'Static Notes' then
-			objectPlayAnimation('Static','Stun', true)
-			playSound('Static Noises/Glitch-'..getRandomInt(1,4), 1)
-			setProperty('Static.alpha', 1)
-			runTimer('StaticByeBye', 0.06)
-			
-			if getPropertyFromClass('ClientPrefs', 'buff3Active') == false then
-				if difficulty == 0 then
-					if isMayhemMode then
-						if getPropertyFromClass('ClientPrefs', 'resistanceCharm') == 1 then
-							setProperty('health', health - 2)
-						else
-							setProperty('health', health - 4)
-						end
-					else
-						if getPropertyFromClass('ClientPrefs', 'resistanceCharm') == 1 then
-							setProperty('health', health - 0.125)
-						else
-							setProperty('health', health - 0.25)
-						end
-					end
-				end
-				if difficulty == 1 then
-					if isMayhemMode then
-						if getPropertyFromClass('ClientPrefs', 'resistanceCharm') == 1 then
-							setProperty('health', health - 5)
-						else
-							setProperty('health', health - 10)
-						end
-					else
-						if getPropertyFromClass('ClientPrefs', 'resistanceCharm') == 1 then
-							setProperty('health', health - 0.25)
-						else
-							setProperty('health', health - 0.50)
-						end
-					end
-				end
-				if difficulty == 2 then
-					if getPropertyFromClass('ClientPrefs', 'resistanceCharm') == 1 then
-						setProperty('health', health - 0.345)
-					else
-						setProperty('health', health - 0.75)
-					end
-				end
-			end
-			
-			if direction == 0 then
-				characterPlayAnim('boyfriend', 'singLEFTmiss', true)
-			end
-			if direction == 1 then
-				characterPlayAnim('boyfriend', 'singDOWNmiss', true)
-			end
-			if direction == 2 then
-				characterPlayAnim('boyfriend', 'singUPmiss', true)
-			end
-			if direction == 3 then
-				characterPlayAnim('boyfriend', 'singRIGHTmiss', true)
-			end
-		end
+function getHealthToDrain()
+	local healthThing = 0.25 -- Casual Non Mayhem Mode Default
+	
+	if isMayhemMode then
+		if difficulty == 0 then healthThing = 4 else healthThing = 10 end
+	else
+		if difficulty == 1 then healthThing = 0.5 elseif difficulty == 2 then healthThing = 0.75 end
 	end
-end
 
-function onTimerCompleted(tag)
-	if tag == 'StaticByeBye' then
-		doTweenAlpha('StaticGoByeBye', 'Static', 0, 1.4, 'linear')
-	end
+	local buff1 = (getPropertyFromClass('ClientPrefs', 'resistanceCharm') == 1)
+	if buff1 then healthThing = healthThing / 2 end
+	
+	return healthThing
 end
