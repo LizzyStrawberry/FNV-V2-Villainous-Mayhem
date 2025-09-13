@@ -29,7 +29,7 @@ end
 
 function onCreate()
 	allowCharms = checkIfEnabled()
-		
+	
 	if allowCharms then 
 		-- Creating the text for the Charms
 		makeLuaText('activationTxt', '', screenWidth, 0, 320)
@@ -45,7 +45,6 @@ function onCreate()
 		setPropertyFromClass('ClientPrefs', 'resistanceCharm', getPropertyFromClass('ClientPrefs', 'resCharmCollected') and 2 or 0)
 		setPropertyFromClass('ClientPrefs', 'autoCharm', getPropertyFromClass('ClientPrefs', 'autoCharmCollected') and 2 or 0)
 		setPropertyFromClass('ClientPrefs', 'healingCharm', getPropertyFromClass('ClientPrefs', 'healCharmCollected') and 10 or -1)
-
 	else
 		setPropertyFromClass('ClientPrefs', 'resistanceCharm', 0)
 		setPropertyFromClass('ClientPrefs', 'autoCharm', 0)
@@ -95,7 +94,8 @@ function onUpdate(elapsed)
 		-- Check what charm has been used
 		if not locatedCharm then
 			for key = 1, 3 do
-				if keyJustPressed('charm'..key) then
+				local charmAllowed = getPropertyFromClass("ClientPrefs", charmTypeShortened[curCharm].."CharmCollected")
+				if charmAllowed and keyJustPressed('charm'..key) then
 					-- Save charm number
 					--debugPrint("Current Charm is "..key.."!")
 					curCharm = key
