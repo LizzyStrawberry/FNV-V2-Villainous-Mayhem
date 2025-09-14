@@ -1,7 +1,7 @@
 local cutShit = 
 {
     hasDial = true,
-    hasStartVid = true, vidPath = "Week1_Song1Cutscene",
+    hasStartVid = true, vidPath = "Week1_Song4Cutscene",
     hasMidDialVid = false, midVidPath = nil, midPos = -1,
     hasEndVid = false, endVidPath = nil
 }
