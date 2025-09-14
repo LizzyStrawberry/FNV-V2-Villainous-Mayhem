@@ -53,8 +53,7 @@ class CustomStickerTransition extends MusicBeatSubstate {
 		var height:Int = Std.int(FlxG.height / zoom);
         
         for (i in 0...numStickers) {
-            if (ClientPrefs.haptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
-
+            if (ClientPrefs.haptics) Haptic.vibrateOneShot(0.005, 0.25, 0.5);
             var sticker = new FlxSprite();
             var stickerPath = stickerPaths[FlxG.random.int(0, stickerPaths.length - 1)];
             sticker.loadGraphic(Paths.image(stickerPath));
@@ -117,8 +116,8 @@ class CustomStickerTransition extends MusicBeatSubstate {
     public function despawnStickers():Void
     {
         //trace('removing stickers!!1!');
-        if (ClientPrefs.haptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
         for (i in 0...stickersBackup.length) {
+            if (ClientPrefs.haptics) Haptic.vibrateOneShot(0.005, 0.25, 0.5);
             stickerTween = FlxTween.tween(stickersBackup[i], {alpha: 0, "scale.x": stickersBackupVars[i][4], "scale.y": stickersBackupVars[i][4]}, 0.02, {startDelay: i * 0.012, ease: FlxEase.bounceInOut, onComplete: function(twn:FlxTween) {
                 FlxG.sound.play(Paths.sound('stickerSounds/keyClick' + FlxG.random.int(1, 8)));
                 if (stickers[i] != null && stickersBackup[i] != null)
