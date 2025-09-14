@@ -175,7 +175,7 @@ class FreeplayState extends MusicBeatState
 		add(text);
 
 		changeSelection(0, false, false);
-		changeDiff();
+		changeDiff(0, false);
 		songSelector();
 
 		super.create();
@@ -720,13 +720,13 @@ class FreeplayState extends MusicBeatState
 			if (upP)
 			{
 				changeSelection(-shiftMult);
-				changeDiff();
+				changeDiff(0, false);
 				holdTime = 0;
 			}
 			if (downP)
 			{
 				changeSelection(shiftMult);
-				changeDiff();
+				changeDiff(0, false);
 				holdTime = 0;
 			}
 
@@ -739,7 +739,7 @@ class FreeplayState extends MusicBeatState
 				if(holdTime > 0.5 && checkNewHold - checkLastHold > 0)
 				{
 					changeSelection((checkNewHold - checkLastHold) * (controls.UI_UP ? -shiftMult : shiftMult));
-					changeDiff();
+					changeDiff(0, false);
 				}
 			}
 
@@ -755,7 +755,7 @@ class FreeplayState extends MusicBeatState
 	
 			if (controls.UI_LEFT_P) changeDiff(-1);
 			else if (controls.UI_RIGHT_P) changeDiff(1);
-			else if (upP || downP) changeDiff();
+			else if (upP || downP) changeDiff(0, false);
 		}
 
 		if (controls.BACK #if mobile || FlxG.android.justReleased.BACK #end)
@@ -964,8 +964,9 @@ class FreeplayState extends MusicBeatState
 		
 	}
 
-	function changeDiff(change:Int = 0)
+	function changeDiff(change:Int = 0, ?allowHaptics:Bool = true)
 	{
+		if (ClientPrefs.haptics && allowHaptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
 		curDifficulty += change;
 
 		if (curDifficulty < 0) curDifficulty = CoolUtil.difficulties.length-1;

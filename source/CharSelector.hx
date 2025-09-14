@@ -223,7 +223,7 @@ class CharSelector extends MusicBeatState{
 		});
         add(scroll);
 
-        changeSelection(0, false);
+        changeSelection(0, false, false);
         cameras = [FlxG.cameras.list[FlxG.cameras.list.length - 1]];
         super.create();
     }
@@ -270,6 +270,7 @@ class CharSelector extends MusicBeatState{
                 changeSelection(1);
             if (accepted || TouchUtil.pressAction(icon))
             {
+                if (ClientPrefs.haptics) Haptic.vibrateOneShot(1, 0.75, 0.5);
                 isSelectinChar = false;
                 alreadySelected = true;
                 var daSelected:String = unlockedCharacters[curSelected];
@@ -327,8 +328,9 @@ class CharSelector extends MusicBeatState{
     }
 
     // Changes the currently selected character
-    function changeSelection(changeAmount:Int = 0, ?playSound:Bool = true):Void
+    function changeSelection(changeAmount:Int = 0, ?playSound:Bool = true, ?allowHaptic:Bool = false):Void
     {
+        if (ClientPrefs.haptics && allowHaptic) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
         if (playSound) FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
         // This just ensures you don't go over the intended amount
         curSelected += changeAmount;

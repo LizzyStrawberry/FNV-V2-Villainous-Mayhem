@@ -239,7 +239,7 @@ class InfoState extends MusicBeatState
 			\nA lost and curious version of Gf.\nShe is way smarter and Way cheekier\nthan her Canon Counterpart
 			\n'Left Right Down up'";
 
-		changeItem();
+		changeItem(0, false);
 
 		super.create();
 
@@ -684,8 +684,9 @@ class InfoState extends MusicBeatState
 		trace('Showing Lore');
 	}
 
-	function changeItem(huh:Int = 0)
+	function changeItem(huh:Int = 0, ?allowHaptics:Bool = true)
 	{
+		if (ClientPrefs.haptics && allowHaptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
 		var lockAlpha:Bool = false;
 		var currentColor:Int = curCharSelected;
 		curCharSelected += huh;

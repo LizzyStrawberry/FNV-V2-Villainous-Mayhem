@@ -327,8 +327,6 @@ class TypedTouchButton<T:FlxSprite> extends FlxSprite implements IFlxInput
 	{
 		if (input.justPressed)
 		{
-			if ((!(MusicBeatState.getState() is PlayState) || MusicBeatSubstate.getSubState() is PauseSubState) && ClientPrefs.haptics)
-				Haptic.vibrateOneShot(0.1, 0.35, 0.5);
 			currentInput = input;
 			onDownHandler();
 		}

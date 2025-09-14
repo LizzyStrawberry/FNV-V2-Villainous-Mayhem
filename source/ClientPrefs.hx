@@ -14,7 +14,7 @@ class ClientPrefs {
 	#if android
 	public static var storageType:String = "INTERNAL";
 	#end
-	public static var hitboxType:String = "Gradient";
+	public static var hitboxType:String = "Hidden";
 	public static var padRGB:Array<Array<FlxColor>> = [
 		[0xFFC24B99, 0xFFFFFFFF, 0xFF3C1F56],
 		[0xFF00FFFF, 0xFFFFFFFF, 0xFF1542B7],

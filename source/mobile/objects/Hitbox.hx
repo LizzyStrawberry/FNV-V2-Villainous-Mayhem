@@ -60,23 +60,14 @@ class Hitbox extends MobileInputManager implements IMobileControls
 		switch (extraMode)
 		{
 			case NONE:
-				add(buttonLeft = createHint(0, 0, Std.int(FlxG.width / 4), FlxG.height, 0xFFC24B99));
-				add(buttonDown = createHint(FlxG.width / 4, 0, Std.int(FlxG.width / 4), FlxG.height, 0xFF00FFFF));
-				add(buttonUp = createHint(FlxG.width / 2, 0, Std.int(FlxG.width / 4), FlxG.height, 0xFF12FA05));
-				add(buttonRight = createHint((FlxG.width / 2) + (FlxG.width / 4), 0, Std.int(FlxG.width / 4), FlxG.height, 0xFFF9393F));
+				mainButtonSetup();
 			case DODGE:
-				add(buttonLeft = createHint(0, offsetSec, Std.int(FlxG.width / 4), Std.int(FlxG.height / 4) * 3, 0xFFC24B99));
-				add(buttonDown = createHint(FlxG.width / 4, offsetSec, Std.int(FlxG.width / 4), Std.int(FlxG.height / 4) * 3, 0xFF00FFFF));
-				add(buttonUp = createHint(FlxG.width / 2, offsetSec, Std.int(FlxG.width / 4), Std.int(FlxG.height / 4) * 3, 0xFF12FA05));
-				add(buttonRight = createHint((FlxG.width / 2) + (FlxG.width / 4), offsetSec, Std.int(FlxG.width / 4), Std.int(FlxG.height / 4) * 3, 0xFFF9393F));
-				add(buttonDodge = createHint(0, offsetFir, FlxG.width, Std.int(FlxG.height / 4), 0xFF6F00FF));
+				mainButtonSetup();
+				add(buttonDodge = createHint(0, offsetFir, FlxG.width, Std.int(FlxG.height / 4), 0xFF6F00FF, true));
 			case ATTACK:
-				add(buttonLeft = createHint(0, offsetSec, Std.int(FlxG.width / 4), Std.int(FlxG.height / 4) * 3, 0xFFC24B99));
-				add(buttonDown = createHint(FlxG.width / 4, offsetSec, Std.int(FlxG.width / 4), Std.int(FlxG.height / 4) * 3, 0xFF00FFFF));
-				add(buttonUp = createHint(FlxG.width / 2, offsetSec, Std.int(FlxG.width / 4), Std.int(FlxG.height / 4) * 3, 0xFF12FA05));
-				add(buttonRight = createHint((FlxG.width / 2) + (FlxG.width / 4), offsetSec, Std.int(FlxG.width / 4), Std.int(FlxG.height / 4) * 3, 0xFFF9393F));
-				add(buttonAttack = createHint(Std.int(FlxG.width / 2), offsetFir, Std.int(FlxG.width / 2), Std.int(FlxG.height / 4), 0xFFC400));
-				add(buttonDodge = createHint(0, offsetFir, Std.int(FlxG.width / 2), Std.int(FlxG.height / 4), 0xFF6F00FF));
+				mainButtonSetup();
+				add(buttonAttack = createHint(Std.int(FlxG.width / 2), offsetFir, Std.int(FlxG.width / 2), Std.int(FlxG.height / 4), 0xFFC400, true));
+				add(buttonDodge = createHint(0, offsetFir, Std.int(FlxG.width / 2), Std.int(FlxG.height / 4), 0xFF6F00FF, true));
 		}
 
 		for (button in Reflect.fields(this))
@@ -90,6 +81,28 @@ class Hitbox extends MobileInputManager implements IMobileControls
 		updateTrackedButtons();
 
 		instance = this;
+	}
+
+	function mainButtonSetup()
+	{
+		if (PlayState.instance.legacyPosition)
+		{
+			add(buttonLeft = createHint(0, offsetSec, Std.int(FlxG.width / 4), Std.int(FlxG.height / 4) * 3, 0xFFC24B99));
+			add(buttonDown = createHint(FlxG.width / 4, offsetSec, Std.int(FlxG.width / 4), Std.int(FlxG.height / 4) * 3, 0xFF00FFFF));
+			add(buttonUp = createHint(FlxG.width / 2, offsetSec, Std.int(FlxG.width / 4), Std.int(FlxG.height / 4) * 3, 0xFF12FA05));
+			add(buttonRight = createHint((FlxG.width / 2) + (FlxG.width / 4), offsetSec, Std.int(FlxG.width / 4), Std.int(FlxG.height / 4) * 3, 0xFFF9393F));
+		}
+		else
+		{
+			final SCREEN_MIDDLE = FlxG.width/2;
+			final ARROW_HITBOX_SIZE = 270;
+			final ARROW_DISTANCE = 220;
+
+			add(buttonLeft = createHint(SCREEN_MIDDLE-(ARROW_DISTANCE*1.5)-(ARROW_HITBOX_SIZE/2), 0, ARROW_HITBOX_SIZE, FlxG.height, 0xFFC24B99));
+			add(buttonDown = createHint(SCREEN_MIDDLE-(ARROW_DISTANCE*0.5)-(ARROW_HITBOX_SIZE/2), 0, ARROW_HITBOX_SIZE, FlxG.height, 0xFF00FFFF));
+			add(buttonUp = createHint(SCREEN_MIDDLE+(ARROW_DISTANCE*0.5)-(ARROW_HITBOX_SIZE/2), 0, ARROW_HITBOX_SIZE, FlxG.height, 0xFF12FA05));
+			add(buttonRight = createHint(SCREEN_MIDDLE+(ARROW_DISTANCE*1.5)-(ARROW_HITBOX_SIZE/2), 0, ARROW_HITBOX_SIZE, FlxG.height, 0xFFF9393F));
+		}
 	}
 
 	/**
@@ -107,7 +120,7 @@ class Hitbox extends MobileInputManager implements IMobileControls
 		}
 	}
 
-	private function createHint(X:Float, Y:Float, Width:Int, Height:Int, Color:Int = 0xFFFFFF):TouchButton
+	private function createHint(X:Float, Y:Float, Width:Int, Height:Int, Color:Int = 0xFFFFFF, ?isSpecial:Bool = false):TouchButton
 	{
 		var hint = new TouchButton(X, Y);
 		hint.statusAlphas = [];
@@ -115,14 +128,14 @@ class Hitbox extends MobileInputManager implements IMobileControls
 		hint.loadGraphic(createHintGraphic(Width, Height));
 
 		hint.label = new FlxSprite();
-		hint.labelStatusDiff = (ClientPrefs.hitboxType != "Hidden") ? ClientPrefs.gameControlsAlpha : 0.00001;
+		hint.labelStatusDiff = (ClientPrefs.hitboxType != "Hidden" || isSpecial) ? ClientPrefs.gameControlsAlpha : 0.00001;
 		hint.label.loadGraphic(createHintGraphic(Width, Math.floor(Height * 0.02), true));
 		if (ClientPrefs.hitboxPos)
 			hint.label.offset.y -= (hint.height - hint.label.height) / 2;
 		else
 			hint.label.offset.y += (hint.height - hint.label.height) / 2;
 
-		if (ClientPrefs.hitboxType != "Hidden")
+		if (ClientPrefs.hitboxType != "Hidden" || isSpecial)
 		{
 			var hintTween:FlxTween = null;
 			var hintLaneTween:FlxTween = null;
@@ -176,7 +189,7 @@ class Hitbox extends MobileInputManager implements IMobileControls
 		hint.immovable = hint.multiTouch = true;
 		hint.solid = hint.moves = false;
 		hint.alpha = 0.00001;
-		hint.label.alpha = (ClientPrefs.hitboxType != "Hidden") ? ClientPrefs.gameControlsAlpha : 0.00001;
+		hint.label.alpha = (ClientPrefs.hitboxType != "Hidden" || !isSpecial) ? ClientPrefs.gameControlsAlpha : 0.00001;
 		hint.canChangeLabelAlpha = false;
 		hint.label.antialiasing = hint.antialiasing = ClientPrefs.globalAntialiasing;
 		hint.color = Color;
@@ -209,7 +222,7 @@ class Hitbox extends MobileInputManager implements IMobileControls
 			shape.graphics.drawRect(0, 0, Width, Height);
 			shape.graphics.endFill();
 		}
-		else // if (ClientPrefs.hitboxType == 'Gradient')
+		else //if (ClientPrefs.hitboxType == 'Gradient')
 		{
 			shape.graphics.lineStyle(3, 0xFFFFFF, 1);
 			shape.graphics.drawRect(0, 0, Width, Height);

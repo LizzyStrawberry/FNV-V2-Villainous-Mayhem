@@ -62,7 +62,7 @@ class MobileOptionsSubState extends BaseOptionsMenu {
 			'Choose how your hitbox should look like.',
 			'hitboxType',
 			'string',
-			'Gradient',
+			'Hidden',
 			hintOptions);
 		addOption(option);
 

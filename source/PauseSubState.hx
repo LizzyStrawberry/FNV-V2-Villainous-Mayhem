@@ -535,6 +535,7 @@ class PauseSubState extends MusicBeatSubstate
 
 					if (controls.BACK)
 					{
+						if (ClientPrefs.haptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
 						onSkipTime = false;
 						if (skipTimeTweenFadeIn != null)
 							skipTimeTweenFadeIn.cancel();
@@ -631,6 +632,7 @@ class PauseSubState extends MusicBeatSubstate
 
 			if (controls.BACK)
 			{
+				if (ClientPrefs.haptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
 				onQuickSettings = accepted = false;
 					
 				if (optionsBGTweenFadeIn != null)
@@ -652,7 +654,7 @@ class PauseSubState extends MusicBeatSubstate
 					quickSettingsTweenFadeOut = FlxTween.tween(item, {alpha: 0}, 0.4, {ease: FlxEase.quartOut});
 				}
 
-				if (botplayOn == true)
+				if (botplayOn)
 				{
 					ClientPrefs.tokensAchieved = 0;
 					restartSong();

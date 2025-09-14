@@ -322,6 +322,7 @@ class VideoPlayer extends MusicBeatState
 
     private function openWindow(asset:String)
     {
+        if (ClientPrefs.haptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
         FlxG.sound.play(Paths.sound('scrollMenu'), 0.6);
         transitioning = true;
         FlxTween.tween(windowOverlay, {"scale.y": 1}, 0.4, {ease: FlxEase.circInOut, onComplete: function(twn: FlxTween)
@@ -397,6 +398,7 @@ class VideoPlayer extends MusicBeatState
 
             if (!transitioning && back) // make sure you're not transitioning
             {
+                if (ClientPrefs.haptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
                 transitioning = true;
 
                 FlxG.sound.play(Paths.sound('cancelMenu'));
