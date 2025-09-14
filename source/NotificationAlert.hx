@@ -58,7 +58,7 @@ class NotificationAlert {
 
     public static function fixExistingPopUp(sprite:Array<FlxSprite>, pos:Int)
     {
-        tweens[pos] = FlxTween.tween(notifMessageSprites[pos], {y:notifMessageSprites[pos].y - 200}, 1, {ease: FlxEase.circOut, type: PERSIST, onComplete: finishTween});
+        if (tweens[pos] != null) tweens[pos] = FlxTween.tween(notifMessageSprites[pos], {y:notifMessageSprites[pos].y - 200}, 1, {ease: FlxEase.circOut, type: PERSIST, onComplete: finishTween});
     }
 
     public static var dur:Float = 2;
