@@ -373,7 +373,7 @@ class LoreShop extends MusicBeatState
 
         if (ClientPrefs.talkedToHermit == false)
             {
-                if (FlxG.keys.justPressed.ENTER)
+                if (TouchUtil.pressAction(hermit))
                 {
                     trace ("Pressed Enter : " + pressedEnter);
                     switch (pressedEnter)

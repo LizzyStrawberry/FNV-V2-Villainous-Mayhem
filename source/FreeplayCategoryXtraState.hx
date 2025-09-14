@@ -36,37 +36,25 @@ class FreeplayCategoryXtraState extends MusicBeatState
         bgGradient.screenCenter(X);
 		bgGradient.alpha = 0;
 		add(bgGradient);
-        
-        xtraShop = new FlxSprite().loadGraphic(Paths.image('freeplayStuff/categories/XtraShop'));
-        xtraShop.x += 135;
-        xtraShop.y += 45;
-        xtraShop.antialiasing = ClientPrefs.globalAntialiasing;
-        xtraShop.updateHitbox();
-		add(xtraShop);
 
-        if (ClientPrefs.crossoverUnlocked == false)
-            xtraCrossover = new FlxSprite().loadGraphic(Paths.image('freeplayStuff/categories/XtraCrossoverLocked'));
-        else if (ClientPrefs.crossoverUnlocked == true)
-            xtraCrossover = new FlxSprite().loadGraphic(Paths.image('freeplayStuff/categories/XtraCrossover'));
-        xtraCrossover.x += 480;
-        xtraCrossover.y += 45;
-        xtraCrossover.antialiasing = ClientPrefs.globalAntialiasing;
-        xtraCrossover.updateHitbox();
-		add(xtraCrossover);
+        var assetLocation:String = "freeplayStuff/categories";
+        selectionGroup = new FlxTypedGroup<FlxSprite>();
+        add(selectionGroup);
+        for (i in 0...selectionArray.length)
+        {
+            var x = selectionArray[i][0]; var y = selectionArray[i][1];
+            var typeOfSel = selectionArray[i][2]; var isUnlocked = selectionArray[i][3];
 
-        if (ClientPrefs.xtraBonusUnlocked == false)
-            xtraBonus = new FlxSprite().loadGraphic(Paths.image('freeplayStuff/categories/XtraBonusLocked'));
-        else
-            xtraBonus = new FlxSprite().loadGraphic(Paths.image('freeplayStuff/categories/XtraBonus'));
-        xtraBonus.x += 825;
-        xtraBonus.y += 45;
-        xtraBonus.antialiasing = ClientPrefs.globalAntialiasing;
-        xtraBonus.updateHitbox();
-		add(xtraBonus);
+            var selection = new FlxSprite(x, y).loadGraphic(Paths.image('$assetLocation/Xtra$typeOfSel' + ((!isUnlocked) ? "Locked" : "")));
+            selection.ID = i;
+            selection.updateHitbox();
+            selection.antialiasing = ClientPrefs.globalAntialiasing;
+            selectionGroup.add(selection);
 
-        xtraShop.x = MobileUtil.fixX(xtraShop.x);
-        xtraCrossover.x = MobileUtil.fixX(xtraCrossover.x);
-        xtraBonus.x = MobileUtil.fixX(xtraBonus.x);
+            selection.x = MobileUtil.fixX(selection.x);
+
+            FlxTween.tween(selection, {y: selection.y + 5}, 5 + (i * 0.025), {ease: FlxEase.cubeInOut, type: PINGPONG});
+        }
 
         textBG = new FlxSprite(0, FlxG.height - 38).makeGraphic(FlxG.width, 46, 0xFF000000);
 		textBG.alpha = 0.6;
@@ -84,7 +72,7 @@ class FreeplayCategoryXtraState extends MusicBeatState
 		borders.antialiasing = ClientPrefs.globalAntialiasing;
 		add(borders);
 
-        changeItem(0, false);
+        changeItem(0, false, false);
 
         super.create();
     }
@@ -135,6 +123,7 @@ class FreeplayCategoryXtraState extends MusicBeatState
 
     function acceptCategory(group:FlxTypedGroup<FlxSprite>, freeplaySave:String)
     {
+        if (ClientPrefs.haptics) Haptic.vibrateOneShot(1, 0.75, 0.5);
         FlxG.sound.play(Paths.sound('confirmMenu'));
         selectedSomething = true;
 
@@ -154,8 +143,9 @@ class FreeplayCategoryXtraState extends MusicBeatState
         });
     }
 
-    function changeItem(huh:Int = 0, ?playSound:Bool = true)
+    function changeItem(huh:Int = 0, ?playSound:Bool = true, ?allowHaptic:Bool = true)
 	{
+        if (ClientPrefs.haptics && allowHaptic) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
         if (playSound) FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
         categorySelected += huh;
 	

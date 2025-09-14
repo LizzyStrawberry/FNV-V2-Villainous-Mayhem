@@ -120,11 +120,8 @@ class MusicBeatSubstate extends FlxSubState
 		super.create();
 
 		#if mobile
-		if (!(getSubState() is PauseSubState))
-		{
-			tapManager = new TapCircleManager();
-			add(tapManager);
-		}
+		tapManager = new TapCircleManager();
+		add(tapManager);
 		#end
 	}
 	

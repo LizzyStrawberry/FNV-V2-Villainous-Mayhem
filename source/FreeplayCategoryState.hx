@@ -104,11 +104,7 @@ class FreeplayCategoryState extends MusicBeatState
 
         FlxTween.tween(Text, {x: textBG.x - 2500}, 20, {ease: FlxEase.linear, type: LOOPING});
 
-        FlxTween.tween(firstSpriteSelection, {y: firstSpriteSelection.y + 7}, 5, {ease: FlxEase.cubeInOut, type: PINGPONG});
-        FlxTween.tween(secondSpriteSelection, {y: secondSpriteSelection.y + 7}, 5.01, {ease: FlxEase.cubeInOut, type: PINGPONG});
-        FlxTween.tween(thirdSpriteSelection, {y: thirdSpriteSelection.y + 7}, 5.02, {ease: FlxEase.cubeInOut, type: PINGPONG});
-
-        changeItem(0, false);
+        changeItem(0, false, false);
 
         addTouchPad("NONE", "B");
 
@@ -199,7 +195,7 @@ class FreeplayCategoryState extends MusicBeatState
                         changeItem(0, false);
                     }
 
-                    var accepted = controls.ACCEPT || TouchUtil.pressAction(week));
+                    var accepted = controls.ACCEPT || TouchUtil.pressAction(week);
                     
                     if (accepted && week.ID == subCatSelected)
                     {
@@ -221,6 +217,7 @@ class FreeplayCategoryState extends MusicBeatState
 
     function openWeekSubcat(lastWeekNum:Int, freeplayType:String, lower:Bool)
     {
+        if (ClientPrefs.haptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
         FlxG.sound.play(Paths.sound('confirmMenu'));
         selectionGroup.forEach(function(spr:FlxSprite)
         {
@@ -246,6 +243,7 @@ class FreeplayCategoryState extends MusicBeatState
 
     function acceptCategory(group:FlxTypedGroup<FlxSprite>, isSub:Bool, ?freeplaySave:String = null)
     {
+        if (ClientPrefs.haptics) Haptic.vibrateOneShot(1, 0.75, 0.5);
         FlxG.sound.play(Paths.sound('confirmMenu'));
         selectedSomething = true;
 
@@ -266,8 +264,9 @@ class FreeplayCategoryState extends MusicBeatState
         });
     }
 
-    function changeItem(huh:Int = 0, ?playSound:Bool = true)
+    function changeItem(huh:Int = 0, ?playSound:Bool = true, ?allowHaptic:Bool = true)
 	{
+        if (ClientPrefs.haptics && allowHaptic) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
         if (playSound) FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
         
         if (freeplayName != "") // You're in a sub-category

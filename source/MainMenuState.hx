@@ -942,6 +942,7 @@ class MainMenuState extends MusicBeatState
 	{
 		if(TouchUtil.pressAction(exclamationMark))
 		{
+			if (ClientPrefs.haptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
 			MusicBeatState.switchState(new tutorial.TutorialState(), 'stickers');
 
 			selectedSomethin = true;
@@ -971,6 +972,7 @@ class MainMenuState extends MusicBeatState
 
 		if (TouchUtil.pressAction(optionsButton) && askedForInfo == false && (!selectedSomethin && !storySelected && !inventoryOpened))
 		{
+			if (ClientPrefs.haptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
 			ClientPrefs.inMenu = true;
 			selectedSomethin = true;
 			FlxG.sound.play(Paths.sound('confirmMenu'));
@@ -1454,6 +1456,7 @@ class MainMenuState extends MusicBeatState
 
 		if (TouchUtil.pressAction(shopButton) && askedForInfo == false && ClientPrefs.inShop == false && (!selectedSomethin && !storySelected))
 		{
+			if (ClientPrefs.haptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
 			FlxG.sound.music.fadeOut(0.5);
 			FlxG.sound.play(Paths.sound('scrollMenu'));
 			ClientPrefs.inShop = true;

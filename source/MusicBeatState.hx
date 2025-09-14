@@ -167,21 +167,11 @@ class MusicBeatState extends FlxUIState
 		#if mobile
 		new FlxTimer().start(0.1, function(_) // Always add this a bit later than normal
 		{
-			try
-			{
-				if (!isInvalidState())
-				{
-					tapManager = new TapCircleManager();
-					add(tapManager);
-				}
-			}
-			catch {}	
+			tapManager = new TapCircleManager();
+			add(tapManager);
 		});
 		#end
 	}
-
-	function isInvalidState()
-		return (getState() is PlayState || getState() is TitleState);
 
 	override function update(elapsed:Float)
 	{

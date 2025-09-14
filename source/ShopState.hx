@@ -179,7 +179,6 @@ class ShopState extends MusicBeatState
 
 		ClientPrefs.choiceSelected = ClientPrefs.luckSelected = ClientPrefs.sellSelected = ClientPrefs.itemInfo = false;
 		
-		FlxG.mouse.visible = true;
 		FlxG.sound.playMusic(Paths.music('shopTheme'), 0);
 		FlxG.sound.music.fadeIn(3.0); 
 
@@ -194,6 +193,12 @@ class ShopState extends MusicBeatState
 		{
 			FlxG.sound.play(Paths.sound('shop/shopEnter'), 0.7);
 
+			for (i in 0...luckSelectionProperties.length)
+			{
+				luckSelectionProperties[i][0] = MobileUtil.fixX(luckSelectionProperties[i][0] + 100);
+				luckSelectionProperties[i][1] = MobileUtil.fixX(luckSelectionProperties[i][1] + 100);
+			}
+
 			transitionSprite = new FlxSprite(-FlxG.width - 90, 0).loadGraphic(Paths.image('shop/transition'));
 			transitionSprite.antialiasing = ClientPrefs.globalAntialiasing;
 			transitionSprite.scale.x = 1.5;
@@ -205,11 +210,14 @@ class ShopState extends MusicBeatState
 			//ONLY FOR WHEN YOU ACCESS THE SHOP FOR THE FIRST TIME!
 			if (!ClientPrefs.shopShowcased) startDialogue("mimiko", "OH! ANOTHER CUSTOMER!\n[Press Enter To Continue]");
 			else startDialogue("mimiko", "Greatings, welcome to my shop.");
+
+			addTouchPad("LEFT_FULL", "B");
 		}
 
 		super.create();
 	}
 
+	var mobileFixes:Array<Float> = [];
 	private function createShop(merchant:String = "mimiko")
 	{
 		switch(merchant.toLowerCase())
@@ -218,6 +226,8 @@ class ShopState extends MusicBeatState
 				// Create Background
 				mainBG = new FlxSprite().loadGraphic(Paths.image('shop/Background'));
 				mainBG.setGraphicSize(FlxG.width, FlxG.height);
+				mainBG.screenCenter(XY);
+				mobileFixes.push(mainBG.x);
 				mainBG.antialiasing = ClientPrefs.globalAntialiasing;
 				add(mainBG);
 
@@ -251,6 +261,8 @@ class ShopState extends MusicBeatState
 							button.x += (ClientPrefs.kianaWeekPlayed) ? 350 : 355;
 							button.y += 180;		
 					}
+
+					button.x = MobileUtil.fixX(button.x);
 				}
 
 				// Assistant Setup
@@ -378,6 +390,11 @@ class ShopState extends MusicBeatState
 				}
 
 				// Prize Slots with Info + Titles
+				for (i in 0...prizeBoard.length)
+				{
+					prizeBoard[i][0] = MobileUtil.fixX(prizeBoard[i][0]);
+					prizeBoard[i][1] = MobileUtil.fixY(prizeBoard[i][1]);
+				}
 				prizeSlots = new FlxTypedGroup<FlxSprite>();
 				for (i in 0...20)
 				{
@@ -391,11 +408,13 @@ class ShopState extends MusicBeatState
 				infoTitle.setFormat("VCR OSD Mono", 60, FlxColor.WHITE, CENTER);
 				infoTitle.alpha = 0;
 
-				infoText = new FlxText(250, 280, FlxG.width - 200, "Test Description", 25);
+				infoText = new FlxText(MobileUtil.fixX(250), 280, FlxG.width - 200, "Test Description", 25);
 				infoText.setFormat("VCR OSD Mono", 35, FlxColor.WHITE, LEFT);
 				infoText.alpha = 0;
 
 				buyItemsBG = new FlxSprite(0, 800).loadGraphic(Paths.image('shop/buyItemsBG'));
+				buyItemsBG.setGraphicSize(FlxG.width, FlxG.height);
+				buyItemsBG.screenCenter(X);
 				buyItemsBG.antialiasing = ClientPrefs.globalAntialiasing;
 				add(buyItemsBG);
 
@@ -460,7 +479,7 @@ class ShopState extends MusicBeatState
 			// Showcase Code
 			if (!ClientPrefs.shopShowcased)
 			{
-				if (controls.ACCEPT)
+				if (controls.ACCEPT || TouchUtil.pressAction())
 				{
 					switch (pressedEnter)
 					{
@@ -535,8 +554,8 @@ class ShopState extends MusicBeatState
 							buttonTrigger("Main");
 						
 							//Dialogue
-							if(FlxG.mouse.overlaps(assistant) && FlxG.mouse.justPressed && !ClientPrefs.luckSelected
-							&& (!FlxG.mouse.overlaps(luckOptionSlots.members[0]) && !FlxG.mouse.overlaps(luckOptionSlots.members[1]) && !FlxG.mouse.overlaps(luckOptionSlots.members[2])))
+							if(TouchUtil.pressAction(assistant) && !ClientPrefs.luckSelected
+							&& (!TouchUtil.overlaps(luckOptionSlots.members[0]) && !TouchUtil.overlaps(luckOptionSlots.members[1]) && !TouchUtil.overlaps(luckOptionSlots.members[2])))
 							{
 								dialogueNumber = FlxG.random.int(1, 29);
 
@@ -589,10 +608,8 @@ class ShopState extends MusicBeatState
 								FlxTween.tween(notEnoughTokensText, {alpha: 0}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 								tokensRunOut = false;
 							}
-							if(FlxG.mouse.overlaps(testLuckButton) && FlxG.mouse.justPressed && ClientPrefs.luckSelected && ended && ClientPrefs.tokens > 0)
+							if(TouchUtil.pressAction(testLuckButton) && ClientPrefs.luckSelected && ended && ClientPrefs.tokens > 0)
 							{
-								ended = false;
-
 								ClientPrefs.choiceSelected = true;
 								ClientPrefs.tokens -= 1;
 				
@@ -601,7 +618,7 @@ class ShopState extends MusicBeatState
 								FlxTween.tween(testLuckButton, {y: testLuckButton.y + 550}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 								FlxTween.tween(spaceText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 							}
-							if (controls.ACCEPT && ClientPrefs.choiceSelected && !ended)
+							if ((controls.ACCEPT || TouchUtil.pressAction(spaceText)) && ClientPrefs.choiceSelected && !ended)
 							{
 								FlxG.sound.play(Paths.sound('confirmMenu'));
 								giveItem();
@@ -621,7 +638,7 @@ class ShopState extends MusicBeatState
 								}
 							});
 
-							if (controls.ACCEPT)
+							if (controls.ACCEPT || TouchUtil.pressAction())
 							{
 								//trace ("Pressed Enter : " + pressedEnter);
 								switch (pressedEnter)
@@ -648,9 +665,9 @@ class ShopState extends MusicBeatState
 							{
 								if (!ClientPrefs.sellSelected && !ClientPrefs.itemInfo) checkButtons("Zeel");
 								buttonTrigger("Zeel");
-								if(FlxG.mouse.overlaps(assistantSecret) && FlxG.mouse.justPressed && !ClientPrefs.sellSelected)
+								if(TouchUtil.pressAction(assistantSecret) && !ClientPrefs.sellSelected)
 								{
-									if (FlxG.mouse.overlaps(chestHitbox))
+									if (TouchUtil.overlaps(chestHitbox))
 									{
 										touchedBoobies += 1;
 										var dialNum = FlxG.random.int(1, 18);
@@ -730,7 +747,7 @@ class ShopState extends MusicBeatState
 									//Selling Section Bundled with Buying Process
 									prizeSlots.forEach(function (prize:FlxSprite)
 									{
-										if (FlxG.mouse.overlaps(prize) && FlxG.mouse.justPressed && ClientPrefs.sellSelected)
+										if (TouchUtil.pressAction(prize) && ClientPrefs.sellSelected)
 										{
 											allowInput = false;
 											ClientPrefs.itemInfo = true;
@@ -762,14 +779,13 @@ class ShopState extends MusicBeatState
 											new FlxTimer().start(0.8, function (tmr:FlxTimer) {
 												allowInput = true;
 											});
-
 											setUpInfoPanel(prize.ID);
 										}
 									});
 								}
 								else
 								{
-									if (FlxG.mouse.overlaps(buy) && FlxG.mouse.justPressed)
+									if (TouchUtil.pressAction(buy))
 									{
 										prizeSlots.forEach(function (prize:FlxSprite)
 										{
@@ -779,7 +795,7 @@ class ShopState extends MusicBeatState
 								}
 
 								//EQUIPPED OPTION [Will only work on these 2 items]
-								if (FlxG.mouse.overlaps(equipped) && FlxG.mouse.justPressed)
+								if (TouchUtil.pressAction(equipped))
 								{
 									switch (infoTitle.text)
 									{
@@ -848,8 +864,8 @@ class ShopState extends MusicBeatState
 							{
 								FlxTween.tween(butt, {x: 200}, 1.8 + (butt.ID * 0.04), {ease: FlxEase.cubeInOut, type: PERSIST});
 							});
-							FlxTween.tween(chestHitbox, {x: 780}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-							FlxTween.tween(assistantSecret, {x: 740}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+							FlxTween.tween(chestHitbox, {x: MobileUtil.fixX(780)}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+							FlxTween.tween(assistantSecret, {x: MobileUtil.fixX(740)}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 							FlxTween.tween(secretMerchantDialogue, {x: 130}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 						});
 									
@@ -883,7 +899,7 @@ class ShopState extends MusicBeatState
 						FlxTween.tween(secretMerchantDialogue, {x: -2400}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 
 						new FlxTimer().start(2, function (tmr:FlxTimer) {
-							FlxTween.tween(mainBG, {x: 0}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+							FlxTween.tween(mainBG, {x: mobileFixes[0]}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 							luckOptionSlots.forEach(function(button:FlxSprite)
 							{
 								var offset:Int = 0;
@@ -892,10 +908,10 @@ class ShopState extends MusicBeatState
 									case 1: if (!ClientPrefs.nunWeekPlayed) offset = 5;
 									case 2: if (!ClientPrefs.kianaWeekPlayed) offset = 5;
 								}	
-								FlxTween.tween(button, {x: 780 + offset},  1.8 + (button.ID * 0.04), {ease: FlxEase.cubeInOut, type: PERSIST});	
+								FlxTween.tween(button, {x: MobileUtil.fixX(780 + offset)}, 1.8 + (button.ID * 0.04), {ease: FlxEase.cubeInOut, type: PERSIST});	
 							});
 							FlxTween.tween(assistant, {x: -10}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-							FlxTween.tween(lights, {x: 1470}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+							FlxTween.tween(lights, {x: MobileUtil.fixX(1470)}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 							FlxTween.tween(bulb, {x: -400}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 							FlxTween.tween(merchantDialogue, {x: 0}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 						
@@ -947,7 +963,7 @@ class ShopState extends MusicBeatState
 			case "Main":
 				luckOptionSlots.forEach(function(button:FlxSprite)
 				{
-					if (FlxG.mouse.overlaps(button))
+					if (TouchUtil.overlaps(button))
 						button.alpha = 1;
 					else
 						button.alpha = 0.6;
@@ -955,7 +971,7 @@ class ShopState extends MusicBeatState
 			case "Zeel":
 				sellSlots.forEach(function(button:FlxSprite)
 				{
-					if (FlxG.mouse.overlaps(button))
+					if (TouchUtil.overlaps(button))
 						button.alpha = 1;
 					else
 						button.alpha = 0.6;
@@ -970,7 +986,7 @@ class ShopState extends MusicBeatState
 			case "Main":
 				luckOptionSlots.forEach(function(button:FlxSprite)
 				{
-					if (FlxG.mouse.overlaps(button) && FlxG.mouse.justPressed && !ClientPrefs.luckSelected)
+					if (TouchUtil.pressAction(button) && !ClientPrefs.luckSelected)
 					{
 						var locked = (button.ID == 1 && !ClientPrefs.nunWeekPlayed) || (button.ID == 2 && !ClientPrefs.kianaWeekPlayed);
 						var lightColors:Array<String> = ['red', 'blue', 'green'];
@@ -982,6 +998,7 @@ class ShopState extends MusicBeatState
 						}
 						else
 						{
+							if (ClientPrefs.haptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
 							FlxG.sound.play(Paths.sound('shop/shopOpenShelf'));
 							ClientPrefs.luckSelected = true;
 							merchantDialogue.skip();
@@ -1006,7 +1023,7 @@ class ShopState extends MusicBeatState
 			case "Zeel":
 				sellSlots.forEach(function(button:FlxSprite)
 				{
-					if (FlxG.mouse.overlaps(button) && FlxG.mouse.justPressed && !ClientPrefs.sellSelected)
+					if (TouchUtil.pressAction(button) && !ClientPrefs.sellSelected)
 					{
 						var locked = (button.ID == 1 && !ClientPrefs.nunWeekPlayed) || (button.ID == 2 && !ClientPrefs.kianaWeekPlayed);
 						if (locked)
@@ -1016,6 +1033,7 @@ class ShopState extends MusicBeatState
 						}
 						else
 						{
+							if (ClientPrefs.haptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
 							FlxG.sound.play(Paths.sound('shop/shopOpenShelf'));
 							ClientPrefs.sellSelected = true;
 							secretMerchantDialogue.skip();
@@ -1026,9 +1044,9 @@ class ShopState extends MusicBeatState
 							switch(button.ID)
 							{
 								case 0:
-									prizeSlots.members[14].x = 250;
-									prizeSlots.members[15].x = 450;
-									prizeSlots.members[16].x = 650;
+									prizeSlots.members[14].x = MobileUtil.fixX(250);
+									prizeSlots.members[15].x = MobileUtil.fixX(450);
+									prizeSlots.members[16].x = MobileUtil.fixX(650);
 									prizeSlots.forEach(function (prize:FlxSprite)
 									{
 										if (prize.ID <= 5) FlxTween.tween(prize, {y: 160}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
@@ -1036,9 +1054,9 @@ class ShopState extends MusicBeatState
 									});
 								
 								case 1:
-									prizeSlots.members[14].x = 50;
-									prizeSlots.members[15].x = 250;
-									prizeSlots.members[16].x = 450;
+									prizeSlots.members[14].x = MobileUtil.fixX(50);
+									prizeSlots.members[15].x = MobileUtil.fixX(250);
+									prizeSlots.members[16].x = MobileUtil.fixX(450);
 									prizeSlots.forEach(function (prize:FlxSprite)
 									{
 										if ((prize.ID >= 6 && prize.ID <= 10) || prize.ID == 18) FlxTween.tween(prize, {y: 160}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
@@ -1046,15 +1064,17 @@ class ShopState extends MusicBeatState
 									});
 			
 								case 2:
-									prizeSlots.members[14].x = 650;
-									prizeSlots.members[15].x = 850;
-									prizeSlots.members[16].x = 50;
+									prizeSlots.members[14].x = MobileUtil.fixX(650);
+									prizeSlots.members[15].x = MobileUtil.fixX(850);
+									prizeSlots.members[16].x = MobileUtil.fixX(50);
 									prizeSlots.forEach(function (prize:FlxSprite)
 									{
 										if ((prize.ID >= 11 && prize.ID <= 15) || prize.ID == 19) FlxTween.tween(prize, {y: 160}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 										else if (prize.ID == 16) FlxTween.tween(prize, {y: 315}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 									});
 							}
+							removeTouchPad();
+							addTouchPad("NONE", "B");
 						}
 					}
 				});
@@ -1082,6 +1102,7 @@ class ShopState extends MusicBeatState
 								case 2: x = 50; y = 315;
 								case 3: x = 650; y = 160;
 							}
+							x = MobileUtil.fixX(x);
 						case 15:
 							switch(shelfSelected)
 							{
@@ -1089,6 +1110,7 @@ class ShopState extends MusicBeatState
 								case 2: x = 250; y = 315;
 								case 3: x = 850; y = 160;
 							}
+							x = MobileUtil.fixX(x);
 						case 16:
 							switch(shelfSelected)
 							{
@@ -1096,6 +1118,7 @@ class ShopState extends MusicBeatState
 								case 2: x = 450; y = 315;
 								case 3: x = 50; y = 315;
 							}
+							x = MobileUtil.fixX(x);
 
 						default:
 							x = prizeBoard[prize.ID][0];
@@ -1153,6 +1176,8 @@ class ShopState extends MusicBeatState
 					allowInput = true;
 					ClientPrefs.sellSelected = false;
 				});
+				removeTouchPad();
+				addTouchPad("LEFT_FULL", "B");
 			
 			default:
 				FlxG.sound.music.fadeOut(0.4);
@@ -1163,7 +1188,7 @@ class ShopState extends MusicBeatState
 	function giveItem()
 	{
 		var gotItemSuccessfully:Bool = false;
-
+		if (ClientPrefs.haptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
 		switch(choiceNumber)
 		{
 			case 1:
@@ -1438,7 +1463,7 @@ class ShopState extends MusicBeatState
 	{
 		prizeSlots.forEach(function (prize:FlxSprite)
 		{
-			prize.alpha = (FlxG.mouse.overlaps(prize)) ? 1 : 0.3;
+			prize.alpha = (TouchUtil.overlaps(prize)) ? 1 : 0.3;
 		});
 	}
 
@@ -1662,6 +1687,7 @@ class ShopState extends MusicBeatState
 	];
 	function processTransaction(id:Int)
 	{
+		if (ClientPrefs.haptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
 		switch(id)
 		{
 			case 14:
@@ -1793,6 +1819,7 @@ class ShopState extends MusicBeatState
 
 	function startDialogue(merchant:String, dialText:String, ?isPissed:Bool = false)
 	{
+		if (ClientPrefs.haptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
 		switch(merchant.toLowerCase())
 		{
 			case "mimiko":
@@ -1833,6 +1860,8 @@ class ShopState extends MusicBeatState
 
 	function getChoiceNumber(timer:FlxTimer)
 	{
+		if (ClientPrefs.haptics) Haptic.vibrateOneShot(0.025, 0.125, 0.5);
+		ended = false;
 		if (ClientPrefs.choiceSelected && !ended && ClientPrefs.tokens >= 0)
 		{
 			switch(shelfSelected)
