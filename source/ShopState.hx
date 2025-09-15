@@ -988,6 +988,7 @@ class ShopState extends MusicBeatState
 				{
 					if (TouchUtil.pressAction(button) && !ClientPrefs.luckSelected)
 					{
+						startDialogue("Mimiko", " ");
 						var locked = (button.ID == 1 && !ClientPrefs.nunWeekPlayed) || (button.ID == 2 && !ClientPrefs.kianaWeekPlayed);
 						var lightColors:Array<String> = ['red', 'blue', 'green'];
 						
