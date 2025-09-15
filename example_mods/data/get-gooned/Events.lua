@@ -30,7 +30,7 @@ function onCreate()
 	MorkyY = getProperty('dad.y') - 380
 	
 	if getPropertyFromClass('ClientPrefs', 'itsameDsidesUnlocked') == false then
-		makeLuaText('unlockText', "MORKY IS SO TIRED OF YOU.\nGO TYPE 'TAILS' IN LUSTALITY REMIX IF YOU'RE A BIG MUSCULAR BLACK MAN.\n- Morky", 1000, 130, 320)
+		makeLuaText('unlockText', "MORKY IS SO TIRED OF YOU.\nGO TAP KIANA IN LUSTALITY REMIX IN FREEPLAY IF YOU'RE A BIG MUSCULAR BLACK MAN.\n- Morky", 1000, 130, 320)
 		setTextSize('unlockText', 45)
 		setObjectCamera('unlockText', 'other')
 		setScrollFactor('unlockText', 0, 0)

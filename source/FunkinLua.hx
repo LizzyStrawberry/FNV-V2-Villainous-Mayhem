@@ -2399,8 +2399,43 @@ class FunkinLua {
 			return value;
 		});
 
-		Lua_helper.add_callback(lua, "pressAction", function(?obj:FlxObject = null) {
-			return TouchUtil.pressAction(obj);
+		Lua_helper.add_callback(lua, "pressAction", function(?obj:String = null, ?cam:String = null) {
+
+			if(PlayState.instance.getLuaObject(obj, false) != null) {
+				var luaObj:FlxSprite = PlayState.instance.getLuaObject(obj,false);
+				switch(cam.toLowerCase())
+				{
+					case "game":
+						return TouchUtil.pressAction(luaObj, PlayState.instance.camGame);
+					case "hud":
+						return TouchUtil.pressAction(luaObj, PlayState.instance.camHUD);
+					default:
+						return TouchUtil.pressAction(luaObj);
+				}
+				return true;
+			}
+
+			var spr:FlxSprite = Reflect.getProperty(getInstance(), obj);
+			if(spr != null) {
+				if(Std.isOfType(spr, Character))
+				{
+					//convert spr to Character
+					var obj:Dynamic = spr;
+					var spr:Character = obj;
+				}
+
+				switch(cam.toLowerCase())
+				{
+					case "game":
+						return TouchUtil.pressAction(spr, PlayState.instance.camGame);
+					case "hud":
+						return TouchUtil.pressAction(spr, PlayState.instance.camHUD);
+					default:
+						return TouchUtil.pressAction(spr);
+				}
+			}
+
+			return TouchUtil.pressAction();
 		});
 
 		#if DISCORD_ALLOWED
