@@ -972,6 +972,7 @@ class ShopState extends MusicBeatState
 				{
 					if (FlxG.mouse.overlaps(button) && FlxG.mouse.justPressed && !ClientPrefs.luckSelected)
 					{
+						startDialogue("Mimiko", " ");
 						var locked = (button.ID == 1 && !ClientPrefs.nunWeekPlayed) || (button.ID == 2 && !ClientPrefs.kianaWeekPlayed);
 						var lightColors:Array<String> = ['red', 'blue', 'green'];
 						
