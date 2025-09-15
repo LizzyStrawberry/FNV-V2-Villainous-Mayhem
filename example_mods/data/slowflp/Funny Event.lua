@@ -4,7 +4,8 @@ local notePosX = {}
 local tailOriginScaleY
 
 function onCreate()
-	makeLuaSprite('NicJumpscare', 'effects/nicJumpscare', -150, -100)
+	makeLuaSprite('NicJumpscare', 'effects/nicJumpscare')
+	setGraphicSize("NicJumpscare", screenWidth, screenHeight)
 	setProperty('NicJumpscare.alpha', 0)
 	setObjectCamera('NicJumpscare', 'Hud')
 	addLuaSprite('NicJumpscare', true)
@@ -13,17 +14,9 @@ function onCreate()
 	
 	doTweenX('scaleX', 'NicJumpscare.scale', 0.01, 0.5, 'circOut')
 	doTweenY('scaleY', 'NicJumpscare.scale', 0.01, 0.5, 'circOut')
-	
-	setProperty("legacyPosition", true)
 end
 
-function onCreatePost()	
-	if difficulty == 1 then
-		setPropertyFromGroup('strumLineNotes', 0, 'x', mobileFix("X", 732))
-		setPropertyFromGroup('strumLineNotes', 1, 'x', mobileFix("X", 844))
-		setPropertyFromGroup('strumLineNotes', 4, 'x', 92)
-		setPropertyFromGroup('strumLineNotes', 5, 'x', 204)
-	end
+function onCreatePost()
 	for i = 0,7 do
 		x = getPropertyFromGroup('strumLineNotes', i, 'x')
 		table.insert(notePosX, x)
@@ -76,12 +69,12 @@ function onBeatHit()
 		if curBeat % 1 == 0 then
 			for i = 0, 7 do
 				setPropertyFromGroup('strumLineNotes', i, 'y', notePos[i + 1])
-				setPropertyFromGroup('strumLineNotes', i, 'scale.x', 1.0)
-				setPropertyFromGroup('strumLineNotes', i, 'scale.y', 0.35)
+				setPropertyFromGroup('strumLineNotes', i, 'scale.x', i < 4 and (oppNoteScaleX + 0.25) or 1.0)
+				setPropertyFromGroup('strumLineNotes', i, 'scale.y', i < 4 and (oppNoteScaleY - 0.1) or 0.35)
 				
 				noteTweenY('noteGoUp'..i, i, notePos[i + 1] - 20, 0.7 / playbackRate, 'elasticOut')
-				noteTweenScaleX('noteXSCALE'..i, i, 0.7, 0.7 / playbackRate, 'circOut')
-				noteTweenScaleY('noteYSCALE'..i, i, 0.7, 0.7 / playbackRate, 'circOut')
+				noteTweenScaleX('noteXSCALE'..i, i, i < 4 and oppNoteScaleX or 0.7, 0.7 / playbackRate, 'circOut')
+				noteTweenScaleY('noteYSCALE'..i, i, i < 4 and oppNoteScaleY or 0.7, 0.7 / playbackRate, 'circOut')
 			end
 		end
 		if curBeat % 2 == 0 then
@@ -101,12 +94,12 @@ function onBeatHit()
 		if curBeat % 1 == 0 then
 			for i = 0, 3 do
 				setPropertyFromGroup('strumLineNotes', i, 'y', notePos[i + 1])
-				setPropertyFromGroup('strumLineNotes', i, 'scale.x', 1.0)
-				setPropertyFromGroup('strumLineNotes', i, 'scale.y', 0.5)
+				setPropertyFromGroup('strumLineNotes', i, 'scale.x', i < 4 and (oppNoteScaleX + 0.25) or 1.0)
+				setPropertyFromGroup('strumLineNotes', i, 'scale.y', i < 4 and (oppNoteScaleY - 0.1) or 0.5)
 					
 				noteTweenY('noteGoUp'..i, i, notePos[i + 1] - 20, 0.7 / playbackRate, 'elasticOut')
-				noteTweenScaleX('noteXSCALE'..i, i, 0.7, 0.7 / playbackRate, 'circOut')
-				noteTweenScaleY('noteYSCALE'..i, i, 0.7, 0.7 / playbackRate, 'circOut')
+				noteTweenScaleX('noteXSCALE'..i, i, i < 4 and oppNoteScaleX or 0.7, 0.7 / playbackRate, 'circOut')
+				noteTweenScaleY('noteYSCALE'..i, i, i < 4 and oppNoteScaleY or 0.7, 0.7 / playbackRate, 'circOut')
 			end
 		end
 		if curBeat % 2 == 0 then

@@ -35,6 +35,7 @@ class GameOverSubstate extends MusicBeatSubstate
 		endSoundName = 'gameOverEnd';
 	}
 
+	var allowInput:Bool = false;
 	override function create()
 	{
 		instance = this;
@@ -140,6 +141,11 @@ class GameOverSubstate extends MusicBeatSubstate
 			add(blackOut);
 		}
 
+		// Add small delay to death screen
+		new FlxTimer().start(1, function (_) {
+			allowInput = true;
+		});
+
 		addTouchPad("NONE", "B");
 		addTouchPadCamera();
 	}
@@ -157,67 +163,70 @@ class GameOverSubstate extends MusicBeatSubstate
 			camFollowPos.setPosition(FlxMath.lerp(camFollowPos.x, camFollow.x, lerpVal), FlxMath.lerp(camFollowPos.y, camFollow.y, lerpVal));
 		}
 
-		if (controls.ACCEPT || TouchUtil.pressAction(boyfriend))
+		if (allowInput)
 		{
-			if (!(initializedVideo || PlayState.isInjectionMode || PlayState.isMayhemMode))
-				endBullshit();
-		}
-
-		if (controls.BACK)
-		{
-			if (!(initializedVideo || PlayState.isInjectionMode || PlayState.isMayhemMode))
+			if (controls.ACCEPT || TouchUtil.pressAction(boyfriend) || (TouchUtil.pressAction() && !touchPad.buttonB.pressed))
 			{
-				if (PlayState.SONG.stage == "DV's BG")
+				if (!(initializedVideo || PlayState.isInjectionMode || PlayState.isMayhemMode))
+					endBullshit();
+			}
+
+			if (controls.BACK)
+			{
+				if (!(initializedVideo || PlayState.isInjectionMode || PlayState.isMayhemMode))
 				{
-					if (PlayState.SONG.player1 == "cassettteGirl") // Casette Girl Death
-						createDeathVideo("DVCrash", false, true);
-					else
-						createDeathVideo("DVCrashPico", false, true);
-				}
-				else
-				{
-					if (FlxG.sound.music != null)
-						FlxG.sound.music.stop();
-
-					PlayState.deathCounter = 0;
-					PlayState.inPlayState = false;
-					PlayState.seenCutscene = false;
-					PlayState.chartingMode = false;
-					PlayState.checkForPowerUp = false;
-					
-					WeekData.loadTheFirstEnabledMod();
-
-					ClientPrefs.lowQuality = false;
-					if (PlayState.isStoryMode){
-						ClientPrefs.ghostTapping = true;
-						
-						ClientPrefs.resetProgress(true);
-
-						if (PlayState.isIniquitousMode)
-							MusicBeatState.switchState(new IniquitousMenuState());
+					if (PlayState.SONG.stage == "DV's BG")
+					{
+						if (PlayState.SONG.player1 == "cassettteGirl") // Casette Girl Death
+							createDeathVideo("DVCrash", false, true);
 						else
-							MusicBeatState.switchState(new StoryMenuState());
-					}else if(PlayState.isInjectionMode) {
-						PlayState.isInjectionMode = false;
-						MusicBeatState.switchState(new MainMenuState());
-					}else if(PlayState.isMayhemMode) {
-						PlayState.isMayhemMode = false;
-						MusicBeatState.switchState(new MainMenuState());
-					} else {
-						if (ClientPrefs.onCrossSection)
-							MusicBeatState.switchState(new CrossoverState()); //go to Crossover State
-						else
-							MusicBeatState.switchState(new FreeplayState()); // Back To Freeplay
+							createDeathVideo("DVCrashPico", false, true);
 					}
-		
-					if (ClientPrefs.iniquitousWeekUnlocked && !ClientPrefs.iniquitousWeekBeaten)
-						FlxG.sound.playMusic(Paths.music('malumIctum'));
-					else if (FlxG.random.int(1, 10) == 2)
-						FlxG.sound.playMusic(Paths.music('AJDidThat'));
 					else
-						FlxG.sound.playMusic(Paths.music('freakyMenu'));
-					PlayState.instance.callOnLuas('onGameOverConfirm', [false]);
-				}	
+					{
+						if (FlxG.sound.music != null)
+							FlxG.sound.music.stop();
+
+						PlayState.deathCounter = 0;
+						PlayState.inPlayState = false;
+						PlayState.seenCutscene = false;
+						PlayState.chartingMode = false;
+						PlayState.checkForPowerUp = false;
+						
+						WeekData.loadTheFirstEnabledMod();
+
+						ClientPrefs.lowQuality = false;
+						if (PlayState.isStoryMode){
+							ClientPrefs.ghostTapping = true;
+							
+							ClientPrefs.resetProgress(true);
+
+							if (PlayState.isIniquitousMode)
+								MusicBeatState.switchState(new IniquitousMenuState());
+							else
+								MusicBeatState.switchState(new StoryMenuState());
+						}else if(PlayState.isInjectionMode) {
+							PlayState.isInjectionMode = false;
+							MusicBeatState.switchState(new MainMenuState());
+						}else if(PlayState.isMayhemMode) {
+							PlayState.isMayhemMode = false;
+							MusicBeatState.switchState(new MainMenuState());
+						} else {
+							if (ClientPrefs.onCrossSection)
+								MusicBeatState.switchState(new CrossoverState()); //go to Crossover State
+							else
+								MusicBeatState.switchState(new FreeplayState()); // Back To Freeplay
+						}
+			
+						if (ClientPrefs.iniquitousWeekUnlocked && !ClientPrefs.iniquitousWeekBeaten)
+							FlxG.sound.playMusic(Paths.music('malumIctum'));
+						else if (FlxG.random.int(1, 10) == 2)
+							FlxG.sound.playMusic(Paths.music('AJDidThat'));
+						else
+							FlxG.sound.playMusic(Paths.music('freakyMenu'));
+						PlayState.instance.callOnLuas('onGameOverConfirm', [false]);
+					}	
+				}
 			}
 		}
 

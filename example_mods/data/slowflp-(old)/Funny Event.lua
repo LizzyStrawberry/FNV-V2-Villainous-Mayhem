@@ -1,12 +1,12 @@
 local notePos = {}
-local notePosX = {}
 
 local tailOriginScaleY
 
 function onCreate()
-	makeLuaSprite('NicJumpscare', 'effects/nicJumpscare', -150, -100)
+	makeLuaSprite('NicJumpscare', 'effects/nicJumpscare')
+	setGraphicSize("NicJumpscare", screenWidth, screenHeight)
 	setProperty('NicJumpscare.alpha', 0)
-	setObjectCamera('NicJumpscare', 'hud')
+	setObjectCamera('NicJumpscare', 'Hud')
 	addLuaSprite('NicJumpscare', true)
 	
 	tailOriginScaleY = getProperty('tail.scale.y')
@@ -16,13 +16,6 @@ function onCreate()
 end
 
 function onCreatePost()
-	if difficulty == 1 then
-		for i = 4,7 do 
-			x = getPropertyFromGroup('strumLineNotes', i, 'x')
-			table.insert(notePosX, x)
-		end
-	end
-	
 	setObjectOrder('NicJumpscare', getObjectOrder('scoreTxt') + 1)
 end
 
@@ -41,12 +34,6 @@ function onBeatHit()
 end
 
 function onUpdatePost()
-	if difficulty == 1 then
-		setPropertyFromGroup('strumLineNotes', 4, 'x', notePosX[4])
-		setPropertyFromGroup('strumLineNotes', 5, 'x', notePosX[3])
-		setPropertyFromGroup('strumLineNotes', 6, 'x', notePosX[2])
-		setPropertyFromGroup('strumLineNotes', 7, 'x', notePosX[1])
-	end
 	if curBeat >= 64 and curBeat < 80 then
 		setTextString('timeTxt', 'Nic')
 	end

@@ -95,7 +95,7 @@ function onUpdate()
 		doTweenX('dadMove', 'dad', dadX, 0.7 / playbackRate, 'circOut')
 		doTweenX('GFMove', 'boyfriend', gfX, 1.4 / playbackRate, 'circOut')
 		
-		if getPropertyFromClass('ClientPrefs', 'trampolineMode', true) then
+		if getPropertyFromClass('ClientPrefs', 'trampolineMode') then
 			doTweenX('trampoline', 'trampoline', gfX, 0.7 / playbackRate, 'circOut')		
 		end
 		
@@ -153,7 +153,7 @@ function onUpdatePost()
 end
 
 function onBeatHit()
-	if shadersEnabled == true then
+	if shadersEnabled then
 		if curBeat % 4 == 0 then
 			if curBeat > 352 and curBeat < 480 then
 				doTweenY('moreClonesMoveY', 'moreClones', -340, 0.7 / playbackRate, 'quadInOut')
@@ -202,34 +202,4 @@ function onTweenCompleted(tag)
 	if tag == 'beginZoomAgain' then
 		setProperty('defaultCamZoom', 0.8 * zoomMult)
 	end
-end
-
-function doTweenFromClass(tag, classVar, vars, values, duration, ease)
-    local newValue = "{"
-    if ease == nil then ease = "" end
-    for var, val in pairs(values) do newValue = newValue..var..":"..val.."," end
-    values = string.sub(newValue, 1, #newValue - 1).."}"
-    addHaxeLibrary("FunkinLua")
-    addHaxeLibrary("Type")
-    runHaxeCode([[
-        var penisExam = null;
-        var killMe = ']]..vars..[['.split('.');
-        if(killMe.length > 1) {
-            var coverMeInPiss = FunkinLua.getVarInArray(Type.resolveClass(']]..classVar..[['), killMe[0]);
-            for (i in 1...killMe.length-1) {
-                coverMeInPiss = FunkinLua.getVarInArray(coverMeInPiss, killMe[i]);
-            }
-            penisExam = FunkinLua.getVarInArray(coverMeInPiss, killMe[killMe.length-1]);
-        }
-        else
-            penisExam = FunkinLua.getVarInArray(Type.resolveClass(']]..classVar..[['), ']]..vars..[[');
-        if(penisExam != null) {
-            game.modchartTweens.set(']]..tag..[[', FlxTween.tween(penisExam, ]]..values..[[, ]]..duration..[[, {ease: game.luaArray[0].getFlxEaseByString(']]..ease..[['),
-                onComplete: function(twn:FlxTween) {
-                    game.callOnLuas('onTweenCompleted', [']]..tag..[[']);
-                    game.modchartTweens.remove(']]..tag..[[');
-                }
-            }));
-        }
-    ]])
 end

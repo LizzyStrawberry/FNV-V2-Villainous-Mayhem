@@ -857,6 +857,7 @@ class FreeplayState extends MusicBeatState
 			}
 			else
 			{
+				if (ClientPrefs.haptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
 				ClientPrefs.resetProgress(true);
 				ClientPrefs.inMenu = ClientPrefs.lowQuality = PlayState.isStoryMode = false;
 				PlayState.SONG = Song.loadFromJson(poop, songLowercase);

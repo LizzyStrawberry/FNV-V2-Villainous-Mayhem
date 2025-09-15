@@ -1639,6 +1639,14 @@ class PlayState extends MusicBeatState
 
 			generateStaticArrows(0);
 			generateStaticArrows(1);
+			#if mobile
+			// Scale Stuff
+			setOnLuas('defaultNoteScaleX', playerStrums.members[0].scale.x);
+			setOnLuas('defaultNoteScaleY', playerStrums.members[0].scale.y);
+
+			setOnLuas('oppNoteScaleX', opponentStrums.members[0].scale.x);
+			setOnLuas('oppNoteScaleY', opponentStrums.members[0].scale.y);
+			#end
 			for (i in 0...playerStrums.length) {
 				setOnLuas('defaultPlayerStrumX' + i, playerStrums.members[i].x);
 				setOnLuas('defaultPlayerStrumY' + i, playerStrums.members[i].y);
@@ -1647,11 +1655,6 @@ class PlayState extends MusicBeatState
 				setOnLuas('defaultOpponentStrumX' + i, opponentStrums.members[i].x);
 				setOnLuas('defaultOpponentStrumY' + i, opponentStrums.members[i].y);
 			}
-			#if mobile
-			// All opp notes have the same scale
-			setOnLuas('oppStrumScaleX', opponentStrums.members[0].scale.x);
-			setOnLuas('oppStrumScaleY', opponentStrums.members[0].scale.y);
-			#end
 
 			var typeOfCountdown:String = null;
 			switch (Paths.formatToSongPath(SONG.song))
@@ -2484,7 +2487,10 @@ class PlayState extends MusicBeatState
 	{
 		for (i in 0...4)
 		{
-			// FlxG.log.add(i);
+			// Set X and Y Values
+			var strumLineX:Float = (player == 1) ? MobileUtil.fixX(playerNotePositions[i]) : (10 + (i * 65));
+			var strumLineY:Float = ClientPrefs.downScroll ? (FlxG.height - 150) : 50;
+
 			var targetAlpha:Float = 1;
 			if (player < 1)
 			{
@@ -2492,32 +2498,21 @@ class PlayState extends MusicBeatState
 				else if(ClientPrefs.middleScroll) targetAlpha = 0.35;
 			}
 
-			var babyArrow:StrumNote = new StrumNote(ClientPrefs.middleScroll ? STRUM_X_MIDDLESCROLL : MobileUtil.rawX(STRUM_X), strumLine.y, i, player);
+			var babyArrow:StrumNote = new StrumNote(strumLineX, strumLineY, i, player);
 			babyArrow.downScroll = ClientPrefs.downScroll;
 			if (!isStoryMode && !skipArrowStartTween)
 			{
 				babyArrow.alpha = 0;
-				FlxTween.tween(babyArrow, {/*y: babyArrow.y + 10,*/ alpha: targetAlpha}, 1, {ease: FlxEase.circOut, startDelay: 0.5 + (0.2 * i)});
+				FlxTween.tween(babyArrow, {alpha: targetAlpha}, 1, {ease: FlxEase.circOut, startDelay: 0.5 + (0.2 * i)});
 			}
-			else
-				babyArrow.alpha = targetAlpha;
+			else babyArrow.alpha = targetAlpha;
 
-			if (player == 1)
-			{
-				if (!legacyPosition)
-				{
-					babyArrow.x = MobileUtil.fixX(playerNotePositions[i]);
-					babyArrow.y = ClientPrefs.downScroll ? MobileUtil.fixY(550) : MobileUtil.fixY(70);
-				}
-				
-				playerStrums.add(babyArrow);
-			}
+			if (player == 1) playerStrums.add(babyArrow);
 			else
 			{
 				if (!legacyPosition)
 				{
-					babyArrow.x = 10 + (i * 65);
-					babyArrow.y = ClientPrefs.downScroll ? MobileUtil.fixY(70) : MobileUtil.fixY(590);
+					babyArrow.y = ClientPrefs.downScroll ? 70 : FlxG.height - 130;
 					babyArrow.scale.x /= 1.75;
 					babyArrow.scale.y /= 1.75;
 				}
