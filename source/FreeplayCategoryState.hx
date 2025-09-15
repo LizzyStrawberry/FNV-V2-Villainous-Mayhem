@@ -154,9 +154,13 @@ class FreeplayCategoryState extends MusicBeatState
 
                     if (TouchUtil.overlaps(spr) && mouseMode)
                     {
-                        if (categorySelected != spr.ID) FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
+                        if (categorySelected != spr.ID) 
+                        {
+                            if (ClientPrefs.haptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
+                            FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
+                        }
                         categorySelected = spr.ID; 
-                        changeItem(0, false);
+                        changeItem(0, false, false);
                         found = true;
                     }
 
@@ -190,9 +194,13 @@ class FreeplayCategoryState extends MusicBeatState
                 {
                     if (TouchUtil.overlaps(week) && mouseMode)
                     {
-                        if (subCatSelected != week.ID) FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
+                        if (subCatSelected != week.ID) 
+                        {
+                            if (ClientPrefs.haptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
+                            FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
+                        }
                         subCatSelected = week.ID;
-                        changeItem(0, false);
+                        changeItem(0, false, false);
                     }
 
                     var accepted = controls.ACCEPT || TouchUtil.pressAction(week);

@@ -749,6 +749,8 @@ class ShopState extends MusicBeatState
 									{
 										if (TouchUtil.pressAction(prize) && ClientPrefs.sellSelected)
 										{
+											if (ClientPrefs.haptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
+											
 											allowInput = false;
 											ClientPrefs.itemInfo = true;
 											prizeSelected = prize.ID;
