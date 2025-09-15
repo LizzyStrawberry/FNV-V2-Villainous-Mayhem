@@ -1125,7 +1125,7 @@ class PlayState extends MusicBeatState
 		if ((PlayState.isIniquitousMode && WeekData.weeksList[PlayState.storyWeek] == 'mainweekkiana') || Paths.formatToSongPath(PlayState.SONG.song) == "couple-clash" 
 			|| !ClientPrefs.mechanics || ClientPrefs.optimizationMode || cpuControlled) return;
 	
-		if (!ClientPrefs.buff1Selected && !ClientPrefs.buff2Selected && !ClientPrefs.buff3Selected)
+		if ((!ClientPrefs.buff1Selected && !ClientPrefs.buff2Selected && !ClientPrefs.buff3Selected) || (Paths.formatToSongPath(SONG.song) == "iniquitous"))
 			touchPad.buttonMayhem.visible = touchPad.buttonMayhem.active = false;
 		else
 		{
