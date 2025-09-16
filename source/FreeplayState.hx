@@ -51,8 +51,11 @@ class FreeplayState extends MusicBeatState
 
 	var warnTxt:FlxText;
 
+	public static var instance:FreeplayState;
+
 	override function create()
 	{
+		instance = this;
 		//Paths.clearStoredMemory();
 		//Paths.clearUnusedMemory();
 		
@@ -183,6 +186,8 @@ class FreeplayState extends MusicBeatState
 		changeSelection();
 		changeDiff();
 		songSelector();
+
+		NotificationAlert.checkForNotifications(this);
 
 		super.create();
 	}

@@ -1,5 +1,7 @@
 package;
 
+import Achievements;
+
 class NotificationAlert {
     public static var sendMessage:Bool = false;
     public static var sendCategoryNotification:Bool = false;
@@ -65,19 +67,19 @@ class NotificationAlert {
     public static function createMessagePopUp(state:FlxState, type:String, checkForShop:Bool = false)
     {
         notifMessage = new FlxSprite(800, 545);
-        switch(type)
+        switch(type.toLowerCase())
         {
-            case 'Normal' |'normal' |'NORMAL':
+            case 'normal':
                 notifMessage.loadGraphic(Paths.image('notifications/notifMessageNormal'));
-            case 'Freeplay' |'freeplay' | 'FREEPLAY':
+            case 'freeplay':
                 notifMessage.loadGraphic(Paths.image('notifications/notifMessageFreeplay'));
-            case 'Iniquitous' |'iniquitous' | 'INIQUITOUS':
+            case 'iniquitous':
                 notifMessage.loadGraphic(Paths.image('notifications/notifMessageIniquitous'));
-            case 'Injection' |'injection' | 'INJECTION':
+            case 'injection':
                 notifMessage.loadGraphic(Paths.image('notifications/notifMessageInjection'));
-            case 'Mayhem' |'mayhem' | 'MAYHEM':
+            case 'mayhem':
                 notifMessage.loadGraphic(Paths.image('notifications/notifMessageMayhem'));
-            case 'Tutorial' |'tutorial' | 'TUTORIAL':
+            case 'tutorial':
                 notifMessage.loadGraphic(Paths.image('notifications/notifMessageTutorial'));
         }
 		notifMessage.antialiasing = ClientPrefs.globalAntialiasing;
@@ -91,12 +93,9 @@ class NotificationAlert {
         var tween = FlxTween.tween(notifMessage, {y:notifMessage.y - 200}, 1, {ease: FlxEase.circOut, type: PERSIST, onComplete: finishTween});
         tweens.push(tween);
 
-        if (MusicBeatState.transitionType == 'stickers')
-            dur = 4;
-        else if (checkForShop == true)
-            dur = 0.45;
-        else
-            dur = 2;
+        if (MusicBeatState.transitionType == 'stickers')  dur = 4;
+        else if (checkForShop) dur = 0.45;
+        else dur = 2;
     }
 
     public static function finishTween(tween:FlxTween):Void
@@ -156,6 +155,126 @@ class NotificationAlert {
         multiPopup = false;
     }
 
+    public static function checkForNotifications(state:FlxState)
+    {
+        // This unlocks Iniquitous Difficulty
+        if (ClientPrefs.iniquitousWeekBeaten && !Achievements.isAchievementUnlocked('weekIniquitous_Beaten'))
+		{
+			var achieveID:Int = Achievements.getAchievementIndex('weekIniquitous_Beaten');
+			if(!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveID][2])) 
+            {
+				giveNotificationAchievement('weekIniquitous_Beaten', achieveID, state);
+				
+				NotificationAlert.showMessage(state, 'Iniquitous');
+				ClientPrefs.saveSettings();
+			}
+		}
+
+        // This unlocks the crossover section
+        if (achievementCheck("main") && achievementCheck("bonus") && achievementCheck("xtrasBasic") && !ClientPrefs.roadMapUnlocked && !ClientPrefs.crossoverUnlocked)
+		{
+			NotificationAlert.showMessage(state, 'Normal');
+			NotificationAlert.sendCategoryNotification = true;
+			NotificationAlert.saveNotifications();
+
+			ClientPrefs.roadMapUnlocked = true;
+			ClientPrefs.saveSettings();
+		}
+        // This completes the crossover section
+		if (ClientPrefs.crossoverUnlocked)
+		{
+			var achieveID:Int = Achievements.getAchievementIndex('crossover_Beaten');
+			if(!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveID][2]))
+            {
+				giveNotificationAchievement('crossover_Beaten', achieveID, state);
+				ClientPrefs.saveSettings();
+			}
+		}
+
+        // This gives the short song achievement
+        if (ClientPrefs.shortPlayed)
+		{
+			var achieveID:Int = Achievements.getAchievementIndex('short_Beaten');
+			if(!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveID][2])) 
+            {
+				giveNotificationAchievement('short_Beaten', achieveID, state);
+				ClientPrefs.saveSettings();
+			}
+		}
+
+        // This unlocks Mayhem Mode
+        if (achievementCheck("main") && achievementCheck("bonus") && achievementCheck("xtrasBasic") && achievementCheck("crossover"))
+		{
+			if (!ClientPrefs.mayhemNotif)
+			{
+				ClientPrefs.mayhemNotif = true;
+				NotificationAlert.showMessage(state, 'Mayhem');
+				ClientPrefs.saveSettings();
+			}
+		}
+
+        // This gives out the 100% Completion Achievement
+        if(achievementCheck("main") && achievementCheck("mainvillainous") && achievementCheck("maininiquitous") && achievementCheck("bonus") && achievementCheck("bonusVillainous")
+        && achievementCheck("Iniquitous") && achievementCheck("xtras") && achievementCheck("crossover") && achievementCheck("misc"))
+		{
+            trace("Accepted the 100% completion achievement!");
+			var achieveID:Int = Achievements.getAchievementIndex('FNV_Completed');
+			if((!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveID][2]))) {
+				giveNotificationAchievement('FNV_Completed', achieveID, state);
+				ClientPrefs.saveSettings();
+			}
+		}
+    }
+
+    static function achievementCheck(type:String):Bool
+    {
+        switch(type.toLowerCase())
+        {
+            case "main":
+                return (Achievements.isAchievementUnlocked('Tutorial_Beaten') && Achievements.isAchievementUnlocked('WeekMarco_Beaten') && Achievements.isAchievementUnlocked('WeekNun_Beaten') && Achievements.isAchievementUnlocked('WeekKiana_Beaten'));
+            case "mainvillainous":
+                return (Achievements.isAchievementUnlocked('WeekMarcoVillainous_Beaten') && Achievements.isAchievementUnlocked('WeekNunVillainous_Beaten') && Achievements.isAchievementUnlocked('WeekKianaVillainous_Beaten'));
+            case "maininiquitous":
+                return (Achievements.isAchievementUnlocked('WeekMarcoIniquitous_Beaten') && Achievements.isAchievementUnlocked('WeekNunIniquitous_Beaten')&&  Achievements.isAchievementUnlocked('WeekKianaIniquitous_Beaten'));
+       
+            case "bonus":
+                return (Achievements.isAchievementUnlocked('WeekMorky_Beaten') && Achievements.isAchievementUnlocked('WeekSus_Beaten') && Achievements.isAchievementUnlocked('WeekLegacy_Beaten') && Achievements.isAchievementUnlocked('WeekDside_Beaten'));
+            case "bonusvillainous":
+                return (Achievements.isAchievementUnlocked('WeekMorkyVillainous_Beaten') && Achievements.isAchievementUnlocked('WeekSusVillainous_Beaten') && Achievements.isAchievementUnlocked('WeekLegacyVillainous_Beaten') && Achievements.isAchievementUnlocked('WeekDsideVillainous_Beaten'));
+        
+            case "iniquitous":
+                return Achievements.isAchievementUnlocked('weekIniquitous_Beaten');
+
+            case "xtras":
+                return (Achievements.isAchievementUnlocked('tofu_Beaten') && Achievements.isAchievementUnlocked('marcochrome_Beaten') && Achievements.isAchievementUnlocked('lustality_Beaten') && Achievements.isAchievementUnlocked('nunsational_Beaten')
+			    && Achievements.isAchievementUnlocked('FNV_Beaten') && Achievements.isAchievementUnlocked('short_Beaten') && Achievements.isAchievementUnlocked('nic_Beaten') && Achievements.isAchievementUnlocked('fanfuck_Beaten')
+			    && Achievements.isAchievementUnlocked('rainyDaze_Beaten') && Achievements.isAchievementUnlocked('marauder_Beaten'));
+                
+            case "xtrasbasic":
+                return ClientPrefs.tofuPlayed && ClientPrefs.lustalityPlayed && ClientPrefs.nunsationalPlayed && ClientPrefs.marcochromePlayed && ClientPrefs.nicPlayed 
+                && Achievements.isAchievementUnlocked('short_Beaten') && ClientPrefs.debugPlayed && ClientPrefs.fnvPlayed && ClientPrefs.infatuationPlayed && ClientPrefs.rainyDazePlayed;
+
+            case "crossover":
+                return (Achievements.isAchievementUnlocked('vGuy_Beaten') && Achievements.isAchievementUnlocked('fastFoodTherapy_Beaten') && Achievements.isAchievementUnlocked('tacticalMishap_Beaten') && Achievements.isAchievementUnlocked('breacher_Beaten')
+			    && Achievements.isAchievementUnlocked('negotiation_Beaten') && Achievements.isAchievementUnlocked('concertChaos_Beaten') && Achievements.isAchievementUnlocked('crossover_Beaten'));
+
+            case "misc":
+                return (Achievements.isAchievementUnlocked('itsKiana_Beaten') && Achievements.isAchievementUnlocked('hermit_found') && Achievements.isAchievementUnlocked('zeel_found') && Achievements.isAchievementUnlocked('shop_completed') 
+                && Achievements.isAchievementUnlocked('flashbang') && Achievements.isAchievementUnlocked('pervert') && Achievements.isAchievementUnlocked('pervertX25'));
+        }
+
+        return false;
+    }
+
+    static function giveNotificationAchievement(achievementName:String, id:Int, state:FlxState) {
+		state.add(new AchievementObject(achievementName));
+        Achievements.achievementsMap.set(Achievements.achievementsStuff[id][2], true);
+		
+        FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
+		trace('Giving achievement "${achievementName}"');
+	}
+
+    // Save - Reset - Load
     public static function resetNotifications()
     {
         notifMessageSprites = [];

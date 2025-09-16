@@ -38,6 +38,7 @@ class Achievements {
 		["Unconventional Encounter!",		"Beat Fast Food Therapy in Villainous Mode.",				'fastFoodTherapy_Beaten',			false],
 		["BOOM BABY!",		"Beat Tactical Mishap in Villainous Mode.",				'tacticalMishap_Beaten',			false],
 		["Absolute No-Solver!",		"Beat Breacher in Villainous Mode.",				'breacher_Beaten',			false],
+		["Negotiated!",		"Beat Negotiation in Villainous Mode.",				'negotiation_Beaten',			false],
 		["World Wide!",		"Beat Concert Chaos in Villainous Mode.",				'concertChaos_Beaten',			false],
 		["Dimension Traveller!",		"Finish Beyond Reality.",				'crossover_Beaten',			false],
 		//Extra Shit
