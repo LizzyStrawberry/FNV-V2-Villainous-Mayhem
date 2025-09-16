@@ -12,7 +12,7 @@ class StoryMenuState extends MusicBeatState
 {
 	public static var weekCompleted:Map<String, Bool> = new Map<String, Bool>();
 	public static var categorySelected:Int = 0;
-	private var camAchievement:FlxCamera;
+	public var camAchievement:FlxCamera;
 
 	var scoreText:FlxText;
 
@@ -68,8 +68,12 @@ class StoryMenuState extends MusicBeatState
 
 	var loadedWeeks:Array<WeekData> = [];
 
+	public static var instance:StoryMenuState;
+
 	override function create()
 	{
+		instance = this;
+
 		Paths.clearStoredMemory();
 		Paths.clearUnusedMemory();
 
@@ -364,26 +368,7 @@ class StoryMenuState extends MusicBeatState
 		changeWeek(0, false);
 		changeDifficulty(0, false);
 
-		if (ClientPrefs.iniquitousWeekBeaten == true && !Achievements.isAchievementUnlocked('weekIniquitous_Beaten'))
-		{
-			var achieveID:Int = Achievements.getAchievementIndex('weekIniquitous_Beaten');
-			if(!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveID][2])) {
-				Achievements.achievementsMap.set(Achievements.achievementsStuff[achieveID][2], true);
-				giveIniquitousAchievement();
-				
-				NotificationAlert.showMessage(this, 'Iniquitous');
-				ClientPrefs.saveSettings();
-			}
-		}
-		if (ClientPrefs.crossoverUnlocked)
-		{
-			var achieveID:Int = Achievements.getAchievementIndex('crossover_Beaten');
-			if(!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveID][2])) {
-				Achievements.achievementsMap.set(Achievements.achievementsStuff[achieveID][2], true);
-				giveCrossoverAchievement();
-				ClientPrefs.saveSettings();
-			}
-		}
+		NotificationAlert.checkForNotifications(this);
 
 		//Notification alert
 		if (NotificationAlert.sendMessage)
@@ -395,18 +380,6 @@ class StoryMenuState extends MusicBeatState
 		super.create();
 
 		addTouchPad("NONE", "B_X_Y");
-	}
-
-	function giveIniquitousAchievement() {
-		add(new AchievementObject('weekIniquitous_Beaten', camAchievement));
-		FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
-		trace('Giving achievement "weekIniquitous_Beaten"');
-	}
-
-	function giveCrossoverAchievement() {
-		add(new AchievementObject('crossover_Beaten', camAchievement));
-		FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
-		trace('Giving achievement "crossover_Beaten"');
 	}
 
 	override function closeSubState() {

@@ -21,7 +21,7 @@ class MainMenuState extends MusicBeatState
 
 	var menuItems:FlxTypedGroup<FlxSprite>;
 	private var camGame:FlxCamera;
-	private var camAchievement:FlxCamera;
+	public static var camAchievement:FlxCamera;
 	
 	var optionShit:Array<String> = [
 		'story_mode',
@@ -743,82 +743,12 @@ class MainMenuState extends MusicBeatState
 			ClientPrefs.saveSettings();
 		}
 
-		if(Achievements.isAchievementUnlocked('Tutorial_Beaten')
-			&& Achievements.isAchievementUnlocked('WeekMarco_Beaten') && Achievements.isAchievementUnlocked('WeekMarcoVillainous_Beaten') && Achievements.isAchievementUnlocked('WeekMarcoIniquitous_Beaten')
-			&& Achievements.isAchievementUnlocked('WeekNun_Beaten') && Achievements.isAchievementUnlocked('WeekNunVillainous_Beaten') && Achievements.isAchievementUnlocked('WeekNunIniquitous_Beaten')
-			&& Achievements.isAchievementUnlocked('WeekKiana_Beaten') && Achievements.isAchievementUnlocked('WeekKianaVillainous_Beaten') && Achievements.isAchievementUnlocked('WeekKianaIniquitous_Beaten')
-			&& Achievements.isAchievementUnlocked('WeekMorky_Beaten') && Achievements.isAchievementUnlocked('WeekMorkyVillainous_Beaten')
-			&& Achievements.isAchievementUnlocked('WeekSus_Beaten') && Achievements.isAchievementUnlocked('WeekSusVillainous_Beaten')
-			&& Achievements.isAchievementUnlocked('WeekLegacy_Beaten') && Achievements.isAchievementUnlocked('WeekLegacyVillainous_Beaten')
-			&& Achievements.isAchievementUnlocked('WeekDside_Beaten') && Achievements.isAchievementUnlocked('WeekDsideVillainous_Beaten')
-			&& Achievements.isAchievementUnlocked('weekIniquitous_Beaten')
-			// Shop Songs
-			&& Achievements.isAchievementUnlocked('tofu_Beaten') && Achievements.isAchievementUnlocked('marcochrome_Beaten') 
-			&& Achievements.isAchievementUnlocked('lustality_Beaten')
-			&& Achievements.isAchievementUnlocked('nunsational_Beaten')
-			&& Achievements.isAchievementUnlocked('FNV_Beaten') && Achievements.isAchievementUnlocked('short_Beaten')
-			&& Achievements.isAchievementUnlocked('nic_Beaten') && Achievements.isAchievementUnlocked('fanfuck_Beaten')
-			&& Achievements.isAchievementUnlocked('rainyDaze_Beaten') && Achievements.isAchievementUnlocked('marauder_Beaten')
-			// Crossover Songs
-			&& Achievements.isAchievementUnlocked('vGuy_Beaten') && Achievements.isAchievementUnlocked('fastFoodTherapy_Beaten')
-			&& Achievements.isAchievementUnlocked('tacticalMishap_Beaten') && Achievements.isAchievementUnlocked('breacher_Beaten')
-			&& Achievements.isAchievementUnlocked('negotiation_beaten') && Achievements.isAchievementUnlocked('concertChaos_Beaten')
-			// Crossover Section
-			&& Achievements.isAchievementUnlocked('crossover_Beaten')
-			//Extras
-			&& Achievements.isAchievementUnlocked('itsKiana_Beaten') && Achievements.isAchievementUnlocked('hermit_found')
-			&& Achievements.isAchievementUnlocked('zeel_found')
-			&& Achievements.isAchievementUnlocked('shop_completed') && Achievements.isAchievementUnlocked('flashbang')
-			&& Achievements.isAchievementUnlocked('pervert') && Achievements.isAchievementUnlocked('pervertX25'))
-			{
-				var achieveAllID:Int = Achievements.getAchievementIndex('FNV_Completed');
-				if((!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveAllID][2]))) {
-					Achievements.achievementsMap.set(Achievements.achievementsStuff[achieveAllID][2], true);
-					giveAllAchievement();
-					ClientPrefs.saveSettings();
-				}
-			}
-
 		changeItem(0, false, false);
 
 		//Notification alert
-		//check if everything is unlocked for the crossover section, all weeks, all shop songs are beaten
-		if (!ClientPrefs.roadMapUnlocked && Achievements.isAchievementUnlocked('WeekMarco_Beaten')&& Achievements.isAchievementUnlocked('WeekNun_Beaten')
-			&& Achievements.isAchievementUnlocked('WeekKiana_Beaten')&& Achievements.isAchievementUnlocked('WeekMorky_Beaten')
-			&& Achievements.isAchievementUnlocked('WeekSus_Beaten')&& Achievements.isAchievementUnlocked('WeekLegacy_Beaten')
-			&& Achievements.isAchievementUnlocked('WeekDside_Beaten')
-			// Shop Songs
-			&& ClientPrefs.tofuPlayed && ClientPrefs.lustalityPlayed && ClientPrefs.nunsationalPlayed && ClientPrefs.marcochromePlayed
-			&& ClientPrefs.nicPlayed && Achievements.isAchievementUnlocked('short_Beaten') && ClientPrefs.debugPlayed && ClientPrefs.fnvPlayed
-			&& ClientPrefs.infatuationPlayed && ClientPrefs.rainyDazePlayed && !ClientPrefs.crossoverUnlocked)
-		{
-			NotificationAlert.showMessage(this, 'Normal');
-			NotificationAlert.sendCategoryNotification = true;
-			NotificationAlert.saveNotifications();
+		NotificationAlert.checkForNotifications(this);
 
-			ClientPrefs.roadMapUnlocked = true;
-			ClientPrefs.saveSettings();
-		}
-
-		// IF ALL SONGS ARE BEATEN, UNLOCK MAYHEM GAME MODE + NOTIFICATION
-		if (Achievements.isAchievementUnlocked('WeekMarco_Beaten') && Achievements.isAchievementUnlocked('WeekNun_Beaten') && Achievements.isAchievementUnlocked('WeekKiana_Beaten')
-			&& Achievements.isAchievementUnlocked('WeekMorky_Beaten') && Achievements.isAchievementUnlocked('WeekSus_Beaten') && Achievements.isAchievementUnlocked('WeekLegacy_Beaten')
-			&& Achievements.isAchievementUnlocked('WeekDside_Beaten')
-			// Shop Songs
-			&& ClientPrefs.tofuPlayed && ClientPrefs.lustalityPlayed && ClientPrefs.nunsationalPlayed && ClientPrefs.marcochromePlayed 
-			&& ClientPrefs.nicPlayed && Achievements.isAchievementUnlocked('short_Beaten') && ClientPrefs.debugPlayed && ClientPrefs.fnvPlayed
-			&& ClientPrefs.infatuationPlayed && ClientPrefs.rainyDazePlayed
-			// Crossover Section
-			&& Achievements.isAchievementUnlocked('crossover_Beaten'))
-		{
-			if (!ClientPrefs.mayhemNotif)
-			{
-				ClientPrefs.mayhemNotif = true;
-				NotificationAlert.showMessage(this, 'Mayhem');
-				ClientPrefs.saveSettings();
-			}
-			allowMayhemGameMode = true;
-		}
+		allowMayhemGameMode = (ClientPrefs.mayhemNotif) ? true : false;
 
 		// FOR INJECTION MODE
 		if (ClientPrefs.weeksUnlocked >= 7 && !ClientPrefs.injectionNotif)
@@ -828,29 +758,13 @@ class MainMenuState extends MusicBeatState
 			ClientPrefs.saveSettings();
 		}
 
-		if (NotificationAlert.sendMessage == true)
+		if (NotificationAlert.sendMessage)
 		{
 			NotificationAlert.showMessage(this, 'Normal');
 			NotificationAlert.sendMessage = false;
 			NotificationAlert.saveNotifications();
 		}
 		super.create();
-
-		var scroll = new ScrollableObject(0.004, 50, 100, FlxG.width, FlxG.height, "X");
-		scroll.onFullScroll.add(delta -> {
-			if (storySelected && !applyStory)
-				changeItem(delta);
-		});
-		add(scroll);
-
-		addTouchPad("NONE", "B");
-	}
-
-	// Unlocks "FNV_Completed" achievement
-	function giveAllAchievement() {
-		add(new AchievementObject('FNV_Completed', camAchievement));
-		FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
-		trace('Giving achievement "FNV_Completed"');
 	}
 
 	function changeBg(timer:FlxTimer)

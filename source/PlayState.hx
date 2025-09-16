@@ -3847,7 +3847,7 @@ class PlayState extends MusicBeatState
 			'weekIniquitous_Beaten',
 			'tofu_Beaten',  'marcochrome_Beaten', 'lustality_Beaten','nunsational_Beaten', 'FNV_Beaten',
 			'short_Beaten', 'nic_Beaten', 'fanfuck_Beaten', 'rainyDaze_Beaten', 'marauder_Beaten',
-			'vGuy_Beaten', 'fastFoodTherapy_Beaten', 'tacticalMishap_Beaten', 'breacher_Beaten', 'concertChaos_Beaten', 'crossover_Beaten',
+			'vGuy_Beaten', 'fastFoodTherapy_Beaten', 'tacticalMishap_Beaten', 'breacher_Beaten', 'negotiation_Beaten', 'concertChaos_Beaten', 'crossover_Beaten',
 			'pervert', 'pervertX25',
 			'flashbang', 'itsKiana_Beaten', 'hermit_found', 'zeel_found',
 			'shop_completed', 'FNV_Completed', 'secret']);
@@ -6205,32 +6205,6 @@ class PlayState extends MusicBeatState
 							ClientPrefs.eggs += 1;
 							
 							ClientPrefs.saveSettings();
-						}
-					case 'FNV_Completed':
-						if(	//Main Songs
-							Achievements.isAchievementUnlocked('WeekMarco_Beaten') && Achievements.isAchievementUnlocked('WeekMarcoIniquitous_Beaten') && Achievements.isAchievementUnlocked('WeekNun_Beaten')
-							&& Achievements.isAchievementUnlocked('WeekNunIniquitous_Beaten') && Achievements.isAchievementUnlocked('WeekKiana_Beaten') && Achievements.isAchievementUnlocked('WeekKianaIniquitous_Beaten')
-							&& Achievements.isAchievementUnlocked('WeekMorky_Beaten') && Achievements.isAchievementUnlocked('WeekMorkyVillainous_Beaten') && Achievements.isAchievementUnlocked('WeekSus_Beaten') 
-							&& Achievements.isAchievementUnlocked('WeekSusVillainous_Beaten') && Achievements.isAchievementUnlocked('WeekLegacy_Beaten') && Achievements.isAchievementUnlocked('WeekLegacyVillainous_Beaten')
-							&& Achievements.isAchievementUnlocked('WeekDside_Beaten') && Achievements.isAchievementUnlocked('WeekDsideVillainous_Beaten') && Achievements.isAchievementUnlocked('weekIniquitous_Beaten')
-							&& Achievements.isAchievementUnlocked('tofu_Beaten') && Achievements.isAchievementUnlocked('marcochrome_Beaten') 
-							// Shop Songs
-							&& Achievements.isAchievementUnlocked('lustality_Beaten') && Achievements.isAchievementUnlocked('nunsational_Beaten')
-							&& Achievements.isAchievementUnlocked('FNV_Beaten') && Achievements.isAchievementUnlocked('short_Beaten')
-							&& Achievements.isAchievementUnlocked('nic_Beaten') && Achievements.isAchievementUnlocked('fanfuck_Beaten')
-							&& Achievements.isAchievementUnlocked('rainyDaze_Beaten') && Achievements.isAchievementUnlocked('marauder_Beaten')
-							// Crossover Songs
-							&& Achievements.isAchievementUnlocked('vGuy_Beaten') && Achievements.isAchievementUnlocked('fastFoodTherapy_Beaten')
-							&& Achievements.isAchievementUnlocked('tacticalMishap_Beaten') && Achievements.isAchievementUnlocked('breacher_Beaten')
-							&& Achievements.isAchievementUnlocked('negotiation_beaten') && Achievements.isAchievementUnlocked('concertChaos_Beaten')
-							// Crossover Section
-							&& Achievements.isAchievementUnlocked('crossover_Beaten')
-							//Extras
-							&& Achievements.isAchievementUnlocked('itsKiana_Beaten') && Achievements.isAchievementUnlocked('hermit_found')
-							&& Achievements.isAchievementUnlocked('zeel_found')
-							&& Achievements.isAchievementUnlocked('shop_completed') && Achievements.isAchievementUnlocked('flashbang')
-							&& Achievements.isAchievementUnlocked('pervert') && Achievements.isAchievementUnlocked('pervertX25')) {
-							unlock = true;
 						}
 				}
 
