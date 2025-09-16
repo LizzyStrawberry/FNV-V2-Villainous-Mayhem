@@ -3334,7 +3334,7 @@ class PlayState extends MusicBeatState
 				killHenchmen();
 
 			case 'Add Camera Zoom':
-				if (Paths.formatToSongPath(SONG.song) == 'marcochrome' || Paths.formatToSongPath(SONG.song) == 'shucks-v2')
+				if (Paths.formatToSongPath(SONG.song) == 'marcochrome' || Paths.formatToSongPath(SONG.song) == 'shuckle-fuckle')
 				{
 					if(ClientPrefs.camZooms && FlxG.camera.zoom < 1.65) {
 						var camZoom:Float = Std.parseFloat(value1);
@@ -3986,7 +3986,7 @@ class PlayState extends MusicBeatState
 					}
 				}
 				
-				var villainousSongs:Array<String> = ['toybox', 'its-kiana', 'villainy', 'point-blank', 'libidinousness', 'excrete', 'marauder', 'shucks-v2'];
+				var villainousSongs:Array<String> = ['toybox', 'its-kiana', 'villainy', 'point-blank', 'libidinousness', 'excrete', 'marauder', 'shuckle-fuckle'];
 				for (i in 0...villainousSongs.length)
 					if (PlayState.mayhemPlaylist[songSelected] == villainousSongs[i])
 					{
@@ -4021,7 +4021,7 @@ class PlayState extends MusicBeatState
 				}
 
 				// Unlock Secret Song
-				if (!ClientPrefs.shucksUnlocked && PlayState.mayhemPlaylist[songSelected] == "shucks-v2") ClientPrefs.shucksUnlocked = true;
+				if (!ClientPrefs.shucksUnlocked && PlayState.mayhemPlaylist[songSelected] == "shuckle-fuckle") ClientPrefs.shucksUnlocked = true;
 					
 				FlxG.sound.music.stop();
 
@@ -5492,7 +5492,7 @@ class PlayState extends MusicBeatState
 				moveCameraSection();
 			}
 
-			if (Paths.formatToSongPath(SONG.song) == 'marcochrome' || Paths.formatToSongPath(SONG.song) == 'shucks-v2') //Bypassing the camera zooming limitation that's below for this song
+			if (Paths.formatToSongPath(SONG.song) == 'marcochrome' || Paths.formatToSongPath(SONG.song) == 'shuckle-fuckle') //Bypassing the camera zooming limitation that's below for this song
 			{
 				if (camZooming && FlxG.camera.zoom < 1.65 && ClientPrefs.camZooms)
 				{

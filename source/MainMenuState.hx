@@ -134,7 +134,7 @@ class MainMenuState extends MusicBeatState
 		"marauder-(old)",
 		"slowflp-(old)",
 		"partner",
-		"shucks-v2",
+		"shuckle-fuckle",
 		"get-villaind-(old)"
 	];
 
