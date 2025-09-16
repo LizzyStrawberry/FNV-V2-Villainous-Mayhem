@@ -53,81 +53,16 @@ function onCountdownStarted()
 		var canTween = !game.isStoryMode && !game.skipArrowStartTween;
 		var middleScroll = ClientPrefs.middleScroll;
 		
-		for (i in 0...game.strumLineNotes.length) {
-			var player = Math.floor(i / 4);
-			var key = i % 4;
-			var babyArrow = game.strumLineNotes.members[i];
-			
-			var targetAlpha = 1;
-			if (player < 1 && middleScroll)
-				targetAlpha = 0.35;
-			
-			if (canTween) {
-				babyArrow.alpha = 0;
-				FlxTween.tween(babyArrow, {alpha: targetAlpha}, 1, {ease: FlxEase.circOut, startDelay: 0.5 + (0.2 * i)});
-			}
-			else
-				babyArrow.alpha = targetAlpha;
-				
-			
-			
-			babyArrow.scale.set(
-				babyArrow.scale.x / 1.075,
-				babyArrow.scale.y / 1.075
-			);
-			babyArrow.x -= 9 * (key - 2);
-			
-			if (player == 1) {
-				game.setOnLuas('realDefaultPlayerStrumX' + key, babyArrow.x);
-				game.setOnLuas('realDefaultPlayerStrumY' + key, babyArrow.y);
-			}
-			else {
-				game.setOnLuas('realDefaultOpponentStrumX' + key, babyArrow.x);
-				game.setOnLuas('realDefaultOpponentStrumY' + key, babyArrow.y);
-			}
-			
-			/* formula
-			if(player == 1) {
-				if (middleScroll)
-					babyArrow.x = -278;
-				else
-					babyArrow.x = 42 + (50 * 2);
-			}
-			else
-				babyArrow.x = -56;
-			
-			babyArrow.postAddedToGroup();
-			babyArrow.x -= 9 * (key - 2);
-			*/
-			
-			if (player == 1) {
-				if (middleScroll)
-					babyArrow.x = defaultMiddleStrumPos[key][0];
-				else
-					babyArrow.x = defaultRightStrumPos[key][0];
-			}
-			else
-				babyArrow.x = defaultLeftStrumPos[key][0];
-			
-			if (player == 1) {
-				game.setOnLuas('defaultPlayerStrumX' + key, babyArrow.x);
-				game.setOnLuas('defaultPlayerStrumY' + key, babyArrow.y);
-			}
-			else {
-				game.setOnLuas('defaultOpponentStrumX' + key, babyArrow.x);
-				game.setOnLuas('defaultOpponentStrumY' + key, babyArrow.y);
-			}
-		}
-		
 		for (i in 0...4) {
 			/* formula
 			var x = (-Note.swagWidth * 8) - 20;
 			if (middleScroll)
 				x = (50 * 4) - (Note.swagWidth * 6) - 28;
 			*/
-			var x = 0;
+			var x = 10 + (i * 65);
+            var y = ClientPrefs.downScroll ? 150 : (FlxG.height - 230);
 			
-			var babyArrow = new StrumNote(x, game.strumLine.y, i, 2);
+			var babyArrow = new StrumNote(x, y, i, 2);
 			babyArrow.downScroll = ClientPrefs.downScroll;
 			
 			var targetAlpha = middleScroll ? 0.35 : 1;
@@ -144,16 +79,11 @@ function onCountdownStarted()
 			gfStrums[i] = babyArrow;
 			
 			babyArrow.scale.set(
-				babyArrow.scale.x / 1.075,
-				babyArrow.scale.y / 1.075
+				babyArrow.scale.x / 1.75,
+				babyArrow.scale.y / 1.75
 			);
-			babyArrow.postAddedToGroup();
+			babyArrow.postAddedToGroup(false);
 			//babyArrow.x -= 9 * (i - 2);
-			
-			if (middleScroll)
-				babyArrow.x = defaultRightStrumPos[i][0];
-			else
-				babyArrow.x = defaultMiddleStrumPos[i][0];
 			
 			game.setOnLuas('defaultGfStrumX' + i, babyArrow.x);
 			game.setOnLuas('defaultGfStrumY' + i, babyArrow.y);

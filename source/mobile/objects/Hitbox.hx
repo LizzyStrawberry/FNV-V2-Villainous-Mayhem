@@ -122,20 +122,21 @@ class Hitbox extends MobileInputManager implements IMobileControls
 
 	private function createHint(X:Float, Y:Float, Width:Int, Height:Int, Color:Int = 0xFFFFFF, ?isSpecial:Bool = false):TouchButton
 	{
+		var hasVisibleLabel:Bool = (ClientPrefs.hitboxType != "Hidden" || isSpecial);
 		var hint = new TouchButton(X, Y);
 		hint.statusAlphas = [];
 		hint.statusIndicatorType = NONE;
 		hint.loadGraphic(createHintGraphic(Width, Height));
 
 		hint.label = new FlxSprite();
-		hint.labelStatusDiff = (ClientPrefs.hitboxType != "Hidden" || isSpecial) ? ClientPrefs.gameControlsAlpha : 0.00001;
+		hint.labelStatusDiff = hasVisibleLabel ? ClientPrefs.gameControlsAlpha : 0.00001;
 		hint.label.loadGraphic(createHintGraphic(Width, Math.floor(Height * 0.02), true));
 		if (ClientPrefs.hitboxPos)
 			hint.label.offset.y -= (hint.height - hint.label.height) / 2;
 		else
 			hint.label.offset.y += (hint.height - hint.label.height) / 2;
 
-		if (ClientPrefs.hitboxType != "Hidden" || isSpecial)
+		if (hasVisibleLabel)
 		{
 			var hintTween:FlxTween = null;
 			var hintLaneTween:FlxTween = null;
@@ -189,7 +190,7 @@ class Hitbox extends MobileInputManager implements IMobileControls
 		hint.immovable = hint.multiTouch = true;
 		hint.solid = hint.moves = false;
 		hint.alpha = 0.00001;
-		hint.label.alpha = (ClientPrefs.hitboxType != "Hidden" || !isSpecial) ? ClientPrefs.gameControlsAlpha : 0.00001;
+		hint.label.alpha = (hasVisibleLabel) ? ClientPrefs.gameControlsAlpha : 0.00001;
 		hint.canChangeLabelAlpha = false;
 		hint.label.antialiasing = hint.antialiasing = ClientPrefs.globalAntialiasing;
 		hint.color = Color;

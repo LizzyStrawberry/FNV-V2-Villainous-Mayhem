@@ -1,9 +1,9 @@
 function onCreate()
 	-- background shit
 	if not optimizationMode then
-		makeLuaSprite('bg', 'bgs/ourple/background', -240, -100);
+		makeLuaSprite('bg', 'bgs/ourple/background', -325, -120);
 		setScrollFactor('bg', 0.9, 0.9);
-		--scaleObject('bg', 0.95, 0.95)
+		scaleObject('bg', 1.2, 1.1)
 
 		addLuaSprite('bg', false);
 	end

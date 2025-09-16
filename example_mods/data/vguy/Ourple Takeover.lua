@@ -2,8 +2,7 @@ local shake = 6.5;
 
 function onCreate()
 	addCharacterToList('matpat', 'girlfriend')
-	setPropertyFromClass('ClientPrefs', 'middleScroll', false)
-	
+
 	if shadersEnabled then
 		makeLuaSprite('camShader', nil)
         makeGraphic('camShader', screenWidth, screenHeight)
@@ -11,8 +10,6 @@ function onCreate()
 			FlxG.game.setFilters([]);
 		]])
 	end
-	
-	setProperty("legacyPosition", true)
 end
 
 function onCreatePost()
@@ -21,18 +18,7 @@ function onCreatePost()
 	setTextFont('scoreTxt', 'ourpleFont.ttf')
 	setTextFont('timeTxt', 'ourpleFont.ttf')
 	setTextFont('watermark', 'ourpleFont.ttf')
-	setTextFont('watermark2', 'ourpleFont.ttf')
-	
-	makeLuaText('tip', 'Your Notes are here!', 1000, mobileFix("X", 550), 170)
-	setTextFont('tip', 'ourpleFont.ttf')
-	setTextSize('tip', 30)
-	setProperty('tip.alpha', 0)
-	addLuaText('tip')
-	
-	if downscroll then
-		setProperty('tip.y', 540)
-	end
-	
+
 	makeLuaSprite('extraCharBG', 'bgs/ourple/extraCharBG', mobileFix("X", 100), 60)
 	setObjectCamera('extraCharBG', 'hud')
 	scaleObject('extraCharBG', 0.95, 0.95)
@@ -48,58 +34,21 @@ function onCreatePost()
 	setProperty('gf.x', mobileFix("X", getProperty('boyfriend.x') + 500))
 	
 	mainY = getProperty('iconP1.y')
-	
-	setProperty("legacyPosition", true)
 end
 
-function onUpdatePost()
-	-- I have to use these to make things work lmao
-	
-	if curBeat == 0 then
-		setPropertyFromGroup('strumLineNotes', 0, 'x', mobileFix("X", 24))
-		setPropertyFromGroup('strumLineNotes', 1, 'x', mobileFix("X", 127))
-		setPropertyFromGroup('strumLineNotes', 2, 'x', mobileFix("X", 1024))
-		setPropertyFromGroup('strumLineNotes', 3, 'x', mobileFix("X", 1127))
-		setPropertyFromGroup('strumLineNotes', 4, 'x', mobileFix("X", 432))
-		setPropertyFromGroup('strumLineNotes', 5, 'x', mobileFix("X", 535))
-		setPropertyFromGroup('strumLineNotes', 6, 'x', mobileFix("X", 638))
-		setPropertyFromGroup('strumLineNotes', 7, 'x', mobileFix("X", 741))
+function onUpdatePost()	
+    if curBeat == 0 then
 		for i = 8, 11 do
 			setPropertyFromGroup('strumLineNotes', i, 'alpha', 0)
-			if downscroll then
-				setPropertyFromGroup('strumLineNotes', i, 'y', 500)
-			else
-				setPropertyFromGroup('strumLineNotes', i, 'y', 120)
-			end
-		end
-	end
-	
+        end
+    end
 	if curStep == 390 then
-		noteTweenX('noteTween0', 0, mobileFix("X", 12), 0.7 / playbackRate, 'cubeInOut')
-		noteTweenX('noteTween1', 1, mobileFix("X", 115), 0.7 / playbackRate, 'cubeInOut')
-		noteTweenX('noteTween2', 2, mobileFix("X", 218), 0.7 / playbackRate, 'cubeInOut')
-		noteTweenX('noteTween3', 3, mobileFix("X", 321), 0.7 / playbackRate, 'cubeInOut')
-		noteTweenX('noteTween4', 4, mobileFix("X", 850), 0.7 / playbackRate, 'cubeInOut')
-		noteTweenX('noteTween5', 5, mobileFix("X", 953), 0.7 / playbackRate, 'cubeInOut')
-		noteTweenX('noteTween6', 6, mobileFix("X", 1056), 0.7 / playbackRate, 'cubeInOut')
-		noteTweenX('noteTween7', 7, mobileFix("X", 1159), 0.7 / playbackRate, 'cubeInOut')
 		for i = 8, 11 do
+		    y = getPropertyFromGroup("strumLineNotes", i, "y")
 			noteTweenAlpha('noteTweenAlpha'..i, i, 1, (0.5 + ((i - 7) * 0.2)) / playbackRate, 'cubeInOut')
-			if downscroll then
-				noteTweenY('noteTweenY'..i, i, 570, (0.5 + ((i - 7) * 0.2)) / playbackRate, 'cubeInOut')
-			else
-				noteTweenY('noteTweenY'..i, i, 50, (0.5 + ((i - 7) * 0.2)) / playbackRate, 'cubeInOut')
-			end
+		    noteTweenY('noteTweenY'..i, i, y + (downscroll and 20 or -20), (0.5 + ((i - 7) * 0.2)) / playbackRate, 'cubeInOut')
 		end
 		
-	end
-	if curStep >= 394 and curStep <= 421 then
-		if curStep % 2 == 0 then
-			setProperty('tip.alpha', 1)
-		end
-		if curStep % 2 == 1 then
-			setProperty('tip.alpha', 0)
-		end
 	end
 	
 	setObjectOrder('gf', getObjectOrder('extraCharBG') + 1)
