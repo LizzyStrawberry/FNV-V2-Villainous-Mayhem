@@ -10,7 +10,7 @@ local botPlayOn = false
 function onCreate()
 	if mechanics then
 		makeLuaSprite('dodgeWarning', 'effects/dodgeWarning', 0, 0)
-		setScrollFactor('dodgeWarning', 0, 0)
+		setGraphicSize("dodgeWarning", screenWidth, screenHeight)
 		setObjectCamera('dodgeWarning', 'hud')
 		setProperty('dodgeWarning.alpha', 0)
 		addLuaSprite('dodgeWarning', true)

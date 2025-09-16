@@ -13,14 +13,16 @@ function onCreatePost()
 	if shadersEnabled then
 		triggerEvent('Set RTX Data', '0.45025441837813,0.25038380635491,0,0.4542892069352,1,1,0,0.29255101241682,0.79576330681808,0.55026357687042,0,0.94223889982838,0,28.837188885895', '')
 	
+		initLuaShader('pixel')
+		makeLuaSprite('camShader', nil)
+		makeGraphic('camShader', screenWidth, screenHeight)
+		setSpriteShader('camShader', 'pixel')
+		setShaderFloat("camShader", 'pxSize', pxSize)
+		
 		runHaxeCode([[
-			game.initLuaShader('pixel');
-
-			shader0 = game.createRuntimeShader('pixel');
-			shader0.setFloat('pxSize',]]..pxSize..[[);
-
-			game.camGame.setFilters([new ShaderFilter(shader0)]);
-			game.camHUD.setFilters([new ShaderFilter(shader0)]);
+			trace(game.getLuaObject('camShader').shader + ' Has Been Loaded!'); 
+			game.camGame.setFilters([new ShaderFilter(game.getLuaObject('camShader').shader)]);
+			game.camHUD.setFilters([new ShaderFilter(game.getLuaObject('camShader').shader)]);
 		]])
 	end
 end
@@ -55,9 +57,7 @@ function onUpdate(elapsed)
 				end
 			end
 			
-			runHaxeCode([[
-				shader0.setFloat("pxSize","]]..pxSize..[[");
-			]])
+			setShaderFloat("camShader", 'pxSize', pxSize)
 		end
 	end
 end

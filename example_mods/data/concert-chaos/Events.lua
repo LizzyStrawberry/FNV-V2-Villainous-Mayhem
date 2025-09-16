@@ -32,11 +32,11 @@ function onCreate()
 	
 	makeLuaSprite('floorLight', 'effects/floorLight', getProperty('boyfriend.x') - 135, getProperty('boyfriend.y') + 430)
 	scaleObject('floorLight', 0.65, 0.6)
-	setProperty('floorLight.alpha', 0.0001) -- Avoid Lag
+	setProperty('floorLight.alpha', 0)
 	addLuaSprite('floorLight', false)
 	
 	makeLuaSprite('light1', 'effects/light1', getProperty('boyfriend.x') - 530, getProperty('boyfriend.y') - 480)
-	setProperty('light1.alpha', 0.0001)
+	setProperty('light1.alpha', 0)
 	addLuaSprite('light1', true)
 	
 	makeLuaSprite('light2', 'effects/light2', getProperty('boyfriend.x') - 130, getProperty('boyfriend.y') - 120)
@@ -84,8 +84,6 @@ function onCreate()
 	setProperty('boyfriend.alpha', 0)
 	
 	clonesOriginScaleY = getProperty('clones.scale.y')
-	
-	setProperty("legacyPosition", true)
 end
 
 function onUpdate()
@@ -426,7 +424,9 @@ end
 
 function changeNoteskin(noteSkin)
 	for i = 0, 3 do
-		setPropertyFromGroup('opponentStrums', i, 'texture', 'notes/'..noteSkin);
+		setPropertyFromGroup('opponentStrums', i, 'texture', 'notes/'..noteSkin)
+		setPropertyFromGroup('opponentStrums', i, 'scale.x', oppNoteScaleX)
+		setPropertyFromGroup('opponentStrums', i, 'scale.y', oppNoteScaleY)
 	end
 end
 
