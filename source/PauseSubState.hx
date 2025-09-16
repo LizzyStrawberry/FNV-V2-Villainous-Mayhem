@@ -699,7 +699,7 @@ class PauseSubState extends MusicBeatSubstate
 						MusicBeatState.switchState(new MainMenuState(), "stickers");
 					} else {
 						if (ClientPrefs.onCrossSection)
-							MusicBeatState.switchState(new CrossoverState(), "stickers"); //go to Crossover State
+							MusicBeatState.switchState(new CrossoverState()); //go to Crossover State
 						else
 							MusicBeatState.switchState(new FreeplayState(), "stickers"); // Back To Freeplay
 					}
