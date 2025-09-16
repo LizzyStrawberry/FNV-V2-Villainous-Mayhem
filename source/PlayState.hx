@@ -4190,7 +4190,7 @@ class PlayState extends MusicBeatState
 				songVariable = "ourplePlayed";
 			case "fast-food-therapy":
 				songVariable = "kyuPlayed";
-			case "tactical-mishap'":
+			case "tactical-mishap":
 				songVariable = "tacticalMishapPlayed";
 			case "concert-chaos":
 				songVariable = "ccPlayed";
