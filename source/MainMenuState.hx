@@ -134,7 +134,7 @@ class MainMenuState extends MusicBeatState
 		"marauder-(old)",
 		"slowflp-(old)",
 		"partner",
-		"shucks-v2",
+		"shuckle-fuckle",
 		"get-villaind-(old)"
 	];
 
@@ -765,6 +765,15 @@ class MainMenuState extends MusicBeatState
 			NotificationAlert.saveNotifications();
 		}
 		super.create();
+
+		var scroll = new ScrollableObject(0.004, 50, 100, FlxG.width, FlxG.height, "X");
+		scroll.onFullScroll.add(delta -> {
+			if (storySelected && !applyStory)
+				changeItem(delta);
+		});
+		add(scroll);
+
+		addTouchPad("NONE", "B");
 	}
 
 	function changeBg(timer:FlxTimer)
@@ -1754,7 +1763,7 @@ class MainMenuState extends MusicBeatState
 						if (warnMayhem == '')
 						{
 							storyText.text = "Go through as many\nsongs as you can with\na set amount of <P>health<P>!\nTry to last as long as you can,\nwhilst <R>challenges<R> are\nthrown at you!
-							\n<G>TIP<G>: Press <GR>TAB<GR>\nto view your challenge(s)!";
+							\n<G>TIP<G>: Press the <GR>HEALTH BAR<GR>\nto view your challenge(s)!";
 							storyText.y = 200;
 
 							CustomFontFormats.addMarkers(storyText);

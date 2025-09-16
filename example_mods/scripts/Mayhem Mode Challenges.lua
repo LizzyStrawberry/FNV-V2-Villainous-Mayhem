@@ -312,7 +312,7 @@ function onUpdate()
 			showChal = 1
 			runTimer('chalDisappear', 10 / playbackRate)
 		end
-		if showChal == 0 and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.TAB') then
+		if showChal == 0 and (getPropertyFromClass('flixel.FlxG', 'keys.justPressed.TAB') or pressAction("healthBar")) then
 			doTweenAlpha('challengeAppear', 'challengeShowcase', 1, 0.8 / playbackRate, 'circOut')
 			showChal = 1
 		end
