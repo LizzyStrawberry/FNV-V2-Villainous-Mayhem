@@ -1,7 +1,6 @@
 local character = 0
 
 local notePos = {}
-local notePosX = {}
 
 function onCreate()
 	addCharacterToList('Justky', 'dad')
@@ -22,7 +21,6 @@ function onCreate()
 	precacheSound('matpatRamble')
 	
 	setPropertyFromClass('GameOverSubstate', 'loopSoundName', '')
-	setProperty("legacyPosition", true)
 end
 
 function onCreatePost()
@@ -46,11 +44,7 @@ function onCreatePost()
 	makeLuaSprite('gameTHEORY', 'effects/gaemTheoreh', mobileFix("X", 350), 0)
 	setProperty('gameTHEORY.alpha', 0)
 	setObjectCamera('gameTHEORY', 'hud')
-	if mechanics then
-		addLuaSprite('gameTHEORY', true)
-	else
-		addLuaSprite('gameTHEORY', false)
-	end
+	addLuaSprite('gameTHEORY', mechanics and true or false)
 
 	if shadersEnabled and mechanics then
 		runHaxeCode([[
@@ -60,7 +54,6 @@ function onCreatePost()
 			game.camHUD.setFilters([new ShaderFilter(shader0)]);
 
 			shader0.setFloat('multi',1);
-
 		]])
 	end 
 end
@@ -69,9 +62,6 @@ function onSongStart()
 	for i = 0,7 do 
 		y = getPropertyFromGroup('strumLineNotes', i, 'y')
 		table.insert(notePos, y)
-		
-		x = getPropertyFromGroup('strumLineNotes', i, 'x')
-		table.insert(notePosX, x)
 	end
 end
 
@@ -87,7 +77,7 @@ function onStepHit()
 	end
 	if curStep == 138 then
 		doTweenAlpha('MorkyText', 'MorkyText', 1, 0.07 / playbackRate, 'cubeIn')
-		setProperty('defaultCamZoom', 1.4)
+		setProperty('defaultCamZoom', 1.4 * zoomMult)
 		setTextString('MorkyText', "Ha!")
 	end
 	if curStep == 148 then
@@ -219,42 +209,14 @@ function onStepHit()
 	end
 	if curStep == 1792 then
 		setProperty('defaultCamZoom', 0.9 * zoomMult)
-		
-		if mechanics then
-			noteTweenX('noteTweenX0', 0, defaultPlayerStrumX0, 0.7 / playbackRate, 'cubeInOut')
-			noteTweenX('noteTweenX1', 1, defaultPlayerStrumX1, 0.72 / playbackRate, 'cubeInOut')
-			noteTweenX('noteTweenX2', 2, defaultPlayerStrumX2, 0.74 / playbackRate, 'cubeInOut')
-			noteTweenX('noteTweenX3', 3, defaultPlayerStrumX3, 0.76 / playbackRate, 'cubeInOut')
-			
-			noteTweenX('noteTweenX4', 4, defaultOpponentStrumX0, 0.7 / playbackRate, 'cubeInOut')
-			noteTweenX('noteTweenX5', 5, defaultOpponentStrumX1, 0.72 / playbackRate, 'cubeInOut')
-			noteTweenX('noteTweenX6', 6, defaultOpponentStrumX2, 0.74 / playbackRate, 'cubeInOut')
-			noteTweenX('noteTweenX7', 7, defaultOpponentStrumX3, 0.76 / playbackRate, 'cubeInOut')
-		end
 	end
 	if curStep == 2032 then
-		if mechanics then
-			for i = 0, 7 do
-				cancelTween("noteTweenX"..i)
-				cancelTween("noteTweenX"..i.."FIX")
-			end
-			noteTweenX('noteTweenX0End', 0, defaultOpponentStrumX0, 0.7 / playbackRate, 'cubeInOut')
-			noteTweenX('noteTweenX1End', 1, defaultOpponentStrumX1, 0.72 / playbackRate, 'cubeInOut')
-			noteTweenX('noteTweenX2End', 2, defaultOpponentStrumX2, 0.74 / playbackRate, 'cubeInOut')
-			noteTweenX('noteTweenX3End', 3, defaultOpponentStrumX3, 0.76 / playbackRate, 'cubeInOut')
-			
-			noteTweenX('noteTweenX4End', 4, defaultPlayerStrumX0, 0.7 / playbackRate, 'cubeInOut')
-			noteTweenX('noteTweenX5End', 5, defaultPlayerStrumX1, 0.72 / playbackRate, 'cubeInOut')
-			noteTweenX('noteTweenX6End', 6, defaultPlayerStrumX2, 0.74 / playbackRate, 'cubeInOut')
-			noteTweenX('noteTweenX7End', 7, defaultPlayerStrumX3, 0.76 / playbackRate, 'cubeInOut')
-		end
 		setProperty('defaultCamZoom', 1.7 * zoomMult)
 	end
 	if curStep == 2048 then
 		setProperty('defaultCamZoom', 0.9 * zoomMult)
 		cameraFlash('game', 'ffffff', 0.8 / playbackRate, false)
 		
-		callScript('scripts/VideoSpriteHandler', 'makeVideoSprite', {'flamies', 'flames', -20, 175, 'camGame', 0})
 		startVideo("flames", false, true, false, true)
 		setObjectCamera("videoCutscene", "game")
 		runHaxeCode([[
@@ -356,51 +318,14 @@ function onBeatHit()
 				cancelTween("noteYSCALE"..i)
 				
 				setPropertyFromGroup('strumLineNotes', i, 'y', notePos[i + 1])
-				setPropertyFromGroup('strumLineNotes', i, 'scale.x', 1.0)
-				setPropertyFromGroup('strumLineNotes', i, 'scale.y', 0.35)
+				setPropertyFromGroup('strumLineNotes', i, 'scale.x', i < 4 and  oppNoteScaleX + 0.25 or 1.0)
+				setPropertyFromGroup('strumLineNotes', i, 'scale.y',  i < 4 and oppNoteScaleY - 0.25 or 0.35)
 				
 				noteTweenY('noteGoUp'..i, i, notePos[i + 1] - 20, 0.7 / playbackRate, 'elasticOut')
-				noteTweenScaleX('noteXSCALE'..i, i, 0.7, 0.7 / playbackRate, 'circOut')
-				noteTweenScaleY('noteYSCALE'..i, i, 0.7, 0.7 / playbackRate, 'circOut')
+				noteTweenScaleX('noteXSCALE'..i, i, i < 4 and oppNoteScaleX or  0.7, 0.7 / playbackRate, 'circOut')
+				noteTweenScaleY('noteYSCALE'..i, i, 0.7, i < 4 and oppNoteScaleY or 0.7 / playbackRate, 'circOut')
 			end
 		end
-		if curBeat % 2 == 0 then
-			for i = 0, 7 do
-				cancelTween('noteGoRight'..i)
-				noteTweenX('noteGoLeft'..i, i, notePosX[i + 1] - 280, 0.7 / playbackRate, 'expoOut')
-			end
-		end
-		if curBeat % 2 == 1 then
-			for i = 0, 7 do
-				cancelTween('noteGoLeft'..i)
-				noteTweenX('noteGoRight'..i, i, notePosX[i + 1] + 280, 0.7 / playbackRate, 'expoOut')
-			end
-		end
-	end
-end
-
-function onTweenCompleted(tag)
-	if tag == 'noteTweenX3' then
-		noteTweenX('noteTweenX0FIX', 0, defaultOpponentStrumX0, 0.7 / playbackRate, 'cubeInOut')
-		noteTweenX('noteTweenX1FIX', 1, defaultOpponentStrumX1, 0.72 / playbackRate, 'cubeInOut')
-		noteTweenX('noteTweenX2FIX', 2, defaultOpponentStrumX2, 0.74 / playbackRate, 'cubeInOut')
-		noteTweenX('noteTweenX3FIX', 3, defaultOpponentStrumX3, 0.76 / playbackRate, 'cubeInOut')
-		
-		noteTweenX('noteTweenX4FIX', 4, defaultPlayerStrumX0, 0.7 / playbackRate, 'cubeInOut')
-		noteTweenX('noteTweenX5FIX', 5, defaultPlayerStrumX1, 0.72 / playbackRate, 'cubeInOut')
-		noteTweenX('noteTweenX6FIX', 6, defaultPlayerStrumX2, 0.74 / playbackRate, 'cubeInOut')
-		noteTweenX('noteTweenX7FIX', 7, defaultPlayerStrumX3, 0.76 / playbackRate, 'cubeInOut')
-	end
-	if tag == 'noteTweenX3FIX' then
-		noteTweenX('noteTweenX0', 0, defaultPlayerStrumX0, 0.7 / playbackRate, 'cubeInOut')
-		noteTweenX('noteTweenX1', 1, defaultPlayerStrumX1, 0.72 / playbackRate, 'cubeInOut')
-		noteTweenX('noteTweenX2', 2, defaultPlayerStrumX2, 0.74 / playbackRate, 'cubeInOut')
-		noteTweenX('noteTweenX3', 3, defaultPlayerStrumX3, 0.76 / playbackRate, 'cubeInOut')
-		
-		noteTweenX('noteTweenX4', 4, defaultOpponentStrumX0, 0.7 / playbackRate, 'cubeInOut')
-		noteTweenX('noteTweenX5', 5, defaultOpponentStrumX1, 0.72 / playbackRate, 'cubeInOut')
-		noteTweenX('noteTweenX6', 6, defaultOpponentStrumX2, 0.74 / playbackRate, 'cubeInOut')
-		noteTweenX('noteTweenX7', 7, defaultOpponentStrumX3, 0.76 / playbackRate, 'cubeInOut')
 	end
 end
 

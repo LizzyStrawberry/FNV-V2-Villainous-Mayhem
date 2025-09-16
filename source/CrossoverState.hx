@@ -28,15 +28,15 @@ class CrossoverState extends MusicBeatState
 
 	override function create()
 	{
-		#if desktop
+		#if DISCORD_ALLOWED
 		// Updating Discord Rich Presence
-		DiscordClient.changePresence("Work In Progress...", null);
+		DiscordClient.changePresence("Beyond Reality.", null);
 		#end
 
 		FlxG.sound.playMusic(Paths.music('ambience'), 0);
 		FlxG.sound.music.fadeIn(4.0);
 
-		effects = new FlxSprite(370, 40).loadGraphic(Paths.image('crossRoadMap/tpEffects'));
+		effects = new FlxSprite(MobileUtil.fixX(370), 40).loadGraphic(Paths.image('crossRoadMap/tpEffects'));
 		effects.frames = Paths.getSparrowAtlas('crossRoadMap/tpEffects');
 		effects.scale.set(2, 2);
 		effects.animation.addByPrefix('effects', 'tpeffects0', 24, true);
@@ -45,7 +45,7 @@ class CrossoverState extends MusicBeatState
 		effects.antialiasing = ClientPrefs.globalAntialiasing;
 		add(effects);
 
-		teleporter = new FlxSprite(500, 220).loadGraphic(Paths.image('crossRoadMap/roadMap'));
+		teleporter = new FlxSprite(MobileUtil.fixX(500), 220).loadGraphic(Paths.image('crossRoadMap/roadMap'));
 		teleporter.frames = Paths.getSparrowAtlas('crossRoadMap/roadMap');
 		teleporter.scale.set(1, 1);
 		teleporter.animation.addByPrefix('roadMap', 'roadMap0', 24, true);
@@ -88,9 +88,11 @@ class CrossoverState extends MusicBeatState
 					selection.x = 1250;
 					selection.y = 400;
 			}
+
+			selection.x = MobileUtil.fixX(selection.x);
 		}
 
-		tipText = new FlxText(700, 960, FlxG.width, "The teleporter has gone unstable.\nYou can only press ENTER to dive in.\nEach Crystal will be unlocked and completed as you move on.\nIf you wish to go back, press BACKSPACE.", 24);
+		tipText = new FlxText(700, 960, FlxG.width, "The teleporter has gone unstable.\nYou can only CLICK on the available crystal to dive in.\nEach Crystal will be unlocked and completed as you move on.\nIf you wish to go back, press B", 24);
 		tipText.setFormat("VCR OSD Mono", 24, FlxColor.WHITE, CENTER);
 		tipText.screenCenter(XY);
 		tipText.y += 290;
@@ -127,6 +129,8 @@ class CrossoverState extends MusicBeatState
 			FlxTween.tween(blackOut, {alpha: 0}, 2.7, {ease: FlxEase.cubeInOut, type: PERSIST});
 
 		super.create();
+
+		addTouchPad("NONE", "B");
 	}
 
 	var selectedSomething:Bool = false;
@@ -153,8 +157,9 @@ class CrossoverState extends MusicBeatState
 				});
 			}
 
-			if(controls.ACCEPT)
+			if(controls.ACCEPT || TouchUtil.pressAction(selections.members[curSelected]))
 			{
+				if (ClientPrefs.haptics) Haptic.vibrateOneShot(1, 0.75, 0.5);
 				selectedSomething = true;
 				selectSong();
 			}

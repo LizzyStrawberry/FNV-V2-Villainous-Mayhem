@@ -244,17 +244,17 @@ class CreditsState extends MusicBeatState
 		var scrollMain = new ScrollableObject(-0.004, 50, 100, FlxG.width, FlxG.height, "X");
 		scrollMain.onFullScroll.add(delta -> {
 			if (creditsSelected == 'CURRENT')
-				changeCredits(delta, true, true);
+				changeCredits(delta, true, true, true);
 		});
 		add(scrollMain);
 		var scrollFormer = new ScrollableObject(-0.004, 50, 100, FlxG.width, FlxG.height, "Y");
 		scrollFormer.onFullScroll.add(delta -> {
 			if (creditsSelected == 'FORMER')
-				changeCredits(delta, true, true);
+				changeCredits(delta, true, true, true);
 		});
 		add(scrollFormer);
 
-		changeCredits();
+		changeCredits(0, false, false, false);
 		fixFormerCredits();
 		super.create();
 
@@ -356,8 +356,9 @@ class CreditsState extends MusicBeatState
 		super.update(elapsed);
 	}
 
-	function changeCreditsCategory(category:String)
+	function changeCreditsCategory(category:String, ?allowHaptics:Bool = true)
 	{
+		if (ClientPrefs.haptics && allowHaptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
 		creditsSelected = category;
 		FlxG.sound.play(Paths.sound('scrollMenu'));
 		switch(creditsSelected)
@@ -407,8 +408,9 @@ class CreditsState extends MusicBeatState
 
 	var moveTween:FlxTween = null;
 	var moveTweenQuote:FlxTween = null;
-	function changeCredits(change:Int = 0, playSound:Bool = true, tween:Bool = true)
+	function changeCredits(change:Int = 0, playSound:Bool = true, tween:Bool = true, ?allowHaptics:Bool = true)
 	{
+		if (ClientPrefs.haptics && allowHaptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
 		if (playSound)	FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
 
 		if (creditsSelected == 'CURRENT')

@@ -56,6 +56,9 @@ class MobileOptionsSubState extends BaseOptionsMenu {
 			'haptics',
 			'bool',
 			true);
+		option.onChange = () -> {
+			if (ClientPrefs.haptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
+		};
 		addOption(option);
 
 		var option:Option = new Option('Hitbox Design',

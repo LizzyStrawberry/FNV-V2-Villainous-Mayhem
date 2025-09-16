@@ -886,7 +886,7 @@ class MainMenuState extends MusicBeatState
 
 		if (TouchUtil.pressAction(optionsButton) && askedForInfo == false && (!selectedSomethin && !storySelected && !inventoryOpened))
 		{
-			if (ClientPrefs.haptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
+			if (ClientPrefs.haptics) Haptic.vibrateOneShot(1, 0.75, 0.5);
 			ClientPrefs.inMenu = true;
 			selectedSomethin = true;
 			FlxG.sound.play(Paths.sound('confirmMenu'));

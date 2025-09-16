@@ -613,13 +613,14 @@ class ShopState extends MusicBeatState
 								ClientPrefs.choiceSelected = true;
 								ClientPrefs.tokens -= 1;
 				
-								var bgTimer:FlxTimer = new FlxTimer().start(0.05, getChoiceNumber);	
+								choiceTimer = new FlxTimer().start(0.05, getChoiceNumber);	
 
 								FlxTween.tween(testLuckButton, {y: testLuckButton.y + 550}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 								FlxTween.tween(spaceText, {alpha: 1}, 0.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 							}
 							if ((controls.ACCEPT || TouchUtil.pressAction(spaceText)) && ClientPrefs.choiceSelected && !ended)
 							{
+								if (choiceTimer != null) choiceTimer.cancel();
 								FlxG.sound.play(Paths.sound('confirmMenu'));
 								giveItem();
 								ended = true;
@@ -1861,6 +1862,7 @@ class ShopState extends MusicBeatState
 		assistantSecret.offset.set(0, 0);
 	}
 
+	var choiceTimer:FlxTimer;
 	function getChoiceNumber(timer:FlxTimer)
 	{
 		if (ClientPrefs.haptics) Haptic.vibrateOneShot(0.025, 0.125, 0.5);
@@ -1877,7 +1879,7 @@ class ShopState extends MusicBeatState
 					choiceNumber = FlxG.random.int(15, 19);
 			}
 			choice.loadGraphic(Paths.image('shop/prizes/prize_' + choiceNumber));
-			var bgTimerAgain:FlxTimer = new FlxTimer().start(0.05, getChoiceNumber);
+			choiceTimer = new FlxTimer().start(0.05, getChoiceNumber);
 		}
 	}
 

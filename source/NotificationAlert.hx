@@ -67,7 +67,7 @@ class NotificationAlert {
     public static function createMessagePopUp(state:FlxState, type:String, checkForShop:Bool = false)
     {
         notifMessage = new FlxSprite(MobileUtil.fixX(800), 545);
-        switch(type)
+        switch(type.toLowerCase())
         {
             case 'normal':
                 notifMessage.loadGraphic(Paths.image('notifications/notifMessageNormal'));
@@ -180,6 +180,7 @@ class NotificationAlert {
 			ClientPrefs.roadMapUnlocked = true;
 			ClientPrefs.saveSettings();
 		}
+        
         // This completes the crossover section
 		if (ClientPrefs.crossoverUnlocked)
 		{
