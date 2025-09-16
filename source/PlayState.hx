@@ -4198,7 +4198,8 @@ class PlayState extends MusicBeatState
 				else if (Paths.formatToSongPath(SONG.song) == 'jerry' || Paths.formatToSongPath(SONG.song) == 'instrumentally-deranged' || !noHelp)
 				{
 					FlxG.sound.playMusic(Paths.music('freakyMenu'));
-					MusicBeatState.switchState(new FreeplayState()); // Back To Freeplay
+					if (ClientPrefs.onCrossSection) MusicBeatState.switchState(new CrossoverState())
+					else MusicBeatState.switchState(new FreeplayState()); // Back To Freeplay
 				}		
 				else
 					MusicBeatState.switchState(new TokenAchievement());
