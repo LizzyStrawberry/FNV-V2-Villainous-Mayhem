@@ -200,7 +200,7 @@ class ResultsScreenState extends MusicBeatState
             char.antialiasing = ClientPrefs.globalAntialiasing;
             add(char);
 
-            if (PlayState.isInjectionMode && PlayState.injectionSongsPlayed != PlayState.injectionPlaylistTotal)
+            if ((PlayState.isInjectionMode && PlayState.injectionSongsPlayed != PlayState.injectionPlaylistTotal) || ratingText.text = "Fail..   Fail..   Fail..   Fail..   Fail..   Fail..   Fail..   Fail..")
             {
                 char.loadGraphic(Paths.image('characterInfo/bad'));
                 char.scrollFactor.set(0, 0);
@@ -237,7 +237,7 @@ class ResultsScreenState extends MusicBeatState
         }      
         else
         {
-            if (PlayState.isMayhemMode && PlayState.mayhemSongsPlayed == 0)
+            if ((PlayState.isMayhemMode && PlayState.mayhemSongsPlayed == 0) || ratingText.text = "Fail..   Fail..   Fail..   Fail..   Fail..   Fail..   Fail..   Fail..")
             {
                 char = new FlxSprite(0, 0).loadGraphic(Paths.image('characterInfo/bad'));
                 char.scrollFactor.set(0, 0);
@@ -463,10 +463,9 @@ class ResultsScreenState extends MusicBeatState
             });
         });
 
-        if (GameOverSubstate.injected == true || (GameOverSubstate.mayhemed == true && PlayState.mayhemSongsPlayed < 1))
-            FlxG.sound.play(Paths.sound('resultsJingleFail'));
-        else
-            FlxG.sound.play(Paths.sound('resultsJingle'));
+        var playFailSequence:Bool = GameOverSubstate.injected || (GameOverSubstate.mayhemed && PlayState.mayhemSongsPlayed < 1) || ratingText.text = "Fail..   Fail..   Fail..   Fail..   Fail..   Fail..   Fail..   Fail..";
+        if (playFailSequence) FlxG.sound.play(Paths.sound('resultsJingleFail'));
+        else FlxG.sound.play(Paths.sound('resultsJingle'));
         super.create();
     }
 
