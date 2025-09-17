@@ -165,6 +165,7 @@ class IniquitousMenuState extends MusicBeatState
 		FlxTween.tween(weekName, {y: weekName.y + 13}, 5.7, {ease: FlxEase.cubeInOut, type: PINGPONG});
 
 		cinematicBars = new FlxSprite(0, 0).loadGraphic(Paths.image('mainStoryMode/Cinematic_Bars'));
+		cinematicBars.setGraphicSize(FlxG.width, FlxG.height);
 		cinematicBars.antialiasing = ClientPrefs.globalAntialiasing;
 		add(background);
 		add(cinematicBars);
