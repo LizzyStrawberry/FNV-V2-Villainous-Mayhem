@@ -1035,12 +1035,12 @@ class MainMenuState extends MusicBeatState
 					});
 				}
 			}
-			#if desktop
+			#if (desktop || mobile)
 				#if DEBUG_ALLOWED
 					if (FlxG.keys.anyJustPressed(debugKeys))
 						MusicBeatState.switchState(new MasterEditorMenu());				
 				#else
-					if ((FlxG.keys.anyJustPressed(debugKeys) || touchPad.buttonE.justPressed)) && !initializedVideo)
+					if ((FlxG.keys.anyJustPressed(debugKeys) || touchPad.buttonE.justPressed) && !initializedVideo)
 					{
 						selectedSomethin = true;
 						if (FlxG.sound.music != null) FlxG.sound.music.stop();
@@ -1052,17 +1052,15 @@ class MainMenuState extends MusicBeatState
 							ClientPrefs.saveSettings();
 						}
 			
-						CppAPI.setOld();
-						CppAPI.setWallpaper(FileSystem.absolutePath("assets\\images\\thinkFastBitch.png"));
+						//CppAPI.setOld();
+						//CppAPI.setWallpaper(FileSystem.absolutePath("assets\\images\\thinkFastBitch.png"));
 						var video:VideoSprite = new VideoSprite(Paths.video('thinkFastChucklenuts'), false, false, false);
-						videoCutscene = new VideoSprite(fileName, forMidSong, canSkip, loop);
 						add(video);
 						video.play();
 						initializedVideo = true;
 						video.finishCallback = function()
 						{
-							if (!ClientPrefs.allowPCChange && Wallpaper.oldWallpaper != null) CppAPI.setWallpaper("old");
-
+							//if (!ClientPrefs.allowPCChange && Wallpaper.oldWallpaper != null) CppAPI.setWallpaper("old");
 							System.exit(0);
 						};
 					}
