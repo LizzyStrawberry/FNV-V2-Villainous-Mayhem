@@ -59,6 +59,9 @@ class ResetScoreSubState extends MusicBeatSubstate
 		noText.screenCenter(X);
 		noText.x += 200;
 		add(noText);
+
+		addTouchPad('LEFT_RIGHT', 'A_B');
+
 		updateOptions();
 	}
 
