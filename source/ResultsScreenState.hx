@@ -213,7 +213,7 @@ class ResultsScreenState extends MusicBeatState
                 char.antialiasing = ClientPrefs.globalAntialiasing;
             }
 
-            if (PlayState.isStoryMode)
+            if (PlayState.isStoryMode && ratingText.text != "Fail..   Fail..   Fail..   Fail..   Fail..   Fail..   Fail..   Fail..")
             {
                 switch(ClientPrefs.crashWeek)
                 {
