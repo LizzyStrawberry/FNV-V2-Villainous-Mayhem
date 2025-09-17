@@ -63,10 +63,6 @@ class IniquitousMenuState extends MusicBeatState
 		Paths.clearStoredMemory();
 		Paths.clearUnusedMemory();
 
-		//ClientPrefs.roadMapUnlocked = true;
-		//ClientPrefs.iniquitousUnlocked = false;
-		//ClientPrefs.saveSettings();
-		FlxG.mouse.visible = true;
 		PlayState.isStoryMode = true;
 		PlayState.isIniquitousMode = true;
 		WeekData.reloadWeekFiles(true);
@@ -161,7 +157,7 @@ class IniquitousMenuState extends MusicBeatState
 		weekCategory.scaleX = 0.6;
 		weekCategory.scaleY = 0.6;
 
-		background = new FlxSprite(0, 0);
+		background = new FlxSprite(MobileUtil.fixX(0), 0);
 		background.antialiasing = ClientPrefs.globalAntialiasing;
 		//background.alpha = 0.6;
 
@@ -300,10 +296,15 @@ class IniquitousMenuState extends MusicBeatState
 		changeDifficulty();
 
 		super.create();
+
+		addTouchPad("NONE", "B_X_Y");
 	}
 
 	override function closeSubState() {
 		persistentUpdate = true;
+		
+		addTouchPad("NONE", "B_X_Y");
+
 		changeWeek();
 		super.closeSubState();
 	}
@@ -319,12 +320,10 @@ class IniquitousMenuState extends MusicBeatState
 
 		if (loadedDisclaimer)
 		{
-			if (FlxG.mouse.overlaps(understand))
-				understand.alpha = 1;
-			else
-				understand.alpha = 0.6;
+			if (FlxG.mouse.overlaps(understand))understand.alpha = 1;
+			else understand.alpha = 0.6;
 
-			if ((FlxG.mouse.overlaps(understand) && FlxG.mouse.justPressed) || controls.ACCEPT)
+			if (TouchUtil.pressAction(understand) || controls.ACCEPT)
 			{
 				loadedDisclaimer = false;
 				FlxG.sound.play(Paths.sound('scrollMenu'));
@@ -342,8 +341,8 @@ class IniquitousMenuState extends MusicBeatState
 
 		if (!movedBack && !selectedWeek)
 		{
-			var upP = controls.UI_UP_P || (FlxG.mouse.overlaps(arrowSelectorLeft) && FlxG.mouse.justPressed);
-			var downP = controls.UI_DOWN_P || (FlxG.mouse.overlaps(arrowSelectorRight) && FlxG.mouse.justPressed);
+			var upP = controls.UI_UP_P || TouchUtil.pressAction(arrowSelectorLeft);
+			var downP = controls.UI_DOWN_P || TouchUtil.pressAction(arrowSelectorRight);
 
 			if (!loadedDisclaimer)
 			{
@@ -360,66 +359,59 @@ class IniquitousMenuState extends MusicBeatState
 					changeDifficulty();
 					FlxG.sound.play(Paths.sound('scrollMenu'));
 				}
-		
-				if(FlxG.mouse.wheel != 0)
-				{
-					FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
-					changeWeek(-FlxG.mouse.wheel);
-					changeDifficulty();
-				}
 
-				if (controls.UI_RIGHT || (FlxG.mouse.overlaps(rightArrow) && FlxG.mouse.pressed))
+				if (controls.UI_RIGHT || TouchUtil.overlaps(rightArrow))
 					rightArrow.animation.play('press')
 				else
 					rightArrow.animation.play('idle');
 	
-				if (controls.UI_LEFT || (FlxG.mouse.overlaps(leftArrow) && FlxG.mouse.pressed))
+				if (controls.UI_LEFT || TouchUtil.overlaps(leftArrow))
 					leftArrow.animation.play('press');
 				else
 					leftArrow.animation.play('idle');
 	
-				if (controls.UI_RIGHT_P || (FlxG.mouse.overlaps(rightArrow) && FlxG.mouse.justPressed))
+				if (controls.UI_RIGHT_P || TouchUtil.pressAction(rightArrow))
 					changeDifficulty(1);
-				else if (controls.UI_LEFT_P || (FlxG.mouse.overlaps(leftArrow) && FlxG.mouse.justPressed))
+				else if (controls.UI_LEFT_P || TouchUtil.pressAction(leftArrow))
 					changeDifficulty(-1);
 				else if (upP || downP)
 					changeDifficulty();
 			}
 			
 
-			if(FlxG.keys.justPressed.CONTROL)
+			if(FlxG.keys.justPressed.CONTROL || touchPad.buttonY.justPressed)
 			{
-				persistentUpdate = false;
+				touchPad.active = touchPad.visible = persistentUpdate = false;
 				openSubState(new GameplayChangersSubstate());
 			}
-			else if(controls.RESET)
+			else if(controls.RESET || touchPad.buttonX.justPressed)
 			{
-				persistentUpdate = false;
+				touchPad.active = touchPad.visible = persistentUpdate = false;
 				openSubState(new ResetScoreSubState('', curDifficulty, curWeek));
 				//FlxG.sound.play(Paths.sound('scrollMenu'));
 			}
-			else if (controls.ACCEPT || (FlxG.mouse.overlaps(sprDifficulty) && FlxG.mouse.justPressed))
+			else if (controls.ACCEPT || TouchUtil.pressAction(sprDifficulty))
 				selectWeek();
 
 		}
 
 		//fancy tweens uwu
-		if (FlxG.mouse.overlaps(leftArrow))
+		if (TouchUtil.overlaps(leftArrow))
 			FlxTween.tween(leftArrow, {x: getLeftArrowX - 2}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
 		else
 			FlxTween.tween(leftArrow, {x: getLeftArrowX}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
 
-		if (FlxG.mouse.overlaps(rightArrow))
+		if (TouchUtil.overlaps(rightArrow))
 			FlxTween.tween(rightArrow, {x: getRightArrowX + 2}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
 		else
 			FlxTween.tween(rightArrow, {x: getRightArrowX}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
 
-		if (FlxG.mouse.overlaps(arrowSelectorLeft))
+		if (TouchUtil.overlaps(arrowSelectorLeft))
 			FlxTween.tween(arrowSelectorLeft, {x: getarrowSelectorLeftX - 2}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
 		else
 			FlxTween.tween(arrowSelectorLeft, {x: getarrowSelectorLeftX}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
 
-		if (FlxG.mouse.overlaps(arrowSelectorRight))
+		if (TouchUtil.overlaps(arrowSelectorRight))
 			FlxTween.tween(arrowSelectorRight, {x: getarrowSelectorRightX + 2}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
 		else
 			FlxTween.tween(arrowSelectorRight, {x: getarrowSelectorRightX}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
@@ -550,7 +542,6 @@ class IniquitousMenuState extends MusicBeatState
 
 					FlxG.sound.play(Paths.sound('confirmMenu'));
 					selectedWeek = true;
-					FlxG.mouse.visible = false;
 				
 					PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0].toLowerCase() + diffic, PlayState.storyPlaylist[0].toLowerCase());
 					PlayState.campaignScore = 0;
