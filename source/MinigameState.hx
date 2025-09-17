@@ -100,15 +100,13 @@ class MinigameState extends MusicBeatState
 			coin.animation.addByPrefix('flip', 'coinflip', 24, true);
 			coin.animation.addByPrefix('heads', 'coinlandhead', 24, true);
 			coin.animation.addByPrefix('tails', 'coinlandtails', 24, true);
-			if (FlxG.random.int(0, 1) == 0)
-				coin.animation.play('heads');
-			else
-				coin.animation.play('tails');
+			if (FlxG.random.int(0, 1) == 0) coin.animation.play('heads');
+			else coin.animation.play('tails');
 			coin.screenCenter();
 			coin.updateHitbox();
 			add(coin);
 			
-			tipText = new FlxText(700, 960, FlxG.width, "FLIP-A-COIN! Press LEFT or RIGHT to choose HEADS or TAILS, and then ENTER to see if it lands on your answer or not!\nIf you win, you get 1 token EXTRA!", 24);
+			tipText = new FlxText(700, 960, FlxG.width, "FLIP-A-COIN! Press LEFT or RIGHT to choose HEADS or TAILS, and then tap on your answer to see if it lands or not!\nIf you win, you get 1 token EXTRA!", 24);
 			tipText.setFormat("VCR OSD Mono", 24, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, 0xFF000000);
 			tipText.screenCenter(XY);
 			tipText.y += 290;
@@ -386,7 +384,7 @@ class MinigameState extends MusicBeatState
 					if (controls.UI_RIGHT_P)
 						changeSelection(1);
 			
-					if (controls.ACCEPT && !flipped)
+					if ((controls.ACCEPT || TouchUtil.pressAction(answer)) && !flipped)
 					{
 						flipped = true;
 						coin.animation.play('flip');

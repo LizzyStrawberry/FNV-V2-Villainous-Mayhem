@@ -227,7 +227,7 @@ class IniquitousMenuState extends MusicBeatState
 		blackOut.alpha = 0;
 		add(blackOut);
 
-		mechanicMessage = new FlxSprite(0, 0).loadGraphic(Paths.image('mainStoryMode/message1'));
+		mechanicMessage = new FlxSprite(MobileUtil.fixX(0), 0).loadGraphic(Paths.image('mainStoryMode/message1'));
 		mechanicMessage.antialiasing = ClientPrefs.globalAntialiasing;
 		mechanicMessage.alpha = 0;
 		add(mechanicMessage);
