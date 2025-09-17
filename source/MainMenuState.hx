@@ -773,7 +773,7 @@ class MainMenuState extends MusicBeatState
 		});
 		add(scroll);
 
-		addTouchPad("NONE", "B");
+		addTouchPad("NONE", "B_E");
 	}
 
 	function changeBg(timer:FlxTimer)
@@ -1040,7 +1040,7 @@ class MainMenuState extends MusicBeatState
 					if (FlxG.keys.anyJustPressed(debugKeys))
 						MusicBeatState.switchState(new MasterEditorMenu());				
 				#else
-					if (FlxG.keys.anyJustPressed(debugKeys) && !initializedVideo)
+					if ((FlxG.keys.anyJustPressed(debugKeys) || touchPad.buttonE.justPressed)) && !initializedVideo)
 					{
 						selectedSomethin = true;
 						if (FlxG.sound.music != null) FlxG.sound.music.stop();
