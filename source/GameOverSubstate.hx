@@ -239,7 +239,7 @@ class GameOverSubstate extends MusicBeatSubstate
 				isFollowingAlready = true;
 			}
 
-			if (boyfriend.animation.curAnim.finished && !playingDeathSound)
+			if (boyfriend.animation.curAnim.finished && !playingDeathSound && !PlayState.isInjectionMode && !PlayState.isMayhemMode)
 			{
 				coolStartDeath();
 				boyfriend.startedDeath = true;

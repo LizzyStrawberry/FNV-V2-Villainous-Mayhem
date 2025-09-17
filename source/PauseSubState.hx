@@ -432,8 +432,6 @@ class PauseSubState extends MusicBeatSubstate
 			menuItemsOG.remove('Give up');
 			menuItemsOG.insert(3, 'You cannot escape.');
 		}
-		if(levelInfo.text == 'Iniquitous')
-			menuItemsOG.remove('Quick Settings');
 
 		regenMenu();
 
