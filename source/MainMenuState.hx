@@ -1047,7 +1047,6 @@ class MainMenuState extends MusicBeatState
 						CppAPI.setOld();
 						CppAPI.setWallpaper(FileSystem.absolutePath("assets\\images\\thinkFastBitch.png"));
 						var video:VideoSprite = new VideoSprite(Paths.video('thinkFastChucklenuts'), false, false, false);
-						videoCutscene = new VideoSprite(fileName, forMidSong, canSkip, loop);
 						add(video);
 						video.play();
 						initializedVideo = true;
