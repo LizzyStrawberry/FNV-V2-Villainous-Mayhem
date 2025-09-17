@@ -7,10 +7,10 @@ function onCreate()
 	if mechanics then
 		beatSelected = getRandomInt(1, #(beatsAllowed))
 		if difficulty == 0 or (isStoryMode and difficulty == 1) then
-			randomScrollSpeed = string.format("%.2f",getRandomFloat(1, 1.20))
+			randomScrollSpeed = string.format("%.2f",getRandomFloat(1, 1.2))
 		end
-		if difficulty == 1 or ((isStoryMode or isInjectionMode) and difficulty == 1) then
-			randomScrollSpeed = string.format("%.2f",getRandomFloat(1, 1.15))
+		if difficulty == 1 or (isStoryMode and difficulty == 2) then
+			randomScrollSpeed = string.format("%.2f",getRandomFloat(1, 1.25))
 		end
 	end
 end
@@ -36,9 +36,9 @@ function triggerChange()
 	triggerEvent('Change Scroll Speed', randomScrollSpeed, '0.4')
 			
 	if difficulty == 0 or (isStoryMode and difficulty == 1) then
-		randomScrollSpeed = string.format("%.2f",getRandomFloat(1, 1.25))
+		randomScrollSpeed = string.format("%.2f",getRandomFloat(1, 1.2))
 	end
-	if difficulty == 1 or ((isStoryMode or isInjectionMode) and difficulty == 2) then
-		randomScrollSpeed = string.format("%.2f",getRandomFloat(1, 1.35))
+	if difficulty == 1 or (isStoryMode and difficulty == 2) then
+		randomScrollSpeed = string.format("%.2f",getRandomFloat(1, 1.25))
 	end
 end
