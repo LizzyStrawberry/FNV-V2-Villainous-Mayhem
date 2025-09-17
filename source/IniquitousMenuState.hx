@@ -24,8 +24,6 @@ class IniquitousMenuState extends MusicBeatState
 	var mechanicMessage:FlxSprite;
 	var blackOut:FlxSprite;
 
-	var libidiWarning:FlxText;
-
 	var arrowSelectorLeft:FlxSprite;
 	var arrowSelectorRight:FlxSprite;
 	var getarrowSelectorLeftX:Float = 0;
@@ -104,9 +102,9 @@ class IniquitousMenuState extends MusicBeatState
 		grpLocks = new FlxTypedGroup<FlxSprite>();
 		add(grpLocks);
 
-		#if desktop
+		#if DISCORD_ALLOWED
 		// Updating Discord Rich Presence
-		DiscordClient.changePresence("In Story Mode", null);
+		DiscordClient.changePresence("In Iniquitous Mode", null);
 		#end
 
 		var num:Int = 0;
@@ -229,16 +227,6 @@ class IniquitousMenuState extends MusicBeatState
 		blackOut.alpha = 0;
 		add(blackOut);
 
-		if (ClientPrefs.performanceWarning)
-		{
-			libidiWarning = new FlxText(700, 100, 1000, "Warning:\nIs your PC strong enough to handle the week?\n(It is recommended to atleast have a graphics card installed)\n----------------------------
-			\nY: Yes | N: No", 32);
-			libidiWarning.setFormat("VCR OSD Mono", 50, FlxColor.RED, CENTER);
-			libidiWarning.screenCenter(XY);
-			libidiWarning.alpha = 0;
-			add(libidiWarning);
-		}
-
 		mechanicMessage = new FlxSprite(0, 0).loadGraphic(Paths.image('mainStoryMode/message1'));
 		mechanicMessage.antialiasing = ClientPrefs.globalAntialiasing;
 		mechanicMessage.alpha = 0;
@@ -319,7 +307,6 @@ class IniquitousMenuState extends MusicBeatState
 		super.closeSubState();
 	}
 
-	var warning:Bool = false;
 	var loadedDisclaimer:Bool = false;
 	override function update(elapsed:Float)
 	{
@@ -357,7 +344,7 @@ class IniquitousMenuState extends MusicBeatState
 			var upP = controls.UI_UP_P || (FlxG.mouse.overlaps(arrowSelectorLeft) && FlxG.mouse.justPressed);
 			var downP = controls.UI_DOWN_P || (FlxG.mouse.overlaps(arrowSelectorRight) && FlxG.mouse.justPressed);
 
-			if (!warning && !loadedDisclaimer)
+			if (!loadedDisclaimer)
 			{
 				if (upP)
 				{
@@ -410,27 +397,8 @@ class IniquitousMenuState extends MusicBeatState
 				openSubState(new ResetScoreSubState('', curDifficulty, curWeek));
 				//FlxG.sound.play(Paths.sound('scrollMenu'));
 			}
-			else if (warning && FlxG.keys.justPressed.Y)
-			{
-				ClientPrefs.lowQuality = false;
-				selectWeek();
-			}
-			else if (warning && FlxG.keys.justPressed.N)
-			{
-				ClientPrefs.lowQuality = true;
-				selectWeek();
-			}
 			else if (controls.ACCEPT || (FlxG.mouse.overlaps(sprDifficulty) && FlxG.mouse.justPressed))
-			{
-				if (loadedWeeks[curWeek].storyName == "Kiana Week" && warning == false && ClientPrefs.performanceWarning == true)
-				{
-					warning = true;
-					FlxTween.tween(blackOut, {alpha: 0.7}, 1.2, {ease: FlxEase.circOut, type: PERSIST});
-					FlxTween.tween(libidiWarning, {alpha: 1}, 1.2, {ease: FlxEase.circOut, type: PERSIST});
-				}
-				else
-					selectWeek();
-			}
+				selectWeek();
 
 		}
 
@@ -457,20 +425,11 @@ class IniquitousMenuState extends MusicBeatState
 
 		if ((controls.BACK || FlxG.mouse.justPressedRight) && !movedBack && !selectedWeek)
 		{
-			if (warning)
-			{
-				FlxTween.tween(blackOut, {alpha: 0}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
-				FlxTween.tween(libidiWarning, {alpha: 0}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
-				warning = false;
-			}
-			else
-			{
-				PlayState.isStoryMode = false;
-				PlayState.isIniquitousMode = false;
-				FlxG.sound.play(Paths.sound('cancelMenu'));
-				movedBack = true;
-				MusicBeatState.switchState(new MainMenuState(), 'stickers');
-			}
+			PlayState.isStoryMode = false;
+			PlayState.isIniquitousMode = false;
+			FlxG.sound.play(Paths.sound('cancelMenu'));
+			movedBack = true;
+			MusicBeatState.switchState(new MainMenuState(), 'stickers');
 		}
 
 		super.update(elapsed);
