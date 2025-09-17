@@ -151,13 +151,13 @@ class IniquitousMenuState extends MusicBeatState
 			grpWeekCharacters.add(weekCharacterThing);
 		}
 
-		weekName = new Alphabet(640, 80, "This is a test", true);
+		weekName = new Alphabet(MobileUtil.rawX(640), 80, "This is a test", true);
 		weekName.setAlignmentFromString('center');
 		weekName.color = 0xFFFF0000;
 		weekName.scaleX = 0.8;
 		weekName.scaleY = 0.8;
 
-		weekCategory = new Alphabet(175, 40, "This is a test", true);
+		weekCategory = new Alphabet(MobileUtil.rawX(175), 40, "This is a test", true);
 		weekCategory.setAlignmentFromString('center');
 		weekCategory.alpha = 0.7;
 		weekCategory.scaleX = 0.6;
@@ -177,12 +177,12 @@ class IniquitousMenuState extends MusicBeatState
 		add(weekName);
 		add(weekCategory);
 
-		arrowSelectorLeft = new FlxSprite(-20, 230).loadGraphic(Paths.image('freeplayStuff/arrowSelectorLeft'));
+		arrowSelectorLeft = new FlxSprite(MobileUtil.fixX(-20), 230).loadGraphic(Paths.image('freeplayStuff/arrowSelectorLeft'));
 		arrowSelectorLeft.antialiasing = ClientPrefs.globalAntialiasing;
 		arrowSelectorLeft.scale.set(0.5, 0.5);
 		add(arrowSelectorLeft);
 
-		arrowSelectorRight = new FlxSprite(1160, 230).loadGraphic(Paths.image('freeplayStuff/arrowSelectorRight'));
+		arrowSelectorRight = new FlxSprite(MobileUtil.fixX(1160), 230).loadGraphic(Paths.image('freeplayStuff/arrowSelectorRight'));
 		arrowSelectorRight.antialiasing = ClientPrefs.globalAntialiasing;
 		arrowSelectorRight.scale.set(0.5, 0.5);
 		add(arrowSelectorRight);
@@ -246,23 +246,24 @@ class IniquitousMenuState extends MusicBeatState
 
 		messageNumber = FlxG.random.int(1, 4);
 
-		weekCardBG = new FlxSprite(0, 0).loadGraphic(Paths.image('mainStoryMode/weekCards/weekCardBGIniquitous'));
+		weekCardBG = new FlxSprite(MobileUtil.fixX(0), 0).loadGraphic(Paths.image('mainStoryMode/weekCards/weekCardBGIniquitous'));
+		weekCardBG.setGraphicSize(FlxG.width, FlxG.height);
 		weekCardBG.antialiasing = ClientPrefs.globalAntialiasing;
 		weekCardBG.screenCenter();
 		add(weekCardBG);
 
-		weekCard = new FlxSprite(80, 165).loadGraphic(Paths.image('mainStoryMode/weekCards/mainWeeks/iniquitousCard'));
+		weekCard = new FlxSprite(MobileUtil.fixX(80), 165).loadGraphic(Paths.image('mainStoryMode/weekCards/mainWeeks/iniquitousCard'));
 		weekCard.antialiasing = ClientPrefs.globalAntialiasing;
 		add(weekCard);
 
-		weekCardText = new FlxText(560, 240, 710,
+		weekCardText = new FlxText(MobileUtil.fixX(560), 240, 710,
 			"<R>Be warned!<R>\nThis Gamemode is <R>very harsh<R>, allowing you to play <G>ONLY THE MAIN 3 WEEKS<G> of the mod in Iniquitous Difficulty!\nBe cautious, as each week has it's own <R>quirks and differences<R> compared to the regular modes!
 			\n<DR>Do you accept the Challenge?<DR>",
 			25);
 		weekCardText.setFormat("VCR OSD Mono", 30, FlxColor.WHITE, LEFT);
 		add(weekCardText);
 
-		weekCardTitle = new FlxSprite(0, 50).loadGraphic(Paths.image('mainStoryMode/weekCards/disclaimer'));
+		weekCardTitle = new FlxSprite(MobileUtil.fixX(0), 50).loadGraphic(Paths.image('mainStoryMode/weekCards/disclaimer'));
 		weekCardTitle.antialiasing = ClientPrefs.globalAntialiasing;
 		weekCardTitle.screenCenter(X);
 		add(weekCardTitle);
