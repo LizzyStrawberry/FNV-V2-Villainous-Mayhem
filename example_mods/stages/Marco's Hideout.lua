@@ -22,7 +22,7 @@ function onCreate()
 			makeLuaSprite('fg', 'bgs/spendthrift/foreground', -240, -40);
 			setScrollFactor('fg', 0.95, 0.95);
 			
-		elseif songName == 'Shucks V2' then
+		elseif songName == 'Shuckle Fuckle' then
 			makeLuaSprite('bg', 'bgs/marco/background-new', -240, -100)
 			setScrollFactor('bg', 0.95, 0.95)
 		
