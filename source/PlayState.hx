@@ -4092,6 +4092,9 @@ class PlayState extends MusicBeatState
 				trace('Saved Score :' + campaignScore);
 				trace('Current Health :' + health);
 
+				// Unlock Secret Song
+				if (!ClientPrefs.shucksUnlocked && PlayState.mayhemPlaylist[songSelected] == "shuckle-fuckle") ClientPrefs.shucksUnlocked = true;
+				
 				ClientPrefs.ghostTapping = true;
 
 				var difficulty:String = CoolUtil.getDifficultyFilePath(FlxG.random.int(0, 1));
@@ -4145,9 +4148,6 @@ class PlayState extends MusicBeatState
 					case 'spendthrift': //Week Morky
 						PlayState.SONG.player1 = 'Spendthrift GF';
 				}
-
-				// Unlock Secret Song
-				if (!ClientPrefs.shucksUnlocked && PlayState.mayhemPlaylist[songSelected] == "shuckle-fuckle") ClientPrefs.shucksUnlocked = true;
 					
 				FlxG.sound.music.stop();
 
