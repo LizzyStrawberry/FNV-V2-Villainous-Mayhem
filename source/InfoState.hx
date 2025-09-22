@@ -298,68 +298,49 @@ class InfoState extends MusicBeatState
 		switch (charName)
 		{
 			case 'beatrice' | 'evelyn' | 'yaku':
-				if (!ClientPrefs.nunWeekPlayed)
-					spr.color = FlxColor.BLACK;
+				if (!ClientPrefs.nunWeekPlayed) spr.color = FlxColor.BLACK;
 			case 'kiana' | 'dv' | 'cgirl' | 'pico' | 'narrin':
-				if (!ClientPrefs.kianaWeekPlayed)
-					spr.color = FlxColor.BLACK;
+				if (!ClientPrefs.kianaWeekPlayed) spr.color = FlxColor.BLACK;
 
 				//Bonus Cast
 			case 'marcussy' | 'amogleen':
-				if (!ClientPrefs.susWeekPlayed)
-					spr.color = FlxColor.BLACK;
+				if (!ClientPrefs.susWeekPlayed) spr.color = FlxColor.BLACK;
 			case 'aizeen' | 'marcus' | 'cgoon':
-				if (!ClientPrefs.dsideWeekPlayed)
-					spr.color = FlxColor.BLACK;
+				if (!ClientPrefs.dsideWeekPlayed) spr.color = FlxColor.BLACK;
 			case 'morky' | 'porkchop' | 'dooglas':
-				if (!ClientPrefs.morkyWeekPlayed)
-					spr.color = FlxColor.BLACK;
+				if (!ClientPrefs.morkyWeekPlayed) spr.color = FlxColor.BLACK;
 				
 			//Shop Cast
 			case 'michael':
-				if (!ClientPrefs.marcochromePlayed)
-					spr.color = FlxColor.BLACK;
+				if (!ClientPrefs.marcochromePlayed) spr.color = FlxColor.BLACK;
 			case 'nicflp' | 'tail':
-				if (!ClientPrefs.nicPlayed)
-					spr.color = FlxColor.BLACK;
+				if (!ClientPrefs.nicPlayed) spr.color = FlxColor.BLACK;
 			case 'fnv':
-				if (!ClientPrefs.fnvPlayed)
-					spr.color = FlxColor.BLACK;
+				if (!ClientPrefs.fnvPlayed) spr.color = FlxColor.BLACK;
 			case 'lillie':
-				if (!ClientPrefs.rainyDazePlayed)
-					spr.color = FlxColor.BLACK;
+				if (!ClientPrefs.rainyDazePlayed) spr.color = FlxColor.BLACK;
 			case 'short':
-				if (!ClientPrefs.shortPlayed)
-					spr.color = FlxColor.BLACK;
+				if (!ClientPrefs.shortPlayed) spr.color = FlxColor.BLACK;
 			case 'fangirl':
-				if (!ClientPrefs.infatuationPlayed)
-					spr.color = FlxColor.BLACK;
+				if (!ClientPrefs.infatuationPlayed) spr.color = FlxColor.BLACK;
 			case 'debug':
-				if (!ClientPrefs.debugPlayed)
-					spr.color = FlxColor.BLACK;
+				if (!ClientPrefs.debugPlayed) spr.color = FlxColor.BLACK;
 			case 'asul':
-				if (!ClientPrefs.itsameDsidesUnlocked)
-					spr.color = FlxColor.BLACK;
+				if (!ClientPrefs.itsameDsidesUnlocked) spr.color = FlxColor.BLACK;
 				
 			//Crossover Cast
 			case 'ourple':
-				if (!ClientPrefs.ourplePlayed)
-					spr.color = FlxColor.BLACK;
+				if (!ClientPrefs.ourplePlayed) spr.color = FlxColor.BLACK;
 			case 'kyu':
-				if (!ClientPrefs.kyuPlayed)
-					spr.color = FlxColor.BLACK;
+				if (!ClientPrefs.kyuPlayed) spr.color = FlxColor.BLACK;
 			case 'tc':
-				if (!ClientPrefs.tacticalMishapPlayed)
-					spr.color = FlxColor.BLACK;
+				if (!ClientPrefs.tacticalMishapPlayed) spr.color = FlxColor.BLACK;
 			case 'marcx' | 'ai' | 'uzi':
-				if (!ClientPrefs.breacherPlayed)
-				spr.color = FlxColor.BLACK;
+				if (!ClientPrefs.breacherPlayed) spr.color = FlxColor.BLACK;
 			case 'cross' | 'seer':
-				if (!ClientPrefs.negotiationPlayed)
-				spr.color = FlxColor.BLACK;
+				if (!ClientPrefs.negotiationPlayed) spr.color = FlxColor.BLACK;
 			case 'lily' | 'manager':
-				if (!ClientPrefs.ccPlayed)
-					spr.color = FlxColor.BLACK;
+				if (!ClientPrefs.ccPlayed) spr.color = FlxColor.BLACK;
 		}
 	}
 
