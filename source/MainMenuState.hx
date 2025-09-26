@@ -117,7 +117,7 @@ class MainMenuState extends MusicBeatState
 		'marcochrome',
 		'marauder',
 		'slowflp',
-		'lustality-v1',
+		'lustality',
 		'fnv',
 		'fanfuck-forever',
 		'rainy-daze',
@@ -532,7 +532,7 @@ class MainMenuState extends MusicBeatState
 		leftDiffArrow.antialiasing = ClientPrefs.globalAntialiasing;
 		difficultySelectors.add(leftDiffArrow);
 
-		sprDifficulty = new FlxSprite(0, leftDiffArrow.y);
+		sprDifficulty = new FlxSprite(MobileUtil.fixX(0), leftDiffArrow.y);
 		sprDifficulty.antialiasing = ClientPrefs.globalAntialiasing;
 		difficultySelectors.add(sprDifficulty);
 

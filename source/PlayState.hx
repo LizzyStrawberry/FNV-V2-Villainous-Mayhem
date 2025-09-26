@@ -4093,7 +4093,7 @@ class PlayState extends MusicBeatState
 				trace('Current Health :' + health);
 
 				// Unlock Secret Song
-				if (!ClientPrefs.shucksUnlocked && PlayState.mayhemPlaylist[songSelected] == "shuckle-fuckle") ClientPrefs.shucksUnlocked = true;
+				if (!ClientPrefs.shucksUnlocked && Paths.formatToSongPath(SONG.song) == "shuckle-fuckle") ClientPrefs.shucksUnlocked = true;
 				
 				ClientPrefs.ghostTapping = true;
 
