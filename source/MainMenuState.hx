@@ -117,7 +117,7 @@ class MainMenuState extends MusicBeatState
 		'marcochrome',
 		'marauder',
 		'slowflp',
-		'lustality-v1',
+		'lustality',
 		'fnv',
 		'fanfuck-forever',
 		'rainy-daze',
