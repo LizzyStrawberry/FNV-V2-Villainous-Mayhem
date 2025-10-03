@@ -67,7 +67,14 @@ class Main extends Sprite
 		}
 	
 		ClientPrefs.loadDefaultKeys();
-		addChild(new FlxGame(gameWidth, gameHeight, initialState, #if (flixel < "5.0.0") zoom, #end framerate, framerate, skipSplash, startFullscreen));
+		var gameObject = new FlxGame(gameWidth, gameHeight, initialState, #if (flixel < '5.0.0') zoom, #end framerate, framerate, skipSplash, startFullscreen);
+		// Setting up Custom Sound Tray
+		// FlxG.game._customSoundTray wants just the class, it calls new from
+		// create() in there, which gets called when it's added to stage
+		// which is why it needs to be added before addChild(game) here
+		@:privateAccess
+		gameObject._customSoundTray = FunkinSoundTray;
+		addChild(gameObject);
 
 		#if !mobile
 		fpsVar = new FPS(10, 3, 0xFFFFFF);
