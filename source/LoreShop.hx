@@ -643,7 +643,7 @@ class LoreShop extends MusicBeatState
                             cellarMerchantDialogue.start(0.04, true);
                         }
                     }
-                    if (FlxG.mouse.overlaps(loreScrollsIcon) && FlxG.mouse.justPressed && ClientPrefs.itemInfo == true && ClientPrefs.numberOfScrolls == 10)
+                    if (FlxG.mouse.overlaps(loreScrollsIcon) && FlxG.mouse.justPressed && ClientPrefs.itemInfo == true && ClientPrefs.numberOfScrolls == 7)
                     {
                         if (ClientPrefs.eggs >= 1)
                         {
@@ -1008,14 +1008,6 @@ class LoreShop extends MusicBeatState
                     ClientPrefs.numberOfScrolls += 1;
                 }
             case 5:
-                if (ClientPrefs.dvScroll == true)
-                    randomizeScroll();
-                else
-                {
-                    ClientPrefs.dvScroll = true;
-                    ClientPrefs.numberOfScrolls += 1;
-                }
-            case 6:
                 if (ClientPrefs.kianaScroll == true)
                     randomizeScroll();
                 else
@@ -1023,28 +1015,12 @@ class LoreShop extends MusicBeatState
                     ClientPrefs.kianaScroll = true;
                     ClientPrefs.numberOfScrolls += 1;
                 }
-            case 7:
-                if (ClientPrefs.narrinScroll == true)
-                    randomizeScroll();
-                else
-                {
-                    ClientPrefs.narrinScroll = true;
-                    ClientPrefs.numberOfScrolls += 1;
-                }
-            case 8:
+            case 6:
                 if (ClientPrefs.morkyScroll == true)
                     randomizeScroll();
                 else
                 {
                     ClientPrefs.morkyScroll = true;
-                    ClientPrefs.numberOfScrolls += 1;
-                }
-            case 9:
-                if (ClientPrefs.kaizokuScroll == true)
-                    randomizeScroll();
-                else
-                {
-                    ClientPrefs.kaizokuScroll = true;
                     ClientPrefs.numberOfScrolls += 1;
                 }
         }
@@ -1118,16 +1094,10 @@ class LoreShop extends MusicBeatState
             scrolls.push('evelynScroll');
         if (ClientPrefs.yakuScroll == false)
             scrolls.push('yakuScroll');
-        if (ClientPrefs.dvScroll == false)
-            scrolls.push('dvScroll');
         if (ClientPrefs.kianaScroll == false)
             scrolls.push('kianaScroll');
-        if (ClientPrefs.narrinScroll == false)
-            scrolls.push('narrinScroll');
         if (ClientPrefs.morkyScroll == false)
             scrolls.push('morkyScroll');
-        if (ClientPrefs.kaizokuScroll == false)
-            scrolls.push('kaizokuScroll');
 
         for (i in 0...scrolls.length)
             trace(scrolls[i]);

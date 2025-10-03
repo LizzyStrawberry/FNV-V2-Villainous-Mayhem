@@ -234,11 +234,8 @@ class ClientPrefs {
 	public static var beatriceScroll:Bool = false;
 	public static var evelynScroll:Bool = false;
 	public static var yakuScroll:Bool = false;
-	public static var dvScroll:Bool = false;
 	public static var kianaScroll:Bool = false;
-	public static var narrinScroll:Bool = false;
 	public static var morkyScroll:Bool = false;
-	public static var kaizokuScroll:Bool = false;
 
 	public static var framerate:Int = 120;
 	public static var cursing:Bool = true;
@@ -555,11 +552,8 @@ class ClientPrefs {
 		FlxG.save.data.beatriceScroll = beatriceScroll;
 		FlxG.save.data.evelynScroll = evelynScroll;
 		FlxG.save.data.yakuScroll = yakuScroll;
-		FlxG.save.data.dvScroll = dvScroll;
 		FlxG.save.data.kianaScroll = kianaScroll;
-		FlxG.save.data.narrinScroll = narrinScroll;
 		FlxG.save.data.morkyScroll = morkyScroll;
-		FlxG.save.data.kaizokuScroll = kaizokuScroll;
 
 		FlxG.save.data.ratingOffset = ratingOffset;
 		FlxG.save.data.sickWindow = sickWindow;
@@ -713,11 +707,8 @@ class ClientPrefs {
 		beatriceScroll = true;
 		evelynScroll = true;
 		yakuScroll = true;
-		dvScroll = true;
 		kianaScroll = true;
-		narrinScroll = true;
 		morkyScroll = true;
-		kaizokuScroll = true;
 
 		Achievements.debugUnlock();
 		ClientPrefs.saveSettings();
@@ -1263,20 +1254,11 @@ class ClientPrefs {
 		if(FlxG.save.data.yakuScroll != null) {
 			yakuScroll = FlxG.save.data.yakuScroll;
 		}
-		if(FlxG.save.data.dvScroll != null) {
-			dvScroll = FlxG.save.data.dvScroll;
-		}
 		if(FlxG.save.data.kianaScroll != null) {
 			kianaScroll = FlxG.save.data.kianaScroll;
 		}
-		if(FlxG.save.data.narrinScroll != null) {
-			narrinScroll = FlxG.save.data.narrinScroll;
-		}
 		if(FlxG.save.data.morkyScroll != null) {
 			morkyScroll = FlxG.save.data.morkyScroll;
-		}
-		if(FlxG.save.data.kaizokuScroll != null) {
-			kaizokuScroll = FlxG.save.data.kaizokuScroll;
 		}
 
 		if(FlxG.save.data.framerate != null) {
@@ -1289,12 +1271,6 @@ class ClientPrefs {
 				FlxG.updateFramerate = framerate;
 			}
 		}
-		/*if(FlxG.save.data.cursing != null) {
-			cursing = FlxG.save.data.cursing;
-		}
-		if(FlxG.save.data.violence != null) {
-			violence = FlxG.save.data.violence;
-		}*/
 		if(FlxG.save.data.camZooms != null) {
 			camZooms = FlxG.save.data.camZooms;
 		}

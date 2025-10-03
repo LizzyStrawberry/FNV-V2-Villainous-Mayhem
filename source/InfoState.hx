@@ -605,32 +605,6 @@ class InfoState extends MusicBeatState
 					FlxG.sound.play(Paths.sound('accessDenied'));
 					showingLore = false;
 				}
-			case 'dv':
-				if (ClientPrefs.dvScroll)
-				{
-					FlxTween.tween(blackOut, {alpha: 0.8}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
-					FlxTween.tween(scrollAsset, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
-					FlxTween.tween(scrollDesc, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
-					scrollDesc.text = "I am DV's lore, nice to meet you\nlmao";
-				}
-				else
-				{
-					FlxG.sound.play(Paths.sound('accessDenied'));
-					showingLore = false;
-				}
-			case 'narrin':
-				if (ClientPrefs.narrinScroll)
-				{
-					FlxTween.tween(blackOut, {alpha: 0.8}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
-					FlxTween.tween(scrollAsset, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
-					FlxTween.tween(scrollDesc, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
-					scrollDesc.text = "I am Narrin's lore, nice to meet you\nlmao";
-				}
-				else
-				{
-					FlxG.sound.play(Paths.sound('accessDenied'));
-					showingLore = false;
-				}
 			case 'morky':
 				if (ClientPrefs.morkyScroll)
 				{
@@ -643,20 +617,7 @@ class InfoState extends MusicBeatState
 				{
 					FlxG.sound.play(Paths.sound('accessDenied'));
 					showingLore = false;
-				}
-			case 'debug':
-				if (ClientPrefs.kaizokuScroll)
-				{
-					FlxTween.tween(blackOut, {alpha: 0.8}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
-					FlxTween.tween(scrollAsset, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
-					FlxTween.tween(scrollDesc, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
-					scrollDesc.text = "I am Kaizoku's lore, nice to meet you\nlmao";
-				}
-				else
-				{
-					FlxG.sound.play(Paths.sound('accessDenied'));
-					showingLore = false;
-				}				
+				}			
 		}
 		CustomFontFormats.addMarkers(scrollDesc);
 		trace('Showing Lore');
@@ -807,11 +768,7 @@ class InfoState extends MusicBeatState
 					titleText.text = "??";
 					desc.text = "Unlock Week 3 First!";
 				}
-				allowLore = true;
-				if (ClientPrefs.dvScroll)
-					loreScrollButton.loadGraphic(Paths.image('characterInfo/loreButton'));
-				else
-					loreScrollButton.loadGraphic(Paths.image('characterInfo/loreButtonLocked'));
+				allowLore = false;
 			case 'cgirl':
 				if (ClientPrefs.kianaWeekPlayed)
 				{
@@ -856,11 +813,7 @@ class InfoState extends MusicBeatState
 					titleText.text = "??????";	
 					desc.text = "Unlock Week 3 First!";
 				}
-				allowLore = true;
-				if (ClientPrefs.narrinScroll)
-					loreScrollButton.loadGraphic(Paths.image('characterInfo/loreButton'));
-				else
-					loreScrollButton.loadGraphic(Paths.image('characterInfo/loreButtonLocked'));
+				allowLore = false;
 
 				//Bonus Cast
 			case 'marcussy':
@@ -1107,11 +1060,7 @@ class InfoState extends MusicBeatState
 					titleText.text = "?????";	
 					desc.text = "Unlock Marauder First!";
 				}
-				allowLore = true;
-				if (ClientPrefs.kaizokuScroll)
-					loreScrollButton.loadGraphic(Paths.image('characterInfo/loreButton'));
-				else
-					loreScrollButton.loadGraphic(Paths.image('characterInfo/loreButtonLocked'));
+				allowLore = false;
 			case 'asul':
 				if (ClientPrefs.itsameDsidesUnlocked)
 				{	
