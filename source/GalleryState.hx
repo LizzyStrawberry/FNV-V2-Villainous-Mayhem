@@ -95,7 +95,7 @@ class GalleryState extends MusicBeatState
 	
 		FlxTween.tween(Text, {x: textBG.x - 2500}, 20, {ease: FlxEase.linear, type: LOOPING});
 
-		currentImage = new FlxSprite(MobileUtil.fixX(0), -20).loadGraphic(Paths.image('Gallery/image_1'));
+		currentImage = new FlxSprite(MobileUtil.fixX(0), -20).loadGraphic(Paths.image('Gallery/randomArts/image_1'));
 		currentImage.antialiasing = ClientPrefs.globalAntialiasing;
 		currentImage.scale.set(0.7, 0.7);
 		add(currentImage);
