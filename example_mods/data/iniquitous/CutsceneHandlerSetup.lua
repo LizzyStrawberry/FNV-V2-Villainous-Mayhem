@@ -3,7 +3,7 @@ local cutShit =
     hasDial = false,
     hasStartVid = true, vidPath = "Finale_Intro",
     hasMidDialVid = false, midVidPath = nil, midPos = -1,
-    hasEndVid = false, endVidPath = nil
+    hasEndVid = true, endVidPath = "Game_Over"
 }
 
 
@@ -42,7 +42,6 @@ function onCreate()
 	end
 end
 
-
 function onCreatePost()
 	if mechanics then
 		setProperty("gimmickTitle.color", getColorFromHex("FF0000"))
@@ -51,7 +50,10 @@ function onCreatePost()
 end
 
 function onUpdate()
-	if mechanics then
+	if mechanics and getProperty("blackOverlay.alpha") > 0 and not getVar("handlerComplete") then
 		setProperty("blackOverlay.alpha", getProperty("backdrop.alpha") - 0.25)
+	end
+	if mechanics and getProperty("blackOverlay.alpha") < 0 and not getVar("handlerComplete") then
+		setProperty("blackOverlay.alpha", 0)
 	end
 end

@@ -54,7 +54,10 @@ function onCreatePost()
 end
 
 function onUpdate()
-	if mechanics then
+	if mechanics and getProperty("blackOverlay.alpha") > 0 and not getVar("handlerComplete") then
 		setProperty("blackOverlay.alpha", getProperty("backdrop.alpha"))
+	end
+	if mechanics and getProperty("blackOverlay.alpha") < 0 and not getVar("handlerComplete") then
+		setProperty("blackOverlay.alpha", 0)
 	end
 end
