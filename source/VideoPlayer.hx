@@ -17,7 +17,7 @@ class VideoPlayer extends MusicBeatState
 
     // Video Assets
     var videoPaths:Array<Array<String>> = [ // VideoName, Video Title, Category
-        ["StoryIntro",                  "Introductory Video",                       "Main"],
+        ["StoryIntro",                  "Introductory Video",                       "Main Game Cutscenes"],
         ["Week1_Song1Cutscene",         "Scrouge Cutscene",                         "Main Game Cutscenes"],
         ["Week1_Song4Cutscene",         "Villainy Cutscene",                        "Main Game Cutscenes"],
         ["Week1_NormalEnd",             "Week 1 Normal Ending",                     "Main Game Cutscenes"],
@@ -33,6 +33,7 @@ class VideoPlayer extends MusicBeatState
         ["Week3_NormalEnd",             "Week 3 Normal Ending",                     "Main Game Cutscenes"],
         ["Week3_TrueEnd",               "Week 3 True Ending",                       "Main Game Cutscenes"],
         ["Finale_Intro",                "Finale Intro Cutscene",                    "Main Game Cutscenes"],
+        ["Game_Over",                   "True Ending",                              "Main Game Cutscenes"],
         ["WeekLegacy_Song1Cutscene",    "Cheap Skate Legacy Cutscene",              "Bonus Weeks Cutscenes"],
         ["WeekLegacy_Song2Cutscene",    "Toxic Mishap Legacy Cutscene",             "Bonus Weeks Cutscenes"],
         ["WeekLegacy_Song3Cutscene",    "Paycheck Legacy Cutscene",                 "Bonus Weeks Cutscenes"],
@@ -271,7 +272,7 @@ class VideoPlayer extends MusicBeatState
                     continue; // Skip the loop, continue to next item 
             }
              
-            if (i > 0 && id % amount == 0)
+            if ((i >= 0 && id % amount == 0 && variant == "videos") || (i > 0 && id % amount == 0 && variant == "desktop"))
             {
                 y += 150;
                 rowCounter = 0;

@@ -480,14 +480,14 @@ local characterChanged = false
 function onUpdatePost(elapsed)
 	-- For Iniquitous Specifically
 	if dadName == 'iniquitousP3' and not characterChanged then
-		for i = 0, getProperty('opponentStrums.length')-1 do
+		for i = 0, 3 do
 			if songName == 'Iniquitous' and curBeat == 608 then
 				setPropertyFromGroup('opponentStrums', i, 'texture', 'notes/IniquitousMechanicNOTE_assets');
 				characterChanged = true
 			end
 		end
 				
-		for note = 0, getProperty('unspawnNotes.length')-1 do
+		for note = 0, getProperty('unspawnNotes.length') - 1 do
 			if not getPropertyFromGroup('unspawnNotes', note, 'mustPress') then
 				if songName == 'Iniquitous' and curBeat == 608 then
 					setPropertyFromGroup('unspawnNotes', i, 'texture', 'notes/IniquitousMechanicNOTE_assets');

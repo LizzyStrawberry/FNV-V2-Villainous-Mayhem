@@ -101,6 +101,10 @@ backdropColor = nil
 local showMechanic = false
 local confirmMechanic = false
 
+function onCreate()
+	setVar("handlerComplete", false)
+end
+
 function onStartCountdown()
 	if not seenCutscene and enabled then
 		if cutsceneData.hasStartupVideo and not viewedVideo then -- In Case of Start Up Video
@@ -122,8 +126,12 @@ function onStartCountdown()
 		end
 		setPropertyFromClass("PlayState", "seenCutscene", true)
 	end
-
+	
     return Function_Continue -- Allow Countdown
+end
+
+function onSongStart()
+	setVar("handlerComplete", true)
 end
 
 function onCreatePost()    
@@ -231,7 +239,7 @@ function onUpdate(elapsed)
 			setProperty("tipIcon"..i..".alpha", getProperty("backdrop.alpha"))
 		end
         
-        if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.Y') and not confirmMechanic then
+        if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.Y') then
             playSound('confirmMenu')
 
             if instructionsData.isBossFight then
@@ -295,6 +303,7 @@ end
 
 function onTweenCompleted(tag)
 	if tag == "disableBackdrop" then
+		showMechanic = false
 		removeLuaSprite('backdrop', true)
 		removeLuaSprite('gimmickTitle', true)
 		for i = 1, tipData.numOfTips do
