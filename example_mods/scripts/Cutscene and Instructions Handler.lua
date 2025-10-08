@@ -239,7 +239,7 @@ function onUpdate(elapsed)
 			setProperty("tipIcon"..i..".alpha", getProperty("backdrop.alpha"))
 		end
         
-        if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.Y') then
+        if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.Y') and not confirmMechanic then
             playSound('confirmMenu')
 
             if instructionsData.isBossFight then
