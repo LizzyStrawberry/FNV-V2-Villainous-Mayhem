@@ -23,6 +23,7 @@ function checkIfEnabled()
 	-- User Exceptions
 	--debugPrint("Checking User Exceptions..")
 	if songName == 'Couple Clash' or (isIniquitousMode and week == 'mainweekkiana') then return false end
+	--debugPrint("Checked all values!")
 	
 	return true
 end
@@ -94,7 +95,7 @@ function onUpdate(elapsed)
 		-- Check what charm has been used
 		if not locatedCharm then
 			for key = 1, 3 do
-				local charmAllowed = getPropertyFromClass("ClientPrefs", charmTypeShortened[curCharm].."CharmCollected")
+				local charmAllowed = getPropertyFromClass("ClientPrefs", charmTypeShortened[key].."CharmCollected")
 				if charmAllowed and keyJustPressed('charm'..key) then
 					-- Save charm number
 					--debugPrint("Current Charm is "..key.."!")
@@ -105,7 +106,7 @@ function onUpdate(elapsed)
 				end
 			end
 		end
-				
+
 		-- Healing Charm After-Check
 		if locatedCharm and curCharm == 3 and keyJustPressed('charm3') then
 			if getPropertyFromClass('ClientPrefs', 'healingCharm') ~= 0 then healCheck(true) end
