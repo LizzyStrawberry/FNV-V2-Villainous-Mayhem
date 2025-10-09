@@ -1495,7 +1495,7 @@ class FunkinLua {
 		});
 		Lua_helper.add_callback(lua, "keyJustPressed", function(name:String) {
 			var key:Bool = false;
-			switch(name) {
+			switch(name.toLowerCase()) {
 				case 'left': key = PlayState.instance.getControl('NOTE_LEFT_P');
 				case 'down': key = PlayState.instance.getControl('NOTE_DOWN_P');
 				case 'up': key = PlayState.instance.getControl('NOTE_UP_P');

@@ -876,7 +876,7 @@ class FreeplayState extends MusicBeatState
 				checkForMechanics(songs[curSelected].songName);
 				var loadCharSelector:Bool = checkForCharSelector(songs[curSelected].songName);
 
-				if (songs[curSelected].songName == 'Libidinousness' && !ClientPrefs.optimizationMode && ClientPrefs.performanceWarning)
+				if (songs[curSelected].songName == 'Libidinousness' && (ClientPrefs.optimizationMode || ClientPrefs.performanceWarning))
 				{
 					trace ('Low Quality (For Libidinousness) has been turned on!');
 
