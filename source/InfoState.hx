@@ -553,7 +553,7 @@ class InfoState extends MusicBeatState
 					FlxTween.tween(blackOut, {alpha: 0.8}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
 					FlxTween.tween(scrollAsset, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
 					FlxTween.tween(scrollDesc, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
-					scrollDesc.text = "Beatrice grew up in an orphanage. Despite never knowing who her parents were, she wasn't bothered by it.
+					scrollDesc.text = "Beatrice grew up in an orphanage.\nDespite never knowing who her parents were,\nshe wasn't bothered by it.
 					\n[Click <G>here<G> to view the full extension]";
 				}
 				else
@@ -567,7 +567,7 @@ class InfoState extends MusicBeatState
 					FlxTween.tween(blackOut, {alpha: 0.8}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
 					FlxTween.tween(scrollAsset, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
 					FlxTween.tween(scrollDesc, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
-					scrollDesc.text = "EX-BR Model 3 or Evelyn is a prototype that was created for a supposed “World Domination” by an Evil organization (NOT from Marco, this happened way before his time.).
+					scrollDesc.text = "EX-BR Model 3 or Evelyn is a prototype\nthat was created for a supposed\n“World Domination” by an Evil organization.
 					\n[Click <G>here<G> to view the full extension]";
 				}
 				else
