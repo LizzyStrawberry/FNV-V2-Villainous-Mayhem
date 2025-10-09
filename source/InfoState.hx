@@ -472,16 +472,11 @@ class InfoState extends MusicBeatState
 						case 'aileen':
 							CoolUtil.browserLoad('https://docs.google.com/document/d/19EtuvfK-s7Zc0bS0IeYCsvP3qgGli34bgRnMo-pvkL0/edit?usp=sharing');
 						case 'beatrice':
-
+							CoolUtil.browserLoad('https://docs.google.com/document/d/1zdtYnemJ1gRQT1QTce3QSYLv2IJrF8Nc-ePxJNBMM1E/edit?usp=sharing');
 						case 'evelyn':
-
-						case 'yaku':
-
+							CoolUtil.browserLoad('https://docs.google.com/document/d/1zdtYnemJ1gRQT1QTce3QSYLv2IJrF8Nc-ePxJNBMM1E/edit?usp=sharing');
+						case "yaku":
 						case 'kiana':
-
-						case 'dv':
-
-						case 'narrin':
 
 						case 'morky':
 							if (fardTimer != null)
@@ -499,8 +494,6 @@ class InfoState extends MusicBeatState
 									fardsCounter = 0;
 								});
 							}
-						case 'debug':
-
 					}
 				}
 			}
@@ -563,7 +556,8 @@ class InfoState extends MusicBeatState
 					FlxTween.tween(blackOut, {alpha: 0.8}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
 					FlxTween.tween(scrollAsset, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
 					FlxTween.tween(scrollDesc, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
-					scrollDesc.text = "I am Beatrice's lore, nice to meet you\nlmao";
+					scrollDesc.text = "Beatrice grew up in an orphanage. Despite never knowing who her parents were, she wasn't bothered by it.
+					\n[Click <G>here<G> to view the full extension]";
 				}
 				else
 				{
@@ -576,7 +570,8 @@ class InfoState extends MusicBeatState
 					FlxTween.tween(blackOut, {alpha: 0.8}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
 					FlxTween.tween(scrollAsset, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
 					FlxTween.tween(scrollDesc, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
-					scrollDesc.text = "I am Evelyn's lore, nice to meet you\nlmao";
+					scrollDesc.text = "EX-BR Model 3 or Evelyn is a prototype that was created for a supposed “World Domination” by an Evil organization (NOT from Marco, this happened way before his time.).
+					\n[Click <G>here<G> to view the full extension]";
 				}
 				else
 				{
