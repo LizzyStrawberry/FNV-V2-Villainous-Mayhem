@@ -1,6 +1,6 @@
 local cutShit = 
 {
-    hasDial = false,
+    hasDial = true,
     hasStartVid = true, vidPath = "WeekLegacy_Song3Cutscene",
     hasMidDialVid = false, midVidPath = nil, midPos = -1,
     hasEndVid = false, endVidPath = nil
@@ -35,7 +35,7 @@ function onCreate()
         end
     end
 
-    if isStoryMode then -- To Apply only to story mode!
+    if not isStoryMode then -- To Apply only to story mode!
         callScript("scripts/"..name, "setCutsceneData", {cutShit.hasDial, cutShit.hasStartVid, cutShit.vidPath, cutShit.hasMidDialVid, cutShit.midVidPath, cutShit.midPos, cutShit.hasEndVid, cutShit.endVidPath})
     end
     
