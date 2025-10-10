@@ -52,9 +52,9 @@ class Cache extends MusicBeatState
 
 		var menuBG:FlxSprite;
 		if (!ClientPrefs.firstTime)
-			menuBG = new FlxSprite().loadGraphic(Paths.image('Gallery/titleScreens/loadingScreen-6'));
+			menuBG = new FlxSprite().loadGraphic(Paths.image('Gallery/titleScreens/loadingScreen-1'));
 		else
-			menuBG = new FlxSprite().loadGraphic(Paths.image('Gallery/titleScreens/loadingScreen-' + FlxG.random.int(1, 8)));
+			menuBG = new FlxSprite().loadGraphic(Paths.image('Gallery/titleScreens/loadingScreen-' + FlxG.random.int(1, 6)));
 		menuBG.screenCenter();
 		add(menuBG);
 
