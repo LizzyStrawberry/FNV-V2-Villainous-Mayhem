@@ -149,6 +149,8 @@ class LegacyCreditsState extends MusicBeatState
 		add(scroll);
 
 		super.create();
+
+		addTouchPad("NONE", "A_B");
 	}
 
 	var quitting:Bool = false;
