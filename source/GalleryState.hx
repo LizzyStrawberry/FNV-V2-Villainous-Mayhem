@@ -182,9 +182,9 @@ class GalleryState extends MusicBeatState
 		if (allowImageChange)
 		{
 			if (controls.UI_LEFT_P || (FlxG.mouse.overlaps(arrowSelectorLeft) && FlxG.mouse.justPressed))
-				changeImage(-1, true);
+				changeImage(-1, true, true);
 			if (controls.UI_RIGHT_P || (FlxG.mouse.overlaps(arrowSelectorRight) && FlxG.mouse.justPressed))
-				changeImage(1, true);
+				changeImage(1, true, true);
 		}
 
 		if (controls.UI_DOWN_P)

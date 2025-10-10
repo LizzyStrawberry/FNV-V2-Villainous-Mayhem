@@ -443,6 +443,7 @@ class TitleState extends MusicBeatState
 			
 			if(pressedEnter)
 			{
+				if (ClientPrefs.haptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
 				titleText.color = FlxColor.WHITE;
 				titleText.alpha = 1;
 				
