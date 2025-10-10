@@ -421,51 +421,26 @@ class GalleryState extends MusicBeatState
 
 			if (categorySelected == 2)
 			{
-				if (imageNumber > 8)
+				if (imageNumber > 11)
 					imageNumber = 1;
 				if (imageNumber < 1)
-					imageNumber = 8;
-				numberCounter.text = imageNumber + "/8";
+					imageNumber = 11;
+				numberCounter.text = imageNumber + "/11";
 				currentImage.loadGraphic(Paths.image('Gallery/titleScreens/loadingScreen-' + imageNumber));
 
 				messageShown = false;
 				switch(imageNumber)
 				{
-					case 1:
-						{
-							imageText.text = "Opening Loading Screen N.1 [Drawn by Lizzy Strawberry]";
-							
-						}
-					case 2:
-						{
-							imageText.text = "Opening Loading Screen N.2 [Drawn by StatureGuy]";
-							
-						}
-					case 3:
-						{
-							imageText.text = "Opening Loading Screen N.3 [Drawn by McFlurryAsh/R3tro]";
-							
-						}
-					case 4:
-						{
-							imageText.text = "Opening Loading Screen N.4 [Drawn by SamanthaIsStupid-]";
-						}
-					case 5:
-						{
-							imageText.text = "Opening Loading Screen N.5 [Drawn by StatureGuy]";
-						}
-					case 6:
-						{
-							imageText.text = "Opening Loading Screen N.6 [Drawn by Lizzy Strawberry]";
-						}
-					case 7:
-						{
-							imageText.text = "Opening Loading Screen N.7 [Drawn by Porkchop]";
-						}
-					case 8:
-						{
-							imageText.text = "Opening Loading Screen N.8 [Drawn by McNugget]";
-						}
+					case 1: imageText.text = "Opening Loading Screen N.1 [Drawn by Lizzy Strawberry]";
+					case 2: imageText.text = "Opening Loading Screen N.2 [Drawn by StatureGuy]";
+					case 3: imageText.text = "Opening Loading Screen N.3 [Drawn by StatureGuy]";
+					case 4: imageText.text = "Opening Loading Screen N.4 [Drawn by Porkchop]";
+					case 5: imageText.text = "Opening Loading Screen N.5 [Drawn by StatureGuy]";
+					case 6: imageText.text = "Opening Loading Screen N.6 [Drawn by Lizzy Strawberry]";
+					case 8: imageText.text = "Old Opening Loading Screen N.1 [Drawn by StatureGuy]";	
+					case 9: imageText.text = "Old Opening Loading Screen N.2 [Drawn by McFlurryAsh/R3tro]";
+					case 10: imageText.text = "Old Opening Loading Screen N.3 [Drawn by SamanthaIsStupid-]";
+					case 11: imageText.text = "Old Opening Loading Screen N.4 [Drawn by McNugget]";
 				}
 			}
 
