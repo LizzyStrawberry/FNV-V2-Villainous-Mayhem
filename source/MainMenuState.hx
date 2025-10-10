@@ -1648,6 +1648,7 @@ class MainMenuState extends MusicBeatState
 	function changeItem(huh:Int = 0, ?playSound:Bool = true, ?allowHaptics:Bool = true)
 	{
 		if (ClientPrefs.haptics && allowHaptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
+		if (playSound) FlxG.sound.play(Paths.sound('scrollMenu'), 0.6);
 		if (!storySelected && !inventoryOpened)
 		{
 			curSelected += huh;

@@ -131,7 +131,7 @@ class GalleryState extends MusicBeatState
 
 		var scroll = new ScrollableObject(0.005, 50, 100, FlxG.width, FlxG.height, "Y");
 		scroll.onFullScroll.add(delta -> {
-			changeCategory(delta);
+			changeCategory(delta, true);
 		});
 		add(scroll);
 
@@ -182,9 +182,9 @@ class GalleryState extends MusicBeatState
 		if (allowImageChange)
 		{
 			if (controls.UI_LEFT_P || (FlxG.mouse.overlaps(arrowSelectorLeft) && FlxG.mouse.justPressed))
-				changeImage(-1);
+				changeImage(-1, true);
 			if (controls.UI_RIGHT_P || (FlxG.mouse.overlaps(arrowSelectorRight) && FlxG.mouse.justPressed))
-				changeImage(1);
+				changeImage(1, true);
 		}
 
 		if (controls.UI_DOWN_P)
@@ -211,8 +211,9 @@ class GalleryState extends MusicBeatState
 		});
 	}
 
-	function changeCategory(huh:Int = 0)
+	function changeCategory(huh:Int = 0, ?allowHaptics:Bool = false)
 	{
+		if (ClientPrefs.haptics && allowHaptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
 		categorySelected += huh;
 
 		if (categorySelected > 7)
@@ -402,8 +403,9 @@ class GalleryState extends MusicBeatState
 	}
 
 	var messageShown:Bool = false;
-	function changeImage(change:Int = 0, playSound:Bool = true)
+	function changeImage(change:Int = 0, playSound:Bool = true, ?allowHaptics:Bool = false)
 		{
+			if (ClientPrefs.haptics && allowHaptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
 			if(playSound) FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
 	
 			imageNumber += change;

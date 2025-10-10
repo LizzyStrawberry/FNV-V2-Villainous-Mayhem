@@ -158,6 +158,7 @@ class VideoPlayer extends MusicBeatState
         add(videoBG);
 
         video = new FlxVideoSprite();
+        video.x = MobileUtil.fixX(video.x);
         video.scale.set(0.75, 0.75);
         video.updateHitbox();
         video.antialiasing = ClientPrefs.globalAntialiasing;
@@ -229,6 +230,8 @@ class VideoPlayer extends MusicBeatState
         new FlxTimer().start(0.25, startBootUp);
 
         super.create();
+
+        addTouchPad("NONE", "B");
     }
 
     private function startBootUp(tmr:FlxTimer)
@@ -278,7 +281,7 @@ class VideoPlayer extends MusicBeatState
                 switch(variant)
                 {
                     case "videos":
-                        if (!viewingVideo) setVideo(i);
+                        if (!viewingVideo) setVideo(i, true);
 
                     case "desktop":
                         curCategory = appText.text = deskCategories[i][0]; // Make sure the category name is set properly
@@ -541,8 +544,9 @@ class VideoPlayer extends MusicBeatState
         }
     }
 
-    function setVideo(vidToLoad:Int = 0, ?playSound:Bool = true)
+    function setVideo(vidToLoad:Int = 0, ?playSound:Bool = true, ?allowHaptics:Bool = false)
     {
+        if (ClientPrefs.haptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
         if (playSound) FlxG.sound.play(Paths.sound('scrollMenu'), 0.6);
         
         curVideo = vidToLoad;
