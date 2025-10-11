@@ -146,9 +146,10 @@ function onUpdate()
 	end
 		
 	if curStep == 2372 and not videoPlayed then
-		startVideo("Shucks Cutscene noVol", false, true, false, true) -- Umskippable, for Mid Song, not loopable, play on load
+		startVideo("Shucks Cutscene", false, true, false, true) -- Umskippable, for Mid Song, not loopable, play on load
 		setProperty('videoCutscene.alpha', 0)
 		setObjectCamera("videoCutscene", "hud")
+		setProperty("videoCutscene.videoSprite.volumeAdjust", 0)
 		setObjectOrder("videoCutscene", 0)
 		videoPlayed = true
 	end
