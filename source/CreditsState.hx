@@ -105,11 +105,10 @@ class CreditsState extends MusicBeatState
 			['Lillie', 'lillie', '<G>Roles:<G>\n- Additional Coder\n- Sprite Animator\n- Core Musician\n- Chromatic Creator\n- Charter ', "'<P>Oh? Did I<P> <G>Win<G>?'", 'https://www.youtube.com/@lilliancraig4690', 'fe8ca1'],
 			['TheRealOscamon', 'oscamon', '<G>Roles:<G>\n- Core Musician (Bangin fr)\n- Sprite Animator ', "'I am <GR>Oscamon<GR>..\nyes this is my quote'", 'https://www.youtube.com/channel/UC3kTxyzWnFopnfzLjD2jMuA', '18f55b'],
 			['HQC', 'hqc', '<G>Roles:<G>\n- Core Musician\n(Banger Music ong)', "'<C_>Kevin<C_>'", 'https://x.com/hqcs_', '6bebfb'],
-			['D3MON1X_', 'd3mon1x', '<G>Roles:<G>\n- Core Musician\n(Even more Banger Music fr)', "'<R>Yaku<R> step on me plea-'", 'https://x.com/D3MON1X_', '843277'],
+			['D3MON1X_', 'd3mon1x', '<G>Roles:<G>\n- Core Musician\n(Even more Banger Music fr)\n- Asul\'s Voice Actor', "'<R>Yaku<R> step on me plea-'", 'https://x.com/D3MON1X_', '843277'],
 			['Ricey', 'ricey', '<G>Roles:<G>\n- Former Core Musician\n(Banger Music once again)\n- Chromatic Creator ', "'uhm <R>i eat people for breakfast<R>'", 'https://twitter.com/hmhuhmh_r1', 'a548a3'],
 			['Shiloh', 'lanternAura', '<G>Roles:<G>\n- Core Musician\n(Coming in clutch fr)\n Chromatic Creator ', "'im <G>me<G>. me <G>be<G>. goddamn. <G>i am<G>'", 'https://lanternaura.carrd.co/', 'fc8901'],
 			['Araz', 'araz', '<G>Roles:<G>\n- Core Pause Menu Musician\n- Musician (Helped in Toxic Mishap (Legacy))', "'I forgot <G>how to music<G>'", 'https://www.youtube.com/channel/UCFefL4ngJkpsYFcBWlDC4RQ', 'FFF300'],
-			['Scarlett Solarose', 'scarlett', "<G>Roles:<G>\n- Asul's Voice Actor", "'I like <P>Roses<P> and <R>Fire<R>~ :3'", 'https://www.youtube.com/channel/UCPPZrEArPKQorpw7jrvOesw', '00FFFF'],
 			['Kitty', 'kitty', "<G>Roles:<G>\n- Narrin's Voice Actor", "<G>“Who the fuck is that”<G>\n— @K1ttyC0s3tt3", 'https://twitter.com/K1tty_C0s3tt3', 'f3327f'],
 			['AJTheFunky', 'aj', '<G>Roles:<G>\n- Main Charter\n- Made Hidden Menu Music Cover', "'Subscribe to <GR>AjTheFunky<GR> on <R>YouTube<R> :3'", 'https://ajthefunky.carrd.co/', '57ce78']
 		];
