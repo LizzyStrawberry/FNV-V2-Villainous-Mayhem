@@ -1087,7 +1087,7 @@ class StoryMenuState extends MusicBeatState
 				{
 					background.loadGraphic(Paths.image('mainStoryMode/weekBanners/susWeekBanner'));
 					weekName.text = "Week Sus\nA Villain is among us";
-					weekCardText.text = "This teleporter is surely messing with GF's brain every time she teleports.. she's apparently seeing things that aren't even there.\nIS THAT SUSSY AMONG US IMPOSTOR?!?\nIt's 2024, how is this meme still relevant?!";
+					weekCardText.text = "This teleporter is surely messing with GF's brain every time she teleports.. she's apparently seeing things that aren't even there.\nIS THAT SUSSY AMONG US IMPOSTOR?!?\nIt's " + Date.now().getFullYear() + ", how is this meme still relevant?!";
 					weekCard.loadGraphic(Paths.image('mainStoryMode/weekCards/mainWeeks/susCard'));
 					weekCardTitle.loadGraphic(Paths.image('mainStoryMode/weekCards/mainWeeks/susTitle'));
 				}

@@ -33,9 +33,10 @@ class FlashingState extends MusicBeatState
 
 		warnText = new FlxText(0, 0, FlxG.width,
 			"Hey, warning!\n
-			This mod contains a lot of content that Low-End Devices may struggle to play on!\n
-			There's a slight chance you might encounter accidental crashes on this android version, so beware!\n
-			We recommend you tamper around in the options menu and toy around with the options for the best experience possible!\n
+			This mod contains instances of flashing lights and/or glitching effects, that could make you uncomfortable.\n
+			If you are photo-sensitive to these, turn the flashing lights off and skip cutscenes that contain said instances.\n
+			While this has been tested, there's a slight chance you might encounter accidental crashes on this android version.\n
+			We recommend you tamper around in the options menu and toy around with the options for the best experience possible.\n
 			Enjoy FNV's V2.0 Update!!\n
 			Press A to continue to Quick Settings.\n
 			",
