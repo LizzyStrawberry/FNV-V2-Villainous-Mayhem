@@ -32,7 +32,7 @@ function onCreatePost()
 			setSpriteShader(spritesToCheck[sprite], 'RTXLighting')
 		end
 		
-		if songName == "Shucks V2" then
+		if songName == "Shuckle Fuckle" then
 			runHaxeCode([[
 				for (note in game.unspawnNotes)
 				{
