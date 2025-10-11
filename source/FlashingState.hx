@@ -32,12 +32,12 @@ class FlashingState extends MusicBeatState
 
 		warnText = new FlxText(0, 0, FlxG.width,
 			"Hey, warning!\n
-			This mod contains a lot of content that very low end PCS may struggle to play on!\n
-			The mod has been tested on lower end hardware, and although it works fine, you may encounter some small issues!\n
-			We recommend you tamper around in the options menu and toy around with the options for the best experience possible!\n
+			This mod contains instances of flashing lights and/or glitching effects, that could make you uncomfortable.\n
+			If you are photo-sensitive to these, turn the flashing lights off and skip cutscenes that contain said instances.\n
+			The mod has also been tested on lower end hardware, and although it works fine, you may encounter some small issues.\n
+			We recommend you tamper around in the options menu and toy around with the options for the best experience possible.\n
 			Enjoy FNV's V2.0 Update!!\n
-			Press ENTER to continue to Quick Settings.\n
-			",
+			Press ENTER to continue to Quick Settings.\n",
 			32);
 		warnText.setFormat("VCR OSD Mono", 32, FlxColor.WHITE, CENTER);
 		warnText.screenCenter(Y);

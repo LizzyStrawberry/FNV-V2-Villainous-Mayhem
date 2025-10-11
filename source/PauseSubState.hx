@@ -44,7 +44,6 @@ class PauseSubState extends MusicBeatSubstate
 	var skipTimeBG:FlxSprite;
 	var skipTimeTitle:FlxText;
 
-	public static var changedSettings:Bool = false;
 	public static var playerSelected:String = '';
 
 	var buffs:Array<String> = ["None", "Health Regen.", "Second Chance", "Immunity"];
@@ -71,7 +70,7 @@ class PauseSubState extends MusicBeatSubstate
 			options = ['Shaders', 'Cinematic Bars', 'Scroll Type', 'MoreOptions'];
 		if (PlayState.isIniquitousMode)
 			options = ['Shaders', 'Cinematic Bars', 'Scroll Type', 'BotPlay', 'MoreOptions'];
-		changedSettings = false;
+
 		playerSelected = PlayState.SONG.player1;
 
 		if(PlayState.chartingMode)
@@ -557,9 +556,9 @@ class PauseSubState extends MusicBeatSubstate
 					quickSettingsTweenFadeOut = FlxTween.tween(item, {alpha: 0}, 0.4, {ease: FlxEase.quartOut});
 				}
 
-				if (botplayOn)
+				if (botplayOn || (curBuffType != buffType))
 				{
-					ClientPrefs.tokensAchieved = 0;
+					if (botplayOn) ClientPrefs.tokensAchieved = 0;
 					restartSong();
 				}
 					
@@ -569,24 +568,6 @@ class PauseSubState extends MusicBeatSubstate
 
 		if (accepted && (cantUnpause <= 0 || !ClientPrefs.controllerMode) && !onSkipTime && !onQuickSettings)
 		{
-			if (menuItems == difficultyChoices)
-			{
-				if(menuItems.length - 1 != curSelected && difficultyChoices.contains(daSelected)) {
-					var name:String = PlayState.SONG.song;
-					var poop = Highscore.formatSong(name, curSelected);
-					PlayState.SONG = Song.loadFromJson(poop, name);
-					PlayState.storyDifficulty = curSelected;
-					MusicBeatState.resetState();
-					FlxG.sound.music.volume = 0;
-					PlayState.changedDifficulty = true;
-					PlayState.chartingMode = false;
-					return;
-				}
-
-				menuItems = menuItemsOG;
-				regenMenu();
-			}
-
 			switch (daSelected)
 			{
 				case "Resume Song":
@@ -704,6 +685,7 @@ class PauseSubState extends MusicBeatSubstate
 		changeOption();
 	}
 
+	var curBuffType:Int = -2;
 	function setBuff(wah:Int = -2)
 	{
 		if (wah == -2)
@@ -712,6 +694,8 @@ class PauseSubState extends MusicBeatSubstate
 			else if (ClientPrefs.buff2Selected) buffType = 2;
 			else if (ClientPrefs.buff3Selected) buffType = 3;
 			else buffType = 0;
+
+			curBuffType = buffType;
 		}
 		else
 		{
@@ -741,10 +725,6 @@ class PauseSubState extends MusicBeatSubstate
 			case "buff to use":
 				setBuff(wah);
 
-				ClientPrefs.buff1Selected = (buffType == 1);
-				ClientPrefs.buff2Selected = (buffType == 2);
-				ClientPrefs.buff3Selected = (buffType == 3);
-
 			case "cinematic bars": ClientPrefs.cinematicBars = (optiMode) ? false : !ClientPrefs.cinematicBars;
 			case "scroll type": ClientPrefs.downScroll = !ClientPrefs.downScroll;
 			case "botplay": 
@@ -769,7 +749,7 @@ class PauseSubState extends MusicBeatSubstate
 		{
 			case "buff to use":
 				optionInfo.y = 285;
-				text = (ClientPrefs.mechanics) ? "Choose what buff you want to use in-game." : "This is disabled by default since mechanics are turned off.";
+				text = (ClientPrefs.mechanics) ? "Choose what buff you want to use in-game.\n\n<R>WARNING:<R>\nIf you change this setting, the song will restart to apply the new buff." : "This is disabled by default since mechanics are turned off.";
 			case 'scroll type':
 				optionInfo.y = 285;
 				text = "Determine whether you want your notes to be scrolled upwards or downwards.";
@@ -786,7 +766,8 @@ class PauseSubState extends MusicBeatSubstate
 		}
 
 		optionInfo.text = text;
-		if (options[curOption].toLowerCase() != "botplay" && options[curOption].toLowerCase() != "moreoptions") optionInfo.text += "\n\n(Settings are applied once you restart or move to the next song.)";
+		if (options[curOption].toLowerCase() != "buff to use" && options[curOption].toLowerCase() != "botplay" && options[curOption].toLowerCase() != "moreoptions") 
+			optionInfo.text += "\n\n(Settings are applied once you restart or move to the next song.)";
 		
 		for (item in grpOpts.members)
 		{
@@ -889,140 +870,29 @@ class PauseSubState extends MusicBeatSubstate
 
 	public static function restartSong(noTrans:Bool = false)
 	{
-		if (changedSettings) //If you changed your settings in quick settings (mainly Mechanics)
+		var checkedSong:Bool = false;
+		var endType:String = (!ClientPrefs.mechanics) ? "Mechanicless" : "";
+		var song = Paths.formatToSongPath(levelInfo.text);
+		var fullSongPath = song + "-" + CoolUtil.difficultyString().toLowerCase() + endType;
+
+		try
 		{
-			switch(levelInfo.text)
+			var currentPlayer:String = PlayState.SONG.player1;
+			if (Song.loadFromJson(fullSongPath, song) != null) 
 			{
-				case "Toxic Mishap":
-					if (PlayState.storyDifficulty == 1)
-					{
-						if (ClientPrefs.mechanics == false)
-						{
-							trace('Its working! No mechanics for Toxic Mishap in Villainous!');
-							PlayState.SONG = Song.loadFromJson('toxic-mishap-villainousMechanicless', 'toxic-mishap');
-						}
-						else
-							PlayState.SONG = Song.loadFromJson('toxic-mishap-villainous', 'toxic-mishap');
-					}
-
-				case "Villainy":
-					if (PlayState.storyDifficulty == 0 || (PlayState.storyDifficulty == 1 && PlayState.isStoryMode == true)) //On Freeplay: 0, on Story Mode: 1
-					{
-						if (ClientPrefs.mechanics == false)
-						{
-							trace('Its working! No mechanics for Villainy in Villainous!');
-							PlayState.SONG = Song.loadFromJson('villainy-villainousMechanicless', 'villainy');
-						}
-						else
-						{
-							trace('Its working! Mechanics for Villainy in Villainous!');
-							PlayState.SONG = Song.loadFromJson('villainy-villainous', 'villainy');
-						}
-					}
-
-				case "Toybox":
-					if (ClientPrefs.mechanics == false)
-					{
-						if (PlayState.storyDifficulty == 0)
-						{
-							trace('Its working! No mechanics for Toybox in Casual!');
-							PlayState.SONG = Song.loadFromJson('toybox-casualMechanicless', 'toybox');
-						}
-						else if (PlayState.storyDifficulty == 1)
-						{
-							trace('Its working! No mechanics for Toybox in Villainous!');
-							PlayState.SONG = Song.loadFromJson('toybox-villainousMechanicless', 'toybox');
-						}
-					}
-					else if (ClientPrefs.mechanics == true)
-					{
-						if (PlayState.storyDifficulty == 0)
-						{
-							trace('Its working! Mechanics for Toybox in Casual!');
-							PlayState.SONG = Song.loadFromJson('toybox', 'toybox');
-						}
-						else if (PlayState.storyDifficulty == 1)
-						{
-							trace('Its working! Mechanics for Toybox in Villainous!');
-							PlayState.SONG = Song.loadFromJson('toybox-villainous', 'toybox');
-						}
-					}
-
-				case "Lustality Remix":
-					if (ClientPrefs.mechanics == false)
-					{
-						if (PlayState.storyDifficulty == 0)
-						{
-							trace('Its working! No mechanics for Lustality Remix in Casual!');
-							PlayState.SONG = Song.loadFromJson('lustality-remix-casualMechanicless', 'lustality-remix');
-						}
-						else if (PlayState.storyDifficulty == 1)
-						{
-							trace('Its working! No mechanics for Lustality Remix in Villainous!');
-							PlayState.SONG = Song.loadFromJson('lustality-remix-villainousMechanicless', 'lustality-remix');
-						}
-					}
-					else if (ClientPrefs.mechanics == true)
-					{
-						if (PlayState.storyDifficulty == 0)
-						{
-							trace('Its working! Mechanics for Lustality Remix in Casual!');
-							PlayState.SONG = Song.loadFromJson('lustality-remix', 'lustality-remix');
-						}
-						else if (PlayState.storyDifficulty == 1)
-						{
-							trace('Its working! Mechanics for Lustality Remix in Villainous!');
-							PlayState.SONG = Song.loadFromJson('lustality-remix-villainous', 'lustality-remix');
-						}
-						
-					}
-
-				case "Lustality V1":
-					if (ClientPrefs.mechanics == false)
-					{
-						if (PlayState.storyDifficulty == 0)
-						{
-							trace('Its working! No mechanics for Lustality V1 in Casual!');
-							PlayState.SONG = Song.loadFromJson('lustality-v1-casualMechanicless', 'lustality-v1');
-						}
-						else if (PlayState.storyDifficulty == 1)
-						{
-							trace('Its working! No mechanics for Lustality V1 in Villainous!');
-							PlayState.SONG = Song.loadFromJson('lustality-v1-villainousMechanicless', 'lustality-v1');
-						}
-					}
-					else if (ClientPrefs.mechanics == true)
-					{
-						if (PlayState.storyDifficulty == 0)
-						{
-							trace('Its working! Mechanics for Lustality V1 in Casual!');
-							PlayState.SONG = Song.loadFromJson('lustality-v1', 'lustality-v1');
-						}
-						else if (PlayState.storyDifficulty == 1)
-						{
-							trace('Its working! Mechanics for Lustality V1 in Villainous!');
-							PlayState.SONG = Song.loadFromJson('lustality-v1-villainous', 'lustality-v1');
-						}
-					}
-
-				case "Toxic Mishap (Legacy)":
-					if (PlayState.storyDifficulty == 1)
-					{
-						if (ClientPrefs.mechanics == false)
-						{
-							trace('Its working! No mechanics for Toxic Mishap (Legacy) in Villainous!');
-							PlayState.SONG = Song.loadFromJson('toxic-mishap-(legacy)-villainousMechanicless', 'toxic-mishap-(legacy)');
-						}
-						else
-						{
-							trace('Its working! Mechanics for Toxic Mishap (Legacy) in Villainous!');
-							PlayState.SONG = Song.loadFromJson('toxic-mishap-(legacy)-villainous', 'toxic-mishap-(legacy)');
-						}
-					}
+				PlayState.SONG = Song.loadFromJson(fullSongPath, song);
+				checkedSong = true;
 			}
-			if (levelInfo.text != 'Concert Chaos')
-				PlayState.SONG.player1 = playerSelected;
-		}	
+
+			if (checkedSong) trace('Checked $song -> Loading $fullSongPath!');
+			else trace("No need to check here.");
+
+			PlayState.SONG.player1 = currentPlayer;
+		}
+		catch(e)
+		{
+			trace("Error loading JSON!");
+		}
 		
 		// Do not touch lmao
 		PlayState.instance.paused = true; // For lua
