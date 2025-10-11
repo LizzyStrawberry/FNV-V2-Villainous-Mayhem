@@ -6,7 +6,7 @@ import flixel.util.FlxStringUtil;
 
 class PauseSubState extends MusicBeatSubstate
 {
-	var options:Array<String> = ['Mechanics', 'Shaders', 'Cinematic Bars', 'Scroll Type', 'BotPlay', 'MoreOptions']; //Main Quick Options for Story Mode
+	var options:Array<String> = ['Mechanics', 'Shaders', 'Buff To Use', 'Scroll Type', 'BotPlay', 'MoreOptions']; //Main Quick Options for Story Mode
 	public static var pauseOptions:Bool = false;
 
 	private var grpOpts:FlxTypedGroup<Alphabet>;
@@ -48,6 +48,9 @@ class PauseSubState extends MusicBeatSubstate
 
 	public static var changedSettings:Bool = false;
 	public static var playerSelected:String = '';
+
+	var buffs:Array<String> = ["None", "Health Regen.", "Second Chance", "Immunity"];
+	var buffType:Int = 0;
 
 	public static var songName:String = '';
 
@@ -309,8 +312,8 @@ class PauseSubState extends MusicBeatSubstate
 		levelDifficulty.updateHitbox();
 		add(levelDifficulty);
 
-		var blueballedTxt:FlxText = new FlxText(pauseCard.x + pad, 15 + 82, 0, "", 32);
-		if(levelInfo.text == 'Forsaken (Picmixed)' || levelInfo.text == "Get Pico'd" || levelInfo.text == 'Toybox')
+		var blueballedTxt:FlxText = new FlxText(20, 15 + 82, 0, "", 32);
+		if(levelInfo.text == 'Forsaken (Picmixed)' || levelInfo.text == "Partner" || levelInfo.text == "Get Pico'd" || levelInfo.text == 'Toybox')
 			blueballedTxt.text = "Blueballed: " + PlayState.deathCounter;
 		else
 			blueballedTxt.text = "Redtitted: " + PlayState.deathCounter;
@@ -363,6 +366,8 @@ class PauseSubState extends MusicBeatSubstate
 		}
 		else
 			charmText.text = "Charm: None";
+
+		setBuff();
 
 		practiceText = new FlxText(pauseCard.x + pad, 15 + 101, 0, "PRACTICE MODE", 32);
 		practiceText.scrollFactor.set();
@@ -477,31 +482,25 @@ class PauseSubState extends MusicBeatSubstate
 	var optionInfo:FlxText;
 
 	var botplayOn:Bool = false;
-	var huh = 0;
-	var delay:Bool = false;
 
 	override function update(elapsed:Float)
 	{
 		cantUnpause -= elapsed;
-		if (pauseMusic.volume < 0.5)
-			pauseMusic.volume += 0.01 * elapsed;
+		if (pauseMusic.volume < 0.5) pauseMusic.volume += 0.01 * elapsed;
 
 		super.update(elapsed);
 
 		var upP = controls.UI_UP_P;
 		var downP = controls.UI_DOWN_P;
 
-		if (upP && (onSkipTime == false && onQuickSettings == false))
+		if (!onSkipTime && !onQuickSettings)
 		{
-			changeSelection(-1);
-		}
-		if (downP && (onSkipTime == false && onQuickSettings == false))
-		{
-			changeSelection(1);
+			if (upP) changeSelection(-1);
+			if (downP) changeSelection(1);
 		}
 
 		var daSelected:String = menuItems[curSelected];
-		if (onSkipTime == true)
+		if (onSkipTime)
 			switch (daSelected)
 			{
 				case 'Skip Time':
@@ -521,10 +520,7 @@ class PauseSubState extends MusicBeatSubstate
 					if(controls.UI_LEFT || controls.UI_RIGHT)
 					{
 						holdTime += elapsed;
-						if(holdTime > 0.5)
-						{
-							curTime += 45000 * elapsed * (controls.UI_LEFT ? -1 : 1);
-						}
+						if(holdTime > 0.5) curTime += 45000 * elapsed * (controls.UI_LEFT ? -1 : 1);
 
 						if(curTime >= FlxG.sound.music.length) curTime -= FlxG.sound.music.length;
 						else if(curTime < 0) curTime += FlxG.sound.music.length;
@@ -535,16 +531,13 @@ class PauseSubState extends MusicBeatSubstate
 					{
 						if (ClientPrefs.haptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
 						onSkipTime = false;
-						if (skipTimeTweenFadeIn != null)
-							skipTimeTweenFadeIn.cancel();
+						if (skipTimeTweenFadeIn != null) skipTimeTweenFadeIn.cancel();
 						skipTimeTweenFadeOut = FlxTween.tween(skipTimeText, {alpha: 0}, 0.4, {ease: FlxEase.quartInOut});
 
-						if (skipTimeTweenTitleFadeIn != null)
-							skipTimeTweenTitleFadeIn.cancel();
+						if (skipTimeTweenTitleFadeIn != null) skipTimeTweenTitleFadeIn.cancel();
 						skipTimeTweenTitleFadeOut = FlxTween.tween(skipTimeTitle, {alpha: 0}, 0.4, {ease: FlxEase.quartInOut});
 
-						if (skipTimeBGTweenFadeIn != null)
-							skipTimeBGTweenFadeIn.cancel();
+						if (skipTimeBGTweenFadeIn != null) skipTimeBGTweenFadeIn.cancel();
 						skipTimeBGTweenFadeOut = FlxTween.tween(skipTimeBG, {alpha: 0}, 0.4, {ease: FlxEase.quartInOut});
 					}
 					
@@ -567,65 +560,25 @@ class PauseSubState extends MusicBeatSubstate
 					}
 			}
 		
-		if (onQuickSettings == true)
+		if (onQuickSettings)
 		{
-			if (controls.UI_UP_P)
-			{
-				FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
-				changeOption(-1);
-			}
-			if (controls.UI_DOWN_P)
-			{
-				FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
-				changeOption(1);
-			}
+			if (controls.UI_UP_P) changeOption(-1, true);
+			if (controls.UI_DOWN_P) changeOption(1, true);
 
-			if (!delay && curOption != 5)
+			if (options[curOption].toLowerCase() != "moreoptions")
 			{
-				if (controls.UI_LEFT_P)
-				{
-					applyOption(-1);
-				}
-
-				if (controls.UI_RIGHT_P)
-				{
-					applyOption(1);
-				}
+				if (controls.UI_LEFT_P) applyOption(-1);
+				if (controls.UI_RIGHT_P) applyOption(1);
 			}
 
 			// Exclusively for "More Options.."
-			if (PlayState.isInjectionMode || PlayState.isMayhemMode)
+			if (options[curOption].toLowerCase() == "moreoptions" && controls.ACCEPT)
 			{
-				if (curOption == 3 && (controls.ACCEPT || TouchUtil.pressAction(grpOpts.members[curOption])))
-				{
-					PlayState.instance.paused = true;
-					PlayState.instance.vocals.volume = 0;
+				PlayState.instance.paused = true;
+				PlayState.instance.vocals.volume = 0;
 
-					pauseOptions = true;
-					MusicBeatState.switchState(new options.OptionsState());
-				}
-			}
-			else if (PlayState.isIniquitousMode)
-			{
-				if (curOption == 4 && (controls.ACCEPT || TouchUtil.pressAction(grpOpts.members[curOption])))
-				{
-					PlayState.instance.paused = true;
-					PlayState.instance.vocals.volume = 0;
-
-					pauseOptions = true;
-					MusicBeatState.switchState(new options.OptionsState());
-				}
-			}
-			else
-			{
-				if (curOption == 5 && (controls.ACCEPT || TouchUtil.pressAction(grpOpts.members[curOption])))
-				{
-					PlayState.instance.paused = true;
-					PlayState.instance.vocals.volume = 0;
-
-					pauseOptions = true;
-					MusicBeatState.switchState(new options.OptionsState());
-				}
+				pauseOptions = true;
+				MusicBeatState.switchState(new options.OptionsState());
 			}
 
 			if (controls.BACK)
@@ -633,22 +586,15 @@ class PauseSubState extends MusicBeatSubstate
 				if (ClientPrefs.haptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
 				onQuickSettings = accepted = false;
 					
-				if (optionsBGTweenFadeIn != null)
-					optionsBGTweenFadeIn.cancel();
+				if (optionsBGTweenFadeIn != null) optionsBGTweenFadeIn.cancel();
 				optionsBGTweenFadeOut = FlxTween.tween(optionsBG, {alpha: 0}, 0.4, {ease: FlxEase.quartOut});
 
-				if (optionInfoTweenFadeIn != null)
-					optionInfoTweenFadeIn.cancel();
-				optionInfoTweenFadeOut = FlxTween.tween(optionInfo, {alpha: 0}, 0.4, {ease: FlxEase.quartOut, onComplete: function(_)
-					{
-						onQuickSettings = false;
-					}
-				});
+				if (optionInfoTweenFadeIn != null) optionInfoTweenFadeIn.cancel();
+				optionInfoTweenFadeOut = FlxTween.tween(optionInfo, {alpha: 0}, 0.4, {ease: FlxEase.quartOut});
 
 				for (item in grpOpts.members)
 				{
-					if (quickSettingsTweenFadeIn != null)
-						quickSettingsTweenFadeIn.cancel();
+					if (quickSettingsTweenFadeIn != null) quickSettingsTweenFadeIn.cancel();
 					quickSettingsTweenFadeOut = FlxTween.tween(item, {alpha: 0}, 0.4, {ease: FlxEase.quartOut});
 				}
 
@@ -662,7 +608,7 @@ class PauseSubState extends MusicBeatSubstate
 			}
 		}
 
-		if ((TouchUtil.pressAction(mainItem, pauseCam) || controls.ACCEPT) && (cantUnpause <= 0 || !ClientPrefs.controllerMode) && (onSkipTime == false && onQuickSettings == false))
+		if ((TouchUtil.pressAction(mainItem, pauseCam) || controls.ACCEPT) && (cantUnpause <= 0 || !ClientPrefs.controllerMode) && !onSkipTime && onQuickSettings!)
 		{
 			if (ClientPrefs.haptics) Haptic.vibrateOneShot(0.05, 0.35, 0.5);
 			if (menuItems == difficultyChoices)
@@ -758,7 +704,7 @@ class PauseSubState extends MusicBeatSubstate
 					PlayState.changedDifficulty = false;
 					PlayState.chartingMode = false;
 				case "You cannot escape.":
-					//Do Nothing. We do not want to let the player escape. Exclusive for Forsaken and Get Villain'd
+					//Do Nothing. We do not want to let the player escape. Exclusive for Forsaken.
 			}
 		}
 	}
@@ -770,20 +716,16 @@ class PauseSubState extends MusicBeatSubstate
 		optionsBG.scrollFactor.set();
 		add(optionsBG);
 
-		if (optionsBGTweenFadeOut != null)
-			optionsBGTweenFadeOut.cancel();
+		if (optionsBGTweenFadeOut != null) optionsBGTweenFadeOut.cancel();
 		optionsBGTweenFadeIn = FlxTween.tween(optionsBG, {alpha: 0.6}, 0.4, {ease: FlxEase.quartOut});
 
-		optionInfo = new FlxText(750, 340, FlxG.width - 800,
-			"TEST",
-			25);
+		optionInfo = new FlxText(750, 340, FlxG.width - 800, "TEST", 25);
 		optionInfo.setFormat("VCR OSD Mono", 30, FlxColor.WHITE, CENTER);
 		optionInfo.scrollFactor.set();
 		optionInfo.alpha = 0;
 		add(optionInfo);
 
-		if (optionInfoTweenFadeOut != null)
-			optionInfoTweenFadeOut.cancel();
+		if (optionInfoTweenFadeOut != null) optionInfoTweenFadeOut.cancel();
 		optionInfoTweenFadeIn = FlxTween.tween(optionInfo, {alpha: 1}, 0.4, {ease: FlxEase.quartOut});
 
 		grpOpts = new FlxTypedGroup<Alphabet>();
@@ -804,456 +746,132 @@ class PauseSubState extends MusicBeatSubstate
 		changeOption();
 	}
 
-	function applyOption(wah:Int = 0)
+	function setBuff(wah:Int = -2)
 	{
 		if (ClientPrefs.haptics) Haptic.vibrateOneShot(0.05, 0.35, 0.5);
-		huh += wah;
-		if (huh > 1)
-			huh = 1;
-		if (huh < 0)
-			huh = 0;
+		if (wah == -2)
+		{
+			if (ClientPrefs.buff1Selected) buffType = 1;
+			else if (ClientPrefs.buff2Selected) buffType = 2;
+			else if (ClientPrefs.buff3Selected) buffType = 3;
+			else buffType = 0;
+		}
+		else
+		{
+			var optiMode:Bool = ClientPrefs.optimizationMode;
+			buffType += wah;
+
+			if (buffType > buffs.length - 1) buffType = 0;
+			if (buffType < 0) buffType = buffs.length - 1;
+			if (optiMode || !ClientPrefs.mechanics) buffType = 0; // Disable all the time if these parameters are met
+
+			ClientPrefs.buff1Selected = (buffType == 1);
+			ClientPrefs.buff2Selected = (buffType == 2);
+			ClientPrefs.buff3Selected = (buffType == 3);
+		}
+	}
+
+	function applyOption(wah:Int = 0)
+	{
 		FlxG.sound.play(Paths.sound('confirmMenu'), 0.2);
 
-		if ((PlayState.isStoryMode && !PlayState.isIniquitousMode)
-		|| (!PlayState.isStoryMode && !PlayState.isIniquitousMode && !PlayState.isInjectionMode && !PlayState.isMayhemMode)) //STORY MODE OR FREEPLAY
+		var optiMode:Bool = ClientPrefs.optimizationMode;
+		
+		switch(options[curOption].toLowerCase())
 		{
-			for (item in grpOpts.members)
-			{
-				if (huh == 0 && !delay)
-				{
-					switch (curOption)
-					{
-						case 0:
-							if (ClientPrefs.optimizationMode == false)
-							{
-								ClientPrefs.mechanics = false;
-								changedSettings = true;
-								trace ("Mechanics: False");
-							}
-						case 1:
-							if (ClientPrefs.optimizationMode == false)
-							{
-								ClientPrefs.shaders = false;
-								trace ("Shaders: False");
-							}
-						case 2:
-							if (ClientPrefs.optimizationMode == false)
-							{
-								ClientPrefs.cinematicBars = false;
-								trace ("Cinematic Bars: False");
-							}
-						case 3:
-							ClientPrefs.downScroll = false;
-							trace ("Downscroll: False");
-						case 4:
-							ClientPrefs.gameplaySettings.set('botplay', false);
-							botplayOn = false;
-							trace ("Botplay: False.");
-					}
-				}
-				else if (huh == 1 && !delay)
-				{
-					switch (curOption)
-					{
-						case 0:
-							if (ClientPrefs.optimizationMode == false)
-							{
-								ClientPrefs.mechanics = true;
-								changedSettings = true;
-								trace ("Mechanics: True");
-							}
-						case 1:
-							if (ClientPrefs.optimizationMode == false)
-							{
-								ClientPrefs.shaders = true;
-								trace ("Shaders: True");
-							}
-						case 2:
-							if (ClientPrefs.optimizationMode == false)
-							{
-								ClientPrefs.cinematicBars = true;
-								trace ("Cinematic Bars: True");
-							}
-						case 3:
-							ClientPrefs.downScroll = true;
-							trace ("Downscroll: True");
-						case 4:
-							ClientPrefs.gameplaySettings.set('botplay', true);
-							botplayOn = true;
-							trace ("Botplay: True.");
-					}
-				}
-			}
-		}
+			case "mechanics": ClientPrefs.mechanics = (optiMode) ? false : !ClientPrefs.mechanics;
+			case "shaders": ClientPrefs.shaders = (optiMode) ? false : !ClientPrefs.shaders;
+			case "buff to use":
+				setBuff(wah);
 
-		if (PlayState.isInjectionMode || PlayState.isMayhemMode)
-		{
-			for (item in grpOpts.members)
-			{
-				if (huh == 0 && !delay)
-				{
-					switch (curOption)
-					{
-						case 0:
-							if (ClientPrefs.optimizationMode == false)
-							{
-								ClientPrefs.shaders = false;
-								trace ("Shaders: False");
-							}
-						case 1:
-							if (ClientPrefs.optimizationMode == false)
-							{
-								ClientPrefs.cinematicBars = false;
-								trace ("Cinematic Bars: False");
-							}
-						case 2:
-							ClientPrefs.downScroll = false;
-							trace ("Downscroll: False");
-					}
-				}
-				else if (huh == 1 && !delay)
-				{
-					switch (curOption)
-					{
-						case 0:
-							if (ClientPrefs.optimizationMode == false)
-							{
-								ClientPrefs.shaders = true;
-								trace ("Shaders: True");
-							}
-						case 1:
-							if (ClientPrefs.optimizationMode == false)
-							{
-								ClientPrefs.cinematicBars = true;
-								trace ("Cinematic Bars: True");
-							}
-						case 2:
-							ClientPrefs.downScroll = true;
-							trace ("Downscroll: True");
-					}
-				}
-			}
-		}
+				ClientPrefs.buff1Selected = (buffType == 1);
+				ClientPrefs.buff2Selected = (buffType == 2);
+				ClientPrefs.buff3Selected = (buffType == 3);
 
-		if (PlayState.isIniquitousMode)
-		{
-			for (item in grpOpts.members)
-			{
-				if (huh == 0 && !delay)
-				{
-					switch (curOption)
-					{
-						case 0:
-							if (ClientPrefs.optimizationMode == false)
-							{
-								ClientPrefs.shaders = false;
-								trace ("Shaders: False");
-							}
-						case 1:
-							if (ClientPrefs.optimizationMode == false)
-							{
-								ClientPrefs.cinematicBars = false;
-								trace ("Cinematic Bars: False");
-							}
-						case 2:
-							ClientPrefs.downScroll = false;
-							trace ("Downscroll: False");
-						case 3:
-							ClientPrefs.gameplaySettings.set('botplay', false);
-							botplayOn = false;
-							trace ("Botplay: False.");
-					}
-				}
-				else if (huh == 1 && !delay)
-				{
-					switch (curOption)
-					{
-						case 0:
-							if (ClientPrefs.optimizationMode == false)
-							{
-								ClientPrefs.shaders = true;
-								trace ("Shaders: True");
-							}
-						case 1:
-							if (ClientPrefs.optimizationMode == false)
-							{
-								ClientPrefs.cinematicBars = true;
-								trace ("Cinematic Bars: True");
-							}
-						case 2:
-							ClientPrefs.downScroll = true;
-							trace ("Downscroll: True");
-						case 3:
-							ClientPrefs.gameplaySettings.set('botplay', true);
-							botplayOn = true;
-							trace ("Botplay: True.");
-					}
-				}
-			}
+			case "cinematic bars": ClientPrefs.cinematicBars = (optiMode) ? false : !ClientPrefs.cinematicBars;
+			case "scroll type": ClientPrefs.downScroll = !ClientPrefs.downScroll;
+			case "botplay": 
+				botplayOn = !botplayOn;
+				ClientPrefs.gameplaySettings.set('botplay', botplayOn);
 		}
-		delay = true;
-		new FlxTimer().start(0.05, function (tmr:FlxTimer) {
-			delay = false;
-		});
 
 		changeOption();	
 	}
 
 	var dur:Float = 0.25;
-	function changeOption(change:Int = 0)
+	function changeOption(change:Int = 0, ?playSound:Bool = false)
 	{
-		curOption += change;
+		if (playSound) FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
 		if (ClientPrefs.haptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
-		if ((PlayState.isStoryMode && !PlayState.isIniquitousMode)
-		|| (!PlayState.isStoryMode && !PlayState.isIniquitousMode && !PlayState.isInjectionMode && !PlayState.isMayhemMode))
+		curOption += change;
+
+		if (curOption < 0) curOption = options.length - 1;
+		if (curOption > options.length - 1) curOption = 0;
+
+		var text:String = null;
+		switch (options[curOption].toLowerCase())
 		{
-			if (curOption < 0)
-				curOption = 5;
-			if (curOption > 5)
-				curOption = 0;
-	
-			for (item in grpOpts.members)
-			{
-				if (curOption == item.ID)
-					quickSettingsTweenFadeIn = FlxTween.tween(item, {alpha: 1}, dur, {ease: FlxEase.quartOut});
-				else
-					quickSettingsTweenFadeIn = FlxTween.tween(item, {alpha: 0.6}, dur, {ease: FlxEase.quartOut});
-	
-				switch (curOption)
-				{
-					case 0:
-						optionInfo.y = 285;
-						if (ClientPrefs.optimizationMode == false)
-							optionInfo.text = "Determine whether you want mechanics to be turned on or off.\n\n(Settings are applied once you restart or move to the next song.)";
-						else
-							optionInfo.text = "This is disabled by default since optimization mode is turned on.";
-					case 1:
-						optionInfo.y = 285;
-						if (ClientPrefs.optimizationMode == false)
-							optionInfo.text = "Determine whether you want shaders to be turned on or off.\n\n(Settings are applied once you restart or move to the next song.)";
-						else
-							optionInfo.text = "This is disabled by default since optimization mode is turned on.";
-					case 2:
-						optionInfo.y = 285;
-						if (ClientPrefs.optimizationMode == false)
-							optionInfo.text = "Determine whether you want cinematic bars to be turned on or off.\n\n(Settings are applied once you restart or move to the next song.)";
-						else
-							optionInfo.text = "This is disabled by default since optimization mode is turned on.";
-					case 3:
-						optionInfo.y = 285;
-						optionInfo.text = "Determine whether you want your notes to be scrolled upwards or downwards.\n\n(Settings are applied once you restart or move to the next song.)";
-					case 4:
-						optionInfo.y = 275;
-						optionInfo.text = "Determine whether you want to turn botplay on or off.\n\n<R>WARNING:<R>\nTurning botplay <G>ON<G> will reset your gameplay, aswell as your progress.\nTo disable, tap C on the Story Mode / Freeplay Menu.";
-					case 5:
-						optionInfo.y = 320;
-						optionInfo.text = "TAP to access all of FNV's settings.\nNo progress will be lost.";
-				}
-	
-				if (ClientPrefs.mechanics == true)
-				{
-					if (item.ID == 0)
-						item.text = "Mechanics (Enabled)";
-				}		
-				else
-				{
-					if (item.ID == 0)
-						item.text = "Mechanics (Disabled)";
-				}	
-				if (ClientPrefs.shaders == true)
-				{
-					if (item.ID == 1)
-						item.text = "Shaders (Enabled)";
-				}		
-				else
-				{
-					if (item.ID == 1)
-						item.text = "Shaders (Disabled)";
-				}
-				if (ClientPrefs.cinematicBars == true)
-				{
-					if (item.ID == 2)
-						item.text = "Cinematic Bars (Enabled)";
-				}		
-				else
-				{
-					if (item.ID == 2)
-						item.text = "Cinematic Bars (Disabled)";
-				}
-				if (ClientPrefs.downScroll == true)
-				{
-					if (item.ID == 3)
-						item.text = "Scroll Type (Downwards)";
-				}		
-				else
-				{
-					if (item.ID == 3)
-						item.text = "Scroll Type (Upwards)";
-				}
-				if (!ClientPrefs.getGameplaySetting('botplay', false))
-				{
-					if (item.ID == 4)
-							item.text = "Botplay (Disabled)";
-				}		
-				else
-				{
-					if (item.ID == 4)
-						item.text = "Botplay (Enabled)";
-				}
-				if (item.ID == 5)
-					item.text = "More Options..";
-			}
+			case "buff to use":
+				optionInfo.y = 285;
+				text = (ClientPrefs.mechanics) ? "Choose what buff you want to use in-game." : "This is disabled by default since mechanics are turned off.";
+			case 'scroll type':
+				optionInfo.y = 285;
+				text = "Determine whether you want your notes to be scrolled upwards or downwards.";
+			case "botplay":
+				optionInfo.y = 275;
+				text = "Determine whether you want to turn botplay on or off.\n\n<R>WARNING:<R>\nTurning botplay <G>ON<G> will reset your gameplay, aswell as your progress.\nTo disable, press CTRL on the Story Mode / Freeplay Menu.";
+			case "moreoptions":
+				optionInfo.y = 320;
+				text = "Press ENTER to access all of FNV's settings.\nNo progress will be lost.";
+		
+			default:
+				optionInfo.y = 285;
+				text = (!ClientPrefs.optimizationMode) ? "Determine whether you want " + options[curOption] + " to be turned on or off." : "This is disabled by default since optimization mode is turned on.";
 		}
+
+		optionInfo.text = text;
+		if (options[curOption].toLowerCase() != "botplay" && options[curOption].toLowerCase() != "moreoptions") optionInfo.text += "\n\n(Settings are applied once you restart or move to the next song.)";
+		
+		for (item in grpOpts.members)
+		{
+			quickSettingsTweenFadeIn = FlxTween.tween(item, {alpha: (curOption == item.ID) ? 1 : 0.6}, dur, {ease: FlxEase.quartOut});
+		
+			switch(item.ID)
+			{
+				case 0:
+					if (options[item.ID].toLowerCase() == "mechanics")
+						item.text = "Mechanics (" + (ClientPrefs.mechanics ? "Enabled" : "Disabled") + ")";
+					else
+						item.text = "Shaders (" + (ClientPrefs.shaders ? "Enabled" : "Disabled") + ")";
+					
+				case 1:
+					if (options[item.ID].toLowerCase() == "shaders")
+						item.text = "Shaders (" + (ClientPrefs.shaders ? "Enabled" : "Disabled") + ")";
+					else
+						item.text = "Cinematic Bars (" + (ClientPrefs.cinematicBars ? "Enabled" : "Disabled") + ")";
 			
-		if (PlayState.isInjectionMode || PlayState.isMayhemMode)
-		{
-			if (curOption < 0)
-				curOption = 3;
-			if (curOption > 3)
-				curOption = 0;
-	
-			for (item in grpOpts.members)
-			{
-				if (curOption == item.ID)
-					quickSettingsTweenFadeIn = FlxTween.tween(item, {alpha: 1}, 0.4, {ease: FlxEase.quartOut});
-				else
-					quickSettingsTweenFadeIn = FlxTween.tween(item, {alpha: 0.6}, 0.4, {ease: FlxEase.quartOut});
-	
-				switch (curOption)
-				{
-					case 0:
-						optionInfo.y = 285;
-						if (ClientPrefs.optimizationMode == false)
-							optionInfo.text = "Determine whether you want shaders to be turned on or off.\n\n(Settings are applied once you restart or move to the next song.)";
-						else
-							optionInfo.text = "This is disabled by default since optimization mode is turned on.";
-					case 2:
-						optionInfo.y = 285;
-						optionInfo.text = "Determine whether you want your notes to be scrolled upwards or downwards.\n\n(Settings are applied once you move to the next song.)";
-					case 3:
-						optionInfo.y = 320;
-						optionInfo.text = "TAP to access all of FNV's settings.\nNo progress will be lost.";
-				}
-	
-				if (ClientPrefs.shaders == true)
-				{
-					if (item.ID == 0)
-						item.text = "Shaders (Enabled)";
-				}		
-				else
-				{
-					if (item.ID == 0)
-						item.text = "Shaders (Disabled)";
-				}
-				if (ClientPrefs.cinematicBars == true)
-				{
-					if (item.ID == 1)
-						item.text = "Cinematic Bars (Enabled)";
-				}		
-				else
-				{
-					if (item.ID == 1)
-						item.text = "Cinematic Bars (Disabled)";
-				}
-				if (ClientPrefs.downScroll == true)
-				{
-					if (item.ID == 2)
-						item.text = "Scroll Type (Downwards)";
-				}		
-				else
-				{
-					if (item.ID == 2)
-						item.text = "Scroll Type (Upwards)";
-				}
-				if (item.ID == 3)
-					item.text = "More Options..";
+				case 2:
+					if (options[item.ID].toLowerCase() == "buff to use")
+						item.text = "Buff (" + buffs[buffType] + ")";
+					else
+						item.text = "Scroll Type (" + (ClientPrefs.downScroll ? "Downwards" : "Upwards") + ")";
+
+				case 3:
+					if (options[item.ID].toLowerCase() == "scroll type")
+						item.text = "Scroll Type (" + (ClientPrefs.downScroll ? "Downwards" : "Upwards") + ")";
+					else
+						item.text = "Botplay (" + (botplayOn ? "Enabled" : "Disabled") + ")";
+
+				case 4:
+					if (options[item.ID].toLowerCase() == "botplay")
+						item.text = "Botplay (" + (botplayOn ? "Enabled" : "Disabled") + ")";
+					else
+						item.text = "More Options..";
+
+				default: item.text = "More Options..";
 			}
 		}
-
-		if (PlayState.isIniquitousMode)
-		{
-			if (curOption < 0)
-				curOption = 4;
-			if (curOption > 4)
-				curOption = 0;
-	
-			for (item in grpOpts.members)
-			{
-				if (curOption == item.ID)
-					quickSettingsTweenFadeIn = FlxTween.tween(item, {alpha: 1}, 0.4, {ease: FlxEase.quartOut});
-				else
-					quickSettingsTweenFadeIn = FlxTween.tween(item, {alpha: 0.6}, 0.4, {ease: FlxEase.quartOut});
-
-				switch (curOption)
-				{
-					case 0:
-						optionInfo.y = 285;
-						if (ClientPrefs.optimizationMode == false)
-							optionInfo.text = "Determine whether you want shaders to be turned on or off.\n\n(Settings are applied once you restart or move to the next song.)";
-						else
-							optionInfo.text = "This is disabled by default since optimization mode is turned on.";
-					case 1:
-						optionInfo.y = 285;
-						if (ClientPrefs.optimizationMode == false)
-							optionInfo.text = "Determine whether you want cinematic bars to be turned on or off.\n\n(Settings are applied once you restart or move to the next song.)";
-						else
-							optionInfo.text = "This is disabled by default since optimization mode is turned on.";
-					case 2:
-						optionInfo.y = 285;
-						optionInfo.text = "Determine whether you want your notes to be scrolled upwards or downwards.\n\n(Settings are applied once you restart or move to the next song.)";
-					case 3:
-						optionInfo.y = 275;
-						optionInfo.text = "Determine whether you want to turn botplay on or off.\n\n<R>WARNING:<R>\nTurning botplay <G>ON<G> will reset your gameplay, aswell as your progress.\nTo disable, tap C on the Story Mode / Freeplay Menu.";
-					case 4:
-						optionInfo.y = 320;
-						optionInfo.text = "TAP to access all of FNV's settings.\nNo progress will be lost.";
-				}
-	
-				if (ClientPrefs.shaders == true)
-				{
-					if (item.ID == 0)
-						item.text = "Shaders (Enabled)";
-				}		
-				else
-				{
-					if (item.ID == 0)
-						item.text = "Shaders (Disabled)";
-				}
-				if (ClientPrefs.cinematicBars == true)
-				{
-					if (item.ID == 1)
-						item.text = "Cinematic Bars (Enabled)";
-				}		
-				else
-				{
-					if (item.ID == 1)
-						item.text = "Cinematic Bars (Disabled)";
-				}
-				if (ClientPrefs.downScroll == true)
-				{
-					if (item.ID == 2)
-						item.text = "Scroll Type (Downwards)";
-				}		
-				else
-				{
-					if (item.ID == 2)
-						item.text = "Scroll Type (Upwards)";
-				}
-				if (!ClientPrefs.getGameplaySetting('botplay', false))
-				{
-					if (item.ID == 3)
-						item.text = "Botplay (Disabled)";
-				}		
-				else
-				{
-					if (item.ID == 3)
-						item.text = "Botplay (Enabled)";
-				}
-				if (item.ID == 4)
-					item.text = "More Options..";
-			}
-		}
-
+		
 		CustomFontFormats.addMarkers(optionInfo);
 	}
 
@@ -1289,16 +907,13 @@ class PauseSubState extends MusicBeatSubstate
 		skipTimeText.borderSize = 5;
 		add(skipTimeText);
 
-		if (skipTimeTweenFadeOut != null)
-			skipTimeTweenFadeOut.cancel();
+		if (skipTimeTweenFadeOut != null) skipTimeTweenFadeOut.cancel();
 		skipTimeTweenFadeIn = FlxTween.tween(skipTimeText, {alpha: 1}, 0.4, {ease: FlxEase.quartInOut});
 
-		if (skipTimeTweenTitleFadeOut != null)
-			skipTimeTweenTitleFadeOut.cancel();
+		if (skipTimeTweenTitleFadeOut != null) skipTimeTweenTitleFadeOut.cancel();
 		skipTimeTweenTitleFadeIn = FlxTween.tween(skipTimeTitle, {alpha: 1}, 0.4, {ease: FlxEase.quartInOut});
 
-		if (skipTimeBGTweenFadeOut != null)
-			skipTimeBGTweenFadeOut.cancel();
+		if (skipTimeBGTweenFadeOut != null) skipTimeBGTweenFadeOut.cancel();
 		skipTimeBGTweenFadeIn = FlxTween.tween(skipTimeBG, {alpha: 0.6}, 0.4, {ease: FlxEase.quartInOut});
 	
 		updateSkipTimeText();
@@ -1463,10 +1078,7 @@ class PauseSubState extends MusicBeatSubstate
 			FlxTransitionableState.skipNextTransOut = true;
 			FlxG.resetState();
 		}
-		else
-		{
-			MusicBeatState.resetState();
-		}
+		else MusicBeatState.resetState();
 	}
 
 	override function destroy()
@@ -1503,10 +1115,10 @@ class PauseSubState extends MusicBeatSubstate
 
 	var mainItem:Alphabet;
 	function regenMenu():Void {
-		mainItem = new Alphabet(MobileUtil.fixX(1250), 550, menuItems[curSelected], true);
-		mainItem.setAlignmentFromString('right');
-		mainItem.alpha = 0;
-		add(mainItem);
+		item = new Alphabet(MobileUtil.fixX(1250), 550, menuItems[curSelected], true);
+		item.setAlignmentFromString('right');
+		item.alpha = 0;
+		add(item);
 
 		FlxTween.tween(mainItem, {alpha: 1}, 0.4, {ease: FlxEase.quartInOut});
 
