@@ -168,6 +168,26 @@ class OptionsState extends MusicBeatState
 			else if (PauseSubState.pauseOptions)
 			{
 				PauseSubState.pauseOptions = false;
+				
+				var appliedChanges:Bool = false;
+				var currentPlayer:String = PlayState.SONG.player1;
+				var diff:String = '-${CoolUtil.difficultyString().toLowerCase()}';
+		
+				appliedChanges = PlayState.checkSongBeforeSwitching("LowQuality", PlayState.SONG.song, diff);
+				if (!appliedChanges) appliedChanges = PlayState.checkSongBeforeSwitching("Optimization", PlayState.SONG.song, diff);
+				if (!appliedChanges) appliedChanges = PlayState.checkSongBeforeSwitching("Mechanics", PlayState.SONG.song, diff);
+
+				if (appliedChanges)
+				{
+					PlayState.SONG.player1 = currentPlayer;
+					trace("Song has been modified successfully.");
+				}
+				else
+				{
+					PlayState.SONG = Song.loadFromJson(Paths.formatToSongPath(PlayState.SONG.song) + diff, Paths.formatToSongPath(PlayState.SONG.song));
+					trace("No modifications needed. -> " + Paths.formatToSongPath(PlayState.SONG.song) + diff);
+				}
+
 				StageData.loadDirectory(PlayState.SONG);
 				LoadingState.loadAndSwitchState(new PlayState());
 				FlxG.sound.music.volume = 0;

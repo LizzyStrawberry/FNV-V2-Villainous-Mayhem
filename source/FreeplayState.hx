@@ -873,16 +873,17 @@ class FreeplayState extends MusicBeatState
 				if(colorTween != null)
 					colorTween.cancel();
 
-				checkForMechanics(songs[curSelected].songName);
+				var appliedChanges:Bool = false;
+				var diff:String = CoolUtil.getDifficultyFilePath(curDifficulty);
+		
+				appliedChanges = PlayState.checkSongBeforeSwitching("LowQuality", songLowercase, diff);
+				if (!appliedChanges) appliedChanges = PlayState.checkSongBeforeSwitching("Optimization", songLowercase, diff);
+				if (!appliedChanges) appliedChanges = PlayState.checkSongBeforeSwitching("Mechanics", songLowercase, diff);
+
+				if (appliedChanges) trace("Song has been modified successfully.");
+				else trace("No modifications needed. -> " + Paths.formatToSongPath(songs[curSelected].songName) + diff);
+
 				var loadCharSelector:Bool = checkForCharSelector(songs[curSelected].songName);
-
-				if (songs[curSelected].songName == 'Libidinousness' && (ClientPrefs.optimizationMode || ClientPrefs.performanceWarning))
-				{
-					trace ('Low Quality (For Libidinousness) has been turned on!');
-
-					if (curDifficulty == 0) PlayState.SONG = Song.loadFromJson('libidinousness-villainousoptimized', 'libidinousness');
-					else if (curDifficulty == 1) PlayState.SONG = Song.loadFromJson('libidinousness-iniquitousoptimized', 'libidinousness');
-				}
 
 				if (loadCharSelector)
 				{
@@ -950,26 +951,6 @@ class FreeplayState extends MusicBeatState
 				return true;
 
 		return false;
-	}
-	
-	private function checkForMechanics(songName:String)
-	{
-		if (ClientPrefs.mechanics)
-		{
-			trace('Mechanics are on, no need to check for mechanics.');
-			return;
-		}
-
-		var diff:String = CoolUtil.getDifficultyFilePath(curDifficulty);
-		var fixedName:String = Paths.formatToSongPath(songName);
-		if (Song.loadFromJson(fixedName + diff + 'Mechanicless', fixedName) != null)
-		{
-			PlayState.SONG = Song.loadFromJson(fixedName + diff + 'Mechanicless', fixedName);
-			trace('Loading $songName without mechanics with chart file -> ${(fixedName + diff)}Mechanicless');
-		}
-		else
-			trace('No such chart file exists for song -> ${(fixedName + diff)}Mechanicless');
-		
 	}
 
 	function changeDiff(change:Int = 0)
