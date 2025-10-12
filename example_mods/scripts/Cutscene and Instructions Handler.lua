@@ -116,7 +116,7 @@ function onStartCountdown()
 			runTimer('playDialogue', 0.8)
 			viewedDialogue = true
 			return Function_Stop
-		elseif instructionsData.hasMechanic and not showMechanic then -- If there are mechanics
+		elseif instructionsData.hasMechanic and difficulty >= instructionsData.diff and not showMechanic then -- If there are mechanics
 			showMechanic = true
 			runTimer('warningAppear', 0.01)
 
