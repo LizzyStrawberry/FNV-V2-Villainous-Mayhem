@@ -4161,8 +4161,7 @@ class PlayState extends MusicBeatState
 			}
 			else
 			{
-				if (!checkForPowerUp)
-					songScore += 15000;
+				if (!checkForPowerUp) songScore += 15000;
 				freeplayScore += songScore;
 				freeplayMisses += songMisses;
 				ClientPrefs.campaignRating += ratingPercent;
@@ -4180,8 +4179,7 @@ class PlayState extends MusicBeatState
 				var noHelp:Bool = !ClientPrefs.getGameplaySetting('practice', false) && !ClientPrefs.getGameplaySetting('botplay', false);
 				saveContents(noHelp);
 
-				if (noHelp)
-					unlockSong(Paths.formatToSongPath(SONG.song), "Played");
+				if (noHelp) unlockSong(Paths.formatToSongPath(SONG.song), "Played");
 				
 				if (SONG.validScore && noHelp)
 				{
@@ -4240,7 +4238,7 @@ class PlayState extends MusicBeatState
 		trace('TOKENS SAVED AND ACHIEVED: ' + ClientPrefs.tokensAchieved);
 	}
 
-	function checkSongBeforeSwitching(type:String, song:String, diff:String):Bool
+	public static function checkSongBeforeSwitching(type:String, song:String, diff:String):Bool
 	{
 		var checkedSong:Bool = false;
 		var loweredType:String = type.toLowerCase();
@@ -4253,17 +4251,17 @@ class PlayState extends MusicBeatState
 				reflectType = Reflect.field(ClientPrefs, "optimizationMode");
 				endType = "optimized";
 
-				if (reflectType && PlayState.storyPlaylist[0] == song && Song.loadFromJson(song + diff + endType, song) != null)
+				if (reflectType && Song.loadFromJson(song + diff + endType, song) != null)
 				{
 					PlayState.SONG = Song.loadFromJson(song + diff + endType, song);
 					checkedSong = true;
 				}
 
 			case "lowquality":
-				reflectType = Reflect.field(ClientPrefs, "lowQuality");
+				reflectType = Reflect.field(ClientPrefs, "lowQuality") || Reflect.field(ClientPrefs, "performanceWarning");
 				endType = "optimized";
 
-				if (reflectType && PlayState.storyPlaylist[0] == song && Song.loadFromJson(song + diff + endType, song) != null)
+				if (reflectType && Song.loadFromJson(song + diff + endType, song) != null)
 				{
 					PlayState.SONG = Song.loadFromJson(song + diff + endType, song);
 					checkedSong = true;
@@ -4273,7 +4271,7 @@ class PlayState extends MusicBeatState
 				reflectType = Reflect.field(ClientPrefs, type.toLowerCase());
 				endType = "Mechanicless";
 				
-				if (!reflectType && PlayState.storyPlaylist[0] == song && Song.loadFromJson(song + diff + endType, song) != null)
+				if (!reflectType && Song.loadFromJson(song + diff + endType, song) != null)
 				{
 					PlayState.SONG = Song.loadFromJson(song + diff + endType, song);
 					checkedSong = true;

@@ -733,6 +733,12 @@ class PauseSubState extends MusicBeatSubstate
 		if (ClientPrefs.haptics) Haptic.vibrateOneShot(0.05, 0.35, 0.5);
 		if (wah == -2)
 		{
+			if (!ClientPrefs.mechanics)
+			{
+				buffType = 0;
+				return;
+			}
+
 			if (ClientPrefs.buff1Selected) buffType = 1;
 			else if (ClientPrefs.buff2Selected) buffType = 2;
 			else if (ClientPrefs.buff3Selected) buffType = 3;
@@ -763,10 +769,11 @@ class PauseSubState extends MusicBeatSubstate
 		
 		switch(options[curOption].toLowerCase())
 		{
-			case "mechanics": ClientPrefs.mechanics = (optiMode) ? false : !ClientPrefs.mechanics;
+			case "mechanics": 
+				ClientPrefs.mechanics = (optiMode) ? false : !ClientPrefs.mechanics;
+				if (ClientPrefs.mechanics) setBuff();
 			case "shaders": ClientPrefs.shaders = (optiMode) ? false : !ClientPrefs.shaders;
-			case "buff to use":
-				setBuff(wah);
+			case "buff to use": ClientPrefs.mechanics ? setBuff(wah) : setBuff();
 
 			case "cinematic bars": ClientPrefs.cinematicBars = (optiMode) ? false : !ClientPrefs.cinematicBars;
 			case "scroll type": ClientPrefs.downScroll = !ClientPrefs.downScroll;
@@ -914,28 +921,23 @@ class PauseSubState extends MusicBeatSubstate
 
 	public static function restartSong(noTrans:Bool = false)
 	{
-		var checkedSong:Bool = false;
-		var endType:String = (!ClientPrefs.mechanics) ? "Mechanicless" : "";
-		var song = Paths.formatToSongPath(levelInfo.text);
-		var fullSongPath = song + "-" + CoolUtil.difficultyString().toLowerCase() + endType;
+		var appliedChanges:Bool = false;
+		var currentPlayer:String = PlayState.SONG.player1;
+		var diff:String = '-${CoolUtil.difficultyString().toLowerCase()}';
 
-		try
+		appliedChanges = PlayState.checkSongBeforeSwitching("LowQuality", PlayState.SONG.song, diff);
+		if (!appliedChanges) appliedChanges = PlayState.checkSongBeforeSwitching("Optimization", PlayState.SONG.song, diff);
+		if (!appliedChanges) appliedChanges = PlayState.checkSongBeforeSwitching("Mechanics", PlayState.SONG.song, diff);
+
+		if (appliedChanges)
 		{
-			var currentPlayer:String = PlayState.SONG.player1;
-			if (Song.loadFromJson(fullSongPath, song) != null) 
-			{
-				PlayState.SONG = Song.loadFromJson(fullSongPath, song);
-				checkedSong = true;
-			}
-
-			if (checkedSong) trace('Checked $song -> Loading $fullSongPath!');
-			else trace("No need to check here.");
-
 			PlayState.SONG.player1 = currentPlayer;
+			trace("Song has been modified successfully.");
 		}
-		catch(e)
+		else 
 		{
-			trace("Error loading JSON!");
+			PlayState.SONG = Song.loadFromJson(Paths.formatToSongPath(PlayState.SONG.song) + diff, Paths.formatToSongPath(PlayState.SONG.song));
+			trace("No modifications needed. -> " + Paths.formatToSongPath(PlayState.SONG.song) + diff);
 		}
 		
 		// Do not touch lmao
