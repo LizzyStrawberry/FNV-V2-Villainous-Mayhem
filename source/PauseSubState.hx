@@ -771,7 +771,7 @@ class PauseSubState extends MusicBeatSubstate
 		{
 			case "mechanics": 
 				ClientPrefs.mechanics = (optiMode) ? false : !ClientPrefs.mechanics;
-				if (ClientPrefs.mechanics) setBuff();
+				setBuff();
 			case "shaders": ClientPrefs.shaders = (optiMode) ? false : !ClientPrefs.shaders;
 			case "buff to use": ClientPrefs.mechanics ? setBuff(wah) : setBuff();
 
