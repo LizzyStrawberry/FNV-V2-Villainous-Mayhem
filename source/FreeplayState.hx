@@ -313,7 +313,6 @@ class FreeplayState extends MusicBeatState
 				addSong('Marauder (Old)', 3, FlxColor.fromRGB(0 ,0, 0));
 				addSong('Get Villaind (Old)', 3, FlxColor.fromRGB(66, 255, 153));
 				addSong("Get Pico'd", 3, FlxColor.fromRGB(20, 153, 255));
-				addSong('Forsaken (Picmixed)', 3, FlxColor.fromRGB(39, 0, 87));
 				addSong('Partner', 3, FlxColor.fromRGB(39, 0, 87));
 				if (ClientPrefs.shucksUnlocked) addSong('Shuckle Fuckle', 3, FlxColor.fromRGB(0 ,0, 0));
 		}
@@ -640,13 +639,6 @@ class FreeplayState extends MusicBeatState
 				unlockedSelection.animation.play('idle');
 
 			case "Get Pico'd": unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_GetGooned'));
-			case 'Forsaken (Picmixed)':
-				customPosition = true;
-				unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_Forsaken'));
-				unlockedSelection.scale.set(1.2, 1.2);
-				unlockedSelection.screenCenter();
-				unlockedSelection.x += 20;
-				unlockedSelection.y -= 60;
 
 			case "It's Kiana": unlockedSelection.loadGraphic(Paths.image('freeplayStuff/selection_ItsKiana'));
 			case "Partner":
@@ -833,7 +825,7 @@ class FreeplayState extends MusicBeatState
 			var poop:String = Highscore.formatSong(songLowercase, curDifficulty);
 
 			var showMechWarn:Bool = false;
-			var mechSongs:Array<String> = ['Scrouge', 'Toxic Mishap', 'Paycheck', 'Nunday Monday', 'Nunconventional', 'Forsaken', 'Toybox', 'Lustality Remix', 'Forsaken (Picmixed)', 'Partner'];
+			var mechSongs:Array<String> = ['Scrouge', 'Toxic Mishap', 'Paycheck', 'Nunday Monday', 'Nunconventional', 'Forsaken', 'Toybox', 'Lustality Remix', 'Partner'];
 			var bossMechSongs:Array<String> = ['Villainy', 'Point Blank', 'Libidinousness'];
 
 			for (i in 0...mechSongs.length)
@@ -1009,8 +1001,7 @@ class FreeplayState extends MusicBeatState
 		var songName:String = songs[curSelected].songName;
 		switch (songName)
 		{
-			case 'Scrouge', 'Toxic Mishap', 'Paycheck', 'Nunday Monday', 'Nunconventional', 'Forsaken', 'Toybox', 'Lustality Remix',
-				"Forsaken (Picmixed)", "Partner":
+			case 'Scrouge', 'Toxic Mishap', 'Paycheck', 'Nunday Monday', 'Nunconventional', 'Forsaken', 'Toybox', 'Lustality Remix', "Partner":
 				var iniquitousEnabled:Bool = Achievements.isAchievementUnlocked('weekIniquitous_Beaten');
 				CoolUtil.difficulties = (iniquitousEnabled) ? CoolUtil.mainWeekDifficulties.copy() : CoolUtil.defaultDifficulties.copy();
 				if(CoolUtil.difficulties.contains((iniquitousEnabled) ?CoolUtil.mainWeekDifficulty : CoolUtil.defaultDifficulty))
