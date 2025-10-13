@@ -56,9 +56,6 @@ class StoryMenuState extends MusicBeatState
 	var leftArrow:FlxSprite;
 	var rightArrow:FlxSprite;
 
-	var wahoohie:FlxSprite;
-	var isAboutToGetMessage:Bool = false;
-
 	var weekCardBG:FlxSprite;
 	var weekCard:FlxSprite;
 	var play:FlxSprite;
@@ -288,19 +285,6 @@ class StoryMenuState extends MusicBeatState
 		blackOut.alpha = 0;
 		add(blackOut);
 
-		if (ClientPrefs.mainWeekBeaten && !ClientPrefs.gotWinMessage && !isAboutToGetMessage)
-		{
-			wahoohie = new FlxSprite(0, 0).loadGraphic(Paths.image('mainStoryMode/wahoohie'));
-			wahoohie.antialiasing = ClientPrefs.globalAntialiasing;
-			wahoohie.alpha = 0;
-			add(wahoohie);
-
-			FlxTween.tween(wahoohie, {alpha: 1}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			FlxTween.tween(blackOut, {alpha: 0.7}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-			
-			isAboutToGetMessage = true;
-		}
-
 		weekCardBG = new FlxSprite(0, 0).loadGraphic(Paths.image('mainStoryMode/weekCards/weekCardBG'));
 		weekCardBG.antialiasing = ClientPrefs.globalAntialiasing;
 		weekCardBG.screenCenter();
@@ -417,17 +401,7 @@ class StoryMenuState extends MusicBeatState
 			else
 				categoryNum4.alpha = 0.5;
 
-		if (ClientPrefs.mainWeekBeaten && !ClientPrefs.gotWinMessage && isAboutToGetMessage)
-		{
-			if (controls.ACCEPT)
-			{
-				FlxTween.tween(wahoohie, {alpha: 0}, 1, {ease: FlxEase.circOut, type: PERSIST});
-				FlxTween.tween(blackOut, {alpha: 0}, 1, {ease: FlxEase.circOut, type: PERSIST});
-				ClientPrefs.gotWinMessage = true;
-				ClientPrefs.saveSettings();
-			}
-		}
-		else if (!movedBack && !selectedWeek && !loadedWeekInfo && !switchingScreens)
+		if (!movedBack && !selectedWeek && !loadedWeekInfo && !switchingScreens)
 		{
 			var upP = controls.UI_UP_P;
 			var downP = controls.UI_DOWN_P;

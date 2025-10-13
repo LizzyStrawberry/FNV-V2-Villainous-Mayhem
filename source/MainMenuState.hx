@@ -412,9 +412,6 @@ class MainMenuState extends MusicBeatState
 		rightDiffArrow.antialiasing = ClientPrefs.globalAntialiasing;
 		difficultySelectors.add(rightDiffArrow);
 
-		// Menu Inventory
-		createInventory();
-
 		if (ClientPrefs.inShop)
 		{
 			if (ClientPrefs.iniquitousWeekUnlocked && ClientPrefs.iniquitousWeekBeaten) FlxG.sound.playMusic(Paths.music('malumIctum'));
@@ -426,11 +423,13 @@ class MainMenuState extends MusicBeatState
 			ClientPrefs.saveSettings();
 		}
 
+		NotificationAlert.checkForNotifications(this);
+		// Menu Inventory
+		createInventory();
 		allowMayhemGameMode = (ClientPrefs.mayhemNotif) ? true : false;
 		changeItem();
 
 		//Notification alert
-		NotificationAlert.checkForNotifications(this);
 		if (NotificationAlert.sendOptionsNotification) // Options Notification
 		{
 			NotificationAlert.addNotification(this, optionsButton, -10, 85);
@@ -528,6 +527,8 @@ class MainMenuState extends MusicBeatState
 	}
 
 	// Create Backgrounds
+	var badgeBar:FlxSprite;
+	var badges:FlxTypedGroup<FlxSprite>; 
 	function createInventory()
 	{
 		BGchecker = new FlxBackdrop(Paths.image('promotion/BGgrid-' + FlxG.random.int(1, 8)), FlxAxes.XY, 0, 0); 
@@ -590,6 +591,27 @@ class MainMenuState extends MusicBeatState
 				
 			default:
 				gfPocket.loadGraphic(Paths.image('inventoryChars/gf'));
+		}
+
+		badgeBar = new FlxSprite(FlxG.width * 0.05, FlxG.height - 150).loadGraphic(Paths.image('inventory/badge/badgeBar'));
+		badgeBar.setGraphicSize(badgeBar.width * 0.65);
+		badgeBar.updateHitbox();
+		badgeBar.alpha = 0;
+		add(badgeBar);
+
+		badges = new FlxTypedGroup<FlxSprite>();
+		add(badges);
+		for (i in 0...ClientPrefs.badgesCollected)
+		{
+			var badge = new FlxSprite(badgeBar.x, badgeBar.y).loadGraphic(Paths.image('inventory/badge/badge-' + (i + 1)));
+			badge.setGraphicSize(badge.width * 0.65);
+			badge.updateHitbox();
+			badge.x = badgeBar.x + (i * 100);
+			badges.ID = i;
+
+			badge.alpha = 0;
+			badge.antialiasing = ClientPrefs.globalAntialiasing;
+			badges.add(badge);
 		}
 
 		buffItems = new FlxTypedGroup<FlxSprite>();
@@ -750,7 +772,11 @@ class MainMenuState extends MusicBeatState
 		// Alpha and Position Checks
 		leftDiffArrow.x = storySelection.x - 210;
 		leftDiffArrow.alpha = rightDiffArrow.alpha = sprDifficulty.alpha;
-		BGchecker.alpha = buffSelected.alpha = buffTitle.alpha = buffText.alpha = charmTitle.alpha = charmText.alpha = gfPocket.alpha;
+		BGchecker.alpha = buffSelected.alpha = buffTitle.alpha = buffText.alpha = charmTitle.alpha = charmText.alpha = badgeBar.alpha = gfPocket.alpha;
+		badges.forEach(function(spr:FlxSprite)
+		{
+			spr.alpha = gfPocket.alpha;
+		});
 		
 		// Backdrop Functionality
 		BGchecker.x += 0.5 * (elapsed / (1 / 120));

@@ -81,6 +81,8 @@ class NotificationAlert {
                 notifMessage.loadGraphic(Paths.image('notifications/notifMessageMayhem'));
             case 'tutorial':
                 notifMessage.loadGraphic(Paths.image('notifications/notifMessageTutorial'));
+            case 'badge':
+                notifMessage.loadGraphic(Paths.image('notifications/notifMessageBadge'));
         }
 		notifMessage.antialiasing = ClientPrefs.globalAntialiasing;
 		notifMessage.updateHitbox();
@@ -157,6 +159,25 @@ class NotificationAlert {
 
     public static function checkForNotifications(state:FlxState)
     {
+        // BADGES SECTION:
+        if (achievementCheck("main") && ClientPrefs.badgesCollected == 0)
+		{
+			NotificationAlert.showMessage(state, 'Badge');
+			NotificationAlert.sendCategoryNotification = true;
+			NotificationAlert.saveNotifications();
+
+			ClientPrefs.badgesCollected += 1;
+			ClientPrefs.saveSettings();
+		}
+        if (achievementCheck("bonus") && ClientPrefs.badgesCollected == 1)
+		{
+			NotificationAlert.showMessage(state, 'Badge');
+			NotificationAlert.sendCategoryNotification = true;
+			NotificationAlert.saveNotifications();
+
+			ClientPrefs.badgesCollected += 1;
+			ClientPrefs.saveSettings();
+		}
         // This unlocks Iniquitous Difficulty
         if (ClientPrefs.iniquitousWeekBeaten && !Achievements.isAchievementUnlocked('weekIniquitous_Beaten'))
 		{
@@ -166,10 +187,31 @@ class NotificationAlert {
 				giveNotificationAchievement('weekIniquitous_Beaten', achieveID, state);
 				
 				NotificationAlert.showMessage(state, 'Iniquitous');
+                NotificationAlert.showMessage(state, 'Badge');
+                NotificationAlert.sendCategoryNotification = true;
+                NotificationAlert.saveNotifications();
+
+                ClientPrefs.badgesCollected += 1;
+				ClientPrefs.saveSettings();
+			}
+		}
+        // This completes the crossover section
+		if (ClientPrefs.crossoverUnlocked)
+		{
+			var achieveID:Int = Achievements.getAchievementIndex('crossover_Beaten');
+			if(!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveID][2]))
+            {
+				giveNotificationAchievement('crossover_Beaten', achieveID, state);
+                NotificationAlert.showMessage(state, 'Badge');
+                NotificationAlert.sendCategoryNotification = true;
+                NotificationAlert.saveNotifications();
+
+                ClientPrefs.badgesCollected += 1;
 				ClientPrefs.saveSettings();
 			}
 		}
 
+        // REMAINING NOTIFICATIONS
         // This unlocks the crossover section
         if (achievementCheck("main") && achievementCheck("bonus") && achievementCheck("xtrasBasic") && !ClientPrefs.roadMapUnlocked && !ClientPrefs.crossoverUnlocked)
 		{
@@ -179,16 +221,6 @@ class NotificationAlert {
 
 			ClientPrefs.roadMapUnlocked = true;
 			ClientPrefs.saveSettings();
-		}
-        // This completes the crossover section
-		if (ClientPrefs.crossoverUnlocked)
-		{
-			var achieveID:Int = Achievements.getAchievementIndex('crossover_Beaten');
-			if(!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveID][2]))
-            {
-				giveNotificationAchievement('crossover_Beaten', achieveID, state);
-				ClientPrefs.saveSettings();
-			}
 		}
 
         // This gives the short song achievement
@@ -222,6 +254,13 @@ class NotificationAlert {
 			if((!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveID][2]))) {
 				giveNotificationAchievement('FNV_Completed', achieveID, state);
 				ClientPrefs.saveSettings();
+
+                NotificationAlert.showMessage(state, 'Badge');
+                NotificationAlert.sendCategoryNotification = true;
+                NotificationAlert.saveNotifications();
+
+                ClientPrefs.badgesCollected += 1;
+                ClientPrefs.saveSettings();
 			}
 		}
     }
