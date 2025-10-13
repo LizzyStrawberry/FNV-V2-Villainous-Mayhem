@@ -35,7 +35,7 @@ function onCreate()
         end
     end
 
-    if not isStoryMode then -- To Apply only to story mode!
+    if isStoryMode then -- To Apply only to story mode!
         callScript("scripts/"..name, "setCutsceneData", {cutShit.hasDial, cutShit.hasStartVid, cutShit.vidPath, cutShit.hasMidDialVid, cutShit.midVidPath, cutShit.midPos, cutShit.hasEndVid, cutShit.endVidPath})
     end
     

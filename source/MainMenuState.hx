@@ -143,13 +143,11 @@ class MainMenuState extends MusicBeatState
 	var lerpMayhemedScore:Int = 0;
 	var intendedMayhemedScore:Int = 0;
 
-	var camFollow:FlxObject;
-	var camFollowPos:FlxObject;
 	var debugKeys:Array<FlxKey>;
 
 	var bg:FlxSprite;
 	var bgChange:FlxSprite;
-	var isShown:Bool = false;
+	var secretBG:Bool = false;
 	var number30:Int = 0;
 	var bgBorder:FlxSprite;
 
@@ -191,21 +189,22 @@ class MainMenuState extends MusicBeatState
 		#end
 		WeekData.loadTheFirstEnabledMod();
 
+		FlxG.mouse.visible = true;
+
 		#if desktop
 		// Updating Discord Rich Presence
 		DiscordClient.changePresence("In the Menus", null);
 		#end
 		debugKeys = ClientPrefs.copyKey(ClientPrefs.keyBinds.get('debug_1'));
 
-		if (!ClientPrefs.galleryUnlocked && Achievements.isAchievementUnlocked('WeekMarco_Beaten') && Achievements.isAchievementUnlocked('WeekNun_Beaten') && Achievements.isAchievementUnlocked('WeekKiana_Beaten'))
+		if (!ClientPrefs.galleryUnlocked && Achievements.isAchievementUnlocked('WeekMarco_Beaten') 
+			&& Achievements.isAchievementUnlocked('WeekNun_Beaten') && Achievements.isAchievementUnlocked('WeekKiana_Beaten'))
 			ClientPrefs.galleryUnlocked = true;
 		
 		// Resetting this rq
 		ClientPrefs.ghostTapping = true;
 		ClientPrefs.codeRegistered = '';
-		ClientPrefs.onCrossSection = false;
-		GameOverSubstate.injected = false;
-		GameOverSubstate.mayhemed = false;
+		ClientPrefs.onCrossSection = GameOverSubstate.injected = GameOverSubstate.mayhemed = false;
 		ClientPrefs.saveSettings();
 
 		ClientPrefs.inMenu = true;
@@ -227,23 +226,21 @@ class MainMenuState extends MusicBeatState
 		intendedInjectedScore = ClientPrefs.injectionEndScore;
 		intendedMayhemedScore = ClientPrefs.mayhemEndTotalScore;
 
-		var yScroll:Float = Math.max(0.25 - (0.05 * (optionShit.length - 4)), 0.1);
+		bg = new FlxSprite(-80);
 		number30 = FlxG.random.int(1, 59);
-
 		if (number30 == 30 && Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed && ClientPrefs.kianaWeekPlayed)
 		{
-			bg = new FlxSprite(-80).loadGraphic(Paths.image('mainMenuBgs/menu-mork'));
-			bg.frames = Paths.getSparrowAtlas('mainMenuBgs/menu-mork');//here put the name of the xml
-			//bg.scale.set(0.9, 0.9);
-			bg.animation.addByPrefix('idleMenu', 'mork mork0', 24, true);//on 'idle normal' change it to your xml one
-			bg.animation.play('idleMenu');//you can rename the anim however you want to
+			bg.loadGraphic(Paths.image('mainMenuBgs/menu-mork'));
+			bg.frames = Paths.getSparrowAtlas('mainMenuBgs/menu-mork');
+			bg.animation.addByPrefix('idleMenu', 'mork mork0', 24, true);
+			bg.animation.play('idleMenu');
 			bg.scrollFactor.set();
 			trace('MORK');	
 		}
 		else if (number30 == 2 && Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed && ClientPrefs.kianaWeekPlayed)
 		{
-			isShown = true;
-			bg = new FlxSprite(-80).loadGraphic(Paths.image('mainMenuBgs/menu-rare'));
+			secretBG = true;
+			bg.loadGraphic(Paths.image('mainMenuBgs/menu-rare'));
 			FlxG.sound.music.fadeOut(1.0);
 			new FlxTimer().start(1, function(tmr:FlxTimer)
 			{
@@ -258,62 +255,38 @@ class MainMenuState extends MusicBeatState
 		{
 			trace('No fadeout needed bitch');
 			trace('the number is: ' + number30);
-			
-			if (Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed && ClientPrefs.kianaWeekPlayed)
-			{
-				bg = new FlxSprite(-80).loadGraphic(Paths.image('mainMenuBgs/menu-' + FlxG.random.int(1, 59)));
-				trace('good job lmao, You beat Week 3, you can now have all the menu images!');
-			}
-			else if (Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed)
-			{
-				bg = new FlxSprite(-80).loadGraphic(Paths.image('mainMenuBgs/menu-' + FlxG.random.int(1, 13)));
-				trace('good job lmao, You beat Week 2');
-			}
-			else if (Achievements.isAchievementUnlocked('WeekMarco_Beaten'))
-			{
-				bg = new FlxSprite(-80).loadGraphic(Paths.image('mainMenuBgs/menu-' + FlxG.random.int(1, 11)));
-				trace('good job lmao, You beat Week 1');
-			}
-			else
-			{
-				bg = new FlxSprite(-80).loadGraphic(Paths.image('mainMenuBgs/menu-' + FlxG.random.int(1, 5)));
-				trace('You have not unlocked any extra songs.');
-			}
-		}
 
-		bg.scrollFactor.set(0, yScroll);
+			var maxNum:Int = 5;
+			
+			if (Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed && ClientPrefs.kianaWeekPlayed) maxNum = 59;
+			else if (Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed) maxNum = 13;
+			else if (Achievements.isAchievementUnlocked('WeekMarco_Beaten')) maxNum = 11;
+
+			bg.loadGraphic(Paths.image('mainMenuBgs/menu-' + FlxG.random.int(1, maxNum)));
+		}
+		bg.scrollFactor.set(0, 0);
+		bg.setGraphicSize(Std.int(bg.width * 1.175));
 		bg.updateHitbox();
 		bg.screenCenter(XY);
 		bg.antialiasing = ClientPrefs.globalAntialiasing;
 		add(bg);
 
 		// Making a secondary sprite so we can change each background after a few seconds or something lmao
-		if(!isShown)
+		if(!secretBG)
 		{	
-			if (Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed && ClientPrefs.kianaWeekPlayed )
-				bgChange = new FlxSprite(-80).loadGraphic(Paths.image('mainMenuBgs/menu-' + FlxG.random.int(1, 59)));
-			else if (Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed == true)
-				bgChange = new FlxSprite(-80).loadGraphic(Paths.image('mainMenuBgs/menu-' + FlxG.random.int(1, 13)));
-			else if (Achievements.isAchievementUnlocked('WeekMarco_Beaten'))
-				bgChange = new FlxSprite(-80).loadGraphic(Paths.image('mainMenuBgs/menu-' + FlxG.random.int(1, 11)));
-			else
-				bgChange = new FlxSprite(-80).loadGraphic(Paths.image('mainMenuBgs/menu-' + FlxG.random.int(1, 5)));
-			bgChange.scrollFactor.set(0, yScroll);
-			bgChange.setGraphicSize(Std.int(bgChange.width * 1.175));
-			bgChange.updateHitbox();
-			bgChange.screenCenter(XY);
+			var maxNum:Int = 5;
+			
+			if (Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed && ClientPrefs.kianaWeekPlayed) maxNum = 59;
+			else if (Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed) maxNum = 13;
+			else if (Achievements.isAchievementUnlocked('WeekMarco_Beaten')) maxNum = 11;
+
+			bgChange = bg;
+			bgChange.loadGraphic(Paths.image('mainMenuBgs/menu-' + FlxG.random.int(1, maxNum)));
 			bgChange.alpha = 0;
-			bgChange.x += 120;
-			bgChange.antialiasing = ClientPrefs.globalAntialiasing;
 			add(bgChange);
 		}
 
 		var bgTimer:FlxTimer = new FlxTimer().start(10, changeBg);
-
-		camFollow = new FlxObject(0, 0, 1, 1);
-		camFollowPos = new FlxObject(0, 0, 1, 1);
-		add(camFollow);
-		add(camFollowPos);
 		
 		bgBorder = new FlxSprite(-80).loadGraphic(Paths.image('menuBorder'));
 		bgBorder.scrollFactor.set(0, 0);
@@ -337,16 +310,11 @@ class MainMenuState extends MusicBeatState
 			menuItem.y = 520;
 			menuItems.add(menuItem);
 
-			var scr:Float = (optionShit.length - 4) * 0.135;
-			if(optionShit.length < 6) scr = 0;
-			menuItem.scrollFactor.set(0, scr);
+			menuItem.scrollFactor.set();
 			menuItem.antialiasing = ClientPrefs.globalAntialiasing;
 			menuItem.updateHitbox();
 
-			if (curSelected != menuItem.ID)
-				menuItem.alpha = 0;
-			else
-				menuItem.alpha = 1;
+			menuItem.alpha = (curSelected != menuItem.ID) ? 0 : 1;
 
 			FlxTween.tween(menuItem, {"scale.x": 1.05, "scale.y": 1.05}, 1.5, {ease: FlxEase.cubeInOut, type: PINGPONG});
 		}
@@ -392,9 +360,11 @@ class MainMenuState extends MusicBeatState
 		#if ACHIEVEMENTS_ALLOWED
 		Achievements.loadAchievements();
 		var leDate = Date.now();
-		if (leDate.getDay() == 5 && leDate.getHours() >= 18) {
+		if (leDate.getDay() == 5 && leDate.getHours() >= 18)
+		{
 			var achieveID:Int = Achievements.getAchievementIndex('friday_night_play');
-			if(!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveID][2])) { //It's a friday night. WEEEEEEEEEEEEEEEEEE
+			if(!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveID][2])) 
+			{
 				Achievements.achievementsMap.set(Achievements.achievementsStuff[achieveID][2], true);
 				giveAchievement();
 				ClientPrefs.saveSettings();
@@ -402,7 +372,7 @@ class MainMenuState extends MusicBeatState
 		}
 		#end
 
-		exclamationMark = new FlxSprite(1190, 110).loadGraphic(Paths.image('exclamationMark'));
+		exclamationMark = new FlxSprite(FlxG.width - 90, 110).loadGraphic(Paths.image('exclamationMark'));
 		exclamationMark.antialiasing = ClientPrefs.globalAntialiasing;
 		exclamationMark.alpha = 0.5;
 		exclamationMark.scale.set(0.5, 0.5);
@@ -425,7 +395,7 @@ class MainMenuState extends MusicBeatState
 			NotificationAlert.saveNotifications();
 		}
 
-		optionsButton = new FlxSprite(1168, 0).loadGraphic(Paths.image('optionsButton'));
+		optionsButton = new FlxSprite(FlxG.width - 112, 0).loadGraphic(Paths.image('optionsButton'));
 		optionsButton.antialiasing = ClientPrefs.globalAntialiasing;
 		optionsButton.alpha = 0.5;
 		optionsButton.updateHitbox();
@@ -438,7 +408,7 @@ class MainMenuState extends MusicBeatState
 			NotificationAlert.saveNotifications();
 		}
 
-		inventoryButton = new FlxSprite(1168, 230).loadGraphic(Paths.image('inventoryButton'));
+		inventoryButton = new FlxSprite(optionsButton.x, 230).loadGraphic(Paths.image('inventoryButton'));
 		inventoryButton.antialiasing = ClientPrefs.globalAntialiasing;
 		inventoryButton.alpha = 0.5;
 		inventoryButton.updateHitbox();
@@ -463,22 +433,13 @@ class MainMenuState extends MusicBeatState
 			NotificationAlert.sendShopNotification = false;
 			NotificationAlert.saveNotifications();
 		}
-			
-		var tokenShow:FlxText = new FlxText(780, 330, FlxG.width,
-			"Tokens: <GR>" + ClientPrefs.tokens + "<GR>",
-			32);
-		if (ClientPrefs.tokens == 0)
-			tokenShow.text = "Tokens: <R>" + ClientPrefs.tokens + "<R>";
+		
+		var markType:String = (ClientPrefs.tokens == 0) ? "<R>" : "<GR>";
+		var tokenShow:FlxText = new FlxText(shopButton.x, shopButton.y + 130, FlxG.width, 'Tokens: $markType ${ClientPrefs.tokens} $markType');
 		tokenShow.setFormat("VCR OSD Mono", 28, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, 0xFF000000);
-		tokenShow.screenCenter(XY);
-		tokenShow.x = shopButton.x;
-		tokenShow.y = shopButton.y + 130;
 		tokenShow.borderSize = 1;
-
 		CustomFontFormats.addMarkers(tokenShow);
 		add(tokenShow);
-
-		FlxG.mouse.visible = true;
 
 		blackOut = new FlxSprite(0, 0).makeGraphic(FlxG.width, FlxG.height, 0xFF000000);
 		blackOut.alpha = 0;
@@ -491,26 +452,22 @@ class MainMenuState extends MusicBeatState
 		{
 			var storyStuff:FlxSprite = new FlxSprite().loadGraphic(Paths.image('mainmenu/story_' + storyShit[i]));
 			storyStuff.ID = i;
-			storyStuff.screenCenter(X);
+			storyStuff.screenCenter(XY);
 			storyStuff.x += 1420;
-			storyStuff.screenCenter(Y);
-			storyStuffs.add(storyStuff);
 			storyStuff.scrollFactor.set(0, 0);
 			storyStuff.antialiasing = ClientPrefs.globalAntialiasing;
 			storyStuff.updateHitbox();
-			//trace(storyStuff.x);
+			storyStuffs.add(storyStuff);
 		}
 
-		storySelection = new Alphabet(2020, 320, "Test", true);
+		storySelection = new Alphabet(FlxG.width + 740, 320, "Test", true);
 		storySelection.setAlignmentFromString('center');
 		storySelection.alpha = 0.6;
 		storySelection.scaleX = 0.8;
 		storySelection.scaleY = 0.8;
 		add(storySelection);
 
-		storyText = new FlxText(30, 300, FlxG.width,
-			"Test!",
-			25);
+		storyText = new FlxText(30, 300, FlxG.width, "Test!");
 		storyText.setFormat("VCR OSD Mono", 40, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, 0xFF000000);
 		storyText.alpha = 0;
 		storyText.borderSize = 3;
@@ -539,9 +496,7 @@ class MainMenuState extends MusicBeatState
 		difficultySelectors.add(sprDifficulty);
 
 		CoolUtil.difficulties = CoolUtil.defaultDifficulties.copy();
-		if(lastDifficultyName == '')
-			lastDifficultyName = CoolUtil.defaultDifficulty;
-
+		if(lastDifficultyName == '')lastDifficultyName = CoolUtil.defaultDifficulty;
 		curDifficulty = Math.round(Math.max(0, CoolUtil.defaultDifficulties.indexOf(lastDifficultyName)));
 
 		rightDiffArrow = new FlxSprite(leftDiffArrow.x + 376, leftDiffArrow.y);
@@ -564,7 +519,49 @@ class MainMenuState extends MusicBeatState
 		add(BGchecker);
 
 		// Menu Inventory
-		// Add the character to the selection
+		createInventory();
+
+		if (ClientPrefs.inShop)
+		{
+			if (ClientPrefs.iniquitousWeekUnlocked && ClientPrefs.iniquitousWeekBeaten) FlxG.sound.playMusic(Paths.music('malumIctum'));
+			else if (FlxG.random.int(1, 10) == 2) FlxG.sound.playMusic(Paths.music('AJDidThat'));
+			else FlxG.sound.playMusic(Paths.music('freakyMenu'));
+
+			FlxG.sound.music.fadeIn(2.0);
+			ClientPrefs.inShop = false;
+			ClientPrefs.saveSettings();
+		}
+
+		changeItem();
+
+		//Notification alert
+		NotificationAlert.checkForNotifications(this);
+
+		allowMayhemGameMode = (ClientPrefs.mayhemNotif) ? true : false;
+
+		// FOR INJECTION MODE
+		if (ClientPrefs.weeksUnlocked >= 7 && !ClientPrefs.injectionNotif)
+		{
+			ClientPrefs.injectionNotif = true;
+			NotificationAlert.showMessage(this, 'Injection');
+			ClientPrefs.saveSettings();
+		}
+
+		if (NotificationAlert.sendMessage)
+		{
+			NotificationAlert.showMessage(this, 'Normal');
+			NotificationAlert.sendMessage = false;
+			NotificationAlert.saveNotifications();
+		}
+		super.create();
+	}
+
+	function createInventory()
+	{
+		inventoryTitle = new Alphabet(FlxG.width - 860, 10, "Inventory", true);
+		inventoryTitle.alpha = 0;
+		add(inventoryTitle);
+	
 		gfPocket = new FlxSprite(0, 0).loadGraphic(Paths.image('inventoryChars/gf'));
 		gfPocket.screenCenter(XY);
 		gfPocket.x -= 340;
@@ -616,35 +613,23 @@ class MainMenuState extends MusicBeatState
 				gfPocket.loadGraphic(Paths.image('inventoryChars/gf'));
 		}
 
-
 		buffItems = new FlxTypedGroup<FlxSprite>();
 		add(buffItems);
 		for (i in 0...4)
 		{
 			var buff = new FlxSprite(0, 0).loadGraphic(Paths.image('inventory/buffN' + i));
+			var reflectedBuff = Reflect.field(ClientPrefs, 'buff${buff.ID}selected');
+			if (!reflectedBuff) buff.loadGraphic(Paths.image('inventory/buffLocked'));
+
 			buff.screenCenter();
 			buff.x -= 50;
 			buff.x += i * (buff.width + 50);
+			buff.y -= 70;
 			buff.ID = i;
 
-			switch(buff.ID)
-			{
-				case 1:
-					if (!ClientPrefs.buff1Unlocked)
-						buff.loadGraphic(Paths.image('inventory/buffLocked'));
-				case 2:
-					if (!ClientPrefs.buff2Unlocked)
-						buff.loadGraphic(Paths.image('inventory/buffLocked'));
-				case 3:
-					if (!ClientPrefs.buff3Unlocked)
-						buff.loadGraphic(Paths.image('inventory/buffLocked'));
-			}
-
-			buff.y -= 70;
 			buff.alpha = 0;
 			buff.antialiasing = ClientPrefs.globalAntialiasing;
 			buffItems.add(buff);
-			add(buff);
 		}
 
 		buffSelected = new FlxSprite(0, 0).loadGraphic(Paths.image('inventory/buffSelected'));
@@ -655,19 +640,13 @@ class MainMenuState extends MusicBeatState
 		buffSelected.antialiasing = ClientPrefs.globalAntialiasing;
 		add(buffSelected);
 
-		inventoryTitle = new Alphabet(420, 10, "Inventory", true);
-		inventoryTitle.alpha = 0;
-		add(inventoryTitle);
-
-		buffTitle = new Alphabet(1170, 200, "Buffs", true);
+		buffTitle = new Alphabet(FlxG.width - 110, 200, "Buffs", true);
 		buffTitle.scaleX = 0.7;
 		buffTitle.scaleY = 0.7;
 		buffTitle.alpha = 0;
 		add(buffTitle);
 
-		buffText = new FlxText(0, 0, FlxG.width,
-			"Test!",
-			25);
+		buffText = new FlxText(0, 0, FlxG.width, "Test!");
 		buffText.screenCenter(XY);
 		buffText.y += 20;
 		buffText.x += 250;
@@ -683,37 +662,30 @@ class MainMenuState extends MusicBeatState
 			charm.screenCenter();
 			charm.x += 50;
 			charm.x += i * (charm.width + 50);
+			charm.y += 210;
 			charm.ID = i;
 
 			switch(charm.ID)
 			{
 				case 0:
-					if (ClientPrefs.resCharmCollected == false)
-						charm.loadGraphic(Paths.image('inventory/buffLocked'));
+					if (!ClientPrefs.resCharmCollected) charm.loadGraphic(Paths.image('inventory/buffLocked'));
 				case 1:
-					if (ClientPrefs.autoCharmCollected == false)
-						charm.loadGraphic(Paths.image('inventory/buffLocked'));
+					if (!ClientPrefs.autoCharmCollected) charm.loadGraphic(Paths.image('inventory/buffLocked'));
 				case 2:
-					if (ClientPrefs.healCharmCollected == false)
-						charm.loadGraphic(Paths.image('inventory/buffLocked'));
+					if (!ClientPrefs.healCharmCollected) charm.loadGraphic(Paths.image('inventory/buffLocked'));
 			}
-
-			charm.y += 210;
 			charm.alpha = 0;
 			charm.antialiasing = ClientPrefs.globalAntialiasing;
 			charmItems.add(charm);
-			add(charm);
 		}	
 
-		charmTitle = new Alphabet(1120, 610, "Charms", true);
+		charmTitle = new Alphabet(FlxG.width - 160, 610, "Charms", true);
 		charmTitle.scaleX = 0.7;
 		charmTitle.scaleY = 0.7;
 		charmTitle.alpha = 0;
 		add(charmTitle);
 
-		charmText = new FlxText(0, 0, FlxG.width,
-			"Test!",
-			25);
+		charmText = new FlxText(0, 0, FlxG.width, "Test!");
 		charmText.screenCenter(XY);
 		charmText.y += 300;
 		charmText.x += 250;
@@ -721,57 +693,17 @@ class MainMenuState extends MusicBeatState
 		charmText.alpha = 0;
 		add(charmText);
 
-		if (ClientPrefs.buff1Selected)
-			curBuffSelected = 1;
-		else if (ClientPrefs.buff2Selected)
-			curBuffSelected = 2;
-		else if (ClientPrefs.buff3Selected)
-			curBuffSelected = 3;
-		else
-			curBuffSelected = 0;
+		if (ClientPrefs.buff1Selected) curBuffSelected = 1;
+		else if (ClientPrefs.buff2Selected) curBuffSelected = 2;
+		else if (ClientPrefs.buff3Selected) curBuffSelected = 3;
+		else curBuffSelected = 0;
 
 		buffSelected.x = buffItems.members[curBuffSelected].x;
-
-		if (ClientPrefs.inShop)
-		{
-			if (ClientPrefs.iniquitousWeekUnlocked && ClientPrefs.iniquitousWeekBeaten)
-				FlxG.sound.playMusic(Paths.music('malumIctum'));
-			else if (FlxG.random.int(1, 10) == 2)
-				FlxG.sound.playMusic(Paths.music('AJDidThat'));
-			else
-				FlxG.sound.playMusic(Paths.music('freakyMenu'));
-			FlxG.sound.music.fadeIn(2.0);
-			ClientPrefs.inShop = false;
-			ClientPrefs.saveSettings();
-		}
-
-		changeItem();
-
-		//Notification alert
-		NotificationAlert.checkForNotifications(this);
-
-		allowMayhemGameMode = (ClientPrefs.mayhemNotif) ? true : false;
-
-		// FOR INJECTION MODE
-		if (ClientPrefs.weeksUnlocked >= 7 && !ClientPrefs.injectionNotif)
-		{
-			ClientPrefs.injectionNotif = true;
-			NotificationAlert.showMessage(this, 'Injection');
-			ClientPrefs.saveSettings();
-		}
-
-		if (NotificationAlert.sendMessage)
-		{
-			NotificationAlert.showMessage(this, 'Normal');
-			NotificationAlert.sendMessage = false;
-			NotificationAlert.saveNotifications();
-		}
-		super.create();
 	}
 
 	function changeBg(timer:FlxTimer)
 	{
-		if(!isShown)
+		if(!secretBG)
 		{
 			trace("Changing the Background");
 			FlxTween.tween(bg, { alpha: 0 }, 3, {ease: FlxEase.cubeInOut, type: PERSIST});
@@ -792,7 +724,7 @@ class MainMenuState extends MusicBeatState
 
 	function changeBgAgain(timer:FlxTimer)
 	{
-		if(!isShown)
+		if(!secretBG)
 		{
 			trace("Changing the Background Again");
 			FlxTween.tween(bg, { alpha: 1 }, 3, {ease: FlxEase.cubeInOut, type: PERSIST});
@@ -827,21 +759,14 @@ class MainMenuState extends MusicBeatState
 	#end
 
 	var selectedSomethin:Bool = false;
-	var askedForInfo:Bool = false;
-	var initializedVideo:Bool = false;
-	
 	var storySelected:Bool = false;
 	var inventoryOpened:Bool = false;
-	var openingShit:Bool = false;
 	var applyStory:Bool = false;
-	var allowInteraction:Bool = true;
-
 	var warnMayhem:String = '';
-	override function update(elapsed:Float)
+
+	function lerpScore(elapsed:Float)
 	{
 		intendedMayhemedScore = ClientPrefs.mayhemEndTotalScore;
-		BGchecker.x += 0.5*(elapsed/(1/120));
-        BGchecker.y -= 0.16 / (ClientPrefs.framerate / 60); 
 
 		lerpInjectedScore = Math.floor(FlxMath.lerp(lerpInjectedScore, intendedInjectedScore, CoolUtil.boundTo(elapsed * 30, 0, 1)));
 		if(Math.abs(intendedInjectedScore - lerpInjectedScore) < 10) lerpInjectedScore = intendedInjectedScore;
@@ -849,686 +774,439 @@ class MainMenuState extends MusicBeatState
 		lerpMayhemedScore = Math.floor(FlxMath.lerp(lerpMayhemedScore, intendedMayhemedScore, CoolUtil.boundTo(elapsed * 30, 0, 1)));
 		if(Math.abs(intendedMayhemedScore - lerpMayhemedScore) < 10) lerpMayhemedScore = intendedMayhemedScore;
 
-		if (storyShit[curStorySelected] == 'injection')
-			extraFinalScore.text = "SCORE: " + lerpInjectedScore;
-		else
-			extraFinalScore.text = "RECORD: " + ClientPrefs.mayhemEndScore + " Songs / Score: " + lerpMayhemedScore;
+		if (storyShit[curStorySelected] == 'injection') extraFinalScore.text = "SCORE: " + lerpInjectedScore;
+		else extraFinalScore.text = "RECORD: " + ClientPrefs.mayhemEndScore + " Songs / Score: " + lerpMayhemedScore;
+	}
 
-	if (ClientPrefs.firstTime)
+	function cancelTweens(part:String)
 	{
-		if(FlxG.mouse.overlaps(exclamationMark) && FlxG.mouse.justPressed)
+		switch(part.toLowerCase())
 		{
-			MusicBeatState.switchState(new tutorial.TutorialState(), 'stickers');
+			case "inventory":
+				FlxTween.cancelTweensOf(BGchecker);	
+				FlxTween.cancelTweensOf(buffSelected);	
+				FlxTween.cancelTweensOf(buffTitle);	
+				FlxTween.cancelTweensOf(buffText);	
+				FlxTween.cancelTweensOf(charmTitle);
+				FlxTween.cancelTweensOf(charmText);
+				FlxTween.cancelTweensOf(gfPocket);
+				FlxTween.cancelTweensOf(blackOut);
 
-			selectedSomethin = true;
-			FlxG.sound.play(Paths.sound('confirmMenu'));	
-		}	
-
-		//hover on things thing
-		if (askedForInfo == false && (!selectedSomethin && !storySelected && !inventoryOpened))
-		{
-			if (FlxG.mouse.overlaps(shopButton))
-				shopButton.alpha = 1;
-			else
-				shopButton.alpha = 0.5;
-			if (FlxG.mouse.overlaps(exclamationMark))
-				exclamationMark.alpha = 1;
-			else
-				exclamationMark.alpha = 0.5;
-			if (FlxG.mouse.overlaps(optionsButton))
-				optionsButton.alpha = 1;
-			else
-				optionsButton.alpha = 0.5;
-			if (FlxG.mouse.overlaps(inventoryButton))
-				inventoryButton.alpha = 1;
-			else
-				inventoryButton.alpha = 0.5;
+			case "story":
+				FlxTween.cancelTweensOf(blackOut);
+				FlxTween.cancelTweensOf(storySelection);
+				FlxTween.cancelTweensOf(storyText);
+				FlxTween.cancelTweensOf(extraFinalScore);
+				FlxTween.cancelTweensOf(sprDifficulty);
 		}
+	}
 
-		if (FlxG.mouse.overlaps(optionsButton) && FlxG.mouse.justPressed && askedForInfo == false && (!selectedSomethin && !storySelected && !inventoryOpened))
-		{
-			ClientPrefs.inMenu = true;
-			selectedSomethin = true;
-			FlxG.sound.play(Paths.sound('confirmMenu'));
-			FlxFlicker.flicker(optionsButton, 1, 0.06, false, false, function(flick:FlxFlicker)
-			{
-				LoadingState.loadAndSwitchState(new options.OptionsState());
-			});
-		}
-
-		if (FlxG.mouse.overlaps(leftArrow) && askedForInfo == false && selectedSomethin == false)
-			FlxTween.tween(leftArrow, {x: getLeftArrowX - 2}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
-		else
-			FlxTween.tween(leftArrow, {x: getLeftArrowX}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
-	
-		if (FlxG.mouse.overlaps(rightArrow) && askedForInfo == false && selectedSomethin == false)
-			FlxTween.tween(rightArrow, {x: getRightArrowX + 2}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
-		else
-			FlxTween.tween(rightArrow, {x: getRightArrowX}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
-
-		if ((controls.UI_RIGHT || (FlxG.mouse.overlaps(rightArrow) && FlxG.mouse.pressed)) && askedForInfo == false && storySelected == false)
-			rightArrow.animation.play('press')
-		else
-			rightArrow.animation.play('idle');
-	
-		if ((controls.UI_LEFT || (FlxG.mouse.overlaps(leftArrow) && FlxG.mouse.pressed)) && askedForInfo == false && storySelected == false)
-			leftArrow.animation.play('press');
-		else
-			leftArrow.animation.play('idle');
-		
+	override function update(elapsed:Float)
+	{
 		if (FlxG.sound.music.volume < 0.8)
 		{
 			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
 			if(FreeplayState.vocals != null) FreeplayState.vocals.volume += 0.5 * elapsed;
 		}
 
-		var lerpVal:Float = CoolUtil.boundTo(elapsed * 7.5, 0, 1);
-		camFollowPos.setPosition(FlxMath.lerp(camFollowPos.x, camFollow.x, lerpVal), FlxMath.lerp(camFollowPos.y, camFollow.y, lerpVal));
+		// Alpha and Position Checks
+		leftDiffArrow.x = storySelection.x;
+		leftDiffArrow.alpha = rightDiffArrow.alpha = sprDifficulty.alpha;
+		BGchecker.alpha = buffSelected.alpha = buffTitle.alpha = buffText.alpha = charmTitle.alpha = charmText.alpha = gfPocket.alpha;
+		
+		// Backdrop Functionality
+		BGchecker.x += 0.5 * (elapsed / (1 / 120));
+        BGchecker.y -= 0.16 / (ClientPrefs.framerate / 60); 
 
+		lerpScore(elapsed);
+
+		if (controls.BACK || FlxG.mouse.justPressedRight)
+		{
+			FlxG.sound.play(Paths.sound('cancelMenu'));
+			if (inventoryOpened)
+			{
+				cancelTweens("inventory");
+				FlxTween.tween(blackOut, {alpha: 0}, 0.6, {ease: FlxEase.circOut, type: PERSIST});
+				FlxTween.tween(gfPocket, {alpha: 0}, 0.6, {ease: FlxEase.circOut, type: PERSIST});
+				buffItems.forEach(function(buff:FlxSprite)
+				{
+					FlxTween.cancelTweensOf(buff);
+					FlxTween.tween(buff, {alpha: 0}, 0.6, {ease: FlxEase.circOut, type: PERSIST});
+				});
+					
+				charmItems.forEach(function(charm:FlxSprite)
+				{
+					FlxTween.cancelTweensOf(charm);
+					FlxTween.tween(charm, {alpha: 0}, 0.6, {ease: FlxEase.circOut, type: PERSIST});
+				});
+			}
+			else if (storySelected)
+			{
+				storySelected = false;
+				cancelTweens("story");
+				storyStuffs.forEach(function(spr:FlxSprite)
+				{
+					FlxTween.cancelTweensOf(spr);
+					FlxTween.tween(spr, {x: FlxG.width + 417}, 0.7, {ease: FlxEase.circIn, type: PERSIST});
+				});
+				FlxTween.tween(blackOut, {alpha: 0}, 0.7, {ease: FlxEase.circIn, type: PERSIST});
+				FlxTween.tween(storySelection, {x: FlxG.width + 740, alpha: 0.6}, 0.7, {ease: FlxEase.circIn, type: PERSIST});
+				FlxTween.tween(storyText, {alpha: 0}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
+				FlxTween.tween(extraFinalScore, {alpha: 0}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
+				FlxTween.tween(sprDifficulty, {alpha: 0}, 0.7, {ease: FlxEase.circIn, type: PERSIST});
+			}
+			else
+			{
+				selectedSomethin = true;
+				FlxG.sound.play(Paths.sound('cancelMenu'));
+				MusicBeatState.switchState(new TitleState());
+			}
+		}
+
+		// If nothing is selected, do this code
+		var nothingSelected:Bool = (!storySelected && !inventoryOpened);
 		if (!selectedSomethin)
 		{
-			if ((controls.UI_LEFT_P || (FlxG.mouse.overlaps(leftArrow) && FlxG.mouse.justPressed)) && askedForInfo == false)
+			if(FlxG.mouse.overlaps(exclamationMark) && FlxG.mouse.justPressed)
 			{
-				FlxG.sound.play(Paths.sound('scrollMenu'));
-				changeItem(-1);
-			}
-	
-			if ((controls.UI_RIGHT_P || (FlxG.mouse.overlaps(rightArrow) && FlxG.mouse.justPressed)) && askedForInfo == false)
-			{
-				FlxG.sound.play(Paths.sound('scrollMenu'));
-				changeItem(1);
-			}
+				MusicBeatState.switchState(new tutorial.TutorialState(), 'stickers');
 
-			if (controls.BACK || FlxG.mouse.justPressedRight)
-			{
-					selectedSomethin = true;
-					FlxG.sound.play(Paths.sound('cancelMenu'));
-					MusicBeatState.switchState(new TitleState());
-			}
+				selectedSomethin = true;
+				FlxG.sound.play(Paths.sound('confirmMenu'));	
+			}	
 
-			if ((controls.ACCEPT || (FlxG.mouse.overlaps(menuItems.members[curSelected]) && FlxG.mouse.justPressed)) && askedForInfo == false && allowInteraction == true)
+			if (nothingSelected)
 			{
-				if (optionShit[curSelected] == 'story_mode')
+				// Mess with Alpha Values
+				shopButton.alpha = (FlxG.mouse.overlaps(shopButton)) ? 1 : 0.5;
+				exclamationMark.alpha = (FlxG.mouse.overlaps(exclamationMark)) ? 1 : 0.5;
+				optionsButton.alpha = (FlxG.mouse.overlaps(optionsButton)) ? 1 : 0.5;
+				inventoryButton.alpha = (FlxG.mouse.overlaps(inventoryButton)) ? 1 : 0.5;
+
+				// Options Button Functionality
+				if (FlxG.mouse.overlaps(optionsButton) && FlxG.mouse.justPressed && nothingSelected)
 				{
-					selectedSomethin = true;
-					allowInteraction = false;
-					storySelected = true;
-					changeItem();
+					ClientPrefs.inMenu = selectedSomethin = true;
 					FlxG.sound.play(Paths.sound('confirmMenu'));
-					storyStuffs.forEach(function(spr:FlxSprite)
+					FlxFlicker.flicker(optionsButton, 1, 0.06, false, false, function(flick:FlxFlicker)
 					{
-						FlxTween.tween(spr, {x: 597}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
-					});
-					FlxTween.tween(blackOut, {alpha: 0.6}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
-					FlxTween.tween(storySelection, {x: 1020}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
-					FlxTween.tween(storyText, {alpha: 1}, 0.7, {ease: FlxEase.circOut, type: PERSIST, onComplete: function (twn:FlxTween) {
-							allowInteraction = true;
-						}
-					});
-					if (storyShit[curStorySelected] == 'injection')
-					{
-						FlxTween.tween(leftDiffArrow, {alpha: 1}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
-						FlxTween.tween(sprDifficulty, {alpha: 1}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
-						FlxTween.tween(rightDiffArrow, {alpha: 1}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
-					}
-				}
-				else if (optionShit[curSelected] == 'freeplay' && ClientPrefs.mainWeekBeaten == false)
-				{
-					FlxG.camera.shake(0.02, 0.5, null, false, FlxAxes.XY);
-					FlxG.sound.play(Paths.sound('accessDenied'));
-				}
-				else if (optionShit[curSelected] == 'gallery' && ClientPrefs.galleryUnlocked == false)
-				{
-					FlxG.camera.shake(0.02, 0.5, null, false, FlxAxes.XY);
-					FlxG.sound.play(Paths.sound('accessDenied'));
-				}
-				else if (optionShit[curSelected] == 'info' && ClientPrefs.mainWeekBeaten == false)
-				{
-					FlxG.camera.shake(0.02, 0.5, null, false, FlxAxes.XY);
-					FlxG.sound.play(Paths.sound('accessDenied'));
-				}
-				else
-				{
-					selectedSomethin = true;
-					askedForInfo = true;
-					FlxG.sound.play(Paths.sound('confirmMenu'));
-
-					menuItems.forEach(function(spr:FlxSprite)
-					{
-						if (curSelected != spr.ID)
-							spr.kill();
-						else
-						{
-							FlxFlicker.flicker(spr, 1, 0.06, false, false, function(flick:FlxFlicker)
-							{
-								var daChoice:String = optionShit[curSelected];
-	
-								switch (daChoice)
-								{
-									case 'story_mode':
-										ClientPrefs.inMenu = false;
-										MusicBeatState.switchState(new StoryMenuState());
-									case 'freeplay':
-										ClientPrefs.inMenu = false;
-										MusicBeatState.switchState(new FreeplayCategoryState(), 'stickers');
-									case 'info':
-										MusicBeatState.switchState(new InfoState(), 'stickers');
-									case 'promotion':
-										MusicBeatState.switchState(new PromotionState(), 'stickers');
-									case 'gallery':
-										ClientPrefs.inMenu = false;
-										MusicBeatState.switchState(new GalleryState(), 'stickers');
-									case 'credits':
-										ClientPrefs.inMenu = false;
-										MusicBeatState.switchState(new CreditsState(), 'stickers');
-								}
-							});
-						}
+						LoadingState.loadAndSwitchState(new options.OptionsState());
 					});
 				}
-			}
-			#if desktop
-				#if DEBUG_ALLOWED
-					if (FlxG.keys.anyJustPressed(debugKeys))
-						MusicBeatState.switchState(new MasterEditorMenu());				
-				#else
-					if (FlxG.keys.anyJustPressed(debugKeys) && !initializedVideo)
-					{
-						selectedSomethin = true;
-						if (FlxG.sound.music != null) FlxG.sound.music.stop();
 
-						var achieveFlashBangID:Int = Achievements.getAchievementIndex('flashbang');
-							if(!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveFlashBangID][2])) {
-							Achievements.achievementsMap.set(Achievements.achievementsStuff[achieveFlashBangID][2], true);
-							giveFlashbangAchievement();
-							ClientPrefs.saveSettings();
-						}
-			
-						CppAPI.setOld();
-						CppAPI.setWallpaper(FileSystem.absolutePath("assets\\images\\thinkFastBitch.png"));
-						var video:VideoSprite = new VideoSprite(Paths.video('thinkFastChucklenuts'), false, false, false);
-						add(video);
-						video.play();
-						initializedVideo = true;
-						video.finishCallback = function()
-						{
-							if (!ClientPrefs.allowPCChange && Wallpaper.oldWallpaper != null) CppAPI.setWallpaper("old");
+				// Arrow position
+				FlxTween.tween(leftArrow, {x: FlxG.mouse.overlaps(leftArrow) ? getLeftArrowX - 2 : getLeftArrowX}, 0.7, {ease: FlxEase.circOut, type: PERSIST});	
+				FlxTween.tween(rightArrow, {x: FlxG.mouse.overlaps(leftArrow) ? getRightArrowX + 2 : getRightArrowX}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
 
-							System.exit(0);
-						};
-					}
-				#end
-			#end
-		}
-		else
-		{
-			if (!applyStory && allowInteraction == true && inventoryOpened == false)
-			{
-				if (controls.BACK || FlxG.mouse.justPressedRight)
+				// Arrow Functionality (Main Part)
+				if (controls.UI_RIGHT || (FlxG.mouse.overlaps(rightArrow) && FlxG.mouse.pressed)) rightArrow.animation.play('press')
+				else rightArrow.animation.play('idle');
+				if (controls.UI_LEFT || (FlxG.mouse.overlaps(leftArrow) && FlxG.mouse.pressed)) leftArrow.animation.play('press');
+				else leftArrow.animation.play('idle');
+
+				if (controls.UI_LEFT_P || (FlxG.mouse.overlaps(leftArrow) && FlxG.mouse.justPressed)) changeItem(-1, true);
+				if (controls.UI_RIGHT_P || (FlxG.mouse.overlaps(rightArrow) && FlxG.mouse.justPressed)) changeItem(1, true);
+
+				var accepted:Bool = controls.ACCEPT || (FlxG.mouse.overlaps(menuItems.members[curSelected]) && FlxG.mouse.justPressed);
+				if (accepted)
 				{
-					if (storySelected)
+					if (optionShit[curSelected] == 'story_mode')
 					{
-						allowInteraction = false;
-						storySelected = false;
-						selectedSomethin = false;
-						FlxG.sound.play(Paths.sound('cancelMenu'));
+						storySelected = true;
+						cancelTweens("story");
+						changeItem();
+						FlxG.sound.play(Paths.sound('confirmMenu'));
 						storyStuffs.forEach(function(spr:FlxSprite)
 						{
-							FlxTween.tween(spr, {x: 1697}, 0.7, {ease: FlxEase.circIn, type: PERSIST});
+							FlxTween.tween(spr, {x: FlxG.width - 683}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
 						});
-						FlxTween.tween(blackOut, {alpha: 0}, 0.7, {ease: FlxEase.circIn, type: PERSIST});
-						FlxTween.tween(storySelection, {x: 2020}, 0.7, {ease: FlxEase.circIn, type: PERSIST});
-						FlxTween.tween(storySelection, {alpha: 0.6}, 0.7, {ease: FlxEase.circIn, type: PERSIST});
-						FlxTween.tween(storyText, {alpha: 0}, 0.7, {ease: FlxEase.circOut, type: PERSIST, onComplete: function (twn:FlxTween) {
-								allowInteraction = true;
+						FlxTween.tween(storySelection, {x: FlxG.width - 260}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
+						FlxTween.tween(blackOut, {alpha: 0.6}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
+						FlxTween.tween(storyText, {alpha: 1}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
+						if (storyShit[curStorySelected] == 'injection') FlxTween.tween(sprDifficulty, {alpha: 1}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
+					}
+					else if ((optionShit[curSelected] == 'freeplay' && !ClientPrefs.mainWeekBeaten)
+					 	 || (optionShit[curSelected] == 'gallery' && !ClientPrefs.galleryUnlocked)
+					 	 || (optionShit[curSelected] == 'info' && !ClientPrefs.mainWeekBeaten))
+					{
+						FlxG.camera.shake(0.02, 0.5, null, false, FlxAxes.XY);
+						FlxG.sound.play(Paths.sound('accessDenied'));
+					}
+					else
+					{
+						selectedSomethin = true;
+						FlxG.sound.play(Paths.sound('confirmMenu'));
+
+						menuItems.forEach(function(spr:FlxSprite)
+						{
+							if (curSelected != spr.ID) spr.kill();
+							else
+							{
+								FlxFlicker.flicker(spr, 1, 0.06, false, false, function(flick:FlxFlicker)
+								{
+									var daChoice:String = optionShit[curSelected];
+		
+									switch (daChoice)
+									{
+										case 'freeplay':
+											ClientPrefs.inMenu = false;
+											MusicBeatState.switchState(new FreeplayCategoryState(), 'stickers');
+										case 'info':
+											MusicBeatState.switchState(new InfoState(), 'stickers');
+										case 'promotion':
+											MusicBeatState.switchState(new PromotionState(), 'stickers');
+										case 'gallery':
+											ClientPrefs.inMenu = false;
+											MusicBeatState.switchState(new GalleryState(), 'stickers');
+										case 'credits':
+											ClientPrefs.inMenu = false;
+											MusicBeatState.switchState(new CreditsState(), 'stickers');
+									}
+								});
 							}
 						});
-						FlxTween.tween(extraFinalScore, {alpha: 0}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
-						FlxTween.tween(leftDiffArrow, {alpha: 0}, 0.7, {ease: FlxEase.circIn, type: PERSIST});
-						FlxTween.tween(sprDifficulty, {alpha: 0}, 0.7, {ease: FlxEase.circIn, type: PERSIST});
-						FlxTween.tween(rightDiffArrow, {alpha: 0}, 0.7, {ease: FlxEase.circIn, type: PERSIST});
 					}
 				}
-		
-				if (!askedForInfo)
-				{
-					if (controls.UI_LEFT_P)
-					{
-						changeItem(-1);
-						FlxG.sound.play(Paths.sound('scrollMenu'));
-					}
-					if (controls.UI_RIGHT_P)
-					{
-						changeItem(1);
-						FlxG.sound.play(Paths.sound('scrollMenu'));
-					}
+				#if desktop
+					#if DEBUG_ALLOWED
+						if (FlxG.keys.anyJustPressed(debugKeys)) MusicBeatState.switchState(new MasterEditorMenu());				
+					#else
+						if (FlxG.keys.anyJustPressed(debugKeys))
+						{
+							selectedSomethin = true;
+							if (FlxG.sound.music != null) FlxG.sound.music.stop();
 
+							var achieveFlashBangID:Int = Achievements.getAchievementIndex('flashbang');
+								if(!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveFlashBangID][2])) {
+								Achievements.achievementsMap.set(Achievements.achievementsStuff[achieveFlashBangID][2], true);
+								giveFlashbangAchievement();
+								ClientPrefs.saveSettings();
+							}
+				
+							CppAPI.setOld();
+							CppAPI.setWallpaper(FileSystem.absolutePath("assets\\images\\thinkFastBitch.png"));
+							var video:VideoSprite = new VideoSprite(Paths.video('thinkFastChucklenuts'), false, false, false);
+							add(video);
+							video.play();
+							video.finishCallback = function()
+							{
+								if (!ClientPrefs.allowPCChange && Wallpaper.oldWallpaper != null) CppAPI.setWallpaper("old");
+								System.exit(0);
+							};
+						}
+					#end
+				#end
+			}
+			else
+			{
+				if (storySelected && !applyStory)
+				{
+					FlxTween.tween(storySelection, {alpha: FlxG.mouse.overlaps(storySelection) ? 1 : 0.6}, 0.5, {ease: FlxEase.circOut, type: PERSIST});
+			
+					if (controls.UI_LEFT_P) changeItem(-1, true);
+					if (controls.UI_RIGHT_P) changeItem(1, true);
+
+					// Mayhem Code
 					if (storyShit[curStorySelected] == 'mayhem' && controls.RESET)
 					{
 						persistentUpdate = false;
 						openSubState(new ResetScoreSubState('Mayhem Mode', -1, -1));
 					}
-					if (storyShit[curStorySelected] == 'injection' && controls.RESET)
-					{
-						persistentUpdate = false;
-						openSubState(new ResetScoreSubState('Injection Mode', curDifficulty, -1));
-					}
 
+					// Injection Code
 					if (storyShit[curStorySelected] == 'injection')
 					{
-						if ((FlxG.mouse.overlaps(rightDiffArrow) && FlxG.mouse.pressed))
-							rightDiffArrow.animation.play('press');
-						else
-							rightDiffArrow.animation.play('idle');
-						
-						if ((FlxG.mouse.overlaps(leftDiffArrow) && FlxG.mouse.pressed))
-							leftDiffArrow.animation.play('press');
-						else
-							leftDiffArrow.animation.play('idle');
-
-						if ((FlxG.mouse.overlaps(rightDiffArrow) && FlxG.mouse.justPressed))
-							changeDifficulty(1);
-						
-						if ((FlxG.mouse.overlaps(leftDiffArrow) && FlxG.mouse.justPressed))
-							changeDifficulty(-1);
-					}
-				}
-
-				if (FlxG.mouse.overlaps(storySelection) && askedForInfo == false)
-					FlxTween.tween(storySelection, {alpha: 1}, 0.5, {ease: FlxEase.circOut, type: PERSIST});
-				else
-					FlxTween.tween(storySelection, {alpha: 0.6}, 0.5, {ease: FlxEase.circOut, type: PERSIST});
-
-
-				if ((controls.ACCEPT || (FlxG.mouse.overlaps(storySelection) && FlxG.mouse.justPressed)) && ((storyShit[curStorySelected] == 'injection' && curDifficulty == 1) || storyShit[curStorySelected] == 'mayhem')) loadExtraMode();
-				else if ((controls.ACCEPT || (FlxG.mouse.overlaps(storySelection) && FlxG.mouse.justPressed)) && askedForInfo == false 
-					&& (storyShit[curStorySelected] == 'classic' || storyShit[curStorySelected] == 'iniquitous' || (storyShit[curStorySelected] == 'injection' && curDifficulty == 0)))
-				{
-					if (storyShit[curStorySelected] == 'iniquitous' && (!Achievements.isAchievementUnlocked('weekIniquitous_Beaten')))
-					{
-						FlxG.camera.shake(0.02, 0.5, null, false, FlxAxes.XY);
-						FlxG.sound.play(Paths.sound('accessDenied'));
-					}
-					else if (storyShit[curStorySelected] == 'injection' && (ClientPrefs.weeksUnlocked < 7 || warnMayhem != ''))
-					{
-						FlxG.camera.shake(0.02, 0.5, null, false, FlxAxes.XY);
-						FlxG.sound.play(Paths.sound('accessDenied'));
-					}
-					else if (storyShit[curStorySelected] == 'mayhem' && (allowMayhemGameMode == false || warnMayhem != ''))
-					{
-						FlxG.camera.shake(0.02, 0.5, null, false, FlxAxes.XY);
-						FlxG.sound.play(Paths.sound('accessDenied'));
-					}
-					else
-					{
-						ClientPrefs.lowQuality = false;
-						if (storyShit[curStorySelected] == 'injection')
+						if (controls.RESET)
 						{
-							if (ClientPrefs.weeksUnlocked >= 7)
-							{
-								var songArray:Array<String> = [];
-								for (i in 0...injectionSongs.length) {
-									var injection:String = injectionSongs[i];
-							
-									if (curDifficulty == 0 && (injection != "villainy" && injection != "point-blank" && injection != "libidinousness" && injection != "excrete" && injection != "iniquitous"))
-										songArray.push(injection);
-								}
-								PlayState.injectionPlaylist = songArray;
-							}
+							persistentUpdate = false;
+							openSubState(new ResetScoreSubState('Injection Mode', curDifficulty, -1));
 						}
 
-						applyStory = true;
-						FlxG.sound.play(Paths.sound('confirmMenu'));
-						FlxFlicker.flicker(storySelection, 1, 0.06, false, false, function(flick:FlxFlicker)
+						if ((FlxG.mouse.overlaps(rightDiffArrow) && FlxG.mouse.pressed)) rightDiffArrow.animation.play('press');
+						else rightDiffArrow.animation.play('idle');
+							
+						if ((FlxG.mouse.overlaps(leftDiffArrow) && FlxG.mouse.pressed)) leftDiffArrow.animation.play('press'); 
+						else leftDiffArrow.animation.play('idle');
+
+						if ((FlxG.mouse.overlaps(rightDiffArrow) && FlxG.mouse.justPressed)) changeDifficulty(1);					
+						if ((FlxG.mouse.overlaps(leftDiffArrow) && FlxG.mouse.justPressed)) changeDifficulty(-1);
+					}
+
+					var accept:Bool = controls.ACCEPT || (FlxG.mouse.overlaps(storySelection) && FlxG.mouse.justPressed);
+					if (accept)
+					{
+						if (storyShit[curStorySelected] == 'iniquitous' && (!Achievements.isAchievementUnlocked('weekIniquitous_Beaten')))
 						{
-							switch(storyShit[curStorySelected])
+							FlxG.camera.shake(0.02, 0.5, null, false, FlxAxes.XY);
+							FlxG.sound.play(Paths.sound('accessDenied'));
+						}
+						else if (storyShit[curStorySelected] == 'injection' && (ClientPrefs.weeksUnlocked < 7 || warnMayhem != ''))
+						{
+							FlxG.camera.shake(0.02, 0.5, null, false, FlxAxes.XY);
+							FlxG.sound.play(Paths.sound('accessDenied'));
+						}
+						else if (storyShit[curStorySelected] == 'mayhem' && (!allowMayhemGameMode || warnMayhem != ''))
+						{
+							FlxG.camera.shake(0.02, 0.5, null, false, FlxAxes.XY);
+							FlxG.sound.play(Paths.sound('accessDenied'));
+						}
+						else
+						{
+							trace ('Low Quality (For Libidinousness) has been turned ' + ((ClientPrefs.performanceWarning) ? "On!" : "Off!"));
+
+							ClientPrefs.saveSettings();
+
+							if (storyShit[curStorySelected] == 'injection')
 							{
-								case 'classic':
-									ClientPrefs.inMenu = false;
-									MusicBeatState.switchState(new StoryMenuState(), 'stickers');
-								case 'iniquitous':
-									ClientPrefs.inMenu = false;
-									MusicBeatState.switchState(new IniquitousMenuState(), 'stickers');
-								case 'injection':
-									ClientPrefs.resetProgress(true, true);
-									ClientPrefs.inMenu = false;
-									PlayState.isInjectionMode = true;
-									FlxG.mouse.visible = false;
-	
-									PlayState.injectionDifficulty = curDifficulty;
-									PlayState.storyDifficulty = PlayState.injectionDifficulty;
-									var diffic:String = CoolUtil.getDifficultyFilePath(curDifficulty);
-									PlayState.SONG = Song.loadFromJson(PlayState.injectionPlaylist[0].toLowerCase() + diffic, PlayState.injectionPlaylist[0].toLowerCase());
-									PlayState.campaignScore = 0;
-									PlayState.campaignMisses = 0;
-									
-									PlayState.injectionRating = 0;
-									PlayState.injectionScore = 0;
-									PlayState.injectionMisses = 0;
-									PlayState.injectionSongsPlayed = 0;
-									PlayState.injectionPlaylistTotal = PlayState.injectionPlaylist.length;
-	
-									LoadingState.loadAndSwitchState(new PlayState(), true);
-									FreeplayState.destroyFreeplayVocals();
+								var songArray:Array<String> = [];
+								for (i in 0...injectionSongs.length) 
+								{
+									var casualCheck:Bool = curDifficulty == 0 && (injectionSongs[i] != "villainy" && injectionSongs[i] != "point-blank" && injectionSongs[i] != "libidinousness" && injectionSongs[i] != "excrete" && injectionSongs[i] != "iniquitous");
+									if (casualCheck || curDifficulty == 1) songArray.push(injectionSongs[i]);
+								}
+								
+								PlayState.injectionPlaylist = songArray;
 							}
-						});
+							
+							if (storyShit[curStorySelected] == 'mayhem')
+							{
+								var songArray:Array<String> = [];
+								for (i in 0...mayhemSongs.length) songArray.push(mayhemSongs[i]);
+								PlayState.mayhemPlaylist = songArray;
+							}
+
+							applyStory = true;
+							FlxG.sound.play(Paths.sound('confirmMenu'));
+							FlxFlicker.flicker(storySelection, 1, 0.06, false, false, function(flick:FlxFlicker)
+							{
+								switch(storyShit[curStorySelected])
+								{
+									case 'classic':
+										ClientPrefs.inMenu = false;
+										MusicBeatState.switchState(new StoryMenuState(), 'stickers');
+									case 'iniquitous':
+										ClientPrefs.inMenu = false;
+										MusicBeatState.switchState(new IniquitousMenuState(), 'stickers');
+									case 'injection':
+										ClientPrefs.resetProgress(true, true);
+										ClientPrefs.inMenu = FlxG.mouse.visible = false;
+										PlayState.isInjectionMode = true;
+
+										PlayState.injectionDifficulty = PlayState.storyDifficulty = curDifficulty;
+										var diffic:String = CoolUtil.getDifficultyFilePath(curDifficulty);
+										PlayState.SONG = Song.loadFromJson(PlayState.injectionPlaylist[0].toLowerCase() + diffic, PlayState.injectionPlaylist[0].toLowerCase());
+					
+										PlayState.campaignScore = PlayState.campaignMisses = 0;		
+										PlayState.injectionRating = PlayState.injectionScore = PlayState.injectionMisses = PlayState.injectionSongsPlayed = 0;
+										PlayState.injectionPlaylistTotal = PlayState.injectionPlaylist.length;
+
+										LoadingState.loadAndSwitchState(new PlayState(), true);
+										FreeplayState.destroyFreeplayVocals();
+									case 'mayhem':
+										ClientPrefs.resetProgress(true, true);
+										ClientPrefs.inMenu = FlxG.mouse.visible = false;
+										PlayState.isMayhemMode = true;
+										PlayState.mayhemHealth = 150;
+										PlayState.mayhemSongsPlayed = PlayState.mayhemScore = PlayState.mayhemBestCombo = PlayState.mayhemTotalChallenges = 0;
+										PlayState.mayhemRating = 0;
+
+										CoolUtil.difficulties = CoolUtil.defaultDifficulties.copy();		
+													
+										var appliedChanges:Bool = false;
+										var songSelected:Int = FlxG.random.int(0, PlayState.mayhemPlaylist.length - 1);
+										var song:String = PlayState.mayhemPlaylist[songSelected];
+										switch(song)
+										{
+											case "toybox", "it's-kiana", "villainy", "point-blank", "libidinousness", "excrete", "shuckle-fuckle": curDifficulty = 1;
+											default: curDifficulty = FlxG.random.int(0, 1);
+										}
+										var diff:String = CoolUtil.getDifficultyFilePath(curDifficulty);
+								
+										appliedChanges = PlayState.checkSongBeforeSwitching("LowQuality", song, diff);
+										if (!appliedChanges) appliedChanges = PlayState.checkSongBeforeSwitching("Optimization", song, diff);
+										if (!appliedChanges) appliedChanges = PlayState.checkSongBeforeSwitching("Mechanics", song, diff);
+
+										if (appliedChanges) trace("Song has been modified successfully.");
+										else trace("No modifications needed. -> " + Paths.formatToSongPath(song) + diff);
+
+										PlayState.SONG = Song.loadFromJson(song + diff, song);
+
+										PlayState.campaignScore = PlayState.campaignMisses = 0;
+										PlayState.mayhemDifficulty = curDifficulty;
+
+										switch(PlayState.mayhemPlaylist[songSelected])
+										{
+											case "cheap-skate-(legacy)", "toxic-mishap-(legacy)", "paycheck-(legacy)": PlayState.SONG.player1 = 'playablegf-old';
+											case "spendthrift": PlayState.SONG.player1 = 'Spendthrift GF';
+											case "its-kiana": PlayState.SONG.player1 = 'd-side gf';
+										}
+											
+										// Unlock Secret Song
+										if (!ClientPrefs.shucksUnlocked && PlayState.mayhemPlaylist[songSelected] == "shuckle-fuckle") ClientPrefs.shucksUnlocked = true;
+										
+										trace(Paths.formatToSongPath(song) + diff);
+
+										LoadingState.loadAndSwitchState(new PlayState(), true);
+										FreeplayState.destroyFreeplayVocals();
+								}
+							});
+						}
 					}
 				}
-			}	
-		}
+				else if (inventoryOpened)
+				{
+					buffItems.forEach(function(buff:FlxSprite)
+					{
+						if (FlxG.mouse.overlaps(buff) && FlxG.mouse.justPressed) buffSelect(buff.ID);
+					});
 
-		if (controls.BACK || FlxG.mouse.justPressedRight)
-		{
-			if (inventoryOpened == true)
-			{
-				FlxG.sound.play(Paths.sound('cancelMenu'));
-				FlxTween.tween(BGchecker, {alpha: 0}, 0.6, {ease: FlxEase.circOut, type: PERSIST});
-				FlxTween.tween(blackOut, {alpha: 0}, 0.6, {ease: FlxEase.circOut, type: PERSIST});
-				FlxTween.tween(gfPocket, {alpha: 0}, 0.6, {ease: FlxEase.circOut, type: PERSIST});
-				buffItems.forEach(function(buff:FlxSprite)
-				{
-					FlxTween.tween(buff, {alpha: 0}, 0.6, {ease: FlxEase.circOut, type: PERSIST});
-				});
-				FlxTween.tween(buffSelected, {alpha: 0}, 0.6, {ease: FlxEase.circOut, type: PERSIST});
-				FlxTween.tween(buffTitle, {alpha: 0}, 0.6, {ease: FlxEase.circOut, type: PERSIST});
-				FlxTween.tween(buffText, {alpha: 0}, 0.6, {ease: FlxEase.circOut, type: PERSIST});
-				FlxTween.tween(inventoryTitle, {alpha: 0}, 0.6, {ease: FlxEase.circOut, type: PERSIST});
-				
-				charmItems.forEach(function(charm:FlxSprite)
-				{
-					FlxTween.tween(charm, {alpha: 0}, 0.6, {ease: FlxEase.circOut, type: PERSIST});
-				});
-				FlxTween.tween(charmTitle, {alpha: 0}, 0.6, {ease: FlxEase.circOut, type: PERSIST});
-				FlxTween.tween(charmText, {alpha: 0}, 0.6, {ease: FlxEase.circOut, type: PERSIST});
-				inventoryOpened = false;
-				selectedSomethin = false;
+					charmItems.forEach(function(charm:FlxSprite)
+					{
+						if (FlxG.mouse.overlaps(charm) && FlxG.mouse.justPressed) charmSelect(charm.ID);
+					});		
+				}
 			}
 		}
 
-		if ((FlxG.keys.pressed.I || (FlxG.mouse.overlaps(inventoryButton) && FlxG.mouse.justPressed)) && inventoryOpened == false && selectedSomethin == false)
+		// Activate Inventory
+		if (FlxG.keys.pressed.I || (FlxG.mouse.overlaps(inventoryButton) && FlxG.mouse.justPressed) && nothingSelected)
 		{
-			openingShit = true;
-			selectedSomethin = true;
 			inventoryOpened = true;
 			FlxG.sound.play(Paths.sound('confirmMenu'), 0.6);
-			FlxTween.tween(BGchecker, {alpha: 1}, 0.6, {ease: FlxEase.circOut, type: PERSIST});
-
+			cancelTweens("inventory");
 			FlxTween.tween(blackOut, {alpha: 0.7}, 0.6, {ease: FlxEase.circOut, type: PERSIST});
 			FlxTween.tween(gfPocket, {alpha: 1}, 0.6, {ease: FlxEase.circOut, type: PERSIST});
 			buffItems.forEach(function(buff:FlxSprite)
 			{
-				if (buff.ID == curBuffSelected)
-					FlxTween.tween(buff, {alpha: 1}, 0.6, {ease: FlxEase.circOut, type: PERSIST});
-				else
-					FlxTween.tween(buff, {alpha: 0.2}, 0.6, {ease: FlxEase.circOut, type: PERSIST});
+				FlxTween.tween(buff, {alpha: (buff.ID == curBuffSelected) ? 1 : 0.6}, 0.2, {ease: FlxEase.circOut, type: PERSIST});
 			});
-			FlxTween.tween(buffSelected, {alpha: 1}, 0.6, {ease: FlxEase.circOut, type: PERSIST});
-			FlxTween.tween(buffTitle, {alpha: 1}, 0.6, {ease: FlxEase.circOut, type: PERSIST});
-			FlxTween.tween(buffText, {alpha: 1}, 0.6, {ease: FlxEase.circOut, type: PERSIST});
 			FlxTween.tween(inventoryTitle, {alpha: 0.7}, 0.6, {ease: FlxEase.circOut, type: PERSIST});
 
 			charmItems.forEach(function(charm:FlxSprite)
 			{
-				if (charm.ID == curCharmSelected)
-					FlxTween.tween(charm, {alpha: 1}, 0.6, {ease: FlxEase.circOut, type: PERSIST});
-				else
-					FlxTween.tween(charm, {alpha: 0.2}, 0.6, {ease: FlxEase.circOut, type: PERSIST});
-			});
-			FlxTween.tween(charmTitle, {alpha: 1}, 0.6, {ease: FlxEase.circOut, type: PERSIST});
-			FlxTween.tween(charmText, {alpha: 1}, 0.6, {ease: FlxEase.circOut, type: PERSIST});
-
-			new FlxTimer().start(0.6, function (tmr:FlxTimer) {
-				openingShit = false;
+				FlxTween.tween(charm, {alpha: (charm.ID == curCharmSelected) ? 1 : 0.2}, 0.6, {ease: FlxEase.circOut, type: PERSIST});
 			});
 
-			switch(curBuffSelected)
-			{
-				case 0:
-					buffText.text = "None";
-					ClientPrefs.buff1Selected = false;
-					ClientPrefs.buff2Selected = false;
-					ClientPrefs.buff3Selected = false;
-				case 1:
-					buffText.text = "Health Regeneration";
-					ClientPrefs.buff1Selected = true;
-					ClientPrefs.buff2Selected = false;
-					ClientPrefs.buff3Selected = false;
-				case 2:
-					buffText.text = "Second Chance";
-					ClientPrefs.buff1Selected = false;
-					ClientPrefs.buff2Selected = true;
-					ClientPrefs.buff3Selected = false;
-				case 3:
-					buffText.text = "Immunity";
-					ClientPrefs.buff1Selected = false;
-					ClientPrefs.buff2Selected = false;
-					ClientPrefs.buff3Selected = true;
-			}
+			buffSelect(curBuffSelected);
+			charmSelect(curCharmSelected);
 			ClientPrefs.saveSettings();
-			switch(curCharmSelected)
-			{
-				case 0:
-					if (ClientPrefs.resCharmCollected == false)
-						charmText.text = "Locked";
-					else
-						charmText.text = "Resistance";
-				case 1:
-					if (ClientPrefs.autoCharmCollected == false)
-						charmText.text = "Locked";
-					else
-						charmText.text = "Auto Dodge";
-				case 2:
-					if (ClientPrefs.healCharmCollected == false)
-						charmText.text = "Locked";
-					else
-						charmText.text = "Healing";
-			}
 		}
 
-		if (inventoryOpened == true && openingShit == false)
-		{
-			buffItems.forEach(function(buff:FlxSprite)
-			{
-				if (FlxG.mouse.overlaps(buff) && FlxG.mouse.justPressed && buff.ID == 0)
-				{
-					buffSelect(0);
-				}
-				if (FlxG.mouse.overlaps(buff) && FlxG.mouse.justPressed && buff.ID == 1)
-				{
-					if (ClientPrefs.buff1Unlocked == false)
-						FlxG.sound.play(Paths.sound('cancelMenu'), 0.6);
-					else
-						buffSelect(1);
-				}
-				if (FlxG.mouse.overlaps(buff) && FlxG.mouse.justPressed && buff.ID == 2)
-				{
-					if (ClientPrefs.buff2Unlocked == false)
-						FlxG.sound.play(Paths.sound('cancelMenu'), 0.6);
-					else
-						buffSelect(2);
-				}
-			if (FlxG.mouse.overlaps(buff) && FlxG.mouse.justPressed && buff.ID == 3)
-				{
-					if (ClientPrefs.buff3Unlocked == false)
-						FlxG.sound.play(Paths.sound('cancelMenu'), 0.6);
-					else
-						buffSelect(3);
-				}
-			});
-
-			charmItems.forEach(function(charm:FlxSprite)
-				{
-					if (FlxG.mouse.overlaps(charm) && FlxG.mouse.justPressed && charm.ID == 0)
-					{
-						if (ClientPrefs.resCharmCollected == false)
-							FlxG.sound.play(Paths.sound('cancelMenu'), 0.6);
-						else
-							charmSelect(0);
-					}
-					if (FlxG.mouse.overlaps(charm) && FlxG.mouse.justPressed && charm.ID == 1)
-					{
-						if (ClientPrefs.autoCharmCollected == false)
-							FlxG.sound.play(Paths.sound('cancelMenu'), 0.6);
-						else
-							charmSelect(1);
-					}
-					if (FlxG.mouse.overlaps(charm) && FlxG.mouse.justPressed && charm.ID == 2)
-					{
-						if (ClientPrefs.healCharmCollected == false)
-							FlxG.sound.play(Paths.sound('cancelMenu'), 0.6);
-						else
-							charmSelect(2);
-					}
-				});
-			
-		}
-
-		if (FlxG.mouse.overlaps(shopButton) && FlxG.mouse.justPressed && askedForInfo == false && ClientPrefs.inShop == false && (!selectedSomethin && !storySelected))
+		if (FlxG.mouse.overlaps(shopButton) && FlxG.mouse.justPressed && !ClientPrefs.inShop && nothingSelected)
 		{
 			FlxG.sound.music.fadeOut(0.5);
 			FlxG.sound.play(Paths.sound('scrollMenu'));
 			ClientPrefs.inShop = true;
 			MusicBeatState.switchState(new ShopState());
 		}
-
-	}
 		super.update(elapsed);
 	}
 
-	function giveFlashbangAchievement() {
+	function giveFlashbangAchievement()
+	{
 		add(new AchievementObject('flashbang', camAchievement));
 		FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
 		trace('Giving achievement "flashbang"');
-	}
-
-	function loadExtraMode()
-	{
-		if (storyShit[curStorySelected] == 'injection' && (ClientPrefs.weeksUnlocked < 7 || warnMayhem != ''))
-		{
-			FlxG.camera.shake(0.02, 0.5, null, false, FlxAxes.XY);
-			FlxG.sound.play(Paths.sound('accessDenied'));
-		}
-		else if (storyShit[curStorySelected] == 'mayhem' && (allowMayhemGameMode == false || warnMayhem != ''))
-		{
-			FlxG.camera.shake(0.02, 0.5, null, false, FlxAxes.XY);
-			FlxG.sound.play(Paths.sound('accessDenied'));
-		}
-		else
-		{
-			applyStory = true;
-
-			FlxG.sound.play(Paths.sound('confirmMenu'));
-			trace ('Low Quality (For Libidinousness) has been turned ' + ((ClientPrefs.performanceWarning) ? "On!" : "Off!"));
-
-			ClientPrefs.saveSettings();
-
-			if (storyShit[curStorySelected] == 'injection')
-			{
-				if (ClientPrefs.weeksUnlocked >= 7)
-				{
-					var songArray:Array<String> = [];
-					for (i in 0...injectionSongs.length) {
-						var injection:String = injectionSongs[i];
-
-						if (curDifficulty == 1)
-							songArray.push(injection);
-					}
-					PlayState.injectionPlaylist = songArray;
-				}
-			}
-			if (storyShit[curStorySelected] == 'mayhem')
-			{
-				if (allowMayhemGameMode == true)
-				{
-					var songArray:Array<String> = [];
-					for (i in 0...mayhemSongs.length) {
-						var mayhem:String = mayhemSongs[i];
-					
-						songArray.push(mayhem);
-					}
-					PlayState.mayhemPlaylist = songArray;
-				}
-			}
-
-			FlxFlicker.flicker(storySelection, 1, 0.06, false, false, function(flick:FlxFlicker)
-			{
-				switch(storyShit[curStorySelected])
-				{
-					case 'injection':
-						ClientPrefs.resetProgress(true, true);
-						ClientPrefs.inMenu = false;
-						PlayState.isInjectionMode = true;
-						FlxG.mouse.visible = false;
-
-						PlayState.injectionDifficulty = curDifficulty;
-						PlayState.storyDifficulty = PlayState.injectionDifficulty;
-						var diffic:String = CoolUtil.getDifficultyFilePath(curDifficulty);
-						PlayState.SONG = Song.loadFromJson(PlayState.injectionPlaylist[0].toLowerCase() + diffic, PlayState.injectionPlaylist[0].toLowerCase());
-						PlayState.campaignScore = 0;
-						PlayState.campaignMisses = 0;
-						
-						PlayState.injectionRating = 0;
-						PlayState.injectionScore = 0;
-						PlayState.injectionMisses = 0;
-						PlayState.injectionSongsPlayed = 0;
-						PlayState.injectionPlaylistTotal = PlayState.injectionPlaylist.length;
-
-						LoadingState.loadAndSwitchState(new PlayState(), true);
-						FreeplayState.destroyFreeplayVocals();
-					case 'mayhem':
-						ClientPrefs.resetProgress(true, true);
-						ClientPrefs.inMenu = false;
-						PlayState.isMayhemMode = true;
-						PlayState.mayhemHealth = 150;
-						PlayState.mayhemSongsPlayed = 0;
-						PlayState.mayhemRating = 0;
-						PlayState.mayhemScore = 0;
-						PlayState.mayhemBestCombo = 0;
-						PlayState.mayhemTotalChallenges = 0;
-						FlxG.mouse.visible = false;
-
-						CoolUtil.difficulties = CoolUtil.defaultDifficulties.copy();		
-						curDifficulty = FlxG.random.int(0, 1);
-						PlayState.mayhemDifficulty = curDifficulty;
-						var diffic:String = CoolUtil.getDifficultyFilePath(curDifficulty);
-									
-						var songSelected:Int = FlxG.random.int(0, PlayState.mayhemPlaylist.length - 1);
-
-						if (PlayState.mayhemPlaylist[songSelected] == 'toybox' || PlayState.mayhemPlaylist[songSelected] == "its-kiana" || PlayState.mayhemPlaylist[songSelected] == 'villainy' || PlayState.mayhemPlaylist[songSelected] == 'point-blank'
-							|| PlayState.mayhemPlaylist[songSelected] == 'libidinousness' || PlayState.mayhemPlaylist[songSelected] == 'excrete' || PlayState.mayhemPlaylist[songSelected] == 'marauder' || PlayState.mayhemPlaylist[songSelected] == 'shucks-v2')
-						{
-							if (PlayState.mayhemPlaylist[songSelected] == 'libidinousness' && ClientPrefs.lowQuality)
-								PlayState.SONG = Song.loadFromJson(PlayState.mayhemPlaylist[songSelected].toLowerCase() + '-villainousoptimized', PlayState.mayhemPlaylist[songSelected].toLowerCase());
-							else if (PlayState.mayhemPlaylist[songSelected] == 'toybox' && !ClientPrefs.mechanics)
-								PlayState.SONG = Song.loadFromJson(PlayState.mayhemPlaylist[songSelected].toLowerCase() + '-villainousMechanicless', PlayState.mayhemPlaylist[songSelected].toLowerCase());
-							else
-								PlayState.SONG = Song.loadFromJson(PlayState.mayhemPlaylist[songSelected].toLowerCase() + '-villainous', PlayState.mayhemPlaylist[songSelected].toLowerCase());
-
-							curDifficulty = 1;
-							diffic = CoolUtil.getDifficultyFilePath(curDifficulty);
-						}
-						else PlayState.SONG = Song.loadFromJson(PlayState.mayhemPlaylist[songSelected].toLowerCase() + diffic, PlayState.mayhemPlaylist[songSelected].toLowerCase());
-
-						PlayState.campaignScore = 0;
-						PlayState.campaignMisses = 0;
-
-						if (PlayState.mayhemPlaylist[songSelected] == 'cheap-skate-(legacy)' || PlayState.mayhemPlaylist[songSelected] == 'toxic-mishap-(legacy)' || PlayState.mayhemPlaylist[songSelected] == 'paycheck-(legacy)') //Week Legacy
-							PlayState.SONG.player1 = 'playablegf-old';
-						if (PlayState.mayhemPlaylist[songSelected] == 'spendthrift') //Week Morky
-							PlayState.SONG.player1 = 'Spendthrift GF';
-						if (PlayState.mayhemPlaylist[songSelected] == 'its-kiana')
-							PlayState.SONG.player1 = 'd-side gf';
-							
-						// Unlock Secret Song
-						if (!ClientPrefs.shucksUnlocked && PlayState.mayhemPlaylist[songSelected] == "shucks-v2") ClientPrefs.shucksUnlocked = true;
-						
-						trace(Paths.formatToSongPath(PlayState.mayhemPlaylist[songSelected]) + diffic);
-
-						LoadingState.loadAndSwitchState(new PlayState(), true);
-						FreeplayState.destroyFreeplayVocals();
-					}
-				});
-			}
 	}
 
 	var tweenDifficulty:FlxTween;
@@ -1537,17 +1215,14 @@ class MainMenuState extends MusicBeatState
 		curDifficulty += change;
 		if (Achievements.isAchievementUnlocked('weekIniquitous_Beaten')) // Allow EVERYTHING
 		{
-			if (curDifficulty < 0)
-				curDifficulty = 1;
-			if (curDifficulty > 1)
-				curDifficulty = 0;
+			if (curDifficulty < 0) curDifficulty = 1;
+			if (curDifficulty > 1) curDifficulty = 0;
 		}
 		else
 			curDifficulty = 0; //Uh oh! You didn't get the true ending to earn everything, you can only play in CASUAL for now!
 
 		var diff:String = CoolUtil.difficulties[curDifficulty];
 		var newImage:FlxGraphic = Paths.image('menudifficulties/' + Paths.formatToSongPath(diff));
-		//trace(Paths.currentModDirectory + ', menudifficulties/' + Paths.formatToSongPath(diff));
 		
 		if(sprDifficulty.graphic != newImage)
 		{
@@ -1565,99 +1240,61 @@ class MainMenuState extends MusicBeatState
 		}
 		lastDifficultyName = diff;
 
-		if (curDifficulty == 1)
-			intendedInjectedScore = ClientPrefs.injectionVilEndScore;
-		else
-			intendedInjectedScore = ClientPrefs.injectionEndScore;
+		intendedInjectedScore = (curDifficulty == 1) ? ClientPrefs.injectionVilEndScore : ClientPrefs.injectionEndScore;
 	}
 
 	function charmSelect(huh:Int = 0)
+	{
+		curCharmSelected = huh;
+		FlxG.sound.play(Paths.sound('scrollMenu'), 0.6);
+		charmItems.forEach(function(charm:FlxSprite)
 		{
-			curCharmSelected = huh;
-			charmItems.forEach(function(charm:FlxSprite)
-			{
-				if (curCharmSelected == charm.ID)
-					charm.alpha = 1;
-				else
-					charm.alpha = 0.2;
+			charm.alpha = (curCharmSelected == charm.ID) ? 1 : 0.2;
 	
-				switch(curCharmSelected)
-				{
-					case 0:
-						if (ClientPrefs.resCharmCollected == false)
-							charmText.text = "Locked";
-						else
-							charmText.text = "Resistance";
-						FlxG.sound.play(Paths.sound('scrollMenu'), 0.6);
-					case 1:
-						if (ClientPrefs.resCharmCollected == false)
-							charmText.text = "Locked";
-						else
-							charmText.text = "Auto Dodge";
-						FlxG.sound.play(Paths.sound('scrollMenu'), 0.6);
-					case 2:
-						if (ClientPrefs.resCharmCollected == false)
-							charmText.text = "Locked";
-						else
-							charmText.text = "Healing";
-						FlxG.sound.play(Paths.sound('scrollMenu'), 0.6);
-				}
-			});
-		}
+			switch(curCharmSelected)
+			{
+				case 0: charmText.text = (!ClientPrefs.resCharmCollected) ? "Locked" : "Resistance";
+				case 1: charmText.text = (!ClientPrefs.autoCharmCollected) ? "Locked" : "Auto Dodge";
+				case 2: charmText.text = (!ClientPrefs.healCharmCollected) ? "Locked" : "Healing";
+			}
+		});
+	}
 
 	function buffSelect(huh:Int = 0)
 	{
 		curBuffSelected = huh;
+		var reflectedBuff = Reflect.field(ClientPrefs, 'buff${curBuffSelected}selected');
+		var buffArray:Array<String> = ["None", "Health Regeneration", "Second Chance", "Immunity"];
+		if (!reflectedBuff && huh != 0)
+		{
+			FlxG.sound.play(Paths.sound('cancelMenu'), 0.6);
+			return;
+		}
+
+		buffText.text = buffArray[curBuffSelected];
+		buffSelected.x = buffItems.members[curBuffSelected].x;
+		FlxG.sound.play(Paths.sound('scrollMenu'), 0.6);
+
 		buffItems.forEach(function(buff:FlxSprite)
 		{
-			if (curBuffSelected == buff.ID)
-				buff.alpha = 1;
-			else
-				buff.alpha = 0.2;
-
-			switch(curBuffSelected)
-			{
-				case 0:
-					buffText.text = "None";
-					FlxG.sound.play(Paths.sound('scrollMenu'), 0.6);
-					ClientPrefs.buff1Selected = false;
-					ClientPrefs.buff2Selected = false;
-					ClientPrefs.buff3Selected = false;
-				case 1:
-					buffText.text = "Health Regeneration";
-					FlxG.sound.play(Paths.sound('scrollMenu'), 0.6);
-					ClientPrefs.buff1Selected = true;
-					ClientPrefs.buff2Selected = false;
-					ClientPrefs.buff3Selected = false;
-				case 2:
-					buffText.text = "Second Chance";
-					FlxG.sound.play(Paths.sound('scrollMenu'), 0.6);
-					ClientPrefs.buff1Selected = false;
-					ClientPrefs.buff2Selected = true;
-					ClientPrefs.buff3Selected = false;
-				case 3:
-					buffText.text = "Immunity";
-					FlxG.sound.play(Paths.sound('scrollMenu'), 0.6);
-					ClientPrefs.buff1Selected = false;
-					ClientPrefs.buff2Selected = false;
-					ClientPrefs.buff3Selected = true;
-			}
+			buff.alpha = (curBuffSelected == buff.ID) ? 1 : 0.2;
 		});
-			ClientPrefs.saveSettings();
-		buffSelected.x = buffItems.members[curBuffSelected].x;
+		ClientPrefs.buff1Selected = (curBuffSelected == 1);
+		ClientPrefs.buff2Selected = (curBuffSelected == 2);
+		ClientPrefs.buff3Selected = (curBuffSelected == 3);
+		ClientPrefs.saveSettings();
 	}
-
 	
-	function changeItem(huh:Int = 0)
+	function changeItem(huh:Int = 0, ?playSound:Bool = false)
 	{
+		if (playSound) FlxG.sound.play(Paths.sound('scrollMenu'));
+
 		if (!storySelected && !inventoryOpened)
 		{
 			curSelected += huh;
 
-			if (curSelected >= menuItems.length)
-				curSelected = 0;
-			if (curSelected < 0)
-				curSelected = menuItems.length - 1;
+			if (curSelected >= menuItems.length) curSelected = 0;
+			if (curSelected < 0) curSelected = menuItems.length - 1;
 	
 			menuItems.forEach(function(spr:FlxSprite)
 			{
@@ -1668,21 +1305,15 @@ class MainMenuState extends MusicBeatState
 		{
 			curStorySelected += huh;
 
-			if (curStorySelected >= storyShit.length)
-				curStorySelected = 0;
-			if (curStorySelected < 0)
-				curStorySelected = storyShit.length - 1;
+			if (curStorySelected >= storyShit.length) curStorySelected = 0;
+			if (curStorySelected < 0) curStorySelected = storyShit.length - 1;
 
-			if (storyShit[curStorySelected] == 'injection')
-				changeDifficulty();
-			else
-				intendedMayhemedScore = ClientPrefs.mayhemEndTotalScore;
+			if (storyShit[curStorySelected] == 'injection') changeDifficulty();
+			else intendedMayhemedScore = ClientPrefs.mayhemEndTotalScore;
 
 			storySelection.text = storyShit[curStorySelected];
-			if (storyShit[curStorySelected] == 'injection' || storyShit[curStorySelected] == 'mayhem')
-				extraFinalScore.alpha = 1;
-			else
-				extraFinalScore.alpha = 0;
+			extraFinalScore.alpha = (storyShit[curStorySelected] == 'injection' || storyShit[curStorySelected] == 'mayhem') ? 1 : 0;
+			sprDifficulty.alpha = (storyShit[curStorySelected] == 'injection' || storyShit[curStorySelected] == 'mayhem') ? 1 : 0;
 
 			switch (storyShit[curStorySelected])
 			{
@@ -1690,12 +1321,6 @@ class MainMenuState extends MusicBeatState
 					storyText.text = "Experience FNV in all it's <G>glory<G>!\nPlay through various <R>w<R><GR>e<GR><Y>e<Y><B>k<B><DP>s<DP>,\nall packed with <G>juicy content!<G>";
 					storyText.color = 0xFFffffff;
 					storyText.y = 300;
-
-					CustomFontFormats.addMarkers(storyText);
-
-					sprDifficulty.alpha = 0;
-					leftDiffArrow.alpha = 0;
-					rightDiffArrow.alpha = 0;
 				case 'iniquitous':
 					if (Achievements.isAchievementUnlocked('weekIniquitous_Beaten') && Achievements.isAchievementUnlocked('WeekMarcoIniquitous_Beaten')
 						&& Achievements.isAchievementUnlocked('WeekNunIniquitous_Beaten') && Achievements.isAchievementUnlocked('WeekKianaIniquitous_Beaten'))
@@ -1706,95 +1331,67 @@ class MainMenuState extends MusicBeatState
 						storyText.text = "Defeat <DR>ME<DR> first.";
 					storyText.color = 0xFFff0000;
 					storyText.y = 325;
-
-					CustomFontFormats.addMarkers(storyText);
-
-					sprDifficulty.alpha = 0;
-					leftDiffArrow.alpha = 0;
-					rightDiffArrow.alpha = 0;
 				case 'injection':
 					if (ClientPrefs.weeksUnlocked >= 7)
 					{
 						warnMayhem = ""; //Reset this every time!!! idk use this again to not make 2 variables bru
 						if (ClientPrefs.getGameplaySetting('practice', false) || ClientPrefs.getGameplaySetting('botplay', false))
 							warnMayhem += 'Botplay and/or Practice Mode\n';
-						if (ClientPrefs.mechanics == false)
-							warnMayhem += 'Mechanics\n';
-						if (ClientPrefs.optimizationMode == true)
-							warnMayhem += 'Optimization Mode';
+						if (!ClientPrefs.mechanics) warnMayhem += 'Mechanics\n';
+						if (ClientPrefs.optimizationMode) warnMayhem += 'Optimization Mode';
 						if (warnMayhem == '')
 						{
 							storyText.text = "Play through the Main Game\nin <GR>ONE attempt<GR>!!\n<P>Health<P> and <G>Score<G> gets saved\nalong the way!\nTry not to lose,\nor you <R>lose your progress<R>!";
 							storyText.y = 265;
-
-							CustomFontFormats.addMarkers(storyText);
 						}
 						else
 						{
 							storyText.text = "You can't access this mode.\nPlease disable the following: <R>\n" + warnMayhem + "<R>";
 							storyText.y = 310;
-
-							CustomFontFormats.addMarkers(storyText);
 						} 
 					}
 					else
 					{
 						storyText.text = "Beat <G>ALL MAIN\nAND BONUS WEEKS<G> to\nunlock this mode!";
 						storyText.y = 310;
-
-						CustomFontFormats.addMarkers(storyText);
 					}
-					sprDifficulty.alpha = 1;
-					leftDiffArrow.alpha = 1;
-					rightDiffArrow.alpha = 1;
 					storyText.color = 0xFFffffff;
 					
 				case 'mayhem':
-					if (allowMayhemGameMode == true)
+					if (allowMayhemGameMode)
 					{
 						warnMayhem = ""; //Reset this every time!!!
 						if (ClientPrefs.getGameplaySetting('practice', false) || ClientPrefs.getGameplaySetting('botplay', false))
 							warnMayhem += 'Botplay and/or Practice Mode\n';
-						if (ClientPrefs.mechanics == false)
-							warnMayhem += 'Mechanics\n';
-						if (ClientPrefs.optimizationMode == true)
-							warnMayhem += 'Optimization Mode';
+						if (!ClientPrefs.mechanics) warnMayhem += 'Mechanics\n';
+						if (ClientPrefs.optimizationMode) warnMayhem += 'Optimization Mode';
 
 						if (warnMayhem == '')
 						{
 							storyText.text = "Go through as many\nsongs as you can with\na set amount of <P>health<P>!\nTry to last as long as you can,\nwhilst <R>challenges<R> are\nthrown at you!
 							\n<G>TIP<G>: Press <GR>TAB<GR>\nto view your challenge(s)!";
 							storyText.y = 200;
-
-							CustomFontFormats.addMarkers(storyText);
 						}
 						else
 						{
 							storyText.text = "You can't access this mode.\nPlease disable the following: <R>\n" + warnMayhem + "<R>";
 							storyText.y = 310;
-
-							CustomFontFormats.addMarkers(storyText);
 						}
 					}	
 					else
 					{
 						storyText.text = "Beat <G>ALL SONGS<G>\nto unlock this mode!";
 						storyText.y = 310;
-
-						CustomFontFormats.addMarkers(storyText);
 					}
-					sprDifficulty.alpha = 0;
-					leftDiffArrow.alpha = 0;
-					rightDiffArrow.alpha = 0;
 					storyText.color = 0xFFffffff;
 			}
+
 			storyStuffs.forEach(function(spr:FlxSprite)
 			{
-				if (spr.ID == curStorySelected)
-					spr.alpha = 1;
-				else
-					spr.alpha = 0;
+				spr.alpha = (spr.ID == curStorySelected) ? 1 : 0;
 			});
+
+			CustomFontFormats.addMarkers(storyText);
 		}
 	}
 }
