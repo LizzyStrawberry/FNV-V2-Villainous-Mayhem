@@ -19,8 +19,9 @@ class VideoPlayer extends MusicBeatState
     var videoPaths:Array<Array<String>> = [ // VideoName, Video Title, Category
         ["StoryIntro",                  "Introductory Video",                       "Main Game Cutscenes"],
         ["Week1_Song1Cutscene",         "Scrouge Cutscene",                         "Main Game Cutscenes"],
+        ["Week1_Song3Cutscene",         "Paycheck Cutscene",                        "Main Game Cutscenes"],
+        ["Week1_Song4Cutscene",         "Villainy Cutscene",                        "Main Game Cutscenes"],
         ["Week1_NormalEnd",             "Week 1 Normal Ending",                     "Main Game Cutscenes"],
-        ["Week1_SecretEnd",             "Week 1 Secret Ending (Casual)",            "Main Game Cutscenes"],
         ["Week2_Song1Cutscene",         "Nunday Monday Cutscene",                   "Main Game Cutscenes"],
         ["Week2_Song4Cutscene",         "Point Blank Cutscene",                     "Main Game Cutscenes"],
         ["Week2_NormalEnd",             "Week 2 Normal Ending",                     "Main Game Cutscenes"],
@@ -45,8 +46,10 @@ class VideoPlayer extends MusicBeatState
         ["NicDeathScreen",              "Slow.FLP Death Screen",                    "Video-Type Death Screens"],
         ["CrossSlap",                   "Negotiation Death Screen",                 "Video-Type Death Screens"],
         ["run",                         "Run.",                                     "Video-Type Death Screens"],
-        ["Shucks Cutscene",             "Shucks V2 Cutscene",                       "Extras"],
-        ["thinkFastChucklenuts",        "\"7\" Secret",                             "Extras"]
+        ["Shucks Cutscene",             "Shuckle Fuckle Cutscene",                  "Extras"],
+        ["thinkFastChucklenuts",        "\"7\" Secret",                             "Extras"],
+        ["Week1_Song3Secret",           "Paycheck Secret Cutscene",                 "Extras"],
+        ["Week1_SecretEnd",             "Week 1 Secret Ending (Casual)",            "Extras"],
     ];
     var videoBG:FlxSprite;
 
