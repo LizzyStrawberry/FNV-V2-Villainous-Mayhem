@@ -1,9 +1,9 @@
 local cutShit = 
 {
     hasDial = true,
-    hasStartVid = true, vidPath = "WeekLegacy_Song3Cutscene",
+    hasStartVid = true, vidPath = "Week1_Song3Cutscene",
     hasMidDialVid = false, midVidPath = nil, midPos = -1,
-    hasEndVid = false, endVidPath = nil
+    hasEndVid = false, endVidPath = "Week1_NormalEnd"
 }
 
 
@@ -26,13 +26,13 @@ local tipShit =
 local name = "Cutscene and Instructions Handler"
 
 function onCreate()
+	-- Secret Start
+    if getRandomInt(1, 25) == 12 then cutShit.endVidPath = 'Week1_Song3Cutscene' end
+	
+	-- Secret End (Casual)
     if difficulty == 0 then
         cutShit.hasEndVid = true
-        if getRandomInt(1, 25) == 12 then
-            cutShit.endVidPath = 'Week1_SecretEnd'
-        else
-            cutShit.endVidPath = "Week1_NormalEnd"
-        end
+        if getRandomInt(1, 25) == 12 then cutShit.endVidPath = 'Week1_SecretEnd' end
     end
 
     if isStoryMode then -- To Apply only to story mode!
