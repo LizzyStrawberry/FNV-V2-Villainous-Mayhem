@@ -41,15 +41,17 @@ function onCreatePost()
 			setProperty('colorChangingBG.visible', false)
 			setObjectOrder('colorChangingBG', getObjectOrder('scoreTxt') + 1)
 			setGraphicSize("colorChangingBG", screenWidth, screenHeight)
-			addLuaSprite('colorChangingBG', true)
+			addLuaSprite('colorChangingBG', false)
 				
 			makeLuaSprite('advert', 'effects/popups/New/popup-'..getRandomInt(1, 10), mobileFix("X", 0), 0)
 			setScrollFactor('advert', 0, 0)
 			setObjectCamera('advert', 'hud')
 			setObjectOrder('advert', getObjectOrder('colorChangingBG') + 1)
 			setProperty('advert.visible', false)
-			addLuaSprite('advert', true)
+			addLuaSprite('advert', false)
 			
+			setObjectOrder('strumLineNotes', getObjectOrder('advert') + 1)
+
 			addLuaText('keyWarn', true)
 		end
 	end
@@ -101,7 +103,6 @@ function onTimerCompleted(tag)
 				
 				setProperty('colorChangingBG.visible', true)
 				setProperty('advert.visible', true)
-				setProperty('boyfriend.stunned', true)
 				
 				local timeToKill = 5
 				if difficulty == 1 then timeToKill = 3 elseif difficulty == 2 then timeToKill = 1.5 end
@@ -148,9 +149,6 @@ function setUpContents()
 	local color = getColorFromHex(colors[getRandomInt(1, #colors)])
 	setProperty('colorChangingBG.color', color)
 	loadGraphic('advert', 'effects/popups/New/popup-'..getRandomInt(1, 10))
-	
-	-- De-stun Player
-	setProperty('boyfriend.stunned', false)
 end
 
 function onEndSong()
