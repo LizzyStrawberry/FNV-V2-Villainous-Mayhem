@@ -731,9 +731,16 @@ class PauseSubState extends MusicBeatSubstate
 	function setBuff(wah:Int = -2)
 	{
 		if (ClientPrefs.haptics) Haptic.vibrateOneShot(0.05, 0.35, 0.5);
+		var totalBuffs:Int = 1; // Use NONE as a buff
+		for (i in 1...buffs.length)
+		{
+			var reflectedBuff = Reflect.field(ClientPrefs, 'buff${i}Unlocked');
+			if (reflectedBuff) totalBuffs += 1;
+		}
+			
 		if (wah == -2)
 		{
-			if (!ClientPrefs.mechanics)
+			if (!ClientPrefs.mechanics )
 			{
 				buffType = 0;
 				return;
@@ -751,8 +758,8 @@ class PauseSubState extends MusicBeatSubstate
 			var optiMode:Bool = ClientPrefs.optimizationMode;
 			buffType += wah;
 
-			if (buffType > buffs.length - 1) buffType = 0;
-			if (buffType < 0) buffType = buffs.length - 1;
+			if (buffType > totalBuffs - 1) buffType = 0;
+			if (buffType < 0) buffType = totalBuffs - 1;
 			if (optiMode || !ClientPrefs.mechanics) buffType = 0; // Disable all the time if these parameters are met
 
 			ClientPrefs.buff1Selected = (buffType == 1);

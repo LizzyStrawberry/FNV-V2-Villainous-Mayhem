@@ -239,28 +239,6 @@ class MainMenuState extends MusicBeatState
 		menuSelectors = new FlxGroup();
 		add(menuSelectors);
 
-		var ui_tex = Paths.getSparrowAtlas('campaign_menu_UI_assets');
-		leftArrow = new FlxSprite(MobileUtil.fixX(30), 550);
-		leftArrow.frames = ui_tex;
-		leftArrow.animation.addByPrefix('idle', "arrow left");
-		leftArrow.animation.addByPrefix('press', "arrow push left");
-		leftArrow.animation.play('idle');
-		leftArrow.updateHitbox();
-		leftArrow.antialiasing = ClientPrefs.globalAntialiasing;
-		menuSelectors.add(leftArrow);
-		
-		rightArrow = new FlxSprite(leftArrow.x + 586, leftArrow.y);
-		rightArrow.frames = ui_tex;
-		rightArrow.animation.addByPrefix('idle', 'arrow right');
-		rightArrow.animation.addByPrefix('press', "arrow push right", 24, false);
-		rightArrow.animation.play('idle');
-		rightArrow.updateHitbox();
-		rightArrow.antialiasing = ClientPrefs.globalAntialiasing;
-		menuSelectors.add(rightArrow);
-
-		getRightArrowX = rightArrow.x;
-		getLeftArrowX = leftArrow.x;
-
 		for (i in 0...optionShit.length)
 		{
 			var isLocked:Bool = (optionShit[i] == 'freeplay' && !ClientPrefs.mainWeekBeaten) || (optionShit[i] == 'gallery' && !ClientPrefs.galleryUnlocked) || (optionShit[i] == 'info' && !ClientPrefs.mainWeekBeaten);
@@ -298,7 +276,7 @@ class MainMenuState extends MusicBeatState
 		add(menuSelectors);
 
 		var ui_tex = Paths.getSparrowAtlas('campaign_menu_UI_assets');
-		leftArrow = new FlxSprite(FlxG.width - 1250, 550);
+		leftArrow = new FlxSprite(MobileUtil.fixX(30), 550);
 		leftArrow.frames = ui_tex;
 		leftArrow.animation.addByPrefix('idle', "arrow left");
 		leftArrow.animation.addByPrefix('press', "arrow push left");
@@ -486,12 +464,22 @@ class MainMenuState extends MusicBeatState
 			NotificationAlert.saveNotifications();
 		}
 		super.create();
+
+		var scroll = new ScrollableObject(0.004, 50, 100, FlxG.width, FlxG.height, "X");
+		scroll.onFullScroll.add(delta -> {
+			if (storySelected && !applyStory)
+				changeItem(delta, true, true);
+		});
+		add(scroll);
+
+		addTouchPad("NONE", "B_E");
+		addTouchPadCamera();
 	}
 
 	function setBackground()
 	{
-		bg = new FlxSprite(-80);
-		bgChange = new FlxSprite(-80);
+		bg = new FlxSprite(MobileUtil.fixX(-80));
+		bgChange = new FlxSprite(MobileUtil.fixX(-80));
 		var randNum = FlxG.random.int(1, 59);
 		if (randNum == 30 && Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed && ClientPrefs.kianaWeekPlayed)
 		{
@@ -667,7 +655,7 @@ class MainMenuState extends MusicBeatState
 		inventoryTitle.alpha = 0;
 		add(inventoryTitle);
 
-		buffTitle = new Alphabet(FlxG.width - 110, 200, "Buffs", true);
+		buffTitle = new Alphabet(MobileUtil.fixX(1170), 200, "Buffs", true);
 		buffTitle.scaleX = 0.7;
 		buffTitle.scaleY = 0.7;
 		buffTitle.alpha = 0;
@@ -705,7 +693,7 @@ class MainMenuState extends MusicBeatState
 			charmItems.add(charm);
 		}	
 
-		charmTitle = new Alphabet(FlxG.width - 160, 610, "Charms", true);
+		charmTitle = new Alphabet(MobileUtil.fixX(1120), 610, "Charms", true);
 		charmTitle.scaleX = 0.7;
 		charmTitle.scaleY = 0.7;
 		charmTitle.alpha = 0;
@@ -719,7 +707,7 @@ class MainMenuState extends MusicBeatState
 		charmText.alpha = 0;
 		add(charmText);
 
-		buffSelect(-2, false);
+		buffSelect(-1, false);
 	}
 
 	// Background Switching functions (Too lazy to change these)
@@ -898,8 +886,8 @@ class MainMenuState extends MusicBeatState
 				if (controls.UI_LEFT || (TouchUtil.pressAction(leftArrow) && TouchUtil.touch.pressed)) leftArrow.animation.play('press');
 				else leftArrow.animation.play('idle');
 
-				if (controls.UI_LEFT_P || TouchUtil.pressAction(leftArrow)) changeItem(-1, true);
-				if (controls.UI_RIGHT_P || TouchUtil.pressAction(rightArrow)) changeItem(1, true);
+				if (controls.UI_LEFT_P || TouchUtil.pressAction(leftArrow)) changeItem(-1, true, true);
+				if (controls.UI_RIGHT_P || TouchUtil.pressAction(rightArrow)) changeItem(1, true, true);
 
 				var accepted:Bool = controls.ACCEPT || TouchUtil.pressAction(menuItems.members[curSelected]);
 				if (accepted)
@@ -928,6 +916,7 @@ class MainMenuState extends MusicBeatState
 					}
 					else
 					{
+						if (ClientPrefs.haptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
 						selectedSomethin = true;
 						FlxG.sound.play(Paths.sound('confirmMenu'));
 
@@ -1000,8 +989,8 @@ class MainMenuState extends MusicBeatState
 				{
 					FlxTween.tween(storySelection, {alpha: TouchUtil.overlaps(storySelection) ? 1 : 0.6}, 0.5, {ease: FlxEase.circOut, type: PERSIST});
 			
-					if (controls.UI_LEFT_P) changeItem(-1, true);
-					if (controls.UI_RIGHT_P) changeItem(1, true);
+					if (controls.UI_LEFT_P) changeItem(-1, true, true);
+					if (controls.UI_RIGHT_P) changeItem(1, true, true);
 
 					// Mayhem Code
 					if (storyShit[curStorySelected] == 'mayhem' && controls.RESET)
@@ -1025,8 +1014,8 @@ class MainMenuState extends MusicBeatState
 						if ((TouchUtil.overlaps(leftDiffArrow) && TouchUtil.touch.pressed)) leftDiffArrow.animation.play('press'); 
 						else leftDiffArrow.animation.play('idle');
 
-						if (TouchUtil.pressAction(rightDiffArrow)) changeDifficulty(1);					
-						if (TouchUtil.pressAction(leftDiffArrow)) changeDifficulty(-1);
+						if (TouchUtil.pressAction(rightDiffArrow)) changeDifficulty(1, true);					
+						if (TouchUtil.pressAction(leftDiffArrow)) changeDifficulty(-1, true);
 					}
 
 					var accept:Bool = controls.ACCEPT || TouchUtil.pressAction(storySelection);
@@ -1034,6 +1023,7 @@ class MainMenuState extends MusicBeatState
 					{
 						if (storyShit[curStorySelected] == 'iniquitous' && (!Achievements.isAchievementUnlocked('weekIniquitous_Beaten')))
 						{
+							
 							FlxG.camera.shake(0.02, 0.5, null, false, FlxAxes.XY);
 							FlxG.sound.play(Paths.sound('accessDenied'));
 						}
@@ -1155,12 +1145,12 @@ class MainMenuState extends MusicBeatState
 				{
 					buffItems.forEach(function(buff:FlxSprite)
 					{
-						if (TouchUtil.pressAction(buff)) buffSelect(buff.ID);
+						if (TouchUtil.pressAction(buff)) buffSelect(buff.ID, true);
 					});
 
 					charmItems.forEach(function(charm:FlxSprite)
 					{
-						if (TouchUtil.pressAction(charm)) charmSelect(charm.ID);
+						if (TouchUtil.pressAction(charm)) charmSelect(charm.ID, true);
 					});		
 				}
 			}
@@ -1169,6 +1159,7 @@ class MainMenuState extends MusicBeatState
 		// Activate Inventory
 		if (FlxG.keys.pressed.I || TouchUtil.pressAction(inventoryButton) && nothingSelected && !selectedSomethin)
 		{
+			if (ClientPrefs.haptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
 			inventoryOpened = true;
 			FlxG.sound.play(Paths.sound('confirmMenu'), 0.6);
 			cancelTweens("inventory");
@@ -1204,8 +1195,9 @@ class MainMenuState extends MusicBeatState
 	}
 
 	// Inventory Select functions
-	function charmSelect(huh:Int = 0)
+	function charmSelect(huh:Int = 0, ?allowHaptics:Bool = false)
 	{
+		if (ClientPrefs.haptics && allowHaptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
 		curCharmSelected = huh;
 		FlxG.sound.play(Paths.sound('scrollMenu'), 0.6);
 		charmItems.forEach(function(charm:FlxSprite)
@@ -1224,7 +1216,7 @@ class MainMenuState extends MusicBeatState
 	function buffSelect(huh:Int = -1, ?allowHaptics:Bool = true)
 	{
 		if (ClientPrefs.haptics && allowHaptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
-		trace("ID Passing through: " + huh);
+		var prevBuff:Int = curBuffSelected;
 		var buffArray:Array<String> = ["None", "Health Regeneration", "Second Chance", "Immunity"];
 		if (huh != -1) curBuffSelected = huh;
 		
@@ -1234,6 +1226,8 @@ class MainMenuState extends MusicBeatState
 			if (huh == -1) return;
 			if (!reflectedBuff && buff.ID > 0)
 			{
+				curBuffSelected = prevBuff;
+				buff.alpha = (curBuffSelected == buff.ID) ? 1 : 0.2;
 				FlxG.sound.play(Paths.sound('cancelMenu'), 0.6);
 				return;
 			}
@@ -1252,8 +1246,9 @@ class MainMenuState extends MusicBeatState
 	}
 	
 	// Change Functions
-	function changeItem(huh:Int = 0, ?playSound:Bool = false)
+	function changeItem(huh:Int = 0, ?playSound:Bool = false, ?allowHaptics:Bool = false)
 	{
+		if (ClientPrefs.haptics && allowHaptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
 		if (playSound) FlxG.sound.play(Paths.sound('scrollMenu'));
 
 		if (!storySelected && !inventoryOpened)
@@ -1359,8 +1354,9 @@ class MainMenuState extends MusicBeatState
 	}
 
 	var tweenDifficulty:FlxTween;
-	function changeDifficulty(change:Int = 0):Void
+	function changeDifficulty(change:Int = 0, ?allowHaptics:Bool = false):Void
 	{
+		if (ClientPrefs.haptics && allowHaptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
 		curDifficulty += change;
 		if (Achievements.isAchievementUnlocked('weekIniquitous_Beaten')) // Allow EVERYTHING
 		{

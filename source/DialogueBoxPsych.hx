@@ -237,7 +237,7 @@ class DialogueBoxPsych extends FlxSpriteGroup
 
 		FlxTween.tween(arrowThingy, {x: arrowThingy.x - 10}, 0.7, {ease: FlxEase.cubeOut, type: LOOPING});
 
-		skipText = new FlxText(12, FlxG.height - 44, 0, "Swipe and press BACK to Skip.", 12);
+		skipText = new FlxText(12, FlxG.height - 44, 0, "HOLD ANYWHERE to Skip.", 12);
 		skipText.scrollFactor.set();
 		skipText.setFormat("VCR OSD Mono", 24, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(skipText);
@@ -308,6 +308,9 @@ class DialogueBoxPsych extends FlxSpriteGroup
 	public var closeSound:String = 'dialogueClose';
 	public var closeVolume:Float = 1;
 	var beatriceShit:FlxTween;
+
+	var holdTime:Float = 0;
+
 	override function update(elapsed:Float)
 	{
 		if(ignoreThisFrame) {
@@ -316,6 +319,8 @@ class DialogueBoxPsych extends FlxSpriteGroup
 			return;
 		}
 
+		if (TouchUtil.touch != null && TouchUtil.touch.pressed) holdTime += elapsed;
+		else holdTime = 0;
 		if(!dialogueEnded) {
 			FlxTween.tween(bgFade, {alpha: curDialogue.imageAlpha}, 0.7, {ease: FlxEase.cubeOut, type: PERSIST});
 			FlxTween.tween(topBar, {alpha: 1}, 0.7, {ease: FlxEase.cubeOut, type: PERSIST});
@@ -330,7 +335,7 @@ class DialogueBoxPsych extends FlxSpriteGroup
 			else if (curDialogue.boxVisible == "No")
 				box.visible = false;
 
-			if (FlxG.keys.justPressed.ESCAPE || FlxG.android.justReleased.BACK)
+			if (FlxG.keys.justPressed.ESCAPE || holdTime > 1)
 			{
 				dialogueEnded = true;
 				if(endDialogueThing != null) {
