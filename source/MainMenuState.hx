@@ -1195,7 +1195,7 @@ class MainMenuState extends MusicBeatState
 
 	function buffSelect(huh:Int = -1)
 	{
-		trace("ID Passing through: " + huh);
+		var prevBuff:Int = curBuffSelected;
 		var buffArray:Array<String> = ["None", "Health Regeneration", "Second Chance", "Immunity"];
 		if (huh != -1) curBuffSelected = huh;
 		
@@ -1205,6 +1205,7 @@ class MainMenuState extends MusicBeatState
 			if (huh == -1) return;
 			if (!reflectedBuff && buff.ID > 0)
 			{
+				curBuffSelected = prevBuff;
 				FlxG.sound.play(Paths.sound('cancelMenu'), 0.6);
 				return;
 			}

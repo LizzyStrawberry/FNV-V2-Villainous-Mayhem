@@ -688,6 +688,12 @@ class PauseSubState extends MusicBeatSubstate
 	var curBuffType:Int = -2;
 	function setBuff(wah:Int = -2)
 	{
+		var totalBuffs:Int = 1;
+		for (i in 1...buffs.length)
+		{
+			var reflectedBuff = Reflect.field(ClientPrefs, 'buff${i}Unlocked');
+			if (reflectedBuff) totalBuffs += 1;
+		}
 		if (wah == -2)
 		{
 			if (!ClientPrefs.mechanics)
@@ -708,8 +714,8 @@ class PauseSubState extends MusicBeatSubstate
 			var optiMode:Bool = ClientPrefs.optimizationMode;
 			buffType += wah;
 
-			if (buffType > buffs.length - 1) buffType = 0;
-			if (buffType < 0) buffType = buffs.length - 1;
+			if (buffType > totalBuffs - 1) buffType = 0;
+			if (buffType < 0) buffType = totalBuffs - 1;
 			if (optiMode || !ClientPrefs.mechanics) buffType = 0; // Disable all the time if these parameters are met
 
 			ClientPrefs.buff1Selected = (buffType == 1);
