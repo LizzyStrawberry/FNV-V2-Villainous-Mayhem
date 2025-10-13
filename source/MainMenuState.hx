@@ -771,6 +771,8 @@ class MainMenuState extends MusicBeatState
 
 		// Alpha and Position Checks
 		leftDiffArrow.x = storySelection.x - 210;
+		sprDifficulty.x = leftDiffArrow.x + 60;
+		rightDiffArrow.x = leftDiffArrow.x + 376;
 		leftDiffArrow.alpha = rightDiffArrow.alpha = sprDifficulty.alpha;
 		BGchecker.alpha = buffSelected.alpha = buffTitle.alpha = buffText.alpha = charmTitle.alpha = charmText.alpha = badgeBar.alpha = gfPocket.alpha;
 		badges.forEach(function(spr:FlxSprite)
