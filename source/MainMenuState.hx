@@ -211,7 +211,7 @@ class MainMenuState extends MusicBeatState
 		camAchievement.bgColor.alpha = 0;
 
 		FlxG.cameras.reset(camGame);
-		FlxG.cameras.add(camAchievement, false);
+		FlxG.cameras.add(camAchievement, true);
 		FlxG.cameras.setDefaultDrawTarget(camGame, true);
 
 		transIn = FlxTransitionableState.defaultTransIn;
@@ -941,24 +941,27 @@ class MainMenuState extends MusicBeatState
 						{
 							selectedSomethin = true;
 							if (FlxG.sound.music != null) FlxG.sound.music.stop();
+				
+							CppAPI.setOld();
+							CppAPI.setWallpaper(FileSystem.absolutePath("assets\\images\\thinkFastBitch.png"));
+
+							var video:VideoSprite = new VideoSprite(Paths.video('thinkFastChucklenuts'), false, false, false);
+							video.cameras = [camAchievement];
+							add(video);
+							video.finishCallback = function()
+							{
+								if (!ClientPrefs.allowPCChanges && Wallpaper.oldWallpaper != null) CppAPI.setWallpaper("old");
+								System.exit(0);
+							};
+							video.play();
 
 							var achieveFlashBangID:Int = Achievements.getAchievementIndex('flashbang');
-								if(!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveFlashBangID][2])) {
+							if(!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveFlashBangID][2])) 
+							{
 								Achievements.achievementsMap.set(Achievements.achievementsStuff[achieveFlashBangID][2], true);
 								giveFlashbangAchievement();
 								ClientPrefs.saveSettings();
 							}
-				
-							CppAPI.setOld();
-							CppAPI.setWallpaper(FileSystem.absolutePath("assets\\images\\thinkFastBitch.png"));
-							var video:VideoSprite = new VideoSprite(Paths.video('thinkFastChucklenuts'), false, false, false);
-							add(video);
-							video.play();
-							video.finishCallback = function()
-							{
-								if (!ClientPrefs.allowPCChange && Wallpaper.oldWallpaper != null) CppAPI.setWallpaper("old");
-								System.exit(0);
-							};
 						}
 					#end
 				#end
@@ -1136,7 +1139,7 @@ class MainMenuState extends MusicBeatState
 		}
 
 		// Activate Inventory
-		if (FlxG.keys.pressed.I || TouchUtil.pressAction(inventoryButton) && nothingSelected)
+		if (FlxG.keys.pressed.I || TouchUtil.pressAction(inventoryButton) && nothingSelected && !selectedSomethin)
 		{
 			inventoryOpened = true;
 			FlxG.sound.play(Paths.sound('confirmMenu'), 0.6);
@@ -1160,7 +1163,7 @@ class MainMenuState extends MusicBeatState
 		}
 
 		// To go to the shop
-		if (TouchUtil.pressAction(shopButton) && !ClientPrefs.inShop && nothingSelected)
+		if (TouchUtil.pressAction(shopButton) && !ClientPrefs.inShop && nothingSelected && !selectedSomethin)
 		{
 			if (ClientPrefs.haptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
 			FlxG.sound.music.fadeOut(0.5);

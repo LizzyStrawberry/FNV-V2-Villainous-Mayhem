@@ -26,16 +26,22 @@ local tipShit =
 local name = "Cutscene and Instructions Handler"
 
 function onCreate()
-	-- Secret Start
-    if getRandomInt(1, 25) == 12 then cutShit.endVidPath = 'Week1_Song3Cutscene' end
-	
-	-- Secret End (Casual)
-    if difficulty == 0 then
-        cutShit.hasEndVid = true
-        if getRandomInt(1, 25) == 12 then cutShit.endVidPath = 'Week1_SecretEnd' end
-    end
-
     if isStoryMode then -- To Apply only to story mode!
+		-- Secret Start
+		if getRandomInt(1, 25) == 12 then 
+			cutShit.endVidPath = 'Week1_Song3Secret'
+			setProperty("teaPartyOn", true)
+		end
+		
+		-- Secret End (Casual)
+		if difficulty == 0 then
+			cutShit.hasEndVid = true
+			if getRandomInt(1, 25) == 12 then 
+				cutShit.endVidPath = 'Week1_SecretEnd' 
+				setProperty("secretEndOn", true)
+			end
+		end
+		
         callScript("scripts/"..name, "setCutsceneData", {cutShit.hasDial, cutShit.hasStartVid, cutShit.vidPath, cutShit.hasMidDialVid, cutShit.midVidPath, cutShit.midPos, cutShit.hasEndVid, cutShit.endVidPath})
     end
     

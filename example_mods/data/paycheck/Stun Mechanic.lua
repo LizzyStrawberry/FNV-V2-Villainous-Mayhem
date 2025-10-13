@@ -18,10 +18,8 @@ local colors = {
     'fcf403'
 }
 
-local ended = false
-
 function onCreatePost()
-	if mechanics and not ended then
+	if mechanics then
 		if difficulty >= 0 then
 			--setting the random numbers for the timer, images and secret counts lmao
 			
@@ -58,7 +56,7 @@ function onCreatePost()
 end
 
 function onSongStart()
-	if mechanics and not ended then
+	if mechanics and not getProperty("endingSong") then
 		setUpContents()
 	end
 end
@@ -70,7 +68,7 @@ function noteMiss(id, direction, noteType, isSustainNote)
 end
 
 function onUpdate(elapsed)
-	if mechanics and not ended then
+	if mechanics and not getProperty("endingSong") then
 		if difficulty >= 0 then
 			if not cheatsOn and (botPlay or getPropertyFromClass('ClientPrefs', 'autoCharm') == 1) then
 				cheatsOn = true
@@ -85,7 +83,7 @@ function onUpdate(elapsed)
 end
 
 function onStepHit()
-	if mechanics and not ended and kill then
+	if mechanics and not getProperty("endingSong") and kill then
 		if curStep % 4 == 0 then
 			setProperty('keyWarn.visible', true)
 		elseif curStep % 4 == 2 then
@@ -95,7 +93,7 @@ function onStepHit()
 end
 
 function onTimerCompleted(tag)
-	if mechanics and not ended then
+	if mechanics and not getProperty("endingSong") then
 		if difficulty >= 0 then
 			if tag == 'popUpTimer' then
 				kill = true
@@ -152,7 +150,6 @@ function setUpContents()
 end
 
 function onEndSong()
-	ended = true
 	cancelTimer('popUpTimer')
 	cancelTimer('killTimer')
 	return Function_Continue

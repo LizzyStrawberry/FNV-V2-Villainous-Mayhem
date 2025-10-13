@@ -362,6 +362,10 @@ class PlayState extends MusicBeatState
 	// Rotation Fix
 	public var allowRotationFix:Bool = true;
 
+	// Achievements for videos
+	public var teaPartyOn:Bool = false;
+	public var secretEndOn:Bool = false;
+
 	public var luaTouchPad:TouchPad;
 
 	override public function create()
@@ -1492,6 +1496,20 @@ class PlayState extends MusicBeatState
 
 			if (playOnLoad)
 				videoCutscene.play();
+
+			#if ACHIEVEMENTS_ALLOWED
+			if (teaPartyOn && name == "Week1_Song3Secret")
+			{
+				startAchievement("teaparty");
+				teaPartyOn = false;
+			}
+
+			if (secretEndOn && name == "Week1_SecretEnd") 
+			{
+				startAchievement("explosive");
+				secretEndOn = false;
+			}
+			#end
 			return videoCutscene;
 		}
 		#if LUA_ALLOWED
@@ -4355,12 +4373,11 @@ class PlayState extends MusicBeatState
 		add(achievementObj);
 		trace('Giving achievement ' + achieve);
 	}
+	
 	function achievementEnd():Void
 	{
 		achievementObj = null;
-		if(endingSong && !inCutscene) {
-			endSong();
-		}
+		if(endingSong && !inCutscene) endSong();
 	}
 	#end
 
@@ -5591,18 +5608,6 @@ class PlayState extends MusicBeatState
 				limoCorpse.visible = false;
 				limoCorpseTwo.visible = false;
 				limoKillingState = 1;
-
-				#if ACHIEVEMENTS_ALLOWED
-				Achievements.henchmenDeath++;
-				FlxG.save.data.henchmenDeath = Achievements.henchmenDeath;
-				var achieve:String = checkForAchievement(['roadkill_enthusiast']);
-				if (achieve != null) {
-					startAchievement(achieve);
-				} else {
-					FlxG.save.flush();
-				}
-				FlxG.log.add('Deaths: ' + Achievements.henchmenDeath);
-				#end
 			}
 		}
 	}
