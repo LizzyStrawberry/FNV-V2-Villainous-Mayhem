@@ -148,7 +148,6 @@ class MainMenuState extends MusicBeatState
 	var bg:FlxSprite;
 	var bgChange:FlxSprite;
 	var secretBG:Bool = false;
-	var number30:Int = 0;
 	var bgBorder:FlxSprite;
 
 	var getLeftArrowX:Float = 0;
@@ -223,67 +222,7 @@ class MainMenuState extends MusicBeatState
 		intendedInjectedScore = ClientPrefs.injectionEndScore;
 		intendedMayhemedScore = ClientPrefs.mayhemEndTotalScore;
 
-		bg = new FlxSprite(-80);
-		number30 = FlxG.random.int(1, 59);
-		if (number30 == 30 && Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed && ClientPrefs.kianaWeekPlayed)
-		{
-			bg.loadGraphic(Paths.image('mainMenuBgs/menu-mork'));
-			bg.frames = Paths.getSparrowAtlas('mainMenuBgs/menu-mork');
-			bg.animation.addByPrefix('idleMenu', 'mork mork0', 24, true);
-			bg.animation.play('idleMenu');
-			bg.scrollFactor.set();
-			trace('MORK');	
-		}
-		else if (number30 == 2 && Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed && ClientPrefs.kianaWeekPlayed)
-		{
-			secretBG = true;
-			bg.loadGraphic(Paths.image('mainMenuBgs/menu-rare'));
-			FlxG.sound.music.fadeOut(1.0);
-			new FlxTimer().start(1, function(tmr:FlxTimer)
-			{
-				FlxG.sound.playMusic(Paths.music('malumIctum'), 0);
-				FlxG.sound.music.fadeIn(4, 0, 1);
-				trace('Song changed to the rare one! + fadeout!');	
-				giveAnotherAchievement();
-				ClientPrefs.saveSettings();				
-			});
-		}
-		else
-		{
-			trace('No fadeout needed bitch');
-			trace('the number is: ' + number30);
-
-			var maxNum:Int = 5;
-			
-			if (Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed && ClientPrefs.kianaWeekPlayed) maxNum = 59;
-			else if (Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed) maxNum = 13;
-			else if (Achievements.isAchievementUnlocked('WeekMarco_Beaten')) maxNum = 11;
-
-			bg.loadGraphic(Paths.image('mainMenuBgs/menu-' + FlxG.random.int(1, maxNum)));
-		}
-		bg.scrollFactor.set(0, 0);
-		bg.setGraphicSize(Std.int(bg.width * 1.175));
-		bg.updateHitbox();
-		bg.screenCenter(XY);
-		bg.setGraphicSize(Std.int(bg.width * 1.375));
-		bg.antialiasing = ClientPrefs.globalAntialiasing;
-		add(bg);
-
-		// Making a secondary sprite so we can change each background after a few seconds or something lmao
-		if(!secretBG)
-		{	
-			var maxNum:Int = 5;
-			
-			if (Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed && ClientPrefs.kianaWeekPlayed) maxNum = 59;
-			else if (Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed) maxNum = 13;
-			else if (Achievements.isAchievementUnlocked('WeekMarco_Beaten')) maxNum = 11;
-
-			bgChange = bg;
-			bgChange.loadGraphic(Paths.image('mainMenuBgs/menu-' + FlxG.random.int(1, maxNum)));
-			bgChange.alpha = 0;
-			add(bgChange);
-		}
-
+		setBackground();
 		var bgTimer:FlxTimer = new FlxTimer().start(10, changeBg);
 		
 		bgBorder = new FlxSprite(MobileUtil.fixX(-60)).loadGraphic(Paths.image('menuBorder'));
@@ -355,20 +294,30 @@ class MainMenuState extends MusicBeatState
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
 
-		#if ACHIEVEMENTS_ALLOWED
-		Achievements.loadAchievements();
-		var leDate = Date.now();
-		if (leDate.getDay() == 5 && leDate.getHours() >= 18)
-		{
-			var achieveID:Int = Achievements.getAchievementIndex('friday_night_play');
-			if(!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveID][2])) 
-			{
-				Achievements.achievementsMap.set(Achievements.achievementsStuff[achieveID][2], true);
-				giveAchievement();
-				ClientPrefs.saveSettings();
-			}
-		}
-		#end
+		menuSelectors = new FlxGroup();
+		add(menuSelectors);
+
+		var ui_tex = Paths.getSparrowAtlas('campaign_menu_UI_assets');
+		leftArrow = new FlxSprite(FlxG.width - 1250, 550);
+		leftArrow.frames = ui_tex;
+		leftArrow.animation.addByPrefix('idle', "arrow left");
+		leftArrow.animation.addByPrefix('press', "arrow push left");
+		leftArrow.animation.play('idle');
+		leftArrow.updateHitbox();
+		leftArrow.antialiasing = ClientPrefs.globalAntialiasing;
+		menuSelectors.add(leftArrow);
+		
+		rightArrow = new FlxSprite(leftArrow.x + 586, leftArrow.y);
+		rightArrow.frames = ui_tex;
+		rightArrow.animation.addByPrefix('idle', 'arrow right');
+		rightArrow.animation.addByPrefix('press', "arrow push right", 24, false);
+		rightArrow.animation.play('idle');
+		rightArrow.updateHitbox();
+		rightArrow.antialiasing = ClientPrefs.globalAntialiasing;
+		menuSelectors.add(rightArrow);
+
+		getRightArrowX = rightArrow.x;
+		getLeftArrowX = leftArrow.x;
 
 		exclamationMark = new FlxSprite(FlxG.width - 90, 110).loadGraphic(Paths.image('exclamationMark'));
 		exclamationMark.antialiasing = ClientPrefs.globalAntialiasing;
@@ -398,42 +347,21 @@ class MainMenuState extends MusicBeatState
 		optionsButton.alpha = 0.5;
 		optionsButton.updateHitbox();
 		add(optionsButton);
-		if (NotificationAlert.sendOptionsNotification)
-		{
-			NotificationAlert.addNotification(this, optionsButton, -10, 85);
-
-			NotificationAlert.sendOptionsNotification = false;
-			NotificationAlert.saveNotifications();
-		}
 
 		inventoryButton = new FlxSprite(optionsButton.x, 230).loadGraphic(Paths.image('inventoryButton'));
 		inventoryButton.antialiasing = ClientPrefs.globalAntialiasing;
 		inventoryButton.alpha = 0.5;
 		inventoryButton.updateHitbox();
 		add(inventoryButton);
-		if (NotificationAlert.sendInventoryNotification)
-		{
-			NotificationAlert.addNotification(this, inventoryButton, -10, 85);
-
-			NotificationAlert.sendInventoryNotification = false;
-			NotificationAlert.saveNotifications();
-		}
 
 		shopButton = new FlxSprite(0, 0).loadGraphic(Paths.image('shopButton'));
 		shopButton.antialiasing = ClientPrefs.globalAntialiasing;
 		shopButton.alpha = 0.5;
 		shopButton.updateHitbox();
 		add(shopButton);
-		if (NotificationAlert.sendShopNotification)
-		{
-			NotificationAlert.addNotification(this, shopButton, 115, 100);
-
-			NotificationAlert.sendShopNotification = false;
-			NotificationAlert.saveNotifications();
-		}
 		
 		var markType:String = (ClientPrefs.tokens == 0) ? "<R>" : "<GR>";
-		var tokenShow:FlxText = new FlxText(shopButton.x, shopButton.y + 130, FlxG.width, 'Tokens: $markType ${ClientPrefs.tokens} $markType');
+		var tokenShow:FlxText = new FlxText(shopButton.x, shopButton.y + 130, FlxG.width, 'Tokens: $markType${ClientPrefs.tokens}$markType');
 		tokenShow.setFormat("VCR OSD Mono", 28, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, 0xFF000000);
 		tokenShow.borderSize = 1;
 		CustomFontFormats.addMarkers(tokenShow);
@@ -491,6 +419,7 @@ class MainMenuState extends MusicBeatState
 
 		sprDifficulty = new FlxSprite(MobileUtil.fixX(0), leftDiffArrow.y);
 		sprDifficulty.antialiasing = ClientPrefs.globalAntialiasing;
+		sprDifficulty.alpha = 0;
 		difficultySelectors.add(sprDifficulty);
 
 		CoolUtil.difficulties = CoolUtil.defaultDifficulties.copy();
@@ -504,17 +433,6 @@ class MainMenuState extends MusicBeatState
 		rightDiffArrow.animation.play('idle');
 		rightDiffArrow.antialiasing = ClientPrefs.globalAntialiasing;
 		difficultySelectors.add(rightDiffArrow);
-
-		sprDifficulty.alpha = 0;
-		leftDiffArrow.alpha = 0;
-		rightDiffArrow.alpha = 0;
-
-		BGchecker = new FlxBackdrop(Paths.image('promotion/BGgrid-' + FlxG.random.int(1, 8)), FlxAxes.XY, 0, 0); 
-		BGchecker.updateHitbox(); 
-		BGchecker.scrollFactor.set(0, 0); 
-		BGchecker.alpha = 0; 
-		BGchecker.screenCenter(X); 
-		add(BGchecker);
 
 		// Menu Inventory
 		createInventory();
@@ -530,22 +448,39 @@ class MainMenuState extends MusicBeatState
 			ClientPrefs.saveSettings();
 		}
 
+		allowMayhemGameMode = (ClientPrefs.mayhemNotif) ? true : false;
 		changeItem();
 
 		//Notification alert
 		NotificationAlert.checkForNotifications(this);
+		if (NotificationAlert.sendOptionsNotification) // Options Notification
+		{
+			NotificationAlert.addNotification(this, optionsButton, -10, 85);
 
-		allowMayhemGameMode = (ClientPrefs.mayhemNotif) ? true : false;
+			NotificationAlert.sendOptionsNotification = false;
+			NotificationAlert.saveNotifications();
+		}
+		if (NotificationAlert.sendInventoryNotification) // Inventory Notification
+		{
+			NotificationAlert.addNotification(this, inventoryButton, -10, 85);
 
-		// FOR INJECTION MODE
-		if (ClientPrefs.weeksUnlocked >= 7 && !ClientPrefs.injectionNotif)
+			NotificationAlert.sendInventoryNotification = false;
+			NotificationAlert.saveNotifications();
+		}
+		if (NotificationAlert.sendShopNotification) // Shop Notification
+		{
+			NotificationAlert.addNotification(this, shopButton, 115, 100);
+
+			NotificationAlert.sendShopNotification = false;
+			NotificationAlert.saveNotifications();
+		}
+		if (ClientPrefs.weeksUnlocked >= 7 && !ClientPrefs.injectionNotif) // Injection Notification
 		{
 			ClientPrefs.injectionNotif = true;
 			NotificationAlert.showMessage(this, 'Injection');
 			ClientPrefs.saveSettings();
 		}
-
-		if (NotificationAlert.sendMessage)
+		if (NotificationAlert.sendMessage) // Normal Notification Send
 		{
 			NotificationAlert.showMessage(this, 'Normal');
 			NotificationAlert.sendMessage = false;
@@ -554,8 +489,76 @@ class MainMenuState extends MusicBeatState
 		super.create();
 	}
 
+	function setBackground()
+	{
+		bg = new FlxSprite(-80);
+		bgChange = new FlxSprite(-80);
+		var randNum = FlxG.random.int(1, 59);
+		if (randNum == 30 && Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed && ClientPrefs.kianaWeekPlayed)
+		{
+			bg.loadGraphic(Paths.image('mainMenuBgs/menu-mork'));
+			bg.frames = Paths.getSparrowAtlas('mainMenuBgs/menu-mork');
+			bg.animation.addByPrefix('idleMenu', 'mork mork0', 24, true);
+			bg.animation.play('idleMenu');
+			bg.scrollFactor.set();
+			trace('MORK');	
+		}
+		else if (randNum == 2 && Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed && ClientPrefs.kianaWeekPlayed)
+		{
+			secretBG = true;
+			bg.loadGraphic(Paths.image('mainMenuBgs/menu-rare'));
+			FlxG.sound.music.fadeOut(1.0);
+			new FlxTimer().start(1, function(tmr:FlxTimer)
+			{
+				FlxG.sound.playMusic(Paths.music('malumIctum'), 0);
+				FlxG.sound.music.fadeIn(4, 0, 1);
+				trace('Song changed to the rare one! + fadeout!');	
+				giveAnotherAchievement();
+				ClientPrefs.saveSettings();				
+			});
+		}
+		else
+		{
+			var maxNum:Int = 5;
+			
+			if (Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed && ClientPrefs.kianaWeekPlayed) maxNum = 59;
+			else if (Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed) maxNum = 13;
+			else if (Achievements.isAchievementUnlocked('WeekMarco_Beaten')) maxNum = 11;
+
+			bg.loadGraphic(Paths.image('mainMenuBgs/menu-' + FlxG.random.int(1, maxNum)));
+			bg.setGraphicSize(Std.int(bg.width * 1.175));
+		}
+		bg.scrollFactor.set();
+		bg.screenCenter(XY);
+		bg.antialiasing = ClientPrefs.globalAntialiasing;
+		add(bg);
+
+		// Making a secondary sprite so we can change each background after a few seconds or something lmao
+		if(!secretBG)
+		{	
+			var maxNum:Int = 5;
+			
+			if (Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed && ClientPrefs.kianaWeekPlayed) maxNum = 59;
+			else if (Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed) maxNum = 13;
+			else if (Achievements.isAchievementUnlocked('WeekMarco_Beaten')) maxNum = 11;
+
+			bgChange.loadGraphic(Paths.image('mainMenuBgs/menu-' + FlxG.random.int(1, maxNum)));
+			bgChange.setGraphicSize(Std.int(bgChange.width * 1.175));
+			bgChange.alpha = 0;
+			add(bgChange);
+		}
+	}
+
+	// Create Backgrounds
 	function createInventory()
 	{
+		BGchecker = new FlxBackdrop(Paths.image('promotion/BGgrid-' + FlxG.random.int(1, 8)), FlxAxes.XY, 0, 0); 
+		BGchecker.updateHitbox(); 
+		BGchecker.scrollFactor.set(0, 0); 
+		BGchecker.alpha = 0; 
+		BGchecker.screenCenter(X); 
+		add(BGchecker);
+
 		inventoryTitle = new Alphabet(FlxG.width - 860, 10, "Inventory", true);
 		inventoryTitle.alpha = 0;
 		add(inventoryTitle);
@@ -616,8 +619,8 @@ class MainMenuState extends MusicBeatState
 		for (i in 0...4)
 		{
 			var buff = new FlxSprite(0, 0).loadGraphic(Paths.image('inventory/buffN' + i));
-			var reflectedBuff = Reflect.field(ClientPrefs, 'buff${buff.ID}selected');
-			if (!reflectedBuff) buff.loadGraphic(Paths.image('inventory/buffLocked'));
+			var reflectedBuff = Reflect.field(ClientPrefs, 'buff${i}Unlocked');
+			if (!reflectedBuff && i > 0) buff.loadGraphic(Paths.image('inventory/buffLocked'));
 
 			buff.screenCenter();
 			buff.x -= 50;
@@ -662,8 +665,7 @@ class MainMenuState extends MusicBeatState
 		{
 			var charm = new FlxSprite(0, 0).loadGraphic(Paths.image('inventory/charmN' + i));
 			charm.screenCenter();
-			charm.x += 50;
-			charm.x += i * (charm.width + 50);
+			charm.x += 50 + (i * (charm.width + 50));
 			charm.y += 210;
 			charm.ID = i;
 
@@ -695,59 +697,10 @@ class MainMenuState extends MusicBeatState
 		charmText.alpha = 0;
 		add(charmText);
 
-		if (ClientPrefs.buff1Selected) curBuffSelected = 1;
-		else if (ClientPrefs.buff2Selected) curBuffSelected = 2;
-		else if (ClientPrefs.buff3Selected) curBuffSelected = 3;
-		else curBuffSelected = 0;
-
-		buffSelected.x = buffItems.members[curBuffSelected].x;
-
-		if (ClientPrefs.inShop)
-		{
-			if (ClientPrefs.iniquitousWeekUnlocked && ClientPrefs.iniquitousWeekBeaten)
-				FlxG.sound.playMusic(Paths.music('malumIctum'));
-			else if (FlxG.random.int(1, 10) == 2)
-				FlxG.sound.playMusic(Paths.music('AJDidThat'));
-			else
-				FlxG.sound.playMusic(Paths.music('freakyMenu'));
-			FlxG.sound.music.fadeIn(2.0);
-			ClientPrefs.inShop = false;
-			ClientPrefs.saveSettings();
-		}
-
-		changeItem(0, false, false);
-
-		//Notification alert
-		NotificationAlert.checkForNotifications(this);
-
-		allowMayhemGameMode = (ClientPrefs.mayhemNotif) ? true : false;
-
-		// FOR INJECTION MODE
-		if (ClientPrefs.weeksUnlocked >= 7 && !ClientPrefs.injectionNotif)
-		{
-			ClientPrefs.injectionNotif = true;
-			NotificationAlert.showMessage(this, 'Injection');
-			ClientPrefs.saveSettings();
-		}
-
-		if (NotificationAlert.sendMessage)
-		{
-			NotificationAlert.showMessage(this, 'Normal');
-			NotificationAlert.sendMessage = false;
-			NotificationAlert.saveNotifications();
-		}
-		super.create();
-
-		var scroll = new ScrollableObject(0.004, 50, 100, FlxG.width, FlxG.height, "X");
-		scroll.onFullScroll.add(delta -> {
-			if (storySelected && !applyStory)
-				changeItem(delta);
-		});
-		add(scroll);
-
-		addTouchPad("NONE", "B_E");
+		buffSelect(-2, false);
 	}
 
+	// Background Switching functions (Too lazy to change these)
 	function changeBg(timer:FlxTimer)
 	{
 		if(!secretBG)
@@ -755,20 +708,20 @@ class MainMenuState extends MusicBeatState
 			trace("Changing the Background");
 			FlxTween.tween(bg, { alpha: 0 }, 3, {ease: FlxEase.cubeInOut, type: PERSIST});
 			FlxTween.tween(bgChange, { alpha: 1 }, 3, {ease: FlxEase.cubeInOut, type: PERSIST});
-			var bgTimerAgain:FlxTimer = new FlxTimer().start(10, changeBgAgain);
+
+			var bgTimer:FlxTimer = new FlxTimer().start(10, changeBgAgain);
 			new FlxTimer().start(4, function (tmr:FlxTimer) {
-				if (Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed && ClientPrefs.kianaWeekPlayed)
-					bg.loadGraphic(Paths.image('mainMenuBgs/menu-' + FlxG.random.int(1, 59)));
-				else if (Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed)
-					bg.loadGraphic(Paths.image('mainMenuBgs/menu-' + FlxG.random.int(1, 13)));
-				else if (Achievements.isAchievementUnlocked('WeekMarco_Beaten'))
-					bg.loadGraphic(Paths.image('mainMenuBgs/menu-' + FlxG.random.int(1, 59)));
-				else
-					bg.loadGraphic(Paths.image('mainMenuBgs/menu-' + FlxG.random.int(1, 5)));
+				var maxNum:Int = 5;
+			
+				if (Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed && ClientPrefs.kianaWeekPlayed) maxNum = 59;
+				else if (Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed) maxNum = 13;
+				else if (Achievements.isAchievementUnlocked('WeekMarco_Beaten')) maxNum = 11;
+
+				bg.loadGraphic(Paths.image('mainMenuBgs/menu-' + FlxG.random.int(1, maxNum)));
+				bg.setGraphicSize(Std.int(bg.width * 1.175));
 			});
 		}
 	}
-
 	function changeBgAgain(timer:FlxTimer)
 	{
 		if(!secretBG)
@@ -776,32 +729,33 @@ class MainMenuState extends MusicBeatState
 			trace("Changing the Background Again");
 			FlxTween.tween(bg, { alpha: 1 }, 3, {ease: FlxEase.cubeInOut, type: PERSIST});
 			FlxTween.tween(bgChange, { alpha: 0 }, 3, {ease: FlxEase.cubeInOut, type: PERSIST});
+
 			var bgTimer:FlxTimer = new FlxTimer().start(10, changeBg);
 			new FlxTimer().start(4, function (tmr:FlxTimer) {
-				if (Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed && ClientPrefs.kianaWeekPlayed)
-					bgChange.loadGraphic(Paths.image('mainMenuBgs/menu-' + FlxG.random.int(1, 59)));
-				else if (Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed)
-					bgChange.loadGraphic(Paths.image('mainMenuBgs/menu-' + FlxG.random.int(1, 13)));
-				else if (Achievements.isAchievementUnlocked('WeekMarco_Beaten'))
-					bgChange.loadGraphic(Paths.image('mainMenuBgs/menu-' + FlxG.random.int(1, 11)));
-				else
-					bgChange.loadGraphic(Paths.image('mainMenuBgs/menu-' + FlxG.random.int(1, 5)));
+				var maxNum:Int = 5;
+			
+				if (Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed && ClientPrefs.kianaWeekPlayed) maxNum = 59;
+				else if (Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed) maxNum = 13;
+				else if (Achievements.isAchievementUnlocked('WeekMarco_Beaten')) maxNum = 11;
+
+				bgChange.loadGraphic(Paths.image('mainMenuBgs/menu-' + FlxG.random.int(1, maxNum)));
 			});
 		}
 	}
 
+	// Achievements
 	#if ACHIEVEMENTS_ALLOWED
-	// Unlocks "Freaky on a Friday Night" achievement
-	function giveAchievement() {
-		add(new AchievementObject('friday_night_play', camAchievement));
-		FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
-		trace('Giving achievement "friday_night_play"');
-	}
-
 	function giveAnotherAchievement() {
 		add(new AchievementObject('secret', camAchievement));
 		FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
 		trace('Giving achievement "secret"');
+	}
+
+	function giveFlashbangAchievement()
+	{
+		add(new AchievementObject('flashbang', camAchievement));
+		FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
+		trace('Giving achievement "flashbang"');
 	}
 	#end
 
@@ -809,44 +763,7 @@ class MainMenuState extends MusicBeatState
 	var storySelected:Bool = false;
 	var inventoryOpened:Bool = false;
 	var applyStory:Bool = false;
-	var warnMayhem:String = '';
-
-	function lerpScore(elapsed:Float)
-	{
-		intendedMayhemedScore = ClientPrefs.mayhemEndTotalScore;
-
-		lerpInjectedScore = Math.floor(FlxMath.lerp(lerpInjectedScore, intendedInjectedScore, CoolUtil.boundTo(elapsed * 30, 0, 1)));
-		if(Math.abs(intendedInjectedScore - lerpInjectedScore) < 10) lerpInjectedScore = intendedInjectedScore;
-
-		lerpMayhemedScore = Math.floor(FlxMath.lerp(lerpMayhemedScore, intendedMayhemedScore, CoolUtil.boundTo(elapsed * 30, 0, 1)));
-		if(Math.abs(intendedMayhemedScore - lerpMayhemedScore) < 10) lerpMayhemedScore = intendedMayhemedScore;
-
-		if (storyShit[curStorySelected] == 'injection') extraFinalScore.text = "SCORE: " + lerpInjectedScore;
-		else extraFinalScore.text = "RECORD: " + ClientPrefs.mayhemEndScore + " Songs / Score: " + lerpMayhemedScore;
-	}
-
-	function cancelTweens(part:String)
-	{
-		switch(part.toLowerCase())
-		{
-			case "inventory":
-				FlxTween.cancelTweensOf(BGchecker);	
-				FlxTween.cancelTweensOf(buffSelected);	
-				FlxTween.cancelTweensOf(buffTitle);	
-				FlxTween.cancelTweensOf(buffText);	
-				FlxTween.cancelTweensOf(charmTitle);
-				FlxTween.cancelTweensOf(charmText);
-				FlxTween.cancelTweensOf(gfPocket);
-				FlxTween.cancelTweensOf(blackOut);
-
-			case "story":
-				FlxTween.cancelTweensOf(blackOut);
-				FlxTween.cancelTweensOf(storySelection);
-				FlxTween.cancelTweensOf(storyText);
-				FlxTween.cancelTweensOf(extraFinalScore);
-				FlxTween.cancelTweensOf(sprDifficulty);
-		}
-	}
+	var helpWarn:String = '';
 
 	override function update(elapsed:Float)
 	{
@@ -857,7 +774,7 @@ class MainMenuState extends MusicBeatState
 		}
 
 		// Alpha and Position Checks
-		leftDiffArrow.x = storySelection.x;
+		leftDiffArrow.x = storySelection.x - 210;
 		leftDiffArrow.alpha = rightDiffArrow.alpha = sprDifficulty.alpha;
 		BGchecker.alpha = buffSelected.alpha = buffTitle.alpha = buffText.alpha = charmTitle.alpha = charmText.alpha = gfPocket.alpha;
 		
@@ -872,9 +789,11 @@ class MainMenuState extends MusicBeatState
 			FlxG.sound.play(Paths.sound('cancelMenu'));
 			if (inventoryOpened)
 			{
+				inventoryOpened = false;
 				cancelTweens("inventory");
 				FlxTween.tween(blackOut, {alpha: 0}, 0.6, {ease: FlxEase.circOut, type: PERSIST});
 				FlxTween.tween(gfPocket, {alpha: 0}, 0.6, {ease: FlxEase.circOut, type: PERSIST});
+				FlxTween.tween(inventoryTitle, {alpha: 0}, 0.6, {ease: FlxEase.circOut, type: PERSIST});
 				buffItems.forEach(function(buff:FlxSprite)
 				{
 					FlxTween.cancelTweensOf(buff);
@@ -1087,12 +1006,12 @@ class MainMenuState extends MusicBeatState
 							FlxG.camera.shake(0.02, 0.5, null, false, FlxAxes.XY);
 							FlxG.sound.play(Paths.sound('accessDenied'));
 						}
-						else if (storyShit[curStorySelected] == 'injection' && (ClientPrefs.weeksUnlocked < 7 || warnMayhem != ''))
+						else if (storyShit[curStorySelected] == 'injection' && (ClientPrefs.weeksUnlocked < 7 || helpWarn != ''))
 						{
 							FlxG.camera.shake(0.02, 0.5, null, false, FlxAxes.XY);
 							FlxG.sound.play(Paths.sound('accessDenied'));
 						}
-						else if (storyShit[curStorySelected] == 'mayhem' && (!allowMayhemGameMode || warnMayhem != ''))
+						else if (storyShit[curStorySelected] == 'mayhem' && (!allowMayhemGameMode || helpWarn != ''))
 						{
 							FlxG.camera.shake(0.02, 0.5, null, false, FlxAxes.XY);
 							FlxG.sound.play(Paths.sound('accessDenied'));
@@ -1226,7 +1145,7 @@ class MainMenuState extends MusicBeatState
 			FlxTween.tween(gfPocket, {alpha: 1}, 0.6, {ease: FlxEase.circOut, type: PERSIST});
 			buffItems.forEach(function(buff:FlxSprite)
 			{
-				FlxTween.tween(buff, {alpha: (buff.ID == curBuffSelected) ? 1 : 0.6}, 0.2, {ease: FlxEase.circOut, type: PERSIST});
+				FlxTween.tween(buff, {alpha: (buff.ID == curBuffSelected) ? 1 : 0.2}, 0.6, {ease: FlxEase.circOut, type: PERSIST});
 			});
 			FlxTween.tween(inventoryTitle, {alpha: 0.7}, 0.6, {ease: FlxEase.circOut, type: PERSIST});
 
@@ -1240,6 +1159,7 @@ class MainMenuState extends MusicBeatState
 			ClientPrefs.saveSettings();
 		}
 
+		// To go to the shop
 		if (TouchUtil.pressAction(shopButton) && !ClientPrefs.inShop && nothingSelected)
 		{
 			if (ClientPrefs.haptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
@@ -1248,50 +1168,11 @@ class MainMenuState extends MusicBeatState
 			ClientPrefs.inShop = true;
 			MusicBeatState.switchState(new ShopState());
 		}
+
 		super.update(elapsed);
 	}
 
-	function giveFlashbangAchievement()
-	{
-		add(new AchievementObject('flashbang', camAchievement));
-		FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
-		trace('Giving achievement "flashbang"');
-	}
-
-	var tweenDifficulty:FlxTween;
-	function changeDifficulty(change:Int = 0):Void
-	{
-		curDifficulty += change;
-		if (Achievements.isAchievementUnlocked('weekIniquitous_Beaten')) // Allow EVERYTHING
-		{
-			if (curDifficulty < 0) curDifficulty = 1;
-			if (curDifficulty > 1) curDifficulty = 0;
-		}
-		else
-			curDifficulty = 0; //Uh oh! You didn't get the true ending to earn everything, you can only play in CASUAL for now!
-
-		var diff:String = CoolUtil.difficulties[curDifficulty];
-		var newImage:FlxGraphic = Paths.image('menudifficulties/' + Paths.formatToSongPath(diff));
-		
-		if(sprDifficulty.graphic != newImage)
-		{
-			sprDifficulty.loadGraphic(newImage);
-			sprDifficulty.x = leftDiffArrow.x + 60;
-			sprDifficulty.x += (308 - sprDifficulty.width) / 3;
-			sprDifficulty.alpha = 0;
-			sprDifficulty.y = leftDiffArrow.y - 15;
-
-			if(tweenDifficulty != null) tweenDifficulty.cancel();
-			tweenDifficulty = FlxTween.tween(sprDifficulty, {y: leftDiffArrow.y + 15, alpha: 1}, 0.07, {onComplete: function(twn:FlxTween)
-			{
-				tweenDifficulty = null;
-			}});
-		}
-		lastDifficultyName = diff;
-
-		intendedInjectedScore = (curDifficulty == 1) ? ClientPrefs.injectionVilEndScore : ClientPrefs.injectionEndScore;
-	}
-
+	// Inventory Select functions
 	function charmSelect(huh:Int = 0)
 	{
 		curCharmSelected = huh;
@@ -1309,32 +1190,37 @@ class MainMenuState extends MusicBeatState
 		});
 	}
 
-	function buffSelect(huh:Int = 0, ?allowHaptics:Bool = true)
+	function buffSelect(huh:Int = -1, ?allowHaptics:Bool = true)
 	{
 		if (ClientPrefs.haptics && allowHaptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
-		curBuffSelected = huh;
-		var reflectedBuff = Reflect.field(ClientPrefs, 'buff${curBuffSelected}selected');
+		trace("ID Passing through: " + huh);
 		var buffArray:Array<String> = ["None", "Health Regeneration", "Second Chance", "Immunity"];
-		if (!reflectedBuff && huh != 0)
+		if (huh != -1) curBuffSelected = huh;
+		
+		buffItems.forEach(function(buff:FlxSprite)
 		{
-			FlxG.sound.play(Paths.sound('cancelMenu'), 0.6);
-			return;
-		}
+			var reflectedBuff = Reflect.field(ClientPrefs, 'buff${buff.ID}Unlocked');
+			if (huh == -1) return;
+			if (!reflectedBuff && buff.ID > 0)
+			{
+				FlxG.sound.play(Paths.sound('cancelMenu'), 0.6);
+				return;
+			}
+
+			buff.alpha = (curBuffSelected == buff.ID) ? 1 : 0.2;
+		});
 
 		buffText.text = buffArray[curBuffSelected];
 		buffSelected.x = buffItems.members[curBuffSelected].x;
 		FlxG.sound.play(Paths.sound('scrollMenu'), 0.6);
-
-		buffItems.forEach(function(buff:FlxSprite)
-		{
-			buff.alpha = (curBuffSelected == buff.ID) ? 1 : 0.2;
-		});
+		
 		ClientPrefs.buff1Selected = (curBuffSelected == 1);
 		ClientPrefs.buff2Selected = (curBuffSelected == 2);
 		ClientPrefs.buff3Selected = (curBuffSelected == 3);
 		ClientPrefs.saveSettings();
 	}
 	
+	// Change Functions
 	function changeItem(huh:Int = 0, ?playSound:Bool = false)
 	{
 		if (playSound) FlxG.sound.play(Paths.sound('scrollMenu'));
@@ -1363,7 +1249,7 @@ class MainMenuState extends MusicBeatState
 
 			storySelection.text = storyShit[curStorySelected];
 			extraFinalScore.alpha = (storyShit[curStorySelected] == 'injection' || storyShit[curStorySelected] == 'mayhem') ? 1 : 0;
-			sprDifficulty.alpha = (storyShit[curStorySelected] == 'injection' || storyShit[curStorySelected] == 'mayhem') ? 1 : 0;
+			sprDifficulty.alpha = (storyShit[curStorySelected] == 'injection') ? 1 : 0;
 
 			switch (storyShit[curStorySelected])
 			{
@@ -1372,31 +1258,28 @@ class MainMenuState extends MusicBeatState
 					storyText.color = 0xFFffffff;
 					storyText.y = 300;
 				case 'iniquitous':
-					if (Achievements.isAchievementUnlocked('weekIniquitous_Beaten') && Achievements.isAchievementUnlocked('WeekMarcoIniquitous_Beaten')
-						&& Achievements.isAchievementUnlocked('WeekNunIniquitous_Beaten') && Achievements.isAchievementUnlocked('WeekKianaIniquitous_Beaten'))
-						storyText.text = "Do you dare oppose your <DR>wrath?<DR>";
-					else if (Achievements.isAchievementUnlocked('weekIniquitous_Beaten'))
-						storyText.text = "Do you dare oppose his <DR>wrath?<DR>";
-					else
-						storyText.text = "Defeat <DR>ME<DR> first.";
+					if (Achievements.isAchievementUnlocked('weekIniquitous_Beaten') && Achievements.isAchievementUnlocked('WeekMarcoIniquitous_Beaten') && Achievements.isAchievementUnlocked('WeekNunIniquitous_Beaten') && Achievements.isAchievementUnlocked('WeekKianaIniquitous_Beaten')) storyText.text = "Do you dare oppose your <DR>wrath?<DR>";
+					else if (Achievements.isAchievementUnlocked('weekIniquitous_Beaten')) storyText.text = "Do you dare oppose his <DR>wrath?<DR>";
+					else storyText.text = "Defeat <DR>ME<DR> first.";
+
 					storyText.color = 0xFFff0000;
 					storyText.y = 325;
 				case 'injection':
 					if (ClientPrefs.weeksUnlocked >= 7)
 					{
-						warnMayhem = ""; //Reset this every time!!! idk use this again to not make 2 variables bru
-						if (ClientPrefs.getGameplaySetting('practice', false) || ClientPrefs.getGameplaySetting('botplay', false))
-							warnMayhem += 'Botplay and/or Practice Mode\n';
-						if (!ClientPrefs.mechanics) warnMayhem += 'Mechanics\n';
-						if (ClientPrefs.optimizationMode) warnMayhem += 'Optimization Mode';
-						if (warnMayhem == '')
+						helpWarn = ""; //Reset this every time!
+						if (ClientPrefs.getGameplaySetting('practice', false) || ClientPrefs.getGameplaySetting('botplay', false)) helpWarn += 'Botplay and/or Practice Mode\n';
+						if (!ClientPrefs.mechanics) helpWarn += 'Mechanics\n';
+						if (ClientPrefs.optimizationMode) helpWarn += 'Optimization Mode';
+
+						if (helpWarn == '')
 						{
 							storyText.text = "Play through the Main Game\nin <GR>ONE attempt<GR>!!\n<P>Health<P> and <G>Score<G> gets saved\nalong the way!\nTry not to lose,\nor you <R>lose your progress<R>!";
 							storyText.y = 265;
 						}
 						else
 						{
-							storyText.text = "You can't access this mode.\nPlease disable the following: <R>\n" + warnMayhem + "<R>";
+							storyText.text = "You can't access this mode.\nPlease disable the following: <R>\n" + helpWarn + "<R>";
 							storyText.y = 310;
 						} 
 					}
@@ -1410,13 +1293,12 @@ class MainMenuState extends MusicBeatState
 				case 'mayhem':
 					if (allowMayhemGameMode)
 					{
-						warnMayhem = ""; //Reset this every time!!!
-						if (ClientPrefs.getGameplaySetting('practice', false) || ClientPrefs.getGameplaySetting('botplay', false))
-							warnMayhem += 'Botplay and/or Practice Mode\n';
-						if (!ClientPrefs.mechanics) warnMayhem += 'Mechanics\n';
-						if (ClientPrefs.optimizationMode) warnMayhem += 'Optimization Mode';
+						helpWarn = ""; //Reset this every time!
+						if (ClientPrefs.getGameplaySetting('practice', false) || ClientPrefs.getGameplaySetting('botplay', false)) helpWarn += 'Botplay and/or Practice Mode\n';
+						if (!ClientPrefs.mechanics) helpWarn += 'Mechanics\n';
+						if (ClientPrefs.optimizationMode) helpWarn += 'Optimization Mode';
 
-						if (warnMayhem == '')
+						if (helpWarn == '')
 						{
 							storyText.text = "Go through as many\nsongs as you can with\na set amount of <P>health<P>!\nTry to last as long as you can,\nwhilst <R>challenges<R> are\nthrown at you!
 							\n<G>TIP<G>: Press the <GR>HEALTH BAR<GR>\nto view your challenge(s)!";
@@ -1424,7 +1306,7 @@ class MainMenuState extends MusicBeatState
 						}
 						else
 						{
-							storyText.text = "You can't access this mode.\nPlease disable the following: <R>\n" + warnMayhem + "<R>";
+							storyText.text = "You can't access this mode.\nPlease disable the following: <R>\n" + helpWarn + "<R>";
 							storyText.y = 310;
 						}
 					}	
@@ -1442,6 +1324,77 @@ class MainMenuState extends MusicBeatState
 			});
 
 			CustomFontFormats.addMarkers(storyText);
+		}
+	}
+
+	var tweenDifficulty:FlxTween;
+	function changeDifficulty(change:Int = 0):Void
+	{
+		curDifficulty += change;
+		if (Achievements.isAchievementUnlocked('weekIniquitous_Beaten')) // Allow EVERYTHING
+		{
+			if (curDifficulty < 0) curDifficulty = 1;
+			if (curDifficulty > 1) curDifficulty = 0;
+		}
+		else curDifficulty = 0; //Uh oh! You didn't get the true ending to earn everything, you can only play in CASUAL for now!
+
+		var diff:String = CoolUtil.difficulties[curDifficulty];
+		var newImage:FlxGraphic = Paths.image('menudifficulties/' + Paths.formatToSongPath(diff));
+		
+		if(sprDifficulty.graphic != newImage)
+		{
+			sprDifficulty.loadGraphic(newImage);
+			sprDifficulty.x = leftDiffArrow.x + 60;
+			sprDifficulty.x += (308 - sprDifficulty.width) / 3;
+			sprDifficulty.alpha = 0;
+			sprDifficulty.y = leftDiffArrow.y - 15;
+
+			if(tweenDifficulty != null) tweenDifficulty.cancel();
+			tweenDifficulty = FlxTween.tween(sprDifficulty, {y: leftDiffArrow.y + 15, alpha: 1}, 0.07, {onComplete: function(twn:FlxTween)
+			{
+				tweenDifficulty = null;
+			}});
+		}
+		lastDifficultyName = diff;
+
+		intendedInjectedScore = (curDifficulty == 1) ? ClientPrefs.injectionVilEndScore : ClientPrefs.injectionEndScore;
+	}
+
+	// Helper Functions
+	function lerpScore(elapsed:Float)
+	{
+		intendedMayhemedScore = ClientPrefs.mayhemEndTotalScore;
+
+		lerpInjectedScore = Math.floor(FlxMath.lerp(lerpInjectedScore, intendedInjectedScore, CoolUtil.boundTo(elapsed * 30, 0, 1)));
+		if(Math.abs(intendedInjectedScore - lerpInjectedScore) < 10) lerpInjectedScore = intendedInjectedScore;
+
+		lerpMayhemedScore = Math.floor(FlxMath.lerp(lerpMayhemedScore, intendedMayhemedScore, CoolUtil.boundTo(elapsed * 30, 0, 1)));
+		if(Math.abs(intendedMayhemedScore - lerpMayhemedScore) < 10) lerpMayhemedScore = intendedMayhemedScore;
+
+		if (storyShit[curStorySelected] == 'injection') extraFinalScore.text = "SCORE: " + lerpInjectedScore;
+		else extraFinalScore.text = "RECORD: " + ClientPrefs.mayhemEndScore + " Songs / Score: " + lerpMayhemedScore;
+	}
+
+	function cancelTweens(part:String)
+	{
+		switch(part.toLowerCase())
+		{
+			case "inventory":
+				FlxTween.cancelTweensOf(BGchecker);	
+				FlxTween.cancelTweensOf(buffSelected);	
+				FlxTween.cancelTweensOf(buffTitle);	
+				FlxTween.cancelTweensOf(buffText);	
+				FlxTween.cancelTweensOf(charmTitle);
+				FlxTween.cancelTweensOf(charmText);
+				FlxTween.cancelTweensOf(gfPocket);
+				FlxTween.cancelTweensOf(blackOut);
+
+			case "story":
+				FlxTween.cancelTweensOf(blackOut);
+				FlxTween.cancelTweensOf(storySelection);
+				FlxTween.cancelTweensOf(storyText);
+				FlxTween.cancelTweensOf(extraFinalScore);
+				FlxTween.cancelTweensOf(sprDifficulty);
 		}
 	}
 }
