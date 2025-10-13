@@ -171,12 +171,10 @@ class MainMenuState extends MusicBeatState
 	var BGchecker:FlxBackdrop;
 
 	var buffItems:FlxTypedGroup<FlxSprite>;
-	var buffTitle:Alphabet;
 	var buffText:FlxText;
 	var buffSelected:FlxSprite;
 
 	var charmItems:FlxTypedGroup<FlxSprite>;
-	var charmTitle:Alphabet;
 	var charmText:FlxText;
 	var charmSelected:FlxSprite;
 
@@ -478,8 +476,8 @@ class MainMenuState extends MusicBeatState
 
 	function setBackground()
 	{
-		bg = new FlxSprite(MobileUtil.fixX(-80));
-		bgChange = new FlxSprite(MobileUtil.fixX(-80));
+		bg = new FlxSprite(-80);
+		bgChange = new FlxSprite(-80);
 		var randNum = FlxG.random.int(1, 59);
 		if (randNum == 30 && Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed && ClientPrefs.kianaWeekPlayed)
 		{
@@ -655,12 +653,6 @@ class MainMenuState extends MusicBeatState
 		inventoryTitle.alpha = 0;
 		add(inventoryTitle);
 
-		buffTitle = new Alphabet(MobileUtil.fixX(1170), 200, "Buffs", true);
-		buffTitle.scaleX = 0.7;
-		buffTitle.scaleY = 0.7;
-		buffTitle.alpha = 0;
-		add(buffTitle);
-
 		buffText = new FlxText(0, 0, FlxG.width, "Test!");
 		buffText.screenCenter(XY);
 		buffText.y += 20;
@@ -692,12 +684,6 @@ class MainMenuState extends MusicBeatState
 			charm.antialiasing = ClientPrefs.globalAntialiasing;
 			charmItems.add(charm);
 		}	
-
-		charmTitle = new Alphabet(MobileUtil.fixX(1120), 610, "Charms", true);
-		charmTitle.scaleX = 0.7;
-		charmTitle.scaleY = 0.7;
-		charmTitle.alpha = 0;
-		add(charmTitle);
 
 		charmText = new FlxText(0, 0, FlxG.width, "Test!");
 		charmText.screenCenter(XY);
@@ -788,7 +774,7 @@ class MainMenuState extends MusicBeatState
 		sprDifficulty.x = leftDiffArrow.x + 60;
 		rightDiffArrow.x = leftDiffArrow.x + 376;
 		leftDiffArrow.alpha = rightDiffArrow.alpha = sprDifficulty.alpha;
-		BGchecker.alpha = buffSelected.alpha = buffTitle.alpha = buffText.alpha = charmTitle.alpha = charmText.alpha = badgeBar.alpha = gfPocket.alpha;
+		BGchecker.alpha = buffSelected.alpha = buffText.alpha = charmText.alpha = badgeBar.alpha = gfPocket.alpha;
 		badges.forEach(function(spr:FlxSprite)
 		{
 			spr.alpha = gfPocket.alpha;
@@ -950,24 +936,20 @@ class MainMenuState extends MusicBeatState
 						});
 					}
 				}
-				#if desktop
+				#if mobile
 					#if DEBUG_ALLOWED
 						if (FlxG.keys.anyJustPressed(debugKeys)) MusicBeatState.switchState(new MasterEditorMenu());				
 					#else
-						if (FlxG.keys.anyJustPressed(debugKeys))
+						if (FlxG.keys.anyJustPressed(debugKeys) || touchPad.buttonE.justPressed)
 						{
 							selectedSomethin = true;
 							if (FlxG.sound.music != null) FlxG.sound.music.stop();
 				
-							CppAPI.setOld();
-							CppAPI.setWallpaper(FileSystem.absolutePath("assets\\images\\thinkFastBitch.png"));
-
 							var video:VideoSprite = new VideoSprite(Paths.video('thinkFastChucklenuts'), false, false, false);
 							video.cameras = [camAchievement];
 							add(video);
 							video.finishCallback = function()
 							{
-								if (!ClientPrefs.allowPCChanges && Wallpaper.oldWallpaper != null) CppAPI.setWallpaper("old");
 								System.exit(0);
 							};
 							video.play();
@@ -1409,9 +1391,7 @@ class MainMenuState extends MusicBeatState
 			case "inventory":
 				FlxTween.cancelTweensOf(BGchecker);	
 				FlxTween.cancelTweensOf(buffSelected);	
-				FlxTween.cancelTweensOf(buffTitle);	
 				FlxTween.cancelTweensOf(buffText);	
-				FlxTween.cancelTweensOf(charmTitle);
 				FlxTween.cancelTweensOf(charmText);
 				FlxTween.cancelTweensOf(gfPocket);
 				FlxTween.cancelTweensOf(blackOut);
