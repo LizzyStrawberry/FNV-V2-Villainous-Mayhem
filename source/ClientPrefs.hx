@@ -50,6 +50,9 @@ class ClientPrefs {
 	public static var mainWeekBeaten:Bool = false;
 	public static var gotWinMessage:Bool = false;
 
+	// Badges
+	public static var badgesCollected:Int = 0;
+
 	//For Tutorial Section
 	public static var coreMechTutUnlocked:Bool = false;
 	public static var shopTutUnlocked:Bool = false;
@@ -424,6 +427,7 @@ class ClientPrefs {
 		FlxG.save.data.gotWinMessage = gotWinMessage;
 
 		FlxG.save.data.coreMechTutUnlocked = coreMechTutUnlocked;
+		FlxG.save.data.badgesCollected = badgesCollected;
 		FlxG.save.data.shopTutUnlocked = shopTutUnlocked;
 
 		FlxG.save.data.oldLoadScreensUnlocked = oldLoadScreensUnlocked;
@@ -618,6 +622,8 @@ class ClientPrefs {
 
 		coreMechTutUnlocked = true;
 		shopTutUnlocked = true;
+
+		badgesCollected = 5;
 
 		oldLoadScreensUnlocked = true;
 		adMechanicScreensUnlocked = true;
@@ -876,6 +882,10 @@ class ClientPrefs {
 		}
 		if(FlxG.save.data.shopTutUnlocked != null) {
 			shopTutUnlocked = FlxG.save.data.shopTutUnlocked;
+		}
+
+		if(FlxG.save.data.badgesCollected != null) {
+			badgesCollected = FlxG.save.data.badgesCollected;
 		}
 
 		if(FlxG.save.data.oldLoadScreensUnlocked != null) {
