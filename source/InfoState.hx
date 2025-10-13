@@ -638,7 +638,7 @@ class InfoState extends MusicBeatState
 			case 'gf':
 				titleText.text = "Trespasser GF";
 
-				desc.text = "Full name: Gigi Dearest\nAliases: Gf, Fair Maiden, Ugly Boring Teenager, Chuckletits, Bitch\nAge: 19\nSpecies: Demon
+				desc.text = "Full name: Gigi Dearest\nAliases: Gf, Fair Maiden, Ugly Boring Teenager, Chuckletits, Bitch\nAge: 19 - Species: Demon
 					\nA Lost, curious, but way smarter counterpart of the original girlfriend who just wants to get back to her Boyfriend (kinda).
 					\n'That's how you do it!'";
 				
@@ -646,7 +646,7 @@ class InfoState extends MusicBeatState
 			case 'bf':
 				titleText.text = "Boyfriend";
 
-				desc.text = "Real Name: Balthazar Escobar Francisco the 3rd\nAliases: Lil Boyfriend, Ugly worm, cuckoo, Little dude, Little man\nAge: Old\nSpecies: Dumbass
+				desc.text = "Real Name: Balthazar Escobar Francisco the 3rd\nAliases: Lil Boyfriend, Ugly worm, cuckoo, Little dude, Little man\nAge: Old - Species: Dumbass
 				\nA tiny arrogant little brat who thinks nothing more than to fuck his GF, yet he gets cucked all the time. 
 				\n'Take that Daddy Dearest! Hiiiiiyaaaaaa!!!'";
 					
@@ -654,7 +654,7 @@ class InfoState extends MusicBeatState
 			case 'marco':
 				titleText.text = "Marco";
 
-				desc.text = "Full Name: Marco Isavilan\nReal name: Michael Pureheart\nAliases: Asshole, The Cheapskate, Sir, Isavilan\nAge: 30\nSpecies: Human\nHeight: 6'2
+				desc.text = "Full Name: Marco Isavilan\nReal name: Michael Pureheart\nAliases: Asshole, The Cheapskate, Sir, Isavilan\nAge: 30 - Species: Human - Height: 6'2\nVA: StatureGuy
 				\nGreenville's Infamous Self proclaimed Best\nCheapskate Villain in the entire universe!\nHe brings terror on people on a budget.
 				\n'AILEEN!!'";
 
@@ -666,7 +666,7 @@ class InfoState extends MusicBeatState
 			case 'aileen':
 				titleText.text = "Aileen";
 
-				desc.text = "Full name: Aileen Polostar\nAliases: My Highest Assistant, AILEEN, Smokin Assistant\nAge: 24\nSpecies:Human\nHeight: 5'2
+				desc.text = "Full name: Aileen Polostar\nAliases: My Highest Assistant, AILEEN, Smokin Assistant\nAge: 24 - Species:Human - Height: 5'2\nVA: (New) Gentile | (Old) Riyu
 				\nMarco's loyal assistant who fixes schedules and organizes her boss's daily routine of being an asshole. She sometimes gets more credit on being the most patient person on the world.					
 				\n'Contrary to popular belief, I'm not smarter than my boss. I only use my brain more than his.'";
 
@@ -799,7 +799,7 @@ class InfoState extends MusicBeatState
 				{
 					titleText.text = "Narrin";
 
-					desc.text = "Real Name: Nadia Baroque\nAliases: The Jester, 2nd Dweller, Clown, Pink-Ass, Toy Maker, The Puppeteer\nAge: 105\nSpecies: Humanoid Entity
+					desc.text = "Real Name: Nadia Baroque\nAliases: The Jester, 2nd Dweller, Clown, Pink-Ass, Toy Maker, The Puppeteer\nAge: 105 - Species: Humanoid Entity\nVA: D3MON1X_
 					\nThe second dweller of the unnamed dimension, who loves to play with her victims before turning them into her slave puppets, who resemble and think like her. The victim is aware that this is happening real time.
 					\n'WELL SO FAR, IM JUST A CHARACTER'";
 				}
