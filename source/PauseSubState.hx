@@ -607,7 +607,7 @@ class PauseSubState extends MusicBeatSubstate
 			}
 		}
 
-		if ((TouchUtil.pressAction(mainItem, pauseCam) || controls.ACCEPT) && (cantUnpause <= 0 || !ClientPrefs.controllerMode) && !onSkipTime && onQuickSettings!)
+		if ((TouchUtil.pressAction(mainItem, pauseCam) || controls.ACCEPT) && (cantUnpause <= 0 || !ClientPrefs.controllerMode) && !onSkipTime && !onQuickSettings)
 		{
 			if (ClientPrefs.haptics) Haptic.vibrateOneShot(0.05, 0.35, 0.5);
 			switch (daSelected)
@@ -987,10 +987,10 @@ class PauseSubState extends MusicBeatSubstate
 
 	var mainItem:Alphabet;
 	function regenMenu():Void {
-		item = new Alphabet(MobileUtil.fixX(1250), 550, menuItems[curSelected], true);
-		item.setAlignmentFromString('right');
-		item.alpha = 0;
-		add(item);
+		mainItem = new Alphabet(MobileUtil.fixX(1250), 550, menuItems[curSelected], true);
+		mainItem.setAlignmentFromString('right');
+		mainItem.alpha = 0;
+		add(mainItem);
 
 		FlxTween.tween(mainItem, {alpha: 1}, 0.4, {ease: FlxEase.quartInOut});
 

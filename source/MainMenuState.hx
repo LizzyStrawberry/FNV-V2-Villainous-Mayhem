@@ -872,10 +872,10 @@ class MainMenuState extends MusicBeatState
 			if (nothingSelected)
 			{
 				// Mess with Alpha Values
-				shopButton.alpha = (TouchUtil..overlaps(shopButton)) ? 1 : 0.5;
-				exclamationMark.alpha = (TouchUtil..overlaps(exclamationMark)) ? 1 : 0.5;
-				optionsButton.alpha = (TouchUtil..overlaps(optionsButton)) ? 1 : 0.5;
-				inventoryButton.alpha = (TouchUtil..overlaps(inventoryButton)) ? 1 : 0.5;
+				shopButton.alpha = (TouchUtil.overlaps(shopButton)) ? 1 : 0.5;
+				exclamationMark.alpha = (TouchUtil.overlaps(exclamationMark)) ? 1 : 0.5;
+				optionsButton.alpha = (TouchUtil.overlaps(optionsButton)) ? 1 : 0.5;
+				inventoryButton.alpha = (TouchUtil.overlaps(inventoryButton)) ? 1 : 0.5;
 
 				// Options Button Functionality
 				if (TouchUtil.pressAction(optionsButton) && nothingSelected)
