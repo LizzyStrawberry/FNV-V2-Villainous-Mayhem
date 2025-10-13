@@ -366,7 +366,6 @@ class ClientPrefs {
 		FlxG.save.data.healthBarAlpha = healthBarAlpha;
 		FlxG.save.data.comboOffset = comboOffset;
 		FlxG.save.data.achievementsMap = Achievements.achievementsMap;
-		FlxG.save.data.henchmenDeath = Achievements.henchmenDeath;
 
 		FlxG.save.data.tokens = tokens;
 		FlxG.save.data.tokensAchieved = tokensAchieved;
@@ -1334,7 +1333,7 @@ class ClientPrefs {
 				gameplaySettings.set(name, value);
 			}
 		}
-		//THIS IS THE SUPPOSED TO FIX ON GETTNG ACHIEVEMENTS TO BE SAVED WTF WHY DOESN'T BASE PSYCH ENGINE HAVE THISHIFQAJUOIVHAEDOVIHBNAOVIHBPOA
+
 		if(FlxG.save.data.achievementsMap != null) {
 			Achievements.achievementsMap = FlxG.save.data.achievementsMap;
 		}
