@@ -839,11 +839,11 @@ class GalleryState extends MusicBeatState
 
 			if (categorySelected == 7)
 			{
-				if (imageNumber > 30)
+				if (imageNumber > 32)
 					imageNumber = 1;
 				if (imageNumber < 1)
-					imageNumber = 30;
-				numberCounter.text = imageNumber + "/30";
+					imageNumber = 32;
+				numberCounter.text = imageNumber + "/32";
 				currentImage.loadGraphic(Paths.image('Gallery/randomArts/image_' + imageNumber));
 
 				messageShown = false;
@@ -968,6 +968,14 @@ class GalleryState extends MusicBeatState
 					case 30:
 					{
 						imageText.text = "Oopsies!";
+					}
+					case 31:
+					{
+						imageText.text = "Stinky Twitter page";
+					}
+					case 32:
+					{
+						imageText.text = "FNV Devs in a nutshell";
 					}
 				}
 			}
