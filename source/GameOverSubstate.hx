@@ -61,11 +61,11 @@ class GameOverSubstate extends MusicBeatSubstate
 					createDeathVideo('NicDeathScreen', false, false);
 
 				case "get-villaind":
-					lime.app.Application.current.window.title = "HAHA, I aM MorKy, and I wiLL nOw CloSe uR gAem!! YoU cAn't Do ShIt nOW HAHAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+					//lime.app.Application.current.window.title = "HAHA, I aM MorKy, and I wiLL nOw CloSe uR gAem!! YoU cAn't Do ShIt nOW HAHAAAAAAAAAAAAAAAAAAAAAAAAAAA";
 					createDeathVideo('oh my god you died NEW!', false, true);
 
 				case "get-villaind-(old)":
-					lime.app.Application.current.window.title = "HAHA, I aM MorKy, and I wiLL nOw CloSe uR gAem!! YoU cAn't Do ShIt nOW HAHAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+					//lime.app.Application.current.window.title = "HAHA, I aM MorKy, and I wiLL nOw CloSe uR gAem!! YoU cAn't Do ShIt nOW HAHAAAAAAAAAAAAAAAAAAAAAAAAAAA";
 					createDeathVideo('oh my god you died!', false, true);
 			}
 		}
@@ -75,8 +75,7 @@ class GameOverSubstate extends MusicBeatSubstate
 			PlayState.checkForPowerUp = true; //Don't give bonus!
 			injected = true;
 			PlayState.deathCounter = 0;
-			PlayState.seenCutscene = false;
-			PlayState.chartingMode = false;
+			PlayState.seenCutscene = PlayState.chartingMode = false;
 			FlxTween.tween(blackOut, {alpha: 1}, 1.6, {ease: FlxEase.cubeInOut, type: PERSIST});
 			new FlxTimer().start(2.5, function (tmr:FlxTimer) {
 				MusicBeatState.switchState(new ResultsScreenState());
@@ -87,13 +86,11 @@ class GameOverSubstate extends MusicBeatSubstate
 		{
 			if (PlayState.mayhemSongsPlayed < 1)
 				PlayState.checkForPowerUp = true; //Don't give bonus!
-			if (!PlayState.checkForPowerUp)
-				PlayState.campaignScore += 25000;
+			if (!PlayState.checkForPowerUp) PlayState.campaignScore += 25000;
 			mayhemed = true;
 			ClientPrefs.ghostTapping = true; //Reset this
 			PlayState.deathCounter = 0;
-			PlayState.seenCutscene = false;
-			PlayState.chartingMode = false;
+			PlayState.seenCutscene = PlayState.chartingMode = false;
 			FlxTween.tween(blackOut, {alpha: 1}, 1.6, {ease: FlxEase.cubeInOut, type: PERSIST});
 			new FlxTimer().start(2.5, function (tmr:FlxTimer) {
 				if (PlayState.mayhemSongsPlayed == 0)
@@ -329,10 +326,8 @@ class GameOverSubstate extends MusicBeatSubstate
 
 		function onVideoEnd()
 		{
-			if (crashGame)
-				System.exit(0);
-			else if (!PlayState.isMayhemMode || !PlayState.isInjectionMode)
-				MusicBeatState.resetState();
+			if (crashGame) System.exit(0);
+			else if (!PlayState.isMayhemMode || !PlayState.isInjectionMode) MusicBeatState.resetState();
 		}
 
 		var video:VideoSprite = new VideoSprite(videoPath, false, canSkip, false);

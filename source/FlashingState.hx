@@ -23,7 +23,7 @@ class FlashingState extends MusicBeatState
 	{
 		super.create();
 	
-		bg.setGraphicSize(Std.int(bg.width * 1.25));
+		bg.setGraphicSize(Std.int(FlxG.width * 1.25));
 		bg.alpha = 0;
 		FlxTween.tween(bg, {alpha: 0.4}, 3);
 		add(bg);
@@ -60,7 +60,7 @@ class FlashingState extends MusicBeatState
 		options = new FlxTypedGroup<FlxText>();
 		add(options);
 
-		optionTextDesc = new FlxText(FlxG.width - 750, 500, FlxG.width - 600, "Test Description.");
+		optionTextDesc = new FlxText(FlxG.width - 750, 500, 680, "Test Description.");
 		optionTextDesc.setFormat("SF Atarian System Bold Italic", 50, FlxColor.WHITE, CENTER);
 		optionTextDesc.alpha = 0;
 		optionTextDesc.screenCenter(Y);
@@ -68,7 +68,7 @@ class FlashingState extends MusicBeatState
 
 		for (i in 0...5)
 		{
-			var opt:FlxText = new FlxText(50, (FlxG.height / 2) - (210 - (i * 100)), "");
+			var opt:FlxText = new FlxText(MobileUtil.fixX(50), (FlxG.height / 2) - (210 - (i * 100)), "");
 			opt.setFormat("SF Atarian System Bold Italic", 42, FlxColor.WHITE, LEFT);
 			opt.ID = i;
 			options.add(opt);
