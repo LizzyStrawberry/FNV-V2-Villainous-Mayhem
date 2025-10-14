@@ -565,9 +565,9 @@ class ShopState extends MusicBeatState
 									case 2: dialogueText = "I'm aware that I'm in a game you know.";
 									case 3: dialogueText = "Don't worry, none of these are canon to the main week.";
 									case 4: dialogueText = "I love scamming people.";
-									case 5: dialogueText = "Never use the door on my right as an exit, I'm telling ya!";
+									case 5: dialogueText = "Your fate was sealed the moment you started your journey.";
 									case 6: dialogueText = "Keep grinding those tokens! You might be able to use em to someone else, other than me!";
-									case 7: dialogueText = "Do you know 'Mr Cartridge Guy'? He's a great business man but I don't like the way he interact with his customers...";
+									case 7: dialogueText = "Do you know 'Mr Cartridge Guy'? He's a great business man, but I don't like the way he interact with his customers..";
 									case 8: dialogueText = "If you didn't notice yet, I have 9 disimbodied hands that I can control! Do you think you can you find them all?";
 									case 9: dialogueText = "N E V E R USE THE DOOR TO YOUR LEFT.";
 									case 10: dialogueText = "Go test your luck now!";
@@ -575,12 +575,12 @@ class ShopState extends MusicBeatState
 									case 12: dialogueText = "I'm not the only Mechant in this game... But I don't want you to meet her.";
 									case 13: dialogueText = "Little blue balls man is dead.";
 									case 14: dialogueText = "The world is full of obvious things.";
-									case 15: dialogueText = "You want something free from me??? Hmm... Open Paycheck in freeplay and type 'Unpaid'.";
+									case 15: dialogueText = "You want something free from me?? I'm not like other people. Now get to gambling.";
 									case 16: dialogueText = "Hello TC.";
 									case 17: dialogueText = "I don't sell things, I give away my stuff here.";
 									case 18: dialogueText = "You can Examine the prizes at the prize pool.";
 									case 19: dialogueText = "She thicc af bro";
-									case 20: dialogueText = "I wouldn't spam a certain arrow key, if I were you. That's cheating.";
+									case 20: dialogueText = "You don't have to go to your left or up. Just saying..";
 									case 21: dialogueText = "They're masterworks all, you can't go wrong.";
 									case 22: dialogueText = "Whaddya want??";
 									case 23: dialogueText = "There's a selection of good things for you to win, Stranger! ";
