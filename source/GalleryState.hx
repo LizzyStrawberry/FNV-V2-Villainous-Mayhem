@@ -632,11 +632,11 @@ class GalleryState extends MusicBeatState
 
 			if (categorySelected == 6)
 			{
-				if (imageNumber > 37)
+				if (imageNumber > 45)
 					imageNumber = 1;
 				if (imageNumber < 1)
-					imageNumber = 37;
-				numberCounter.text = imageNumber + "/37";
+					imageNumber = 45;
+				numberCounter.text = imageNumber + "/45";
 				currentImage.loadGraphic(Paths.image('Gallery/fanarts/image_' + imageNumber));
 
 				messageShown = false;
@@ -809,6 +809,18 @@ class GalleryState extends MusicBeatState
 					case 42:
 					{
 						imageText.text = "Marco Fanart\nFanart by Rizmeko";
+					}
+					case 43:
+					{
+						imageText.text = "Marco Fanart\nFanart by Phant0mPers0n";
+					}
+					case 44:
+					{
+						imageText.text = "Marco Fanart\nFanart by Rizmeko";
+					}
+					case 45:
+					{
+						imageText.text = "TC Fanart\nFanart by Sonrio";
 					}
 				}
 			}

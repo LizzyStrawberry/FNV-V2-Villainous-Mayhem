@@ -634,12 +634,9 @@ class PauseSubState extends MusicBeatSubstate
 					}
 					PlayState.cancelMusicFadeTween();
 					if (ClientPrefs.onCrossSection == false)
-						if (ClientPrefs.iniquitousWeekUnlocked && !ClientPrefs.iniquitousWeekBeaten)
-							FlxG.sound.playMusic(Paths.music('malumIctum'));
-						else if (FlxG.random.int(1, 10) == 2)
-							FlxG.sound.playMusic(Paths.music('AJDidThat'));
-						else
-							FlxG.sound.playMusic(Paths.music('freakyMenu'));
+						if (ClientPrefs.iniquitousWeekUnlocked && !ClientPrefs.iniquitousWeekBeaten) FlxG.sound.playMusic(Paths.music('malumIctum'));
+						else if (FlxG.random.int(1, 10) == 2) FlxG.sound.playMusic(Paths.music('AJDidThat'));
+						else FlxG.sound.playMusic(Paths.music('freakyMenu'));
 					PlayState.changedDifficulty = false;
 					PlayState.chartingMode = false;
 				case "You cannot escape.":
