@@ -509,7 +509,7 @@ class MainMenuState extends MusicBeatState
 			else if (Achievements.isAchievementUnlocked('WeekMarco_Beaten')) maxNum = 11;
 
 			bg.loadGraphic(Paths.image('mainMenuBgs/menu-' + FlxG.random.int(1, maxNum)));
-			bg.setGraphicSize(Std.int(bg.width * 1.175));
+			bg.setGraphicSize(Std.int(FlxG.width * 1.175));
 		}
 		bg.scrollFactor.set();
 		bg.screenCenter(XY);
@@ -526,7 +526,7 @@ class MainMenuState extends MusicBeatState
 			else if (Achievements.isAchievementUnlocked('WeekMarco_Beaten')) maxNum = 11;
 
 			bgChange.loadGraphic(Paths.image('mainMenuBgs/menu-' + FlxG.random.int(1, maxNum)));
-			bgChange.setGraphicSize(Std.int(bgChange.width * 1.175));
+			bgChange.setGraphicSize(Std.int(FlxG.width * 1.175));
 			bgChange.alpha = 0;
 			add(bgChange);
 		}
