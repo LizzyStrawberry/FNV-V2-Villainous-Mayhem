@@ -129,7 +129,6 @@ class MainMenuState extends MusicBeatState
 		'concert-chaos',
 		'nunsational',
 		"its-kiana",
-		"forsaken-(picmixed)",
 		"get-picod",
 		"marauder-(old)",
 		"slowflp-(old)",

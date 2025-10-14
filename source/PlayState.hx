@@ -4074,6 +4074,13 @@ class PlayState extends MusicBeatState
 					prevCamFollow = camFollow;
 					prevCamFollowPos = camFollowPos;
 					
+					if (PlayState.injectionPlaylist[0] == 'iniquitous')
+					{
+						CoolUtil.difficulties = CoolUtil.mainWeekDifficulties.copy();
+						PlayState.storyDifficulty = PlayState.injectionDifficulty = 2;
+						var difficulty:String = CoolUtil.getDifficultyFilePath();
+						trace("Loading Changed Song: " + Paths.formatToSongPath(PlayState.injectionPlaylist[0]) + difficulty);
+					}
 					if (PlayState.injectionPlaylist[0] == 'libidinousness' && ClientPrefs.performanceWarning) PlayState.SONG = Song.loadFromJson('libidinousness-villainousoptimized', 'libidinousness');
 					else PlayState.SONG = Song.loadFromJson(PlayState.injectionPlaylist[0] + difficulty, PlayState.injectionPlaylist[0]);
 

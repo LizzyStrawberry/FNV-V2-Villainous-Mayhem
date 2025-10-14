@@ -122,6 +122,7 @@ function onStepHit()
 		cancelTween('camGameGoSpeen')
 		cancelTween('camGameZoom')
 		setProperty("mainCamZoom", true)
+		setProperty("mainCamZoom", true)
 		
 		setProperty('camGame.angle', 0)
 		
