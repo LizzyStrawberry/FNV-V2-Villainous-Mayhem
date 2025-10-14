@@ -473,8 +473,9 @@ class InfoState extends MusicBeatState
 						case 'evelyn':
 							CoolUtil.browserLoad('https://docs.google.com/document/d/1zdtYnemJ1gRQT1QTce3QSYLv2IJrF8Nc-ePxJNBMM1E/edit?usp=sharing');
 						case "yaku":
+							CoolUtil.browserLoad('https://docs.google.com/document/d/1ogc4LcCLsT0WCi_KyVAEbDMVvOL7mAxgy0KHtM7gOjM/edit?usp=sharing');
 						case 'kiana':
-
+							CoolUtil.browserLoad('https://docs.google.com/document/d/1YnMqnobE6cvwPKjb2OgGzpDTYR68gk1nNSuOxquKRQg/edit?usp=sharing');
 						case 'morky':
 							if (fardTimer != null)
 							{
@@ -579,6 +580,20 @@ class InfoState extends MusicBeatState
 					FlxG.sound.play(Paths.sound('accessDenied'));
 					showingLore = false;
 				}
+			case 'yaku':
+				if (ClientPrefs.yakuScroll)
+				{
+					FlxTween.tween(blackOut, {alpha: 0.8}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
+					FlxTween.tween(scrollAsset, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
+					FlxTween.tween(scrollDesc, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
+					scrollDesc.size = 38;
+					scrollDesc.text = "I am the yaku's lore, nice to meet you\nlmao";
+				}
+				else
+				{
+					FlxG.sound.play(Paths.sound('accessDenied'));
+					showingLore = false;
+				}
 			case 'kiana':
 				if (ClientPrefs.kianaScroll)
 				{
@@ -607,6 +622,8 @@ class InfoState extends MusicBeatState
 					FlxG.sound.play(Paths.sound('accessDenied'));
 					showingLore = false;
 				}
+
+			// This is extra btw!
 			case 'manager':
 				if (ClientPrefs.ccPlayed)
 				{
