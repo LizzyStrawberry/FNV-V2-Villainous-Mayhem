@@ -2586,6 +2586,8 @@ class PlayState extends MusicBeatState
 		}
 		#end
 
+		if (!FlxG.autoPause && !paused) openPauseMenu();
+
 		super.onFocusLost();
 	}
 

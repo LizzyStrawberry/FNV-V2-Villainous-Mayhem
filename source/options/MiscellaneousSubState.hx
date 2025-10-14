@@ -23,6 +23,18 @@ class MiscellaneousSubState extends BaseOptionsMenu
 			true); //Default value
 		addOption(option);
 
+		var option:Option = new Option('Auto Pause',
+			'If checked, when you tab out of the game, the game will freeze until you hop back on.',
+			'showFPS',
+			'bool',
+			true);
+		addOption(option);
+		option.onChange = function ()
+		{
+			FlxG.autoPause = !FlxG.autoPause;
+			FlxG.save.data.autoPause = FlxG.autoPause;
+		};
+
 		var option:Option = new Option('Timer Color Switch:', //Name
 			'The Time Bar will switch colors according to the note colors.\nHow would you like this to work?', //Description
 			'timeBarFlash',

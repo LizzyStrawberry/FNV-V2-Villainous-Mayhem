@@ -1348,6 +1348,10 @@ class ClientPrefs {
 			Achievements.achievementsMap = FlxG.save.data.achievementsMap;
 		}
 		
+		if(FlxG.save.data.autoPause != null)
+		{
+			FlxG.autoPause = FlxG.save.data.autoPause;
+		}
 		// flixel automatically saves your volume!
 		if(FlxG.save.data.volume != null)
 		{

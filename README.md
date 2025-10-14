@@ -13,8 +13,7 @@ _____________________________________
 
 _____________________________________
 # Compilation Instructions:
-Psych Engine insists (rightfully) that you must have [the most up-to-date version of Haxe](https://haxe.org/download/).
-For this mod specifically, it was made using [Haxe 4.2.5](https://haxe.org/download/version/4.2.5/), so it is mostly recommended you use that.
+For this mod specifically, you will need [Haxe 4.3.2](https://haxe.org/download/version/4.3.2/).
 
 Now as regards the libraries you need to use to be able to compile the mod properly, you just have to run libs_install.bat.
 TO NOT MESS WITH YOUR CURRENT LIBRARIES, BE SURE TO KEEP A BACKUP LIST OF YOUR CURRENT ONES!!!

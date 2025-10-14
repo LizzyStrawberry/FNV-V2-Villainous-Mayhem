@@ -87,14 +87,39 @@ class Main extends Sprite
 		#end
 
 		#if html5
-		FlxG.autoPause = false;
 		FlxG.mouse.visible = false;
 		#end
+
+		prevVolume = FlxG.sound.volume;
 		
+		addEventListener(Event.ACTIVATE, onFocus);
+		addEventListener(Event.DEACTIVATE, onFocusLost);
+
 		#if CRASH_HANDLER
 		Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, onCrash);
 		#end
 	}
+
+	var prevVolume:Float = 1;
+    var volumeTween:FlxTween;
+	function onFocusLost(_):Void
+    {
+        if (!FlxG.autoPause)
+        {
+            prevVolume = FlxG.sound.volume;
+            if (volumeTween != null)  volumeTween.cancel();
+            volumeTween = FlxTween.num(FlxG.sound.volume, prevVolume * 0.25, 0.4, {ease: FlxEase.cubeInOut, type: PERSIST}, volFunc.bind());
+        }
+    }
+    function onFocus(_):Void
+    {
+        if (!FlxG.autoPause)
+        {
+            if (volumeTween != null) volumeTween.cancel();
+            volumeTween = FlxTween.num(FlxG.sound.volume, prevVolume, 0.4, {ease: FlxEase.cubeInOut, type: PERSIST}, volFunc.bind());
+        }
+    }
+	function volFunc(v:Float) { FlxG.sound.volume = v; }
 
 	// Code was entirely made by sqirra-rng for their fnf engine named "Izzy Engine", big props to them!!!
 	// very cool person for real they don't get enough credit for their work
