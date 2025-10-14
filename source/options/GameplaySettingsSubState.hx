@@ -17,7 +17,7 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 		rpcTitle = 'Gameplay Settings Menu'; //for Discord Rich Presence
 
 		var option:Option = new Option('Mechanics', //Name
-			'If checked, Mechanics are enabled. [HINT: DISABLE FOR SECRETS!]', //Description
+			'If checked, Mechanics are enabled. This can be changed at any point in-game, but will require a song restart.', //Description
 			'mechanics', //Save data variable name
 			'bool', //Variable type
 			true); //Default value
