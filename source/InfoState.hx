@@ -203,10 +203,10 @@ class InfoState extends MusicBeatState
 		getRightArrowX = arrowSelectorRight.x;
 		getLeftArrowX = arrowSelectorLeft.x;
 
-		desc = new FlxText(60, 200, 700,
+		desc = new FlxText(30, 175, 750,
 			"This will only appear if i\ndon't have any text\nset for the characters.\nWe'll be checking the amount of space\nI can use to add these descriptions in.\nI should theoretically have enough\nspace to type this much stuff.\n#fortniteforlife lmao",
 			52);
-		desc.setFormat("SF Atarian System", 33, FlxColor.WHITE, CENTER);
+		desc.setFormat("SF Atarian System", 28, FlxColor.WHITE, CENTER);
 		add(desc);
 
 		loreScrollButton = new FlxSprite(0, 0).loadGraphic(Paths.image('characterInfo/loreButton'));
@@ -638,7 +638,7 @@ class InfoState extends MusicBeatState
 			case 'gf':
 				titleText.text = "Trespasser GF";
 
-				desc.text = "Full name: Gigi Dearest\nAliases: Gf, Fair Maiden, Ugly Boring Teenager, Chuckletits, Bitch\nAge: 19 - Species: Demon
+				desc.text = "Full name: Gigi Dearest\nAliases: Gf, Fair Maiden, Ugly Boring Teenager, Chuckletits, Bitch\nAge: 19 - Species: Demon\nVA: StatureGuy (GIniquitous)
 					\nA Lost, curious, but way smarter counterpart of the original girlfriend who just wants to get back to her Boyfriend (kinda).
 					\n'That's how you do it!'";
 				
@@ -680,7 +680,7 @@ class InfoState extends MusicBeatState
 				{
 					titleText.text = "Beatrice";
 					
-					desc.text = "Full name: Beatrice Cygiamon\nAliases: Kind Hearted Nun, That Nun in the church\nAge: 21\nSpecies: Human\nHeight: 5'10
+					desc.text = "Full name: Beatrice Cygiamon\nAliases: Kind Hearted Nun, That Nun in the church\nAge: 21\nSpecies: Human\nHeight: 5'10\nVA: Riyu
 					\nA Kind hearted nun of the Euroda Orphanage, who works 24/7 with full joy while putting all her trust to God.
 					\n'Welcome to the Orphanage! My name is Sister Beatrice!'";
 				}
@@ -718,7 +718,7 @@ class InfoState extends MusicBeatState
 				{
 					titleText.text = "Yaku";
 
-					desc.text = "Codename: Experiment no. 266 \nReal name: Yaku Feridot\nAliases: 266, Ghost, Bestie, Latina Magnet\nAge: 25\nSpecies: Highly Enhanced Human\nHeight: 7ft
+					desc.text = "Codename: Experiment no. 266 \nReal name: Yaku Feridot\nAliases: 266, Ghost, Bestie, Latina Magnet\nAge: 25\nSpecies: Highly Enhanced Human - Height: 7ft\nChromatic Voice: StatureGuy
 					\nA human experiment created by an unknown company as the perfect killer human, who broke out of his employers' strings to live as a regular Janitor in an orphanage.
 					\n'You're next.'";
 				}
@@ -737,7 +737,7 @@ class InfoState extends MusicBeatState
 				{
 					titleText.text = "Kiana";
 	
-					desc.text = "Aliases: The First Dweller, Lust demon, Basilisk, Professional Nut Gargler\nAge: ???\nSpecies: Part Entity - Part Ancient Deity\nHeight: 4'11 (Seductive Form) - 43 ft (Real Form)
+					desc.text = "Aliases: The First Dweller, Lust demon, Basilisk, Professional Nut Gargler\nAge: ???\nSpecies: Part Entity - Part Ancient Deity\nHeight: 4'11 (Seductive Form) - 43 ft (Real Form)\nVA: DevilDewDrop
 					\nA Fluid thirsty 'Dweller'\nfrom The Unnamed Dimension.\nShe will use her seductive form\nto lure prey from other dimensions\nso she can feed on their desires and souls.\n'STUPID BITCH'";
 				}
 				else
@@ -755,7 +755,7 @@ class InfoState extends MusicBeatState
 				{
 					titleText.text = "DV";
 
-					desc.text = "Full Name: Dimitrov Vaughan\nSkin name: Fernanda\nAliases: Mad, The third Dweller, Shadow man, Skinwalker, Skin Stealer\nAge: 253\nHeight: 6ft (Fernanda) - 11 ft (Dv)\nSpecies: Entity
+					desc.text = "Full Name: Dimitrov Vaughan\nSkin name: Fernanda\nAliases: Mad, The third Dweller, Shadow man, Skinwalker, Skin Stealer\nAge: 253\nHeight: 6ft (Fernanda) - 11 ft (Dv)\nSpecies: Entity\nChromatic Voice: StatureGuy
 					\nA creature from the Abyss who works together with the other dwellers.It steals skin of his victims to wear as disguise in the human world.";
 				}
 				else
@@ -784,7 +784,7 @@ class InfoState extends MusicBeatState
 				{
 					titleText.text = "Pico";
 
-					desc.text = "Aliases: Prick-o, Prico, Sexually Ambiguous Little Friend, Little doll\nAge: 20\nSpecies: Human
+					desc.text = "Aliases: Prick-o, Prico, Sexually Ambiguous Little Friend, Little doll\nAge: 20 - Species: Human\nVA: StatureGuy
 					\nThe Contract Killer/Former School Shooter, who's in the quest of finding Girlfriend.
 					\n'SHUT UP YOUR PINK ASS MOUTH'";
 				}
@@ -844,7 +844,7 @@ class InfoState extends MusicBeatState
 				{
 					titleText.text = "Morky";
 
-					desc.text = "Full Name: MORKY\nAge: NOT OLD!11!\nHeight:NOT SHORT!1!1
+					desc.text = "Full Name: MORKY\nAge: NOT OLD!11!\nHeight:NOT SHORT!1!1\nVA: StatureGuy
 					\nMORKY IS THE REAL MARCO!1!1\nMORKY IS THE REAL VILLAIN!1!1\nEVERYONE ELSE IS NOT REAL!11!\nCOME AND PLAY WITH ME!1!!1
 					\n'I AM MORKY AND I AM A VILLAIN!'";
 				}
@@ -863,7 +863,7 @@ class InfoState extends MusicBeatState
 				{	
 					titleText.text = "Aizeen";
 
-					desc.text = "Full Name: Aizeen Verieevel\nReal Name: Aileen H. Polostar\nAge: Mid 20s
+					desc.text = "Full Name: Aizeen Verieevel\nReal Name: Aileen H. Polostar - Age: Mid 20s\nVA: Wilda_Acid
 							\nAn unhinged villain who is romantically and very sexually attracted to her assistant who is an open gay man.
 							\n'MARCUS, I STILL LOVE YOU, PLEASE LOVE ME BACK'";
 				}
@@ -878,7 +878,7 @@ class InfoState extends MusicBeatState
 				{	
 					titleText.text = "Marcus";
 
-					desc.text = "Full name: Marcus Heartpure\nAliases: Gay Assistant, Marcus! my sweet little Assistant, \nSpecies: Human\nHeight: 5'11
+					desc.text = "Full name: Marcus Heartpure\nAliases: Gay Assistant, Marcus! my sweet little Assistant, \nSpecies: Human - Height: 5'11\nChromatic Voice: StatureGuy
 								\nA gay man who doesn't like his boss very much for 10 or 27 reasons.
 								\n'Ma'am, I'm gay, shut up'";
 				}
@@ -909,7 +909,7 @@ class InfoState extends MusicBeatState
 				{
 					titleText.text = "Michael";
 
-					desc.text = "Full Name: Michael PureHeart\nAliases: CEO left hand Man, Smartest man in the Company, Young Chemist\nAge: 23 [before the incident]\nSpecies: Human\nHeight: 6ft
+					desc.text = "Full Name: Michael PureHeart\nAliases: CEO left hand Man, Smartest man in the Company, Young Chemist\nAge: 23 [before the incident]\nSpecies: Human - Height: 6ft\nChromatic Voice: StatureGuy
 					\nA Young British Chemist who suffered a worse fate than death... or is it?
 					\n'If I had a wife, I would love her so much. Too bad I don't have a wife'";
 				}
@@ -924,7 +924,7 @@ class InfoState extends MusicBeatState
 				{
 					titleText.text = "Nic.FLP";
 	
-					desc.text = "Full name: Philippe Necrosis\nAge: Old\nAliases: Do not steal OC, Sonic\nSpecies: Hedge, Flp, A hog\nHeight: Small
+					desc.text = "Full name: Philippe Necrosis\nAge: Old\nAliases: Do not steal OC, Sonic\nSpecies: Hedge, Flp, A hog\nHeight: Small\nVA: StatureGuy
 								\nTHERE IS NO ESCAPE VERSION 2029
 								\n'I AM GOD probably idk, I'm kinda insecure'";
 				}
@@ -939,7 +939,7 @@ class InfoState extends MusicBeatState
 				{
 					titleText.text = "Tail.FLP";
 
-					desc.text = "Real Name: Miles Tails Prower\nAge: Not Old
+					desc.text = "Real Name: Miles Tails Prower\nAge: Not Old\nVA: StatureGuy
 					\nUnlike the other Tails's\nin most EXE stories,\nthis one didn't suffer a horrible fate...\nNevermind, this one dies too.
 					\n'Sonic, pls don't kill me!'";
 				}
@@ -1046,7 +1046,7 @@ class InfoState extends MusicBeatState
 				{
 					titleText.text = "Debug guy";
 
-					desc.text = "Real Name: Roku Dorubo\nAge: 64 (Human Body) | 34 (as a Virus) | 98 (in total)\nAliases: Debug Guy, Anti-Anti-Virus, Virus-san, Debug-san, Roro, Soulless One\nSpecies: Polygurian (Formerly) | Virus\nHeight: 9'4 (Polygurian) | Various (Virus)
+					desc.text = "Real Name: Roku Dorubo\nAge: 64 (Human Body) | 34 (as a Virus) | 98 (in total)\nAliases: Debug Guy, Anti-Anti-Virus, Virus-san, Debug-san, Roro, Soulless One\nSpecies: Polygurian (Formerly) | Virus\nHeight: 9'4 (Polygurian) | Various (Virus)\nChromatic Voice: StatureGuy
 								\nA Polygurian that turned himself into a virus to immortalise his consciousness. He likes to hijack indie games and party 24/7.
 								\n'Looks like Our broadcast has ended'";
 				}
@@ -1123,7 +1123,7 @@ class InfoState extends MusicBeatState
 				{
 					titleText.text = "Marcx";
 
-					desc.text = "Full Name: Marx Abigasshole\nAge: 40 \nAliases: Villanous Worker drone, Sir, Profanity Machine, Mr.'No one is ever calling you that'\nSpecies: Worker drone\nHeight: 3ft 
+					desc.text = "Full Name: Marx Abigasshole\nAge: 40 \nAliases: Villanous Worker drone, Sir, Profanity Machine, Mr.'No one is ever calling you that'\nSpecies: Worker drone - Height: 3ft\nChromatic Voice: StatureGuy
 								\nThe very first worker drone that is powered by radioactive human piss
 								\n'Would be funny if there was a human counter of myself'";
 				}
@@ -1213,8 +1213,8 @@ class InfoState extends MusicBeatState
 				{	
 					titleText.text = "Manager";
 
-					desc.text = "Full name: Bruna Brunette\nAge: Between 20 or 30\nAliases: Manager-Chan\nSpecies: Human
-								\n'This love letter is definitely written by ChatGPT.'";
+					desc.text = "Full name: Bruna Brunette\nAge: Between 20 or 30 - Aliases: Manager-Chan - Species: Human\nDear Bruna Brunette,\nFrom the moment I met you, I was captivated by your uniqueness and charm. Your auburn hair pulled back into a ponytail frames your face perfectly, highlighting your natural beauty and grace.\nAnd your glasses? They’re not just an accessory; they reveal the depth of your intelligence and the warmth of your spirit. Managing a popstar is no easy feat, but you handle it with such skill and pose. Your ability to balance the demands of such a high-profile job while remaining kind and compassionate is truly inspiring. I also deeply admire your courage in sharing your struggles with anxiety. Your openness and resilience only make me appreciate you more. You bring so much light and joy into the lives of those around you. I am incredibly grateful to be part of your world and look forward to all the moments we’ll share together.\nThank you for being such a wonderful person, Bruna. You are a true treasure.
+								\nWith all my love, Kinn.";
 				}
 				else
 				{
