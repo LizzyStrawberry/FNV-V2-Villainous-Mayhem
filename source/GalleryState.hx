@@ -839,11 +839,11 @@ class GalleryState extends MusicBeatState
 
 			if (categorySelected == 7)
 			{
-				if (imageNumber > 32)
+				if (imageNumber > 54)
 					imageNumber = 1;
 				if (imageNumber < 1)
-					imageNumber = 32;
-				numberCounter.text = imageNumber + "/32";
+					imageNumber = 54;
+				numberCounter.text = imageNumber + "/54";
 				currentImage.loadGraphic(Paths.image('Gallery/randomArts/image_' + imageNumber));
 
 				messageShown = false;
@@ -976,6 +976,94 @@ class GalleryState extends MusicBeatState
 					case 32:
 					{
 						imageText.text = "FNV Devs in a nutshell";
+					}
+					case 33:
+					{
+						imageText.text = "Lillie on Crack";
+					}
+					case 34:
+					{
+						imageText.text = "Marco And Aileen Together";
+					}
+					case 35:
+					{
+						imageText.text = "Aizeen Sketch";
+					}
+					case 36:
+					{
+						imageText.text = "It's a-me!";
+					}
+					case 37:
+					{
+						imageText.text = "MARCO THE FUCKING HEDGEHOG";
+					}
+					case 38:
+					{
+						imageText.text = "Aileen Reference Sheet";
+					}
+					case 39:
+					{
+						imageText.text = "Aileen's Concert Chaos Design (Old - New)";
+					}
+					case 40:
+					{
+						imageText.text = "Gigi!";
+					}
+					case 41:
+					{
+						imageText.text = "He got his dick sucked";
+					}
+					case 42:
+					{
+						imageText.text = "Aileen Portrait";
+					}
+					case 43:
+					{
+						imageText.text = "Lara Croftin' time!";
+					}
+					case 44:
+					{
+						imageText.text = "Listen to what he says";
+					}
+					case 45:
+					{
+						imageText.text = "Got any games on your phone?";
+					}
+					case 46:
+					{
+						imageText.text = "Marco Reference sheet";
+					}
+					case 47:
+					{
+						imageText.text = "Her";
+					}
+					case 48:
+					{
+						imageText.text = "Hey Kiana, the horse is here";
+					}
+					case 49:
+					{
+						imageText.text = "Bobox";
+					}
+					case 50:
+					{
+						imageText.text = "Marco the Lesbian Couple Maker";
+					}
+					case 51:
+					{
+						imageText.text = "Kiana's Human Form";
+					}
+					case 52:
+					{
+						imageText.text = "Narrin's Reference Sheet";
+					}
+					case 53:
+					{
+						imageText.text = "Le Aizeen";
+					}
+					case 54:
+					{
+						imageText.text = "Female Marco??????";
 					}
 				}
 			}
