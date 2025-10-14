@@ -11,7 +11,6 @@ import flash.system.System;
 
 class MainMenuState extends MusicBeatState
 {
-	public static var FNVVersion:String = '2.0'; //This is also used for Discord RPC
 	public static var psychEngineVersion:String = '0.6.3 Modified'; //This is also used for Discord RPC
 	public static var curSelected:Int = 0;
 	public static var curStorySelected:Int = 0;
@@ -256,7 +255,7 @@ class MainMenuState extends MusicBeatState
 			FlxTween.tween(menuItem, {"scale.x": 1.05, "scale.y": 1.05}, 1.5, {ease: FlxEase.cubeInOut, type: PINGPONG});
 		}
 
-		var versionShit:FlxText = new FlxText(12, FlxG.height - 64, 0, "Friday Night Villainy v" + FNVVersion, 12);
+		var versionShit:FlxText = new FlxText(12, FlxG.height - 64, 0, "Friday Night Villainy v" + Application.current.meta.get('version'), 12);
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
@@ -264,7 +263,7 @@ class MainMenuState extends MusicBeatState
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
-		var versionShit:FlxText = new FlxText(12, FlxG.height - 24, 0, "Friday Night Funkin' v" + Application.current.meta.get('version'), 12);
+		var versionShit:FlxText = new FlxText(12, FlxG.height - 24, 0, "Friday Night Funkin' v0.2.8 Legacy", 12);
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);

@@ -2,7 +2,7 @@
 <project>
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="Friday Night Villainy 2.0: A Villainous Mayhem" file="Funkin Villainy 2.0" packageName="com.lizzystrawberry.fnv" package="com.lizzystrawberry.fnv" main="Main" version="0.2.8 Legacy" company="Strawberry" />
+	<app title="Friday Night Villainy 2.0: A Villainous Mayhem" file="Funkin Villainy 2.0" packageName="com.lizzystrawberry.fnv" package="com.lizzystrawberry.fnv" main="Main" version="2.0.0" company="Strawberry" />
 
 	<!--Switch Export with Unique ApplicationID and Icon-->
 	<set name="APP_ID" value="0x0100f6c013bbc000" />
