@@ -131,6 +131,7 @@ function onStepHit()
 	if curStep == 256 then
 		cancelTween('camGameGoSpeen')
 		cancelTween('camGameZoom')
+		setProperty("mainCamZoom", true)
 		
 		setProperty('camGame.angle', 0)
 		
@@ -357,18 +358,6 @@ function onBeatHit()
 				noteTweenY('noteGoUp'..i, i, notePos[i + 1] - 20, 0.7 / playbackRate, 'elasticOut')
 				noteTweenScaleX('noteXSCALE'..i, i, 0.7, 0.7 / playbackRate, 'circOut')
 				noteTweenScaleY('noteYSCALE'..i, i, 0.7, 0.7 / playbackRate, 'circOut')
-			end
-		end
-		if curBeat % 2 == 0 then
-			for i = 0, 7 do
-				cancelTween('noteGoRight'..i)
-				noteTweenX('noteGoLeft'..i, i, notePosX[i + 1] - 280, 0.7 / playbackRate, 'expoOut')
-			end
-		end
-		if curBeat % 2 == 1 then
-			for i = 0, 7 do
-				cancelTween('noteGoLeft'..i)
-				noteTweenX('noteGoRight'..i, i, notePosX[i + 1] + 280, 0.7 / playbackRate, 'expoOut')
 			end
 		end
 	end

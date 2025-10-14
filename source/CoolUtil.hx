@@ -50,9 +50,9 @@ class CoolUtil
 	{
 		if(num == null)
 		{
-			if (PlayState.isInjectionMode == true)
+			if (PlayState.isInjectionMode)
 				num = PlayState.injectionDifficulty;
-			else if (PlayState.isMayhemMode == true)
+			else if (PlayState.isMayhemMode)
 				num = PlayState.mayhemDifficulty;
 			else
 				num = PlayState.storyDifficulty;
