@@ -13,14 +13,9 @@ class FlashingState extends MusicBeatState
 
 	// This mod is taking way too long to finish, I can't be bothered to fix everything or do better code on this old junk
 	var settingsText:FlxText;
-	var optionText1:FlxText;
-	var optionText2:FlxText;
-	var optionText3:FlxText;
-	var optionText4:FlxText;
-	var optionTextFinal:FlxText;
 	var optionTextDesc:FlxText;
 
-	var warnTween:FlxTween;
+	var options:FlxTypedGroup<FlxText>;
 
 	override function create()
 	{
@@ -31,11 +26,11 @@ class FlashingState extends MusicBeatState
 		add(bg);
 
 		warnText = new FlxText(0, 0, FlxG.width,
-			"Hey, warning!\n
-			This mod contains instances of flashing lights and/or glitching effects, that could make you uncomfortable.\n
-			If you are photo-sensitive to these, turn the flashing lights off and skip cutscenes that contain said instances.\n
-			The mod has also been tested on lower end hardware, and although it works fine, you may encounter some small issues.\n
-			We recommend you tamper around in the options menu and toy around with the options for the best experience possible.\n
+			"Hey, warning!
+			\nThis mod contains instances of flashing lights and/or glitching effects, that could make you uncomfortable.
+			\nIf you are photo-sensitive to these, turn the flashing lights off and skip cutscenes that contain said instances.
+			\nThe mod has also been tested on lower end hardware, and although it works fine, you may encounter some small issues.
+			\nWe recommend you tamper around in the options menu and toy around with the options for the best experience possible.\n
 			Enjoy FNV's V2.0 Update!!\n
 			Press ENTER to continue to Quick Settings.\n",
 			32);
@@ -43,8 +38,8 @@ class FlashingState extends MusicBeatState
 		warnText.screenCenter(Y);
 		warnText.y -= 10;
 		warnText.alpha = 0;
-		warnTween = FlxTween.tween(warnText, { alpha: 1 }, 3);
-		FlxTween.tween(warnText, { y: warnText.y + 25 }, 3, {ease: FlxEase.cubeInOut, type: PINGPONG});
+		FlxTween.tween(warnText, { alpha: 1 }, 3);
+		FlxTween.tween(warnText, {y: warnText.y + 25}, 3, {ease: FlxEase.cubeInOut, type: PINGPONG});
 		add(warnText);
 
 		settingsText = new FlxText(0, 0, FlxG.width,
@@ -56,58 +51,11 @@ class FlashingState extends MusicBeatState
 		settingsText.y -= 300;
 		add(settingsText);
 
-		optionText1 = new FlxText(0, 0, FlxG.width,
-			"Shaders: True",
-			50);
-		optionText1.setFormat("VCR OSD Mono", 35, FlxColor.WHITE, LEFT);
-		optionText1.alpha = 0;
-		optionText1.screenCenter(Y);
-		optionText1.y -= 210;
-		optionText1.x += 50;
-		add(optionText1);
-
-		optionText2 = new FlxText(0, 0, FlxG.width,
-			"Cinematic Bars: True",
-			50);
-		optionText2.setFormat("VCR OSD Mono", 35, FlxColor.WHITE, LEFT);
-		optionText2.alpha = 0;
-		optionText2.screenCenter(Y);
-		optionText2.y -= 110;
-		optionText2.x += 50;
-		add(optionText2);
-
-		optionText3 = new FlxText(0, 0, FlxG.width,
-			"Rating Sprites Style: FNV",
-			50);
-		optionText3.setFormat("VCR OSD Mono", 35, FlxColor.WHITE, LEFT);
-		optionText3.alpha = 0;
-		optionText3.screenCenter(Y);
-		optionText3.y += 10;
-		optionText3.x += 50;
-		add(optionText3);
-
-		optionText4 = new FlxText(0, 0, FlxG.width,
-			"Miss Related Combos: True",
-			50);
-		optionText4.setFormat("VCR OSD Mono", 35, FlxColor.WHITE, LEFT);
-		optionText4.alpha = 0;
-		optionText4.screenCenter(Y);
-		optionText4.y += 130;
-		optionText4.x += 50;
-		add(optionText4);
-	
-		optionTextFinal = new FlxText(0, 0, FlxG.width,
-			"Apply Settings",
-			50);
-		optionTextFinal.setFormat("VCR OSD Mono", 35, FlxColor.WHITE, LEFT);
-		optionTextFinal.alpha = 0;
-		optionTextFinal.screenCenter(Y);
-		optionTextFinal.y += 250;
-		optionTextFinal.x += 50;
-		add(optionTextFinal);
+		options = new FlxTypedGroup<FlxText>();
+		add(options);
 
 		optionTextDesc = new FlxText(0, 0, 500,
-			"Miss Related Combos: True",
+			"Test Description.",
 			50);
 		optionTextDesc.setFormat("VCR OSD Mono", 30, FlxColor.WHITE, CENTER);
 		optionTextDesc.alpha = 0;
@@ -115,64 +63,79 @@ class FlashingState extends MusicBeatState
 		optionTextDesc.x += 750;
 		add(optionTextDesc);
 
+		for (i in 0...5)
+		{
+			var opt:FlxText = new FlxText(50, (FlxG.height / 2) - (210 - (i * 100)), "");
+			opt.setFormat("VCR OSD Mono", 35, FlxColor.WHITE, LEFT);
+			opt.ID = i;
+			options.add(opt);
+
+			setText(i);
+			opt.alpha = 0;
+		}
+
 		changeSelection();
 	}
 	
-	var pressedEnter:Int = 0;
-	var enteringGame:Bool = false;
+	var inSettings:Bool = false;
 	override function update(elapsed:Float)
 	{
-		optionText2.alpha = optionText3.alpha = optionText4.alpha = optionTextDesc.alpha = optionTextFinal.alpha = optionText1.alpha;
+		optionTextDesc.alpha = settingsText.alpha;
 		if(!leftState) 
 		{
-			if (controls.ACCEPT && pressedEnter < 1)
+			if (controls.ACCEPT && !inSettings)
 			{
-				warnTween.cancel();
-				pressedEnter = 1;
+				FlxTween.cancelTweensOf(warnText, ["alpha"]);
+				leftState = inSettings = true;
+
 				FlxG.sound.play(Paths.sound('cancelMenu'));
-				FlxTween.tween(warnText, {alpha: 0}, 1, {
-					onComplete: function (twn:FlxTween) {
-						FlxTween.tween(settingsText, { alpha: 1 }, 1, {
-							onComplete: function (twn:FlxTween) {
+				FlxTween.tween(warnText, {alpha: 0}, 1 * warnText.alpha,
+				{
+					onComplete: function (_)
+					{
+						FlxTween.tween(settingsText, { alpha: 1 }, 1,
+						{
+							onComplete: function (_)
+							{
+								leftState = false;
 								FlxTween.color(settingsText, 1, FlxColor.WHITE, FlxColor.YELLOW, {type: PINGPONG});
 							} 
 						});
-						FlxTween.tween(optionText1, { alpha: 1 }, 1);
-						pressedEnter = 2;
-						}
-					});
-			}
-
-			if (pressedEnter == 2)
-			{
-				if (controls.UI_UP_P)
-					changeSelection(-1);
-				if (controls.UI_DOWN_P)
-					changeSelection(1);
-
-				if (controls.UI_LEFT_P)
-					applySelection(-1);
-				if (controls.UI_RIGHT_P)
-					applySelection(1);
-			}
-
-			if (controls.ACCEPT && pressedEnter == 2 && optionTextFinal.text == ">Apply Settings<" && enteringGame == false)
-			{
-				FlxG.sound.play(Paths.sound('confirmMenu'));
-				leftState = true;
-				pressedEnter = 3;
-				enteringGame = true;
-				FlxTransitionableState.skipNextTransIn = true;
-				FlxTransitionableState.skipNextTransOut = true;
-				
-				FlxTween.tween(settingsText, { alpha: 0 }, 1);
-				FlxTween.tween(optionText1, { alpha: 0 }, 1);
-				FlxTween.tween(bg, { alpha: 0 }, 1, {
-					onComplete: function (twn:FlxTween) 
-					{
-							MusicBeatState.switchState(new TitleState());
+						options.forEach(function(txt:FlxText)
+						{
+							FlxTween.tween(txt, {alpha: 1}, 1 + (txt.ID * 0.02));
+						});
 					}
 				});
+			}		
+
+			if (inSettings)
+			{
+				if (controls.UI_UP_P) changeSelection(-1, true);
+				if (controls.UI_DOWN_P) changeSelection(1, true);
+
+				if (controls.UI_LEFT_P) applySelection(-1);
+				if (controls.UI_RIGHT_P) applySelection(1);
+
+				if (controls.ACCEPT && curOption == 4)
+				{
+					FlxG.sound.play(Paths.sound('confirmMenu'));
+					leftState = true;
+					FlxTransitionableState.skipNextTransIn = true;
+					FlxTransitionableState.skipNextTransOut = true;
+					
+					FlxTween.tween(settingsText, { alpha: 0 }, 1);
+					options.forEach(function(txt:FlxText)
+					{
+						FlxTween.tween(txt, {alpha: 0}, 0.95 + (txt.ID * 0.02));
+					});
+					FlxTween.tween(bg, { alpha: 0 }, 1, {
+						onComplete: function (twn:FlxTween) 
+						{
+							MusicBeatState.switchState(new TitleState());
+						}
+					});
+				}
 			}
 		}
 		super.update(elapsed);
@@ -181,95 +144,68 @@ class FlashingState extends MusicBeatState
 	var huh:Int = 0;
 	function applySelection(wah:Int = 0)
 	{	
-		FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
+		FlxG.sound.play(Paths.sound('confirmMenu'), 0.4);
 
 		huh += wah;
-		if (huh < 0)
-			huh = 1;
-		if (huh > 1)
-			huh = 0;
+		if (huh < 0) huh = 1;
+		if (huh > 1) huh = 0;
 
-		if (huh == 0)
+		switch(curOption)
 		{
-			if (curOption == 0 && ClientPrefs.shaders)
-				ClientPrefs.shaders = false;
-			if (curOption == 1 && ClientPrefs.cinematicBars)
-				ClientPrefs.cinematicBars = false;
-			if (curOption == 2 && ClientPrefs.customRating == "FNV")
-				ClientPrefs.customRating = "FNF";
-			if (curOption == 3 && ClientPrefs.missRelatedCombos)
-				ClientPrefs.missRelatedCombos = false;
-		}	
-		else if (huh == 1)
-		{
-			if (curOption == 0 && !ClientPrefs.shaders)
-				ClientPrefs.shaders = true;
-			if (curOption == 1 && !ClientPrefs.cinematicBars)
-				ClientPrefs.cinematicBars = true;
-			if (curOption == 2 && ClientPrefs.customRating == "FNF")
-				ClientPrefs.customRating = "FNV";
-			if (curOption == 3 && !ClientPrefs.missRelatedCombos)
-				ClientPrefs.missRelatedCombos = true;
+			case 0: ClientPrefs.shaders = (huh == 1);
+			case 1: ClientPrefs.cinematicBars = (huh == 1);
+			case 2: ClientPrefs.customRating = (huh == 1) ? "FNF" : "FNV";
+			case 3: ClientPrefs.missRelatedCombos = (huh == 1);
 		}
 		ClientPrefs.saveSettings();
 		changeSelection();	
 	}
 
-	function changeSelection(change:Int = 0, playSound:Bool = true)
+	function changeSelection(change:Int = 0, ?playSound:Bool = false)
 	{
 		if(playSound) FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
 	
 		curOption += change;
 
-		if (curOption < 0)
-			curOption = 4;
-		if (curOption > 4)
-			curOption = 0;
+		if (curOption < 0) curOption = 4;
+		if (curOption > 4) curOption = 0;
 
-		switch (curOption)
+		setText(curOption);
+	}
+
+	function setText(opt:Int)
+	{
+		var textMark:String = "<R>";
+		var txt = options.members[opt];
+		switch (opt)
 		{
 			case 0:
-				if (ClientPrefs.shaders)
-					optionText1.text = "Shaders: <GR>True<GR>";
-				else
-					optionText1.text = "Shaders: <R>False<R>";
-
+				textMark = (ClientPrefs.shaders) ? "<GR>" : "<R>";
+				txt.text = 'Shaders: $textMark${(ClientPrefs.shaders) ? "True" : "False"}$textMark';
 				optionTextDesc.text = "Select whether to have Shaders enabled or not.";
+				
 			case 1:
-				if (ClientPrefs.cinematicBars)
-					optionText2.text = "Cinematic Bars: <GR>True<GR>";
-				else
-					optionText2.text = "Cinematic Bars: <R>False<R>";
+				textMark = (ClientPrefs.cinematicBars) ? "<GR>" : "<R>";
+				txt.text = 'Cinematic Bars: $textMark${(ClientPrefs.cinematicBars) ? "True" : "False"}$textMark';
 				optionTextDesc.text = "Select whether to have Cinematic Bars Enabled or Disabled.";
 
 			case 2:
-				if (ClientPrefs.customRating == "FNV")
-					optionText3.text = "Rating Sprites Style: <DGR>FNV<DGR>";
-				else
-					optionText3.text = "Rating Sprites Style: <G>FNF<G>";
+				textMark = (ClientPrefs.customRating == "FNV") ? "<DGR>" : "<G>";
+				txt.text = 'Rating Style: $textMark${ClientPrefs.customRating}$textMark';
 				optionTextDesc.text = "Select your Rating Sprite style, either FNV's Custom ones, or FNF's Base Sprites.";
 
 			case 3:
-				if (ClientPrefs.missRelatedCombos == true)
-					optionText4.text = "Miss Related Combos: <GR>True<GR>";
-				else
-					optionText4.text = "Miss Related Combos: <R>False<R>";
+				textMark = (ClientPrefs.missRelatedCombos) ? "<GR>" : "<R>";
+				txt.text = 'Miss Related Combos: $textMark${(ClientPrefs.missRelatedCombos) ? "True" : "False"}$textMark';
 				optionTextDesc.text = "Choose if you want to have:\n- Gold (0 Misses)\n- Silver (1-9 Misses)\n- Normal (10+ Misses) Rating Sprites, or keep them just as how base FNF works.";
+			
 			case 4:
-				optionTextFinal.color = 0xFFFFF000;
-				optionTextFinal.text = ">Apply Settings<";
+				txt.color = 0xFFFFF000;
+				txt.text = "Apply Settings";
 				optionTextDesc.text = "Start the journey.";
 		}
 
-		if (curOption != 4)
-		{
-			optionTextFinal.color = 0xFFFFFFFF;
-			optionTextFinal.text = "Apply Settings";
-		}
-
-		CustomFontFormats.addMarkers(optionText1);
-		CustomFontFormats.addMarkers(optionText2);
-		CustomFontFormats.addMarkers(optionText3);
-		CustomFontFormats.addMarkers(optionText4);
+		if (opt != 4) txt.color = 0xFFFFFFFF;
+		CustomFontFormats.addMarkers(options.members[opt]);
 	}
 }
