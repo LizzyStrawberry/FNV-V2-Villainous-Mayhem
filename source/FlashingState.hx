@@ -2,6 +2,7 @@ package;
 
 import lime.app.Application;
 import flixel.addons.transition.FlxTransitionableState;
+import flixel.addons.display.FlxBackdrop;
 
 class FlashingState extends MusicBeatState
 {
@@ -11,32 +12,37 @@ class FlashingState extends MusicBeatState
 	var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
 	var warnText:FlxText;
 
-	// This mod is taking way too long to finish, I can't be bothered to fix everything or do better code on this old junk
 	var settingsText:FlxText;
 	var optionTextDesc:FlxText;
 
 	var options:FlxTypedGroup<FlxText>;
 
+	var backdrop:FlxBackdrop;
+
 	override function create()
 	{
 		super.create();
 	
-		bg.screenCenter(X);
+		bg.setGraphicSize(Std.int(bg.width * 1.25));
 		bg.alpha = 0;
-		FlxTween.tween(bg, { alpha: 0.4 }, 3);
+		FlxTween.tween(bg, {alpha: 0.4}, 3);
 		add(bg);
 
+		backdrop = new FlxBackdrop(Paths.image('promotion/BGgrid-' + FlxG.random.int(1, 8)), FlxAxes.XY, 0, 0); 
+		backdrop.updateHitbox(); 
+		backdrop.scrollFactor.set(0, 0); 
+		backdrop.alpha = 0; 
+		backdrop.screenCenter(X); 
+		add(backdrop);
+
 		warnText = new FlxText(0, 0, FlxG.width,
-			"Hey, warning!\n
-			This mod contains instances of flashing lights and/or glitching effects, that could make you uncomfortable.\n
-			If you are photo-sensitive to these, turn the flashing lights off and skip cutscenes that contain said instances.\n
-			While this has been tested, there's a slight chance you might encounter accidental crashes on this android version.\n
-			We recommend you tamper around in the options menu and toy around with the options for the best experience possible.\n
-			Enjoy FNV's V2.0 Update!!\n
-			Press A to continue to Quick Settings.\n
-			",
+			"Hey, warning!
+			\nThis mod contains instances of flashing lights and/or glitching effects, that could make you uncomfortable.\nIf you are photo-sensitive to these, turn the flashing lights off and skip cutscenes that contain said instances.
+			\nWhile this has been tested, there's a slight chance you might encounter accidental crashes on this android version..\nWe recommend you tamper around in the options menu and toy around with the options for the best experience possible.\n
+			Enjoy Friday Night Villainy: A Villainous Mayhem!
+			Tap anywhere to continue to Quick Settings.\n",
 			32);
-		warnText.setFormat("VCR OSD Mono", 32, FlxColor.WHITE, CENTER);
+		warnText.setFormat("SF Atarian System Bold Italic", 35, FlxColor.WHITE, CENTER);
 		warnText.screenCenter(Y);
 		warnText.y -= 10;
 		warnText.alpha = 0;
@@ -44,10 +50,8 @@ class FlashingState extends MusicBeatState
 		FlxTween.tween(warnText, {y: warnText.y + 25}, 3, {ease: FlxEase.cubeInOut, type: PINGPONG});
 		add(warnText);
 
-		settingsText = new FlxText(0, 0, FlxG.width,
-			"QUICK SETTINGS",
-			50);
-		settingsText.setFormat("VCR OSD Mono", 50, FlxColor.WHITE, CENTER);
+		settingsText = new FlxText(0, 0, FlxG.width, "QUICK SETTINGS");
+		settingsText.setFormat("SF Atarian System Bold Italic", 50, FlxColor.WHITE, CENTER);
 		settingsText.alpha = 0;
 		settingsText.screenCenter(Y);
 		settingsText.y -= 300;
@@ -56,19 +60,16 @@ class FlashingState extends MusicBeatState
 		options = new FlxTypedGroup<FlxText>();
 		add(options);
 
-		optionTextDesc = new FlxText(0, 0, 500,
-			"Test Description.",
-			50);
-		optionTextDesc.setFormat("VCR OSD Mono", 30, FlxColor.WHITE, CENTER);
+		optionTextDesc = new FlxText(FlxG.width - 750, 500, FlxG.width - 600, "Test Description.");
+		optionTextDesc.setFormat("SF Atarian System Bold Italic", 50, FlxColor.WHITE, CENTER);
 		optionTextDesc.alpha = 0;
 		optionTextDesc.screenCenter(Y);
-		optionTextDesc.x += 750;
 		add(optionTextDesc);
 
 		for (i in 0...5)
 		{
 			var opt:FlxText = new FlxText(50, (FlxG.height / 2) - (210 - (i * 100)), "");
-			opt.setFormat("VCR OSD Mono", 35, FlxColor.WHITE, LEFT);
+			opt.setFormat("SF Atarian System Bold Italic", 42, FlxColor.WHITE, LEFT);
 			opt.ID = i;
 			options.add(opt);
 
@@ -77,17 +78,18 @@ class FlashingState extends MusicBeatState
 		}
 
 		changeSelection();
-
-		addTouchPad('NONE', 'A');
 	}
 	
 	var inSettings:Bool = false;
 	override function update(elapsed:Float)
 	{
-		optionTextDesc.alpha = settingsText.alpha;
+		backdrop.x += 0.5 * (elapsed / (1 / 120));
+        backdrop.y += 0.16 / (ClientPrefs.framerate / 60);
+
+		optionTextDesc.alpha = backdrop.alpha = settingsText.alpha;
 		if(!leftState) 
 		{
-			if (controls.ACCEPT && !inSettings)
+			if (TouchUtil.pressAction() && !inSettings)
 			{
 				FlxTween.cancelTweensOf(warnText, ["alpha"]);
 				leftState = inSettings = true;
@@ -103,7 +105,6 @@ class FlashingState extends MusicBeatState
 							{
 								leftState = false;
 								FlxTween.color(settingsText, 1, FlxColor.WHITE, FlxColor.YELLOW, {type: PINGPONG});
-								removeTouchPad();
 								addTouchPad('LEFT_FULL', 'A');
 							} 
 						});
@@ -123,27 +124,32 @@ class FlashingState extends MusicBeatState
 				if (controls.UI_LEFT_P) applySelection(-1);
 				if (controls.UI_RIGHT_P) applySelection(1);
 
-				if (controls.ACCEPT && curOption == 4)
+				if (controls.ACCEPT && curOption == options.members.length - 1)
 				{
-					FlxG.sound.play(Paths.sound('confirmMenu'));
+					var marcoLaugh = FlxG.sound.play(Paths.sound('marcoLaugh'), 0.75);
+					marcoLaugh.onComplete = function() 
+					{
+						MusicBeatState.switchState(new TitleState());
+					};
+					FlxG.sound.play(Paths.sound('confirmMenu'), 0.4);
 					leftState = true;
 					FlxTransitionableState.skipNextTransIn = true;
 					FlxTransitionableState.skipNextTransOut = true;
 					
-					FlxTween.tween(settingsText, { alpha: 0 }, 1);
+					FlxTween.tween(settingsText, { alpha: 0 }, 1.5, {type: PERSIST, onComplete: function(_)
+					{
+						optionTextDesc.visible = backdrop.visible = settingsText.visible = false;
+					}
+					});
 					options.forEach(function(txt:FlxText)
 					{
-						FlxTween.tween(txt, {alpha: 0}, 0.95 + (txt.ID * 0.02));
+						FlxTween.tween(txt, {alpha: 0}, 1.75 + (txt.ID * 0.02));
 					});
-					FlxTween.tween(bg, { alpha: 0 }, 1, {
-						onComplete: function (twn:FlxTween) 
-						{
-							MusicBeatState.switchState(new TitleState());
-						}
-					});
+					FlxTween.tween(bg, { alpha: 0 }, 1.5);
 				}
 			}
 		}
+
 		super.update(elapsed);
 	}
 
@@ -182,36 +188,46 @@ class FlashingState extends MusicBeatState
 	function setText(opt:Int)
 	{
 		var textMark:String = "<R>";
-		var txt = options.members[opt];
-		switch (opt)
+		for (i in 0...options.members.length)
 		{
-			case 0:
-				textMark = (ClientPrefs.shaders) ? "<GR>" : "<R>";
-				txt.text = 'Shaders: $textMark${(ClientPrefs.shaders) ? "True" : "False"}$textMark';
-				optionTextDesc.text = "Select whether to have Shaders enabled or not.";
+			var txt = options.members[i];
+
+			txt.text = (i == opt) ? "> " : "";
+			switch (i)
+			{
+				case 0:
+					textMark = (ClientPrefs.shaders) ? "<GR>" : "<R>";
+					txt.text += 'Shaders: $textMark${(ClientPrefs.shaders) ? "True" : "False"}$textMark';
+					
+				case 1:
+					textMark = (ClientPrefs.cinematicBars) ? "<GR>" : "<R>";
+					txt.text += 'Cinematic Bars: $textMark${(ClientPrefs.cinematicBars) ? "True" : "False"}$textMark';
+
+				case 2:
+					textMark = (ClientPrefs.customRating == "FNV") ? "<DGR>" : "<G>";
+					txt.text += 'Rating Style: $textMark${ClientPrefs.customRating}$textMark';
+
+				case 3:
+					textMark = (ClientPrefs.missRelatedCombos) ? "<GR>" : "<R>";
+					txt.text += 'Miss Related Combos: $textMark${(ClientPrefs.missRelatedCombos) ? "True" : "False"}$textMark';
 				
-			case 1:
-				textMark = (ClientPrefs.cinematicBars) ? "<GR>" : "<R>";
-				txt.text = 'Cinematic Bars: $textMark${(ClientPrefs.cinematicBars) ? "True" : "False"}$textMark';
-				optionTextDesc.text = "Select whether to have Cinematic Bars Enabled or Disabled.";
+				case 4:
+					txt.color = 0xFFFFF000;
+					txt.text += "Apply Settings";
+			}
 
-			case 2:
-				textMark = (ClientPrefs.customRating == "FNV") ? "<DGR>" : "<G>";
-				txt.text = 'Rating Style: $textMark${ClientPrefs.customRating}$textMark';
-				optionTextDesc.text = "Select your Rating Sprite style, either FNV's Custom ones, or FNF's Base Sprites.";
-
-			case 3:
-				textMark = (ClientPrefs.missRelatedCombos) ? "<GR>" : "<R>";
-				txt.text = 'Miss Related Combos: $textMark${(ClientPrefs.missRelatedCombos) ? "True" : "False"}$textMark';
-				optionTextDesc.text = "Choose if you want to have:\n- Gold (0 Misses)\n- Silver (1-9 Misses)\n- Normal (10+ Misses) Rating Sprites, or keep them just as how base FNF works.";
-			
-			case 4:
-				txt.color = 0xFFFFF000;
-				txt.text = "Apply Settings";
-				optionTextDesc.text = "Start the journey.";
+			if (opt != 4) txt.color = 0xFFFFFFFF;
+			CustomFontFormats.addMarkers(options.members[i]);
 		}
 
-		if (opt != 4) txt.color = 0xFFFFFFFF;
-		CustomFontFormats.addMarkers(options.members[opt]);
+		switch (opt)
+		{
+			case 0: optionTextDesc.text = "Select whether to have <G>Shaders<G> enabled or not.";	
+			case 1: optionTextDesc.text = "Select whether to have <G>Cinematic Bars<G> Enabled or Disabled.";
+			case 2: optionTextDesc.text = "Select your Rating Sprite Style to be <G>FNV's Custom Sprites<G>, or <G>FNF's Base Sprites.<G>";
+ 			case 3: optionTextDesc.text = "Choose if you want to have <G>Colored Rating Sprites based on your misses<G>, or keep them just as how base FNF looks.";	
+			case 4: optionTextDesc.text = "Start your Journey.";
+		}
+		CustomFontFormats.addMarkers(optionTextDesc);
 	}
 }
