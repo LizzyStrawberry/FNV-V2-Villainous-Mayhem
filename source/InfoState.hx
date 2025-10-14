@@ -207,7 +207,7 @@ class InfoState extends MusicBeatState
 		desc = new FlxText(MobileUtil.fixX(60), 200, 700,
 			"This will only appear if i\ndon't have any text\nset for the characters.\nWe'll be checking the amount of space\nI can use to add these descriptions in.\nI should theoretically have enough\nspace to type this much stuff.\n#fortniteforlife lmao",
 			52);
-		desc.setFormat("SF Atarian System", 28, FlxColor.WHITE, CENTER);
+		desc.setFormat("SF Atarian System", 33, FlxColor.WHITE, CENTER);
 		add(desc);
 
 		loreScrollButton = new FlxSprite(0, 0).loadGraphic(Paths.image('characterInfo/loreButton'));
@@ -528,6 +528,7 @@ class InfoState extends MusicBeatState
 					FlxTween.tween(blackOut, {alpha: 0.8}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
 					FlxTween.tween(scrollAsset, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
 					FlxTween.tween(scrollDesc, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
+					scrollDesc.size = 38;
 					scrollDesc.text = "Before he became the infamous villain, he was\nonce named \"Michael PureHeart\",\na young but brilliant chemist who had the\nexpertise in making body enhancement\nsupplements.\nAt the age of 22, fresh out of his English\nUniversity, Michael receives a letter...
 					\n[Click <G>here<G> to view the full extension]";
 				}
@@ -542,6 +543,7 @@ class InfoState extends MusicBeatState
 					FlxTween.tween(blackOut, {alpha: 0.8}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
 					FlxTween.tween(scrollAsset, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
 					FlxTween.tween(scrollDesc, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
+					scrollDesc.size = 38;
 					scrollDesc.text = "Aileen was born in her old hometown Lampside.\nShe used to live with her Mother who was an\nEmployee in A.A.A.V (An Agency Against Villains),\nher Father who is a C-class Villain and\nher Twin Brother, Alverv.
 					\n[Click <G>here<G> to view the full extension]";
 				}
@@ -556,6 +558,7 @@ class InfoState extends MusicBeatState
 					FlxTween.tween(blackOut, {alpha: 0.8}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
 					FlxTween.tween(scrollAsset, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
 					FlxTween.tween(scrollDesc, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
+					scrollDesc.size = 38;
 					scrollDesc.text = "Beatrice grew up in an orphanage.\nDespite never knowing who her parents were,\nshe wasn't bothered by it.
 					\n[Click <G>here<G> to view the full extension]";
 				}
@@ -570,20 +573,9 @@ class InfoState extends MusicBeatState
 					FlxTween.tween(blackOut, {alpha: 0.8}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
 					FlxTween.tween(scrollAsset, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
 					FlxTween.tween(scrollDesc, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
+					scrollDesc.size = 38;
 					scrollDesc.text = "EX-BR Model 3 or Evelyn is a prototype\nthat was created for a supposed\n“World Domination” by an Evil organization.
 					\n[Click <G>here<G> to view the full extension]";
-				}
-				else
-				{
-					FlxG.sound.play(Paths.sound('accessDenied'));
-					showingLore = false;
-				}
-			case 'yaku':
-				if (ClientPrefs.yakuScroll)
-				{
-					FlxTween.tween(blackOut, {alpha: 0.8}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
-					FlxTween.tween(scrollAsset, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
-					FlxTween.tween(scrollDesc, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
 				}
 				else
 				{
@@ -596,6 +588,7 @@ class InfoState extends MusicBeatState
 					FlxTween.tween(blackOut, {alpha: 0.8}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
 					FlxTween.tween(scrollAsset, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
 					FlxTween.tween(scrollDesc, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
+					scrollDesc.size = 38;
 					scrollDesc.text = "I am the bitch's lore, nice to meet you\nlmao";
 				}
 				else
@@ -609,13 +602,28 @@ class InfoState extends MusicBeatState
 					FlxTween.tween(blackOut, {alpha: 0.8}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
 					FlxTween.tween(scrollAsset, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
 					FlxTween.tween(scrollDesc, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
+					scrollDesc.size = 38;
 					scrollDesc.text = "\n\n\n\nI heyt Wemens";
 				}
 				else
 				{
 					FlxG.sound.play(Paths.sound('accessDenied'));
 					showingLore = false;
-				}			
+				}
+			case 'manager':
+				if (ClientPrefs.ccPlayed)
+				{
+					FlxTween.tween(blackOut, {alpha: 0.8}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
+					FlxTween.tween(scrollAsset, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
+					FlxTween.tween(scrollDesc, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
+					scrollDesc.size = 24;
+					scrollDesc.text = "Dear Bruna Brunette,\nFrom the moment I met you, I was captivated by your uniqueness and charm.\nYour auburn hair pulled back into a ponytail frames your face perfectly,\nhighlighting your natural beauty and grace.\nAnd your glasses? They’re not just an accessory;\nthey reveal the depth of your intelligence and the warmth of your spirit.\nManaging a popstar is no easy feat, but you handle it with such skill and pose.\nYour ability to balance the demands of such a high-profile job\nwhile remaining kind and compassionate is truly inspiring.\nI also deeply admire your courage in sharing your struggles with anxiety.\nYour openness and resilience only make me appreciate you more.\nYou bring so much light and joy into the lives of those around you.\nI am incredibly grateful to be part of your world\nand look forward to all the moments we’ll share together.\nThank you for being such a wonderful person, Bruna. You are a true treasure.\nWith all my love, Kinn.";
+				}
+				else
+				{
+					FlxG.sound.play(Paths.sound('accessDenied'));
+					showingLore = false;
+				}
 		}
 		CustomFontFormats.addMarkers(scrollDesc);
 		trace('Showing Lore');
@@ -1217,14 +1225,15 @@ class InfoState extends MusicBeatState
 				{	
 					titleText.text = "Manager";
 
-					desc.text = "Full name: Bruna Brunette\nAge: Between 20 or 30 - Aliases: Manager-Chan - Species: Human\nDear Bruna Brunette,\nFrom the moment I met you, I was captivated by your uniqueness and charm. Your auburn hair pulled back into a ponytail frames your face perfectly, highlighting your natural beauty and grace.\nAnd your glasses? They’re not just an accessory; they reveal the depth of your intelligence and the warmth of your spirit. Managing a popstar is no easy feat, but you handle it with such skill and pose. Your ability to balance the demands of such a high-profile job while remaining kind and compassionate is truly inspiring. I also deeply admire your courage in sharing your struggles with anxiety. Your openness and resilience only make me appreciate you more. You bring so much light and joy into the lives of those around you. I am incredibly grateful to be part of your world and look forward to all the moments we’ll share together.\nThank you for being such a wonderful person, Bruna. You are a true treasure.\nWith all my love, Kinn.";
+					desc.text = "Full name: Bruna Brunette\nAge: Between 20 or 30\nAliases: Manager-Chan - Species: Human
+					\n'This message was written by ChatGPT.. smh'";
 				}
 				else
 				{
 					titleText.text = "???????";
 					desc.text = "Unlock Concert Chaos First!";	
 				}
-				allowLore = false;
+				allowLore = true;
 		}
 
 		updateCharPositions(true);
