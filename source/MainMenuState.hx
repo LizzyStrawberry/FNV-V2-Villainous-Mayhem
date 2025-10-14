@@ -411,7 +411,7 @@ class MainMenuState extends MusicBeatState
 
 		if (ClientPrefs.inShop)
 		{
-			if (ClientPrefs.iniquitousWeekUnlocked && ClientPrefs.iniquitousWeekBeaten) FlxG.sound.playMusic(Paths.music('malumIctum'));
+			if (ClientPrefs.iniquitousWeekUnlocked && !ClientPrefs.iniquitousWeekBeaten) FlxG.sound.playMusic(Paths.music('malumIctum'));
 			else if (FlxG.random.int(1, 10) == 2) FlxG.sound.playMusic(Paths.music('AJDidThat'));
 			else FlxG.sound.playMusic(Paths.music('freakyMenu'));
 
@@ -487,7 +487,7 @@ class MainMenuState extends MusicBeatState
 			bg.scrollFactor.set();
 			trace('MORK');	
 		}
-		else if (randNum == 2 && Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed && ClientPrefs.kianaWeekPlayed)
+		else if (randNum == 2 && ClientPrefs.iniquitousWeekUnlocked && !ClientPrefs.iniquitousWeekBeaten)
 		{
 			secretBG = true;
 			bg.loadGraphic(Paths.image('mainMenuBgs/menu-rare'));
