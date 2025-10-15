@@ -25,14 +25,13 @@ class MiscellaneousSubState extends BaseOptionsMenu
 
 		var option:Option = new Option('Auto Pause',
 			'If checked, when you tab out of the game, the game will freeze until you hop back on.',
-			'showFPS',
+			'autoPause',
 			'bool',
 			true);
 		addOption(option);
 		option.onChange = function ()
 		{
-			FlxG.autoPause = !FlxG.autoPause;
-			FlxG.save.data.autoPause = FlxG.autoPause;
+			FlxG.autoPause = ClientPrefs.autoPause;
 		};
 
 		var option:Option = new Option('Timer Color Switch:', //Name

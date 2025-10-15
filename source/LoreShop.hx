@@ -964,7 +964,7 @@ class LoreShop extends MusicBeatState
 
     function randomizeScroll()
     {
-        var num = FlxG.random.int(0, 9);
+        var num = FlxG.random.int(0, 6);
         switch(num)
         {
             case 0:

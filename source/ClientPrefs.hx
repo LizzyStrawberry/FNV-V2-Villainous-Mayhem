@@ -29,6 +29,7 @@ class ClientPrefs {
 	public static var timeBarFlash:String = 'All Enabled';
 	public static var performanceWarning:Bool = false;
 	public static var allowPCChanges:Bool = true;
+	public static var autoPause:Bool = true;
 
 	public static var mainWeekBeaten:Bool = false;
 	public static var gotWinMessage:Bool = false;
@@ -387,6 +388,7 @@ class ClientPrefs {
 		FlxG.save.data.timeBarFlash = timeBarFlash;
 		FlxG.save.data.performanceWarning = performanceWarning;
 		FlxG.save.data.allowPCChanges = allowPCChanges;
+		FlxG.save.data.autoPause = autoPause;
 
 		FlxG.save.data.mainWeekBeaten = mainWeekBeaten;
 		FlxG.save.data.gotWinMessage = gotWinMessage;
@@ -804,7 +806,10 @@ class ClientPrefs {
 		if(FlxG.save.data.allowPCChanges != null) {
 			allowPCChanges = FlxG.save.data.allowPCChanges;
 		}
-
+		if(FlxG.save.data.autoPause != null) {
+			autoPause = FlxG.save.data.autoPause;
+		}
+		
 		if(FlxG.save.data.mainWeekBeaten != null) {
 			mainWeekBeaten = FlxG.save.data.mainWeekBeaten;
 		}
@@ -1348,10 +1353,6 @@ class ClientPrefs {
 			Achievements.achievementsMap = FlxG.save.data.achievementsMap;
 		}
 		
-		if(FlxG.save.data.autoPause != null)
-		{
-			FlxG.autoPause = FlxG.save.data.autoPause;
-		}
 		// flixel automatically saves your volume!
 		if(FlxG.save.data.volume != null)
 		{
