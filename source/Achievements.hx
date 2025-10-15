@@ -48,6 +48,8 @@ class Achievements {
 		["Dimension Traveller!",			"Finish Beyond Reality.",										'crossover_Beaten',					false],
 		//Extra Shit
 		["You shouldn't be here.",			"Beat It's Kiana.",												'itsKiana_Beaten',					false],
+		["Bruh.. There is No Escape",		"Find and Beat Shuckle Fuckle",									'shucks_Beaten',					false],
+		["Lethality",						"Beat Injection Mode on any difficulty.",						'injection_Completed',				false],
 		["Very Concerning.",				"Find Hermit and The Cellar.",									'hermit_found',						false],
 		["Who is she?",						"Find Zeel and her Illegal Shop.",								'zeel_found',						false],
 		["Caught on 4K.",					"Touch Merchant Zeel's Boobies.",								'pervert',							false],
