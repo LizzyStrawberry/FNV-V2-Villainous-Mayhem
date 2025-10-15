@@ -5,7 +5,7 @@ class Achievements {
 		// Hidden Achievements
 		["Fuse was too short, I guess..",	"Get the Secret Week 1 Ending cutscene.",						'explosive',	 					true],
 		["Villainous Cup of Tea!",			"Get the Secret Tea Party cutscene.",							'teaparty',	 						true],
-		["You found me.",					"Find Iniqutious.",												'secret',	 						true],
+		["You found me.",					"Find Iniquitous.",												'secret',	 						true],
 
 		// Visible Achievements
 		["Banging now or later?",			"Beat the tutorial.",											'Tutorial_Beaten',					false],
@@ -54,7 +54,7 @@ class Achievements {
 		["Certified Pervert.",				"Touch Merchant Zeel's Boobies 25 times in a row.",				'pervertX25',						false],
 		["Shopalic!",						"Buy/Obtain all Song/Week Items in the shop.",					'shop_completed',					false],
 		["THINK FAST!!",					"Get flashbanged.",												'flashbang',						false],
-		["Villainous Completionist!",		"Get all of the achievements!",									'FNV_Completed',					false]
+		["Villainous Completionist!",		"Finish all the songs in any difficulty!",						'FNV_Completed',					false]
 	];
 	public static var achievementsMap:Map<String, Bool> = new Map<String, Bool>();
 

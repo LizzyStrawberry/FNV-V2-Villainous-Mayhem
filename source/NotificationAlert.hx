@@ -246,8 +246,7 @@ class NotificationAlert {
 		}
 
         // This gives out the 100% Completion Achievement
-        if(achievementCheck("main") && achievementCheck("mainvillainous") && achievementCheck("maininiquitous") && achievementCheck("bonus") && achievementCheck("bonusVillainous")
-        && achievementCheck("Iniquitous") && achievementCheck("xtras") && achievementCheck("crossover") && achievementCheck("misc"))
+        if(achievementCheck("main") && achievementCheck("bonus") && achievementCheck("Iniquitous") && achievementCheck("xtras") && achievementCheck("crossover"))
 		{
             trace("Accepted the 100% completion achievement!");
 			var achieveID:Int = Achievements.getAchievementIndex('FNV_Completed');
