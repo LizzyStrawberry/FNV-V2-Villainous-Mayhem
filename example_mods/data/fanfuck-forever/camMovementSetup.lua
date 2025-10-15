@@ -7,11 +7,13 @@ local camVariables = {
 
 function onCreate()
 	setGlobalFromScript("scripts/Camera Movement", "allowZoomShifts", true)
+	setGlobalFromScript("scripts/Camera Movement", "gfSide", "player")
 	callScript("scripts/Camera Movement", "setCameraMovement", {camVariables.camOffsets, camVariables.ofs, camVariables.noMove, camVariables.camZooms})
 end
 
 function onCreatePost()
 	setProperty("iconGF.alpha", 0)
+	setObjectOrder("iconGF", getObjectOrder("iconP1") + 1)
 end
 
 function onSongStart()

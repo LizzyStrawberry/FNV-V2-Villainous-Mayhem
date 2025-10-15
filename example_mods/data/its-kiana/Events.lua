@@ -36,12 +36,12 @@ function onUpdate()
 		
 		doTweenAlpha('camHUD', 'camHUD', 0, 0.7 / playbackRate, 'circOut')
 		
-		setTextString('dialogue', "I-I don't actually want to do this..")
+		setTextString('dialogue', "I-I really don't wanna do this..")
 		setProperty('dialogue.alpha', 1)
 	end
 
 	if curBeat == 100 then
-		setTextString('dialogue', "But you've left me with no choice!")
+		setTextString('dialogue', "But you've left me no choice!")
 	end
 	
 	if curBeat == 102 then

@@ -109,7 +109,6 @@ function onCreatePost() -- Set Camera to middle of screen
 	
 	if addGFIcon then 
 		local side = ((gfSide == "player" and not getVar("flippedIcons")) and "1" or "2")
-		setObjectOrder("iconGF", getObjectOrder("iconP"..side) + 1)
 		addNewIcon("GF", "gf", gfSide, true) 
 	end
 end

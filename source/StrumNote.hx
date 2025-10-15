@@ -94,8 +94,6 @@ class StrumNote extends FlxSprite
 						skin = 'notes/NicNOTE_assets';
 					case 'DV Phase 0' | 'DV' | 'DVTurn' | 'DV Phase 2':
 						skin = 'notes/dvNOTE_assets';
-					case 'FangirlIntro' | 'FangirlP1' | 'FangirlP2':
-						skin = 'notes/FangirlNOTE_assets';
 					case 'fnv':
 						skin = 'notes/FNVNOTE_assets';
 					case 'iniquitousP1' | 'iniquitousP2' | 'iniquitousP3':
@@ -104,7 +102,7 @@ class StrumNote extends FlxSprite
 						skin = 'notes/AsulNOTE_assets';
 					case 'narrin' | 'Narrin Side':
 						skin = 'notes/NarrinNOTE_assets';
-					case 'Negotiation Cross':
+					case 'Negotiation Cross' | 'FangirlIntro' | 'FangirlP1' | 'FangirlP2':
 						skin = 'notes/CrossNOTE_assets';
 					case 'Yaku':
 						skin = 'notes/YakuNOTE_assets';

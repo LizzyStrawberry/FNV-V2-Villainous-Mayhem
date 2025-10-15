@@ -927,9 +927,8 @@ class BloomEffect extends Effect {
 }
 
 
-class BloomShader extends FlxShader{
-	
-	
+class BloomShader extends FlxShader
+{
 	@:glFragmentSource('
 	
 	#pragma header
@@ -978,7 +977,6 @@ class BloomShader extends FlxShader{
 		super();
 	}
 }
-
 
 /*STOLE FROM DAVE AND BAMBI
 

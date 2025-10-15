@@ -106,7 +106,7 @@ function onCreate()
 			setPropertyFromClass('GameOverSubstate', 'loopSoundName', 'staticDeath')
 		end
 		
-		if songName == 'Lustality' or songName == 'Lustality V1' or songName == 'Lustality Remix' then
+		if songName == 'Lustality' or songName == 'Lustality Remix' then
 			addCharacterToList('kianakillsyou', 'boyfriend')
 			setPropertyFromClass('GameOverSubstate', 'characterName', 'kianakillsyou')
 			setPropertyFromClass('GameOverSubstate', 'loopSoundName', 'kianakilledyou')
@@ -337,14 +337,6 @@ function onCreatePost()
 			end
 		end
 		
-		if dadName == 'FangirlIntro' or dadName == 'FangirlP1' or dadName == 'FangirlP2' then
-			for note = 0, getProperty('unspawnNotes.length')-1 do
-				if not getPropertyFromGroup('unspawnNotes', note, 'mustPress') then
-					setPropertyFromGroup('unspawnNotes', note, 'texture', 'notes/FangirlNOTE_assets');
-				end
-			end
-		end
-		
 		if dadName == 'fnv' then
 			for note = 0, getProperty('unspawnNotes.length')-1 do
 				if not getPropertyFromGroup('unspawnNotes', note, 'mustPress') then
@@ -385,7 +377,7 @@ function onCreatePost()
 			end
 		end
 		
-		if dadName == 'Negotiation Cross' then
+		if dadName == 'Negotiation Cross' or dadName == 'FangirlIntro' or dadName == 'FangirlP1' or dadName == 'FangirlP2' then
 			for note = 0, getProperty('unspawnNotes.length')-1 do
 				if not getPropertyFromGroup('unspawnNotes', note, 'mustPress') then
 					if getPropertyFromGroup("unspawnNotes", note, "noteType") == "GF Sing" then
