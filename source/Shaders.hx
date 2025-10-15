@@ -955,7 +955,7 @@ void main()
 class BloomEffect extends Effect{
 	
 	public var shader:BloomShader = new BloomShader();
-	public function new(blurSize:Float, intensity:Float){
+	public function new(blurSize:Float = 0.75, intensity:Float = 1.0 / 512.0){
 		shader.blurSize.value = [blurSize];
 		shader.intensity.value = [intensity];
 		
@@ -972,8 +972,8 @@ class BloomShader extends FlxShader{
 	
 	#pragma header
 	
-	uniform float intensity = 0.35;
-	uniform float blurSize = 1.0/512.0;
+	uniform float intensity;
+	uniform float blurSize;
 void main()
 {
    vec4 sum = vec4(0);
