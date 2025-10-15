@@ -19,6 +19,7 @@ local colors = {
 }
 
 local ended = false
+local curHealth
 
 function onCreatePost()
 	if mechanics and not ended then
@@ -65,6 +66,8 @@ function onUpdate(elapsed)
 			if not cheatsOn and (botPlay or getPropertyFromClass('ClientPrefs', 'autoCharm') == 1) then
 				cheatsOn = true
 			end
+			
+			if not kill then curHealth = getHealth() end
 			
 			if kill and keyboardJustPressed(key) then
 				setUpContents()
@@ -141,6 +144,10 @@ function setUpContents()
 	
 	-- De-stun Player
 	setProperty('boyfriend.stunned', false)
+end
+
+function noteMiss()
+	if kill then setHealth(curHealth) end
 end
 
 function onEndSong()
