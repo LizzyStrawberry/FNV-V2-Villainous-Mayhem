@@ -3987,7 +3987,7 @@ class PlayState extends MusicBeatState
 				mayhemScore += songScore;
 				mayhemSongsPlayed += 1;
 				mayhemRating += ratingPercent;
-				mayhemHealth = health;
+				mayhemHealth = health + ((PlayState.mayhemSongsPlayed % 3 == 0 && PlayState.mayhemSongsPlayed >= 3) ? 75 : 0);
 		        
 				// Unlock Secret Song
 				if (!ClientPrefs.shucksUnlocked && Paths.formatToSongPath(SONG.song) == "shuckle-fuckle") ClientPrefs.shucksUnlocked = true;
@@ -4014,7 +4014,7 @@ class PlayState extends MusicBeatState
 						mayhemNRMode = "";
 					}
 
-					if (PlayState.mayhemSongsPlayed % 3 == 0) health += 75;
+					if (PlayState.mayhemSongsPlayed % 3 == 0) mayhemHealth += 75;
 				}
 				
 				var villainousSongs:Array<String> = ['toybox', 'its-kiana', 'villainy', 'point-blank', 'libidinousness', 'excrete', 'marauder', 'shuckle-fuckle'];

@@ -20,7 +20,7 @@ local chalBackUp = {
 	'setHealth',
 	'noGhostTap'
 }
-local toUseChallenges = 0
+local toUseChallenges = 2
 local toUseCombinations = 6
 local curChallenge
 local curChallengeBonus
@@ -34,11 +34,12 @@ local healthGoal
 local allowCombo = false
 local allowChallenges = false
 
-function onCreatePost()
-	if isMayhemMode and getPropertyFromClass('PlayState', 'mayhemSongsPlayed') >= toUseChallenges then
-		if getRandomInt(1, 3) == 2 then return end
+function onCreate()
+	allowChallenges = (getPropertyFromClass('PlayState', 'mayhemSongsPlayed') >= toUseChallenges and getRandomInt(1, 5) == 2) and true or false
+end
 
-		allowChallenges = true
+function onCreatePost()
+	if allowChallenges then
 		if getPropertyFromClass('ClientPrefs', 'buff1Selected') == true or getPropertyFromClass('ClientPrefs', 'buff2Selected') == true 
 		or getPropertyFromClass('ClientPrefs', 'buff3Selected') == true then
 			setPropertyFromClass('ClientPrefs', 'buff1Active', false)
