@@ -3867,7 +3867,7 @@ class PlayState extends MusicBeatState
 			'short_Beaten', 'nic_Beaten', 'fanfuck_Beaten', 'rainyDaze_Beaten', 'marauder_Beaten',
 			'vGuy_Beaten', 'fastFoodTherapy_Beaten', 'tacticalMishap_Beaten', 'breacher_Beaten', 'negotiation_Beaten', 'concertChaos_Beaten', 'crossover_Beaten',
 			'pervert', 'pervertX25',
-			'flashbang', 'itsKiana_Beaten', 'hermit_found', 'zeel_found',
+			'flashbang', 'itsKiana_Beaten', 'shucks_Beaten', 'injection_Completed', 'hermit_found', 'zeel_found',
 			'shop_completed', 'FNV_Completed', 'secret']);
 
 			if(achieve != null) {
@@ -4043,18 +4043,17 @@ class PlayState extends MusicBeatState
 				trace('Current Health :' + health);
 
 				if (injectionPlaylist.length <= 0)
-					{
-						WeekData.loadTheFirstEnabledMod();
+				{
+					WeekData.loadTheFirstEnabledMod();
 
-						cancelMusicFadeTween();
+					cancelMusicFadeTween();
 
-						if (!PlayState.checkForPowerUp)
-							PlayState.campaignScore += 25000;
+					if (!PlayState.checkForPowerUp)	PlayState.campaignScore += 25000;
 						
-						MusicBeatState.switchState(new TokenAchievement());
+					MusicBeatState.switchState(new TokenAchievement());
 
-						var noHelp:Bool = !ClientPrefs.getGameplaySetting('practice', false) && !ClientPrefs.getGameplaySetting('botplay', false);
-						saveContents(noHelp);
+					var noHelp:Bool = !ClientPrefs.getGameplaySetting('practice', false) && !ClientPrefs.getGameplaySetting('botplay', false);
+					saveContents(noHelp);
 
 					changedDifficulty = false;
 				}
@@ -6211,12 +6210,21 @@ class PlayState extends MusicBeatState
 							ClientPrefs.saveSettings();
 						}
 					case 'itsKiana_Beaten':
-						if(Paths.formatToSongPath(SONG.song) == 'its-kiana' && !changedDifficulty && !usedPractice && CoolUtil.difficultyString() == 'VILLAINOUS') {
+						if(Paths.formatToSongPath(SONG.song) == 'its-kiana' && !changedDifficulty && !usedPractice) {
 							unlock = true;
 							ClientPrefs.eggs += 1;
 							
 							ClientPrefs.saveSettings();
 						}
+					case 'shucks_Beaten':
+						if(Paths.formatToSongPath(SONG.song) == 'shuckle-fuckle' && !changedDifficulty && !usedPractice) {
+							unlock = true;
+							ClientPrefs.eggs += 1;
+							
+							ClientPrefs.saveSettings();
+						}
+					case 'injection_Completed':
+						if(isInjectionMode) unlock = true;
 				}
 
 				if(unlock) {
