@@ -265,7 +265,7 @@ class NotificationAlert {
 		}
     }
 
-    static function achievementCheck(type:String):Bool
+    public static function achievementCheck(type:String):Bool
     {
         switch(type.toLowerCase())
         {

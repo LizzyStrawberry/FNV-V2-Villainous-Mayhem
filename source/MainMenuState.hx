@@ -324,18 +324,39 @@ class MainMenuState extends MusicBeatState
 		optionsButton.alpha = 0.5;
 		optionsButton.updateHitbox();
 		add(optionsButton);
+		if (NotificationAlert.sendOptionsNotification) // Options Notification
+		{
+			NotificationAlert.addNotification(this, optionsButton, -10, 85);
+
+			NotificationAlert.sendOptionsNotification = false;
+			NotificationAlert.saveNotifications();
+		}
 
 		inventoryButton = new FlxSprite(optionsButton.x, 230).loadGraphic(Paths.image('inventoryButton'));
 		inventoryButton.antialiasing = ClientPrefs.globalAntialiasing;
 		inventoryButton.alpha = 0.5;
 		inventoryButton.updateHitbox();
 		add(inventoryButton);
+		if (NotificationAlert.sendInventoryNotification) // Inventory Notification
+		{
+			NotificationAlert.addNotification(this, inventoryButton, -10, 85);
+
+			NotificationAlert.sendInventoryNotification = false;
+			NotificationAlert.saveNotifications();
+		}
 
 		shopButton = new FlxSprite(0, 0).loadGraphic(Paths.image('shopButton'));
 		shopButton.antialiasing = ClientPrefs.globalAntialiasing;
 		shopButton.alpha = 0.5;
 		shopButton.updateHitbox();
 		add(shopButton);
+		if (NotificationAlert.sendShopNotification) // Shop Notification
+		{
+			NotificationAlert.addNotification(this, shopButton, 115, 100);
+
+			NotificationAlert.sendShopNotification = false;
+			NotificationAlert.saveNotifications();
+		}
 		
 		var markType:String = (ClientPrefs.tokens == 0) ? "<R>" : "<GR>";
 		var tokenShow:FlxText = new FlxText(shopButton.x, shopButton.y + 130, FlxG.width, 'Tokens: $markType${ClientPrefs.tokens}$markType');
@@ -429,27 +450,6 @@ class MainMenuState extends MusicBeatState
 		changeItem();
 
 		//Notification alert
-		if (NotificationAlert.sendOptionsNotification) // Options Notification
-		{
-			NotificationAlert.addNotification(this, optionsButton, -10, 85);
-
-			NotificationAlert.sendOptionsNotification = false;
-			NotificationAlert.saveNotifications();
-		}
-		if (NotificationAlert.sendInventoryNotification) // Inventory Notification
-		{
-			NotificationAlert.addNotification(this, inventoryButton, -10, 85);
-
-			NotificationAlert.sendInventoryNotification = false;
-			NotificationAlert.saveNotifications();
-		}
-		if (NotificationAlert.sendShopNotification) // Shop Notification
-		{
-			NotificationAlert.addNotification(this, shopButton, 115, 100);
-
-			NotificationAlert.sendShopNotification = false;
-			NotificationAlert.saveNotifications();
-		}
 		if (ClientPrefs.weeksUnlocked >= 7 && !ClientPrefs.injectionNotif) // Injection Notification
 		{
 			ClientPrefs.injectionNotif = true;
@@ -470,16 +470,7 @@ class MainMenuState extends MusicBeatState
 		bg = new FlxSprite(-80);
 		bgChange = new FlxSprite(-80);
 		var randNum = FlxG.random.int(1, 59);
-		if (randNum == 30 && Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed && ClientPrefs.kianaWeekPlayed)
-		{
-			bg.loadGraphic(Paths.image('mainMenuBgs/menu-mork'));
-			bg.frames = Paths.getSparrowAtlas('mainMenuBgs/menu-mork');
-			bg.animation.addByPrefix('idleMenu', 'mork mork0', 24, true);
-			bg.animation.play('idleMenu');
-			bg.scrollFactor.set();
-			trace('MORK');	
-		}
-		else if (randNum == 2 && ClientPrefs.iniquitousWeekUnlocked && !ClientPrefs.iniquitousWeekBeaten)
+		if (ClientPrefs.iniquitousWeekUnlocked && !ClientPrefs.iniquitousWeekBeaten)
 		{
 			secretBG = true;
 			bg.loadGraphic(Paths.image('mainMenuBgs/menu-rare'));
@@ -493,6 +484,16 @@ class MainMenuState extends MusicBeatState
 				ClientPrefs.saveSettings();				
 			});
 		}
+		else if (randNum == 30 && Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed && ClientPrefs.kianaWeekPlayed)
+		{
+			bg.loadGraphic(Paths.image('mainMenuBgs/menu-mork'));
+			bg.frames = Paths.getSparrowAtlas('mainMenuBgs/menu-mork');
+			bg.animation.addByPrefix('idleMenu', 'mork mork0', 24, true);
+			bg.animation.play('idleMenu');
+			bg.scrollFactor.set();
+			trace('MORK');	
+		}
+		
 		else
 		{
 			var maxNum:Int = 5;
@@ -607,6 +608,9 @@ class MainMenuState extends MusicBeatState
 			badge.updateHitbox();
 			badge.x = badgeBar.x + (i * 100);
 			badges.ID = i;
+
+			if (ClientPrefs.iniquitousWeekBeaten && !NotificationAlert.achievementCheck("bonus") && i == 1) // In case you beat Iniquitous First and not the bonus weeks
+				badge.loadGraphic(Paths.image('inventory/badge/badge-3'));
 
 			badge.alpha = 0;
 			badge.antialiasing = ClientPrefs.globalAntialiasing;
@@ -1200,10 +1204,11 @@ class MainMenuState extends MusicBeatState
 		
 		buffItems.forEach(function(buff:FlxSprite)
 		{
-			var reflectedBuff = Reflect.field(ClientPrefs, 'buff${buff.ID}Unlocked');
+			var reflectedBuff = Reflect.getProperty(ClientPrefs, 'buff${buff.ID}Unlocked');
 			if (huh == -1) return;
-			if (!reflectedBuff && buff.ID > 0)
+			if (!reflectedBuff && buff.ID > 0 && (curBuffSelected == buff.ID))
 			{
+				trace("Checked Buff" + buff.ID +" | It is " + reflectedBuff);
 				curBuffSelected = prevBuff;
 				FlxG.sound.play(Paths.sound('cancelMenu'), 0.6);
 				return;
