@@ -40,8 +40,6 @@ class Cache extends MusicBeatState
 		FlxG.mouse.visible = false;
 
 		FlxG.worldBounds.set(0,0);
-
-		FlxG.save.bind('funkin', 'ninjamuffin99');
 		
 		PlayerSettings.init();
 		ClientPrefs.loadPrefs();
@@ -198,7 +196,7 @@ class Cache extends MusicBeatState
 				
 			}
 			shitz.text = text;
-			var goldHighlight = new FlxTextFormat(0xFFD700, true, false, null, false);
+			var goldHighlight = new FlxTextFormat(0xFFD700, true, false, null);
 			shitz.applyMarkup(shitz.text, [new FlxTextFormatMarkerPair(goldHighlight, "<G>")]);
 			move++;
 		}
