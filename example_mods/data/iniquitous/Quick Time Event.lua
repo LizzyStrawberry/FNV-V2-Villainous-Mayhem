@@ -82,10 +82,18 @@ function onUpdate()
 					allow = false
 				else
 					cameraFlash('hud', 'FF0000', 0.6, false)
-					if getPropertyFromClass('ClientPrefs', 'resistanceCharm') == 1 then
-						setProperty('health', getHealth() - 0.500)
+					if isMayhemMode then
+						if getPropertyFromClass('ClientPrefs', 'resistanceCharm') == 1 then
+							setProperty('health', getHealth() - 25)
+						else
+							setProperty('health', getHealth() - 50)
+						end
 					else
-						setProperty('health', getHealth() - 1)
+						if getPropertyFromClass('ClientPrefs', 'resistanceCharm') == 1 then
+							setProperty('health', getHealth() - 0.500)
+						else
+							setProperty('health', getHealth() - 1)
+						end
 					end
 					
 					playSound('checkmarkReverse')
@@ -99,10 +107,18 @@ function onUpdate()
 			end
 			if getProperty('qte.scale.x') == 0 then
 				cameraFlash('hud', 'FF0000', 0.6, false)
-				if getPropertyFromClass('ClientPrefs', 'resistanceCharm') == 1 then
-					setProperty('health', getHealth() - 0.500)
+				if isMayhemMode then
+					if getPropertyFromClass('ClientPrefs', 'resistanceCharm') == 1 then
+						setProperty('health', getHealth() - 25)
+					else
+						setProperty('health', getHealth() - 50)
+					end
 				else
-					setProperty('health', getHealth() - 1)
+					if getPropertyFromClass('ClientPrefs', 'resistanceCharm') == 1 then
+						setProperty('health', getHealth() - 0.500)
+					else
+						setProperty('health', getHealth() - 1)
+					end
 				end
 				
 				playSound('checkmarkReverse')

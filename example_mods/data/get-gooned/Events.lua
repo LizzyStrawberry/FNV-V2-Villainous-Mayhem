@@ -29,8 +29,8 @@ function onCreate()
 	addLuaSprite('morky!', true)
 	MorkyY = getProperty('dad.y') - 380
 	
-	if getPropertyFromClass('ClientPrefs', 'itsameDsidesUnlocked') == false then
-		makeLuaText('unlockText', "MORKY IS SO TIRED OF YOU.\nGO TAP KIANA IN LUSTALITY REMIX IN FREEPLAY IF YOU'RE A BIG MUSCULAR BLACK MAN.\n- Morky", 1000, 130, 320)
+	if not getPropertyFromClass('ClientPrefs', 'itsameDsidesUnlocked') then
+		makeLuaText('unlockText', "MORKY IS SO TIRED OF YOU.\nGO TYPE 'TAILS' IN LUSTALITY REMIX IF YOU'RE A BIG MUSCULAR BLACK MAN.\n- Morky", 1000, 130, 320)
 		setTextSize('unlockText', 45)
 		setObjectCamera('unlockText', 'other')
 		setScrollFactor('unlockText', 0, 0)
@@ -139,7 +139,7 @@ function onUpdate()
 		doTweenY('morkZoomY', 'morky!.scale', 3, 0.4 / playbackRate, 'circOut')
 		doTweenAngle('morkSpin', 'morky!', 360 * 10000, 0.4 / playbackRate, 'circOut')
 	end
-	if curStep == 1862 and getPropertyFromClass('ClientPrefs', 'itsameDsidesUnlocked') == false then
+	if curStep == 1862 and not getPropertyFromClass('ClientPrefs', 'itsameDsidesUnlocked') and getProperty("songMisses") < 45 then
 		setProperty('unlockText.alpha', 1)
 	end
 end

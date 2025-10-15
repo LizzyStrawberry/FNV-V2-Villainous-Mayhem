@@ -89,7 +89,7 @@ function onCreatePost()
 		setUpCardDetails(false, 1, 32, "Composed By: Araz / Zuyu")
 	end
 	if songName == 'Toxic Mishap (Legacy)' then
-		setUpCardDetails(false, 1, 32, "Composed By: Araz")
+		setUpCardDetails(false, 1, 32, "Composed By: Araz / TD64")
 	end
 	if songName == 'Paycheck (Legacy)' then
 		setUpCardDetails(false, 1, 32, "Composed By: Araz / Zuyu")

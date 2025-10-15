@@ -4137,6 +4137,8 @@ class PlayState extends MusicBeatState
 						trace("Random Chart Mode off!");
 						mayhemNRMode = "";
 					}
+
+					if (PlayState.mayhemSongsPlayed % 3 == 0) health += 75;
 				}
 				
 				var villainousSongs:Array<String> = ['toybox', 'its-kiana', 'villainy', 'point-blank', 'libidinousness', 'excrete', 'marauder', 'shuckle-fuckle'];
@@ -4158,7 +4160,7 @@ class PlayState extends MusicBeatState
 
 				prevCamFollow = camFollow;
 				prevCamFollowPos = camFollowPos;
-					
+
 				if (PlayState.mayhemSongsPlayed > 10 && FlxG.random.int(1, 100) == 50)
 				{
 					PlayState.SONG.song = "Iniquitous";
