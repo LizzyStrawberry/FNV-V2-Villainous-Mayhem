@@ -7,6 +7,7 @@ local camVariables = {
 
 function onCreate()
 	setProperty("gf.visible", false)
+	setGlobalFromScript("scripts/Camera Movement", 'flipOppMovement', true)
 	callScript("scripts/Camera Movement", "setCameraMovement", {camVariables.camOffsets, camVariables.ofs, camVariables.noMove, camVariables.camZooms})
 end
 

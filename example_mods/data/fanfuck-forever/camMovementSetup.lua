@@ -36,3 +36,7 @@ function onBeatHit()
 		cameraFlash('game', 'FFFFFF', 0.5, false)
 	end
 end
+
+function goodNoteHit(id, dir, n, sus)
+	setGlobalFromScript("scripts/Camera Movement", 'flipPlayerMovement', (n == "GF Sing" or gfSection))
+end

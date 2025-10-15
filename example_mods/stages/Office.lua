@@ -35,8 +35,8 @@ function setScene(char)
 		triggerEvent("Change Character", "bf", "Negotiation Aileen")
 		triggerEvent('Change Icon', 'P2, negotiationSeer, 45ffd4')			
 		
-		setProperty("dad.visible", false)
-		setProperty("gf.visible", true)
+		setProperty("dad.alpha", 0)
+		setProperty("gf.alpha", 1)
 		
 		for i = 0, 3 do
 			setPropertyFromGroup('opponentStrums', i, 'texture', 'notes/AsulNOTE_assets');
@@ -59,8 +59,8 @@ function setScene(char)
 		triggerEvent("Change Character", "bf", "Negotiation Marco")
 		triggerEvent('Change Icon', 'P2, negotiationCross, ef000c')
 		
-		setProperty("dad.visible", true)
-		setProperty("gf.visible", false)
+		setProperty("dad.alpha", 1)
+		setProperty("gf.alpha", 0)
 		
 		for i = 0, 3 do
 			setPropertyFromGroup('opponentStrums', i, 'texture', 'notes/CrossNOTE_assets');
