@@ -667,7 +667,7 @@ class InfoState extends MusicBeatState
 			case 'gf':
 				titleText.text = "Trespasser GF";
 
-				desc.text = "Full name: Gigi Dearest\nAliases: Gf, Fair Maiden, Ugly Boring Teenager, Chuckletits, Bitch\nAge: 19 - Species: Demon\nVA: StatureGuy (GIniquitous)
+				desc.text = "Full name: Gigi Dearest\nAliases: Gf, Fair Maiden, Ugly Boring Teenager, Chuckletits, Bitch\nAge: 19 - Species: Demon\nVA: StatureGuy
 					\nA Lost, curious, but way smarter counterpart of the original girlfriend who just wants to get back to her Boyfriend (kinda).
 					\n'That's how you do it!'";
 				
@@ -695,7 +695,7 @@ class InfoState extends MusicBeatState
 			case 'aileen':
 				titleText.text = "Aileen";
 
-				desc.text = "Full name: Aileen Polostar\nAliases: My Highest Assistant, AILEEN, Smokin Assistant\nAge: 24 - Species:Human - Height: 5'2\nVA: (New) Gentile | (Old) Riyu
+				desc.text = "Full name: Aileen Polostar\nAliases: My Highest Assistant, AILEEN, Smokin Assistant\nAge: 24 - Species:Human - Height: 5'2\nVA: (New) Kitty | (Old) Riyu
 				\nMarco's loyal assistant who fixes schedules and organizes her boss's daily routine of being an asshole. She sometimes gets more credit on being the most patient person on the world.					
 				\n'Contrary to popular belief, I'm not smarter than my boss. I only use my brain more than his.'";
 
@@ -828,7 +828,7 @@ class InfoState extends MusicBeatState
 				{
 					titleText.text = "Narrin";
 
-					desc.text = "Real Name: Nadia Baroque\nAliases: The Jester, 2nd Dweller, Clown, Pink-Ass, Toy Maker, The Puppeteer\nAge: 105 - Species: Humanoid Entity\nVA: D3MON1X_
+					desc.text = "Real Name: Nadia Baroque\nAliases: The Jester, 2nd Dweller, Clown, Pink-Ass, Toy Maker, The Puppeteer\nAge: 105 - Species: Humanoid Entity\nVA: Kitty
 					\nThe second dweller of the unnamed dimension, who loves to play with her victims before turning them into her slave puppets, who resemble and think like her. The victim is aware that this is happening real time.
 					\n'WELL SO FAR, IM JUST A CHARACTER'";
 				}
@@ -1090,7 +1090,7 @@ class InfoState extends MusicBeatState
 				{	
 					titleText.text = "Asul";
 
-					desc.text = "Real Name: Kiana\nAliases: Favorite Sister, Fatty, Chubs, Blue, Tails, Bon-Bon, Shy \nAge: ???\nSpecies: Part Entity Creature | Part Ancient Deity \nHeight: 4'11 (Default Form) | 353 Ft (Eldritch form)
+					desc.text = "Real Name: Kiana\nAliases: Favorite Sister, Fatty, Chubs, Blue, Tails, Bon-Bon, Shy \nAge: ???\nSpecies: Part Entity Creature | Part Ancient Deity \nHeight: 4'11 (Default Form) | 353 Ft (Eldritch form)\nVA: D3MON1X_
 								\nDraco Kiana's Shy but kind counterpart who loves Reading books and Dislikes Thunder.
 								\n'I have the ability to wipe out all of humanity, but I won't, because that's not very nice..'";
 				}
@@ -1139,7 +1139,7 @@ class InfoState extends MusicBeatState
 
 					desc.text = "Real Name: Tactical Cupcakes\nAge: in her 20s\nAliases: Bestie, Greatest in (Insert Game here), TC, Tac, Tounge Champion, Bitch, Muted Les-Biatch, Mutey\nSpecies: Human \nHeight: 5'10
 								\nA British Girl who loves hanging out with her friends and playing her own content.
-								\n'That Marco guy is Discord incarnate, you know what's in discord, my Server link is inthedescriptionbytheway'";
+								\n'That Marco guy is Discord incarnate, you know what's in discord? My Server! linkisinthedescriptionbytheway'";
 				}
 				else
 				{
@@ -1154,7 +1154,7 @@ class InfoState extends MusicBeatState
 
 					desc.text = "Full Name: Marx Abigasshole\nAge: 40 \nAliases: Villanous Worker drone, Sir, Profanity Machine, Mr.'No one is ever calling you that'\nSpecies: Worker drone - Height: 3ft\nChromatic Voice: StatureGuy
 								\nThe very first worker drone that is powered by radioactive human piss
-								\n'Would be funny if there was a human counter of myself'";
+								\n'Would be funny if there was a human counterpart of myself'";
 				}
 				else
 				{
