@@ -50,6 +50,7 @@ class PromotionState extends MusicBeatState
 
     var modSelected:Array<String> = [
         'pop',
+        'vskyu',
         'cross',
         'groovin',
         'secretGarden',
@@ -211,6 +212,8 @@ class PromotionState extends MusicBeatState
             {
                 case 'pop':
                     CoolUtil.browserLoad('https://gamebanana.com/mods/479432');
+                case 'vskyu':
+                    CoolUtil.browserLoad('https://gamebanana.com/mods/623853');
                 case 'cross':
                     CoolUtil.browserLoad('https://gamebanana.com/mods/407057');
                 case 'groovin':
@@ -291,6 +294,8 @@ class PromotionState extends MusicBeatState
             {
                 case 'pop':
                     titleText.text = "Price of Progress";
+                case 'vskyu':
+                    titleText.text = "VS Kyu Re-Energized";
                 case 'cross':
                     titleText.text = "Head Honcho Havoc";
                 case 'groovin':
