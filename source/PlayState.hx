@@ -4159,8 +4159,19 @@ class PlayState extends MusicBeatState
 				prevCamFollow = camFollow;
 				prevCamFollowPos = camFollowPos;
 					
-				if (PlayState.mayhemPlaylist[songSelected] == "libidinousness" && ClientPrefs.performanceWarning) PlayState.SONG = Song.loadFromJson('libidinousness-villainousoptimized', 'libidinousness');
-				else PlayState.SONG = Song.loadFromJson(PlayState.mayhemPlaylist[songSelected] + difficulty, PlayState.mayhemPlaylist[songSelected]);
+				if (PlayState.mayhemSongsPlayed > 10 && FlxG.random.int(1, 100) == 50)
+				{
+					PlayState.SONG.song = "Iniquitous";
+					CoolUtil.difficulties = CoolUtil.mainWeekDifficulties.copy();
+					PlayState.storyDifficulty = PlayState.injectionDifficulty = 2;
+					var difficulty:String = CoolUtil.getDifficultyFilePath();
+					trace("Loading Changed Song: " + Paths.formatToSongPath(SONG.song) + difficulty);
+				}
+				else
+				{
+					if (PlayState.mayhemPlaylist[songSelected] == "libidinousness" && ClientPrefs.performanceWarning) PlayState.SONG = Song.loadFromJson('libidinousness-villainousoptimized', 'libidinousness');
+					else PlayState.SONG = Song.loadFromJson(PlayState.mayhemPlaylist[songSelected] + difficulty, PlayState.mayhemPlaylist[songSelected]);
+				}
 
 				// Character Change
 				switch(PlayState.mayhemPlaylist[songSelected])
