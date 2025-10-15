@@ -20,7 +20,7 @@ local chalBackUp = {
 	'setHealth',
 	'noGhostTap'
 }
-local toUseChallenges = 2
+local toUseChallenges = 0
 local toUseCombinations = 6
 local curChallenge
 local curChallengeBonus
@@ -32,9 +32,13 @@ local healthDamage
 local healthGoal
 
 local allowCombo = false
+local allowChallenges = false
 
 function onCreatePost()
 	if isMayhemMode and getPropertyFromClass('PlayState', 'mayhemSongsPlayed') >= toUseChallenges then
+		if getRandomInt(1, 3) == 2 then return end
+
+		allowChallenges = true
 		if getPropertyFromClass('ClientPrefs', 'buff1Selected') == true or getPropertyFromClass('ClientPrefs', 'buff2Selected') == true 
 		or getPropertyFromClass('ClientPrefs', 'buff3Selected') == true then
 			setPropertyFromClass('ClientPrefs', 'buff1Active', false)
@@ -306,7 +310,7 @@ end
 local showChal = 2
 local healthDamageCut = false
 function onUpdate()
-	if isMayhemMode and getPropertyFromClass('PlayState', 'mayhemSongsPlayed') >= toUseChallenges then
+	if allowChallenges then
 		-- Challenge text shit
 		if showChal == 2 then
 			showChal = 1
@@ -401,7 +405,7 @@ function onUpdate()
 end
 
 function noteMiss(id, direction, noteType, isSustainNote)
-	if isMayhemMode and getPropertyFromClass('PlayState', 'mayhemSongsPlayed') >= toUseChallenges then
+	if allowChallenges then
 		if not isSustainNote and challenges[curChallenge] == 'moreHealthDamage' and getPropertyFromClass('ClientPrefs', 'buff3Active') == false then
 			setProperty('health', getHealth() - healthDamage)
 		end
@@ -414,7 +418,7 @@ function noteMiss(id, direction, noteType, isSustainNote)
 end
 
 function onEndSong()
-	if isMayhemMode and getPropertyFromClass('PlayState', 'mayhemSongsPlayed') >= toUseChallenges then
+	if allowChallenges then
 		if challenges[curChallenge] == 'rating' then
 			if rating < (rateNum / 100) then
 				setProperty('health', 0)
