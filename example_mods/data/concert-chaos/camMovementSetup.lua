@@ -6,6 +6,7 @@ local camVariables = {
 }
 
 function onCreate()
+	setGlobalFromScript("scripts/Camera Movement", 'flipOppMovement', true)
 	callScript("scripts/Camera Movement", "setCameraMovement", {camVariables.camOffsets, camVariables.ofs, camVariables.noMove, camVariables.camZooms})
 
 	callScript("scripts/Camera Movement", "addExtraCamera", {"M-Chan", 560, 320, "managerSoloNotes", nil, true})
@@ -67,4 +68,9 @@ function onStepHit()
 		callScript("scripts/Camera Movement", "setCameraProperty", {"gfCamera", "875, 280"})
 		setGlobalFromScript("scripts/Camera Movement", "focusOnGF", true)
 	end
+end
+
+function opponentNoteHit(id, dir, n, sus)
+	local flipCheck = (dadName =='marcoCCP1' or dadName == 'marcoCCP2' or dadName == 'marcoCCP3') and n == ""
+	setGlobalFromScript("scripts/Camera Movement", 'flipOppMovement', flipCheck)
 end

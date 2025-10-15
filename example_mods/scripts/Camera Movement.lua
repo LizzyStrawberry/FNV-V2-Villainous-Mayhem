@@ -44,6 +44,9 @@ allowAngleShift = true
 allowZoomShifts = false
 allowGF = false
 
+flipPlayerMovement = false
+flipOppMovement = false
+
 -- Global Anims to check (so you can modify em on any other data file)
 bfIdles = {'idle', 'danceLeft', 'danceRight'}
 dadIdles = {'idle', 'danceLeft', 'danceRight'}
@@ -304,19 +307,19 @@ function opponentNoteHit(id, direction, noteType, isSustainNote)
 			checkNotePress("dad", noteType)
 			
 			if not focusOnGF and followExtraChar and not extraCameraProperties[curEXSinging.."isPlayer"] and curEXSinging ~= "" then
-				camMove("extraChar", direction % 4)
+				camMove("extraChar", direction % 4, false)
 						
 				if allowZoomShifts then setZoom(extraCameraProperties[curEXSinging.."zoomPos"]) end
 			elseif followBoth and gfSide == 'opponent' then
-				camMove("bothEnemies", direction % 4)
+				camMove("bothEnemies", direction % 4, false)
 				
 				if allowZoomShifts then	setZoom(1) end
 			elseif followGF and gfSide == "opponent" then
-				camMove("gf", direction % 4)
+				camMove("gf", direction % 4, false)
 
 				if allowZoomShifts then	setZoom(3) end
 			else
-				camMove("dad", direction % 4)
+				camMove("dad", direction % 4, false)
 				
 				if allowZoomShifts then	setZoom(1) end
 			end
@@ -337,19 +340,19 @@ function goodNoteHit(id, direction, noteType, isSustainNote)
 			checkNotePress("boyfriend", noteType)
 			
 			if not focusOnGF and followExtraChar and extraCameraProperties[curEXSinging.."isPlayer"] and curEXSinging ~= "" then
-				camMove("extraChar", direction % 4)
+				camMove("extraChar", direction % 4, true)
 						
 				if allowZoomShifts then setZoom(extraCameraProperties[curEXSinging.."zoomPos"]) end
 			elseif followBoth and gfSide == 'player' then
-				camMove("bothPlayers", direction % 4)
+				camMove("bothPlayers", direction % 4, true)
 				
 				if allowZoomShifts then setZoom(2) end
 			elseif followGF and gfSide == "player" then
-				camMove("gf", direction % 4)
+				camMove("gf", direction % 4, true)
 				
 				if allowZoomShifts then setZoom(3) end
 			else		
-				camMove("bf", direction % 4)
+				camMove("bf", direction % 4, true)
 				
 				if allowZoomShifts then setZoom(2) end
 			end
@@ -394,7 +397,7 @@ function checkNotePress(char, noteType)
 	end
 end
 
-function camMove(character, direction)
+function camMove(character, direction, isPlayer)
 	local x, y = 0, 0
 	if character == "extraChar" and curEXSinging ~= "" then
 		x, y = charOffsets[curEXSinging.."X"], charOffsets[curEXSinging.."Y"]
@@ -408,10 +411,17 @@ function camMove(character, direction)
 		x, y = charOffsets[character.."X"], charOffsets[character.."Y"]
 	end
 
-	if direction == 0 then x = x - offset
-	elseif direction == 1 then y = y + offset
-	elseif direction == 2 then y = y - offset
-	elseif direction == 3 then x = x + offset end
+	if (flipPlayerMovement and isPlayer) or (flipOppMovement and not isPlayer) then
+		if direction == 0 then x = x + offset
+		elseif direction == 1 then y = y - offset
+		elseif direction == 2 then y = y + offset
+		elseif direction == 3 then x = x - offset end
+	else
+		if direction == 0 then x = x - offset
+		elseif direction == 1 then y = y + offset
+		elseif direction == 2 then y = y - offset
+		elseif direction == 3 then x = x + offset end
+	end
 	
 	triggerEvent("Camera Follow Pos", x, y)
 end

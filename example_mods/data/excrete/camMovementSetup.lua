@@ -22,7 +22,8 @@ function opponentNoteHit(id, direction, noteType, isSustainNote)
 		triggerEvent('Change Icon', 'P2, marcussyExcrete, 393939')
 	end
 	
-	if noteType == '' and not (gfSection or noteType == "GF Sing") then
-		triggerEvent('Screen Shake', '0.4, 0.003', '0.4, 0.003')
-	end
+	local marcoSing = noteType == '' and not (gfSection or noteType == "GF Sing")
+	setGlobalFromScript("scripts/Camera Movement", 'flipOppMovement', marcoSing)
+	
+	if marcoSing then triggerEvent('Screen Shake', '0.4, 0.003', '0.4, 0.003') end
 end

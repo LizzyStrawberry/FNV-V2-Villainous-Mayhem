@@ -34,3 +34,7 @@ function onBeatHit()
 		callScript("scripts/Camera Movement", "setCameraProperty", {"dadCamera", "1000, 460"})
 	end
 end
+
+function opponentNoteHit(id, dir, n, sus)
+	setGlobalFromScript("scripts/Camera Movement", 'flipOppMovement', (n == "GF Sing") and false or true)
+end

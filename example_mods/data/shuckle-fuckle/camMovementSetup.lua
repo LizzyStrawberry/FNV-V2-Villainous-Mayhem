@@ -7,6 +7,7 @@ local camVariables = {
 
 function onCreate()
 	setGlobalFromScript("scripts/Camera Movement", 'gfSide', "player")
+	setGlobalFromScript("scripts/Camera Movement", 'flipOppMovement', true)
 	callScript("scripts/Camera Movement", "setCameraMovement", {camVariables.camOffsets, camVariables.ofs, camVariables.noMove, camVariables.camZooms})
 end
 
@@ -43,4 +44,9 @@ function onBeatHit()
 		setGlobalFromScript("scripts/Camera Movement", 'followChars', false)
 		setProperty('defaultCamZoom', 0.8)
 	end
+end
+
+function opponentNoteHit(id, dir, nt, sus)
+	local noteCheck = (nt ~= "GF Sing" and not gfSection)
+	setGlobalFromScript("scripts/Camera Movement", 'flipOppMovement', noteCheck)
 end

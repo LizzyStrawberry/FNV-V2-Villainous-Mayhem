@@ -6,6 +6,8 @@ local camVariables = {
 }
 
 function onCreate()
+	setGlobalFromScript("scripts/Camera Movement", 'flipOppMovement', true)
+	setGlobalFromScript("scripts/Camera Movement", "specialAnims", {"chuckletits"})
 	callScript("scripts/Camera Movement", "setCameraMovement", {camVariables.camOffsets, camVariables.ofs, camVariables.noMove, camVariables.camZooms})
 end
 
