@@ -471,7 +471,7 @@ class InfoState extends MusicBeatState
 						case 'beatrice':
 							CoolUtil.browserLoad('https://docs.google.com/document/d/1zdtYnemJ1gRQT1QTce3QSYLv2IJrF8Nc-ePxJNBMM1E/edit?usp=sharing');
 						case 'evelyn':
-							CoolUtil.browserLoad('https://docs.google.com/document/d/1zdtYnemJ1gRQT1QTce3QSYLv2IJrF8Nc-ePxJNBMM1E/edit?usp=sharing');
+							CoolUtil.browserLoad('https://docs.google.com/document/d/1TApaUIqYeetEIuWsBe0q9kAfv-DtiXFLZcFfXlRh7so/edit?usp=sharing');
 						case "yaku":
 							CoolUtil.browserLoad('https://docs.google.com/document/d/1ogc4LcCLsT0WCi_KyVAEbDMVvOL7mAxgy0KHtM7gOjM/edit?usp=sharing');
 						case 'kiana':
@@ -602,7 +602,8 @@ class InfoState extends MusicBeatState
 					FlxTween.tween(scrollAsset, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
 					FlxTween.tween(scrollDesc, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
 					scrollDesc.size = 38;
-					scrollDesc.text = "I am the bitch's lore, nice to meet you\nlmao";
+					scrollDesc.text = "Kiana used to be a singular Higher\nbeing outside of the known universe,\nthe Workshop realm.\nShe was tasked to put 3 things on\neach of her master's creations:\nThe ability to love, the ability to be Kind,\nand the ability to give Justice.
+					\n[Click <G>here<G> to view the full extension]";
 				}
 				else
 				{
