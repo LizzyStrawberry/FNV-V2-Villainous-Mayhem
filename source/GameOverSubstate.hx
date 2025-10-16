@@ -184,13 +184,10 @@ class GameOverSubstate extends MusicBeatSubstate
 						if (FlxG.sound.music != null)
 							FlxG.sound.music.stop();
 
-						PlayState.deathCounter = 0;
-						PlayState.inPlayState = false;
-						PlayState.seenCutscene = false;
-						PlayState.chartingMode = false;
-						PlayState.checkForPowerUp = false;
-						
-						WeekData.loadTheFirstEnabledMod();
+					PlayState.deathCounter = 0;
+					PlayState.seenCutscene = PlayState.chartingMode = PlayState.checkForPowerUp = PlayState.inPlayState = false;
+					
+					WeekData.loadTheFirstEnabledMod();
 
 						ClientPrefs.lowQuality = false;
 						if (PlayState.isStoryMode){

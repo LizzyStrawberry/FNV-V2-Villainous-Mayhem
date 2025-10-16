@@ -47,6 +47,7 @@ class LoadingState extends MusicBeatState
 		'TIP:\nYou can always play the songs without mechanics to progress too! ..Just not in Iniquitous Mode...or Injection Mode... or Mayhem Mode.',
 		'TIP:\nMimiko LOVES tokens!',
 		'TIP:\nAmong Us.',
+		'TIP:\nHaving trouble loading assets? Try GPU Caching! (It could help you a lot!)',
 		'TIP:\nPlay on 60 - 120 FPS for the best experience!',
 		'TIP:\nRemember to set up your keybinds in the Options menu!',
 		'TIP:\nCharms consume 1 token each time you use one, so make sure you have tokens before using one!',
