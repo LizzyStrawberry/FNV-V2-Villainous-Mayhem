@@ -557,7 +557,7 @@ class ShopState extends MusicBeatState
 							if(TouchUtil.pressAction(assistant) && !ClientPrefs.luckSelected
 							&& (!TouchUtil.overlaps(luckOptionSlots.members[0]) && !TouchUtil.overlaps(luckOptionSlots.members[1]) && !TouchUtil.overlaps(luckOptionSlots.members[2])))
 							{
-								dialogueNumber = FlxG.random.int(1, 29);
+								dialogueNumber = FlxG.random.int(1, 40);
 
 								switch (dialogueNumber)
 								{
@@ -590,6 +590,17 @@ class ShopState extends MusicBeatState
 									case 27: dialogueText = "Don't worry, I got an eternity worth of living. Can you say the same?";
 									case 28: dialogueText = "I go to college and make u proud!";
 									case 29: dialogueText = "Looking to protect your self, or deal some damage?";
+									case 30: dialogueText = "I used have a Religious Fanatic friend.\nI wonder where she is now..";
+									case 31: dialogueText = "Papers? I have a lot of those stored in my Cellar-\nI-I mean Attic.";
+									case 32: dialogueText = "Trouble's PRESSING on you and still come UP to the top is a big W!!";
+									case 33: dialogueText = "if you see any other vendors, don't buy from them.\nJust gamble from me.";
+									case 34: dialogueText = "The Cellar hasn't been cleaned so don't go down there.\nWait, what Cellar?";
+									case 35: dialogueText = "There is no \"upstairs\", what are you talking about?";
+									case 36: dialogueText = "Father would be so proud of his vessel.";
+									case 37: dialogueText = "Use charms, trigger that Mayhem thing and turn the tide!";
+									case 38: dialogueText = "Oh the Dearest Family, nothing but inspiration!";
+									case 39: dialogueText = "Mr. Mixter not only makes good drinks, but he has some fire beats too!";
+									case 40: dialogueText = "Explode Infants!";
 								}
 
 								startDialogue("mimiko", dialogueText);
@@ -1638,7 +1649,7 @@ class ShopState extends MusicBeatState
 			case 16:
 				infoTitle.text = "Egg";
 				infoText.text = "It's... an egg.\nMaybe not good for consuming it yourself, but someone else might be able to do so!\n-----------------------------------------
-					\nItem Cost: 3 | Your Tokens: " + ClientPrefs.tokens + " | Eggs Owned: " + ClientPrefs.eggs;
+					\nItem Cost: 2 | Your Tokens: " + ClientPrefs.tokens + " | Eggs Owned: " + ClientPrefs.eggs;
 
 			case 17:
 				infoTitle.text = "Resistance Charm";
@@ -1722,9 +1733,9 @@ class ShopState extends MusicBeatState
 				}
 
 			case 16:
-				if (ClientPrefs.tokens >= 3)
+				if (ClientPrefs.tokens >= 2)
 				{
-					ClientPrefs.tokens -= 3;
+					ClientPrefs.tokens -= 2;
 					ClientPrefs.eggs += 1;
 					ClientPrefs.saveSettings();
 
