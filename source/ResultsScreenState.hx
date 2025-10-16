@@ -78,6 +78,34 @@ class ResultsScreenState extends MusicBeatState
     var previousColor:String;
     var powerUpBonus:Int = 0;
 
+    function rerollCharacter():Int
+    {
+        var char:Int = FlxG.random.int(0, mayhemPlayableChars.length - 1);
+        switch(mayhemPlayableChars[curChar].toLowerCase())
+        {
+            case "picoinfo":
+                if (!ClientPrefs.kianaWeekFound) return -1;
+            case "tcinfo":
+                if (!ClientPrefs.tacticalMishapPlayed) return -1;
+            case "lillieinfo":
+                if (!ClientPrefs.rainyDazeViewed) return -1;
+             case "kyuinfo":
+                if (!ClientPrefs.kyuPlayed) return -1;
+             case "lilyinfo":
+                if (!ClientPrefs.ccPlayed) return -1;
+             case "managerinfo":
+                if (!ClientPrefs.ccPlayed) return -1;
+             case "porkchopinfo":
+                if (!ClientPrefs.morkyWeekFound) return -1;
+             case "ourpleinfo":
+                if (!ClientPrefs.ourplePlayed) return -1;
+            case "uziinfo":
+                if (!ClientPrefs.breacherPlayed) return -1;
+        }
+
+        return char;
+    }
+
     override public function create()
     {
         #if DISCORD_ALLOWED
@@ -215,24 +243,12 @@ class ResultsScreenState extends MusicBeatState
 
             if (PlayState.isStoryMode && ratingText.text != "Fail..   Fail..   Fail..   Fail..   Fail..   Fail..   Fail..   Fail..")
             {
-                switch(ClientPrefs.crashWeek)
-                {
-                    case 0 | 1 | 2 | 3 | 7:
-                        curChar = 0;
-                    case 4:
-                        curChar = 1;
-                    case 5:
-                        curChar = 2;
-                    case 6:
-                        curChar = 3;
-                    default:
-                        curChar = 0;
+                curChar = 0;
 
-                    char.loadGraphic(Paths.image('characterInfo/' + mayhemPlayableChars[curChar]));
-                    char.scale.set(mayhemPlayableCharsSizes[curChar], mayhemPlayableCharsSizes[curChar]);
-                    char.x = mayhemPlayableCharsXY[curChar][0];
-                    char.y = mayhemPlayableCharsXY[curChar][1];
-                }
+                char.loadGraphic(Paths.image('characterInfo/' + mayhemPlayableChars[curChar]));
+                char.scale.set(mayhemPlayableCharsSizes[curChar], mayhemPlayableCharsSizes[curChar]);
+                char.x = mayhemPlayableCharsXY[curChar][0];
+                char.y = mayhemPlayableCharsXY[curChar][1];
             }
         }      
         else
@@ -252,7 +268,12 @@ class ResultsScreenState extends MusicBeatState
             }
             else
             {
-                curChar = FlxG.random.int(0, mayhemPlayableChars.length - 1);
+                do
+                {
+                    curChar = rerollCharacter();
+                }
+                while (curChar == -1);
+                
                 char = new FlxSprite(0, 0).loadGraphic(Paths.image('characterInfo/' + mayhemPlayableChars[curChar]));
                 char.scrollFactor.set(0, 0);
                 char.scale.set(mayhemPlayableCharsSizes[curChar], mayhemPlayableCharsSizes[curChar]);
