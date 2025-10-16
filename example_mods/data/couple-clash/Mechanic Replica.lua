@@ -78,11 +78,11 @@ function createMayhemBar()
 	addLuaSprite('mayhemText', true)
 		
 	if downscroll then
-		setProperty('reloadBar.y', 110)
-		setProperty('mayhembackBar.y', 110)
-		setProperty('mayhemPads.y', 110)
-		setProperty('mayhemBar.y', 110)
-		setProperty('mayhemText.y', 110)
+		setProperty('reloadBar.y', 130)
+		setProperty('mayhembackBar.y', 130)
+		setProperty('mayhemPads.y', 130)
+		setProperty('mayhemBar.y', 130)
+		setProperty('mayhemText.y', 130)
 	end
 end
 
@@ -130,7 +130,7 @@ function onBeatHit()
 		allowHealCharm = true
 	end
 	if curBeat == 158 then
-		doTweenY("mayhemY", "mayhembackBar", 530, 0.75 / playbackRate, "circOut")
+		doTweenY("mayhemY", "mayhembackBar", downscroll and 110 or 530, 0.75 / playbackRate, "circOut")
 		doTweenAlpha("mayhemAppear", "mayhembackBar", 1, 0.75 / playbackRate, "circOut")
 	end
 	if curBeat == 160 then

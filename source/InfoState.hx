@@ -586,8 +586,9 @@ class InfoState extends MusicBeatState
 					FlxTween.tween(blackOut, {alpha: 0.8}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
 					FlxTween.tween(scrollAsset, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
 					FlxTween.tween(scrollDesc, {alpha: 1}, 0.8, {ease: FlxEase.circOut, type: PERSIST});
-					scrollDesc.size = 38;
-					scrollDesc.text = "I am the yaku's lore, nice to meet you\nlmao";
+					scrollDesc.size = 32;
+					scrollDesc.text = "Yaku’s childhood was rough.\nHe was born in a very poor family and had 7 brothers,\nwith him being the youngest, living in a makeshift house.\nHe was constantly being neglected by his single mother\nand had difficulties making friends because\nof his disfigured face.
+					\n[Click <G>here<G> to view the full extension]";
 				}
 				else
 				{
