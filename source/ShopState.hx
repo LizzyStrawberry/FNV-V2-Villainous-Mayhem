@@ -456,6 +456,10 @@ class ShopState extends MusicBeatState
 
 	//Zeel's other achievements
 	var touchedBoobies:Int = 0;
+
+	// Press Cooldown
+	var buttonPressed:Int = 0;
+	var predictMove:String = "";
 	override function update(elapsed:Float)
 	{
 		var back:Bool = controls.BACK || FlxG.mouse.justPressedRight;
@@ -518,7 +522,7 @@ class ShopState extends MusicBeatState
 					else if (ClientPrefs.luckSelected && !ClientPrefs.choiceSelected) exitShop("luckSection")
 					//Sell Selection
 					else if (ClientPrefs.sellSelected && !ClientPrefs.itemInfo) exitShop("sellSection");
-					else if (ClientPrefs.choiceSelected || choiceNumber == 4)  //DON'T GO BACK IF YOU'RE USING THE LUCK SECTION
+					else if (ClientPrefs.choiceSelected || (ClientPrefs.choiceSelected && choiceNumber == 4))  //DON'T GO BACK IF YOU'RE USING THE LUCK SECTION
 					{
 						//Do nothing lmao
 					}
@@ -855,49 +859,62 @@ class ShopState extends MusicBeatState
 				{
 					if (controls.UI_LEFT_P && !ClientPrefs.sellSelected && currentShop == "mimiko")
 					{
-						allowInput = false;
-						merchantDialogue.skip();
-						assistantReset();
-						currentShop = "zeel";
+						if (buttonPressed > 0 && predictMove != 'left') buttonPressed = 0;
 
-						FlxG.sound.play(Paths.sound('confirmMenu'));
-						FlxTween.tween(mainBG, {x: 2000}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						luckOptionSlots.forEach(function(button:FlxSprite)
+						if (buttonPressed < 3)
 						{
-							FlxTween.tween(button, {x: 2670}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						});
-						FlxTween.tween(assistant, {x: 2070}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						FlxTween.tween(merchantDialogue, {x: 2000}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						FlxTween.tween(lights, {x: 2070}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						FlxTween.tween(transitionSprite, {x: 1500}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						FlxTween.tween(bulb, {x: 1600}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-							
-						new FlxTimer().start(2, function (_)
+							predictMove = "left";
+							buttonPressed += 1;
+							FlxG.sound.play(Paths.sound('scrollMenu'));
+						}
+						else
 						{
-							sellSlots.forEach(function(butt:FlxSprite)
+							allowInput = false;
+							merchantDialogue.skip();
+							assistantReset();
+							currentShop = "zeel";
+
+							FlxG.sound.play(Paths.sound('confirmMenu'));
+							FlxTween.tween(mainBG, {x: 2000}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+							luckOptionSlots.forEach(function(button:FlxSprite)
 							{
-								FlxTween.tween(butt, {x: 200}, 1.8 + (butt.ID * 0.04), {ease: FlxEase.cubeInOut, type: PERSIST});
+								FlxTween.tween(button, {x: 2670}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
 							});
-							FlxTween.tween(chestHitbox, {x: MobileUtil.fixX(780)}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-							FlxTween.tween(assistantSecret, {x: MobileUtil.fixX(740)}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-							FlxTween.tween(secretMerchantDialogue, {x: 130}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
-						});
-									
-						new FlxTimer().start(3.7, function (_) {
-							allowInput = true;
-							if (!ClientPrefs.secretShopShowcased)
+							FlxTween.tween(assistant, {x: 2070}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+							FlxTween.tween(merchantDialogue, {x: 2000}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+							FlxTween.tween(lights, {x: 2070}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+							FlxTween.tween(transitionSprite, {x: 1500}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+							FlxTween.tween(bulb, {x: 1600}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+								
+							new FlxTimer().start(2, function (_)
 							{
-								startDialogue("zeel", "Why hello to my favourite customer~! [Press Enter To Continue]");
-								pressedEnter = 0;
-							}
-							else startDialogue("zeel", "Hello Handsome~~");
-							#if DISCORD_ALLOWED
-							DiscordClient.changePresence("In Zeel's Secret Shop", null);
-							#end
-						});
+								sellSlots.forEach(function(butt:FlxSprite)
+								{
+									FlxTween.tween(butt, {x: 200}, 1.8 + (butt.ID * 0.04), {ease: FlxEase.cubeInOut, type: PERSIST});
+								});
+								FlxTween.tween(chestHitbox, {x: MobileUtil.fixX(780)}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+							FlxTween.tween(assistantSecret, {x: MobileUtil.fixX(740)}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+								FlxTween.tween(secretMerchantDialogue, {x: 130}, 1.8, {ease: FlxEase.cubeInOut, type: PERSIST});
+							});
+										
+							new FlxTimer().start(3.7, function (_) {
+								allowInput = true;
+								if (!ClientPrefs.secretShopShowcased)
+								{
+									startDialogue("zeel", "Why hello to my favourite customer~! [Press Enter To Continue]");
+									pressedEnter = 0;
+								}
+								else startDialogue("zeel", "Hello Handsome~");
+								#if DISCORD_ALLOWED
+								DiscordClient.changePresence("In Zeel's Secret Shop", null);
+								#end
+							});
+						}
+						
 					}
 					if (controls.UI_RIGHT_P && !ClientPrefs.luckSelected && ClientPrefs.secretShopShowcased && currentShop == "zeel") // Return to normal shop
 					{
+						buttonPressed = 0; // Reset
 						allowInput = false;
 						secretMerchantDialogue.skip();
 						zeelReset();
@@ -943,27 +960,38 @@ class ShopState extends MusicBeatState
 					}
 					if (controls.UI_UP_P && currentShop == "mimiko" && !ClientPrefs.sellSelected && !ClientPrefs.luckSelected)
 					{
-						allowInput = true;
-						//Dialogue reset
-						merchantDialogue.skip();
-						FlxG.sound.play(Paths.sound('scrollMenu'));
+						if (buttonPressed > 0 && predictMove != 'up') buttonPressed = 0;
 
-						transitionSprite.alpha = 0;
-						FlxTween.tween(mainBG, {alpha: 0}, 1.2, {ease: FlxEase.cubeInOut, type: PERSIST});
-						luckOptionSlots.forEach(function(button:FlxSprite)
+						if (buttonPressed < 3)
 						{
-							FlxTween.tween(button, {alpha: 0}, 1.2, {ease: FlxEase.cubeInOut, type: PERSIST});
-						});
-						FlxTween.tween(assistant, {alpha: 0}, 1.2, {ease: FlxEase.cubeInOut, type: PERSIST});
-						FlxTween.tween(merchantDialogue, {alpha: 0}, 1.2, {ease: FlxEase.cubeInOut, type: PERSIST});
-						FlxTween.tween(lights, {alpha: 0}, 1.2, {ease: FlxEase.cubeInOut, type: PERSIST});
-						FlxTween.tween(bulb, {alpha: 0}, 1.2, {ease: FlxEase.cubeInOut, type: PERSIST});
+							predictMove = "up";
+							buttonPressed += 1;
+							FlxG.sound.play(Paths.sound('scrollMenu'));
+						}
+						else
+						{
+							allowInput = true;
+							//Dialogue reset
+							merchantDialogue.skip();
+							FlxG.sound.play(Paths.sound('scrollMenu'));
 
-						FlxG.sound.music.fadeOut(1.2);  
-							
-						new FlxTimer().start(1.3, function (tmr:FlxTimer) {
-							MusicBeatState.switchState(new LoreShop());
-						});
+							transitionSprite.alpha = 0;
+							FlxTween.tween(mainBG, {alpha: 0}, 1.2, {ease: FlxEase.cubeInOut, type: PERSIST});
+							luckOptionSlots.forEach(function(button:FlxSprite)
+							{
+								FlxTween.tween(button, {alpha: 0}, 1.2, {ease: FlxEase.cubeInOut, type: PERSIST});
+							});
+							FlxTween.tween(assistant, {alpha: 0}, 1.2, {ease: FlxEase.cubeInOut, type: PERSIST});
+							FlxTween.tween(merchantDialogue, {alpha: 0}, 1.2, {ease: FlxEase.cubeInOut, type: PERSIST});
+							FlxTween.tween(lights, {alpha: 0}, 1.2, {ease: FlxEase.cubeInOut, type: PERSIST});
+							FlxTween.tween(bulb, {alpha: 0}, 1.2, {ease: FlxEase.cubeInOut, type: PERSIST});
+
+							FlxG.sound.music.fadeOut(1.2);  
+								
+							new FlxTimer().start(1.3, function (tmr:FlxTimer) {
+								MusicBeatState.switchState(new LoreShop());
+							});
+						}
 					}
 				}
 			}
