@@ -47,7 +47,7 @@
 	<haxedef name='no-deprecation-warnings' />
 	
 	<!-- PSYCH ENGINE CUSTOMIZATION -->
-	<define name="DEBUG_ALLOWED"/>
+	<!--define name="DEBUG_ALLOWED"/-->
 	<define name="DISCORD_ALLOWED" if="desktop" />
 	<!--define name="STARTUP_CACHE"/--> <!-- DELETE THIS TO REMOVE CACHING AT THE START OF THE GAME -->
 	<define name="MODS_ALLOWED" if="desktop" />
