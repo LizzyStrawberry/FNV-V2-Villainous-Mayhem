@@ -12,8 +12,8 @@ function onCreate()
 	if mechanics then
 		precacheSound('checkmark')
 		precacheSound('checkmarkReverse')
-		speed = string.format("%.2f",getRandomFloat(1.0, 4.5))
-		qteGoalScale = string.format("%.2f",getRandomFloat(0.2, 0.8))
+		speed = string.format("%.2f",getRandomFloat(2.5, 4.5))
+		qteGoalScale = string.format("%.2f", getRandomFloat(0.45, 0.8))
 		--debugPrint('QTE SCALE: '..qteGoalScale)
 		
 		beatSelected = getRandomInt(1, #(beatsAllowed))
@@ -46,7 +46,7 @@ function onCreate()
 		setScrollFactor('Static', 0, 0)
 		setObjectCamera('Static', 'hud')
 		addLuaSprite('Static', true)
-		end
+	end
 end
 
 local autoPlay = false
@@ -183,8 +183,8 @@ end
 function onTweenCompleted(tag)
 	if mechanics then
 		if tag == 'qteGoalAlphaFadeOut' then
-			speed = string.format("%.2f",getRandomFloat(1.0, 4.5))
-			qteGoalScale = string.format("%.2f", getRandomFloat(0.1, 0.8))
+			speed = string.format("%.2f",getRandomFloat(2.5, 4.5))
+			qteGoalScale = string.format("%.2f", getRandomFloat(0.45, 0.8))
 			
 			beatSelected = getRandomInt(1, #(beatsAllowed))
 			beatStaticSelected = getRandomInt(1, #(beatsStaticAllowed))

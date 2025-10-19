@@ -20,7 +20,7 @@ local tipShit =
 {
 	numOfTips = 1,
     title1 = "<R>RESPONSE<R>",
-    tip1 = "<R>As soon as the circles collide, TOUCH DODGE.\nFailure results in immaculate damage.<R>",
+    tip1 = "<R>As soon as the circles collide, TOUCH DODGE.\nFailure results in tremendous damage.<R>",
 	tipIcon1 = "iniquitousRings"
 }
 

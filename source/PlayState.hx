@@ -3793,16 +3793,13 @@ class PlayState extends MusicBeatState
 					}
 					else
 					{
-						if (Paths.formatToSongPath(SONG.song) == 'villainy' || Paths.formatToSongPath(SONG.song) == 'point-blank' || Paths.formatToSongPath(SONG.song) == 'libidinousness'
-							|| Paths.formatToSongPath(SONG.song) == 'excrete' || Paths.formatToSongPath(SONG.song) == 'iniquitous' || Paths.formatToSongPath(SONG.song) == 'marauder')
+						var bossSong:Bool = (Paths.formatToSongPath(SONG.song) == 'villainy' || Paths.formatToSongPath(SONG.song) == 'point-blank' || Paths.formatToSongPath(SONG.song) == 'libidinousness' || Paths.formatToSongPath(SONG.song) == 'excrete' || Paths.formatToSongPath(SONG.song) == 'iniquitous' || Paths.formatToSongPath(SONG.song) == 'marauder');
+						var healthMult:Float = bossSong ? 0.9 : 0.5;
+
+						if (!ClientPrefs.buff3Active)
 						{
-							health -= 0.09 * healthLoss;
-							healthCheck -= 0.09 * healthLoss;
-						}
-						else
-						{
-							health -= 0.05 * healthLoss;
-							healthCheck -= 0.05 * healthLoss;
+							health -= healthMult * healthLoss;
+							healthCheck -= healthMult * healthLoss;
 						}
 					}
 				}
@@ -3816,16 +3813,13 @@ class PlayState extends MusicBeatState
 					}
 					else
 					{
-						if (Paths.formatToSongPath(SONG.song) == 'villainy' || Paths.formatToSongPath(SONG.song) == 'point-blank' || Paths.formatToSongPath(SONG.song) == 'libidinousness'
-							|| Paths.formatToSongPath(SONG.song) == 'excrete' || Paths.formatToSongPath(SONG.song) == 'iniquitous' || Paths.formatToSongPath(SONG.song) == 'marauder')
+						var bossSong:Bool = (Paths.formatToSongPath(SONG.song) == 'villainy' || Paths.formatToSongPath(SONG.song) == 'point-blank' || Paths.formatToSongPath(SONG.song) == 'libidinousness' || Paths.formatToSongPath(SONG.song) == 'excrete' || Paths.formatToSongPath(SONG.song) == 'iniquitous' || Paths.formatToSongPath(SONG.song) == 'marauder');
+						var healthMult:Float = bossSong ? 0.9 : 0.5;
+
+						if (!ClientPrefs.buff3Active)
 						{
-							health -= 0.09 * healthLoss;
-							healthCheck -= 0.09 * healthLoss;
-						}
-						else
-						{
-							health -= 0.05 * healthLoss;
-							healthCheck -= 0.05 * healthLoss;
+							health -= healthMult * healthLoss;
+							healthCheck -= healthMult * healthLoss;
 						}
 					}
 				}
@@ -5124,7 +5118,7 @@ class PlayState extends MusicBeatState
 		combo = 0;
 		if (isMayhemMode)
 		{
-			if (ClientPrefs.buff3Active != true)
+			if (!ClientPrefs.buff3Active)
 			{
 				health -= 1;
 				healthCheck -= 1;
@@ -5133,22 +5127,14 @@ class PlayState extends MusicBeatState
 		}
 		else
 		{
-			if (Paths.formatToSongPath(SONG.song) == 'villainy' || Paths.formatToSongPath(SONG.song) == 'point-blank' || Paths.formatToSongPath(SONG.song) == 'libidinousness'
-				|| Paths.formatToSongPath(SONG.song) == 'excrete' || Paths.formatToSongPath(SONG.song) == 'iniquitous' || Paths.formatToSongPath(SONG.song) == 'marauder')
+			var bossSong:Bool = (Paths.formatToSongPath(SONG.song) == 'villainy' || Paths.formatToSongPath(SONG.song) == 'point-blank' || Paths.formatToSongPath(SONG.song) == 'libidinousness' || Paths.formatToSongPath(SONG.song) == 'excrete' || Paths.formatToSongPath(SONG.song) == 'iniquitous' || Paths.formatToSongPath(SONG.song) == 'marauder');
+			var reduce:Float = 0.125 / ((ClientPrefs.resistanceCharm == 1) ? 2 : 1);
+			var healthMult:Float = daNote.missHealth + (bossSong ? reduce : 0);
+
+			if (!ClientPrefs.buff3Active)
 			{
-				if (ClientPrefs.buff3Active != true)
-				{
-					health -= (daNote.missHealth + 0.125) * healthLoss;
-					healthCheck -= (daNote.missHealth + 0.125) * healthLoss;
-				}
-			}
-			else
-			{
-				if (ClientPrefs.buff3Active != true)
-				{
-					health -= daNote.missHealth * healthLoss;
-					healthCheck -= daNote.missHealth * healthLoss;
-				}
+				health -= healthMult * healthLoss;
+				healthCheck -= healthMult * healthLoss;
 			}
 		}
 		
@@ -5161,8 +5147,7 @@ class PlayState extends MusicBeatState
 		//For testing purposes
 		//trace(daNote.missHealth);
 		songMisses++;
-		if (isInjectionMode)
-			injectionMisses++;
+		if (isInjectionMode) injectionMisses++;
 		vocals.volume = 0;
 		if(!practiceMode) songScore -= 10;
 
@@ -5209,22 +5194,14 @@ class PlayState extends MusicBeatState
 			}
 			else
 			{
-				if (Paths.formatToSongPath(SONG.song) == 'villainy' || Paths.formatToSongPath(SONG.song) == 'point-blank' || Paths.formatToSongPath(SONG.song) == 'libidinousness'
-					|| Paths.formatToSongPath(SONG.song) == 'excrete' || Paths.formatToSongPath(SONG.song) == 'iniquitous' || Paths.formatToSongPath(SONG.song) == 'marauder')
+				var bossSong:Bool = (Paths.formatToSongPath(SONG.song) == 'villainy' || Paths.formatToSongPath(SONG.song) == 'point-blank' || Paths.formatToSongPath(SONG.song) == 'libidinousness' || Paths.formatToSongPath(SONG.song) == 'excrete' || Paths.formatToSongPath(SONG.song) == 'iniquitous' || Paths.formatToSongPath(SONG.song) == 'marauder');
+				var reduce:Float = 0.125 / ((ClientPrefs.resistanceCharm == 1) ? 2 : 1);
+				var healthMult:Float = 0.04 + (bossSong ? reduce : 0);
+
+				if (!ClientPrefs.buff3Active)
 				{
-					if (!ClientPrefs.buff3Active)
-					{
-						health -= 0.075 * healthLoss;
-						healthCheck -= 0.075 * healthLoss;
-					}
-				}
-				else
-				{
-					if (!ClientPrefs.buff3Active)
-					{
-						health -= 0.05 * healthLoss;
-						healthCheck -= 0.05 * healthLoss;
-					}
+					health -= healthMult * healthLoss;
+					healthCheck -= healthMult * healthLoss;
 				}
 			}
 			
@@ -5664,6 +5641,8 @@ class PlayState extends MusicBeatState
 
 		FlxG.animationTimeScale = 1;
 		FlxG.sound.music.pitch = 1;
+		if (vocals != null) vocals.destroy();
+
 		super.destroy();
 	}
 

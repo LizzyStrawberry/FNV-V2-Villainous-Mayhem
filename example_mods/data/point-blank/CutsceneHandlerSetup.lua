@@ -19,7 +19,7 @@ local tipShit =
 {
 	numOfTips = 1,
     title1 = "<G>DOUBLE<G> ATTACK",
-    tip1 = "Watch out for Yaku's Double Attack!\nIt can hurt badly!",
+    tip1 = "Watch out for Yaku's Double Attack!\nIt can hurt badly!\nAs soon as the 3rd beat commences in his attack sequence, press DODGE!",
 	tipIcon1 = "yakuRings"
 }
 

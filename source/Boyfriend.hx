@@ -24,7 +24,7 @@ class Boyfriend extends Character
 
 			if (animation.curAnim.name.endsWith('miss') && animation.curAnim.finished && !debugMode)
 			{
-				if (PlayState.SONG.player1 == 'playablegf' && PlayState.healthCheck <= .399 && PlayState.inPlayState)
+				if (PlayState.SONG.player1 == 'playablegf' && PlayState.healthCheck <= .399 && PlayState.inPlayState && animation.curAnim.name.endsWith('ass'))
 					playAnim('idleass', true, false, 10);
 				else
 					playAnim('idle', true, false, 10);
