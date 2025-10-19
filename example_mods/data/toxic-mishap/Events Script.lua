@@ -24,7 +24,7 @@ function onUpdate()
 		doTweenAlpha('blackBg', 'blackBG', 1, 0.7 / playbackRate, 'circOut')
 		doTweenAlpha('hudAppear', 'camHUD', 0, 0.8 / playbackRate, 'cubeInOut')
 		for i = 0, 3 do
-			noteTweenAlpha('dadnotes'..i, i, 0.3, 1 / playbackRate, 'cubeInOut')
+			noteTweenAlpha("goodbyeNote"..i, i, 0, 1 / playbackRate, "cubeInOut")
 		end
 	end
 	if curBeat == 67 then

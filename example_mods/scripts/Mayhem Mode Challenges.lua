@@ -35,7 +35,7 @@ local allowCombo = false
 local allowChallenges = false
 
 function onCreate()
-	allowChallenges = (getPropertyFromClass('PlayState', 'mayhemSongsPlayed') >= toUseChallenges and getRandomInt(1, 5) == 2)
+	allowChallenges = (getPropertyFromClass('PlayState', 'mayhemSongsPlayed') >= toUseChallenges)
 end
 
 function onCreatePost()
