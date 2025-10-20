@@ -1099,7 +1099,7 @@ class InfoState extends MusicBeatState
 				else
 				{
 					titleText.text = "???????";
-					desc.text = "Unlock Fanfuck Forever First!";
+					desc.text = "Unlock It's Kiana First!";
 				}
 				allowLore = false;
 				

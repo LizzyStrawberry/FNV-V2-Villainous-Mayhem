@@ -83,24 +83,15 @@ class ResultsScreenState extends MusicBeatState
         var char:Int = FlxG.random.int(0, mayhemPlayableChars.length - 1);
         switch(mayhemPlayableChars[curChar].toLowerCase())
         {
-            case "picoinfo":
-                if (!ClientPrefs.kianaWeekFound) return -1;
-            case "tcinfo":
-                if (!ClientPrefs.tacticalMishapPlayed) return -1;
-            case "lillieinfo":
-                if (!ClientPrefs.rainyDazeViewed) return -1;
-             case "kyuinfo":
-                if (!ClientPrefs.kyuPlayed) return -1;
-             case "lilyinfo":
-                if (!ClientPrefs.ccPlayed) return -1;
-             case "managerinfo":
-                if (!ClientPrefs.ccPlayed) return -1;
-             case "porkchopinfo":
-                if (!ClientPrefs.morkyWeekFound) return -1;
-             case "ourpleinfo":
-                if (!ClientPrefs.ourplePlayed) return -1;
-            case "uziinfo":
-                if (!ClientPrefs.breacherPlayed) return -1;
+            case "picoinfo": if (!ClientPrefs.kianaWeekFound) return -1;
+            case "tcinfo": if (!ClientPrefs.tacticalMishapPlayed) return -1;
+            case "lillieinfo": if (!ClientPrefs.rainyDazePlayed) return -1;
+            case "kyuinfo": if (!ClientPrefs.kyuPlayed) return -1;
+            case "lilyinfo": if (!ClientPrefs.ccPlayed) return -1;
+            case "managerinfo": if (!ClientPrefs.ccPlayed) return -1;
+            case "porkchopinfo":  if (!ClientPrefs.morkyWeekFound) return -1;
+            case "ourpleinfo":  if (!ClientPrefs.ourplePlayed) return -1;
+            case "uziinfo":  if (!ClientPrefs.breacherPlayed) return -1;
         }
 
         return char;
