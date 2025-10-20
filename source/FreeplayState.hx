@@ -314,7 +314,7 @@ class FreeplayState extends MusicBeatState
 				addSong('Get Villaind (Old)', 3, FlxColor.fromRGB(66, 255, 153));
 				addSong("Get Pico'd", 3, FlxColor.fromRGB(20, 153, 255));
 				addSong('Partner', 3, FlxColor.fromRGB(39, 0, 87));
-				if (ClientPrefs.shucksUnlocked) addSong('Shuckle Fuckle', 3, FlxColor.fromRGB(0 ,0, 0));
+				addSong('Shuckle Fuckle', 3, FlxColor.fromRGB(0 ,0, 0));
 		}
 	}
 

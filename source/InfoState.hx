@@ -678,7 +678,7 @@ class InfoState extends MusicBeatState
 				titleText.text = "Boyfriend";
 
 				desc.text = "Real Name: Balthazar Escobar Francisco the 3rd\nAliases: Lil Boyfriend, Ugly worm, cuckoo, Little dude, Little man\nAge: Old - Species: Dumbass
-				\nA tiny arrogant little brat who thinks nothing more than to fuck his GF, yet he gets cucked all the time. 
+				\nA tiny arrogant little brat who thinks nothing more than to fuck his GF.
 				\n'Take that Daddy Dearest! Hiiiiiyaaaaaa!!!'";
 					
 				allowLore = false;
