@@ -127,7 +127,7 @@ function onCreatePost()
 		setUpCardDetails(true, 1.75, 28, "Cover By: Lizzy Strawberry | OG By: SuperiorFox")
 	end
 	if songName == 'Marcochrome' then
-		setUpCardDetails(true, 1.75, 28, "Cover By: Lizzy Strawberry | Remix By: Aruichi Rui")
+		setUpCardDetails(true, 2.25, 28, "OG: Overcast | Cover By: Lizzy Strawberry | Remix By: TC / Aruichi Rui")
 	end
 	if songName == 'Slow.FLP' then
 		setUpCardDetails(true, 1.05, 28, "Composed By: TheRealOscamon")
