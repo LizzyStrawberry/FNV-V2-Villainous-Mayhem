@@ -7,15 +7,15 @@ function onCreate()
 	if mechanics then
 		if difficulty == 0 then
 			randomTimer = getRandomInt(20, 25)
-			randomScrollSpeed = string.format("%.2f",getRandomFloat(0.7, 1.3))
+			randomScrollSpeed = string.format("%.2f",getRandomFloat(0.7, 1.1))
 		end
 		if difficulty == 1 then
 			randomTimer = getRandomInt(12, 20)
-			randomScrollSpeed = string.format("%.2f",getRandomFloat(0.7, 1.5))
+			randomScrollSpeed = string.format("%.2f",getRandomFloat(0.7, 1.2))
 		end
 		if difficulty == 2 then
 			randomTimer = getRandomInt(5, 10)
-			randomScrollSpeed = string.format("%.2f",getRandomFloat(0.4, 1.4))
+			randomScrollSpeed = string.format("%.2f",getRandomFloat(0.4, 1.3))
 		end
 	end
 end
@@ -47,15 +47,15 @@ function onTimerCompleted(tag)
 	if tag == 'changeSeconds' then
 		if difficulty == 0 then
 			randomTimer = getRandomInt(20, 25)
-			randomScrollSpeed = string.format("%.2f",getRandomFloat(0.7, 1.3))
+			randomScrollSpeed = string.format("%.2f",getRandomFloat(0.7, 1.1))
 		end
 		if difficulty == 1 then
 			randomTimer = getRandomInt(12, 20)
-			randomScrollSpeed = string.format("%.2f",getRandomFloat(0.7, 1.5))
+			randomScrollSpeed = string.format("%.2f",getRandomFloat(0.7, 1.2))
 		end
 		if difficulty == 2 then
 			randomTimer = getRandomInt(5, 10)
-			randomScrollSpeed = string.format("%.2f",getRandomFloat(0.4, 1.4))
+			randomScrollSpeed = string.format("%.2f",getRandomFloat(0.4, 1.3))
 		end
 	
 		timerEnded = false

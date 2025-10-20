@@ -169,7 +169,7 @@ class NotificationAlert {
 			ClientPrefs.badgesCollected += 1;
 			ClientPrefs.saveSettings();
 		}
-        if (achievementCheck("bonus") && ClientPrefs.badgesCollected == 1)
+        if (achievementCheck("bonus") && (ClientPrefs.badgesCollected == 1 || (ClientPrefs.iniquitousWeekBeaten && ClientPrefs.badgesCollected == 2))) // Make sure you can get this if you beat iniquitous first
 		{
 			NotificationAlert.showMessage(state, 'Badge');
 			NotificationAlert.sendCategoryNotification = true;
@@ -246,7 +246,7 @@ class NotificationAlert {
 		}
 
         // This gives out the 100% Completion Achievement
-        if(achievementCheck("main") && achievementCheck("bonus") && achievementCheck("Iniquitous") && achievementCheck("xtras") && achievementCheck("crossover"))
+        if(achievementCheck("main") && achievementCheck("bonus") && achievementCheck("Iniquitous") && achievementCheck("xtrasBasic") && achievementCheck("crossover"))
 		{
             trace("Accepted the 100% completion achievement!");
 			var achieveID:Int = Achievements.getAchievementIndex('FNV_Completed');
@@ -289,7 +289,7 @@ class NotificationAlert {
 			    && Achievements.isAchievementUnlocked('rainyDaze_Beaten') && Achievements.isAchievementUnlocked('marauder_Beaten'));
                 
             case "xtrasbasic":
-                return ClientPrefs.tofuPlayed && ClientPrefs.lustalityPlayed && ClientPrefs.nunsationalPlayed && ClientPrefs.marcochromePlayed && ClientPrefs.nicPlayed 
+                return ClientPrefs.tofuPlayed && ClientPrefs.lustalityViewed && ClientPrefs.nunsationalPlayed && ClientPrefs.marcochromePlayed && ClientPrefs.nicPlayed 
                 && Achievements.isAchievementUnlocked('short_Beaten') && ClientPrefs.debugPlayed && ClientPrefs.fnvPlayed && ClientPrefs.infatuationPlayed && ClientPrefs.rainyDazePlayed;
 
             case "crossover":

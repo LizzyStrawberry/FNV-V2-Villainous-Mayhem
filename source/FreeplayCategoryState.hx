@@ -27,10 +27,10 @@ class FreeplayCategoryState extends MusicBeatState
         [135, 845, 1, true, "MAIN"],
         [475, 845, 2, ClientPrefs.nunWeekPlayed, "NUNS"],
         [825, 845, 3, ClientPrefs.kianaWeekPlayed, "DEMONS"],
-        [0, 845, 4, ClientPrefs.dsideWeekFound, "DSIDES"],
-        [320, 845, 5, ClientPrefs.legacyWeekFound, "LEGACY"],
-        [640, 845, 6, ClientPrefs.morkyWeekFound, "MORK"],
-        [960, 845, 7, ClientPrefs.susWeekFound, "SUS"]
+        [0, 845, 4, ClientPrefs.dsideWeekPlayed, "DSIDES"],
+        [320, 845, 5, ClientPrefs.legacyWeekPlayed, "LEGACY"],
+        [640, 845, 6, ClientPrefs.morkyWeekPlayed, "MORK"],
+        [960, 845, 7, ClientPrefs.susWeekPlayed, "SUS"]
     ];
     var weekGroup:FlxTypedGroup<FlxSprite>;
 

@@ -921,6 +921,10 @@ class FreeplayState extends MusicBeatState
 			case "Get Villaind" | "Get Villaind (Old)":
 				warnTxt.text = "WARNING: This song contains shaders and flashing imagery that could potentially trigger sensitive people.\nIf you experience seizures, please disable both mechanics and shaders through the options menu.";
 				warnTxt.visible = true;
+
+			case "marauder" | "marauder-(old)":
+				warnTxt.text = "WARNING: This song can alter some PC changes such as your background\nIf you do not wish for that, disable PC Change Permanance through the options menu.";
+				warnTxt.visible = true;
 			
 			case "Libidinousness":
 				warnTxt.text = "WARNING: This song can potentially fail to load certain sprites on lower-end hardware due to sprite sizes.\nIt is recommended to enable the \"Performance Warning\" Version through the options menu, unless you have decent+ hardware.";
