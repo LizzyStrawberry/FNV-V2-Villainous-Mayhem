@@ -12,6 +12,14 @@ local LustCount = 0
 
 function onCreate()
 	if mechanics then
+		makeAnimatedLuaSprite('time2', 'effects/timer', 560 , 40)
+		addAnimationByPrefix('time2', 'Stunned', 'timer rundown0', 24, false)
+		setProperty('time2.alpha', 0)
+		scaleObject('time2', 0.5, 0.5)
+		setObjectCamera('time2', 'hud')
+		setScrollFactor('time2', 1, 1)
+		addLuaSprite('time2', true)
+		
 		makeLuaSprite('dodgeNow', 'effects/dodge', 370, 170)
 		setProperty('dodgeNow.alpha', 0)
 		scaleObject('dodgeNow', 0.6, 0.6)
@@ -85,6 +93,7 @@ function onUpdate()
 			setTextColor('warning', 'ffffff')
 			setTextString('warning', 'Get Ready!')
 			setProperty('warning.alpha', 0)
+			setProperty('time2.alpha', 0)
 			runTimer('TailAttack', randNum)
 			
 			turnedTimerOn = true
@@ -118,6 +127,10 @@ function onTimerCompleted(tag)
 		
 		timerCompleted = true	
 		warningOn = true
+		
+		doTweenAlpha('Timer2GoHello', 'time2', 1, 0.2, 'linear')
+		objectPlayAnimation('time2','Stunned', true)
+			
 		--debugPrint('Timer Ended! Watch Out for her attack!')
 		--debugPrint(timerCompleted)
 	end
@@ -138,8 +151,10 @@ function onTimerCompleted(tag)
 		end
 		if botPlay or getPropertyFromClass('ClientPrefs', 'autoCharm') == 1 then
 			hit()
+			doTweenAlpha('Timer2GoByeBye', 'time2', 0, 0.3, 'linear')
 		elseif not botPlay then
-			if not canDodge then hit()
+			if not canDodge then 
+				hit() doTweenAlpha('Timer2GoByeBye', 'time2', 0, 0.3, 'linear')
 			else miss() end
 		end
 	end
