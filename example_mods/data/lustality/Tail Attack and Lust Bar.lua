@@ -79,7 +79,7 @@ function onUpdate()
 		health = getProperty('health') --uwu
 		--tail Attack Mechanic
 		if not timerCompleted and songStarted == true and not turnedTimerOn then
-			debugPrint('Setting Timer Up! Random Number is: ' ..randNum)
+			--debugPrint('Setting Timer Up! Random Number is: ' ..randNum)
 			
 			setProperty('dodgeNow.alpha', 0)
 			setTextColor('warning', 'ffffff')
@@ -118,11 +118,11 @@ function onTimerCompleted(tag)
 		
 		timerCompleted = true	
 		warningOn = true
-		debugPrint('Timer Ended! Watch Out for her attack!')
-		debugPrint(timerCompleted)
+		--debugPrint('Timer Ended! Watch Out for her attack!')
+		--debugPrint(timerCompleted)
 	end
 	if tag == 'spaceHit' then
-		debugPrint("Press Now!")
+		--debugPrint("Press Now!")
 		setProperty('dodgeNow.alpha', 1)
 		setProperty('warning.alpha', 0)
 		
