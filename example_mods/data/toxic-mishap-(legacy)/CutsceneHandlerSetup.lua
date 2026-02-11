@@ -10,7 +10,7 @@ local instructShit =
 {
     hasMech = true,
     isBoss = false,
-    graphName = "Marco-old",
+    graphName = "marco-old",
 	frame = 2,
     diff = "Casual"
 }
