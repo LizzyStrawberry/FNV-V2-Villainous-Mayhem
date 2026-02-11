@@ -11,7 +11,7 @@ local instructShit =
 {
     hasMech = true,
     isBoss = false,
-    graphName = "Aileen-old",
+    graphName = "aileen-old",
 	frame = 1,
     diff = "Casual"
 }
