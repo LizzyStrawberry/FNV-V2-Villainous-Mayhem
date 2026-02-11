@@ -476,10 +476,7 @@ class TitleState extends MusicBeatState
 				transitioning = true;
 				FlxG.sound.music.fadeOut(1.8);
 
-				new FlxTimer().start(2, function(tmr:FlxTimer)
-				{
-					System.exit(0);
-				});
+				new FlxTimer().start(2, (_) -> System.exit(0));
 			}
 		#end
 

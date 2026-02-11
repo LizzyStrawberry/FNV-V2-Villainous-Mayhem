@@ -4002,15 +4002,7 @@ class PlayState extends MusicBeatState
 						trace(Paths.formatToSongPath(PlayState.storyPlaylist[0]) + difficulty);
 					}
 
-					FlxG.sound.music.stop();
-
-					if (ClientPrefs.crashWeekName == 'weeklegacy')
-						PlayState.SONG.player1 = 'playablegf-old'; //Change the player to the old version
-					else if (ClientPrefs.crashWeekName == 'weekmorky')
-					{
-						if (storyPlaylist[0] == 'spendthrift')
-							PlayState.SONG.player1 = 'Spendthrift GF'; //Change the player to the spendthrift version
-					}	
+					FlxG.sound.music.stop();	
 
 					if (FlxG.random.int(1, 8) == 4)
 						MusicBeatState.switchState(new MinigameState());
@@ -4077,16 +4069,6 @@ class PlayState extends MusicBeatState
 					if (PlayState.injectionPlaylist[0] == 'libidinousness' && ClientPrefs.performanceWarning) PlayState.SONG = Song.loadFromJson('libidinousness-villainousoptimized', 'libidinousness');
 					else PlayState.SONG = Song.loadFromJson(PlayState.injectionPlaylist[0] + difficulty, PlayState.injectionPlaylist[0]);
 
-					// Character Change
-					switch(PlayState.injectionPlaylist[0])
-					{
-						case 'cheap-skate-(legacy)', 'toxic-mishap-(legacy)', 'paycheck-(legacy)': //Week Legacy
-							PlayState.SONG.player1 = 'playablegf-old';
-						case 'unpaid-catastrophe', 'cheque': //Week D-Sides
-							PlayState.SONG.player1 = 'd-side gf';
-						case 'spendthrift': //Week Morky
-							PlayState.SONG.player1 = 'Spendthrift GF';
-					}
 					FlxG.sound.music.stop();
 
 					if (FlxG.random.int(1, 8) == 4)
@@ -4170,17 +4152,6 @@ class PlayState extends MusicBeatState
 				{
 					if (PlayState.mayhemPlaylist[songSelected] == "libidinousness" && ClientPrefs.performanceWarning) PlayState.SONG = Song.loadFromJson('libidinousness-villainousoptimized', 'libidinousness');
 					else PlayState.SONG = Song.loadFromJson(PlayState.mayhemPlaylist[songSelected] + difficulty, PlayState.mayhemPlaylist[songSelected]);
-				}
-
-				// Character Change
-				switch(PlayState.mayhemPlaylist[songSelected])
-				{
-					case 'cheap-skate-(legacy)', 'toxic-mishap-(legacy)', 'paycheck-(legacy)': //Week Legacy
-						PlayState.SONG.player1 = 'playablegf-old';
-					case 'unpaid-catastrophe', 'cheque': //Week D-Sides
-						PlayState.SONG.player1 = 'd-side gf';
-					case 'spendthrift': //Week Morky
-						PlayState.SONG.player1 = 'Spendthrift GF';
 				}
 					
 				FlxG.sound.music.stop();

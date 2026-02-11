@@ -26,15 +26,14 @@ class CrashAndLoadState extends MusicBeatState
         PlayState.isStoryMode = true;
 
         background = new FlxSprite().loadGraphic(Paths.image('mainMenuBgs/menu-1'));
-        background.screenCenter(X);
 		background.antialiasing = ClientPrefs.globalAntialiasing;
+        background.setGraphicSize(background.width * 1.175);
         background.alpha = 0.4;
 		add(background);
 
-        text = new Alphabet(MobileUtil.rawX(200), 80, "Looks like your game closed!\n Would you like to continue\n   from where you left off?", true);
+        text = new Alphabet(FlxG.width - 1080, FlxG.height - 640, "Looks like your game closed!\n Would you like to continue\n   from where you left off?", true);
 		text.setAlignmentFromString('center');
-        text.scaleX = 0.8;
-        text.scaleY = 0.8;
+        text.scaleX = text.scaleY = 0.8;
 		add(text);
 
         var songName:String = "Test Song";
@@ -42,33 +41,27 @@ class CrashAndLoadState extends MusicBeatState
         switch(ClientPrefs.crashSongName)
         {
             //Week Morky
-            case "Instrumentally Deranged":
-                songName = "Inst. Deranged";
-            case "Get Villain'd" | 'get villaind':
-                songName = "Get Villain'd";
+            case "Instrumentally Deranged": songName = "Inst. Deranged";
+            case "Get Villain'd" | 'get villaind': songName = "Get Villain'd";
 
-            default: //Testing Value
-                songName = ClientPrefs.crashSongName; 
+            default: songName = ClientPrefs.crashSongName; 
         }
-        songText = new Alphabet(MobileUtil.rawX(600), 375, "", true); 
+        songText = new Alphabet(FlxG.width - 680, FlxG.height - 345, "", true); 
         songText.text = songName + ((ClientPrefs.crashSongName == '') ? "\nDifficulty" : "\n" + ClientPrefs.crashDifficultyName + '-');
-        songText.scaleX = 0.8;
-        songText.scaleY = 0.8;
+        songText.scaleX = songText.scaleY = 0.8;
         songText.setAlignmentFromString('center');
+        songText.x = FlxG.width - 450;
 		add(songText);
 
-        yes = new Alphabet(340, 530, "yes", true);
+        yes = new Alphabet(FlxG.width - 940, FlxG.height - 190, "yes", true);
 		yes.setAlignmentFromString('center');
-        yes.scaleX = 1.1;
-        yes.scaleY = 1.1;
+        yes.scaleX = yes.scaleY = 1.1;
         yes.updateHitbox();
 		add(yes);
 
-        no = new Alphabet(960, 530, "no", true);
-        no.x = MobileUtil.fixX(no.x);
+        no = new Alphabet(yes.y + 450, yes.y, "no", true);
 		no.setAlignmentFromString('center');
-        no.scaleX = 1.1;
-        no.scaleY = 1.1;
+        no.scaleX = no.scaleY = 1.1;
         no.updateHitbox();
 		add(no);
 
@@ -84,13 +77,9 @@ class CrashAndLoadState extends MusicBeatState
     var mechanicless:String = '';
     override function update(elapsed:Float)
     {
-        if ((controls.BACK || FlxG.mouse.justPressedRight) && !selectedSomething)
-        {
-            exitState(false);
-        }
-        
         if (!selectedSomething)
         {
+            if (controls.BACK || FlxG.mouse.justPressedRight) exitState(false);
             if (controls.UI_LEFT_P) changeSelection(-1);
             if (controls.UI_RIGHT_P) changeSelection(1);
 
@@ -124,12 +113,9 @@ class CrashAndLoadState extends MusicBeatState
                         else
                             PlayState.storyPlaylist = ['Toxic Mishap', 'Paycheck'];
                     case 'Paycheck':
-                        if (ClientPrefs.crashDifficulty >= 1)
-                            PlayState.storyPlaylist = ['Paycheck', 'Villainy'];
-                        else
-                            PlayState.storyPlaylist = ['Paycheck'];
-                    case 'Villainy':
-                        PlayState.storyPlaylist = ['Villainy'];
+                        if (ClientPrefs.crashDifficulty >= 1) PlayState.storyPlaylist = ['Paycheck', 'Villainy'];
+                        else PlayState.storyPlaylist = ['Paycheck'];
+                    case 'Villainy': PlayState.storyPlaylist = ['Villainy'];
 
                     //Week 2
                     case 'Nunconventional':
@@ -138,10 +124,8 @@ class CrashAndLoadState extends MusicBeatState
                             PlayState.storyPlaylist = ['Nunconventional', 'Point Blank'];
                             if (ClientPrefs.crashDifficulty == 2) ClientPrefs.ghostTapping = false;
                         } 
-                        else
-                            PlayState.storyPlaylist = ['Nunconventional'];
-                        case 'Point Blank':
-                            PlayState.storyPlaylist = ['Point Blank'];
+                        else PlayState.storyPlaylist = ['Nunconventional'];
+                        case 'Point Blank':  PlayState.storyPlaylist = ['Point Blank'];
 
                     //Week 3
                     case 'Toybox':
@@ -224,10 +208,8 @@ class CrashAndLoadState extends MusicBeatState
 		curSelected += huh;
         FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
 
-        if (curSelected > 1)
-			curSelected = 0;
-		if (curSelected < 0)
-			curSelected = 1;
+        if (curSelected > 1) curSelected = 0;
+		if (curSelected < 0) curSelected = 1;
         
         if (curSelected == 0)
         {
