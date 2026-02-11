@@ -7,7 +7,7 @@ local refill = false
 local allowHealCharm = false
 
 function onCreate()
-	makeLuaSprite('blackBG', '', 0, 0)
+	makeLuaSprite('blackBG')
 	makeGraphic('blackBG', screenWidth, screenHeight, '000000')
 	setScrollFactor('blackBG', 0, 0)
 	setObjectCamera('blackBG', 'hud')
@@ -43,7 +43,7 @@ function createMayhemBar()
 	padColor = rgbToHex(getProperty('dad.healthColorArray'))
 	backColor = rgbToHex(getProperty('boyfriend.healthColorArray'))
 		
-	makeLuaSprite('reloadBar', 'mayhemBar/mayhembackBar', mobileFix("X", 450), 550)
+	makeLuaSprite('reloadBar', 'mayhemBar/mayhemBackBar', 450, 550)
 	setProperty('reloadBar.color', getColorFromHex('737373'))
 	setObjectCamera('reloadBar', 'hud')
 	setObjectOrder('reloadBar', getObjectOrder('healthBarBG') + 1)
@@ -51,7 +51,7 @@ function createMayhemBar()
 	setProperty('reloadBar.scale.x', 1)
 	addLuaSprite('reloadBar', true)
 		
-	makeLuaSprite('mayhembackBar', 'mayhemBar/mayhembackBar', mobileFix("X", 450), 550)
+	makeLuaSprite('mayhembackBar', 'mayhemBar/mayhemBackBar', 450, 550)
 	setProperty('mayhembackBar.color', getColorFromHex(backColor))
 	setObjectCamera('mayhembackBar', 'hud')
 	setObjectOrder('mayhembackBar', getObjectOrder('reloadBar') + 1)
@@ -147,7 +147,7 @@ end
 
 function goodNoteHit(id, direction, noteType, isSus)
 	if not maxedOut then
-		setProperty('mayhembackBar.scale.x', getProperty('mayhembackBar.scale.x') + (isSus and 0.0012 or 0.2))
+		setProperty('mayhembackBar.scale.x', getProperty('mayhembackBar.scale.x') + (isSus and 0.0012 or 0.002))
 	end
 	if not maxedOut and getProperty('mayhembackBar.scale.x') >= 1 then
 		setProperty('mayhembackBar.scale.x', 1)
