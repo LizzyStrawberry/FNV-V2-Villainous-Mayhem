@@ -75,7 +75,7 @@ class CharSelector extends MusicBeatState{
             FlxG.save.data.daUnlockedChars = [false];
         }
 
-        if (ClientPrefs.dsideWeekPlayed == true)
+        if (ClientPrefs.dsideWeekPlayed)
         {
             unlockedCharacters = selectableCharacters;
             unlockedCharacters[0] = PlayState.SONG.player1;
@@ -86,7 +86,7 @@ class CharSelector extends MusicBeatState{
             unlockedCharactersNames.push('D-side GF');
         }
 
-        if (ClientPrefs.nicPlayed == true)
+        if (ClientPrefs.nicPlayed)
         {
             unlockedCharacters = selectableCharacters;
             unlockedCharacters[0] = PlayState.SONG.player1;
@@ -97,18 +97,18 @@ class CharSelector extends MusicBeatState{
             unlockedCharactersNames.push('GF.WAV');
         }
 
-        if (ClientPrefs.susWeekPlayed == true)
-          {
+        if (ClientPrefs.susWeekPlayed)
+        {
             unlockedCharacters = selectableCharacters;
             unlockedCharacters[0] = PlayState.SONG.player1;
             unlockedCharactersNames = selectableCharactersNames;
-    
+
             colors.push('0xFFd83225'); //Crewmate GF
             unlockedCharacters.push('amongGF');
             unlockedCharactersNames.push('Crewmate GF');
-          }
+        }
         
-        if (ClientPrefs.debugPlayed == true)
+        if (ClientPrefs.debugPlayed)
         {
             unlockedCharacters = selectableCharacters;
             unlockedCharacters[0] = PlayState.SONG.player1;
@@ -118,7 +118,7 @@ class CharSelector extends MusicBeatState{
             unlockedCharacters.push('debugGF');
             unlockedCharactersNames.push('Debug GF');
         }
-        if (ClientPrefs.morkyWeekPlayed == true)
+        if (ClientPrefs.morkyWeekPlayed)
         {
             unlockedCharacters = selectableCharacters;
             unlockedCharacters[0] = PlayState.SONG.player1;
@@ -127,21 +127,19 @@ class CharSelector extends MusicBeatState{
             colors.push('0xFFe61033'); //Spendthrift GF
             unlockedCharacters.push('Spendthrift GF');
             unlockedCharactersNames.push('Spendthrift GF');
-         }
+        }
 
         // If the unlocked chars are empty, fill it with defaults
         if (unlockedCharacters == null) 
         {
             unlockedCharacters = selectableCharacters;
             unlockedCharacters[0] = PlayState.SONG.player1;
-        } 
-        // If names are empty, fill it with defaults
-        if (unlockedCharactersNames == null) 
-        {
-            unlockedCharactersNames = selectableCharactersNames;
         }
 
-        unlockedCharacters[0] = PlayState.SONG.player1;
+        // If names are empty, fill it with defaults
+        if (unlockedCharactersNames == null) unlockedCharactersNames = selectableCharactersNames;
+
+        unlockedCharacters[0] = 'playablegf';
 
         unlockedCharsCheck();
 
@@ -157,18 +155,14 @@ class CharSelector extends MusicBeatState{
         for (i in 0...unlockedCharacters.length)
         {
             var characterImage:Boyfriend = new Boyfriend(0, 0, unlockedCharacters[i]);
-            if (StringTools.endsWith(unlockedCharacters[i], '-pixel'))
-                characterImage.scale.set(5.5, 5.5);
-            else
-                characterImage.scale.set(0.8, 0.8);
+            if (StringTools.endsWith(unlockedCharacters[i], '-pixel')) characterImage.scale.set(5.5, 5.5);
+            else characterImage.scale.set(0.8, 0.8);
                 
             characterImage.screenCenter(XY);
 
-            if (unlockedCharacters[i] == 'playablegf')
-                characterImage.scale.set(1, 1);
+            if (unlockedCharacters[i] == 'playablegf') characterImage.scale.set(1, 1);
 
-            if (unlockedCharacters[i] == 'amongGF')
-                characterImage.scale.set(0.6, 0.6);
+            if (unlockedCharacters[i] == 'amongGF') characterImage.scale.set(0.6, 0.6);
                 
             imageArray.push(characterImage);
             add(characterImage);
@@ -185,16 +179,6 @@ class CharSelector extends MusicBeatState{
         var selectionHeader:Alphabet = new Alphabet(0, 50, 'Character Select', true);
         selectionHeader.screenCenter(X);
         add(selectionHeader);
-
-        // Old arrows
-        // The left and right arrows on screen
-        /*
-        var arrows:FlxSprite = new FlxSprite().loadGraphic(Paths.image('arrowSelection', backgroundFolder));
-        arrows.setGraphicSize(Std.int(arrows.width * 1.1));
-        arrows.screenCenter();
-        arrows.antialiasing = true;
-        add(arrows);
-        */
 
         // The currently selected character's name top right
         selectedCharName = new FlxText(FlxG.width * 0.7, 10, 0, "", 32);
@@ -226,37 +210,24 @@ class CharSelector extends MusicBeatState{
     {
         selectedCharName.text = unlockedCharactersNames[curSelected].toUpperCase();
         selectedCharName.x = FlxG.width - (selectedCharName.width + 10);
-        if (selectedCharName.text == '')
-        {
-            trace('');
-            selectedCharName.text = '';
-        }
+        if (selectedCharName.text == '') selectedCharName.text = '';
 
         // Must be changed depending on how an engine uses its own controls
         var leftPress = controls.UI_LEFT_P; // Psych
         var rightPress = controls.UI_RIGHT_P; // Psych
         var accepted = controls.ACCEPT; // Should be Universal
         var goBack = controls.BACK; // Should be Universal
-
-        // Testing only DO NOT USE
-        var unlockTest = FlxG.keys.justPressed.U;
         
         if (!alreadySelected)
         {
-            if (FlxG.mouse.overlaps(icon))
-                FlxTween.tween(icon, {y: getIconY - 2}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
-            else
-                FlxTween.tween(icon, {y: getIconY}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
+            if (FlxG.mouse.overlaps(icon)) FlxTween.tween(icon, {y: getIconY - 2}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
+            else FlxTween.tween(icon, {y: getIconY}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
 
-            if (FlxG.mouse.overlaps(arrowSelectorLeft))
-				FlxTween.tween(arrowSelectorLeft, {x: getLeftArrowX - 2}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
-			else
-				FlxTween.tween(arrowSelectorLeft, {x: getLeftArrowX}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
+            if (FlxG.mouse.overlaps(arrowSelectorLeft)) FlxTween.tween(arrowSelectorLeft, {x: getLeftArrowX - 2}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
+			else FlxTween.tween(arrowSelectorLeft, {x: getLeftArrowX}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
 	
-			if (FlxG.mouse.overlaps(arrowSelectorRight))
-				FlxTween.tween(arrowSelectorRight, {x: getRightArrowX + 2}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
-			else
-				FlxTween.tween(arrowSelectorRight, {x: getRightArrowX}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
+			if (FlxG.mouse.overlaps(arrowSelectorRight)) FlxTween.tween(arrowSelectorRight, {x: getRightArrowX + 2}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
+			else FlxTween.tween(arrowSelectorRight, {x: getRightArrowX}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
 
             if (leftPress || (FlxG.mouse.overlaps(arrowSelectorLeft) && FlxG.mouse.justPressed))
             {
@@ -268,13 +239,13 @@ class CharSelector extends MusicBeatState{
                 FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
                 changeSelection(1);
             }
+
             if (accepted || (FlxG.mouse.overlaps(icon) && (!FlxG.mouse.overlaps(arrowSelectorRight)) && FlxG.mouse.justPressed))
             {
                 isSelectinChar = false;
                 alreadySelected = true;
                 var daSelected:String = unlockedCharacters[curSelected];
-                if (unlockedCharacters[curSelected] != PlayState.SONG.player1)
-                    PlayState.SONG.player1 = daSelected;
+                if (unlockedCharacters[curSelected] != PlayState.SONG.player1) PlayState.SONG.player1 = daSelected;
 
                 FlxG.sound.play(Paths.sound('confirmMenu'));
 
@@ -300,28 +271,15 @@ class CharSelector extends MusicBeatState{
             if (goBack || FlxG.mouse.justPressedRight)
             {
                 FlxG.sound.play(Paths.sound('cancelMenu'));
-                if (PlayState.isStoryMode)
-                    FlxG.switchState(new StoryMenuState());
+                if (PlayState.isStoryMode) FlxG.switchState(new StoryMenuState());
                 else
-                    if (ClientPrefs.onCrossSection)
-						MusicBeatState.switchState(new CrossoverState()); //go to Crossover State
-					else
-						MusicBeatState.switchState(new FreeplayState()); // Back To Freeplay
+                    if (ClientPrefs.onCrossSection) MusicBeatState.switchState(new CrossoverState()); //go to Crossover State
+					else MusicBeatState.switchState(new FreeplayState()); // Back To Freeplay
             }
-            if (unlockTest)
-                {
-                    FlxG.save.data.daUnlockedChars[0] = !FlxG.save.data.daUnlockedChars[0];
-                    if (FlxG.save.data.daUnlockedChars[0] == true)
-                        trace("Unlocked Secret");
-                    else
-                        trace("Locked Secret");
-                }
     
             if (!alreadySelected)
                 for (i in 0...imageArray.length)
-                {
                     imageArray[i].dance();
-                }
 
             super.update(elapsed);
         }
@@ -332,16 +290,12 @@ class CharSelector extends MusicBeatState{
     {
         // This just ensures you don't go over the intended amount
         curSelected += changeAmount;
-        if (curSelected < 0)
-            curSelected = unlockedCharacters.length - 1;
-        if (curSelected >= unlockedCharacters.length)
-            curSelected = 0;
+        if (curSelected < 0) curSelected = unlockedCharacters.length - 1;
+        if (curSelected >= unlockedCharacters.length) curSelected = 0;
 
         curNum += changeAmount;
-        if (curNum < 0)
-            curNum = unlockedCharacters.length - 1;
-        if (curNum >= unlockedCharacters.length)
-            curNum = 0;
+        if (curNum < 0) curNum = unlockedCharacters.length - 1;
+        if (curNum >= unlockedCharacters.length) curNum = 0;
         
         curColor = colors[curNum];
         FlxTween.color(menuBG, 1.1, FlxColor.fromString(previousColor), FlxColor.fromString(curColor), {ease: FlxEase.cubeInOut});
@@ -425,10 +379,8 @@ class CharSelector extends MusicBeatState{
 
         // This code is for Psych but if necessary can be use on other engines too
         //for icons that do not load in
-        if (unlockedCharacters[curSelected] == 'd-side gf')
-            icon.changeIcon('dsidegf');
-        if (unlockedCharacters[curSelected] == 'Spendthrift GF')
-            icon.changeIcon('playablegf');
+        if (unlockedCharacters[curSelected] == 'd-side gf') icon.changeIcon('dsidegf');
+        if (unlockedCharacters[curSelected] == 'Spendthrift GF') icon.changeIcon('playablegf');
 
         icon.screenCenter(X);
         icon.setGraphicSize(-4);
@@ -448,7 +400,7 @@ class CharSelector extends MusicBeatState{
         // If you have managed to unlock a character, set it as unlocked here
         for (i in 0...ifCharsAreUnlocked.length)
         {
-            if (ifCharsAreUnlocked[i] == true)
+            if (ifCharsAreUnlocked[i])
             {
                 unlockedCharacters.push(unlockableChars[i]);
                 unlockedCharactersNames.push(unlockableCharsNames[i]);

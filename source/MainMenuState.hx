@@ -1086,13 +1086,6 @@ class MainMenuState extends MusicBeatState
 										PlayState.campaignScore = PlayState.campaignMisses = 0;
 										PlayState.mayhemDifficulty = curDifficulty;
 
-										switch(PlayState.mayhemPlaylist[songSelected])
-										{
-											case "cheap-skate-(legacy)", "toxic-mishap-(legacy)", "paycheck-(legacy)": PlayState.SONG.player1 = 'playablegf-old';
-											case "spendthrift": PlayState.SONG.player1 = 'Spendthrift GF';
-											case "its-kiana": PlayState.SONG.player1 = 'd-side gf';
-										}
-											
 										// Unlock Secret Song
 										if (!ClientPrefs.shucksUnlocked && PlayState.mayhemPlaylist[songSelected] == "shuckle-fuckle") ClientPrefs.shucksUnlocked = true;
 										

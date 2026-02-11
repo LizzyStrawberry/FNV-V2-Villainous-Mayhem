@@ -1,7 +1,7 @@
 {
 	"song": {
 		"loadingScreen": "load_weekLegacy",
-		"player1": "playablegf",
+		"player1": "playablegf-old",
 		"events": [],
 		"gfVersion": "nogf",
 		"player2": "aileen-old",

@@ -654,11 +654,6 @@ class StoryMenuState extends MusicBeatState
 					PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0].toLowerCase() + diffic, PlayState.storyPlaylist[0].toLowerCase());
 					PlayState.campaignScore = PlayState.campaignMisses = 0;
 
-					//checking if it is the legacy week
-					if (WeekData.getWeekFileName() == 'weeklegacy') PlayState.SONG.player1 = 'playablegf-old';
-					//checking if it is the Morky week
-					if (WeekData.getWeekFileName() == 'weekmorky') PlayState.SONG.player1 = 'Spendthrift GF';
-	
 					//Crash / Save detection reset
 					ClientPrefs.resetProgress(true, false); //Also reset tokens, no trace!
 
