@@ -166,7 +166,7 @@ class NotificationAlert
             INIQUITOUS SECTION
         **/
         // Unlock Iniquitous Week
-		if (!ClientPrefs.iniquitousWeekUnlocked && achievementCheck('mainVillainous'))
+		if (!ClientPrefs.iniquitousWeekUnlocked && achievementCheck('mainVillainous') && & achievementCheck('bonusVillainous'))
 		{
 			ClientPrefs.iniquitousWeekUnlocked = true;
 			sendCategoryNotification = sendMessage = true;
