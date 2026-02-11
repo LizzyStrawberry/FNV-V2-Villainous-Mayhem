@@ -101,12 +101,12 @@
 		}
 	],
 	"no_antialiasing": false,
-	"image": "characters/negotiation aileen",
+	"image": "characters/Negotiation Aileen",
 	"position": [
 		0,
 		0
 	],
-	"healthicon": "negotiationaileen",
+	"healthicon": "negotiationAileen",
 	"flip_x": true,
 	"healthbar_colors": [
 		90,

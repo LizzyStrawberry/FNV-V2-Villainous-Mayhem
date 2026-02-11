@@ -57,12 +57,12 @@
 		}
 	],
 	"no_antialiasing": false,
-	"image": "characters/negotiation seer",
+	"image": "characters/Negotiation Seer",
 	"position": [
 		0,
 		0
 	],
-	"healthicon": "negotiationseer",
+	"healthicon": "negotiationSeer",
 	"flip_x": false,
 	"healthbar_colors": [
 		69,

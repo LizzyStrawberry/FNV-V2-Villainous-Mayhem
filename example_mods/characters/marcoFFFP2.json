@@ -101,12 +101,12 @@
 		}
 	],
 	"no_antialiasing": false,
-	"image": "characters/marcofffp2",
+	"image": "characters/MarcoFFFP2",
 	"position": [
 		30,
 		-135
 	],
-	"healthicon": "marcofffp1",
+	"healthicon": "marcoFFFP1",
 	"flip_x": true,
 	"healthbar_colors": [
 		34,

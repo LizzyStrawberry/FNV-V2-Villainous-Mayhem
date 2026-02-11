@@ -97,12 +97,12 @@
 		}
 	],
 	"no_antialiasing": false,
-	"image": "characters/evelyn legacy",
+	"image": "characters/Evelyn Legacy",
 	"position": [
 		-240,
 		-340
 	],
-	"healthicon": "gf",
+	"healthicon": "RainyDazeEvelyn",
 	"flip_x": false,
 	"healthbar_colors": [
 		165,

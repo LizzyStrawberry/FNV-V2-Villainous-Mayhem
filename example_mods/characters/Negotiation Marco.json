@@ -101,12 +101,12 @@
 		}
 	],
 	"no_antialiasing": false,
-	"image": "characters/negotiation marco",
+	"image": "characters/Negotiation Marco",
 	"position": [
 		0,
 		0
 	],
-	"healthicon": "negotiationmarco",
+	"healthicon": "negotiationMarco",
 	"flip_x": true,
 	"healthbar_colors": [
 		34,

@@ -57,12 +57,12 @@
 		}
 	],
 	"no_antialiasing": false,
-	"image": "characters/fangirl phase 2",
+	"image": "characters/Fangirl Phase 2",
 	"position": [
 		50,
 		-70
 	],
-	"healthicon": "fangirlp1",
+	"healthicon": "FangirlP1",
 	"flip_x": false,
 	"healthbar_colors": [
 		129,

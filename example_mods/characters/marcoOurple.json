@@ -57,12 +57,12 @@
 		}
 	],
 	"no_antialiasing": false,
-	"image": "characters/marcoourple",
+	"image": "characters/MarcoOurple",
 	"position": [
 		-40,
 		-100
 	],
-	"healthicon": "marcoourple",
+	"healthicon": "marcoOurple",
 	"flip_x": false,
 	"healthbar_colors": [
 		75,

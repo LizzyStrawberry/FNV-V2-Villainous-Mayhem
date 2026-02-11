@@ -35,12 +35,12 @@
 		}
 	],
 	"no_antialiasing": false,
-	"image": "characters/gf iniquitous death",
+	"image": "characters/GF Iniquitous Death",
 	"position": [
 		60,
 		130
 	],
-	"healthicon": "gfiniquitousp1",
+	"healthicon": "gfIniquitousP1",
 	"flip_x": true,
 	"healthbar_colors": [
 		165,

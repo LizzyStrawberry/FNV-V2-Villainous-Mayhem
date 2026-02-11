@@ -57,12 +57,12 @@
 		}
 	],
 	"no_antialiasing": false,
-	"image": "characters/marco tofu",
+	"image": "characters/Marco Tofu",
 	"position": [
 		-240,
 		-200
 	],
-	"healthicon": "marcotofu",
+	"healthicon": "marcoTofu",
 	"flip_x": false,
 	"healthbar_colors": [
 		34,

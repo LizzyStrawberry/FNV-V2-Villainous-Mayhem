@@ -13,12 +13,12 @@
 		}
 	],
 	"no_antialiasing": false,
-	"image": "characters/rainy daze evelyn",
+	"image": "characters/Rainy Daze Evelyn",
 	"position": [
 		-30,
 		0
 	],
-	"healthicon": "rainydazeevelyn",
+	"healthicon": "RainyDazeEvelyn",
 	"flip_x": false,
 	"healthbar_colors": [
 		70,

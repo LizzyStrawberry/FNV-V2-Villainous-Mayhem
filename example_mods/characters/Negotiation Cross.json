@@ -68,12 +68,12 @@
 		}
 	],
 	"no_antialiasing": false,
-	"image": "characters/negotiation cross",
+	"image": "characters/Negotiation Cross",
 	"position": [
 		0,
 		0
 	],
-	"healthicon": "negotiationcross",
+	"healthicon": "negotiationCross",
 	"flip_x": false,
 	"healthbar_colors": [
 		239,

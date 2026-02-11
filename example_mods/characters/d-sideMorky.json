@@ -68,12 +68,12 @@
 		}
 	],
 	"no_antialiasing": false,
-	"image": "characters/d-side morky",
+	"image": "characters/D-side Morky",
 	"position": [
 		0,
 		0
 	],
-	"healthicon": "d-sidemorky",
+	"healthicon": "d-sideMorky",
 	"flip_x": false,
 	"healthbar_colors": [
 		66,

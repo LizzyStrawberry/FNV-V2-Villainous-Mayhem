@@ -149,12 +149,12 @@
 		}
 	],
 	"no_antialiasing": false,
-	"image": "characters/fnv cassette girl",
+	"image": "characters/FNV Cassette Girl",
 	"position": [
 		100,
 		110
 	],
-	"healthicon": "cassettegirl",
+	"healthicon": "cassetteGirl",
 	"flip_x": true,
 	"healthbar_colors": [
 		67,

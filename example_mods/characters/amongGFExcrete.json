@@ -134,12 +134,12 @@
 		}
 	],
 	"no_antialiasing": false,
-	"image": "characters/amonggf excrete",
+	"image": "characters/AmongGF Excrete",
 	"position": [
 		-50,
 		440
 	],
-	"healthicon": "amonggf",
+	"healthicon": "amongGF",
 	"flip_x": true,
 	"healthbar_colors": [
 		216,

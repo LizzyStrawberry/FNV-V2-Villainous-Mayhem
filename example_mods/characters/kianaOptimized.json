@@ -123,12 +123,12 @@
 		}
 	],
 	"no_antialiasing": false,
-	"image": "characters/kiana",
+	"image": "characters/Kiana",
 	"position": [
 		10,
 		-20
 	],
-	"healthicon": "kianafinalphase",
+	"healthicon": "KianaFinalPhase",
 	"flip_x": false,
 	"healthbar_colors": [
 		172,

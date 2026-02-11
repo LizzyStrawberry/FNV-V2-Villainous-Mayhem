@@ -101,12 +101,12 @@
 		}
 	],
 	"no_antialiasing": false,
-	"image": "characters/concertChaos/manager chan phase 1",
+	"image": "characters/concertChaos/Manager Chan Phase 1",
 	"position": [
 		0,
 		0
 	],
-	"healthicon": "managerchancc",
+	"healthicon": "managerChanCC",
 	"flip_x": true,
 	"healthbar_colors": [
 		207,

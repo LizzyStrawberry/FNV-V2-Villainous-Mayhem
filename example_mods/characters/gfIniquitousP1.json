@@ -101,12 +101,12 @@
 		}
 	],
 	"no_antialiasing": false,
-	"image": "characters/gf iniquitous p1",
+	"image": "characters/GF Iniquitous P1",
 	"position": [
 		50,
 		130
 	],
-	"healthicon": "gfiniquitousp1",
+	"healthicon": "gfIniquitousP1",
 	"flip_x": true,
 	"healthbar_colors": [
 		165,

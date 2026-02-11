@@ -57,12 +57,12 @@
 		}
 	],
 	"no_antialiasing": false,
-	"image": "characters/kiana final phase",
+	"image": "characters/Kiana Final Phase",
 	"position": [
 		-680,
 		-740
 	],
-	"healthicon": "kianafinalphase",
+	"healthicon": "KianaFinalPhase",
 	"flip_x": false,
 	"healthbar_colors": [
 		172,

@@ -101,12 +101,12 @@
 		}
 	],
 	"no_antialiasing": false,
-	"image": "characters/aileen tofu alt",
+	"image": "characters/Aileen Tofu ALT",
 	"position": [
 		60,
 		-170
 	],
-	"healthicon": "aileentofu",
+	"healthicon": "aileenTofu",
 	"flip_x": true,
 	"healthbar_colors": [
 		163,

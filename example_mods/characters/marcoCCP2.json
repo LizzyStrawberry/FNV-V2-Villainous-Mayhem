@@ -57,12 +57,12 @@
 		}
 	],
 	"no_antialiasing": false,
-	"image": "characters/concertChaos/marco phase 1",
+	"image": "characters/concertChaos/Marco Phase 1",
 	"position": [
 		0,
 		0
 	],
-	"healthicon": "marcocc",
+	"healthicon": "marcoCC",
 	"flip_x": false,
 	"healthbar_colors": [
 		34,
