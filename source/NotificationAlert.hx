@@ -2,7 +2,8 @@ package;
 
 import Achievements;
 
-class NotificationAlert {
+class NotificationAlert 
+{
     public static var sendMessage:Bool = false;
     public static var sendCategoryNotification:Bool = false;
     public static var sendShopNotification:Bool = false;
@@ -18,7 +19,7 @@ class NotificationAlert {
 
     private static function createNotificationSprite(target:FlxSprite, targetX:Float, targetY:Float):FlxSprite
     {
-        var notification:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image('notifications/notifButton'));
+        var notification:FlxSprite = new FlxSprite().loadGraphic(Paths.image('notifications/notifButton'));
         notification.frames = Paths.getSparrowAtlas('notifications/notifButton');
 		notification.animation.addByPrefix('notifPlay', "notification0", 24);
         notification.animation.play('notifPlay');
@@ -66,27 +67,10 @@ class NotificationAlert {
     public static var dur:Float = 2;
     public static function createMessagePopUp(state:FlxState, type:String, checkForShop:Bool = false)
     {
-        notifMessage = new FlxSprite(800, 545);
-        switch(type.toLowerCase())
-        {
-            case 'normal':
-                notifMessage.loadGraphic(Paths.image('notifications/notifMessageNormal'));
-            case 'freeplay':
-                notifMessage.loadGraphic(Paths.image('notifications/notifMessageFreeplay'));
-            case 'iniquitous':
-                notifMessage.loadGraphic(Paths.image('notifications/notifMessageIniquitous'));
-            case 'injection':
-                notifMessage.loadGraphic(Paths.image('notifications/notifMessageInjection'));
-            case 'mayhem':
-                notifMessage.loadGraphic(Paths.image('notifications/notifMessageMayhem'));
-            case 'tutorial':
-                notifMessage.loadGraphic(Paths.image('notifications/notifMessageTutorial'));
-            case 'badge':
-                notifMessage.loadGraphic(Paths.image('notifications/notifMessageBadge'));
-        }
+        notifMessage = new FlxSprite(FlxG.width - 480, FlxG.height + 25);
+        notifMessage.loadGraphic(Paths.image('notifications/notifMessage-${type.toLowerCase()}'));
 		notifMessage.antialiasing = ClientPrefs.globalAntialiasing;
 		notifMessage.updateHitbox();
-        notifMessage.y += 200;
         state.add(notifMessage);
         notifMessageSprites.push(notifMessage);
 
@@ -102,40 +86,37 @@ class NotificationAlert {
 
     public static function finishTween(tween:FlxTween):Void
     {
-        if (multiPopup == true)
+        if (multiPopup)
         {
             for (i in 0...notifMessageSprites.length - 1)
             {
                 var index = tweens.indexOf(tween);
-                if (index != -1)
+                if (index == -1) return trace('No Index Found!');
+                
+                var distance:Float = Math.abs(Math.round((notifMessageSprites[index].y - 745) * 100) / 100);
+                var speed:Float = distance / 1;
+                var duration:Float = (Math.round((distance / speed) * 100) / 100) - (index * 0.002);
+
+                //trace('Index: ' + index);
+                //trace('Distance of sprite on index ' + index + " : " + distance);
+                //trace('Speed of sprite on index ' + index + " : " + speed);
+                //trace('Duration of Tween on index ' + index + " : " + duration);
+
+                // Start a timer to remove the notification after a delay
+                var timer = new FlxTimer().start(dur, function(_) 
                 {
-                    trace('Index: ' + index);
-                    var distance:Float = Math.abs(Math.round((notifMessageSprites[index].y - 745) * 100) / 100);
-                    trace('Distance of sprite on index ' + index + " : " + distance);
-                    var speed:Float = distance / 1;
-                    trace('Speed of sprite on index ' + index + " : " + speed);
-                    var duration:Float = (Math.round((distance / speed) * 100) / 100) - (index * 0.002);
-                    trace('Duration of Tween on index ' + index + " : " + duration);
-                    // Start a timer to remove the notification after a delay
-                    var timer = new FlxTimer().start(dur, function(tmr:FlxTimer) {
-                        if (index == 0)
-                            tweens[index] = FlxTween.tween(notifMessageSprites[index], {y: 745}, duration, {ease: FlxEase.cubeIn, type: PERSIST, onComplete: killSprite});
-                        else
-                            tweens[index] = FlxTween.tween(notifMessageSprites[index], {y: 745}, duration, {ease: FlxEase.cubeIn, type: PERSIST});
-                    });
-                    timers.push(timer);
-                }
-                else
-                {
-                    trace('No Index Found!');
-                }
+                    tweens[index] = FlxTween.tween(notifMessageSprites[index], {y: 745}, duration, 
+                                    {ease: FlxEase.cubeIn, type: PERSIST, onComplete: (index == 0) ? killSprite : null});
+                });
+                timers.push(timer);
             }
         }
         else
         {
              // Start a timer to remove the notification after a delay
-            var timer = new FlxTimer().start(dur, function(tmr:FlxTimer) {
-                    tweens[0] = FlxTween.tween(notifMessage, {y: 745}, 1, {ease: FlxEase.cubeIn, type: PERSIST, onComplete: killSprite});
+            var timer = new FlxTimer().start(dur, function(_) 
+            {
+                tweens[0] = FlxTween.tween(notifMessage, {y: 745}, 1, {ease: FlxEase.cubeIn, type: PERSIST, onComplete: killSprite});
             });
             timers.push(timer);
         }
@@ -159,8 +140,19 @@ class NotificationAlert {
 
     public static function checkForNotifications(state:FlxState)
     {
-        // BADGES SECTION:
-        if (achievementCheck("main") && ClientPrefs.badgesCollected == 0)
+        /**
+            BADGES SECTION
+        **/
+        if (achievementCheck("main") && ClientPrefs.badgesCollected < 1)
+		{
+			showMessage(state, 'Badge');
+			sendCategoryNotification = true;
+			saveNotifications();
+
+			ClientPrefs.badgesCollected += 1;
+			ClientPrefs.saveSettings();
+		}
+        if (achievementCheck("bonus") && ClientPrefs.badgesCollected == 1)
 		{
 			NotificationAlert.showMessage(state, 'Badge');
 			NotificationAlert.sendCategoryNotification = true;
@@ -169,14 +161,24 @@ class NotificationAlert {
 			ClientPrefs.badgesCollected += 1;
 			ClientPrefs.saveSettings();
 		}
-        if (achievementCheck("bonus") && (ClientPrefs.badgesCollected == 1 || (ClientPrefs.iniquitousWeekBeaten && ClientPrefs.badgesCollected == 2))) // Make sure you can get this if you beat iniquitous first
-		{
-			NotificationAlert.showMessage(state, 'Badge');
-			NotificationAlert.sendCategoryNotification = true;
-			NotificationAlert.saveNotifications();
 
-			ClientPrefs.badgesCollected += 1;
+        /**
+            INIQUITOUS SECTION
+        **/
+        // Unlock Iniquitous Week
+		if (!ClientPrefs.iniquitousWeekUnlocked && achievementCheck('mainVillainous'))
+		{
+			ClientPrefs.iniquitousWeekUnlocked = true;
+			sendCategoryNotification = sendMessage = true;
+			sendMessage = true;
 			ClientPrefs.saveSettings();
+
+			FlxG.sound.music.fadeOut(0.2);
+			new FlxTimer().start(0.2, function(_)
+            {
+                FlxG.sound.playMusic(Paths.music('malumIctum'));
+                FlxG.sound.music.fadeIn(2.0);
+            });
 		}
         // This unlocks Iniquitous Difficulty
         if (ClientPrefs.iniquitousWeekBeaten && !Achievements.isAchievementUnlocked('weekIniquitous_Beaten'))
@@ -186,43 +188,48 @@ class NotificationAlert {
             {
 				giveNotificationAchievement('weekIniquitous_Beaten', achieveID, state);
 				
-				NotificationAlert.showMessage(state, 'Iniquitous');
-                NotificationAlert.showMessage(state, 'Badge');
-                NotificationAlert.sendCategoryNotification = true;
-                NotificationAlert.saveNotifications();
+				showMessage(state, 'Iniquitous');
+                showMessage(state, 'Badge');
+                sendCategoryNotification = true;
+                saveNotifications();
 
                 ClientPrefs.badgesCollected += 1;
 				ClientPrefs.saveSettings();
 			}
 		}
-        // This completes the crossover section
+        
+        /**
+            CROSSOVER SECTION
+        **/
+        // This unlocks the crossover section
+        if (achievementCheck("main") && achievementCheck("bonus") && achievementCheck("xtrasBasic") 
+            && !ClientPrefs.roadMapUnlocked && !ClientPrefs.crossoverUnlocked)
+		{
+			showMessage(state, 'Normal');
+			sendCategoryNotification = true;
+			saveNotifications();
+
+			ClientPrefs.roadMapUnlocked = true;
+			ClientPrefs.saveSettings();
+		}
 		if (ClientPrefs.crossoverUnlocked)
 		{
 			var achieveID:Int = Achievements.getAchievementIndex('crossover_Beaten');
 			if(!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveID][2]))
             {
 				giveNotificationAchievement('crossover_Beaten', achieveID, state);
-                NotificationAlert.showMessage(state, 'Badge');
-                NotificationAlert.sendCategoryNotification = true;
-                NotificationAlert.saveNotifications();
+                showMessage(state, 'Badge');
+                sendCategoryNotification = true;
+                saveNotifications();
 
                 ClientPrefs.badgesCollected += 1;
 				ClientPrefs.saveSettings();
 			}
 		}
 
-        // REMAINING NOTIFICATIONS
-        // This unlocks the crossover section
-        if (achievementCheck("main") && achievementCheck("bonus") && achievementCheck("xtrasBasic") && !ClientPrefs.roadMapUnlocked && !ClientPrefs.crossoverUnlocked)
-		{
-			NotificationAlert.showMessage(state, 'Normal');
-			NotificationAlert.sendCategoryNotification = true;
-			NotificationAlert.saveNotifications();
-
-			ClientPrefs.roadMapUnlocked = true;
-			ClientPrefs.saveSettings();
-		}
-
+        /**
+            REMAINDER OF NOTIFICATIONS
+        **/
         // This gives the short song achievement
         if (ClientPrefs.shortPlayed)
 		{
@@ -235,28 +242,27 @@ class NotificationAlert {
 		}
 
         // This unlocks Mayhem Mode
-        if (achievementCheck("main") && achievementCheck("bonus") && achievementCheck("xtrasBasic") && achievementCheck("crossover"))
+        if (!ClientPrefs.mayhemNotif &&achievementCheck("main") && achievementCheck("bonus") 
+            && achievementCheck("xtrasBasic") && achievementCheck("crossover"))
 		{
-			if (!ClientPrefs.mayhemNotif)
-			{
-				ClientPrefs.mayhemNotif = true;
-				NotificationAlert.showMessage(state, 'Mayhem');
-				ClientPrefs.saveSettings();
-			}
+			ClientPrefs.mayhemNotif = true;
+			NotificationAlert.showMessage(state, 'Mayhem');
+			ClientPrefs.saveSettings();
 		}
 
         // This gives out the 100% Completion Achievement
-        if(achievementCheck("main") && achievementCheck("bonus") && achievementCheck("Iniquitous") && achievementCheck("xtrasBasic") && achievementCheck("crossover"))
+        if((achievementCheck('main') || achievementCheck('mainVillainous')) && (achievementCheck('bonus') || achievementCheck('bonusVillainous'))
+            && (achievementCheck('xtrasbasic') || achievementCheck('xtras')) 
+            && achievementCheck('crossover') && achievementCheck('iniquitous'))
 		{
             trace("Accepted the 100% completion achievement!");
 			var achieveID:Int = Achievements.getAchievementIndex('FNV_Completed');
 			if((!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveID][2]))) {
 				giveNotificationAchievement('FNV_Completed', achieveID, state);
-				ClientPrefs.saveSettings();
 
-                NotificationAlert.showMessage(state, 'Badge');
-                NotificationAlert.sendCategoryNotification = true;
-                NotificationAlert.saveNotifications();
+                showMessage(state, 'Badge');
+                sendCategoryNotification = true;
+                saveNotifications();
 
                 ClientPrefs.badgesCollected += 1;
                 ClientPrefs.saveSettings();
@@ -304,7 +310,8 @@ class NotificationAlert {
         return false;
     }
 
-    static function giveNotificationAchievement(achievementName:String, id:Int, state:FlxState) {
+    static function giveNotificationAchievement(achievementName:String, id:Int, state:FlxState) 
+    {
 		state.add(new AchievementObject(achievementName));
         Achievements.achievementsMap.set(Achievements.achievementsStuff[id][2], true);
 		
@@ -318,17 +325,12 @@ class NotificationAlert {
         notifMessageSprites = [];
         timers = [];
         tweens = [];
-        multiPopup = false;
-
-        sendMessage = false;
+        multiPopup = sendMessage = false;
 
         notifMessage = null;
 
-        sendCategoryNotification = false;
-        sendShopNotification = false;
-        sendOptionsNotification = false;
-        sendInventoryNotification = false;
-        sendTutorialNotification = false;
+        sendCategoryNotification = sendShopNotification= sendOptionsNotification = 
+        sendTutorialNotification = sendInventoryNotification = false;
 
         saveNotifications();
     }
@@ -346,24 +348,11 @@ class NotificationAlert {
 
     public static function loadNotifications()
     {
-        if(FlxG.save.data.sendMessage != null) {
-			sendMessage = FlxG.save.data.sendMessage;
-		}
-
-        if(FlxG.save.data.sendCategoryNotification != null) {
-			sendShopNotification = FlxG.save.data.sendShopNotification;
-		}
-        if(FlxG.save.data.sendShopNotification != null) {
-			sendShopNotification = FlxG.save.data.sendShopNotification;
-		}
-        if(FlxG.save.data.sendOptionsNotification != null) {
-			sendShopNotification = FlxG.save.data.sendShopNotification;
-		}
-        if(FlxG.save.data.sendInventoryNotification != null) {
-			sendInventoryNotification = FlxG.save.data.sendInventoryNotification;
-		}
-        if(FlxG.save.data.sendTutorialNotification != null) {
-			sendTutorialNotification = FlxG.save.data.sendTutorialNotification;
-		}
+        if(FlxG.save.data.sendMessage != null) sendMessage = FlxG.save.data.sendMessage;
+        if(FlxG.save.data.sendCategoryNotification != null) sendShopNotification = FlxG.save.data.sendShopNotification;
+        if(FlxG.save.data.sendShopNotification != null) sendShopNotification = FlxG.save.data.sendShopNotification;
+        if(FlxG.save.data.sendOptionsNotification != null) sendShopNotification = FlxG.save.data.sendShopNotification;
+        if(FlxG.save.data.sendInventoryNotification != null) sendInventoryNotification = FlxG.save.data.sendInventoryNotification;
+        if(FlxG.save.data.sendTutorialNotification != null) sendTutorialNotification = FlxG.save.data.sendTutorialNotification;
     }
 }
