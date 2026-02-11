@@ -15,17 +15,19 @@ import CrashHandler;
 
 class Main extends Sprite
 {
-	var gameWidth:Int = 1280; // Width of the game in pixels (might be less / more in actual pixels depending on your zoom).
-	var gameHeight:Int = 720; // Height of the game in pixels (might be less / more in actual pixels depending on your zoom).
-	var initialState:Class<FlxState> = #if (mobile && MODS_ALLOWED) !CopyState.checkExistingFiles() ? CopyState : #end TitleState; // The FlxState the game starts with.
-	var zoom:Float = -1; // If -1, zoom is automatically calculated to fit the window dimensions.
-	var framerate:Int = 120; // How many frames per second the game should run at.
-	var skipSplash:Bool = true; // Whether to skip the flixel splash screen that appears in release mode.
-	var startFullscreen:Bool = false; // Whether to start the game in fullscreen on desktop targets
+	public static final game = 
+	{
+		width: 1280, // Window Width
+		height: 720, // Window Height
+		initialState: #if STARTUP_CACHE Cache #else TitleState #end, // State to load
+		fps: 60, // Framerate
+		skipSplash: true, // Skip Haxeflixel logo splash
+		startFullscreen: false // Full Screen
+	}
+
 	public static var fpsVar:FPS;
 
 	// You can pretty much ignore everything from here on - your code should go in your states.
-
 	public static function main():Void
 	{
 		Lib.current.addChild(new Main());
@@ -56,37 +58,31 @@ class Main extends Sprite
 
 	private function init(?E:Event):Void
 	{
-		if (hasEventListener(Event.ADDED_TO_STAGE))
-			removeEventListener(Event.ADDED_TO_STAGE, init);
+		if (hasEventListener(Event.ADDED_TO_STAGE)) removeEventListener(Event.ADDED_TO_STAGE, init);
 
 		setupGame();
 	}
 
 	private function setupGame():Void
 	{
-		var stageWidth:Int = Lib.current.stage.stageWidth;
-		var stageHeight:Int = Lib.current.stage.stageHeight;
-
-		if (zoom == -1)
-		{
-			var ratioX:Float = stageWidth / gameWidth;
-			var ratioY:Float = stageHeight / gameHeight;
-			zoom = Math.min(ratioX, ratioY);
-			gameWidth = Math.ceil(stageWidth / zoom);
-			gameHeight = Math.ceil(stageHeight / zoom);
-		}
-	
 		FlxG.save.bind('Friday Night Villainy', CoolUtil.getSavePath());
 		ClientPrefs.loadDefaultKeys();
-		addChild(new FlxGame(gameWidth, gameHeight, initialState, #if (flixel < "5.0.0") zoom, #end framerate, framerate, skipSplash, startFullscreen));
+
+		// Add new gameObject
+		var gameObject = new FlxGame(game.width, game.height, game.initialState, game.fps, game.fps, game.skipSplash, game.startFullscreen);
+		// Setting up Custom Sound Tray
+		// FlxG.game._customSoundTray wants just the class, it calls new from
+		// create() in there, which gets called when it's added to stage
+		// which is why it needs to be added before addChild(game) here
+		@:privateAccess
+		gameObject._customSoundTray = FunkinSoundTray;
+		addChild(gameObject);
 
 		fpsVar = new FPS(10, 3, 0xFFFFFF);
 		addChild(fpsVar);
 		Lib.current.stage.align = "tl";
 		Lib.current.stage.scaleMode = StageScaleMode.NO_SCALE;
-		if(fpsVar != null) {
-			fpsVar.visible = ClientPrefs.showFPS;
-		}
+		if(fpsVar != null) fpsVar.visible = ClientPrefs.showFPS;
 
 		FlxG.game.focusLostFramerate = #if mobile 30 #else 60 #end;
 
