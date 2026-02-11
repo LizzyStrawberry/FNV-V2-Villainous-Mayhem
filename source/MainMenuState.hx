@@ -947,11 +947,19 @@ class MainMenuState extends MusicBeatState
 							selectedSomethin = true;
 							if (FlxG.sound.music != null) FlxG.sound.music.stop();
 				
+							#if windows
+							CppAPI.setOld();
+							CppAPI.setWallpaper(FileSystem.absolutePath("assets\\images\\thinkFastBitch.png"));
+							#end
+
 							var video:VideoSprite = new VideoSprite(Paths.video('thinkFastChucklenuts'), false, false, false);
 							video.cameras = [camAchievement];
 							add(video);
 							video.finishCallback = function()
 							{
+								#if windows
+								if (!ClientPrefs.allowPCChanges && Wallpaper.oldWallpaper != null) CppAPI.setWallpaper("old");
+								#end
 								System.exit(0);
 							};
 							video.play();

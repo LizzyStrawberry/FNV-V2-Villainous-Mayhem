@@ -48,6 +48,10 @@ class GameOverSubstate extends MusicBeatSubstate
 			switch(Paths.formatToSongPath(PlayState.SONG.song))
 			{
 				case "marauder" | "marauder-(old)":
+					#if windows
+					CppAPI.setOld();
+					CppAPI.setWallpaper(FileSystem.absolutePath("assets\\images\\ERROR.png"));
+					#end
 					createDeathVideo('thereIsAProblem', true, true);
 
 				case "jerry":
@@ -323,8 +327,14 @@ class GameOverSubstate extends MusicBeatSubstate
 
 		function onVideoEnd()
 		{
-			if (crashGame) System.exit(0);
-			else if (!PlayState.isMayhemMode || !PlayState.isInjectionMode) MusicBeatState.resetState();
+			#if windows
+			if (!ClientPrefs.allowPCChanges && Wallpaper.oldWallpaper != null) CppAPI.setWallpaper("old");
+			#end
+
+			if (crashGame)
+				System.exit(0);
+			else if (!PlayState.isMayhemMode || !PlayState.isInjectionMode)
+				MusicBeatState.resetState();
 		}
 
 		var video:VideoSprite = new VideoSprite(videoPath, false, canSkip, false);
