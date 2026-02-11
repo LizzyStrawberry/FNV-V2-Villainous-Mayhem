@@ -35,12 +35,12 @@
 		}
 	],
 	"no_antialiasing": false,
-	"image": "characters/concertChaos/Lily death screen",
+	"image": "characters/concertChaos/Lily Death Screen",
 	"position": [
 		0,
 		0
 	],
-	"healthicon": "lilycc",
+	"healthicon": "lilyCC",
 	"flip_x": true,
 	"healthbar_colors": [
 		253,

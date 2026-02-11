@@ -134,12 +134,12 @@
 		}
 	],
 	"no_antialiasing": false,
-	"image": "characters/aileen tofu",
+	"image": "characters/Aileen Tofu",
 	"position": [
 		-60,
 		-70
 	],
-	"healthicon": "aileentofu",
+	"healthicon": "aileenTofu",
 	"flip_x": true,
 	"healthbar_colors": [
 		163,

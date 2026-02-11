@@ -112,12 +112,12 @@
 		}
 	],
 	"no_antialiasing": false,
-	"image": "characters/kyu",
+	"image": "characters/Kyu",
 	"position": [
 		-520,
 		-10
 	],
-	"healthicon": "kyufa",
+	"healthicon": "kyuFA",
 	"flip_x": true,
 	"healthbar_colors": [
 		255,

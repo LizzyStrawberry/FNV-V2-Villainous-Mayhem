@@ -101,12 +101,12 @@
 		}
 	],
 	"no_antialiasing": false,
-	"image": "characters/pico p2",
+	"image": "characters/Pico P2",
 	"position": [
 		70,
 		70
 	],
-	"healthicon": "picofnv",
+	"healthicon": "picoFNV",
 	"flip_x": true,
 	"healthbar_colors": [
 		183,

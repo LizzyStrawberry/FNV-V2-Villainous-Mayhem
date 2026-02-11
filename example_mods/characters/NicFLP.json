@@ -68,12 +68,12 @@
 		}
 	],
 	"no_antialiasing": false,
-	"image": "characters/nicflp",
+	"image": "characters/NicFLP",
 	"position": [
 		0,
 		310
 	],
-	"healthicon": "nicflp",
+	"healthicon": "nicFLP",
 	"flip_x": false,
 	"healthbar_colors": [
 		255,

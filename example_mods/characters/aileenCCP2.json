@@ -57,12 +57,12 @@
 		}
 	],
 	"no_antialiasing": false,
-	"image": "characters/concertChaos/aileen phase 1",
+	"image": "characters/concertChaos/Aileen Phase 1",
 	"position": [
 		0,
 		180
 	],
-	"healthicon": "aileencc",
+	"healthicon": "aileenCC",
 	"flip_x": false,
 	"healthbar_colors": [
 		174,

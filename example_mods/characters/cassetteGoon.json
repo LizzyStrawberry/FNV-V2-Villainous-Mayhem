@@ -112,12 +112,12 @@
 		}
 	],
 	"no_antialiasing": false,
-	"image": "characters/cassette goon",
+	"image": "characters/Cassette Goon",
 	"position": [
 		0,
 		0
 	],
-	"healthicon": "cassettegoon",
+	"healthicon": "cassetteGoon",
 	"flip_x": true,
 	"healthbar_colors": [
 		227,

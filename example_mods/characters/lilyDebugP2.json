@@ -101,12 +101,12 @@
 		}
 	],
 	"no_antialiasing": false,
-	"image": "characters/concertChaos/Lily debug phase 2",
+	"image": "characters/concertChaos/Lily Debug Phase 2",
 	"position": [
 		0,
 		0
 	],
-	"healthicon": "lilycc",
+	"healthicon": "lilyCC",
 	"flip_x": true,
 	"healthbar_colors": [
 		253,

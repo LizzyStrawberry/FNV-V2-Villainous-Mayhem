@@ -57,12 +57,12 @@
 		}
 	],
 	"no_antialiasing": false,
-	"image": "characters/amogleen excrete",
+	"image": "characters/Amogleen Excrete",
 	"position": [
 		-420,
 		290
 	],
-	"healthicon": "amogleenexcrete",
+	"healthicon": "amogleenExcrete",
 	"flip_x": false,
 	"healthbar_colors": [
 		163,

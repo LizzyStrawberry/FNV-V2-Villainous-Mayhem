@@ -57,12 +57,12 @@
 		}
 	],
 	"no_antialiasing": false,
-	"image": "characters/marcussy excrete",
+	"image": "characters/Marcussy Excrete",
 	"position": [
 		-260,
 		-270
 	],
-	"healthicon": "marcussyexcrete",
+	"healthicon": "marcussyExcrete",
 	"flip_x": false,
 	"healthbar_colors": [
 		57,

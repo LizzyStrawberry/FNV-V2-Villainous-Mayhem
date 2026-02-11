@@ -123,12 +123,12 @@
 		}
 	],
 	"no_antialiasing": false,
-	"image": "characters/dico",
+	"image": "characters/Dico",
 	"position": [
 		70,
 		170
 	],
-	"healthicon": "d-sidepico",
+	"healthicon": "d-sidePico",
 	"flip_x": true,
 	"healthbar_colors": [
 		255,

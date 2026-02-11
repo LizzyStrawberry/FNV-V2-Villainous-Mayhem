@@ -35,12 +35,12 @@
 		}
 	],
 	"no_antialiasing": false,
-	"image": "characters/kyu death",
+	"image": "characters/Kyu Death",
 	"position": [
 		-520,
 		-10
 	],
-	"healthicon": "kyufa",
+	"healthicon": "kyuFA",
 	"flip_x": true,
 	"healthbar_colors": [
 		255,

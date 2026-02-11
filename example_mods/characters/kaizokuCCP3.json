@@ -57,12 +57,12 @@
 		}
 	],
 	"no_antialiasing": false,
-	"image": "characters/concertChaos/kaizoku phase 3",
+	"image": "characters/concertChaos/Kaizoku Phase 3",
 	"position": [
 		0,
 		0
 	],
-	"healthicon": "debugguy",
+	"healthicon": "debugGuy",
 	"flip_x": false,
 	"healthbar_colors": [
 		62,

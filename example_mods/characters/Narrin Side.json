@@ -79,12 +79,12 @@
 		}
 	],
 	"no_antialiasing": false,
-	"image": "characters/narrin side",
+	"image": "characters/Narrin Side",
 	"position": [
 		20,
 		40
 	],
-	"healthicon": "narrindoll",
+	"healthicon": "narrinDoll",
 	"flip_x": false,
 	"healthbar_colors": [
 		74,

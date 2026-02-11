@@ -35,12 +35,12 @@
 		}
 	],
 	"no_antialiasing": false,
-	"image": "characters/marcofffdeath",
+	"image": "characters/marcoFFFDeath",
 	"position": [
 		20,
 		-135
 	],
-	"healthicon": "marcofffp1",
+	"healthicon": "marcoFFFP1",
 	"flip_x": true,
 	"healthbar_colors": [
 		34,

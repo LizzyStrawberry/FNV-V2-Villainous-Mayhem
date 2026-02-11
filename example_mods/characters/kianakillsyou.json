@@ -84,12 +84,12 @@
 		}
 	],
 	"no_antialiasing": false,
-	"image": "characters/kianakillsyou",
+	"image": "characters/KianaKillsYou",
 	"position": [
 		-570,
 		30
 	],
-	"healthicon": "playablegf",
+	"healthicon": "kiana",
 	"flip_x": true,
 	"healthbar_colors": [
 		165,

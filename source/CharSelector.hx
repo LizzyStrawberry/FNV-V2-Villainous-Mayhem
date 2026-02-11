@@ -15,7 +15,8 @@ import flixel.ui.FlxBar;
 
 import FreeplayState;
 
-class CharSelector extends MusicBeatState{
+class CharSelector extends MusicBeatState
+{
     // For Memory Usage (Check Freeplay States)
     public static var isSelectinChar:Bool = false;
     // Selectable Character Variables
@@ -417,7 +418,7 @@ class CharSelector extends MusicBeatState{
 
         // Ensures the characters are reset and that the first one is the default character
         unlockedCharacters = selectableCharacters;
-        unlockedCharacters[0] = PlayState.SONG.player1; 
+        unlockedCharacters[0] = 'playablegf'; 
 
         // Grabs default character names
         unlockedCharactersNames = selectableCharactersNames;
