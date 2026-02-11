@@ -11,7 +11,7 @@ import flash.system.System;
 
 class MainMenuState extends MusicBeatState
 {
-	public static var FNVVersion:String = '2.0.1 (Hotfix)'; //This is also used for Discord RPC
+	public static var FNVVersion:String = '2.1 (Patch Update)'; //This is also used for Discord RPC
 	public static var psychEngineVersion:String = '0.6.3 Modified'; //This is also used for Discord RPC
 	public static var curSelected:Int = 0;
 	public static var curStorySelected:Int = 0;
@@ -189,15 +189,15 @@ class MainMenuState extends MusicBeatState
 
 		FlxG.mouse.visible = true;
 
-		#if desktop
+		#if DISCORD_ALLOWED
 		// Updating Discord Rich Presence
 		DiscordClient.changePresence("In the Menus", null);
 		#end
+
 		debugKeys = ClientPrefs.copyKey(ClientPrefs.keyBinds.get('debug_1'));
 
-		if (!ClientPrefs.galleryUnlocked && Achievements.isAchievementUnlocked('WeekMarco_Beaten') 
-			&& Achievements.isAchievementUnlocked('WeekNun_Beaten') && Achievements.isAchievementUnlocked('WeekKiana_Beaten'))
-			ClientPrefs.galleryUnlocked = true;
+		ClientPrefs.galleryUnlocked = (!ClientPrefs.galleryUnlocked && Achievements.isAchievementUnlocked('WeekMarco_Beaten') 
+			&& Achievements.isAchievementUnlocked('WeekNun_Beaten') && Achievements.isAchievementUnlocked('WeekKiana_Beaten'));
 		
 		// Resetting this rq
 		ClientPrefs.ghostTapping = true;
@@ -218,8 +218,6 @@ class MainMenuState extends MusicBeatState
 
 		transIn = FlxTransitionableState.defaultTransIn;
 		transOut = FlxTransitionableState.defaultTransOut;
-
-		//persistentUpdate = persistentDraw = true;
 
 		intendedInjectedScore = ClientPrefs.injectionEndScore;
 		intendedMayhemedScore = ClientPrefs.mayhemEndTotalScore;
@@ -242,11 +240,11 @@ class MainMenuState extends MusicBeatState
 		{
 			var isLocked:Bool = (optionShit[i] == 'freeplay' && !ClientPrefs.mainWeekBeaten) || (optionShit[i] == 'gallery' && !ClientPrefs.galleryUnlocked) || (optionShit[i] == 'info' && !ClientPrefs.mainWeekBeaten);
 			var imagePath:FlxGraphic = Paths.image('mainmenu/menu_' + optionShit[i] + ((isLocked) ? "Locked" : ""));
-			var menuItem:FlxSprite = new FlxSprite(0, 0).loadGraphic(imagePath);
+			var menuItem:FlxSprite = new FlxSprite().loadGraphic(imagePath);
 			menuItem.ID = i;
 			menuItem.screenCenter(XY);
 			menuItem.x -= 300;
-			menuItem.y = 520;
+			menuItem.y = FlxG.height - 200;
 			menuItems.add(menuItem);
 
 			menuItem.scrollFactor.set();
@@ -275,7 +273,7 @@ class MainMenuState extends MusicBeatState
 		add(menuSelectors);
 
 		var ui_tex = Paths.getSparrowAtlas('campaign_menu_UI_assets');
-		leftArrow = new FlxSprite(FlxG.width - 1250, 550);
+		leftArrow = new FlxSprite(FlxG.width - 1250, FlxG.height - 170);
 		leftArrow.frames = ui_tex;
 		leftArrow.animation.addByPrefix('idle', "arrow left");
 		leftArrow.animation.addByPrefix('press', "arrow push left");
@@ -296,12 +294,13 @@ class MainMenuState extends MusicBeatState
 		getRightArrowX = rightArrow.x;
 		getLeftArrowX = leftArrow.x;
 
-		exclamationMark = new FlxSprite(FlxG.width - 90, 110).loadGraphic(Paths.image('exclamationMark'));
+		exclamationMark = new FlxSprite(FlxG.width - 90, FlxG.height - 610).loadGraphic(Paths.image('exclamationMark'));
 		exclamationMark.antialiasing = ClientPrefs.globalAntialiasing;
 		exclamationMark.alpha = 0.5;
 		exclamationMark.scale.set(0.5, 0.5);
 		exclamationMark.updateHitbox();
 		add(exclamationMark);
+
 		if (!ClientPrefs.firstTime)
 		{
 			NotificationAlert.showMessage(this, 'Tutorial');
@@ -324,6 +323,7 @@ class MainMenuState extends MusicBeatState
 		optionsButton.alpha = 0.5;
 		optionsButton.updateHitbox();
 		add(optionsButton);
+
 		if (NotificationAlert.sendOptionsNotification) // Options Notification
 		{
 			NotificationAlert.addNotification(this, optionsButton, -10, 85);
@@ -332,7 +332,7 @@ class MainMenuState extends MusicBeatState
 			NotificationAlert.saveNotifications();
 		}
 
-		inventoryButton = new FlxSprite(optionsButton.x, 230).loadGraphic(Paths.image('inventoryButton'));
+		inventoryButton = new FlxSprite(optionsButton.x, FlxG.height - 490).loadGraphic(Paths.image('inventoryButton'));
 		inventoryButton.antialiasing = ClientPrefs.globalAntialiasing;
 		inventoryButton.alpha = 0.5;
 		inventoryButton.updateHitbox();
@@ -345,7 +345,7 @@ class MainMenuState extends MusicBeatState
 			NotificationAlert.saveNotifications();
 		}
 
-		shopButton = new FlxSprite(0, 0).loadGraphic(Paths.image('shopButton'));
+		shopButton = new FlxSprite().loadGraphic(Paths.image('shopButton'));
 		shopButton.antialiasing = ClientPrefs.globalAntialiasing;
 		shopButton.alpha = 0.5;
 		shopButton.updateHitbox();
@@ -365,8 +365,8 @@ class MainMenuState extends MusicBeatState
 		CustomFontFormats.addMarkers(tokenShow);
 		add(tokenShow);
 
-		blackOut = new FlxSprite(0, 0).makeGraphic(FlxG.width, FlxG.height, 0xFF000000);
-		blackOut.alpha = 0;
+		blackOut = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, 0xFF000000);
+		blackOut.alpha = 0.0001;
 		add(blackOut);
 
 		storyStuffs = new FlxTypedGroup<FlxSprite>();
@@ -384,21 +384,21 @@ class MainMenuState extends MusicBeatState
 			storyStuffs.add(storyStuff);
 		}
 
-		storySelection = new Alphabet(FlxG.width + 740, 320, "Test", true);
+		storySelection = new Alphabet(FlxG.width + 740, FlxG.height - 400, "Test", true);
 		storySelection.setAlignmentFromString('center');
 		storySelection.alpha = 0.6;
 		storySelection.scaleX = 0.8;
 		storySelection.scaleY = 0.8;
 		add(storySelection);
 
-		storyText = new FlxText(30, 300, FlxG.width, "Test!");
+		storyText = new FlxText(FlxG.width - 1250, FlxG.height - 400, FlxG.width, "Test!");
 		storyText.setFormat("VCR OSD Mono", 40, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, 0xFF000000);
 		storyText.alpha = 0;
 		storyText.borderSize = 3;
 		CustomFontFormats.addMarkers(storyText);
 		add(storyText);
 
-		extraFinalScore = new FlxText(10, 665, 0, "RECORD: 49324858", 36);
+		extraFinalScore = new FlxText(10, FlxG.height - 55, 0, "RECORD: 49324858", 36);
 		extraFinalScore.setFormat("VCR OSD Mono", 32, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, 0xFF000000);
 		extraFinalScore.alpha = 0;
 		extraFinalScore.borderSize = 3;
@@ -407,7 +407,7 @@ class MainMenuState extends MusicBeatState
 		difficultySelectors = new FlxGroup();
 		add(difficultySelectors);
 
-		leftDiffArrow = new FlxSprite(810, 410);
+		leftDiffArrow = new FlxSprite(FlxG.width - 470, FlxG.height - 310);
 		leftDiffArrow.frames = ui_tex;
 		leftDiffArrow.animation.addByPrefix('idle', "arrow left");
 		leftDiffArrow.animation.addByPrefix('press', "arrow push left");
@@ -444,7 +444,6 @@ class MainMenuState extends MusicBeatState
 		}
 
 		NotificationAlert.checkForNotifications(this);
-		// Menu Inventory
 		createInventory();
 		allowMayhemGameMode = (ClientPrefs.mayhemNotif) ? true : false;
 		changeItem();
@@ -474,14 +473,12 @@ class MainMenuState extends MusicBeatState
 		{
 			secretBG = true;
 			bg.loadGraphic(Paths.image('mainMenuBgs/menu-rare'));
-			FlxG.sound.music.fadeOut(1.0);
-			new FlxTimer().start(1, function(tmr:FlxTimer)
-			{
-				FlxG.sound.playMusic(Paths.music('malumIctum'), 0);
-				FlxG.sound.music.fadeIn(4, 0, 1);
-				trace('Song changed to the rare one! + fadeout!');	
+			new FlxTimer().start(1, function(_)
+			{	
 				giveAnotherAchievement();
-				ClientPrefs.saveSettings();				
+				ClientPrefs.saveSettings();
+
+				//trace('Song changed to the rare one! + fadeout!');		
 			});
 		}
 		else if (randNum == 30 && Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed && ClientPrefs.kianaWeekPlayed)
@@ -491,9 +488,8 @@ class MainMenuState extends MusicBeatState
 			bg.animation.addByPrefix('idleMenu', 'mork mork0', 24, true);
 			bg.animation.play('idleMenu');
 			bg.scrollFactor.set();
-			trace('MORK');	
+			//trace('MORK');	
 		}
-		
 		else
 		{
 			var maxNum:Int = 5;
@@ -538,11 +534,11 @@ class MainMenuState extends MusicBeatState
 		BGchecker.screenCenter(X); 
 		add(BGchecker);
 
-		inventoryTitle = new Alphabet(FlxG.width - 860, 10, "Inventory", true);
+		inventoryTitle = new Alphabet(FlxG.width - 860, FlxG.height - 710, "Inventory", true);
 		inventoryTitle.alpha = 0;
 		add(inventoryTitle);
 	
-		gfPocket = new FlxSprite(0, 0).loadGraphic(Paths.image('inventoryChars/gf'));
+		gfPocket = new FlxSprite().loadGraphic(Paths.image('inventoryChars/gf'));
 		gfPocket.screenCenter(XY);
 		gfPocket.x -= 340;
 		gfPocket.y += 40;
@@ -552,45 +548,26 @@ class MainMenuState extends MusicBeatState
 
 		switch (ClientPrefs.charInventory)
 		{
-			case 'playablegf' | 'playablegf-old':
-				gfPocket.loadGraphic(Paths.image('inventoryChars/gf'));
-			case 'gfIniquitousP1' | 'GFLibidinousness':
-				gfPocket.loadGraphic(Paths.image('inventoryChars/gfdemon'));
-			case 'd-side gf':
-				gfPocket.loadGraphic(Paths.image('inventoryChars/oldgf'));
-			case 'GFwav':
-				gfPocket.loadGraphic(Paths.image('inventoryChars/gfwav'));
-			case 'amongGF':
-				gfPocket.loadGraphic(Paths.image('inventoryChars/amonggf'));
-			case 'debugGF':
-				gfPocket.loadGraphic(Paths.image('inventoryChars/debuggf'));
-			case 'Spendthrift GF':
-				gfPocket.loadGraphic(Paths.image('inventoryChars/spendthriftgf'));
-			case 'PicoCrimson' | 'PicoFNV' | 'PicoFNVP2':
-				gfPocket.loadGraphic(Paths.image('inventoryChars/pico'));
-			case 'd-sidePico':
-				gfPocket.loadGraphic(Paths.image('inventoryChars/dico'));
-			case 'porkchop':
-				gfPocket.loadGraphic(Paths.image('inventoryChars/porkchop'));
-			case 'lillie':
-				gfPocket.loadGraphic(Paths.image('inventoryChars/lillie'));
-			case 'aileenTofu':
-				gfPocket.loadGraphic(Paths.image('inventoryChars/aileentofu'));
-			case 'marcoFFFP1':
-				gfPocket.loadGraphic(Paths.image('inventoryChars/marcofff'));
-			case 'lilyIntroP1':
-				gfPocket.loadGraphic(Paths.image('inventoryChars/lily'));
-			case 'kyu':
-				gfPocket.loadGraphic(Paths.image('characterInfo/KyuInfo'));
-			case 'TC':
-				gfPocket.loadGraphic(Paths.image('inventoryChars/tc'));
-			case 'ourple':
-				gfPocket.loadGraphic(Paths.image('inventoryChars/ourple'));
-			case 'uzi':
-				gfPocket.loadGraphic(Paths.image('inventoryChars/uzi'));
+			case 'playablegf' | 'playablegf-old': gfPocket.loadGraphic(Paths.image('inventoryChars/gf'));
+			case 'gfIniquitousP1' | 'GFLibidinousness': gfPocket.loadGraphic(Paths.image('inventoryChars/gfdemon'));
+			case 'd-side gf': gfPocket.loadGraphic(Paths.image('inventoryChars/oldgf'));
+			case 'GFwav': gfPocket.loadGraphic(Paths.image('inventoryChars/gfwav'));
+			case 'amongGF':	gfPocket.loadGraphic(Paths.image('inventoryChars/amonggf'));
+			case 'debugGF':	gfPocket.loadGraphic(Paths.image('inventoryChars/debuggf'));
+			case 'Spendthrift GF': gfPocket.loadGraphic(Paths.image('inventoryChars/spendthriftgf'));
+			case 'PicoCrimson' | 'PicoFNV' | 'PicoFNVP2': gfPocket.loadGraphic(Paths.image('inventoryChars/pico'));
+			case 'd-sidePico': gfPocket.loadGraphic(Paths.image('inventoryChars/dico'));
+			case 'porkchop': gfPocket.loadGraphic(Paths.image('inventoryChars/porkchop'));
+			case 'lillie': gfPocket.loadGraphic(Paths.image('inventoryChars/lillie'));
+			case 'aileenTofu': gfPocket.loadGraphic(Paths.image('inventoryChars/aileentofu'));
+			case 'marcoFFFP1': gfPocket.loadGraphic(Paths.image('inventoryChars/marcofff'));
+			case 'lilyIntroP1': gfPocket.loadGraphic(Paths.image('inventoryChars/lily'));
+			case 'kyu': gfPocket.loadGraphic(Paths.image('characterInfo/KyuInfo'));
+			case 'TC': gfPocket.loadGraphic(Paths.image('inventoryChars/tc'));
+			case 'ourple': gfPocket.loadGraphic(Paths.image('inventoryChars/ourple'));
+			case 'uzi': gfPocket.loadGraphic(Paths.image('inventoryChars/uzi'));
 				
-			default:
-				gfPocket.loadGraphic(Paths.image('inventoryChars/gf'));
+			default: gfPocket.loadGraphic(Paths.image('inventoryChars/gf'));
 		}
 
 		badgeBar = new FlxSprite(FlxG.width * 0.05, FlxG.height - 150).loadGraphic(Paths.image('inventory/badge/badgeBar'));
@@ -608,9 +585,6 @@ class MainMenuState extends MusicBeatState
 			badge.updateHitbox();
 			badge.x = badgeBar.x + (i * 100);
 			badges.ID = i;
-
-			if (ClientPrefs.iniquitousWeekBeaten && !NotificationAlert.achievementCheck("bonus") && i == 1) // In case you beat Iniquitous First and not the bonus weeks
-				badge.loadGraphic(Paths.image('inventory/badge/badge-3'));
 
 			badge.alpha = 0;
 			badge.antialiasing = ClientPrefs.globalAntialiasing;
@@ -644,9 +618,8 @@ class MainMenuState extends MusicBeatState
 		buffSelected.antialiasing = ClientPrefs.globalAntialiasing;
 		add(buffSelected);
 
-		buffTitle = new Alphabet(FlxG.width - 110, 200, "Buffs", true);
-		buffTitle.scaleX = 0.7;
-		buffTitle.scaleY = 0.7;
+		buffTitle = new Alphabet(FlxG.width - 110, FlxG.height - 520, "Buffs", true);
+		buffTitle.scaleX = buffTitle.scaleY = 0.7;
 		buffTitle.alpha = 0;
 		add(buffTitle);
 
@@ -670,21 +643,17 @@ class MainMenuState extends MusicBeatState
 
 			switch(charm.ID)
 			{
-				case 0:
-					if (!ClientPrefs.resCharmCollected) charm.loadGraphic(Paths.image('inventory/buffLocked'));
-				case 1:
-					if (!ClientPrefs.autoCharmCollected) charm.loadGraphic(Paths.image('inventory/buffLocked'));
-				case 2:
-					if (!ClientPrefs.healCharmCollected) charm.loadGraphic(Paths.image('inventory/buffLocked'));
+				case 0: if (!ClientPrefs.resCharmCollected) charm.loadGraphic(Paths.image('inventory/buffLocked'));
+				case 1: if (!ClientPrefs.autoCharmCollected) charm.loadGraphic(Paths.image('inventory/buffLocked'));
+				case 2: if (!ClientPrefs.healCharmCollected) charm.loadGraphic(Paths.image('inventory/buffLocked'));
 			}
 			charm.alpha = 0;
 			charm.antialiasing = ClientPrefs.globalAntialiasing;
 			charmItems.add(charm);
 		}	
 
-		charmTitle = new Alphabet(FlxG.width - 160, 610, "Charms", true);
-		charmTitle.scaleX = 0.7;
-		charmTitle.scaleY = 0.7;
+		charmTitle = new Alphabet(FlxG.width - 160, FlxG.height - 110, "Charms", true);
+		charmTitle.scaleX = charmTitle.scaleY = 0.7;
 		charmTitle.alpha = 0;
 		add(charmTitle);
 
@@ -704,12 +673,13 @@ class MainMenuState extends MusicBeatState
 	{
 		if(!secretBG)
 		{
-			trace("Changing the Background");
+			//trace("Changing the Background");
 			FlxTween.tween(bg, { alpha: 0 }, 3, {ease: FlxEase.cubeInOut, type: PERSIST});
 			FlxTween.tween(bgChange, { alpha: 1 }, 3, {ease: FlxEase.cubeInOut, type: PERSIST});
 
 			var bgTimer:FlxTimer = new FlxTimer().start(10, changeBgAgain);
-			new FlxTimer().start(4, function (tmr:FlxTimer) {
+			new FlxTimer().start(4, function (_) 
+			{
 				var maxNum:Int = 5;
 			
 				if (Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed && ClientPrefs.kianaWeekPlayed) maxNum = 59;
@@ -730,7 +700,8 @@ class MainMenuState extends MusicBeatState
 			FlxTween.tween(bgChange, { alpha: 0 }, 3, {ease: FlxEase.cubeInOut, type: PERSIST});
 
 			var bgTimer:FlxTimer = new FlxTimer().start(10, changeBg);
-			new FlxTimer().start(4, function (tmr:FlxTimer) {
+			new FlxTimer().start(4, function (t_)
+			{
 				var maxNum:Int = 5;
 			
 				if (Achievements.isAchievementUnlocked('WeekMarco_Beaten') && ClientPrefs.nunWeekPlayed && ClientPrefs.kianaWeekPlayed) maxNum = 59;
@@ -744,7 +715,8 @@ class MainMenuState extends MusicBeatState
 
 	// Achievements
 	#if ACHIEVEMENTS_ALLOWED
-	function giveAnotherAchievement() {
+	function giveAnotherAchievement() 
+	{
 		add(new AchievementObject('secret', camAchievement));
 		FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
 		trace('Giving achievement "secret"');
@@ -867,7 +839,7 @@ class MainMenuState extends MusicBeatState
 
 				// Arrow position
 				FlxTween.tween(leftArrow, {x: FlxG.mouse.overlaps(leftArrow) ? getLeftArrowX - 2 : getLeftArrowX}, 0.7, {ease: FlxEase.circOut, type: PERSIST});	
-				FlxTween.tween(rightArrow, {x: FlxG.mouse.overlaps(leftArrow) ? getRightArrowX + 2 : getRightArrowX}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
+				FlxTween.tween(rightArrow, {x: FlxG.mouse.overlaps(rightArrow) ? getRightArrowX + 2 : getRightArrowX}, 0.7, {ease: FlxEase.circOut, type: PERSIST});
 
 				// Arrow Functionality (Main Part)
 				if (controls.UI_RIGHT || (FlxG.mouse.overlaps(rightArrow) && FlxG.mouse.pressed)) rightArrow.animation.play('press')
@@ -922,13 +894,15 @@ class MainMenuState extends MusicBeatState
 										case 'freeplay':
 											ClientPrefs.inMenu = false;
 											MusicBeatState.switchState(new FreeplayCategoryState(), 'stickers');
-										case 'info':
-											MusicBeatState.switchState(new InfoState(), 'stickers');
-										case 'promotion':
-											MusicBeatState.switchState(new PromotionState(), 'stickers');
+										
+										case 'info': MusicBeatState.switchState(new InfoState(), 'stickers');
+										
+										case 'promotion': MusicBeatState.switchState(new PromotionState(), 'stickers');
+										
 										case 'gallery':
 											ClientPrefs.inMenu = false;
 											MusicBeatState.switchState(new GalleryState(), 'stickers');
+										
 										case 'credits':
 											ClientPrefs.inMenu = false;
 											MusicBeatState.switchState(new CreditsState(), 'stickers');
