@@ -8,10 +8,6 @@ function onCreate()
 		addLuaSprite('nunBG', false);
 	end
 	
-	if songName == 'Point Blank' then
-		setProperty('defaultCamZoom', 0.7 * zoomMult)
-	else
-		setProperty('defaultCamZoom', 1.2 * zoomMult)
-	end
+	setProperty('defaultCamZoom', songName == 'Point Blank' and 0.7 or 1.2)
 	close(true); --For performance reasons, close this script once the stage is fully loaded, as this script won't be used anymore after loading the stage
 end
