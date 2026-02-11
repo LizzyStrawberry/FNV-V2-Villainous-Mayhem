@@ -17,5 +17,5 @@ function onUpdate()
 end
 
 function setDrain() 
-	drain = difficulty == 2 and 0.028 or 0.013
+	drain = difficulty == 2 and 0.01875 or 0.01075
 end

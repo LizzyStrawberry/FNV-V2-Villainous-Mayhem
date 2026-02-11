@@ -37,7 +37,7 @@ function onCreatePost()
 	setScrollFactor('extraCharBG', 1, 1)
 	addLuaSprite('extraCharBG', false)
 	
-	makeAnimatedLuaSprite('aileen', 'characters/aileenOurple', 280, 160)
+	makeAnimatedLuaSprite('aileen', 'characters/AileenOurple', 280, 160)
 	addAnimationByPrefix('aileen', 'idle', 'aileen idle0', 24, false)
 	setScrollFactor('aileen', 1, 1)
 	addLuaSprite('aileen', false)

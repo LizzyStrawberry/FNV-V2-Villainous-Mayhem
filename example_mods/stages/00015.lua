@@ -2,10 +2,11 @@ function onCreate()
 	-- background shit
 	if optimizationMode then return end
 
-	makeLuaSprite('whiteBG', '', -800, -600)
-	makeGraphic('whiteBG', 5000, 5000, 'FFFFFF')
+	makeLuaSprite('whiteBG')
+	makeGraphic('whiteBG', screenWidth, screenHeight, 'FFFFFF')
+	scaleObject('whiteBG', 5, 5)
+	screenCenter('whiteBG', 'X')
 	setScrollFactor('whiteBG', 0, 0)
-	setObjectCamera('whiteBG', 'game')
 	addLuaSprite('whiteBG', false)
 	
 	makeLuaSprite('funnyMan', 'effects/funnyMan', 0, 0)

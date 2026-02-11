@@ -266,17 +266,15 @@ class GameOverSubstate extends MusicBeatSubstate
 			if (!appliedChanges) appliedChanges = PlayState.checkSongBeforeSwitching("Optimization", PlayState.SONG.song, diff);
 			if (!appliedChanges) appliedChanges = PlayState.checkSongBeforeSwitching("Mechanics", PlayState.SONG.song, diff);
 
-			if (appliedChanges)
-			{
-				PlayState.SONG.player1 = currentPlayer;
-				trace("Song has been modified successfully.");
-			}
-			else
+			if (!appliedChanges)
 			{
 				PlayState.SONG = Song.loadFromJson(Paths.formatToSongPath(PlayState.SONG.song) + diff, Paths.formatToSongPath(PlayState.SONG.song));
 				trace("No modifications needed. -> " + Paths.formatToSongPath(PlayState.SONG.song) + diff);
 			}
+			else trace("Song has been modified successfully.");
 			
+			PlayState.SONG.player1 = currentPlayer;
+
 			isEnding = true;
 			if (Paths.formatToSongPath(PlayState.SONG.song) != 'shuckle-fuckle') //Avoid playing the deathConfirm Animation
 				boyfriend.playAnim('deathConfirm', true);

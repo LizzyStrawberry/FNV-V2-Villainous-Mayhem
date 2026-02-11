@@ -22,5 +22,5 @@ function onStepHit()
 end
 
 function setDrain() 
-	drain = 0.025
+	drain = 0.01275
 end
