@@ -37,11 +37,11 @@ function onUpdate(elapsed)
 		if songName == "Toxic Mishap" or songName == "Villainy" -- Main Week
 		or songName == "Toxic Mishap (Legacy)" -- Week Legacy
 		or songName == "Get Villain'd" or songName == "Get Villain'd (Old)" then -- Week Morky
-			if healthDraining == true and getPropertyFromClass('ClientPrefs', 'buff3Active') == false then 
+			if healthDraining and not getPropertyFromClass('ClientPrefs', 'buff3Active') then 
 				setProperty('health', health - healthToDrain)
 			end
 			if songName == "Toxic Mishap" or songName == "Villainy" then
-				if healthMinus == true and getPropertyFromClass('ClientPrefs', 'buff3Active') == false then
+				if healthMinus and not getPropertyFromClass('ClientPrefs', 'buff3Active') then
 					if getPropertyFromClass('ClientPrefs', 'resistanceCharm') == 1 then		
 						setProperty('health', health - 0.0125)
 						healthMinus = false

@@ -3794,7 +3794,7 @@ class PlayState extends MusicBeatState
 					else
 					{
 						var bossSong:Bool = (Paths.formatToSongPath(SONG.song) == 'villainy' || Paths.formatToSongPath(SONG.song) == 'point-blank' || Paths.formatToSongPath(SONG.song) == 'libidinousness' || Paths.formatToSongPath(SONG.song) == 'excrete' || Paths.formatToSongPath(SONG.song) == 'iniquitous' || Paths.formatToSongPath(SONG.song) == 'marauder');
-						var healthMult:Float = bossSong ? 0.9 : 0.5;
+						var healthMult:Float = bossSong ? 0.75 : 0.5;
 
 						if (!ClientPrefs.buff3Active)
 						{
@@ -3814,7 +3814,7 @@ class PlayState extends MusicBeatState
 					else
 					{
 						var bossSong:Bool = (Paths.formatToSongPath(SONG.song) == 'villainy' || Paths.formatToSongPath(SONG.song) == 'point-blank' || Paths.formatToSongPath(SONG.song) == 'libidinousness' || Paths.formatToSongPath(SONG.song) == 'excrete' || Paths.formatToSongPath(SONG.song) == 'iniquitous' || Paths.formatToSongPath(SONG.song) == 'marauder');
-						var healthMult:Float = bossSong ? 0.9 : 0.5;
+						var healthMult:Float = bossSong ? 0.75 : 0.5;
 
 						if (!ClientPrefs.buff3Active)
 						{
@@ -5099,7 +5099,7 @@ class PlayState extends MusicBeatState
 		else
 		{
 			var bossSong:Bool = (Paths.formatToSongPath(SONG.song) == 'villainy' || Paths.formatToSongPath(SONG.song) == 'point-blank' || Paths.formatToSongPath(SONG.song) == 'libidinousness' || Paths.formatToSongPath(SONG.song) == 'excrete' || Paths.formatToSongPath(SONG.song) == 'iniquitous' || Paths.formatToSongPath(SONG.song) == 'marauder');
-			var reduce:Float = 0.125 / ((ClientPrefs.resistanceCharm == 1) ? 2 : 1);
+			var reduce:Float = 0.1075 / ((ClientPrefs.resistanceCharm == 1) ? 2 : 1);
 			var healthMult:Float = daNote.missHealth + (bossSong ? reduce : 0);
 
 			if (!ClientPrefs.buff3Active)
@@ -5166,7 +5166,7 @@ class PlayState extends MusicBeatState
 			else
 			{
 				var bossSong:Bool = (Paths.formatToSongPath(SONG.song) == 'villainy' || Paths.formatToSongPath(SONG.song) == 'point-blank' || Paths.formatToSongPath(SONG.song) == 'libidinousness' || Paths.formatToSongPath(SONG.song) == 'excrete' || Paths.formatToSongPath(SONG.song) == 'iniquitous' || Paths.formatToSongPath(SONG.song) == 'marauder');
-				var reduce:Float = 0.125 / ((ClientPrefs.resistanceCharm == 1) ? 2 : 1);
+				var reduce:Float = 0.1075 / ((ClientPrefs.resistanceCharm == 1) ? 2 : 1);
 				var healthMult:Float = 0.04 + (bossSong ? reduce : 0);
 
 				if (!ClientPrefs.buff3Active)

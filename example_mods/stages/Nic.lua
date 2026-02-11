@@ -3,14 +3,14 @@ function onCreate()
 	if not optimizationMode then
 		makeLuaSprite('whiteBG')
 		makeGraphic('whiteBG', screenWidth, screenHeight, 'FFFFFF')
-		scaleObject('whiteBG', 5, 5);
+		scaleObject('whiteBG', 5, 5)
+		screenCenter('whiteBG', 'X')
 		setScrollFactor('whiteBG', 0, 0)
-		setObjectCamera('whiteBG', 'game')
 		addLuaSprite('whiteBG', false)
 		
-		makeLuaSprite('tail', 'bgs/nic/tail', 200, 140);
+		makeLuaSprite('tail', 'bgs/nic/tail', 200, 140)
 		setProperty('tail.origin.y', 800)
-		setScrollFactor('tail', 0.95, 0.95);
+		setScrollFactor('tail', 0.95, 0.95)
 	
 		setProperty('defaultCamZoom', 0.9)
 

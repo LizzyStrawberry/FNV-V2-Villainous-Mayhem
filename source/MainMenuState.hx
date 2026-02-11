@@ -11,7 +11,7 @@ import flash.system.System;
 
 class MainMenuState extends MusicBeatState
 {
-	public static var FNVVersion:String = '2.1 (Patch Update)'; //This is also used for Discord RPC
+	public static var FNVVersion:String = '2.1 (Patch Update)';
 	public static var psychEngineVersion:String = '0.6.3 Modified'; //This is also used for Discord RPC
 	public static var curSelected:Int = 0;
 	public static var curStorySelected:Int = 0;

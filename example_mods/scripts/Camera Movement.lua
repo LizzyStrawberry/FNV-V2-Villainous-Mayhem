@@ -51,7 +51,7 @@ flipOppMovement = false
 bfIdles = {'idle', 'danceLeft', 'danceRight'}
 dadIdles = {'idle', 'danceLeft', 'danceRight'}
 gfIdles = {'idle', 'danceLeft', 'danceRight'}
-specialAnims = {}
+specialAnims = {'hey'}
 
 gfNTypes = {"GF Sing"}
 
@@ -142,9 +142,7 @@ function onUpdate()
 	-- Camera Movement Mechanism
 	if allowCameraMove then
 		if followChars then
-			if not camMovementOn then
-				camMovementOn = true
-			end
+			if not camMovementOn then camMovementOn = true end
 			
 			if mustHitSection then
 				if followExtraChar and curEXSinging ~= "" then
@@ -271,7 +269,7 @@ function isSpecialAnimation(character)
 end
 
 function playSpecialAnimation(character)
-	for anim = 1, #(specialAnims) do
+	for anim = 1, #specialAnims do
 		if getProperty(character..'.animation.curAnim.name') == specialAnims[anim] then
 			triggerEvent("Camera Follow Pos", charOffsets[character.."X"], charOffsets[character.."Y"])
 

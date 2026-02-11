@@ -17,5 +17,5 @@ function onUpdate()
 end
 
 function setDrain() 
-	drain = difficultyName == "Iniquitous" and 0.018 or 0.012
+	drain = difficultyName == "Iniquitous" and 0.01875 or 0.01475
 end

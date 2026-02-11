@@ -17,5 +17,5 @@ function onUpdate()
 end
 
 function setDrain() 
-	drain = 0.018
+	drain = 0.01475
 end

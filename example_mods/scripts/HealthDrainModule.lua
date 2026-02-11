@@ -43,7 +43,7 @@ function opponentNoteHit(id, dir, NT, isSus)
 			end
 		end
 		
-		local totalDrain = drainRate - (isSus and (drainRate / 8) or 0)
+		local totalDrain = isSus and drainRate / 1.5 or drainRate
 		if getHealth() > 0.25 then setHealth(getHealth() - totalDrain) end
 	end
 end
