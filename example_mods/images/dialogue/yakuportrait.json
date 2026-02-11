@@ -6,7 +6,7 @@
 	"dialogue_pos": "left",
 	"no_antialiasing": false,
 	"scale": 2,
-	"image": "yakuportrait",
+	"image": "YakuPortrait",
 	"animations": [
 		{
 			"idle_offsets": [
