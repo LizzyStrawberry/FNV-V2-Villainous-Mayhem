@@ -158,7 +158,7 @@ class StoryMenuState extends MusicBeatState
 		weekCategory.alpha = 0.7;
 		weekCategory.scaleX = weekCategory.scaleY = 0.6;
 
-		categoryNum1 = new FlxSprite(FlxG.width- 250, 20).loadGraphic(Paths.image('mainStoryMode/categoryNum_1'));
+		categoryNum1 = new FlxSprite(FlxG.width - 350, 20).loadGraphic(Paths.image('mainStoryMode/categoryNum_1'));
 		categoryNum1.antialiasing = ClientPrefs.globalAntialiasing;
 		categoryNum1.updateHitbox();
 

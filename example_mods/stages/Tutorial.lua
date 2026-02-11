@@ -1,7 +1,7 @@
 function onCreate()
 	-- background shit
 	if not optimizationMode then
-		makeLuaSprite('bg', 'bgs/coupleClash/Background', -400, 80);
+		makeLuaSprite('bg', 'bgs/coupleClash/background', -400, 80);
 		setScrollFactor('bg', 0.9, 0.9);
 		scaleObject('bg', 1.7, 1.7)
 	
