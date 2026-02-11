@@ -1,8 +1,9 @@
 function onCreate()
 	-- background shit
 	if not optimizationMode then
-		makeLuaSprite('whiteBG', '', -800, -600)
-		makeGraphic('whiteBG', 5000, 5000, 'FFFFFF')
+		makeLuaSprite('whiteBG')
+		makeGraphic('whiteBG', screenWidth, screenHeight, 'FFFFFF')
+		scaleObject('whiteBG', 5, 5);
 		setScrollFactor('whiteBG', 0, 0)
 		setObjectCamera('whiteBG', 'game')
 		addLuaSprite('whiteBG', false)
