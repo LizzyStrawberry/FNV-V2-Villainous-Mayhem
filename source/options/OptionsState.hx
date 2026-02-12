@@ -189,16 +189,14 @@ class OptionsState extends MusicBeatState
 				if (!appliedChanges) appliedChanges = PlayState.checkSongBeforeSwitching("Optimization", PlayState.SONG.song, diff);
 				if (!appliedChanges) appliedChanges = PlayState.checkSongBeforeSwitching("Mechanics", PlayState.SONG.song, diff);
 
-				if (appliedChanges)
-				{
-					PlayState.SONG.player1 = currentPlayer;
-					trace("Song has been modified successfully.");
-				}
-				else
+				if (!appliedChanges)
 				{
 					PlayState.SONG = Song.loadFromJson(Paths.formatToSongPath(PlayState.SONG.song) + diff, Paths.formatToSongPath(PlayState.SONG.song));
 					trace("No modifications needed. -> " + Paths.formatToSongPath(PlayState.SONG.song) + diff);
 				}
+				else trace("Song has been modified successfully.");
+				
+				PlayState.SONG.player1 = currentPlayer;
 
 				StageData.loadDirectory(PlayState.SONG);
 				LoadingState.loadAndSwitchState(new PlayState());

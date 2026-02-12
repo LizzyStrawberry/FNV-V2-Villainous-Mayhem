@@ -191,7 +191,7 @@ class MainMenuState extends MusicBeatState
 
 		debugKeys = ClientPrefs.copyKey(ClientPrefs.keyBinds.get('debug_1'));
 
-		ClientPrefs.galleryUnlocked = (!ClientPrefs.galleryUnlocked && Achievements.isAchievementUnlocked('WeekMarco_Beaten') 
+		ClientPrefs.galleryUnlocked = (Achievements.isAchievementUnlocked('WeekMarco_Beaten') 
 			&& Achievements.isAchievementUnlocked('WeekNun_Beaten') && Achievements.isAchievementUnlocked('WeekKiana_Beaten'));
 		
 		// Resetting this rq
@@ -835,11 +835,11 @@ class MainMenuState extends MusicBeatState
 				inventoryButton.alpha = (TouchUtil.overlaps(inventoryButton)) ? 1 : 0.5;
 
 				// Options Button Functionality
-				if (TouchUtil.pressAction(optionsButton) && nothingSelected)
+				if (TouchUtil.pressAction(optionsButton))
 				{
 					ClientPrefs.inMenu = selectedSomethin = true;
 					FlxG.sound.play(Paths.sound('confirmMenu'));
-					FlxFlicker.flicker(optionsButton, 1, 0.06, false, false, function(flick:FlxFlicker)
+					FlxFlicker.flicker(optionsButton, 1, 0.06, false, false, function(_)
 					{
 						LoadingState.loadAndSwitchState(new options.OptionsState());
 					});
@@ -921,42 +921,43 @@ class MainMenuState extends MusicBeatState
 						});
 					}
 				}
-				#if mobile
-					#if DEBUG_ALLOWED
-						if (FlxG.keys.anyJustPressed(debugKeys)) MusicBeatState.switchState(new MasterEditorMenu());				
-					#else
-						if (FlxG.keys.anyJustPressed(debugKeys) || touchPad.buttonE.justPressed)
-						{
-							selectedSomethin = true;
-							if (FlxG.sound.music != null) FlxG.sound.music.stop();
-				
-							#if windows
-							CppAPI.setOld();
-							CppAPI.setWallpaper(FileSystem.absolutePath("assets\\images\\thinkFastBitch.png"));
-							#end
+	
+				var inventoryPress = FlxG.keys.justPressed.I || TouchUtil.pressAction(inventoryButton);
+				var shopPress = TouchUtil.pressAction(shopButton);
 
-							var video:VideoSprite = new VideoSprite(Paths.video('thinkFastChucklenuts'), false, false, false);
-							video.cameras = [camAchievement];
-							add(video);
-							video.finishCallback = function()
-							{
-								#if windows
-								if (!ClientPrefs.allowPCChanges && Wallpaper.oldWallpaper != null) CppAPI.setWallpaper("old");
-								#end
-								System.exit(0);
-							};
-							video.play();
+				// Activate Inventory
+				if (inventoryPress && !inventoryOpened)
+				{
+					if (ClientPrefs.haptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
+					inventoryOpened = true;
+					FlxG.sound.play(Paths.sound('confirmMenu'), 0.6);
+					cancelTweens("inventory");
+					FlxTween.tween(blackOut, {alpha: 0.7}, 0.6, {ease: FlxEase.circOut, type: PERSIST});
+					FlxTween.tween(gfPocket, {alpha: 1}, 0.6, {ease: FlxEase.circOut, type: PERSIST});
+					buffItems.forEach(function(buff:FlxSprite)
+					{
+						FlxTween.tween(buff, {alpha: (buff.ID == curBuffSelected) ? 1 : 0.2}, 0.6, {ease: FlxEase.circOut, type: PERSIST});
+					});
+					FlxTween.tween(inventoryTitle, {alpha: 0.7}, 0.6, {ease: FlxEase.circOut, type: PERSIST});
 
-							var achieveFlashBangID:Int = Achievements.getAchievementIndex('flashbang');
-							if(!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveFlashBangID][2])) 
-							{
-								Achievements.achievementsMap.set(Achievements.achievementsStuff[achieveFlashBangID][2], true);
-								giveFlashbangAchievement();
-								ClientPrefs.saveSettings();
-							}
-						}
-					#end
-				#end
+					charmItems.forEach(function(charm:FlxSprite)
+					{
+						FlxTween.tween(charm, {alpha: (charm.ID == curCharmSelected) ? 1 : 0.2}, 0.6, {ease: FlxEase.circOut, type: PERSIST});
+					});
+
+					buffSelect(curBuffSelected);
+					charmSelect(curCharmSelected);
+					ClientPrefs.saveSettings();
+				}
+
+				// To go to the shop
+				if (shopPress)
+				{
+					FlxG.sound.music.fadeOut(0.5);
+					FlxG.sound.play(Paths.sound('scrollMenu'));
+					ClientPrefs.inShop = true;
+					MusicBeatState.switchState(new ShopState());
+				}
 			}
 			else
 			{
@@ -1124,41 +1125,40 @@ class MainMenuState extends MusicBeatState
 			}
 		}
 
-		// Activate Inventory
-		if (FlxG.keys.pressed.I || TouchUtil.pressAction(inventoryButton) && nothingSelected && !selectedSomethin)
+		#if DEBUG_ALLOWED
+		if (FlxG.keys.anyJustPressed(debugKeys)) MusicBeatState.switchState(new MasterEditorMenu());				
+		#else
+		if (FlxG.keys.anyJustPressed(debugKeys))
 		{
-			if (ClientPrefs.haptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
-			inventoryOpened = true;
-			FlxG.sound.play(Paths.sound('confirmMenu'), 0.6);
-			cancelTweens("inventory");
-			FlxTween.tween(blackOut, {alpha: 0.7}, 0.6, {ease: FlxEase.circOut, type: PERSIST});
-			FlxTween.tween(gfPocket, {alpha: 1}, 0.6, {ease: FlxEase.circOut, type: PERSIST});
-			buffItems.forEach(function(buff:FlxSprite)
+			selectedSomethin = true;
+			if (FlxG.sound.music != null) FlxG.sound.music.stop();
+
+			#if windows
+			CppAPI.setOld();
+			CppAPI.setWallpaper(FileSystem.absolutePath("assets\\images\\thinkFastBitch.png"));
+			#end
+
+			var video:VideoSprite = new VideoSprite(Paths.video('thinkFastChucklenuts'), false, false, false);
+			video.cameras = [camAchievement];
+			add(video);
+			video.finishCallback = function()
 			{
-				FlxTween.tween(buff, {alpha: (buff.ID == curBuffSelected) ? 1 : 0.2}, 0.6, {ease: FlxEase.circOut, type: PERSIST});
-			});
-			FlxTween.tween(inventoryTitle, {alpha: 0.7}, 0.6, {ease: FlxEase.circOut, type: PERSIST});
+				#if windows
+				if (!ClientPrefs.allowPCChanges && Wallpaper.oldWallpaper != null) CppAPI.setWallpaper("old");
+				#end
+				System.exit(0);
+			};
+			video.play();
 
-			charmItems.forEach(function(charm:FlxSprite)
+			var achieveFlashBangID:Int = Achievements.getAchievementIndex('flashbang');
+			if(!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveFlashBangID][2])) 
 			{
-				FlxTween.tween(charm, {alpha: (charm.ID == curCharmSelected) ? 1 : 0.2}, 0.6, {ease: FlxEase.circOut, type: PERSIST});
-			});
-
-			buffSelect(curBuffSelected);
-			charmSelect(curCharmSelected);
-			ClientPrefs.saveSettings();
+				Achievements.achievementsMap.set(Achievements.achievementsStuff[achieveFlashBangID][2], true);
+				giveFlashbangAchievement();
+				ClientPrefs.saveSettings();
+			}
 		}
-
-		// To go to the shop
-		if (TouchUtil.pressAction(shopButton) && !ClientPrefs.inShop && nothingSelected && !selectedSomethin)
-		{
-			if (ClientPrefs.haptics) Haptic.vibrateOneShot(0.05, 0.25, 0.5);
-			FlxG.sound.music.fadeOut(0.5);
-			FlxG.sound.play(Paths.sound('scrollMenu'));
-			ClientPrefs.inShop = true;
-			MusicBeatState.switchState(new ShopState());
-		}
-
+		#end
 		super.update(elapsed);
 	}
 
