@@ -65,12 +65,10 @@ class PauseSubState extends MusicBeatSubstate
 		if(PlayState.isInjectionMode || PlayState.isMayhemMode) menuItemsOG.remove('Restart Song');
 		if(ClientPrefs.getGameplaySetting('botplay', false)) menuItemsOG.remove('Quick Settings');
 
-		//Setup Quick Settings for injection mode, mayhem mode
-		if (PlayState.isInjectionMode || PlayState.isMayhemMode)
-			options = ['Shaders', 'Cinematic Bars', 'Scroll Type', 'MoreOptions'];
-		if (PlayState.isIniquitousMode)
-			options = ['Shaders', 'Cinematic Bars', 'Scroll Type', 'BotPlay', 'MoreOptions'];
-
+		// Setup Quick Settings for injection mode, mayhem mode and Iniquitous Mode
+		if (PlayState.isInjectionMode || PlayState.isMayhemMode) options = ['Shaders', 'Cinematic Bars', 'Scroll Type', 'MoreOptions'];
+		else if (PlayState.isIniquitousMode) options = ['Shaders', 'Cinematic Bars', 'Scroll Type', 'BotPlay', 'MoreOptions'];
+		else if (!ClientPrefs.buff1Unlocked) options.remove('Buff To Use');
 		playerSelected = PlayState.SONG.player1;
 
 		if(PlayState.chartingMode)
@@ -89,20 +87,17 @@ class PauseSubState extends MusicBeatSubstate
 		}
 		menuItems = menuItemsOG;
 
-		for (i in 0...CoolUtil.difficulties.length) {
+		for (i in 0...CoolUtil.difficulties.length) 
+		{
 			var diff:String = '' + CoolUtil.difficulties[i];
 			difficultyChoices.push(diff);
 		}
 		difficultyChoices.push('BACK');
 
 		pauseMusic = new FlxSound();
-		if(songName != null) {
-			pauseMusic.loadEmbedded(Paths.music(songName), true, true);
-		} else if(Paths.formatToSongPath(PlayState.SONG.song) == 'iniquitous') {
-			pauseMusic.loadEmbedded(Paths.music("iniquitousPause"), true, true);
-		} else if (songName != 'None') {
-			pauseMusic.loadEmbedded(Paths.music(Paths.formatToSongPath(ClientPrefs.pauseMusic)), true, true);
-		}
+		if(songName != null) pauseMusic.loadEmbedded(Paths.music(songName), true, true);
+		else if(Paths.formatToSongPath(PlayState.SONG.song) == 'iniquitous') pauseMusic.loadEmbedded(Paths.music("iniquitousPause"), true, true);
+		else if (songName != 'None') pauseMusic.loadEmbedded(Paths.music(Paths.formatToSongPath(ClientPrefs.pauseMusic)), true, true);
 		pauseMusic.volume = 0;
 		pauseMusic.pitch = PlayState.instance.playbackRate;
 		pauseMusic.play(false, FlxG.random.int(0, Std.int(pauseMusic.length / 2)));
@@ -115,7 +110,7 @@ class PauseSubState extends MusicBeatSubstate
 		levelInfo.setFormat(Paths.font("vcr.ttf"), 32);
 		levelInfo.updateHitbox();
 
-		bgGradient = new FlxSprite(0, 0).loadGraphic(Paths.image('pauseGradient/gradient_Null'));
+		bgGradient = new FlxSprite(100, 0).loadGraphic(Paths.image('pauseGradient/gradient_Null'));
 		pauseCard = new FlxSprite(0, 0).loadGraphic(Paths.image('pauseMenu/pause_Default'));
 		switch (levelInfo.text) //Add your song's name shown in the pause menu (Case Sensitive), and add the color of the gradient and the pause card you want
 		{
@@ -248,33 +243,30 @@ class PauseSubState extends MusicBeatSubstate
 				bgGradient.loadGraphic(Paths.image('pauseGradient/gradient_Null'));
 				pauseCard.loadGraphic(Paths.image('pauseMenu/pause_Default'));
 		}
-		bgGradient.x = 100;
 		bgGradient.scale.x = 1.3;
 		bgGradient.scale.y = 1.1;
-		bgGradient.alpha = 0;
+		bgGradient.alpha = 0.001;
 		bgGradient.scrollFactor.set();
 		add(bgGradient);
 
 		var bg:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
-		bg.alpha = 0;
+		bg.alpha = 0.001;
 		bg.scrollFactor.set();
 		add(bg);
 
-		pauseCard.alpha = 0;
+		pauseCard.alpha = 0.001;
 		pauseCard.scrollFactor.set();
 		pauseCard.antialiasing = ClientPrefs.globalAntialiasing;
 		add(pauseCard);
 
-		arrows = new FlxSprite(0, 0).loadGraphic(Paths.image('pauseMenu/arrows'));
-		arrows.alpha = 0;
+		arrows = new FlxSprite().loadGraphic(Paths.image('pauseMenu/arrows'));
+		arrows.alpha = 0.001;
 		arrows.scrollFactor.set();
 		arrows.antialiasing = ClientPrefs.globalAntialiasing;
 		add(arrows);
 
-		charmIcon = new FlxSprite(0, 0).loadGraphic(Paths.image('inventory/charmN0'));
-		charmIcon.alpha = 0;
-		charmIcon.x += 70;
-		charmIcon.y += 70;
+		charmIcon = new FlxSprite(70, 70).loadGraphic(Paths.image('inventory/charmN0'));
+		charmIcon.alpha = 0.001;
 		charmIcon.scale.set(1.6, 1.6);
 		charmIcon.scrollFactor.set();
 		charmIcon.antialiasing = ClientPrefs.globalAntialiasing;
@@ -283,10 +275,7 @@ class PauseSubState extends MusicBeatSubstate
 		add(levelInfo);
 
 		var levelDifficulty:FlxText = new FlxText(20, 15 + 48, 0, "", 32);
-		if (PlayState.isMayhemMode)
-			levelDifficulty.text += "Mayhem";
-		else
-			levelDifficulty.text += CoolUtil.difficultyString();
+		levelDifficulty.text += (PlayState.isMayhemMode) ? "Mayhem" : CoolUtil.difficultyString();
 		levelDifficulty.scrollFactor.set();
 		levelDifficulty.setFormat(Paths.font('vcr.ttf'), 32);
 		levelDifficulty.updateHitbox();
@@ -302,11 +291,8 @@ class PauseSubState extends MusicBeatSubstate
 		blueballedTxt.updateHitbox();
 		add(blueballedTxt);
 
-		tokenInfo = new FlxText(310, 15 + 98, 0, "", 32);
-		if (ClientPrefs.tokens > 0)
-			tokenInfo.text = "Tokens: <GR>" + ClientPrefs.tokens + "<GR>";
-		else
-			tokenInfo.text = "Tokens: <R>" + ClientPrefs.tokens + "<R>";
+		var tokenMark = (ClientPrefs.tokens > 0) ? "<GR>" : "<R>";
+		tokenInfo = new FlxText(310, 15 + 98, 0, 'Tokens: <GR>${ClientPrefs.tokens}<GR>');
 		tokenInfo.scrollFactor.set();
 		tokenInfo.setFormat(Paths.font('vcr.ttf'), 32);
 		tokenInfo.updateHitbox();
@@ -344,10 +330,9 @@ class PauseSubState extends MusicBeatSubstate
 			charmIcon.loadGraphic(Paths.image('inventory/charmN2'));
 			showCharm = true;
 		}
-		else
-			charmText.text = "Charm: None";
+		else charmText.text = "Charm: None";
 
-		setBuff();
+		if (ClientPrefs.buff1Unlocked) setBuff(); // The first buff should atleast be unlocked.
 
 		practiceText = new FlxText(20, 15 + 101, 0, "PRACTICE MODE", 32);
 		practiceText.scrollFactor.set();
@@ -366,32 +351,26 @@ class PauseSubState extends MusicBeatSubstate
 		chartingText.visible = PlayState.chartingMode;
 		add(chartingText);
 
-		if (PlayState.chartingMode || PlayState.instance.practiceMode)
-			timerInfo = new FlxText(20, 15 + 135, 0, "", 32);
-		else
-			timerInfo = new FlxText(20, 15 + 115, 0, "", 32);
-
-		timerInfo.text += "Time Left: " + PlayState.timeTxtPause.text;
+		var timerOffs = (PlayState.chartingMode || PlayState.instance.practiceMode) ? 20 : 0;
+		timerInfo = new FlxText(20, 15 + 115 + timerOffs, 0, 'Time Left: ${PlayState.timeTxtPause.text}');
 		timerInfo.scrollFactor.set();
 		timerInfo.setFormat(Paths.font("vcr.ttf"), 32);
 		timerInfo.updateHitbox();
 		
-
 		if (ClientPrefs.timeBarType == 'Song Name' || ClientPrefs.timeBarType == 'Disabled')
 		{
-			timerInfo.alpha = 0;
+			timerInfo.alpha = 0.001;
 			add(timerInfo);
 		}
 		
-		blueballedTxt.alpha = 0;
-		levelDifficulty.alpha = 0;
-		levelInfo.alpha = 0;
-		tokenInfo.alpha = 0;
-		charmText.alpha = 0;
+		blueballedTxt.alpha = 0.001;
+		levelDifficulty.alpha = 0.001;
+		levelInfo.alpha = 0.001;
+		tokenInfo.alpha = 0.001;
+		charmText.alpha = 0.001;
 
 		levelInfo.x = FlxG.width - (levelInfo.width + 40);
-		if (ClientPrefs.timeBarType == 'Song Name' || ClientPrefs.timeBarType == 'Disabled')
-			timerInfo.x = FlxG.width - (timerInfo.width + 40);
+		if (ClientPrefs.timeBarType == 'Song Name' || ClientPrefs.timeBarType == 'Disabled') timerInfo.x = FlxG.width - (timerInfo.width + 40);
 		levelDifficulty.x = FlxG.width - (levelDifficulty.width + 40);
 		blueballedTxt.x = FlxG.width - (blueballedTxt.width + 40);
 
@@ -399,8 +378,7 @@ class PauseSubState extends MusicBeatSubstate
 		FlxTween.tween(bgGradient, {alpha: 1}, 0.4, {ease: FlxEase.quartInOut});
 		FlxTween.tween(pauseCard, {alpha: 1}, 0.4, {ease: FlxEase.quartInOut});
 		FlxTween.tween(arrows, {alpha: 1}, 0.4, {ease: FlxEase.quartInOut});
-		if (showCharm == true)
-			FlxTween.tween(charmIcon, {alpha: 1}, 0.4, {ease: FlxEase.quartInOut});
+		if (showCharm) FlxTween.tween(charmIcon, {alpha: 1}, 0.4, {ease: FlxEase.quartInOut});
 		FlxTween.tween(levelInfo, {alpha: 1, y: levelInfo.y + 5}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.3});
 		FlxTween.tween(charmText, {alpha: 1, y: charmText.y + 5}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.3});
 		FlxTween.tween(levelDifficulty, {alpha: 1, y: levelDifficulty.y + 5}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.5});
@@ -598,47 +576,52 @@ class PauseSubState extends MusicBeatSubstate
 					PlayState.instance.botplayTxt.alpha = 1;
 					PlayState.instance.botplaySine = 0;
 				case "Give up":
-					PlayState.deathCounter = 0;
-					PlayState.seenCutscene = false;
-					PlayState.inPlayState = false;
-					PlayState.checkForPowerUp = false;
 					WeekData.loadTheFirstEnabledMod();
+					PlayState.deathCounter = 0;
+					PlayState.seenCutscene = PlayState.inPlayState = PlayState.checkForPowerUp = false;
+					ClientPrefs.lowQuality = PlayState.changedDifficulty = PlayState.chartingMode = false;
 
-					ClientPrefs.lowQuality = false;
 					ClientPrefs.tokensAchieved = 0;
 					ClientPrefs.ghostTapping = true;
 					
-					if(PlayState.isStoryMode) {
+					if(PlayState.isStoryMode)
+					{
 						//Reset the crash detector to 0, since it means you've returned back to the menu
 						PlayState.isStoryMode = false;
 						ClientPrefs.resetProgress(true);
-						if (PlayState.isIniquitousMode == true)
+						if (PlayState.isIniquitousMode)
 						{
 							PlayState.isIniquitousMode = false;
 							MusicBeatState.switchState(new IniquitousMenuState(), "stickers");
 						}
-						else
-							MusicBeatState.switchState(new StoryMenuState(), "stickers");
-					}else if(PlayState.isInjectionMode) {
+						else MusicBeatState.switchState(new StoryMenuState(), "stickers");
+					}
+					else if(PlayState.isInjectionMode) 
+					{
 						PlayState.isInjectionMode = false;
 						MusicBeatState.switchState(new MainMenuState(), "stickers");
-					}else if(PlayState.isMayhemMode) {
+					}
+					else if(PlayState.isMayhemMode) 
+					{
 						PlayState.isMayhemMode = false;
 						PlayState.mayhemNRMode = "";
 						MusicBeatState.switchState(new MainMenuState(), "stickers");
-					} else {
-						if (ClientPrefs.onCrossSection)
-							MusicBeatState.switchState(new CrossoverState()); //go to Crossover State
-						else
-							MusicBeatState.switchState(new FreeplayState(), "stickers"); // Back To Freeplay
 					}
+					else 
+					{
+						if (ClientPrefs.onCrossSection) MusicBeatState.switchState(new CrossoverState()); //go to Crossover State
+						else MusicBeatState.switchState(new FreeplayState(), "stickers"); // Back To Freeplay
+					}
+
 					PlayState.cancelMusicFadeTween();
-					if (ClientPrefs.onCrossSection == false)
+
+					if (!ClientPrefs.onCrossSection)
+					{
 						if (ClientPrefs.iniquitousWeekUnlocked && !ClientPrefs.iniquitousWeekBeaten) FlxG.sound.playMusic(Paths.music('malumIctum'));
 						else if (FlxG.random.int(1, 10) == 2) FlxG.sound.playMusic(Paths.music('AJDidThat'));
 						else FlxG.sound.playMusic(Paths.music('freakyMenu'));
-					PlayState.changedDifficulty = false;
-					PlayState.chartingMode = false;
+					}
+						
 				case "You cannot escape.":
 					//Do Nothing. We do not want to let the player escape. Exclusive for Forsaken.
 			}
@@ -648,7 +631,7 @@ class PauseSubState extends MusicBeatSubstate
 	function openQuickSettings()
 	{
 		optionsBG = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
-		optionsBG.alpha = 0;
+		optionsBG.alpha = 0.001;
 		optionsBG.scrollFactor.set();
 		add(optionsBG);
 
@@ -658,7 +641,7 @@ class PauseSubState extends MusicBeatSubstate
 		optionInfo = new FlxText(750, 340, FlxG.width - 800, "TEST", 25);
 		optionInfo.setFormat("VCR OSD Mono", 30, FlxColor.WHITE, CENTER);
 		optionInfo.scrollFactor.set();
-		optionInfo.alpha = 0;
+		optionInfo.alpha = 0.001;
 		add(optionInfo);
 
 		if (optionInfoTweenFadeOut != null) optionInfoTweenFadeOut.cancel();
@@ -675,7 +658,7 @@ class PauseSubState extends MusicBeatSubstate
 			optionText.screenCenter(Y);
 			optionText.ID = i;
 			optionText.y += (100 * (i - (options.length / 2))) + 50;
-			optionText.alpha = 0;
+			optionText.alpha = 0.001;
 			grpOpts.add(optionText);
 		}
 
@@ -733,7 +716,7 @@ class PauseSubState extends MusicBeatSubstate
 				ClientPrefs.mechanics = (optiMode) ? false : !ClientPrefs.mechanics;
 				setBuff();
 			case "shaders": ClientPrefs.shaders = (optiMode) ? false : !ClientPrefs.shaders;
-			case "buff to use": ClientPrefs.mechanics ? setBuff(wah) : setBuff();
+			case "buff to use": setBuff(wah);
 
 			case "cinematic bars": ClientPrefs.cinematicBars = (optiMode) ? false : !ClientPrefs.cinematicBars;
 			case "scroll type": ClientPrefs.downScroll = !ClientPrefs.downScroll;
@@ -825,7 +808,7 @@ class PauseSubState extends MusicBeatSubstate
 	function openSkipTimeMenu()
 	{
 		skipTimeBG = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
-		skipTimeBG.alpha = 0;
+		skipTimeBG.alpha = 0.001;
 		skipTimeBG.scrollFactor.set();
 		add(skipTimeBG);
 
@@ -834,7 +817,7 @@ class PauseSubState extends MusicBeatSubstate
 		skipTimeTitle.scrollFactor.set();
 		skipTimeTitle.screenCenter(XY);
 		skipTimeTitle.y -= 100;
-		skipTimeTitle.alpha = 0;
+		skipTimeTitle.alpha = 0.001;
 
 		skipTimeTitle.borderSize = 5;
 		add(skipTimeTitle);
@@ -843,7 +826,7 @@ class PauseSubState extends MusicBeatSubstate
 		skipTimeText.setFormat(Paths.font("vcr.ttf"), 64, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		skipTimeText.scrollFactor.set();
 		skipTimeText.screenCenter(XY);
-		skipTimeText.alpha = 0;
+		skipTimeText.alpha = 0.001;
 
 		//failsafe to not crash
 		skipTimeTweenFadeOut = FlxTween.tween(skipTimeText, {alpha: 0}, 0.4, {ease: FlxEase.quartInOut});
@@ -945,7 +928,7 @@ class PauseSubState extends MusicBeatSubstate
 	function regenMenu():Void {
 		item = new Alphabet(FlxG.width - 30, 550, menuItems[curSelected], true);
 		item.setAlignmentFromString('right');
-		item.alpha = 0;
+		item.alpha = 0.001;
 		add(item);
 
 		FlxTween.tween(item, {alpha: 1}, 0.4, {ease: FlxEase.quartInOut});

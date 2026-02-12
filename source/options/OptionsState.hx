@@ -102,7 +102,6 @@ class OptionsState extends MusicBeatState
 		ClientPrefs.saveSettings();
 
 		//For Erasing Data
-
 		eraseText = new Alphabet(100, 500, "       Do you want to erase your save data?\nEverything you earned so far will be resetted!\n             (Use your cursor to navigate)", true);
 		eraseText.setAlignmentFromString('center');
         eraseText.scaleX = 0.55;
@@ -177,16 +176,14 @@ class OptionsState extends MusicBeatState
 				if (!appliedChanges) appliedChanges = PlayState.checkSongBeforeSwitching("Optimization", PlayState.SONG.song, diff);
 				if (!appliedChanges) appliedChanges = PlayState.checkSongBeforeSwitching("Mechanics", PlayState.SONG.song, diff);
 
-				if (appliedChanges)
-				{
-					PlayState.SONG.player1 = currentPlayer;
-					trace("Song has been modified successfully.");
-				}
-				else
+				if (!appliedChanges)
 				{
 					PlayState.SONG = Song.loadFromJson(Paths.formatToSongPath(PlayState.SONG.song) + diff, Paths.formatToSongPath(PlayState.SONG.song));
 					trace("No modifications needed. -> " + Paths.formatToSongPath(PlayState.SONG.song) + diff);
 				}
+				else trace("Song has been modified successfully.");
+				
+				PlayState.SONG.player1 = currentPlayer;
 
 				StageData.loadDirectory(PlayState.SONG);
 				LoadingState.loadAndSwitchState(new PlayState());

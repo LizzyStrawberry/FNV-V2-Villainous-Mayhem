@@ -94,7 +94,7 @@ end
 
 -- Creation, exception check and position fix for UI
 function createMayhemBar()
-	makeLuaSprite('reloadBar', 'mayhemBar/mayhembackBar', mayhemX, mayhemY)
+	makeLuaSprite('reloadBar', 'mayhemBar/mayhemBackBar', mayhemX, mayhemY)
 	setProperty('reloadBar.color', getColorFromHex('737373'))
 	setObjectCamera('reloadBar', 'hud')
 	setObjectOrder('reloadBar', getObjectOrder('healthBarBG') + 1)
@@ -102,7 +102,7 @@ function createMayhemBar()
 	setProperty('reloadBar.scale.x', 1)
 	addLuaSprite('reloadBar', true)
 		
-	makeLuaSprite('mayhembackBar', 'mayhemBar/mayhembackBar', mayhemX, mayhemY)
+	makeLuaSprite('mayhembackBar', 'mayhemBar/mayhemBackBar', mayhemX, mayhemY)
 	setProperty('mayhembackBar.color', getColorFromHex(backColor))
 	setObjectCamera('mayhembackBar', 'hud')
 	setObjectOrder('mayhembackBar', getObjectOrder('reloadBar') + 1)
