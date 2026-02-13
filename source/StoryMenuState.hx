@@ -194,6 +194,8 @@ class StoryMenuState extends MusicBeatState
 		add(categoryNum3);
 		if (!ClientPrefs.crossoverUnlocked) add(categoryNum4);
 
+		NotificationAlert.checkForNotifications(this);
+		
 		//Notifications on categories
 		if (NotificationAlert.sendCategoryNotification)
 		{
@@ -325,8 +327,6 @@ class StoryMenuState extends MusicBeatState
 		changeCategory();
 		changeWeek();
 		changeDifficulty();
-
-		NotificationAlert.checkForNotifications(this);
 
 		//Notification alert
 		if (NotificationAlert.sendMessage)
