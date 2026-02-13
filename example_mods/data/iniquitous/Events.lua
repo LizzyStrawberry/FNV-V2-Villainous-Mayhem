@@ -1,4 +1,3 @@
-local noteSwap = {732, 844, 956, 1068, 92, 204, 316, 428}
 local dadX
 local bfX
 
@@ -109,11 +108,7 @@ function onUpdate()
 		setProperty('dad.y', getProperty('boyfriend.y') - 550)
 		
 		setProperty('boyfriend.x', dadX - 130)
-		
-		for i = 0, 7 do
-			noteTweenX('noteSwap'..i, i, noteSwap[i + 1], 0.8 + (i* 0.25), 'bounceOut')
-		end
-		
+
 		triggerEvent('Change Character', 'dad', 'iniquitousP2')
 		triggerEvent('Change Character', 'bf', 'gfIniquitousP2')
 	end

@@ -68,23 +68,7 @@ class NotificationAlert
     public static function createMessagePopUp(state:FlxState, type:String, checkForShop:Bool = false)
     {
         notifMessage = new FlxSprite(MobileUtil.fixX(800), FlxG.height + 25);
-        switch(type.toLowerCase())
-        {
-            case 'normal':
-                notifMessage.loadGraphic(Paths.image('notifications/notifMessageNormal'));
-            case 'freeplay':
-                notifMessage.loadGraphic(Paths.image('notifications/notifMessageFreeplay'));
-            case 'iniquitous':
-                notifMessage.loadGraphic(Paths.image('notifications/notifMessageIniquitous'));
-            case 'injection':
-                notifMessage.loadGraphic(Paths.image('notifications/notifMessageInjection'));
-            case 'mayhem':
-                notifMessage.loadGraphic(Paths.image('notifications/notifMessageMayhem'));
-            case 'tutorial':
-                notifMessage.loadGraphic(Paths.image('notifications/notifMessageTutorial'));
-            case 'badge':
-                notifMessage.loadGraphic(Paths.image('notifications/notifMessageBadge'));
-        }
+        notifMessage.loadGraphic(Paths.image('notifications/notifMessage-${type.toLowerCase()}'));
 		notifMessage.antialiasing = ClientPrefs.globalAntialiasing;
 		notifMessage.updateHitbox();
         state.add(notifMessage);

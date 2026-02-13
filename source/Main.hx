@@ -19,7 +19,7 @@ class Main extends Sprite
 	{
 		width: 1280, // Window Width
 		height: 720, // Window Height
-		initialState: #if STARTUP_CACHE Cache #else TitleState #end, // State to load
+		initialState: CopyState, // The FlxState the game starts with.
 		fps: 60, // Framerate
 		skipSplash: true, // Skip Haxeflixel logo splash
 		startFullscreen: false // Full Screen
@@ -70,12 +70,6 @@ class Main extends Sprite
 
 		// Add new gameObject
 		var gameObject = new FlxGame(game.width, game.height, game.initialState, game.fps, game.fps, game.skipSplash, game.startFullscreen);
-		// Setting up Custom Sound Tray
-		// FlxG.game._customSoundTray wants just the class, it calls new from
-		// create() in there, which gets called when it's added to stage
-		// which is why it needs to be added before addChild(game) here
-		@:privateAccess
-		gameObject._customSoundTray = FunkinSoundTray;
 		addChild(gameObject);
 
 		fpsVar = new FPS(10, 3, 0xFFFFFF);

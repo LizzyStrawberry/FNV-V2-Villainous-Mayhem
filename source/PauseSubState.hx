@@ -264,7 +264,7 @@ class PauseSubState extends MusicBeatSubstate
 		pauseCard.scrollFactor.set();
 		pauseCard.antialiasing = ClientPrefs.globalAntialiasing;
 
-		var margin:Int = Std.int(Math.max(0, (FlxG.width - pauseCard.width) * 0.5));
+		/*var margin:Int = Std.int(Math.max(0, (FlxG.width - pauseCard.width) * 0.5));
 		if (margin > 0) {
 			leftBar = new FlxSprite(0, 0).makeGraphic(margin, FlxG.height, FlxColor.BLACK);
 			rightBar = new FlxSprite(FlxG.width - margin, 0).makeGraphic(margin, FlxG.height, FlxColor.BLACK);
@@ -275,7 +275,7 @@ class PauseSubState extends MusicBeatSubstate
 				bar.alpha = 0;
 				add(bar);
 			}
-		}
+		}*/
 
 		add(pauseCard);
 
@@ -285,7 +285,7 @@ class PauseSubState extends MusicBeatSubstate
 		arrows.antialiasing = ClientPrefs.globalAntialiasing;
 		add(arrows);
 
-		charmIcon = new FlxSprite(MObileUtil.fixX(70), 70).loadGraphic(Paths.image('inventory/charmN0'));
+		charmIcon = new FlxSprite(MobileUtil.fixX(70), 70).loadGraphic(Paths.image('inventory/charmN0'));
 		charmIcon.alpha = 0.001;
 		charmIcon.scale.set(1.6, 1.6);
 		charmIcon.scrollFactor.set();
@@ -395,7 +395,7 @@ class PauseSubState extends MusicBeatSubstate
 		levelDifficulty.x = pauseCard.x + pauseCard.width - levelDifficulty.width - pad;
 		blueballedTxt.x = pauseCard.x + pauseCard.width - blueballedTxt.width - pad;
 
-		for (bar in [leftBar, rightBar]) FlxTween.tween(bar, {alpha: 1}, 0.4, {ease: FlxEase.quartInOut});
+		//for (bar in [leftBar, rightBar]) FlxTween.tween(bar, {alpha: 1}, 0.4, {ease: FlxEase.quartInOut});
 
 		FlxTween.tween(bg, {alpha: 0.6}, 0.4, {ease: FlxEase.quartInOut});
 		FlxTween.tween(bgGradient, {alpha: 1}, 0.4, {ease: FlxEase.quartInOut});

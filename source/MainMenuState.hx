@@ -626,7 +626,7 @@ class MainMenuState extends MusicBeatState
 		buffSelected.antialiasing = ClientPrefs.globalAntialiasing;
 		add(buffSelected);
 
-		buffTitle = new Alphabet(FlxG.width - 110, FlxG.height - 520, "Buffs", true);
+		var buffTitle = new Alphabet(FlxG.width - 110, FlxG.height - 520, "Buffs", true);
 		buffTitle.scaleX = buffTitle.scaleY = 0.7;
 		buffTitle.alpha = 0;
 		add(buffTitle);
@@ -660,7 +660,7 @@ class MainMenuState extends MusicBeatState
 			charmItems.add(charm);
 		}	
 
-		charmTitle = new Alphabet(FlxG.width - 160, FlxG.height - 110, "Charms", true);
+		var charmTitle = new Alphabet(FlxG.width - 160, FlxG.height - 110, "Charms", true);
 		charmTitle.scaleX = charmTitle.scaleY = 0.7;
 		charmTitle.alpha = 0;
 		add(charmTitle);
